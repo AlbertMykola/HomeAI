@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="StyleCollectionViewCell" id="gTV-IL-0wX" customClass="StyleCollectionViewCell" customModule="HomeAI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="110" height="137"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="110" height="137"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FL1-nL-gTp">
+                        <rect key="frame" x="2" y="2" width="106" height="135"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JUh-6m-JHB">
+                                <rect key="frame" x="1" y="1" width="104" height="134"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="JUh-6m-JHB" secondAttribute="trailing" constant="1" id="GQQ-dh-tRq"/>
+                            <constraint firstAttribute="bottom" secondItem="JUh-6m-JHB" secondAttribute="bottom" id="iJA-g0-FDs"/>
+                            <constraint firstItem="JUh-6m-JHB" firstAttribute="top" secondItem="FL1-nL-gTp" secondAttribute="top" constant="1" id="u8e-Tc-UN9"/>
+                            <constraint firstItem="JUh-6m-JHB" firstAttribute="leading" secondItem="FL1-nL-gTp" secondAttribute="leading" constant="1" id="zuN-hm-hc4"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dNt-rQ-hKX" customClass="LiquidGlassView" customModule="HomeAI" customModuleProvider="target">
+                        <rect key="frame" x="3" y="109" width="104" height="28"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcr-N1-zTm" customClass="CustomFontLabel" customModule="HomeAI" customModuleProvider="target">
+                                <rect key="frame" x="3" y="3.6666666666666714" width="98" height="20.333333333333332"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fontName" value="Geologica-ExtraLight"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <real key="value" value="13"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="bcr-N1-zTm" firstAttribute="leading" secondItem="dNt-rQ-hKX" secondAttribute="leading" constant="3" id="5HM-IR-vMk"/>
+                            <constraint firstItem="bcr-N1-zTm" firstAttribute="centerY" secondItem="dNt-rQ-hKX" secondAttribute="centerY" id="5gb-x7-Nt0"/>
+                            <constraint firstAttribute="trailing" secondItem="bcr-N1-zTm" secondAttribute="trailing" constant="3" id="kGB-sc-gYD"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="glassBlurOpacity">
+                                <real key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="glassStyle">
+                                <integer key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="glassInteractive" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusValue">
+                                <real key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="bottomLeftCorner" value="YES"/>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="bottomRightCorner" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="dNt-rQ-hKX" firstAttribute="trailing" secondItem="JUh-6m-JHB" secondAttribute="trailing" id="0aB-dX-G23"/>
+                <constraint firstItem="FL1-nL-gTp" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="2" id="4ap-6y-kDU"/>
+                <constraint firstAttribute="bottom" secondItem="FL1-nL-gTp" secondAttribute="bottom" id="6xm-xs-9Ik"/>
+                <constraint firstItem="dNt-rQ-hKX" firstAttribute="leading" secondItem="JUh-6m-JHB" secondAttribute="leading" id="JbC-CG-mFS"/>
+                <constraint firstItem="dNt-rQ-hKX" firstAttribute="height" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="0.204964" id="Q6i-Fp-WQj"/>
+                <constraint firstItem="FL1-nL-gTp" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="2" id="ffD-gr-uCV"/>
+                <constraint firstItem="dNt-rQ-hKX" firstAttribute="bottom" secondItem="JUh-6m-JHB" secondAttribute="bottom" id="fnc-ly-gIM"/>
+                <constraint firstAttribute="trailing" secondItem="FL1-nL-gTp" secondAttribute="trailing" constant="2" id="fqp-GE-c3K"/>
+            </constraints>
+            <size key="customSize" width="185" height="171"/>
+            <connections>
+                <outlet property="bottomBarView" destination="dNt-rQ-hKX" id="2Sd-9t-zxf"/>
+                <outlet property="containerView" destination="FL1-nL-gTp" id="5Ln-2Y-3fK"/>
+                <outlet property="nameLabel" destination="bcr-N1-zTm" id="BdQ-vF-mop"/>
+                <outlet property="styleImageView" destination="JUh-6m-JHB" id="RhH-qY-gFg"/>
+            </connections>
+            <point key="canvasLocation" x="80.916030534351137" y="146.12676056338029"/>
+        </collectionViewCell>
+    </objects>
+</document>

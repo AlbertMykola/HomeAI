@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="InspirationCollectionViewCell" customModule="HomeAI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="214" height="236"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="214" height="236"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BI7-bK-2MN">
+                        <rect key="frame" x="5" y="10" width="204" height="221"/>
+                        <color key="backgroundColor" systemColor="secondarySystemFillColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="14"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="2"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" systemColor="tableSeparatorDarkColor"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="y0M-2B-P6s">
+                        <rect key="frame" x="5" y="5" width="204" height="226"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="y0M-2B-P6s" secondAttribute="bottom" constant="5" id="59z-2w-QS2"/>
+                <constraint firstAttribute="trailing" secondItem="y0M-2B-P6s" secondAttribute="trailing" constant="5" id="6gL-xN-hS0"/>
+                <constraint firstAttribute="trailing" secondItem="BI7-bK-2MN" secondAttribute="trailing" constant="5" id="9ua-WG-URa"/>
+                <constraint firstItem="BI7-bK-2MN" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="KeS-OZ-g8h"/>
+                <constraint firstItem="y0M-2B-P6s" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="X8h-5k-l40"/>
+                <constraint firstItem="y0M-2B-P6s" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="lFR-RK-roR"/>
+                <constraint firstAttribute="bottom" secondItem="BI7-bK-2MN" secondAttribute="bottom" constant="5" id="m9O-cv-ZC5"/>
+                <constraint firstItem="BI7-bK-2MN" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="sx3-vl-NDc"/>
+            </constraints>
+            <size key="customSize" width="214" height="236"/>
+            <connections>
+                <outlet property="containerView" destination="BI7-bK-2MN" id="b9u-sR-Q1N"/>
+                <outlet property="inspirationImageView" destination="y0M-2B-P6s" id="OUC-o7-0N4"/>
+            </connections>
+            <point key="canvasLocation" x="158.77862595419847" y="177.46478873239437"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="secondarySystemFillColor">
+            <color red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="tableSeparatorDarkColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
