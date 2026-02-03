@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="RoomCollectionViewCell" id="gTV-IL-0wX" customClass="RoomCollectionViewCell" customModule="HomeAI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QFR-2O-Kn0">
+                        <rect key="frame" x="5" y="5" width="100" height="100"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="64n-MB-0ku">
+                                <rect key="frame" x="29" y="13" width="42" height="49"/>
+                                <color key="tintColor" systemColor="labelColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="64n-MB-0ku" secondAttribute="height" multiplier="6:7" id="cc7-Ss-vLS"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SKE-Z0-oVF" customClass="CustomFontLabel" customModule="HomeAI" customModuleProvider="target">
+                                <rect key="frame" x="20" y="64" width="60" height="34"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="fontSize">
+                                        <real key="value" value="14"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="fontName" value="Geologica-ExtraLight"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="tertiarySystemGroupedBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="64n-MB-0ku" firstAttribute="centerX" secondItem="QFR-2O-Kn0" secondAttribute="centerX" id="6EH-QW-IlR"/>
+                            <constraint firstAttribute="width" secondItem="QFR-2O-Kn0" secondAttribute="height" multiplier="1:1" id="7vZ-jY-aWx"/>
+                            <constraint firstItem="SKE-Z0-oVF" firstAttribute="top" secondItem="64n-MB-0ku" secondAttribute="bottom" constant="2" id="A7O-TR-ctd"/>
+                            <constraint firstItem="64n-MB-0ku" firstAttribute="top" secondItem="QFR-2O-Kn0" secondAttribute="top" constant="13" id="TWZ-C3-SPG"/>
+                            <constraint firstItem="64n-MB-0ku" firstAttribute="centerY" secondItem="QFR-2O-Kn0" secondAttribute="centerY" multiplier="0.75" id="VmR-6Q-m8v"/>
+                            <constraint firstAttribute="bottom" secondItem="SKE-Z0-oVF" secondAttribute="bottom" constant="2" id="hnv-6G-IDw"/>
+                            <constraint firstItem="SKE-Z0-oVF" firstAttribute="leading" secondItem="QFR-2O-Kn0" secondAttribute="leading" constant="20" id="mdn-cB-ETh"/>
+                            <constraint firstAttribute="trailing" secondItem="SKE-Z0-oVF" secondAttribute="trailing" constant="20" id="mi0-xu-nNF"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" red="0.72156862745098038" green="0.74509803921568629" blue="0.67843137254901964" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="QFR-2O-Kn0" secondAttribute="bottom" constant="5" id="CqP-2h-90D"/>
+                <constraint firstAttribute="trailing" secondItem="QFR-2O-Kn0" secondAttribute="trailing" constant="5" id="ibz-1F-A0S"/>
+                <constraint firstItem="QFR-2O-Kn0" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="mAl-la-a4N"/>
+                <constraint firstItem="QFR-2O-Kn0" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="nuS-B8-WVU"/>
+            </constraints>
+            <size key="customSize" width="151" height="115"/>
+            <connections>
+                <outlet property="containerView" destination="QFR-2O-Kn0" id="YJM-KY-BuQ"/>
+                <outlet property="iconImageView" destination="64n-MB-0ku" id="mBe-NJ-koJ"/>
+                <outlet property="nameLabel" destination="SKE-Z0-oVF" id="2R8-vI-PpM"/>
+                <outletCollection property="constraintsWidth" destination="mAl-la-a4N" collectionClass="NSMutableArray" id="BoH-1s-swh"/>
+                <outletCollection property="constraintsWidth" destination="ibz-1F-A0S" collectionClass="NSMutableArray" id="huU-j5-np8"/>
+                <outletCollection property="constraintsWidth" destination="mi0-xu-nNF" collectionClass="NSMutableArray" id="hW5-sQ-dHh"/>
+                <outletCollection property="constraintsWidth" destination="mdn-cB-ETh" collectionClass="NSMutableArray" id="WqI-YN-Spt"/>
+                <outletCollection property="constraintsHeight" destination="TWZ-C3-SPG" collectionClass="NSMutableArray" id="qKk-3e-0hA"/>
+                <outletCollection property="constraintsHeight" destination="A7O-TR-ctd" collectionClass="NSMutableArray" id="Whh-Ba-hTT"/>
+                <outletCollection property="constraintsWidth" destination="nuS-B8-WVU" collectionClass="NSMutableArray" id="Z4o-di-1nV"/>
+                <outletCollection property="constraintsWidth" destination="CqP-2h-90D" collectionClass="NSMutableArray" id="PBb-7i-efV"/>
+            </connections>
+            <point key="canvasLocation" x="106.87022900763358" y="133.80281690140845"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="tertiarySystemGroupedBackgroundColor">
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

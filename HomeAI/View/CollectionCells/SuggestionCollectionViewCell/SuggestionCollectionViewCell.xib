@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="SuggestionCollectionViewCell" customModule="HomeAI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="84" height="81"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="84" height="81"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="container-view">
+                        <rect key="frame" x="0.0" y="0.0" width="84" height="81"/>
+                        <color key="backgroundColor" systemColor="secondarySystemFillColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                <real key="value" value="2"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                <color key="value" systemColor="tableSeparatorDarkColor"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="250" verticalHuggingPriority="250" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="6Ax-9q-WX3">
+                        <rect key="frame" x="0.0" y="0.0" width="84" height="81"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="container-view" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="container-top"/>
+                <constraint firstAttribute="trailing" secondItem="container-view" secondAttribute="trailing" id="container-trailing"/>
+                <constraint firstAttribute="bottom" secondItem="container-view" secondAttribute="bottom" id="container-bottom"/>
+                <constraint firstItem="container-view" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="container-leading"/>
+                <constraint firstItem="6Ax-9q-WX3" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="LHd-0t-Ybz"/>
+                <constraint firstAttribute="trailing" secondItem="6Ax-9q-WX3" secondAttribute="trailing" id="TiD-K5-ROy"/>
+                <constraint firstAttribute="bottom" secondItem="6Ax-9q-WX3" secondAttribute="bottom" id="VbI-UY-AmX"/>
+                <constraint firstItem="6Ax-9q-WX3" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ZKN-01-Tyv"/>
+            </constraints>
+            <size key="customSize" width="84" height="81"/>
+            <connections>
+                <outlet property="containerView" destination="container-view" id="container-outlet"/>
+                <outlet property="suggestionImageView" destination="6Ax-9q-WX3" id="TmR-ls-8ub"/>
+            </connections>
+            <resources>
+                <systemColor name="secondarySystemFillColor">
+                    <color red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
+                </systemColor>
+                <systemColor name="tableSeparatorDarkColor">
+                    <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.12" colorSpace="custom" customColorSpace="sRGB"/>
+                </systemColor>
+            </resources>
+            <point key="canvasLocation" x="-128.24427480916029" y="5.2816901408450709"/>
+        </collectionViewCell>
+    </objects>
+</document>

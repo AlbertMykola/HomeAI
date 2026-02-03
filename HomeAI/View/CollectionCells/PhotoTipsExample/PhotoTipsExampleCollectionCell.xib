@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geologica-Regular.ttf">
+            <string>Geologica-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PhotoTipsExampleCollectionCell" customModule="HomeAI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="163" height="114"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="163" height="114"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="H10-Er-W8y">
+                        <rect key="frame" x="0.0" y="0.0" width="163" height="114"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="20"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x9b-Nh-aFR">
+                        <rect key="frame" x="6.9999999999999964" y="89.333333333333329" width="50.666666666666657" height="17.666666666666671"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hx6-Wa-Bzd">
+                                <rect key="frame" x="4.9999999999999991" y="1.9999999999999991" width="13.666666666666664" height="13.666666666666664"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="hx6-Wa-Bzd" secondAttribute="height" multiplier="1:1" id="mCI-Oq-bRR"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1gs-CY-LG9">
+                                <rect key="frame" x="21.666666666666671" y="2.6666666666666705" width="26" height="12.666666666666664"/>
+                                <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="10"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="hx6-Wa-Bzd" firstAttribute="height" secondItem="x9b-Nh-aFR" secondAttribute="height" multiplier="0.769231" id="WVh-vk-xJD"/>
+                            <constraint firstItem="1gs-CY-LG9" firstAttribute="centerY" secondItem="hx6-Wa-Bzd" secondAttribute="centerY" id="dmm-qS-Cn1"/>
+                            <constraint firstItem="1gs-CY-LG9" firstAttribute="leading" secondItem="hx6-Wa-Bzd" secondAttribute="trailing" constant="3" id="lOg-cs-MdV"/>
+                            <constraint firstItem="hx6-Wa-Bzd" firstAttribute="leading" secondItem="x9b-Nh-aFR" secondAttribute="leading" constant="5" id="uK6-hj-qJT"/>
+                            <constraint firstAttribute="trailing" secondItem="1gs-CY-LG9" secondAttribute="trailing" constant="3" id="v7Q-sm-cea"/>
+                            <constraint firstItem="hx6-Wa-Bzd" firstAttribute="centerY" secondItem="x9b-Nh-aFR" secondAttribute="centerY" id="zkW-zt-hv9"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="7"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="x9b-Nh-aFR" secondAttribute="bottom" constant="7" id="cw6-S4-zg6"/>
+                <constraint firstItem="H10-Er-W8y" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="erS-ro-EE5"/>
+                <constraint firstAttribute="trailing" secondItem="H10-Er-W8y" secondAttribute="trailing" id="f6a-IV-mgT"/>
+                <constraint firstItem="H10-Er-W8y" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="hmo-Cz-9gh"/>
+                <constraint firstAttribute="bottom" secondItem="H10-Er-W8y" secondAttribute="bottom" id="iwu-jR-0IJ"/>
+                <constraint firstItem="x9b-Nh-aFR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="7" id="lCq-qc-MeZ"/>
+                <constraint firstItem="x9b-Nh-aFR" firstAttribute="height" secondItem="H10-Er-W8y" secondAttribute="height" multiplier="0.154035" id="sNu-tF-dkP"/>
+            </constraints>
+            <size key="customSize" width="147" height="109"/>
+            <connections>
+                <outlet property="exampleImageView" destination="H10-Er-W8y" id="qLo-rS-rYs"/>
+                <outlet property="levelLabel" destination="1gs-CY-LG9" id="gEE-K8-xhP"/>
+                <outlet property="stateImageView" destination="hx6-Wa-Bzd" id="zOP-ZJ-hib"/>
+            </connections>
+            <point key="canvasLocation" x="212.97709923664121" y="126.7605633802817"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

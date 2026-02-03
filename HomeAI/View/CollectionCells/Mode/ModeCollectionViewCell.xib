@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geologica-Light.ttf">
+            <string>Geologica-Light</string>
+        </array>
+        <array key="Geologica-Regular.ttf">
+            <string>Geologica-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="ModeCollectionViewCell" customModule="HomeAI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="226" height="120"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="226" height="120"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a07-Jz-Gmp" customClass="LiquidGlassView" customModule="HomeAI" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="226" height="120"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AHJ-jg-ZVO">
+                                <rect key="frame" x="10" y="9.9999999999999982" width="206" height="21.333333333333329"/>
+                                <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="17"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ONH-ER-FX5">
+                                <rect key="frame" x="10" y="36.333333333333336" width="206" height="19"/>
+                                <fontDescription key="fontDescription" name="Geologica-Light" family="Geologica" pointSize="15"/>
+                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                        <constraints>
+                            <constraint firstItem="ONH-ER-FX5" firstAttribute="top" secondItem="AHJ-jg-ZVO" secondAttribute="bottom" constant="5" id="3sZ-0X-6SH"/>
+                            <constraint firstAttribute="trailing" secondItem="ONH-ER-FX5" secondAttribute="trailing" constant="10" id="LJQ-md-Bnw"/>
+                            <constraint firstAttribute="trailing" secondItem="AHJ-jg-ZVO" secondAttribute="trailing" constant="10" id="SOd-3S-e5z"/>
+                            <constraint firstItem="AHJ-jg-ZVO" firstAttribute="top" secondItem="a07-Jz-Gmp" secondAttribute="top" constant="10" id="VCF-9Z-lj5"/>
+                            <constraint firstItem="AHJ-jg-ZVO" firstAttribute="leading" secondItem="a07-Jz-Gmp" secondAttribute="leading" constant="10" id="VMp-aG-6J5"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ONH-ER-FX5" secondAttribute="bottom" constant="5" id="maF-e7-pO9"/>
+                            <constraint firstItem="ONH-ER-FX5" firstAttribute="leading" secondItem="a07-Jz-Gmp" secondAttribute="leading" constant="10" id="rSp-Ey-7ZB"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="34"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusValue">
+                                <real key="value" value="34"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="topLeftCorner" value="YES"/>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="topRightCorner" value="YES"/>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="bottomLeftCorner" value="YES"/>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="bottomRightCorner" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="glassStyle">
+                                <integer key="value" value="1"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="a07-Jz-Gmp" secondAttribute="trailing" id="9Eq-FS-8mT"/>
+                <constraint firstItem="a07-Jz-Gmp" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="9LY-Co-DWj"/>
+                <constraint firstItem="a07-Jz-Gmp" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Mws-MR-O9a"/>
+                <constraint firstAttribute="bottom" secondItem="a07-Jz-Gmp" secondAttribute="bottom" id="zmF-Af-iQ7"/>
+            </constraints>
+            <size key="customSize" width="226" height="120"/>
+            <connections>
+                <outlet property="containerView" destination="a07-Jz-Gmp" id="9Un-vx-kao"/>
+                <outlet property="modeLabel" destination="AHJ-jg-ZVO" id="h8x-CN-ndT"/>
+                <outlet property="subtitleLabel" destination="ONH-ER-FX5" id="ahi-Bi-4cr"/>
+            </connections>
+            <point key="canvasLocation" x="161.83206106870227" y="125.35211267605635"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
