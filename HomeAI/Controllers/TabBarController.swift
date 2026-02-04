@@ -35,6 +35,7 @@ final class TabBarController: UITabBarController {
         appearance.inlineLayoutAppearance = appearance.stackedLayoutAppearance
         appearance.compactInlineLayoutAppearance = appearance.stackedLayoutAppearance
         tabBar.standardAppearance = appearance
+        
         if #available(iOS 15.0, *) {
             tabBar.scrollEdgeAppearance = appearance
         }

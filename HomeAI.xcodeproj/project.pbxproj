@@ -25,6 +25,10 @@
 		846000DF2E91394B00546BC9 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 846000DE2E91394B00546BC9 /* FirebaseStorage */; };
 		846000E12E91394B00546BC9 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 846000E02E91394B00546BC9 /* FirebaseStorageCombine-Community */; };
 		84A6C1C42F17DECF00B5327D /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 84A6C1C32F17DECF00B5327D /* Lottie */; };
+		84B6871B2F3354960076A343 /* FacebookAEM in Frameworks */ = {isa = PBXBuildFile; productRef = 84B6871A2F3354960076A343 /* FacebookAEM */; };
+		84B6871D2F3354960076A343 /* FacebookBasics in Frameworks */ = {isa = PBXBuildFile; productRef = 84B6871C2F3354960076A343 /* FacebookBasics */; };
+		84B6871F2F3354960076A343 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 84B6871E2F3354960076A343 /* FacebookCore */; };
+		84B687212F3354960076A343 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 84B687202F3354960076A343 /* FacebookLogin */; };
 		84C476932E7C6B9400629A54 /* ApphudSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 84C476922E7C6B9400629A54 /* ApphudSDK */; };
 		84D2B4582E758A5100039C35 /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 84D2B4572E758A5100039C35 /* OpenAI */; };
 /* End PBXBuildFile section */
@@ -64,9 +68,11 @@
 				846000D12E91394B00546BC9 /* FirebaseAnalyticsIdentitySupport in Frameworks */,
 				846000CA2E91369900546BC9 /* AdSupport.framework in Frameworks */,
 				846000DD2E91394B00546BC9 /* FirebaseRemoteConfig in Frameworks */,
+				84B6871F2F3354960076A343 /* FacebookCore in Frameworks */,
 				8455E6942E8FEDAB00878679 /* Kingfisher in Frameworks */,
 				846000CD2E91394B00546BC9 /* FirebaseAnalytics in Frameworks */,
 				841810622EEB52800023C777 /* Storage in Frameworks */,
+				84B687212F3354960076A343 /* FacebookLogin in Frameworks */,
 				846000D32E91394B00546BC9 /* FirebaseAuth in Frameworks */,
 				846000D92E91394B00546BC9 /* FirebaseFirestore in Frameworks */,
 				846000DF2E91394B00546BC9 /* FirebaseStorage in Frameworks */,
@@ -75,7 +81,9 @@
 				84C476932E7C6B9400629A54 /* ApphudSDK in Frameworks */,
 				8455E6972E9008C900878679 /* AmplitudeSwift in Frameworks */,
 				841810642EEB52800023C777 /* Supabase in Frameworks */,
+				84B6871B2F3354960076A343 /* FacebookAEM in Frameworks */,
 				84A6C1C42F17DECF00B5327D /* Lottie in Frameworks */,
+				84B6871D2F3354960076A343 /* FacebookBasics in Frameworks */,
 				8438E9C32EB25BAD00DF0127 /* GoogleGenerativeAI in Frameworks */,
 				846000CF2E91394B00546BC9 /* FirebaseAnalyticsCore in Frameworks */,
 				84D2B4582E758A5100039C35 /* OpenAI in Frameworks */,
@@ -151,6 +159,10 @@
 				841810612EEB52800023C777 /* Storage */,
 				841810632EEB52800023C777 /* Supabase */,
 				84A6C1C32F17DECF00B5327D /* Lottie */,
+				84B6871A2F3354960076A343 /* FacebookAEM */,
+				84B6871C2F3354960076A343 /* FacebookBasics */,
+				84B6871E2F3354960076A343 /* FacebookCore */,
+				84B687202F3354960076A343 /* FacebookLogin */,
 			);
 			productName = HomeAI;
 			productReference = 84206B4E2E6EBA0100119340 /* HomeAI.app */;
@@ -203,6 +215,7 @@
 				8438E9C12EB25BAD00DF0127 /* XCRemoteSwiftPackageReference "generative-ai-swift" */,
 				841810602EEB52800023C777 /* XCRemoteSwiftPackageReference "supabase-swift" */,
 				84A6C1C22F17DECF00B5327D /* XCRemoteSwiftPackageReference "lottie-spm" */,
+				84B687192F3354960076A343 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 84206B4F2E6EBA0100119340 /* Products */;
@@ -536,6 +549,14 @@
 				minimumVersion = 4.6.0;
 			};
 		};
+		84B687192F3354960076A343 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 18.0.1;
+			};
+		};
 		84C476912E7C6B9400629A54 /* XCRemoteSwiftPackageReference "ApphudSDK" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apphud/ApphudSDK";
@@ -639,6 +660,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 84A6C1C22F17DECF00B5327D /* XCRemoteSwiftPackageReference "lottie-spm" */;
 			productName = Lottie;
+		};
+		84B6871A2F3354960076A343 /* FacebookAEM */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84B687192F3354960076A343 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookAEM;
+		};
+		84B6871C2F3354960076A343 /* FacebookBasics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84B687192F3354960076A343 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookBasics;
+		};
+		84B6871E2F3354960076A343 /* FacebookCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84B687192F3354960076A343 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookCore;
+		};
+		84B687202F3354960076A343 /* FacebookLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84B687192F3354960076A343 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
+			productName = FacebookLogin;
 		};
 		84C476922E7C6B9400629A54 /* ApphudSDK */ = {
 			isa = XCSwiftPackageProductDependency;

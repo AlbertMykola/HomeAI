@@ -42,7 +42,6 @@ final class PaywallViewController: UIViewController, UIAdaptivePresentationContr
     @IBOutlet weak private var perWeekPriceTopLabel: CustomFontLabel!
     @IBOutlet weak private var priceTopButtonLabel: CustomFontLabel!
     @IBOutlet weak private var planTopButtonLabel: CustomFontLabel!
-    @IBOutlet weak private var enableFreeTrialLabel: CustomFontLabel!
     @IBOutlet weak private var descriptionLabel: CustomFontLabel!
     @IBOutlet weak private var headlineLabel: CustomFontLabel!
     @IBOutlet weak private var cancelAnytime: CustomFontLabel!
@@ -53,11 +52,8 @@ final class PaywallViewController: UIViewController, UIAdaptivePresentationContr
     @IBOutlet weak private var containerView: UIView!
     @IBOutlet weak private var topButtonContainerView: UIView!
     @IBOutlet weak private var bottomButtonContainerView: UIView!
-    @IBOutlet weak private var saveContainerView: UIView!
-    @IBOutlet weak private var bottomDotView: UIView!
-    @IBOutlet weak private var topDotView: UIView!
-    @IBOutlet weak private var bottomContainerView: UIView!
 
+    @IBOutlet weak var bottomContainerView: UIView!
     private var engine: CarouselEngine<UIImage, PremiumCollectionCell>?
     private var apphud = ApphudService.shared
     private var products: [ApphudProductModel] = []
@@ -94,7 +90,9 @@ final class PaywallViewController: UIViewController, UIAdaptivePresentationContr
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        saveContainerView.layer.cornerRadius = saveContainerView.frame.height / 2
+
+        topButtonContainerView.cornerRadius = topButtonContainerView.frame.height / 2
+        bottomButtonContainerView.cornerRadius = bottomButtonContainerView.frame.height / 2
         if !addedGradient {
             bottomContainerView.setGradient(
                 stops: [.init(percent: 0,   color: .systemBackground.withAlphaComponent(0)),
@@ -111,7 +109,6 @@ final class PaywallViewController: UIViewController, UIAdaptivePresentationContr
     private func config() {
         headlineLabel.text = Defaults.Text.headline
         descriptionLabel.text = Defaults.Text.description
-        enableFreeTrialLabel.text = Defaults.Text.enableFree
         planTopButtonLabel.text = Defaults.Text.yearly
         planBottomButtonLabel.text = Defaults.Text.weekly
         perWeekTopLabel.text = Defaults.Text.perWeek
@@ -122,7 +119,7 @@ final class PaywallViewController: UIViewController, UIAdaptivePresentationContr
 
         constraintsWidth.forEach { $0.scaleConstant() }
         constraintsHeight.forEach { $0.scaleConstant() }
-        applySelection(to: topButtonContainerView, dot: topDotView, selected: true)
+        applySelection(to: topButtonContainerView, selected: true)
     }
 
     private func configTopCarusel() {
@@ -200,12 +197,11 @@ final class PaywallViewController: UIViewController, UIAdaptivePresentationContr
         }
     }
 
-    private func applySelection(to view: UIView, dot: UIView, selected: Bool) {
-        view.layer.borderWidth = selected ? 1.5 : 0.0
-        view.layer.borderColor = selected ? UIColor.systemYellow.cgColor : nil
-        view.layer.cornerRadius = 12
+    private func applySelection(to view: UIView, selected: Bool) {
+        view.layer.borderWidth = selected ? 1.0 : 1.0
+        view.layer.borderColor = selected ? UIColor.label.cgColor : UIColor.quaternaryLabel.cgColor
+        view.layer.cornerRadius = view.frame.height / 2
         view.layer.masksToBounds = true
-        dot.isHidden = !selected
     }
 
     private func updateProductButtons() {
@@ -311,8 +307,8 @@ final class PaywallViewController: UIViewController, UIAdaptivePresentationContr
     @IBAction private func annuallyAction(_ sender: UIButton) {
         hapticVibration()
         selectedPlan = .annual
-        applySelection(to: topButtonContainerView, dot: topDotView, selected: true)
-        applySelection(to: bottomButtonContainerView, dot: bottomDotView, selected: false)
+        applySelection(to: topButtonContainerView, selected: true)
+        applySelection(to: bottomButtonContainerView, selected: false)
         cancelAnytime.text = Defaults.Text.cancelAnytime
         continueButton.setTitle(Defaults.Text.continueTitle, for: .normal)
         selectedProduct = 0
@@ -322,8 +318,8 @@ final class PaywallViewController: UIViewController, UIAdaptivePresentationContr
     @IBAction private func weeklyAction(_ sender: UIButton) {
         hapticVibration()
         selectedPlan = .weekly
-        applySelection(to: topButtonContainerView, dot: topDotView, selected: false)
-        applySelection(to: bottomButtonContainerView, dot: bottomDotView, selected: true)
+        applySelection(to: topButtonContainerView, selected: false)
+        applySelection(to: bottomButtonContainerView, selected: true)
         cancelAnytime.text = Defaults.Text.noPayment
         continueButton.setTitle(Defaults.Text.tryFree, for: .normal)
         selectedProduct = 1

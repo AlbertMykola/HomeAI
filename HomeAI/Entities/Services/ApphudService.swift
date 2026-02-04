@@ -1,6 +1,7 @@
 import StoreKit
 import ApphudSDK
 import AdServices
+import FBSDKCoreKit
 
 public class ApphudService: NSObject {
 
@@ -10,8 +11,7 @@ public class ApphudService: NSObject {
     private var currentPaywall: ApphudPaywall?
         
     public var hasActiveSubscription: Bool {
-//        Apphud.hasActiveSubscription()
-        false
+        Apphud.hasActiveSubscription()
     }
     
     @MainActor
@@ -27,6 +27,7 @@ public class ApphudService: NSObject {
         Apphud.setDeviceIdentifiers(idfa: nil, idfv: idfv)
         Apphud.deferPlacements()
         fetchASAAttribution()
+        setMetaAttributionForCAPI()
         AmplitudeService.shared.logEvent(.apphudUserId(id: Apphud.userID()))
     }
     
@@ -117,5 +118,23 @@ public class ApphudService: NSObject {
                 }
             }
         }
+    }
+    
+    @MainActor
+    private func setMetaAttributionForCAPI() {
+        let extInfo = _AppEventsDeviceInfo.shared.encodedDeviceInfo
+        let anonId = AppEvents.shared.anonymousID
+
+        let data: [String: Any] = ["extinfo": extInfo ?? ""]
+
+        Apphud.setAttribution(
+            data: ApphudAttributionData(rawData: data),
+            from: .facebook,
+            identifer: anonId,
+            callback: { result in
+                print("setMetaAttributionForCAPI", result)
+                // опційно: лог у консоль/Amplitude, якщо треба
+            }
+        )
     }
 }
