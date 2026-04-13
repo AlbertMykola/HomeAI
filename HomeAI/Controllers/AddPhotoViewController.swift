@@ -95,6 +95,11 @@ final class AddPhotoViewController: UIViewController, UIImagePickerControllerDel
         updateInfoButtonVisibility()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        presentPhotoTipsOnFirstVisitIfNeeded()
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -288,18 +293,23 @@ final class AddPhotoViewController: UIViewController, UIImagePickerControllerDel
         } else if promptManager.designOption == .replace {
             completion?()
         } else {
-            // Перевірка підписки та ліміту безкоштовних генерацій перед показом екрану обробки
-            if FreeGenerationManager.shared.canGenerateForFree || ApphudService.shared.hasActiveSubscription {
-            NavigationManager.shared.showProcessing(manager: promptManager)
-            } else {
-                NavigationManager.shared.showPremium(placement: Constants.Keys.reachedLimit)
+            if GenerationAccess.requestProcessingIfAllowed(presentingFrom: self) {
+                NavigationManager.shared.showProcessing(manager: promptManager)
             }
         }
     }
     
     @IBAction func infoAction(_ sender: UIButton) {
         let option = promptManager?.designOption ?? .interior
-        NavigationManager.shared.showPhotoTips(designOption: option)
+        NavigationManager.shared.showPhotoTips(designOption: option, presentingViewController: self)
+    }
+    
+    private func presentPhotoTipsOnFirstVisitIfNeeded() {
+        guard !UserDefaults.standard.bool(forKey: Constants.Keys.didShowAddPhotoPhotoTips) else { return }
+        UserDefaults.standard.set(true, forKey: Constants.Keys.didShowAddPhotoPhotoTips)
+        UserDefaults.standard.synchronize()
+        let option = promptManager?.designOption ?? .interior
+        NavigationManager.shared.showPhotoTips(designOption: option, presentingViewController: self)
     }
     
     

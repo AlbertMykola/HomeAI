@@ -336,11 +336,9 @@ class ObjectSelectionViewController: UIViewController, PageStepDelegate, PromptM
     @IBAction private func generateAction(_ sender: UIButton) {
         guard prepareForGeneration() else { return }
         
-        if FreeGenerationManager.shared.canGenerateForFree || ApphudService.shared.hasActiveSubscription {
-            guard let promptManager else { return }
+        guard let promptManager else { return }
+        if GenerationAccess.requestProcessingIfAllowed(presentingFrom: self) {
             NavigationManager.shared.showProcessing(manager: promptManager)
-        } else {
-            NavigationManager.shared.showPremium(placement: Constants.Keys.reachedLimit)
         }
     }
     

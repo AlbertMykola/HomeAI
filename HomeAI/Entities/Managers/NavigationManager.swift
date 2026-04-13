@@ -15,6 +15,23 @@ final class NavigationManager {
     // MARK: - State
     private var window: UIWindow?
 
+    /// Якщо користувач пішов у редагування з детальки (delete object тощо), після `pop` назад на Processing знову показати цю детальку.
+    private(set) var pendingInspirationDetailReopen: (model: ImageDetailModel, promptManager: GemeniPromptManager?)?
+
+    func setPendingInspirationDetailReopen(model: ImageDetailModel, promptManager: GemeniPromptManager?) {
+        pendingInspirationDetailReopen = (model, promptManager)
+    }
+
+    func consumePendingInspirationDetailReopen() -> (model: ImageDetailModel, promptManager: GemeniPromptManager?)? {
+        let value = pendingInspirationDetailReopen
+        pendingInspirationDetailReopen = nil
+        return value
+    }
+
+    func clearPendingInspirationDetailReopen() {
+        pendingInspirationDetailReopen = nil
+    }
+
     // MARK: - Storyboards
     private let mainStoryboard = UIStoryboard(name: "Main", bundle: .main)
 
@@ -156,24 +173,30 @@ final class NavigationManager {
         push(vc)
     }
 
-    func presentStyle(promptManager: GemeniPromptManager, option: DesignOption, onSelect: @escaping (UnifiedStyle) -> Void) {
+    func presentStyle(promptManager: GemeniPromptManager,
+                      option: DesignOption,
+                      onSelect: @escaping (UnifiedStyle) -> Void,
+                      onGenerate: (() -> Void)? = nil) {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
         guard let vc = storyboard.instantiateViewController(withIdentifier: "StyleListViewController") as? StyleListViewController else { return }
         vc.promptManager = promptManager
         vc.selectedOption = option
         vc.isPresentedModall = true
         vc.onSelectStyle = onSelect
+        vc.onGenerate = onGenerate
 
         present(vc, mode: .sheet(detents: [.medium(), .large()], grabber: true))
     }
 
     func presentColor(promptManager: GemeniPromptManager,
-                      onSelect: @escaping (ColorType) -> Void) {
+                      onSelect: @escaping (ColorType) -> Void,
+                      onGenerate: (() -> Void)? = nil) {
         let sb = UIStoryboard(name: "Main", bundle: .main)
         guard let vc = sb.instantiateViewController(withIdentifier: "ColorListViewController") as? ColorListViewController else { return }
         vc.promptManager = promptManager
         vc.isPresentedModall = true
         vc.onSelectColor = onSelect
+        vc.onGenerate = onGenerate
 
         vc.modalPresentationStyle = .pageSheet
         if let sheet = vc.sheetPresentationController {
@@ -184,7 +207,7 @@ final class NavigationManager {
     }
 
     // MARK: - Photo Tips
-    func showPhotoTips(designOption: DesignOption = .interior) {
+    func showPhotoTips(designOption: DesignOption = .interior, presentingViewController: UIViewController? = nil) {
         let sb = UIStoryboard(name: "Main", bundle: .main)
         guard let vc = sb.instantiateViewController(withIdentifier: "PhotoTipsViewController") as? PhotoTipsViewController else { return }
         vc.designOption = designOption
@@ -193,7 +216,8 @@ final class NavigationManager {
             sheet.detents = [.medium(), .large()]
             sheet.prefersGrabberVisible = true
         }
-        (UIApplication.getTopViewController() ?? currentNavigationController)?.present(vc, animated: true)
+        let presenter = presentingViewController ?? UIApplication.getTopViewController() ?? currentNavigationController
+        presenter?.present(vc, animated: true)
     }
     
     func showPrompt(promptManager: GemeniPromptManager, showSuggestions: Bool = true, initialPrompt: String? = nil, onSelect: @escaping (String) -> Void) {

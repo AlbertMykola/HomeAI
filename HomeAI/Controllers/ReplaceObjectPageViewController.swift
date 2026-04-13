@@ -204,7 +204,9 @@ class ReplaceObjectPageViewController: UIPageViewController {
             updateNextButtonState()
         } else {
             // Перехід до генерації
-            FreeGenerationManager.shared.canGenerateForFree || ApphudService.shared.hasActiveSubscription ? NavigationManager.shared.showProcessing(manager: promptManager) : NavigationManager.shared.showPremium(placement: Constants.Keys.reachedLimit)
+            if GenerationAccess.requestProcessingIfAllowed(presentingFrom: self) {
+                NavigationManager.shared.showProcessing(manager: promptManager)
+            }
         }
     }
     

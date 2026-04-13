@@ -59,7 +59,7 @@ final class PaywallViewController: UIViewController, UIAdaptivePresentationContr
     private var products: [ApphudProductModel] = []
     private var selectedPlan: PlanSelection?
     private var loader: CustomLoaderView?
-    private var selectedProduct = 0
+    private var selectedProduct = 1
     private var addedGradient = false
 
     var placement: String?
@@ -115,11 +115,11 @@ final class PaywallViewController: UIViewController, UIAdaptivePresentationContr
         perWeekBottomLabel.text = Defaults.Text.perWeek
         cancelAnytime.text = Defaults.Text.cancelAnytime
 
-        continueButton.setTitle(Defaults.Text.continueTitle, for: .normal)
+        continueButton.setTitle(Defaults.Text.tryFree, for: .normal)
 
         constraintsWidth.forEach { $0.scaleConstant() }
         constraintsHeight.forEach { $0.scaleConstant() }
-        applySelection(to: topButtonContainerView, selected: true)
+        applySelection(to: bottomButtonContainerView, selected: true)
     }
 
     private func configTopCarusel() {
@@ -324,12 +324,6 @@ final class PaywallViewController: UIViewController, UIAdaptivePresentationContr
         continueButton.setTitle(Defaults.Text.tryFree, for: .normal)
         selectedProduct = 1
         buyProduct(index: 1)
-    }
-
-    @IBAction private func onSwitch(_ sender: UISwitch) {
-        amplitudeService.logEvent(.pressSwitch)
-        hapticVibration()
-        sender.isOn ? weeklyAction(UIButton()) : annuallyAction(UIButton())
     }
 
     @IBAction private func closeAction(_ sender: UIButton) {

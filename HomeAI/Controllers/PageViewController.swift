@@ -207,10 +207,8 @@ class PageViewController: UIPageViewController {
             pageControl.currentPage = nextIndex
             updateNextButtonState()
         } else {
-            if FreeGenerationManager.shared.canGenerateForFree || ApphudService.shared.hasActiveSubscription {
+            if GenerationAccess.requestProcessingIfAllowed(presentingFrom: self) {
                 NavigationManager.shared.showProcessing(manager: promptManager)
-            } else {
-                NavigationManager.shared.showPremium(placement: Constants.Keys.reachedLimit)
             }
         }
     }
@@ -233,7 +231,9 @@ class PageViewController: UIPageViewController {
             pageControl.currentPage = nextIndex
             updateNextButtonState()
         } else {
-            FreeGenerationManager.shared.canGenerateForFree || ApphudService.shared.hasActiveSubscription ? NavigationManager.shared.showProcessing(manager: promptManager) : NavigationManager.shared.showPremium(placement: Constants.Keys.reachedLimit)
+            if GenerationAccess.requestProcessingIfAllowed(presentingFrom: self) {
+                NavigationManager.shared.showProcessing(manager: promptManager)
+            }
         }
     }
     

@@ -1,21 +1,15 @@
 import UIKit
-import Photos
 
 private struct Defaults {
     
     struct Text {
         static let done = "Done".localized
-        static let saved = "Saved".localized
-        static let error = "Error".localized
-        static let message = "Image saved to photo gallery".localized
-        static let ok = "OK".localized
-        static let permissionDenied = "Permission Denied".localized
-        static let permissionMessage = "Please grant access to your photo library in Settings.".localized
         static let color = "Color".localized
         static let style = "Style".localized
         static let edit = "Edit".localized
         static let save = "Save".localized
         static let regeneration = "Regeneration".localized
+        static let generate = "Generate".localized
         static let share = "Share".localized
     }
 }
@@ -39,34 +33,35 @@ final class InspirationDetailViewController: UIViewController {
     
     @IBOutlet weak private var collectionView: UICollectionView!
     
+    @IBOutlet weak private var dislikeImageView: UIImageView!
+    @IBOutlet weak private var likeImageView: UIImageView!
+    
     @IBOutlet private var constaintsHeight: [NSLayoutConstraint]!
     @IBOutlet private var constraintsWidth: [NSLayoutConstraint]!
     
-    // MARK: - Properties
+    // MARK: - Public properties
     var data: ImageDetailModel?
     var promptManager: GemeniPromptManager?
     var showsRegenerateButton: Bool = true
     var onRegenerate: ((GemeniPromptManager) -> Void)?
+    var showsLimitedEditorActions: Bool = false
 
+    // MARK: - Private properties
     private var beforeImage: UIImage?
     private var afterImage: UIImage?
     private var imageAspectConstraint: NSLayoutConstraint?
     private var beforeLoadingIndicator: UIActivityIndicatorView?
-    
-    private let editorActions: [EditorActionType] = [
-        .deleteObject, .replaceObject, .newWalls, .newFloor, .newStyle, .newColor
-    ]
-    
-    var showsLimitedEditorActions: Bool = false
-    
+    private var isGenerateMode = false
+
+    private let imageManager = InspirationDetailImageManager()
+    private let feedbackManager = InspirationDetailFeedbackManager()
+    private let editorRouter = InspirationDetailEditorRouter()
+
     private var visibleEditorActions: [EditorActionType] {
-        if showsLimitedEditorActions {
-            return [.deleteObject, .replaceObject]
-        }
-        return editorActions
+        editorRouter.visibleActions(for: data?.option, showsLimited: showsLimitedEditorActions)
     }
 
-    // MARK: - Lifecycles
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         AmplitudeService.shared.logEvent(.showDetail)
@@ -77,7 +72,7 @@ final class InspirationDetailViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        showRateAlertIfNeeded()
+        feedbackManager.showRateAlertIfNeeded(in: self)
     }
     
     override func viewDidLayoutSubviews() {
@@ -92,87 +87,6 @@ final class InspirationDetailViewController: UIViewController {
         afterbeforeContainerView.layer.cornerRadius = r
         insirationImageView.layer.cornerRadius = r
         insirationImageView.clipsToBounds = true
-    }
-    
-    // MARK: - Functions
-    private func configure() {
-
-        doneButton.setTitle(Defaults.Text.done, for: .normal)
-        configureEditorActions()
-        collectionView.isHidden = showsLimitedEditorActions
-        
-        insirationImageView.clipsToBounds = true
-        
-        beforeImage = data?.previewsImage
-        afterImage  = data?.image
-                
-        insirationImageView.image = afterImage
-        updateImageAspect(for: afterImage)
-        
-        if beforeImage != nil {
-            afterBeforeButton.isHidden = false
-            afterbeforeContainerView.isHidden = false
-        } else {
-            afterBeforeButton.isHidden = true
-            afterbeforeContainerView.isHidden = true
-        }
-        regenerateButton.isHidden = !showsRegenerateButton
-        regenerationLabel.isHidden = !showsRegenerateButton
-        
-        afterBeforeButton.removeTarget(nil, action: nil, for: .allEvents)
-        afterBeforeButton.addTarget(self, action: #selector(showBeforeHold), for: [.touchDown, .touchDragEnter])
-        afterBeforeButton.addTarget(self, action: #selector(restoreAfterRelease), for: [.touchUpInside, .touchUpOutside, .touchCancel, .touchDragExit])
-        
-        setupBeforeLoadingIndicator()
-        setupButtonIcons()
-        saveLabel.text = Defaults.Text.save
-        regenerationLabel.text = Defaults.Text.regeneration
-        shareLabel.text = Defaults.Text.share
-    }
-    
-    private func configureEditorActions() {
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.backgroundColor = .clear
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.register(
-            UINib(nibName: "EditorActionCollectionCell", bundle: nil),
-            forCellWithReuseIdentifier: "EditorActionCollectionCell"
-        )
-        
-        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.scrollDirection = .horizontal
-            layout.minimumLineSpacing = 12
-            layout.minimumInteritemSpacing = 0
-            layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
-            layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
-        }
-    }
-    
-    private func setupButtonIcons() {
-        let largeConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .regular , scale: .large)
-        if let currentSaveImage = saveButton.image(for: .normal) {
-            let resizedImage = currentSaveImage.withConfiguration(largeConfig)
-            saveButton.setImage(resizedImage, for: .normal)
-        } else if let downloadImage = UIImage(systemName: "download_icon") {
-            saveButton.setImage(downloadImage.withConfiguration(largeConfig), for: .normal)
-        }
-        
-        if let currentRegenerateImage = regenerateButton.image(for: .normal) {
-            let resizedImage = currentRegenerateImage.withConfiguration(largeConfig)
-            regenerateButton.setImage(resizedImage, for: .normal)
-        } else if let refreshImage = UIImage(systemName: "regenerate_icon") {
-            regenerateButton.setImage(refreshImage.withConfiguration(largeConfig), for: .normal)
-        }
-        
-        if let currentShareImage = shareButton.image(for: .normal) {
-            let resizedImage = currentShareImage.withConfiguration(largeConfig)
-            shareButton.setImage(resizedImage, for: .normal)
-        } else if let shareImage = UIImage(named: "share_icon") {
-            shareButton.setImage(shareImage.withConfiguration(largeConfig), for: .normal)
-        }
-
-        insirationImageView.isUserInteractionEnabled = false
     }
     
     // MARK: - Public
@@ -197,104 +111,18 @@ final class InspirationDetailViewController: UIViewController {
         insirationImageView.image = image
         updateImageAspect(for: image)
     }
-    
-    private func setupBeforeLoadingIndicator() {
-        let indicator = UIActivityIndicatorView(style: .medium)
-        indicator.translatesAutoresizingMaskIntoConstraints = false
-        indicator.hidesWhenStopped = true
-        afterbeforeContainerView.addSubview(indicator)
-        NSLayoutConstraint.activate([
-            indicator.centerXAnchor.constraint(equalTo: afterbeforeContainerView.centerXAnchor),
-            indicator.centerYAnchor.constraint(equalTo: afterbeforeContainerView.centerYAnchor)
-        ])
-        beforeLoadingIndicator = indicator
-    }
-    
-    private func updateImageAspect(for image: UIImage?) {
-        imageAspectConstraint?.isActive = false
-        guard let img = image, img.size.width > 0, img.size.height > 0 else { return }
-        let ratio = img.size.height / img.size.width
-        imageAspectConstraint = insirationImageView.heightAnchor.constraint(
-            equalTo: insirationImageView.widthAnchor,
-            multiplier: ratio
-        )
-        imageAspectConstraint?.priority = .required
-        imageAspectConstraint?.isActive = true
-        view.setNeedsLayout()
-        view.layoutIfNeeded()
-        insirationImageView.layer.cornerRadius = 14
-        insirationImageView.clipsToBounds = true
-    }
-    
-    private func showRateAlertIfNeeded() {
-        let isFirstGeneration = FreeGenerationManager.shared.currentCount == 1
-        let didShowAlert = UserDefaults.standard.bool(forKey: Constants.Keys.didShowRateAlert)
-        let shouldShow = isFirstGeneration && !didShowAlert
-        guard shouldShow else { return }
-        guard let alertView = Bundle.main.loadNibNamed("LikeAlertView", owner: nil, options: nil)?.first as? LikeAlertView else {
-            return
-        }
-        
-        alertView.show(in: self)
-        UserDefaults.standard.set(true, forKey: Constants.Keys.didShowRateAlert)
-        UserDefaults.standard.synchronize()
-    }
-    
-    private func colorAction() {
-        guard let promptManager else { return }
-        NavigationManager.shared.presentColor(promptManager: promptManager) { [weak self] palette in
-            self?.promptManager?.updateColor(palette)
-        }
-    }
-    
-    private func styleAction() {
-        guard let data else { return }
-        let manager: GemeniPromptManager
-        if let existing = promptManager {
-            manager = existing
-        } else {
-            let newManager = GemeniPromptManager()
-            newManager.updateOption(data.option)
-            promptManager = newManager
-            manager = newManager
-        }
 
-        NavigationManager.shared.presentStyle(promptManager: manager, option: data.option) { [weak self] unified in
-            self?.promptManager?.updateStyle(unified)
-        }
-    }
-    
     // MARK: - IBActions
     @IBAction private func saveAction(_ sender: UIButton) {
         hapticVibration()
         guard let image = afterImage ?? insirationImageView.image else { return }
-        PHPhotoLibrary.shared().performChanges({
-            if let storagePath = self.data?.storagePath,
-               FileManager.default.fileExists(atPath: storagePath) {
-                let url = URL(fileURLWithPath: storagePath)
-                PHAssetChangeRequest.creationRequestForAssetFromImage(atFileURL: url)
-            } else {
-                PHAssetChangeRequest.creationRequestForAsset(from: image)
-            }
-        }) { success, error in
-            DispatchQueue.main.async {
-                let alert = UIAlertController(
-                    title: success ? Defaults.Text.saved : Defaults.Text.error,
-                    message: success ? Defaults.Text.message: (error?.localizedDescription ?? "Unknown error"),
-                    preferredStyle: .alert
-                )
-                alert.addAction(UIAlertAction(title: "OK", style: .default))
-                self.present(alert, animated: true)
-            }
-        }
+        imageManager.saveToGallery(image: image, storagePath: data?.storagePath, from: self)
     }
 
     @IBAction private func shareAction(_ sender: UIButton) {
         hapticVibration()
         guard let image = insirationImageView.image else { return }
-        let activityVC = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-        activityVC.popoverPresentationController?.sourceView = self.view
-        self.present(activityVC, animated: true)
+        imageManager.share(image: image, from: self)
     }
     
     @IBAction private func doneAction(_ sender: UIButton) {
@@ -305,8 +133,11 @@ final class InspirationDetailViewController: UIViewController {
     
     @IBAction private func regenerateAction(_ sender: UIButton) {
         guard let promptManager else { return }
-        
-        // Показуємо алерт з підтвердженням
+        if isGenerateMode {
+            triggerGenerateFromSelection()
+            return
+        }
+
         let alert = UIAlertController(
             title: "Regenerate Image".localized,
             message: "Do you want to regenerate this image?".localized,
@@ -319,21 +150,6 @@ final class InspirationDetailViewController: UIViewController {
         })
         
         present(alert, animated: true)
-    }
-    
-    private func performRegeneration(promptManager: GemeniPromptManager) {
-        print("[InspirationDetailVC] Regenerate confirmed. baseImage:", promptManager.baseImage as Any)
-        print("[InspirationDetailVC] Current option:", promptManager.designOption, "style:", promptManager.interiorStyle?.name ?? promptManager.exteriorStyle?.name ?? "nil", "color:", promptManager.colorType?.name ?? "nil")
-        
-        if FreeGenerationManager.shared.canGenerateForFree || ApphudService.shared.hasActiveSubscription {
-            // Capture callback before dismiss to avoid losing it when self is deallocated
-            let callback = onRegenerate
-            dismiss(animated: true) {
-                callback?(promptManager)
-            }
-        } else {
-            NavigationManager.shared.showPremium(placement: Constants.Keys.reachedLimit)
-        }
     }
     
     @IBAction private func zoomAction(_ sender: UIButton) {
@@ -356,26 +172,237 @@ final class InspirationDetailViewController: UIViewController {
         }
     }
     
-    // MARK: - Before/After handlers
-    @objc
-    private func showBeforeHold() {
+    @IBAction private func likeAction(_ sender: UIButton) {
+        hapticVibration()
+        feedbackManager.handleLike(from: self) { [weak self] in
+            self?.wobbleIconRotation(self?.likeImageView)
+        }
+    }
+    
+    @IBAction private func disslikeAction(_ sender: UIButton) {
+        hapticVibration()
+        feedbackManager.handleDislike(from: self) { [weak self] in
+            self?.wobbleIconRotation(self?.dislikeImageView)
+        }
+    }
+}
+
+// MARK: - Private configuration
+private extension InspirationDetailViewController {
+
+    /// Легке гойдання через rotation (нахил вліво/вправо навколо центру), без зсуву імеджа.
+    func wobbleIconRotation(_ view: UIView?) {
+        guard let v = view else { return }
+        v.layer.removeAllAnimations()
+        v.transform = .identity
+        let tilt: CGFloat = .pi / 16
+        let duration: TimeInterval = 1.0
+        UIView.animateKeyframes(withDuration: duration, delay: 0, options: [.calculationModeCubic, .beginFromCurrentState]) {
+            UIView.addKeyframe(withRelativeStartTime: 0.0, relativeDuration: 0.22) {
+                v.transform = CGAffineTransform(rotationAngle: tilt)
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.22, relativeDuration: 0.22) {
+                v.transform = CGAffineTransform(rotationAngle: -tilt)
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.44, relativeDuration: 0.18) {
+                v.transform = CGAffineTransform(rotationAngle: tilt * 0.55)
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.62, relativeDuration: 0.18) {
+                v.transform = CGAffineTransform(rotationAngle: -tilt * 0.4)
+            }
+            UIView.addKeyframe(withRelativeStartTime: 0.8, relativeDuration: 0.2) {
+                v.transform = .identity
+            }
+        } completion: { _ in
+            v.transform = .identity
+        }
+    }
+
+    func configure() {
+        doneButton.setTitle(Defaults.Text.done, for: .normal)
+        configureEditorActions()
+        collectionView.isHidden = showsLimitedEditorActions
+        
+        insirationImageView.clipsToBounds = true
+        
+        beforeImage = data?.previewsImage
+        afterImage  = data?.image
+                
+        insirationImageView.image = afterImage
+        updateImageAspect(for: afterImage)
+        
+        let hasBeforeImage = beforeImage != nil
+        afterBeforeButton.isHidden = !hasBeforeImage
+        afterbeforeContainerView.isHidden = !hasBeforeImage
+
+        regenerateButton.isHidden = !showsRegenerateButton
+        regenerationLabel.isHidden = !showsRegenerateButton
+        
+        afterBeforeButton.removeTarget(nil, action: nil, for: .allEvents)
+        afterBeforeButton.addTarget(self, action: #selector(showBeforeHold), for: [.touchDown, .touchDragEnter])
+        afterBeforeButton.addTarget(self, action: #selector(restoreAfterRelease), for: [.touchUpInside, .touchUpOutside, .touchCancel, .touchDragExit])
+        
+        setupBeforeLoadingIndicator()
+        setupButtonIcons()
+        saveLabel.text = Defaults.Text.save
+        regenerationLabel.text = Defaults.Text.regeneration
+        shareLabel.text = Defaults.Text.share
+    }
+    
+    func configureEditorActions() {
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        collectionView.backgroundColor = .clear
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.register(UINib(nibName: "EditorActionCollectionCell", bundle: nil), forCellWithReuseIdentifier: "EditorActionCollectionCell")
+        
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.scrollDirection = .horizontal
+            layout.minimumLineSpacing = 12
+            layout.minimumInteritemSpacing = 0
+            layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        }
+    }
+    
+    func setupButtonIcons() {
+        let largeConfig = UIImage.SymbolConfiguration(pointSize: 30, weight: .regular, scale: .large)
+        if let currentSaveImage = saveButton.image(for: .normal) {
+            saveButton.setImage(currentSaveImage.withConfiguration(largeConfig), for: .normal)
+        } else if let downloadImage = UIImage(systemName: "download_icon") {
+            saveButton.setImage(downloadImage.withConfiguration(largeConfig), for: .normal)
+        }
+        
+        if let currentRegenerateImage = regenerateButton.image(for: .normal) {
+            regenerateButton.setImage(currentRegenerateImage.withConfiguration(largeConfig), for: .normal)
+        } else if let refreshImage = UIImage(systemName: "regenerate_icon") {
+            regenerateButton.setImage(refreshImage.withConfiguration(largeConfig), for: .normal)
+        }
+        
+        if let currentShareImage = shareButton.image(for: .normal) {
+            shareButton.setImage(currentShareImage.withConfiguration(largeConfig), for: .normal)
+        } else if let shareImage = UIImage(named: "share_icon") {
+            shareButton.setImage(shareImage.withConfiguration(largeConfig), for: .normal)
+        }
+
+        insirationImageView.isUserInteractionEnabled = false
+    }
+    
+    func setupBeforeLoadingIndicator() {
+        let indicator = UIActivityIndicatorView(style: .medium)
+        indicator.translatesAutoresizingMaskIntoConstraints = false
+        indicator.hidesWhenStopped = true
+        afterbeforeContainerView.addSubview(indicator)
+        NSLayoutConstraint.activate([
+            indicator.centerXAnchor.constraint(equalTo: afterbeforeContainerView.centerXAnchor),
+            indicator.centerYAnchor.constraint(equalTo: afterbeforeContainerView.centerYAnchor)
+        ])
+        beforeLoadingIndicator = indicator
+    }
+    
+    func updateImageAspect(for image: UIImage?) {
+        imageAspectConstraint?.isActive = false
+        guard let img = image, img.size.width > 0, img.size.height > 0 else { return }
+        let ratio = img.size.height / img.size.width
+        imageAspectConstraint = insirationImageView.heightAnchor.constraint(
+            equalTo: insirationImageView.widthAnchor,
+            multiplier: ratio
+        )
+        imageAspectConstraint?.priority = .required
+        imageAspectConstraint?.isActive = true
+        view.setNeedsLayout()
+        view.layoutIfNeeded()
+        insirationImageView.layer.cornerRadius = 14
+        insirationImageView.clipsToBounds = true
+    }
+}
+
+// MARK: - Before/After & Generation
+private extension InspirationDetailViewController {
+
+    @objc func showBeforeHold() {
         guard let img = beforeImage else { return }
         insirationImageView.image = img
         updateImageAspect(for: img)
     }
 
-    @objc
-    private func restoreAfterRelease() {
+    @objc func restoreAfterRelease() {
         guard let img = afterImage ?? beforeImage else { return }
         insirationImageView.image = img
         updateImageAspect(for: img)
     }
 
-    @objc
-    private func handleImageTap() { }
+    func performRegeneration(promptManager: GemeniPromptManager) {
+        print("[InspirationDetailVC] Regenerate confirmed. baseImage:", promptManager.baseImage as Any)
+        print("[InspirationDetailVC] Current option:", promptManager.designOption, "style:", promptManager.interiorStyle?.name ?? promptManager.exteriorStyle?.name ?? "nil", "color:", promptManager.colorType?.name ?? "nil")
+        
+        if GenerationAccess.requestProcessingIfAllowed(presentingFrom: self) {
+            let callback = onRegenerate
+            dismiss(animated: true) {
+                callback?(promptManager)
+            }
+        }
+    }
+
+    func prepareGenerateMode() {
+        isGenerateMode = true
+        regenerateButton.isHidden = false
+        regenerationLabel.isHidden = false
+        regenerationLabel.text = Defaults.Text.generate
+    }
+
+    func triggerGenerateFromSelection() {
+        guard let promptManager else { return }
+        isGenerateMode = false
+        regenerateButton.setTitle(nil, for: .normal)
+        regenerationLabel.text = Defaults.Text.regeneration
+        if let currentGenerated = afterImage ?? insirationImageView.image ?? beforeImage {
+            promptManager.updateBaseImage(currentGenerated)
+        }
+        performRegeneration(promptManager: promptManager)
+    }
 }
 
-// MARK: - Editor actions
+// MARK: - Style & Color flows
+private extension InspirationDetailViewController {
+
+    func resolvePromptManager() -> GemeniPromptManager {
+        if let existing = promptManager { return existing }
+        let manager = GemeniPromptManager()
+        if let option = data?.option { manager.updateOption(option) }
+        promptManager = manager
+        return manager
+    }
+
+    func styleAction() {
+        guard let data else { return }
+        let manager = resolvePromptManager()
+        let styleOption = editorRouter.inferredDesignOption(from: data)
+        manager.updateOption(styleOption)
+
+        NavigationManager.shared.presentStyle(promptManager: manager, option: styleOption, onSelect: { [weak self] unified in
+            self?.promptManager?.updateStyle(unified)
+            self?.prepareGenerateMode()
+        }, onGenerate: { [weak self] in
+            self?.triggerGenerateFromSelection()
+        })
+    }
+
+    func colorAction() {
+        guard let data else { return }
+        let manager = resolvePromptManager()
+        manager.updateOption(editorRouter.inferredDesignOption(from: data))
+
+        NavigationManager.shared.presentColor(promptManager: manager, onSelect: { [weak self] palette in
+            self?.promptManager?.updateColor(palette)
+            self?.prepareGenerateMode()
+        }, onGenerate: { [weak self] in
+            self?.triggerGenerateFromSelection()
+        })
+    }
+}
+
+// MARK: - Editor actions collection
 extension InspirationDetailViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -384,169 +411,23 @@ extension InspirationDetailViewController: UICollectionViewDataSource, UICollect
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EditorActionCollectionCell",for: indexPath) as? EditorActionCollectionCell else {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EditorActionCollectionCell", for: indexPath) as? EditorActionCollectionCell else {
             return UICollectionViewCell()
         }
-        
-        let action = visibleEditorActions[indexPath.item]
-        cell.configure(action: action)
+        cell.configure(action: visibleEditorActions[indexPath.item])
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        AmplitudeService.shared.logEvent(.selectingEdit(type: visibleEditorActions[indexPath.row]))
-        
-        switch visibleEditorActions[indexPath.row] {
-        case .deleteObject:
-            let manager = GemeniPromptManager()
-            manager.updateOption(.replace)
-            if let image = afterImage ?? insirationImageView.image {
-                manager.updateBaseImage(image)
-            }
-            let deletionPrompt = "remove the selected object and fill the area with realistic background matching the surroundings"
-            NavigationManager.shared.showObjectSelection(promptManager: manager,
-                                                         requiresPromptInput: false,
-                                                         replacementDescription: deletionPrompt)
-            dismiss(animated: true)
-        case .replaceObject:
-            let manager = GemeniPromptManager()
-            manager.updateOption(.replace)
-            if let image = afterImage ?? insirationImageView.image {
-                manager.updateBaseImage(image)
-            }
-            NavigationManager.shared.showObjectSelection(promptManager: manager)
-            dismiss(animated: true)
-        case .newWalls:
-            let manager = GemeniPromptManager()
-            manager.updateOption(.newWalls)
-            if let image = afterImage ?? insirationImageView.image {
-                manager.updateBaseImage(image)
-            }
-            NavigationManager.shared.showSurfaceMaterialPicker(promptManager: manager)
-            dismiss(animated: true)
-        case .newFloor:
-            let manager = GemeniPromptManager()
-            manager.updateOption(.newFlooring)
-            if let image = afterImage ?? insirationImageView.image {
-                manager.updateBaseImage(image)
-            }
-            NavigationManager.shared.showSurfaceMaterialPicker(promptManager: manager)
-            dismiss(animated: true)
-        case .newStyle: styleAction()
-        case .newColor: colorAction()
-        }
-        
+        let action = visibleEditorActions[indexPath.row]
+        editorRouter.route(
+            action: action,
+            currentImage: afterImage ?? insirationImageView.image,
+            data: data,
+            promptManager: promptManager,
+            onStyleAction: { [weak self] in self?.styleAction() },
+            onColorAction: { [weak self] in self?.colorAction() },
+            dismiss: { [weak self] in self?.dismiss(animated: true) }
+        )
     }
 }
-
-
-// MARK: - Fullscreen image viewer
-private final class FullscreenImageViewController: UIViewController, UIScrollViewDelegate {
-
-    private let image: UIImage
-    private let scrollView = UIScrollView()
-    private let imageView = UIImageView()
-    private let closeButton = UIButton(type: .system)
-
-    init(image: UIImage) {
-        self.image = image
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        view.backgroundColor = .black
-
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.delegate = self
-        scrollView.minimumZoomScale = 1.0
-        scrollView.maximumZoomScale = 4.0
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.showsHorizontalScrollIndicator = false
-        view.addSubview(scrollView)
-
-        NSLayoutConstraint.activate([
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
-        ])
-
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.image = image
-        imageView.contentMode = .scaleAspectFit
-        scrollView.addSubview(imageView)
-
-        NSLayoutConstraint.activate([
-            imageView.topAnchor.constraint(equalTo: scrollView.contentLayoutGuide.topAnchor),
-            imageView.leadingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.leadingAnchor),
-            imageView.trailingAnchor.constraint(equalTo: scrollView.contentLayoutGuide.trailingAnchor),
-            imageView.bottomAnchor.constraint(equalTo: scrollView.contentLayoutGuide.bottomAnchor),
-            imageView.widthAnchor.constraint(equalTo: scrollView.frameLayoutGuide.widthAnchor),
-            imageView.heightAnchor.constraint(equalTo: scrollView.frameLayoutGuide.heightAnchor)
-        ])
-
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissSelf))
-        tap.numberOfTapsRequired = 1
-        view.addGestureRecognizer(tap)
-
-        let doubleTap = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
-        doubleTap.numberOfTapsRequired = 2
-        view.addGestureRecognizer(doubleTap)
-        tap.require(toFail: doubleTap)
-
-        setupCloseButton()
-    }
-
-    @objc private func dismissSelf() {
-        dismiss(animated: true)
-    }
-
-    @objc private func handleDoubleTap(_ gesture: UITapGestureRecognizer) {
-        if scrollView.zoomScale > 1.0 {
-            scrollView.setZoomScale(1.0, animated: true)
-        } else {
-            let point = gesture.location(in: imageView)
-            zoom(to: point, scale: 2.0)
-        }
-    }
-
-    private func zoom(to point: CGPoint, scale: CGFloat) {
-        let size = scrollView.bounds.size
-        let width = size.width / scale
-        let height = size.height / scale
-        let rect = CGRect(x: point.x - width / 2, y: point.y - height / 2, width: width, height: height)
-        scrollView.zoom(to: rect, animated: true)
-    }
-
-    func viewForZooming(in scrollView: UIScrollView) -> UIView? {
-        return imageView
-    }
-
-    private func setupCloseButton() {
-        closeButton.translatesAutoresizingMaskIntoConstraints = false
-        let config = UIImage.SymbolConfiguration(pointSize: 22, weight: .bold)
-        closeButton.setImage(UIImage(systemName: "xmark", withConfiguration: config), for: .normal)
-        closeButton.tintColor = .white
-        closeButton.backgroundColor = UIColor.black.withAlphaComponent(0.6)
-        closeButton.layer.cornerRadius = 18
-        closeButton.layer.masksToBounds = true
-        closeButton.addTarget(self, action: #selector(dismissSelf), for: .touchUpInside)
-
-        view.addSubview(closeButton)
-
-        NSLayoutConstraint.activate([
-            closeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 12),
-            closeButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -12),
-            closeButton.widthAnchor.constraint(equalToConstant: 36),
-            closeButton.heightAnchor.constraint(equalToConstant: 36)
-        ])
-    }
-}
-
-

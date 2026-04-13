@@ -7,6 +7,7 @@ private struct Defaults {
         static let wallsOptions = "Wall options".localized
         static let custom = "Custom".localized
         static let clear = "Clear".localized
+        static let generate = "Generate".localized
     }
 }
 
@@ -89,6 +90,7 @@ final class SurfaceMaterialPickerViewController: UIViewController, PageStepDeleg
         }
         
         clearButton.setTitle(Defaults.Text.clear, for: .normal)
+        generateButton.setTitle(Defaults.Text.generate, for: .normal)
         
         placementLabel.text = Defaults.Text.placement
         placementLabel.textColor = .secondaryLabel
@@ -181,10 +183,8 @@ final class SurfaceMaterialPickerViewController: UIViewController, PageStepDeleg
             promptManager.updateSurfaceCustomPrompt(nil)
         }
         
-        if FreeGenerationManager.shared.canGenerateForFree || ApphudService.shared.hasActiveSubscription {
+        if GenerationAccess.requestProcessingIfAllowed(presentingFrom: self) {
             NavigationManager.shared.showProcessing(manager: promptManager)
-        } else {
-            NavigationManager.shared.showPremium(placement: Constants.Keys.reachedLimit)
         }
     }
     

@@ -19,11 +19,20 @@ struct Constants {
         static let obPlacement = "ob-placement-com"
         static let optionPlacememt = "option_ai_placement"
         static let reachedLimit = "limit_reached_ai_placement"
+        static let saveImagePlacement = "save_image_placement"
+        static let shareImagePlacement = "share_image_placement"
+        static let detailsEditPlacement = "details_edit_placement"
 
-        
         // OB
         static let didShowOnboarding = "did_show_onboarding_7"
-        static let didShowRateAlert = "did_show_rate_alert"
+        static let didShowRateAlert = "did_show_rate_alert_2"
+        static let didShowAddPhotoPhotoTips = "did_show_add_photo_photo_tips_1"
+        static let didLogTrackingPermission = "did_log_tracking_permission_1"
+
+        // DEBUG: Apphud subscription override
+        // Used only in DEBUG builds to simulate subscription state.
+        static let debugHasActiveSubscriptionOverrideEnabled = "debug_has_active_subscription_override_enabled"
+        static let debugHasActiveSubscription = "debug_has_active_subscription"
         
         // APP
         static let appleId = "6752722494"

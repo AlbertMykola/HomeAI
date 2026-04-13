@@ -14,6 +14,7 @@ final class StyleListViewController: UIViewController, PageStepDelegate, PromptM
     var completion: (() -> Void)?
     var onProceedToNextStep: (() -> Void)?
     var onSelectStyle: ((UnifiedStyle) -> Void)?
+    var onGenerate: (() -> Void)?
     var canProceedToNextStep: Bool { selectedIndexPath != nil }
     
     var promptManager: GemeniPromptManager?
@@ -24,6 +25,8 @@ final class StyleListViewController: UIViewController, PageStepDelegate, PromptM
     
     private var selectedIndexPath: IndexPath?
     private let imageCache = NSCache<NSString, UIImage>()
+    private let generateButton = UIButton(type: .system)
+    private var didSelectForGenerate = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +46,11 @@ final class StyleListViewController: UIViewController, PageStepDelegate, PromptM
             layout.minimumInteritemSpacing = 10
         }
         
+        if isPresentedModall {
+            setupGenerateButton()
+            updateGenerateButtonVisibility()
+        }
+        
         prefetchImages()
     }
     
@@ -55,16 +63,58 @@ final class StyleListViewController: UIViewController, PageStepDelegate, PromptM
             StyleInteriorType.allCases.forEach {
                 dataSource.append(StyleCellModel(name: $0.name, imageName: $0.image, isNew: $0.isNew))
             }
-        case .garden, .reference, .replace, .newFlooring, .newWalls, .delete:
+        case .garden:
+            GardenType.allCases.forEach {
+                dataSource.append(StyleCellModel(name: $0.name, imageName: $0.icon))
+            }
+        case .reference, .replace, .newFlooring, .newWalls, .delete:
             break
         }
     }
     
     // Метод для предзавантаження зображень
     private func prefetchImages() {
-        let paths = dataSource.map { $0.imageName }  // Шляхи до всіх зображень
+        // Avoid aggressive remote prefetch in modal edit flow (New Style from details):
+        // cells lazily load visible images, which is enough and prevents noisy network errors.
+        guard !isPresentedModall else { return }
+        let paths = dataSource.map { $0.imageName }
         for path in paths {
+            // Skip explicit remote URLs for eager prefetch; load them on demand in cells.
+            if let url = URL(string: path), let scheme = url.scheme, !scheme.isEmpty {
+                continue
+            }
             SharedImageLoader.shared.loadImage(path: path) { _ in }
+        }
+    }
+    
+    private func setupGenerateButton() {
+        generateButton.translatesAutoresizingMaskIntoConstraints = false
+        generateButton.setTitle("Generate".localized, for: .normal)
+        generateButton.setTitleColor(.black, for: .normal)
+        generateButton.backgroundColor = Constants.Colors.yellowPremium
+        generateButton.layer.cornerRadius = 27
+        generateButton.layer.masksToBounds = true
+        generateButton.addTarget(self, action: #selector(generateTapped), for: .touchUpInside)
+        view.addSubview(generateButton)
+        
+        NSLayoutConstraint.activate([
+            generateButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            generateButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            generateButton.widthAnchor.constraint(equalToConstant: 165),
+            generateButton.heightAnchor.constraint(equalToConstant: 54)
+        ])
+    }
+    
+    private func updateGenerateButtonVisibility() {
+        let shouldShow = isPresentedModall && didSelectForGenerate
+        generateButton.isHidden = !shouldShow
+        generateButton.isEnabled = shouldShow
+        generateButton.alpha = shouldShow ? 1.0 : 0.5
+    }
+    
+    @objc private func generateTapped() {
+        dismiss(animated: true) { [weak self] in
+            self?.onGenerate?()
         }
     }
 
@@ -155,9 +205,14 @@ extension StyleListViewController: UICollectionViewDelegate {
                         let unified: UnifiedStyle = .interior(.custom)
                         self?.promptManager?.updateStyle(unified)
                         self?.selectedIndexPath = indexPath
+                        self?.didSelectForGenerate = true
                         self?.onSelectStyle?(unified)
-                        self?.completion?()
-                        self?.onProceedToNextStep?()
+                        if self?.isPresentedModall == true {
+                            self?.updateGenerateButtonVisibility()
+                        } else {
+                            self?.completion?()
+                            self?.onProceedToNextStep?()
+                        }
                     }
                     return
                 }
@@ -184,9 +239,14 @@ extension StyleListViewController: UICollectionViewDelegate {
                         let unified: UnifiedStyle = .exterior(.custom)
                         self?.promptManager?.updateStyle(unified)
                         self?.selectedIndexPath = indexPath
+                        self?.didSelectForGenerate = true
                         self?.onSelectStyle?(unified)
-                        self?.completion?()
-                        self?.onProceedToNextStep?()
+                        if self?.isPresentedModall == true {
+                            self?.updateGenerateButtonVisibility()
+                        } else {
+                            self?.completion?()
+                            self?.onProceedToNextStep?()
+                        }
                     }
                     return
                 }
@@ -200,15 +260,46 @@ extension StyleListViewController: UICollectionViewDelegate {
                     unified = u
                 }
             }
-            default: break
+        case .garden:
+            if let gardenStyle = GardenType.allCases.first(where: { $0.name == selectedModel.name }) {
+                if gardenStyle == .custom {
+                    let pm = promptManager ?? GemeniPromptManager()
+                    // Ensure custom prompt is handled as garden-style customization.
+                    pm.updateOption(.garden)
+                    NavigationManager.shared.showPrompt(promptManager: pm) { [weak self] _ in
+                        pm.updateGardenType(.custom)
+                        let u: UnifiedStyle = .garden(GardenType.custom.name)
+                        self?.promptManager?.updateStyle(u)
+                        self?.selectedIndexPath = indexPath
+                        self?.didSelectForGenerate = true
+                        self?.onSelectStyle?(u)
+                        if self?.isPresentedModall == true {
+                            self?.updateGenerateButtonVisibility()
+                        } else {
+                            self?.completion?()
+                            self?.onProceedToNextStep?()
+                        }
+                    }
+                    return
+                }
+                
+                if gardenStyle == .noStyle {
+                    promptManager?.clearGardenType()
+                    unified = .garden(GardenType.noStyle.name)
+                } else {
+                    promptManager?.updateGardenType(gardenStyle)
+                    unified = .garden(gardenStyle.name)
+                }
+            }
+        default: break
         }
 
         selectedIndexPath = indexPath
+        didSelectForGenerate = true
 
-        // Якщо показано модально і є колбек — повертаємо вибір і закриваємо модалку
-        if isPresentedModall, let u = unified, let onSelect = onSelectStyle {
-            onSelect(u)
-            dismiss(animated: true) // Закриває модально презентований контролер
+        if isPresentedModall, let u = unified {
+            onSelectStyle?(u)
+            updateGenerateButtonVisibility()
             return
         }
 

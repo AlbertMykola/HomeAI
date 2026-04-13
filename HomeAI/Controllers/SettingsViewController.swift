@@ -149,15 +149,34 @@ final class SettingsViewController: UIViewController {
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 
-    private func sendSupportEmail(to address: String) {
+    private func sendSupportEmail(
+        to address: String,
+        subject customSubject: String? = nil,
+        body: String? = nil
+    ) {
+        let userId = ApphudService.shared.userID
+        let subject = customSubject ?? "HomeAI \(userId)"
+        
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
             mail.mailComposeDelegate = self
             mail.setToRecipients([address])
-            mail.setSubject("Support Request")
+            mail.setSubject(subject)
+            if let body {
+                mail.setMessageBody(body, isHTML: false)
+            }
             present(mail, animated: true)
-        } else if let url = URL(string: "mailto:\(address)") {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        } else {
+            // Fallback: mailto URL with subject
+            let encodedSubject = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? subject
+            var urlString = "mailto:\(address)?subject=\(encodedSubject)"
+            if let body {
+                let encodedBody = body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? body
+                urlString += "&body=\(encodedBody)"
+            }
+            if let url = URL(string: urlString) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
         }
     }
 }
@@ -199,3 +218,4 @@ extension SettingsViewController: MFMailComposeViewControllerDelegate {
         controller.dismiss(animated: true)
     }
 }
+

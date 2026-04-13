@@ -13,7 +13,6 @@ enum GeminiServiceError: Error {
 }
 
 
-// ... (структури Defaults та Direction залишаються без змін) ...
 private struct Defaults {
     struct Text {
         static let processing = "Processing...".localized
@@ -66,12 +65,9 @@ final class ProcessingViewController: UIViewController {
 
     private var nextDirection: Direction = .side
     
-    // ----- СЕРВІСИ (які ми викличемо) -----
     private let imageStore = ImageHistoryService()
-    // private let authService = AuthService.shared
-    // ----------------------------------------
     
-    var promptManager: GemeniPromptManager? // Наш менеджер
+    var promptManager: GemeniPromptManager?
 
     // MARK: - Timing
     private let frameInterval: TimeInterval = 1.4
@@ -80,6 +76,8 @@ final class ProcessingViewController: UIViewController {
 
     // Guard to avoid parallel generations
     private var isGenerating = false
+    /// Після успішної генерації не запускати знову при `viewDidAppear` (закриття деталі, pop назад тощо).
+    private var hasCompletedGenerationSuccessfully = false
     private let amplitude = AmplitudeService.shared
 
     // MARK: - Cancellation
@@ -106,8 +104,22 @@ final class ProcessingViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        if hasCompletedGenerationSuccessfully {
+            stopSequence()
+            if let pending = NavigationManager.shared.consumePendingInspirationDetailReopen() {
+                DispatchQueue.main.async {
+                    _ = NavigationManager.shared.showInspirationDetail(
+                        model: pending.model,
+                        promptManager: pending.promptManager
+                    )
+                }
+            }
+            return
+        }
         startSequence()
-        if !isGenerating { startGeneration() }
+        if !isGenerating {
+            startGeneration()
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -125,7 +137,9 @@ final class ProcessingViewController: UIViewController {
     // MARK: - Public
     func startGeneration() {
         guard !isGenerating else { return }
-        amplitude.logEvent(.startGeneration) // Виправте на .start_generation, якщо треба
+        hasCompletedGenerationSuccessfully = false
+        NavigationManager.shared.clearPendingInspirationDetailReopen()
+        amplitude.logEvent(.startGeneration)
 
         isGenerating = true
         stopSequence()
@@ -136,47 +150,50 @@ final class ProcessingViewController: UIViewController {
 
     // MARK: - Private
     private func finishGeneration() {
-        amplitude.logEvent(.finishGeneration) // Виправте на .finish_generation, якщо треба
+        amplitude.logEvent(.finishGeneration)
         isGenerating = false
         generationTask = nil
     }
 
-    /**
-     ✅ НОВА ЧИСТА ФУНКЦІЯ
-     Використовує `GeminiRESTService` для всієї мережевої логіки.
-     */
     private func startGeminiGenerationTask() {
-        // 1. Перевіряємо, чи є у нас менеджер і сервіс
         guard let gpm = promptManager else {
-            print("Failed to build prompt: GemeniPromptManager is nil")
-            // amplitude.logEvent(name: "generation_error", parameters: ["message": "PromptManager_nil"])
+            amplitude.logEvent(.error(message: "PromptManager_nil"))
             finishGeneration()
             return
         }
         print(gpm)
         guard let service = geminiService else {
-            print("Failed to start: GeminiRESTService is not initialized")
-            // amplitude.logEvent(name: "generation_error", parameters: ["message": "GeminiService_nil"])
+            amplitude.logEvent(.error(message: "GeminiService_nil"))
             finishGeneration()
             return
         }
             
-        // 2. Перевіряємо підписку
-        if !FreeGenerationManager.shared.canGenerateForFree && !ApphudService.shared.hasActiveSubscription {
-            DispatchQueue.main.async {
+        let access = GenerationAccess.evaluate()
+        if access != .allowed {
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                switch access {
+                case .allowed:
+                    break
+                case .dailyLimitExceeded:
+                    DailyGenerationLimitManager.shared.presentDailyLimitAlert(from: self)
+                case .requiresSubscription:
+                    self.amplitude.logEvent(.reachedLimit)
+                    NavigationManager.shared.showPremium(placement: Constants.Keys.reachedLimit)
+                }
                 self.finishGeneration()
-                NavigationManager.shared.showPremium(placement: Constants.Keys.reachedLimit)
             }
             return
         }
-        FreeGenerationManager.shared.increment()
 
-        // 3. Запускаємо асинхронну задачу
+        if !ApphudService.shared.hasActiveSubscription {
+            FreeGenerationManager.shared.increment()
+        }
+
         generationTask = Task { [weak self] in
             guard let self else { return }
             
             do {
-                // 1. Отримуємо промпт
                 let parts = try gpm.generatePromptParts()
                 print(parts)
                 // (Логування промпту - без змін)
@@ -206,12 +223,13 @@ final class ProcessingViewController: UIViewController {
 
                 try Task.checkCancellation()
 
-                // 5. Перехід на екран результату
                 await MainActor.run {
                     guard !Task.isCancelled else {
                         self.finishGeneration()
                         return
                     }
+                    DailyGenerationLimitManager.shared.recordSuccessfulGeneration()
+                    self.hasCompletedGenerationSuccessfully = true
                     _ = NavigationManager.shared.showInspirationDetail(model: builtModel, promptManager: self.promptManager)
                     self.finishGeneration()
                 }
@@ -264,7 +282,20 @@ final class ProcessingViewController: UIViewController {
 
             try Task.checkCancellation()
 
-            let styleName = gpm.interiorStyle?.name ?? gpm.exteriorStyle?.name ?? "Unknown"
+            let styleName: String = {
+                switch gpm.designOption {
+                case .interior:
+                    return gpm.interiorStyle?.name ?? "No Style"
+                case .exterior:
+                    return gpm.exteriorStyle?.name ?? "No Style"
+                case .garden:
+                    return gpm.gardenType?.name ?? "No Style"
+                case .newFlooring, .newWalls:
+                    return gpm.surfaceMaterial?.title ?? gpm.surfaceCustomPrompt ?? "Custom"
+                default:
+                    return gpm.interiorStyle?.name ?? gpm.exteriorStyle?.name ?? gpm.gardenType?.name ?? "Edited"
+                }
+            }()
             let colorName = gpm.colorType?.name
 
             guard let imageData = generatedImage.jpegData(compressionQuality: 0.9) else {
@@ -286,7 +317,13 @@ final class ProcessingViewController: UIViewController {
                 exteriorBuildingType: gpm.exteriorBuildingType,
                 gardenType: gpm.gardenType,
                 interiorStyle: gpm.interiorStyle,
-                exteriorStyle: gpm.exteriorStyle
+                exteriorStyle: gpm.exteriorStyle,
+                designMode: gpm.designMode,
+                customPrompt: gpm.customPrompt,
+                surfaceMaterial: gpm.surfaceMaterial,
+                surfaceCustomPrompt: gpm.surfaceCustomPrompt,
+                replaceMode: gpm.replaceMode,
+                objectToReplace: gpm.objectToReplace
             )
             
             print("2. Image saved locally.")
@@ -309,9 +346,12 @@ final class ProcessingViewController: UIViewController {
 }
 
 private extension ProcessingViewController {
+    
     func showErrorAlert(message: String) {
+        amplitude.logEvent(.alert(message: message))
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Try again".localized, style: .default, handler: { [weak self] _ in
+            self?.amplitude.logEvent(.tryAgainAction)
             self?.startGeneration()
         }))
         alert.addAction(UIAlertAction(title: "OK".localized, style: .cancel))

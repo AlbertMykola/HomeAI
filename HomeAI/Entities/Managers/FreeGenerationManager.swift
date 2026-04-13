@@ -4,7 +4,7 @@ import Security
 final class FreeGenerationManager {
     static let shared = FreeGenerationManager()
     private let key = "generationCount"
-    private let maxCount = 3
+    private let maxCount = 1
 
     private init() {}
 

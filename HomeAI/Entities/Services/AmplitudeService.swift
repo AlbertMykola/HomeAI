@@ -58,12 +58,16 @@ final class AmplitudeService {
 
     // MARK: – Helpers
     private static var isTestingBuild: Bool {
+        #if targetEnvironment(simulator)
+        return true
+        #else
         #if DEBUG
         return true
         #else
         return Bundle.main
             .appStoreReceiptURL?
             .lastPathComponent == "sandboxReceipt"
+        #endif
         #endif
     }
 }
@@ -84,13 +88,16 @@ enum AmpitudeEvent {
          pressAddPhoto, takeAPhoto, selectGallery, showAddPhoto, showColorList, chooseColor(color: String), showRoomList, chooseRoom(room: String), chooseType(type: String), showSurfaceMaterialPicker(type:SurfaceMaterialOption.Placement),
          
     // Generation
-    showProcessing, startGeneration, finishGeneration, filedBuildPrompt, prompt(p: String),
+    showProcessing, startGeneration, finishGeneration, filedBuildPrompt, prompt(p: String), showRatingAlert, rateNowAction, dontRateAction, reachedLimit, dailyGenerationLimitReached,
     // Settings
     showSettings, chooseSetting(type: String), trackingPermission(granted: Bool),
     // Other
-    error(message: String), showLoader, stopLoader, pressSwitch, closeButtonAction, continueAction, nextButton,
+         error(message: String), showLoader, stopLoader, pressSwitch, closeButtonAction, continueAction, nextButton, alert(message: String), tryAgainAction,
     //Detail
     showDetail, selectingEdit(type: EditorActionType),
+    detailLikeTap, detailLikeShowAlert, detailLikeOpenAppStore,
+    detailDislikeTap, detailDislikeConfirmShare, detailDislikeCancelShare,
+    detailReviewRequest, detailDislikeMailResult(result: String),
     //Inspiration
     showInspirations
     
@@ -140,8 +147,23 @@ enum AmpitudeEvent {
         case .trackingPermission: "tracking_permission"
         case .showSurfaceMaterialPicker(type: _): "show_surface_material_picker"
         case .showDetail: "show_detail"
-        case .selectingEdit(type: let type): "select_edit"
+        case .selectingEdit(type: _): "select_edit"
+        case .detailLikeTap: "detail_like_tap"
+        case .detailLikeShowAlert: "detail_like_show_alert"
+        case .detailLikeOpenAppStore: "detail_like_open_app_store"
+        case .detailDislikeTap: "detail_dislike_tap"
+        case .detailDislikeConfirmShare: "detail_dislike_confirm_share"
+        case .detailDislikeCancelShare: "detail_dislike_cancel_share"
+        case .detailReviewRequest: "detail_review_request"
+        case .detailDislikeMailResult(result: _): "detail_dislike_mail_result"
         case .showInspirations: "show_inspirations"
+        case .showRatingAlert: "show RATING alert"
+        case .rateNowAction: "rate now action"
+        case .dontRateAction: "dont rate action"
+        case .reachedLimit: "reached limit"
+        case .dailyGenerationLimitReached: "daily_generation_limit_reached"
+        case .alert(message:  _): "alert message"
+        case .tryAgainAction: "try Again Action"
         }
     }
     
@@ -159,6 +181,9 @@ enum AmpitudeEvent {
         case .chooseSetting(type: let type): return ["type": type]
         case .trackingPermission(let granted): return ["granted": granted]
         case .showSurfaceMaterialPicker(type: let type): return ["type": type]
+        case .selectingEdit(type: let type): return ["edit": type]
+        case .detailDislikeMailResult(result: let result): return ["result": result]
+        case .alert(message: let message): return ["message": message]
         default: return nil
         }
     }

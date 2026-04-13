@@ -112,7 +112,13 @@ final class ImageStorageService {
 
     private func loadImage(path: String, targetPointSize: CGSize) -> UIImage? {
         if let remoteURL = remoteURL(for: path) {
-            return loadRemoteImage(at: remoteURL, targetPointSize: targetPointSize)
+            if let image = loadRemoteImage(at: remoteURL, targetPointSize: targetPointSize) {
+                return image
+            }
+            if let fallbackURL = fallbackRemoteURL(for: path, primaryURL: remoteURL) {
+                return loadRemoteImage(at: fallbackURL, targetPointSize: targetPointSize)
+            }
+            return nil
         }
 
         let fileURL = URL(fileURLWithPath: path)
@@ -177,6 +183,25 @@ final class ImageStorageService {
         return firebaseDownloadURL(bucket: Constants.API.firebaseStorageBucket, objectPath: trimmed)
     }
     
+    private func fallbackRemoteURL(for path: String, primaryURL: URL) -> URL? {
+        let trimmed = path.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty else { return nil }
+        
+        // Fallback applies only to relative paths that include folders,
+        // e.g. "template_suggestions/file.webp" -> "file.webp".
+        if let parsed = URL(string: trimmed), let scheme = parsed.scheme, !scheme.isEmpty {
+            return nil
+        }
+        let fileName = (trimmed as NSString).lastPathComponent
+        guard fileName != trimmed else { return nil }
+        guard let supabaseBase = remoteImageBaseURL,
+              let fallback = supabaseDownloadURL(base: supabaseBase, fileName: fileName),
+              fallback.absoluteString != primaryURL.absoluteString else {
+            return nil
+        }
+        return fallback
+    }
+    
     private func loadRemoteImage(at url: URL, targetPointSize: CGSize) -> UIImage? {
         do {
             let data = try Data(contentsOf: url)
@@ -198,7 +223,9 @@ final class ImageStorageService {
             }
             return UIImage(cgImage: cgImage)
         } catch {
+            #if DEBUG
             print("[ImageStorageService] Failed to load remote image: \(url.absoluteString) error: \(error)")
+            #endif
             return nil
         }
     }

@@ -178,6 +178,23 @@ extension ProfileViewController: UICollectionViewDelegate {
         let promptManager = GemeniPromptManager()
         promptManager.updateOption(option)
         promptManager.updateBaseImage(image)
+        if let mode = doc.savedDesignMode {
+            promptManager.updateDesignMode(mode)
+        }
+        if let material = doc.savedSurfaceMaterial {
+            promptManager.updateSurfaceMaterial(material)
+        }
+        if let surfaceCustomPrompt = doc.surfaceCustomPrompt,
+           !surfaceCustomPrompt.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            promptManager.updateSurfaceCustomPrompt(surfaceCustomPrompt)
+        }
+        if let objectToReplace = doc.objectToReplace,
+           !objectToReplace.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            promptManager.updateObjectToReplace(objectToReplace)
+        }
+        if let replaceMode = doc.savedReplaceMode {
+            promptManager.updateReplaceMode(replaceMode)
+        }
         print("[Profile] Open detail with option:", option, "style:", doc.style ?? "nil", "color:", doc.colorName ?? "nil")
         
         switch option {

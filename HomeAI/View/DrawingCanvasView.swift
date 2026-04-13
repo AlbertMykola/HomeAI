@@ -491,10 +491,60 @@ class DrawingCanvasView: UIView {
         } else {
             let fullDrawingImage = canvasView.drawing.image(from: canvasBounds, scale: scale)
             guard let drawingCGImage = fullDrawingImage.cgImage else { return nil }
-            guard let drawingGrayImage = convertToGrayscale(drawingCGImage) else { return nil }
-            let binaryDrawingImg = binarizeGrayscaleImage(drawingGrayImage, threshold: 10) ?? drawingGrayImage
-            return UIImage(cgImage: binaryDrawingImg, scale: UIScreen.main.scale, orientation: .up)
+            guard let binaryMask = binarizeUsingAlpha(drawingCGImage, alphaThreshold: 32) else { return nil }
+            return UIImage(cgImage: binaryMask, scale: UIScreen.main.scale, orientation: .up)
         }
+    }
+    
+    /// Builds a binary mask from the drawing's alpha channel.
+    /// This avoids "mask bleeding" caused by converting semi-transparent strokes to grayscale.
+    private func binarizeUsingAlpha(_ image: CGImage, alphaThreshold: UInt8) -> CGImage? {
+        let width = image.width
+        let height = image.height
+        guard width > 0, height > 0 else { return nil }
+        
+        // 1) Render into RGBA to reliably read alpha.
+        let bytesPerPixel = 4
+        let bytesPerRow = width * bytesPerPixel
+        let bitsPerComponent = 8
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let bitmapInfo = CGBitmapInfo(rawValue: CGImageAlphaInfo.premultipliedLast.rawValue)
+        
+        guard let rgbaCtx = CGContext(
+            data: nil,
+            width: width,
+            height: height,
+            bitsPerComponent: bitsPerComponent,
+            bytesPerRow: bytesPerRow,
+            space: colorSpace,
+            bitmapInfo: bitmapInfo.rawValue
+        ) else { return nil }
+        
+        rgbaCtx.draw(image, in: CGRect(x: 0, y: 0, width: width, height: height))
+        guard let rgbaData = rgbaCtx.data else { return nil }
+        let rgba = rgbaData.bindMemory(to: UInt8.self, capacity: width * height * bytesPerPixel)
+        
+        // 2) Create 8-bit grayscale output (0 or 255).
+        let graySpace = CGColorSpaceCreateDeviceGray()
+        guard let grayCtx = CGContext(
+            data: nil,
+            width: width,
+            height: height,
+            bitsPerComponent: 8,
+            bytesPerRow: width,
+            space: graySpace,
+            bitmapInfo: CGImageAlphaInfo.none.rawValue
+        ) else { return nil }
+        
+        guard let grayData = grayCtx.data else { return nil }
+        let out = grayData.bindMemory(to: UInt8.self, capacity: width * height)
+        
+        for i in 0..<(width * height) {
+            let a = rgba[i * 4 + 3]
+            out[i] = (a >= alphaThreshold) ? 255 : 0
+        }
+        
+        return grayCtx.makeImage()
     }
     
     /// Конвертує CGImage в grayscale для бінарної маски

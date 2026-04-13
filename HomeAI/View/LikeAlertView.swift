@@ -26,6 +26,7 @@ final class LikeAlertView: UIView {
     private let starsAnimationName = "5 stars"
     private var starsAnimationView: LottieAnimationView?
     private var backgroundView: UIView?
+    private var onDismissed: (() -> Void)?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -71,7 +72,8 @@ final class LikeAlertView: UIView {
         starsAnimationView = animationView
     }
     
-    func show(in viewController: UIViewController) {
+    func show(in viewController: UIViewController, onDismissed: (() -> Void)? = nil) {
+        self.onDismissed = onDismissed
         parentViewController = viewController
         
         let bgView = UIView(frame: viewController.view.bounds)
@@ -131,11 +133,17 @@ final class LikeAlertView: UIView {
     }
     
     @IBAction private func rateNowAction(_ sender: UIButton) {
+        AmplitudeService.shared.logEvent(.rateNowAction)
         openAppStoreForRating()
-        dismissAlert()
+        finishDismiss()
     }
         
     @objc private func dismissAlert() {
+        AmplitudeService.shared.logEvent(.dontRateAction)
+        finishDismiss()
+    }
+
+    private func finishDismiss() {
         starsAnimationView?.stop()
         UIView.animate(withDuration: 0.3, animations: {
             self.alpha = 0
@@ -145,6 +153,8 @@ final class LikeAlertView: UIView {
             self.removeFromSuperview()
             self.backgroundView?.removeFromSuperview()
             self.backgroundView = nil
+            self.onDismissed?()
+            self.onDismissed = nil
         }
     }
 }

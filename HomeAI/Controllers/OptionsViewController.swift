@@ -8,6 +8,7 @@ final class OptionsViewController: UIViewController {
 
     private let cellScale: CGFloat = 0.8
     private let centerCellScale: CGFloat = 1.0
+    private var didApplyInitialLayout = false
 
     private let dataSource: [OptionsCollectionModel] = DesignOption.models
     private let amplitude = AmplitudeService.shared
@@ -17,26 +18,37 @@ final class OptionsViewController: UIViewController {
         amplitude.logEvent(.showOptions)
         configure()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // Ensure initial scaling/alpha is applied even if layout happens before cells are visible.
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            self.collectionView.layoutIfNeeded()
+            self.transformCells()
+            self.centerCellDidShow()
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        applyLayoutIfNeeded()
+    }
 
     private func configure() {
         
         collectionView.register(UINib(nibName: "OptionsCollectionCell", bundle: nil), forCellWithReuseIdentifier: "OptionsCollectionCell")
-
+        collectionView.dataSource = self
+        collectionView.delegate = self
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            let screenWidth = UIScreen.main.bounds.width
-            let cellWidth = screenWidth * 0.65
-            let cellHeight = collectionView.bounds.height
             layout.estimatedItemSize = .zero
-            layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
             layout.scrollDirection = .horizontal
-            layout.minimumLineSpacing = 2
+            // Use a noticeable spacing; very small values can look like "no spacing" on some screens.
+            layout.minimumLineSpacing = 16
             layout.minimumInteritemSpacing = 0
-
-            let insetX = (view.bounds.width - cellWidth) / 2.0
-            collectionView.contentInset = UIEdgeInsets(top: 0, left: insetX, bottom: 0, right: insetX)
-
-            collectionView.contentInsetAdjustmentBehavior = .never
         }
+
+        collectionView.contentInsetAdjustmentBehavior = .never
 
         collectionView.isPagingEnabled = false
         collectionView.decelerationRate = .fast
@@ -47,11 +59,7 @@ final class OptionsViewController: UIViewController {
             navigationItem.rightBarButtonItem = item
         }
 
-        DispatchQueue.main.async { [weak self] in
-            self?.collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredHorizontally, animated: false)
-            self?.transformCells()
-            self?.centerCellDidShow()
-        }
+        // Initial positioning is done in `applyLayoutIfNeeded()` once bounds are final.
     }
     
     @objc private func didTapPro() {
@@ -132,9 +140,10 @@ extension OptionsViewController: UICollectionViewDelegate {
 extension OptionsViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let screenWidth = UIScreen.main.bounds.width
-        let width = screenWidth * 0.65
-        let height = collectionView.bounds.height * 0.8
+        // Size is applied in `viewDidLayoutSubviews` to avoid 0-height bounds on first layout for some devices.
+        let containerWidth = view.bounds.width
+        let width = containerWidth * 0.65
+        let height = max(1, collectionView.bounds.height * 0.8)
         return CGSize(width: width, height: height)
     }
 }
@@ -142,6 +151,45 @@ extension OptionsViewController: UICollectionViewDelegateFlowLayout {
 
 // MARK: - Private Methods
 private extension OptionsViewController {
+    
+    func applyLayoutIfNeeded() {
+        // Prevent repeated invalidations; layout becomes correct after first pass.
+        guard !didApplyInitialLayout else { return }
+        // Ensure we have final bounds (esp. safe area) before sizing.
+        guard collectionView.bounds.width > 0, collectionView.bounds.height > 0 else { return }
+        
+        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        
+        let containerWidth = view.bounds.width
+        let cellWidth = containerWidth * 0.65
+        let cellHeight = collectionView.bounds.height * 0.8
+        
+        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
+        
+        let insetX = max(0, (containerWidth - cellWidth) / 2.0)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: insetX, bottom: 0, right: insetX)
+        
+        // Force layout pass before we scroll/transform.
+        layout.invalidateLayout()
+        collectionView.layoutIfNeeded()
+        collectionView.performBatchUpdates(nil)
+        
+        // Ensure the first cell is centered with correct insets/spacings applied.
+        if dataSource.isEmpty == false {
+            collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredHorizontally, animated: false)
+        } else {
+            collectionView.setContentOffset(CGPoint(x: -collectionView.contentInset.left, y: 0), animated: false)
+        }
+        collectionView.layoutIfNeeded()
+        
+        // If cells are not yet visible, wait for next layout pass.
+        guard collectionView.visibleCells.isEmpty == false else { return }
+        
+        transformCells()
+        centerCellDidShow()
+        
+        didApplyInitialLayout = true
+    }
 
     func transformCells() {
         let collectionViewCenter = view.convert(collectionView.center, to: collectionView)

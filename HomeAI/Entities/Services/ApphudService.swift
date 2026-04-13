@@ -9,9 +9,14 @@ public class ApphudService: NSObject {
     
     private var products: [ApphudProduct] = []
     private var currentPaywall: ApphudPaywall?
+    private var didSetMetaAttribution = false
         
     public var hasActiveSubscription: Bool {
-        Apphud.hasActiveSubscription()
+        #if DEBUG
+            return true
+        #else
+            return Apphud.hasActiveSubscription()
+        #endif
     }
     
     @MainActor
@@ -27,7 +32,6 @@ public class ApphudService: NSObject {
         Apphud.setDeviceIdentifiers(idfa: nil, idfv: idfv)
         Apphud.deferPlacements()
         fetchASAAttribution()
-        setMetaAttributionForCAPI()
         AmplitudeService.shared.logEvent(.apphudUserId(id: Apphud.userID()))
     }
     
@@ -121,7 +125,10 @@ public class ApphudService: NSObject {
     }
     
     @MainActor
-    private func setMetaAttributionForCAPI() {
+    public func setMetaAttributionForCAPIIfNeeded() {
+        guard !didSetMetaAttribution else { return }
+        didSetMetaAttribution = true
+
         let extInfo = _AppEventsDeviceInfo.shared.encodedDeviceInfo
         let anonId = AppEvents.shared.anonymousID
 
@@ -133,7 +140,6 @@ public class ApphudService: NSObject {
             identifer: anonId,
             callback: { result in
                 print("setMetaAttributionForCAPI", result)
-                // опційно: лог у консоль/Amplitude, якщо треба
             }
         )
     }

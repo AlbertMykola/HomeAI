@@ -103,6 +103,16 @@ class GemeniPromptManager {
             self.interiorStyle = interior
         case .exterior(let exterior):
             self.exteriorStyle = exterior
+        case .garden(let name):
+            if let match = GardenType.allCases.first(where: { $0.name.caseInsensitiveCompare(name) == .orderedSame }) {
+                if match == .noStyle {
+                    clearGardenType()
+                } else {
+                    updateGardenType(match)
+                }
+            }
+        case .reference:
+            break
         default: break
         }
     }
@@ -249,14 +259,15 @@ class GemeniPromptManager {
      */
     private func buildInteriorPrompt() throws -> String {
         // --- 1. Валідація даних ---
-        guard let roomType = interiorRoomType else { throw PromptError.missingData("Room type") }
-        // Style is optional for .noStyle case
-        guard let colorType = colorType else { throw PromptError.missingData("Color") }
+        // Detail/edit flows may not have explicit room type persisted.
+        let roomName = interiorRoomType?.name ?? "interior space"
+        // Style is optional for .noStyle case. Default to random when not set.
+        let resolvedColorType = colorType ?? .random
 
         // --- Якщо є кастомний промпт, використовуємо його ---
         if let customPrompt = customPrompt, interiorStyle == .custom {
             var prompt = "You are a world-class AI interior designer."
-            prompt += " Your task is to completely redesign the user-provided image of a \(roomType.name)."
+            prompt += " Your task is to completely redesign the user-provided image of a \(roomName)."
             prompt += " \(customPrompt)"
             
             // Додаємо стандартні правила
@@ -272,7 +283,7 @@ class GemeniPromptManager {
 
         // --- 2. Персона та Завдання ---
         var prompt = "You are a world-class AI interior designer."
-        prompt += " Your task is to completely redesign the user-provided image of a \(roomType.name)."
+        prompt += " Your task is to completely redesign the user-provided image of a \(roomName)."
 
         // --- 2a. Режим дизайну ---
         switch designMode {
@@ -292,18 +303,18 @@ class GemeniPromptManager {
 
         // --- 4. Логіка кольору ---
         if let style = interiorStyle, style != .noStyle {
-        if colorType == .random {
+        if resolvedColorType == .random {
             let styleColorSuggestions = getColors(for: .interior(style))
             prompt += " Use a color palette that perfectly matches the \(style.name) style. Good examples include: \(styleColorSuggestions.joined(separator: ", "))."
         } else {
-            prompt += " The primary color palette for this design must be '\(colorType.name)', which includes: [\(colorType.colors.joined(separator: ", "))]."
+            prompt += " The primary color palette for this design must be '\(resolvedColorType.name)', which includes: [\(resolvedColorType.colors.joined(separator: ", "))]."
             }
         } else {
             // For .noStyle - use color palette based on colorType
-            if colorType == .random {
+            if resolvedColorType == .random {
                 prompt += " Use a harmonious and appealing color palette that creates a beautiful, balanced design."
             } else {
-                prompt += " The primary color palette for this design must be '\(colorType.name)', which includes: [\(colorType.colors.joined(separator: ", "))]."
+                prompt += " The primary color palette for this design must be '\(resolvedColorType.name)', which includes: [\(resolvedColorType.colors.joined(separator: ", "))]."
             }
         }
 
@@ -381,14 +392,14 @@ class GemeniPromptManager {
     }
     
     private func buildExteriorPrompt() throws -> String {
-        guard let type = exteriorBuildingType else { throw PromptError.missingData("Building type") }
+        let typeName = exteriorBuildingType?.name ?? "building exterior"
         // Style is optional for .noStyle case
-        guard let colorType = colorType else { throw PromptError.missingData("Color") }
+        let resolvedColorType = colorType ?? .random
 
         // --- Якщо є кастомний промпт, використовуємо його ---
         if let customPrompt = customPrompt, exteriorStyle == .custom {
             var prompt = "You are an expert AI exterior and architectural designer."
-            prompt += " Redesign the provided image of this \(type.name)."
+            prompt += " Redesign the provided image of this \(typeName)."
             prompt += " \(customPrompt)"
             
             // Додаємо стандартні правила
@@ -403,7 +414,7 @@ class GemeniPromptManager {
         }
 
         var prompt = "You are an expert AI exterior and architectural designer."
-        prompt += " Redesign the provided image of this \(type.name)."
+        prompt += " Redesign the provided image of this \(typeName)."
         
         // --- Основні інструкції (Стиль) ---
         if let style = exteriorStyle, style != .noStyle {
@@ -415,18 +426,18 @@ class GemeniPromptManager {
         
         // --- Логіка кольору ---
         if let style = exteriorStyle, style != .noStyle {
-            if colorType == .random {
+            if resolvedColorType == .random {
                 let styleColorSuggestions = getColors(for: .exterior(style))
                 prompt += " Use a color palette that perfectly matches this style, such as \(styleColorSuggestions.joined(separator: ", "))."
             } else {
-                prompt += " Use the '\(colorType.name)' color palette for the redesign: [\(colorType.colors.joined(separator: ", "))]."
+                prompt += " Use the '\(resolvedColorType.name)' color palette for the redesign: [\(resolvedColorType.colors.joined(separator: ", "))]."
             }
         } else {
             // For .noStyle - use color palette based on colorType
-            if colorType == .random {
+            if resolvedColorType == .random {
                 prompt += " Use a harmonious and appealing color palette that creates a beautiful, balanced design."
             } else {
-                prompt += " Use the '\(colorType.name)' color palette for the redesign: [\(colorType.colors.joined(separator: ", "))]."
+                prompt += " Use the '\(resolvedColorType.name)' color palette for the redesign: [\(resolvedColorType.colors.joined(separator: ", "))]."
             }
         }
         

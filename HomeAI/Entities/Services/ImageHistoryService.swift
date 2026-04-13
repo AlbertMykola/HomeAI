@@ -22,6 +22,12 @@ struct ImageDoc: Codable {
     let createdAt: Date
     let style: String?
     let colorName: String?
+    let designMode: String?
+    let customPrompt: String?
+    let surfaceMaterial: String?
+    let surfaceCustomPrompt: String?
+    let replaceMode: String?
+    let objectToReplace: String?
     
     var designOption: DesignOption? {
         option.flatMap { DesignOption(rawValue: $0) }
@@ -54,6 +60,30 @@ struct ImageDoc: Codable {
     var savedExteriorStyle: StyleExteriorType? {
         exteriorStyle.flatMap { value in
             StyleExteriorType.allCases.first { "\($0)" == value }
+        }
+    }
+    
+    var savedDesignMode: DesignMode? {
+        guard let designMode else { return nil }
+        return DesignMode(rawValue: designMode)
+    }
+    
+    var savedSurfaceMaterial: SurfaceMaterialOption? {
+        surfaceMaterial.flatMap { value in
+            SurfaceMaterialOption.allCases.first { "\($0)" == value }
+        }
+    }
+    
+    var savedReplaceMode: GemeniPromptManager.ReplaceMode? {
+        replaceMode.flatMap { value in
+            switch value {
+            case "replace":
+                return .replace
+            case "remove":
+                return .remove
+            default:
+                return nil
+            }
         }
     }
     
@@ -134,7 +164,13 @@ final class ImageHistoryService {
                             exteriorBuildingType: ExteriorType?,
                             gardenType: GardenType?,
                             interiorStyle: StyleInteriorType?,
-                            exteriorStyle: StyleExteriorType?) async throws -> ImageDoc {
+                            exteriorStyle: StyleExteriorType?,
+                            designMode: DesignMode?,
+                            customPrompt: String?,
+                            surfaceMaterial: SurfaceMaterialOption?,
+                            surfaceCustomPrompt: String?,
+                            replaceMode: GemeniPromptManager.ReplaceMode?,
+                            objectToReplace: String?) async throws -> ImageDoc {
         let fileId = UUID().uuidString.lowercased()
         let entryFolder = historyDirectory.appendingPathComponent(fileId, isDirectory: true)
         try fileManager.createDirectory(at: entryFolder, withIntermediateDirectories: true)
@@ -176,7 +212,13 @@ final class ImageHistoryService {
             exteriorStyle: exteriorStyle.map { "\($0)" },
             createdAt: Date(),
             style: style,
-            colorName: colorName
+            colorName: colorName,
+            designMode: designMode?.rawValue,
+            customPrompt: customPrompt,
+            surfaceMaterial: surfaceMaterial.map { "\($0)" },
+            surfaceCustomPrompt: surfaceCustomPrompt,
+            replaceMode: replaceMode.map { "\($0)" },
+            objectToReplace: objectToReplace
         )
         
         let encoder = JSONEncoder()
@@ -270,7 +312,13 @@ private extension ImageDoc {
             exteriorStyle: exteriorStyle,
             createdAt: createdAt,
             style: style,
-            colorName: colorName
+            colorName: colorName,
+            designMode: designMode,
+            customPrompt: customPrompt,
+            surfaceMaterial: surfaceMaterial,
+            surfaceCustomPrompt: surfaceCustomPrompt,
+            replaceMode: replaceMode,
+            objectToReplace: objectToReplace
         )
     }
     

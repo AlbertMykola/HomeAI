@@ -8,11 +8,14 @@ class ColorListViewController: UIViewController, PageStepDelegate, PromptManager
     // Колір обов'язковий: дозволяємо перейти тільки після вибору
     var canProceedToNextStep: Bool { selectedColorIndexPath != nil }
     var onSelectColor: ((ColorType) -> Void)?
+    var onGenerate: (() -> Void)?
     var isPresentedModall = false
     
     private var selectedColorIndexPath: IndexPath?
     private var selectedModeIndexPath: IndexPath = IndexPath(item: 0, section: 0)
     private var selectedMode: DesignMode = .structuralPreservation
+    private let generateButton = UIButton(type: .system)
+    private var didSelectForGenerate = false
     
     private enum Section: Int, CaseIterable {
         case mode
@@ -72,10 +75,46 @@ class ColorListViewController: UIViewController, PageStepDelegate, PromptManager
         if selectedColorIndexPath != nil {
             markCompleted()
         }
+        
+        if isPresentedModall {
+            setupGenerateButton()
+            updateGenerateButtonVisibility()
+        }
     }
     
     private func markCompleted() {
         completion?()
+    }
+
+    private func setupGenerateButton() {
+        generateButton.translatesAutoresizingMaskIntoConstraints = false
+        generateButton.setTitle("Generate".localized, for: .normal)
+        generateButton.setTitleColor(.black, for: .normal)
+        generateButton.backgroundColor = Constants.Colors.yellowPremium
+        generateButton.layer.cornerRadius = 27
+        generateButton.layer.masksToBounds = true
+        generateButton.addTarget(self, action: #selector(generateTapped), for: .touchUpInside)
+        view.addSubview(generateButton)
+        
+        NSLayoutConstraint.activate([
+            generateButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            generateButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            generateButton.widthAnchor.constraint(equalToConstant: 165),
+            generateButton.heightAnchor.constraint(equalToConstant: 54)
+        ])
+    }
+    
+    private func updateGenerateButtonVisibility() {
+        let shouldShow = isPresentedModall && didSelectForGenerate
+        generateButton.isHidden = !shouldShow
+        generateButton.isEnabled = shouldShow
+        generateButton.alpha = shouldShow ? 1.0 : 0.5
+    }
+    
+    @objc private func generateTapped() {
+        dismiss(animated: true) { [weak self] in
+            self?.onGenerate?()
+        }
     }
 }
 
@@ -225,10 +264,11 @@ extension ColorListViewController: UICollectionViewDelegate {
             let palette = colors[indexPath.item]
             promptManager?.updateColor(palette)
             selectedColorIndexPath = indexPath
+            didSelectForGenerate = true
 
-            if isPresentedModall, let onSelect = onSelectColor {
-                onSelect(palette)
-                dismiss(animated: true)
+            if isPresentedModall {
+                onSelectColor?(palette)
+                updateGenerateButtonVisibility()
                 return
             }
 
