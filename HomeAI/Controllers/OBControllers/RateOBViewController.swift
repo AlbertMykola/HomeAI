@@ -1,93 +1,254 @@
-//
-//  RateOBViewController.swift
-//  HomeAI
-//
-//  Created by Mykola Albert on 23.09.2025.
-//
-
 import UIKit
-import StoreKit
+import Lottie
 
 private struct Defaults {
+
     struct Text {
-        static let headline = "HELP US GROW!".localized
-        static let description = "Support us with a quick review! Your feedback keeps us going and helps us bring even more smart design magic to life".localized
-        static let getStarted = "Get Started".localized
-        
-        static let comments: [[String]] = [["Great app for quick home redesign ideas.", "Great app, just wish it had more furniture options.", "AI suggestions were spot on. Love it!", "Felt like having a designer in my pocket!", "Clean interface and smart recommendations."],["Helped me visualize my new kitchen in minutes!", "Best home design app I’ve tried so far!", "Smart and super easy to use!", "Perfect for quick home makeovers!", "Redesigned my space in seconds. Amazing!"],
-            ["AI ideas were creative and actually useful.", "Impressive AI! Saved me so much time.", "Cool features, especially the AI room planner.", "So intuitive! Made decorating fun again.", "AI ideas were creative and actually useful."]]
+        static let headline = "ob_change_headline".localized
+        static let description = "ob_change_description".localized
+        static let next = "ob_welcome_get_started".localized
+    }
+
+    struct Overlay {
+        static let fadeLocation: NSNumber = 0.51756
+        static let tintAlpha: CGFloat = 0.5
+    }
+
+    struct Layout {
+        static let compactHorizontalInset: CGFloat = 20
+        static let regularHorizontalInset: CGFloat = 100
+        static let currentPage: Int = 3
+    }
+
+    struct Lottie {
+        static let animationName = "iphone ob 4"
     }
 }
 
 final class RateOBViewController: UIViewController, OBPageChild {
-    
-    // MARK: - @IBOutlets
-    @IBOutlet weak private var bottomGradientContainerView: UIView!
-    
-    @IBOutlet weak private var heartContainerView: UIView!
 
-    @IBOutlet weak private var descriptionLabel: UILabel!
-    @IBOutlet weak private var headlineLabel: UILabel!
-    
-    @IBOutlet weak private var nextButton: UIButton!
-    @IBOutlet private var sizeConstraints: [NSLayoutConstraint]!
+    @IBOutlet private weak var lottieContainerView: UIView!
+    @IBOutlet private weak var bottomGradientView: UIView!
+    @IBOutlet private weak var headlineLabel: UILabel!
+    @IBOutlet private weak var nextButton: LiquidGlassButton!
+    @IBOutlet private weak var subtitleLabel: UILabel!
+    @IBOutlet private weak var topGradientView: UIView!
+    @IBOutlet private weak var pageControl: UIPageControl!
 
-    // MARK: - Properties
-    private var engine: CarouselEngine<String, RateCollectionViewCell>?
-    
+    @IBOutlet private var contentHorizontalInsetConstraints: [NSLayoutConstraint]!
+    @IBOutlet private var constraintsCollection: [NSLayoutConstraint]!
+
     weak var obDelegate: OBPageChildDelegate?
-    private var addedGradient = false
 
-    // MARK: - Lifecycles
+    private var lottieView: LottieAnimationView?
+    private var isHeroRunning = false
+    private let bottomBlurView = UIVisualEffectView(effect: UIBlurEffect(style: .systemUltraThinMaterialDark))
+    private let bottomBlurMaskLayer = CAGradientLayer()
+    private let bottomTintView = UIView()
+    private let bottomGradientLayer = CAGradientLayer()
+    private let topGradientLayer = CAGradientLayer()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        config()
+        constraintsCollection.forEach { $0.scaleConstant() }
+        view.clipsToBounds = true
+        updateContentInsets()
+        configureContent()
+        configureLottie()
+        configureGradientLayers()
         AmplitudeService.shared.logEvent(.showOBRate)
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        engine?.start()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        rate()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        engine?.stop()
+        obPauseHeroAnimation()
     }
-    
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
-        if !addedGradient {
-            bottomGradientContainerView.setGradient(stops: [.init(percent: 0, color: .systemBackground.withAlphaComponent(0)), .init(percent: 50, color: .systemBackground), .init(percent: 100, color: .systemBackground)], direction: .vertical)
-
-            heartContainerView.cornerRadius = heartContainerView.frame.height / 2
-            addedGradient = true
-        }
-        nextButton.layer.cornerRadius = nextButton.frame.height / 2
-    }
-    
-    private func config() {
-        headlineLabel.text = Defaults.Text.headline
-        descriptionLabel.text = Defaults.Text.description
-        nextButton.setTitle(Defaults.Text.getStarted, for: .normal)
-        sizeConstraints.forEach { $0.scaleConstantByWidth() }
-    }
-
-    
-    func rate() {
-        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene {
-            SKStoreReviewController.requestReview(in: scene)
+        UIView.performWithoutAnimation {
+            CATransaction.begin()
+            CATransaction.setDisableActions(true)
+            let overlayBounds = bottomGradientView.bounds
+            bottomBlurView.frame = overlayBounds
+            bottomBlurMaskLayer.frame = bottomBlurView.bounds
+            bottomTintView.frame = overlayBounds
+            bottomGradientLayer.frame = bottomTintView.bounds
+            topGradientLayer.frame = topGradientView.bounds
+            updateContentInsets()
+            CATransaction.commit()
         }
     }
 
-    // MARK: - @IBActions
-    @IBAction private func nextTapped(_ sender: UIButton) {
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        guard previousTraitCollection?.horizontalSizeClass != traitCollection.horizontalSizeClass else { return }
+        updateContentInsets()
+    }
+
+    func obPrepareHeroForAppearance() {
+        if UIAccessibility.isReduceMotionEnabled {
+            lottieView?.currentProgress = 1
+            lottieView?.pause()
+            return
+        }
+        lottieView?.currentProgress = 0
+        lottieView?.pause()
+    }
+
+    func obPauseHeroAnimation() {
+        isHeroRunning = false
+        lottieView?.pause()
+    }
+
+    func obStartHeroAnimation() {
+        DispatchQueue.main.async { [weak self] in
+            guard let self, self.view.window != nil else { return }
+            self.startLottieIfNeeded()
+        }
+    }
+
+    func obSetActionLoading(_ loading: Bool) {
+        nextButton.setLoading(loading)
+    }
+
+    private func updateContentInsets() {
+        let inset = traitCollection.horizontalSizeClass == .regular
+            ? Defaults.Layout.regularHorizontalInset
+            : Defaults.Layout.compactHorizontalInset
+        contentHorizontalInsetConstraints.forEach { constraint in
+            if constraint.constant != inset {
+                constraint.constant = inset
+            }
+        }
+    }
+
+    private func configureContent() {
+        pageControl.currentPage = Defaults.Layout.currentPage
+        subtitleLabel.text = Defaults.Text.description
+        configureHeadline()
+        nextButton.setTitle(Defaults.Text.next, for: .normal)
+        nextButton.applyLiquidGlass(
+            LiquidGlassConfig(
+                style: .filled,
+                title: Defaults.Text.next,
+                foregroundColor: .black,
+                backgroundColor: Constants.Colors.yellowPremium,
+                font: nextButton.titleLabel?.font,
+                cornerStyle: .capsule
+            )
+        )
+    }
+
+    private func configureHeadline() {
+        let headline = Defaults.Text.headline
+        let baseFont = headlineLabel.font ?? UIFont.systemFont(ofSize: 28)
+        let emphasizedFont = UIFont(name: "Geologica-SemiBold", size: baseFont.pointSize) ?? baseFont
+        let attributed = NSMutableAttributedString(
+            string: headline,
+            attributes: [
+                .font: baseFont,
+                .foregroundColor: UIColor.white
+            ]
+        )
+        if let firstWordRange = headline.range(of: headline.split(separator: " ").first.map(String.init) ?? "") {
+            attributed.addAttributes(
+                [
+                    .font: emphasizedFont,
+                    .foregroundColor: Constants.Colors.yellowPremium
+                ],
+                range: NSRange(firstWordRange, in: headline)
+            )
+        }
+        headlineLabel.attributedText = attributed
+    }
+
+    private func configureLottie() {
+        lottieContainerView.clipsToBounds = true
+        lottieContainerView.backgroundColor = .black
+        lottieView?.removeFromSuperview()
+
+        let animationView = LottieAnimationView(name: Defaults.Lottie.animationName)
+        animationView.translatesAutoresizingMaskIntoConstraints = false
+        animationView.contentMode = .scaleAspectFill
+        animationView.backgroundBehavior = .pauseAndRestore
+        animationView.loopMode = .loop
+        animationView.animationSpeed = 1
+
+        lottieContainerView.addSubview(animationView)
+        NSLayoutConstraint.activate([
+            animationView.topAnchor.constraint(equalTo: lottieContainerView.topAnchor),
+            animationView.leadingAnchor.constraint(equalTo: lottieContainerView.leadingAnchor),
+            animationView.trailingAnchor.constraint(equalTo: lottieContainerView.trailingAnchor),
+            animationView.bottomAnchor.constraint(equalTo: lottieContainerView.bottomAnchor)
+        ])
+        lottieView = animationView
+    }
+
+    private func startLottieIfNeeded() {
+        guard !isHeroRunning else { return }
+        if UIAccessibility.isReduceMotionEnabled {
+            lottieView?.currentProgress = 1
+            lottieView?.pause()
+            return
+        }
+        isHeroRunning = true
+        lottieView?.currentProgress = 0
+        lottieView?.play()
+    }
+
+    private func configureGradientLayers() {
+        bottomGradientView.clipsToBounds = true
+        bottomBlurView.isUserInteractionEnabled = false
+        bottomTintView.isUserInteractionEnabled = false
+        bottomTintView.backgroundColor = .clear
+        bottomGradientView.insertSubview(bottomBlurView, at: 0)
+        bottomGradientView.addSubview(bottomTintView)
+        bottomTintView.layer.addSublayer(bottomGradientLayer)
+        bottomBlurView.layer.mask = bottomBlurMaskLayer
+
+        configureGradientLayer(
+            bottomBlurMaskLayer,
+            colors: [
+                UIColor.clear,
+                UIColor.black,
+                UIColor.black
+            ],
+            locations: [0, Defaults.Overlay.fadeLocation, 1]
+        )
+        configureGradientLayer(
+            bottomGradientLayer,
+            colors: [
+                UIColor.clear,
+                UIColor.black.withAlphaComponent(Defaults.Overlay.tintAlpha),
+                UIColor.black.withAlphaComponent(Defaults.Overlay.tintAlpha)
+            ],
+            locations: [0, Defaults.Overlay.fadeLocation, 1]
+        )
+        configureGradientLayer(
+            topGradientLayer,
+            colors: [
+                UIColor.black.withAlphaComponent(Defaults.Overlay.tintAlpha),
+                UIColor.black.withAlphaComponent(Defaults.Overlay.tintAlpha),
+                UIColor.clear
+            ],
+            locations: [0, 0.3, 1]
+        )
+        topGradientView.layer.addSublayer(topGradientLayer)
+    }
+
+    private func configureGradientLayer(
+        _ layer: CAGradientLayer,
+        colors: [UIColor],
+        locations: [NSNumber]
+    ) {
+        layer.colors = colors.map(\.cgColor)
+        layer.locations = locations
+        layer.startPoint = CGPoint(x: 0.5, y: 0)
+        layer.endPoint = CGPoint(x: 0.5, y: 1)
+    }
+
+    @IBAction private func nextAction(_ sender: UIButton) {
         obDelegate?.obChildRequestsNext(self)
     }
 }

@@ -1,0 +1,701 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="25098" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_7" orientation="portrait" appearance="dark" />
+    <dependencies>
+        <deployment identifier="iOS" />
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="25073" />
+        <capability name="Safe area layout guides" minToolsVersion="9.0" />
+        <capability name="System colors in document resources" minToolsVersion="11.0" />
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0" />
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geologica-Light.ttf">
+            <string>Geologica-Light</string>
+        </array>
+        <array key="Geologica-Regular.ttf">
+            <string>Geologica-Regular</string>
+        </array>
+        <array key="Geologica-SemiBold.ttf">
+            <string>Geologica-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PaywallViewController" customModule="HomeAI" customModuleProvider="target">
+            <connections>
+                <outlet property="afterClipView" destination="clip-after" id="out-clip" />
+                <outlet property="afterClipWidthConstraint" destination="clip-width" id="out-clip-width" />
+                <outlet property="bottomBadgeLabel" destination="badge-bottom-label" id="out-bottom-badge-label" />
+                <outlet property="bottomBadgeView" destination="badge-bottom" id="out-bottom-badge" />
+                <outlet property="bottomBillingLabel" destination="billing-bottom" id="out-bottom-billing" />
+                <outlet property="bottomGradientView" destination="hero-bottom-gradient" id="out-hero-bottom-gradient" />
+                <outlet property="bottomPlanBorderView" destination="border-bottom" id="out-bottom-border" />
+                <outlet property="bottomPlanButton" destination="button-bottom-plan" id="out-bottom-button" />
+                <outlet property="bottomPlanTitleLabel" destination="title-bottom-plan" id="out-bottom-title" />
+                <outlet property="bottomPlanView" destination="plan-bottom" id="out-bottom-plan" />
+                <outlet property="bottomPriceLabel" destination="price-bottom" id="out-bottom-price" />
+                <outlet property="continueButton" destination="button-continue" id="out-continue" />
+                <outlet property="heroContainerView" destination="hero" id="out-hero" />
+                <outlet property="indicator" destination="indicator" id="out-indicator" />
+                <outlet property="noPayingLabel" destination="label-no-pay" id="out-no-pay" />
+                <outlet property="privacyButton" destination="button-privacy" id="out-privacy" />
+                <outlet property="restoreButton" destination="button-restore" id="out-restore" />
+                <outlet property="scrollView" destination="scroll" id="out-scroll" />
+                <outlet property="sliderCenterConstraint" destination="slider-center" id="out-slider-center" />
+                <outlet property="sliderKnobView" destination="slider-knob" id="out-slider-knob" />
+                <outlet property="sliderView" destination="slider-line" id="out-slider-line" />
+                <outlet property="termsButton" destination="button-terms" id="out-terms" />
+                <outlet property="titleLabel" destination="title-main" id="out-title" />
+                <outlet property="topBadgeLabel" destination="badge-top-label" id="out-top-badge-label" />
+                <outlet property="topBadgeView" destination="badge-top" id="out-top-badge" />
+                <outlet property="topBillingLabel" destination="billing-top" id="out-top-billing" />
+                <outlet property="topCloseButton" destination="button-close-top" id="out-close-top" />
+                <outlet property="topGradientView" destination="hero-top-gradient" id="out-hero-top-gradient" />
+                <outlet property="topPlanBorderView" destination="border-top" id="out-top-border" />
+                <outlet property="topPlanButton" destination="button-top-plan" id="out-top-button" />
+                <outlet property="topPlanTitleLabel" destination="title-top-plan" id="out-top-title" />
+                <outlet property="topPlanView" destination="plan-top" id="out-top-plan" />
+                <outlet property="topPriceLabel" destination="price-top" id="out-top-price" />
+                <outlet property="view" destination="root" id="out-view" />
+                <outletCollection property="benefitLabels" destination="benefit-label-0" collectionClass="NSMutableArray" id="out-benefit-label-0" />
+                <outletCollection property="benefitLabels" destination="benefit-label-1" collectionClass="NSMutableArray" id="out-benefit-label-1" />
+                <outletCollection property="benefitLabels" destination="benefit-label-2" collectionClass="NSMutableArray" id="out-benefit-label-2" />
+                <outletCollection property="benefitLabels" destination="benefit-label-3" collectionClass="NSMutableArray" id="out-benefit-label-3" />
+                <outletCollection property="benefitRows" destination="benefit-row-0" collectionClass="NSMutableArray" id="out-benefit-row-0" />
+                <outletCollection property="benefitRows" destination="benefit-row-1" collectionClass="NSMutableArray" id="out-benefit-row-1" />
+                <outletCollection property="benefitRows" destination="benefit-row-2" collectionClass="NSMutableArray" id="out-benefit-row-2" />
+                <outletCollection property="benefitRows" destination="benefit-row-3" collectionClass="NSMutableArray" id="out-benefit-row-3" />
+                <outletCollection property="constraintsCollection" destination="hero-height" collectionClass="NSMutableArray" id="QXM-ML-CF9" />
+                <outletCollection property="constraintsCollection" destination="title-top" collectionClass="NSMutableArray" id="o97-2y-xEn" />
+                <outletCollection property="constraintsCollection" destination="title-container-height" collectionClass="NSMutableArray" id="SkG-ka-3zj" />
+                <outletCollection property="constraintsCollection" destination="title-bottom" collectionClass="NSMutableArray" id="nGH-q7-xxI" />
+                <outletCollection property="constraintsCollection" destination="b0-icon-height" collectionClass="NSMutableArray" id="eu8-Mj-D5C" />
+                <outletCollection property="constraintsCollection" destination="b0-icon-width" collectionClass="NSMutableArray" id="fR3-tb-QED" />
+                <outletCollection property="constraintsCollection" destination="b0-label-bottom" collectionClass="NSMutableArray" id="NV2-mw-aD5" />
+                <outletCollection property="constraintsCollection" destination="b0-label-top" collectionClass="NSMutableArray" id="R9Z-1G-5f0" />
+                <outletCollection property="constraintsCollection" destination="b1-icon-height" collectionClass="NSMutableArray" id="n5S-Ok-mhf" />
+                <outletCollection property="constraintsCollection" destination="b1-icon-width" collectionClass="NSMutableArray" id="muv-cY-s6n" />
+                <outletCollection property="constraintsCollection" destination="b2-icon-height" collectionClass="NSMutableArray" id="bWp-lb-2vd" />
+                <outletCollection property="constraintsCollection" destination="b2-icon-width" collectionClass="NSMutableArray" id="A7g-En-TnM" />
+                <outletCollection property="constraintsCollection" destination="b3-icon-height" collectionClass="NSMutableArray" id="lcT-d2-sct" />
+                <outletCollection property="constraintsCollection" destination="b3-icon-width" collectionClass="NSMutableArray" id="bhb-Yb-Vf9" />
+                <outletCollection property="constraintsCollection" destination="plans-container-height" collectionClass="NSMutableArray" id="chd-O9-mKK" />
+                <outletCollection property="constraintsCollection" destination="top-title-top" collectionClass="NSMutableArray" id="Qlw-kl-xc7" />
+                <outletCollection property="constraintsCollection" destination="bottom-title-top" collectionClass="NSMutableArray" id="1l1-j3-mxv" />
+                <outletCollection property="constraintsCollection" destination="bottom-badge-height" collectionClass="NSMutableArray" id="PC1-35-Hg6" />
+                <outletCollection property="constraintsCollection" destination="top-badge-height" collectionClass="NSMutableArray" id="Sa3-wg-dbQ" />
+                <outletCollection property="constraintsCollection" destination="continue-top" collectionClass="NSMutableArray" id="IlL-cN-kf2" />
+                <outletCollection property="constraintsCollection" destination="continue-height" collectionClass="NSMutableArray" id="34H-KD-olJ" />
+                <outletCollection property="constraintsCollection" destination="no-pay-top" collectionClass="NSMutableArray" id="muJ-f4-KuK" />
+                <outletCollection property="constraintsCollection" destination="cta-height" collectionClass="NSMutableArray" id="dqG-ga-Llu" />
+                <outletCollection property="constraintsCollection" destination="legal-height" collectionClass="NSMutableArray" id="oMk-PK-sDL" />
+                <outletCollection property="constraintsCollection" destination="legal-container-height" collectionClass="NSMutableArray" id="legal-container-height-scale" />
+                <outletCollection property="constraintsCollection" destination="plans-top" collectionClass="NSMutableArray" id="lTC-71-xV4" />
+                <outletCollection property="constraintsCollection" destination="continue-top" collectionClass="NSMutableArray" id="aNL-up-4OC" />
+                <outletCollection property="constraintsCollection" destination="content-title-gap" collectionClass="NSMutableArray" id="out-scale-content-title-gap" />
+                <outletCollection property="constraintsCollection" destination="content-benefits-gap" collectionClass="NSMutableArray" id="out-scale-content-benefits-gap" />
+                <outletCollection property="constraintsCollection" destination="content-plans-gap" collectionClass="NSMutableArray" id="out-scale-content-plans-gap" />
+                <outletCollection property="constraintsCollection" destination="benefit-row-gap-1" collectionClass="NSMutableArray" id="out-scale-benefit-row-gap-1" />
+                <outletCollection property="constraintsCollection" destination="benefit-row-gap-2" collectionClass="NSMutableArray" id="out-scale-benefit-row-gap-2" />
+                <outletCollection property="constraintsCollection" destination="benefit-row-gap-3" collectionClass="NSMutableArray" id="out-scale-benefit-row-gap-3" />
+                <outletCollection property="constraintsCollection" destination="plan-row-gap" collectionClass="NSMutableArray" id="out-scale-plan-row-gap" />
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder" />
+        <view contentMode="scaleToFill" id="root">
+            <rect key="frame" x="0.0" y="0.0" width="430" height="932" />
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
+            <subviews>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scroll">
+                    <rect key="frame" x="0.0" y="0.0" width="430" height="932" />
+                    <subviews>
+                        <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="content-container">
+                            <rect key="frame" x="0.0" y="0.0" width="430" height="931" />
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hero">
+                                    <rect key="frame" x="0.0" y="0.0" width="430" height="320" />
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="paywall_before_image" translatesAutoresizingMaskIntoConstraints="NO" id="image-before">
+                                            <rect key="frame" x="0.0" y="0.0" width="430" height="320" />
+                                        </imageView>
+                                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="clip-after">
+                                            <rect key="frame" x="0.0" y="0.0" width="201" height="320" />
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="paywall_after_image" translatesAutoresizingMaskIntoConstraints="NO" id="image-after">
+                                                    <rect key="frame" x="0.0" y="0.0" width="430" height="320" />
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="image-after" firstAttribute="bottom" secondItem="clip-after" secondAttribute="bottom" id="after-bottom" />
+                                                <constraint firstItem="image-after" firstAttribute="leading" secondItem="clip-after" secondAttribute="leading" id="after-leading" />
+                                                <constraint firstItem="image-after" firstAttribute="top" secondItem="clip-after" secondAttribute="top" id="after-top" />
+                                            </constraints>
+                                        </view>
+                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hero-top-gradient">
+                                            <rect key="frame" x="0.0" y="0.0" width="430" height="120" />
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="120" id="hero-top-gradient-height" />
+                                            </constraints>
+                                        </view>
+                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hero-bottom-gradient">
+                                            <rect key="frame" x="0.0" y="239" width="430" height="81" />
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="81" id="hero-bottom-gradient-height" />
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="slider-line">
+                                            <rect key="frame" x="214" y="0.0" width="2" height="320" />
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="2" id="slider-width" />
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="slider-knob">
+                                            <rect key="frame" x="197" y="142" width="36" height="36" />
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="paywall_slider_arrow_icon" translatesAutoresizingMaskIntoConstraints="NO" id="slider-arrow">
+                                                    <rect key="frame" x="10" y="10" width="16" height="16" />
+                                                </imageView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="slider-arrow" firstAttribute="centerX" secondItem="slider-knob" secondAttribute="centerX" id="arrow-center-x" />
+                                                <constraint firstItem="slider-arrow" firstAttribute="centerY" secondItem="slider-knob" secondAttribute="centerY" id="arrow-center-y" />
+                                                <constraint firstItem="slider-arrow" firstAttribute="height" constant="16" id="arrow-height" />
+                                                <constraint firstItem="slider-arrow" firstAttribute="width" constant="16" id="arrow-width" />
+                                                <constraint firstAttribute="height" constant="36" id="knob-height" />
+                                                <constraint firstAttribute="width" constant="36" id="knob-width" />
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="image-after" firstAttribute="width" secondItem="hero" secondAttribute="width" id="after-image-width" />
+                                        <constraint firstItem="image-before" firstAttribute="bottom" secondItem="hero" secondAttribute="bottom" id="before-bottom" />
+                                        <constraint firstItem="image-before" firstAttribute="leading" secondItem="hero" secondAttribute="leading" id="before-leading" />
+                                        <constraint firstItem="image-before" firstAttribute="top" secondItem="hero" secondAttribute="top" id="before-top" />
+                                        <constraint firstItem="image-before" firstAttribute="trailing" secondItem="hero" secondAttribute="trailing" id="before-trailing" />
+                                        <constraint firstItem="clip-after" firstAttribute="bottom" secondItem="hero" secondAttribute="bottom" id="clip-bottom" />
+                                        <constraint firstItem="clip-after" firstAttribute="leading" secondItem="hero" secondAttribute="leading" id="clip-leading" />
+                                        <constraint firstItem="clip-after" firstAttribute="top" secondItem="hero" secondAttribute="top" id="clip-top" />
+                                        <constraint firstItem="clip-after" firstAttribute="width" constant="201" id="clip-width" />
+                                        <constraint firstItem="hero-bottom-gradient" firstAttribute="bottom" secondItem="hero" secondAttribute="bottom" id="hero-bottom-gradient-bottom" />
+                                        <constraint firstItem="hero-bottom-gradient" firstAttribute="leading" secondItem="hero" secondAttribute="leading" id="hero-bottom-gradient-leading" />
+                                        <constraint firstAttribute="trailing" secondItem="hero-bottom-gradient" secondAttribute="trailing" id="hero-bottom-gradient-trailing" />
+                                        <constraint firstAttribute="height" constant="320" id="hero-height" />
+                                        <constraint firstItem="hero-top-gradient" firstAttribute="leading" secondItem="hero" secondAttribute="leading" id="hero-top-gradient-leading" />
+                                        <constraint firstItem="hero-top-gradient" firstAttribute="top" secondItem="hero" secondAttribute="top" id="hero-top-gradient-top" />
+                                        <constraint firstAttribute="trailing" secondItem="hero-top-gradient" secondAttribute="trailing" id="hero-top-gradient-trailing" />
+                                        <constraint firstItem="slider-knob" firstAttribute="centerX" secondItem="slider-line" secondAttribute="centerX" id="knob-center-x" />
+                                        <constraint firstItem="slider-knob" firstAttribute="centerY" secondItem="hero" secondAttribute="centerY" id="knob-center-y" />
+                                        <constraint firstItem="slider-line" firstAttribute="bottom" secondItem="hero" secondAttribute="bottom" id="slider-bottom" />
+                                        <constraint firstItem="slider-line" firstAttribute="centerX" secondItem="hero" secondAttribute="centerX" id="slider-center" />
+                                        <constraint firstItem="slider-line" firstAttribute="top" secondItem="hero" secondAttribute="top" id="slider-top" />
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="title-container">
+                                    <rect key="frame" x="0.0" y="328" width="430" height="68" />
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Get Premium Access" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="title-main">
+                                            <rect key="frame" x="24" y="24" width="382" height="35" />
+                                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="29" />
+                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES" />
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="title-main" secondAttribute="bottom" constant="9" id="title-bottom" />
+                                        <constraint firstAttribute="height" constant="68" id="title-container-height" />
+                                        <constraint firstItem="title-main" firstAttribute="leading" secondItem="title-container" secondAttribute="leading" constant="24" id="title-leading" />
+                                        <constraint firstItem="title-main" firstAttribute="top" secondItem="title-container" secondAttribute="top" constant="24" id="title-top" />
+                                        <constraint firstAttribute="trailing" secondItem="title-main" secondAttribute="trailing" constant="24" id="title-trailing" />
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="benefits-container">
+                                    <rect key="frame" x="0.0" y="404" width="430" height="146" />
+                                    <subviews>
+                                        <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="benefits-list">
+                                            <rect key="frame" x="80" y="0.0" width="318" height="146" />
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="benefit-row-0">
+                                                    <rect key="frame" x="0.0" y="0.0" width="318" height="29" />
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="pw_infinity_icon" translatesAutoresizingMaskIntoConstraints="NO" id="benefit-icon-0">
+                                                            <rect key="frame" x="0.0" y="-1.3333333333333144" width="33" height="32" />
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Unlimited AI Renders" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="benefit-label-0">
+                                                            <rect key="frame" x="43" y="0.0" width="275" height="29" />
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="17" />
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES" />
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="benefit-icon-0" firstAttribute="centerY" secondItem="benefit-row-0" secondAttribute="centerY" id="b0-icon-center" />
+                                                        <constraint firstItem="benefit-icon-0" firstAttribute="height" constant="32" id="b0-icon-height" />
+                                                        <constraint firstItem="benefit-icon-0" firstAttribute="leading" secondItem="benefit-row-0" secondAttribute="leading" id="b0-icon-leading" />
+                                                        <constraint firstItem="benefit-icon-0" firstAttribute="width" constant="33" id="b0-icon-width" />
+                                                        <constraint firstItem="benefit-label-0" firstAttribute="bottom" secondItem="benefit-row-0" secondAttribute="bottom" id="b0-label-bottom" />
+                                                        <constraint firstItem="benefit-label-0" firstAttribute="leading" secondItem="benefit-icon-0" secondAttribute="trailing" constant="10" id="b0-label-leading" />
+                                                        <constraint firstItem="benefit-label-0" firstAttribute="top" secondItem="benefit-row-0" secondAttribute="top" id="b0-label-top" />
+                                                        <constraint firstAttribute="trailing" secondItem="benefit-label-0" secondAttribute="trailing" id="b0-label-trailing" />
+                                                    </constraints>
+                                                </view>
+                                                <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="benefit-row-1">
+                                                    <rect key="frame" x="0.0" y="39" width="318" height="29" />
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="pw_checkmark_icon" translatesAutoresizingMaskIntoConstraints="NO" id="benefit-icon-1">
+                                                            <rect key="frame" x="1.6666666666666714" y="-1.3333333333333144" width="30" height="32" />
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" text="All Premium Styles" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="benefit-label-1">
+                                                            <rect key="frame" x="43" y="0.0" width="275" height="29" />
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="17" />
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES" />
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="benefit-icon-1" firstAttribute="centerY" secondItem="benefit-row-1" secondAttribute="centerY" id="b1-icon-center" />
+                                                        <constraint firstItem="benefit-icon-1" firstAttribute="height" constant="32" id="b1-icon-height" />
+                                                        <constraint firstItem="benefit-icon-1" firstAttribute="leading" secondItem="benefit-row-1" secondAttribute="leading" constant="1.5" id="b1-icon-leading" />
+                                                        <constraint firstItem="benefit-icon-1" firstAttribute="width" constant="30" id="b1-icon-width" />
+                                                        <constraint firstItem="benefit-label-1" firstAttribute="bottom" secondItem="benefit-row-1" secondAttribute="bottom" id="b1-label-bottom" />
+                                                        <constraint firstItem="benefit-label-1" firstAttribute="leading" secondItem="benefit-row-1" secondAttribute="leading" constant="43" id="b1-label-leading" />
+                                                        <constraint firstItem="benefit-label-1" firstAttribute="top" secondItem="benefit-row-1" secondAttribute="top" id="b1-label-top" />
+                                                        <constraint firstAttribute="trailing" secondItem="benefit-label-1" secondAttribute="trailing" id="b1-label-trailing" />
+                                                    </constraints>
+                                                </view>
+                                                <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="benefit-row-2">
+                                                    <rect key="frame" x="0.0" y="78" width="318" height="29" />
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="pw_flash_icon" translatesAutoresizingMaskIntoConstraints="NO" id="benefit-icon-2">
+                                                            <rect key="frame" x="0.0" y="-2.3333333333333144" width="33" height="34" />
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" text="Ultra Fast Rendering" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="benefit-label-2">
+                                                            <rect key="frame" x="43" y="0.0" width="275" height="29" />
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="17" />
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES" />
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="benefit-icon-2" firstAttribute="centerY" secondItem="benefit-row-2" secondAttribute="centerY" id="b2-icon-center" />
+                                                        <constraint firstItem="benefit-icon-2" firstAttribute="height" constant="34" id="b2-icon-height" />
+                                                        <constraint firstItem="benefit-icon-2" firstAttribute="leading" secondItem="benefit-row-2" secondAttribute="leading" id="b2-icon-leading" />
+                                                        <constraint firstItem="benefit-icon-2" firstAttribute="width" constant="33" id="b2-icon-width" />
+                                                        <constraint firstItem="benefit-label-2" firstAttribute="bottom" secondItem="benefit-row-2" secondAttribute="bottom" id="b2-label-bottom" />
+                                                        <constraint firstItem="benefit-label-2" firstAttribute="leading" secondItem="benefit-icon-2" secondAttribute="trailing" constant="10" id="b2-label-leading" />
+                                                        <constraint firstItem="benefit-label-2" firstAttribute="top" secondItem="benefit-row-2" secondAttribute="top" id="b2-label-top" />
+                                                        <constraint firstAttribute="trailing" secondItem="benefit-label-2" secondAttribute="trailing" id="b2-label-trailing" />
+                                                    </constraints>
+                                                </view>
+                                                <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="benefit-row-3">
+                                                    <rect key="frame" x="0.0" y="117" width="318" height="29" />
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" image="pw_stars_icon" translatesAutoresizingMaskIntoConstraints="NO" id="benefit-icon-3">
+                                                            <rect key="frame" x="0.6666666666666714" y="-1.3333333333333712" width="32" height="32" />
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" text="Ad-Free Experience" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="benefit-label-3">
+                                                            <rect key="frame" x="42.666666666666657" y="0.0" width="275.33333333333337" height="29" />
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="17" />
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES" />
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="benefit-icon-3" firstAttribute="centerY" secondItem="benefit-row-3" secondAttribute="centerY" id="b3-icon-center" />
+                                                        <constraint firstItem="benefit-icon-3" firstAttribute="height" constant="32" id="b3-icon-height" />
+                                                        <constraint firstItem="benefit-icon-3" firstAttribute="leading" secondItem="benefit-row-3" secondAttribute="leading" constant="0.5" id="b3-icon-leading" />
+                                                        <constraint firstItem="benefit-icon-3" firstAttribute="width" constant="32" id="b3-icon-width" />
+                                                        <constraint firstItem="benefit-label-3" firstAttribute="bottom" secondItem="benefit-row-3" secondAttribute="bottom" id="b3-label-bottom" />
+                                                        <constraint firstItem="benefit-label-3" firstAttribute="leading" secondItem="benefit-icon-3" secondAttribute="trailing" constant="10" id="b3-label-leading" />
+                                                        <constraint firstItem="benefit-label-3" firstAttribute="top" secondItem="benefit-row-3" secondAttribute="top" id="b3-label-top" />
+                                                        <constraint firstAttribute="trailing" secondItem="benefit-label-3" secondAttribute="trailing" id="b3-label-trailing" />
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <edgeInsets key="layoutMargins" top="0.0" left="0.0" bottom="0.0" right="0.0" />
+                                            <constraints>
+                                                <constraint id="benefits-list-benefit-row-0-leading" firstItem="benefit-row-0" firstAttribute="leading" secondItem="benefits-list" secondAttribute="leading" />
+                                                <constraint id="benefits-list-benefit-row-0-trailing" firstItem="benefit-row-0" firstAttribute="trailing" secondItem="benefits-list" secondAttribute="trailing" />
+                                                <constraint id="benefits-list-benefit-row-1-leading" firstItem="benefit-row-1" firstAttribute="leading" secondItem="benefits-list" secondAttribute="leading" />
+                                                <constraint id="benefits-list-benefit-row-1-trailing" firstItem="benefit-row-1" firstAttribute="trailing" secondItem="benefits-list" secondAttribute="trailing" />
+                                                <constraint id="benefits-list-benefit-row-2-leading" firstItem="benefit-row-2" firstAttribute="leading" secondItem="benefits-list" secondAttribute="leading" />
+                                                <constraint id="benefits-list-benefit-row-2-trailing" firstItem="benefit-row-2" firstAttribute="trailing" secondItem="benefits-list" secondAttribute="trailing" />
+                                                <constraint id="benefits-list-benefit-row-3-leading" firstItem="benefit-row-3" firstAttribute="leading" secondItem="benefits-list" secondAttribute="leading" />
+                                                <constraint id="benefits-list-benefit-row-3-trailing" firstItem="benefit-row-3" firstAttribute="trailing" secondItem="benefits-list" secondAttribute="trailing" />
+                                                <constraint id="benefits-list-benefit-row-0-top" firstItem="benefit-row-0" firstAttribute="top" secondItem="benefits-list" secondAttribute="top" />
+                                                <constraint id="benefit-row-gap-1" firstItem="benefit-row-1" firstAttribute="top" secondItem="benefit-row-0" secondAttribute="bottom" constant="10" />
+                                                <constraint id="benefit-row-height-1" firstItem="benefit-row-1" firstAttribute="height" secondItem="benefit-row-0" secondAttribute="height" />
+                                                <constraint id="benefit-row-gap-2" firstItem="benefit-row-2" firstAttribute="top" secondItem="benefit-row-1" secondAttribute="bottom" constant="10" />
+                                                <constraint id="benefit-row-height-2" firstItem="benefit-row-2" firstAttribute="height" secondItem="benefit-row-0" secondAttribute="height" />
+                                                <constraint id="benefit-row-gap-3" firstItem="benefit-row-3" firstAttribute="top" secondItem="benefit-row-2" secondAttribute="bottom" constant="10" />
+                                                <constraint id="benefit-row-height-3" firstItem="benefit-row-3" firstAttribute="height" secondItem="benefit-row-0" secondAttribute="height" />
+                                                <constraint id="benefits-list-benefit-row-3-bottom" firstItem="benefit-row-3" firstAttribute="bottom" secondItem="benefits-list" secondAttribute="bottom" />
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="benefits-list" secondAttribute="bottom" id="benefits-bottom" />
+                                        <constraint firstAttribute="height" constant="146" id="benefits-height" />
+                                        <constraint firstItem="benefits-list" firstAttribute="leading" secondItem="benefits-container" secondAttribute="leading" constant="80" id="benefits-leading" />
+                                        <constraint firstItem="benefits-list" firstAttribute="top" secondItem="benefits-container" secondAttribute="top" id="benefits-top" />
+                                        <constraint firstAttribute="trailing" secondItem="benefits-list" secondAttribute="trailing" constant="32" id="benefits-trailing" />
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="plans-container">
+                                    <rect key="frame" x="0.0" y="558" width="430" height="178" />
+                                    <subviews>
+                                        <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="plans-list">
+                                            <rect key="frame" x="24" y="20" width="382" height="158" />
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="plan-top">
+                                                    <rect key="frame" x="0.0" y="0.0" width="382" height="74" />
+                                                    <subviews>
+                                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="border-top">
+                                                            <rect key="frame" x="0.0" y="0.0" width="382" height="74" />
+                                                        </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Yearly Access" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="title-top-plan">
+                                                            <rect key="frame" x="16.000000000000007" y="15" width="105.66666666666669" height="20" />
+                                                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="16" />
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES" />
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="$49.99 billed annually" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="billing-top">
+                                                            <rect key="frame" x="15.999999999999993" y="37" width="126.33333333333331" height="15.333333333333336" />
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12" />
+                                                            <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES" />
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="right" text="$4.17/month" textAlignment="right" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="price-top">
+                                                            <rect key="frame" x="254" y="25.666666666666629" width="112" height="22.666666666666671" />
+                                                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="18" />
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES" />
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="badge-top">
+                                                            <rect key="frame" x="163.33333333333334" y="-9" width="55.666666666666657" height="16" />
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="88% OFF" textAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="badge-top-label">
+                                                                    <rect key="frame" x="4" y="1" width="47.666666666666664" height="14" />
+                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="10" />
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES" />
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="16" id="top-badge-height" />
+                                                                <constraint firstAttribute="bottom" secondItem="badge-top-label" secondAttribute="bottom" constant="1" id="top-badge-label-bottom" />
+                                                                <constraint firstItem="badge-top-label" firstAttribute="leading" secondItem="badge-top" secondAttribute="leading" constant="4" id="top-badge-label-leading" />
+                                                                <constraint firstItem="badge-top-label" firstAttribute="top" secondItem="badge-top" secondAttribute="top" constant="1" id="top-badge-label-top" />
+                                                                <constraint firstAttribute="trailing" secondItem="badge-top-label" secondAttribute="trailing" constant="4" id="top-badge-label-trailing" />
+                                                            </constraints>
+                                                        </view>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-top-plan">
+                                                            <rect key="frame" x="0.0" y="0.0" width="382" height="74" />
+                                                            <connections>
+                                                                <action selector="topProductAction:" destination="-1" eventType="touchUpInside" id="action-top" />
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="badge-top" firstAttribute="centerX" secondItem="plan-top" secondAttribute="centerX" id="top-badge-center" />
+                                                        <constraint firstItem="badge-top" firstAttribute="centerY" secondItem="plan-top" secondAttribute="top" constant="-1" id="top-badge-center-y" />
+                                                        <constraint firstItem="billing-top" firstAttribute="leading" secondItem="title-top-plan" secondAttribute="leading" id="top-billing-leading" />
+                                                        <constraint firstItem="billing-top" firstAttribute="top" secondItem="title-top-plan" secondAttribute="bottom" constant="2" id="top-billing-top" />
+                                                        <constraint firstItem="border-top" firstAttribute="bottom" secondItem="plan-top" secondAttribute="bottom" id="top-border-bottom" />
+                                                        <constraint firstItem="border-top" firstAttribute="leading" secondItem="plan-top" secondAttribute="leading" id="top-border-leading" />
+                                                        <constraint firstItem="border-top" firstAttribute="top" secondItem="plan-top" secondAttribute="top" id="top-border-top" />
+                                                        <constraint firstAttribute="trailing" secondItem="border-top" secondAttribute="trailing" id="top-border-trailing" />
+                                                        <constraint firstAttribute="bottom" secondItem="button-top-plan" secondAttribute="bottom" id="top-button-bottom" />
+                                                        <constraint firstItem="button-top-plan" firstAttribute="leading" secondItem="plan-top" secondAttribute="leading" id="top-button-leading" />
+                                                        <constraint firstItem="button-top-plan" firstAttribute="top" secondItem="plan-top" secondAttribute="top" id="top-button-top" />
+                                                        <constraint firstAttribute="trailing" secondItem="button-top-plan" secondAttribute="trailing" id="top-button-trailing" />
+                                                        <constraint firstItem="price-top" firstAttribute="centerY" secondItem="plan-top" secondAttribute="centerY" id="top-price-center" />
+                                                        <constraint firstItem="price-top" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="title-top-plan" secondAttribute="trailing" constant="8" id="top-price-leading" />
+                                                        <constraint firstAttribute="trailing" secondItem="price-top" secondAttribute="trailing" constant="16" id="top-price-trailing" />
+                                                        <constraint firstItem="title-top-plan" firstAttribute="leading" secondItem="plan-top" secondAttribute="leading" constant="16" id="top-title-leading" />
+                                                        <constraint firstItem="title-top-plan" firstAttribute="top" secondItem="plan-top" secondAttribute="top" constant="15" id="top-title-top" />
+                                                    </constraints>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="plan-bottom">
+                                                    <rect key="frame" x="0.0" y="84" width="382" height="74" />
+                                                    <subviews>
+                                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="border-bottom">
+                                                            <rect key="frame" x="0.0" y="0.0" width="382" height="74" />
+                                                        </view>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Weekly Access" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="title-bottom-plan">
+                                                            <rect key="frame" x="15.999999999999993" y="15" width="115.33333333333331" height="20" />
+                                                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="16" />
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES" />
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="$7.99 billed weekly" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="billing-bottom">
+                                                            <rect key="frame" x="16.000000000000007" y="37" width="108.66666666666669" height="15.333333333333336" />
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12" />
+                                                            <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES" />
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="right" text="$7.99/week" textAlignment="right" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="price-bottom">
+                                                            <rect key="frame" x="263.33333333333331" y="25.666666666666629" width="102.66666666666669" height="22.666666666666671" />
+                                                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="18" />
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES" />
+                                                            </userDefinedRuntimeAttributes>
+                                                        </label>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="badge-bottom">
+                                                            <rect key="frame" x="160.66666666666666" y="-9" width="60.666666666666657" height="16" />
+                                                            <subviews>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="3 Day trial" textAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="badge-bottom-label">
+                                                                    <rect key="frame" x="4" y="1" width="52.666666666666664" height="14" />
+                                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="10" />
+                                                                    <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES" />
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </label>
+                                                            </subviews>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="16" id="bottom-badge-height" />
+                                                                <constraint firstAttribute="bottom" secondItem="badge-bottom-label" secondAttribute="bottom" constant="1" id="bottom-badge-label-bottom" />
+                                                                <constraint firstItem="badge-bottom-label" firstAttribute="leading" secondItem="badge-bottom" secondAttribute="leading" constant="4" id="bottom-badge-label-leading" />
+                                                                <constraint firstItem="badge-bottom-label" firstAttribute="top" secondItem="badge-bottom" secondAttribute="top" constant="1" id="bottom-badge-label-top" />
+                                                                <constraint firstAttribute="trailing" secondItem="badge-bottom-label" secondAttribute="trailing" constant="4" id="bottom-badge-label-trailing" />
+                                                            </constraints>
+                                                        </view>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-bottom-plan">
+                                                            <rect key="frame" x="0.0" y="0.0" width="382" height="74" />
+                                                            <connections>
+                                                                <action selector="bottomProductAction:" destination="-1" eventType="touchUpInside" id="action-bottom" />
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="badge-bottom" firstAttribute="centerX" secondItem="plan-bottom" secondAttribute="centerX" id="bottom-badge-center" />
+                                                        <constraint firstItem="badge-bottom" firstAttribute="centerY" secondItem="plan-bottom" secondAttribute="top" constant="-1" id="bottom-badge-center-y" />
+                                                        <constraint firstItem="billing-bottom" firstAttribute="leading" secondItem="title-bottom-plan" secondAttribute="leading" id="bottom-billing-leading" />
+                                                        <constraint firstItem="billing-bottom" firstAttribute="top" secondItem="title-bottom-plan" secondAttribute="bottom" constant="2" id="bottom-billing-top" />
+                                                        <constraint firstItem="border-bottom" firstAttribute="bottom" secondItem="plan-bottom" secondAttribute="bottom" id="bottom-border-bottom" />
+                                                        <constraint firstItem="border-bottom" firstAttribute="leading" secondItem="plan-bottom" secondAttribute="leading" id="bottom-border-leading" />
+                                                        <constraint firstItem="border-bottom" firstAttribute="top" secondItem="plan-bottom" secondAttribute="top" id="bottom-border-top" />
+                                                        <constraint firstAttribute="trailing" secondItem="border-bottom" secondAttribute="trailing" id="bottom-border-trailing" />
+                                                        <constraint firstAttribute="bottom" secondItem="button-bottom-plan" secondAttribute="bottom" id="bottom-button-bottom" />
+                                                        <constraint firstItem="button-bottom-plan" firstAttribute="leading" secondItem="plan-bottom" secondAttribute="leading" id="bottom-button-leading" />
+                                                        <constraint firstItem="button-bottom-plan" firstAttribute="top" secondItem="plan-bottom" secondAttribute="top" id="bottom-button-top" />
+                                                        <constraint firstAttribute="trailing" secondItem="button-bottom-plan" secondAttribute="trailing" id="bottom-button-trailing" />
+                                                        <constraint firstItem="price-bottom" firstAttribute="centerY" secondItem="plan-bottom" secondAttribute="centerY" id="bottom-price-center" />
+                                                        <constraint firstItem="price-bottom" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="title-bottom-plan" secondAttribute="trailing" constant="8" id="bottom-price-leading" />
+                                                        <constraint firstAttribute="trailing" secondItem="price-bottom" secondAttribute="trailing" constant="16" id="bottom-price-trailing" />
+                                                        <constraint firstItem="title-bottom-plan" firstAttribute="leading" secondItem="plan-bottom" secondAttribute="leading" constant="16" id="bottom-title-leading" />
+                                                        <constraint firstItem="title-bottom-plan" firstAttribute="top" secondItem="plan-bottom" secondAttribute="top" constant="15" id="bottom-title-top" />
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint id="plans-list-plan-top-leading" firstItem="plan-top" firstAttribute="leading" secondItem="plans-list" secondAttribute="leading" />
+                                                <constraint id="plans-list-plan-top-trailing" firstItem="plan-top" firstAttribute="trailing" secondItem="plans-list" secondAttribute="trailing" />
+                                                <constraint id="plans-list-plan-bottom-leading" firstItem="plan-bottom" firstAttribute="leading" secondItem="plans-list" secondAttribute="leading" />
+                                                <constraint id="plans-list-plan-bottom-trailing" firstItem="plan-bottom" firstAttribute="trailing" secondItem="plans-list" secondAttribute="trailing" />
+                                                <constraint id="plans-list-plan-top-top" firstItem="plan-top" firstAttribute="top" secondItem="plans-list" secondAttribute="top" />
+                                                <constraint id="plan-row-gap" firstItem="plan-bottom" firstAttribute="top" secondItem="plan-top" secondAttribute="bottom" constant="10" />
+                                                <constraint id="plans-list-plan-bottom-bottom" firstItem="plan-bottom" firstAttribute="bottom" secondItem="plans-list" secondAttribute="bottom" />
+                                                <constraint id="plan-rows-equal-height" firstItem="plan-bottom" firstAttribute="height" secondItem="plan-top" secondAttribute="height" />
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="plans-list" secondAttribute="bottom" id="plans-bottom" />
+                                        <constraint firstAttribute="height" constant="178" id="plans-container-height" />
+                                        <constraint firstItem="plans-list" firstAttribute="leading" secondItem="plans-container" secondAttribute="leading" constant="24" id="plans-leading" />
+                                        <constraint firstItem="plans-list" firstAttribute="top" secondItem="plans-container" secondAttribute="top" constant="20" id="plans-top" />
+                                        <constraint firstAttribute="trailing" secondItem="plans-list" secondAttribute="trailing" constant="24" id="plans-trailing" />
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cta-container">
+                                    <rect key="frame" x="0.0" y="744" width="430" height="135" />
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-continue">
+                                            <rect key="frame" x="24" y="20" width="382" height="54" />
+                                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="16" />
+                                            <state key="normal" title="Continue">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                            </state>
+                                            <connections>
+                                                <action selector="continueAction:" destination="-1" eventType="touchUpInside" id="action-continue" />
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="No Pay Now" textAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="label-no-pay">
+                                            <rect key="frame" x="178.33333333333334" y="80" width="73.333333333333343" height="16.333333333333329" />
+                                            <fontDescription key="fontDescription" name="Geologica-Light" family="Geologica" pointSize="13" />
+                                            <color key="textColor" white="1" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="button-continue" firstAttribute="height" constant="54" id="continue-height" />
+                                        <constraint firstItem="button-continue" firstAttribute="leading" secondItem="cta-container" secondAttribute="leading" constant="24" id="continue-leading" />
+                                        <constraint firstItem="button-continue" firstAttribute="top" secondItem="cta-container" secondAttribute="top" constant="20" id="continue-top" />
+                                        <constraint firstAttribute="trailing" secondItem="button-continue" secondAttribute="trailing" constant="24" id="continue-trailing" />
+                                        <constraint firstAttribute="height" constant="135" id="cta-height" />
+                                        <constraint firstItem="label-no-pay" firstAttribute="centerX" secondItem="cta-container" secondAttribute="centerX" id="no-pay-center" />
+                                        <constraint firstItem="label-no-pay" firstAttribute="top" secondItem="button-continue" secondAttribute="bottom" constant="6" id="no-pay-top" />
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="legal-container">
+                                    <rect key="frame" x="0.0" y="887" width="430" height="44" />
+                                    <subviews>
+                                        <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="legal-links">
+                                            <rect key="frame" x="121.33333333333333" y="0.0" width="187.66666666666669" height="28" />
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-restore">
+                                                    <rect key="frame" x="0.0" y="1" width="42" height="26" />
+                                                    <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="11" />
+                                                    <state key="normal" title="Restore">
+                                                        <color key="titleColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="restoreAction:" destination="-1" eventType="touchUpInside" id="action-restore" />
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="•" textAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="legal-dot-1">
+                                                    <rect key="frame" x="58.000000000000014" y="7.3333333333333721" width="5.3333333333333357" height="13.333333333333336" />
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11" />
+                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="0.5" colorSpace="custom" customColorSpace="sRGB" />
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-terms">
+                                                    <rect key="frame" x="79.333333333333329" y="1" width="33" height="26" />
+                                                    <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="11" />
+                                                    <state key="normal" title="Terms">
+                                                        <color key="titleColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="termsAction:" destination="-1" eventType="touchUpInside" id="action-terms" />
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="•" textAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="legal-dot-2">
+                                                    <rect key="frame" x="128.33333333333331" y="7.3333333333333721" width="5.3333333333333428" height="13.333333333333336" />
+                                                    <fontDescription key="fontDescription" type="system" pointSize="11" />
+                                                    <color key="textColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="0.5" colorSpace="custom" customColorSpace="sRGB" />
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-privacy">
+                                                    <rect key="frame" x="149.66666666666669" y="1" width="38" height="26" />
+                                                    <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="11" />
+                                                    <state key="normal" title="Privacy">
+                                                        <color key="titleColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB" />
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="privacyAction:" destination="-1" eventType="touchUpInside" id="action-privacy" />
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="28" id="legal-height" />
+                                                <constraint firstItem="button-restore" firstAttribute="leading" secondItem="legal-links" secondAttribute="leading" id="legal-restore-leading" />
+                                                <constraint firstItem="legal-dot-1" firstAttribute="leading" secondItem="button-restore" secondAttribute="trailing" id="legal-dot-1-leading" constant="8" />
+                                                <constraint firstItem="button-terms" firstAttribute="leading" secondItem="legal-dot-1" secondAttribute="trailing" id="legal-terms-leading" constant="8" />
+                                                <constraint firstItem="legal-dot-2" firstAttribute="leading" secondItem="button-terms" secondAttribute="trailing" id="legal-dot-2-leading" constant="8" />
+                                                <constraint firstItem="button-privacy" firstAttribute="leading" secondItem="legal-dot-2" secondAttribute="trailing" id="legal-privacy-leading" constant="8" />
+                                                <constraint firstItem="button-restore" firstAttribute="centerY" secondItem="legal-links" secondAttribute="centerY" id="button-restore-center-y" />
+                                                <constraint firstItem="legal-dot-1" firstAttribute="centerY" secondItem="legal-links" secondAttribute="centerY" id="legal-dot-1-center-y" />
+                                                <constraint firstItem="button-terms" firstAttribute="centerY" secondItem="legal-links" secondAttribute="centerY" id="button-terms-center-y" />
+                                                <constraint firstItem="legal-dot-2" firstAttribute="centerY" secondItem="legal-links" secondAttribute="centerY" id="legal-dot-2-center-y" />
+                                                <constraint firstItem="button-privacy" firstAttribute="centerY" secondItem="legal-links" secondAttribute="centerY" id="button-privacy-center-y" />
+                                                <constraint firstItem="legal-links" firstAttribute="trailing" secondItem="button-privacy" secondAttribute="trailing" id="legal-privacy-trailing" />
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="legal-links" firstAttribute="centerX" secondItem="legal-container" secondAttribute="centerX" id="legal-center" />
+                                        <constraint firstAttribute="height" constant="44" id="legal-container-height" />
+                                        <constraint firstItem="legal-links" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="legal-container" secondAttribute="leading" constant="24" id="legal-leading" />
+                                        <constraint firstItem="legal-links" firstAttribute="top" secondItem="legal-container" secondAttribute="top" id="legal-top" />
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="legal-links" secondAttribute="trailing" constant="24" id="legal-trailing" />
+                                    </constraints>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint id="content-container-hero-leading" firstItem="hero" firstAttribute="leading" secondItem="content-container" secondAttribute="leading" />
+                                <constraint id="content-container-hero-trailing" firstItem="hero" firstAttribute="trailing" secondItem="content-container" secondAttribute="trailing" />
+                                <constraint id="content-container-title-container-leading" firstItem="title-container" firstAttribute="leading" secondItem="content-container" secondAttribute="leading" />
+                                <constraint id="content-container-title-container-trailing" firstItem="title-container" firstAttribute="trailing" secondItem="content-container" secondAttribute="trailing" />
+                                <constraint id="content-container-benefits-container-leading" firstItem="benefits-container" firstAttribute="leading" secondItem="content-container" secondAttribute="leading" />
+                                <constraint id="content-container-benefits-container-trailing" firstItem="benefits-container" firstAttribute="trailing" secondItem="content-container" secondAttribute="trailing" />
+                                <constraint id="content-container-plans-container-leading" firstItem="plans-container" firstAttribute="leading" secondItem="content-container" secondAttribute="leading" />
+                                <constraint id="content-container-plans-container-trailing" firstItem="plans-container" firstAttribute="trailing" secondItem="content-container" secondAttribute="trailing" />
+                                <constraint id="content-container-hero-top" firstItem="hero" firstAttribute="top" secondItem="content-container" secondAttribute="top" />
+                                <constraint id="content-title-gap" firstItem="title-container" firstAttribute="top" secondItem="hero" secondAttribute="bottom" constant="8" />
+                                <constraint id="content-benefits-gap" firstItem="benefits-container" firstAttribute="top" secondItem="title-container" secondAttribute="bottom" constant="8" />
+                                <constraint id="content-plans-gap" firstItem="plans-container" firstAttribute="top" secondItem="benefits-container" secondAttribute="bottom" constant="8" />
+                                <constraint id="content-container-plans-container-bottom" firstItem="plans-container" firstAttribute="bottom" secondItem="content-container" secondAttribute="bottom" />
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="content-container" firstAttribute="bottom" secondItem="scroll-content-guide" secondAttribute="bottom" id="content-bottom" />
+                        <constraint firstItem="content-container" firstAttribute="leading" secondItem="scroll-content-guide" secondAttribute="leading" id="content-leading" />
+                        <constraint firstItem="content-container" firstAttribute="top" secondItem="scroll-content-guide" secondAttribute="top" id="content-top" />
+                        <constraint firstItem="content-container" firstAttribute="trailing" secondItem="scroll-content-guide" secondAttribute="trailing" id="content-trailing" />
+                        <constraint firstItem="content-container" firstAttribute="width" secondItem="scroll-frame-guide" secondAttribute="width" id="content-width" />
+                    </constraints>
+                    <viewLayoutGuide key="contentLayoutGuide" id="scroll-content-guide" />
+                    <viewLayoutGuide key="frameLayoutGuide" id="scroll-frame-guide" />
+                </scrollView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="button-close-top">
+                    <rect key="frame" x="12" y="122" width="40" height="40" />
+                    <buttonConfiguration key="configuration" style="plain" />
+                    <connections>
+                        <action selector="closeAction:" destination="-1" eventType="touchUpInside" id="action-close-top" />
+                    </connections>
+                </button>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="indicator">
+                    <rect key="frame" x="196.66666666666666" y="447.66666666666669" width="37" height="37" />
+                </activityIndicatorView>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="safe" />
+            <color key="backgroundColor" systemColor="systemBackgroundColor" />
+            <constraints>
+                <constraint firstItem="button-close-top" firstAttribute="height" constant="40" id="close-top-height" />
+                <constraint firstItem="button-close-top" firstAttribute="leading" secondItem="safe" secondAttribute="leading" constant="12" id="close-top-leading" />
+                <constraint firstItem="button-close-top" firstAttribute="top" secondItem="safe" secondAttribute="top" constant="4" id="close-top-top" />
+                <constraint firstItem="button-close-top" firstAttribute="width" constant="40" id="close-top-width" />
+                <constraint firstItem="indicator" firstAttribute="centerX" secondItem="root" secondAttribute="centerX" id="indicator-center-x" />
+                <constraint firstItem="indicator" firstAttribute="centerY" secondItem="root" secondAttribute="centerY" id="indicator-center-y" />
+                <constraint firstAttribute="bottom" secondItem="scroll" secondAttribute="bottom" id="scroll-bottom" />
+                <constraint firstItem="scroll" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="scroll-leading" />
+                <constraint firstItem="scroll" firstAttribute="top" secondItem="root" secondAttribute="top" id="scroll-top" />
+                <constraint firstAttribute="trailing" secondItem="scroll" secondAttribute="trailing" id="scroll-trailing" />
+            </constraints>
+            <point key="canvasLocation" x="122.79069767441861" y="131.97424892703864" />
+        </view>
+    </objects>
+    <resources>
+        <image name="paywall_after_image" width="864" height="1821" />
+        <image name="paywall_before_image" width="840" height="1871" />
+        <image name="paywall_slider_arrow_icon" width="16" height="16" />
+        <image name="pw_checkmark_icon" width="33" height="33" />
+        <image name="pw_flash_icon" width="33" height="33" />
+        <image name="pw_infinity_icon" width="33" height="33" />
+        <image name="pw_stars_icon" width="33" height="33" />
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+        </systemColor>
+    </resources>
+</document>

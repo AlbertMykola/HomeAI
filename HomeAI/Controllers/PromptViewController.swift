@@ -8,6 +8,11 @@
 import UIKit
 
 private struct Defaults {
+    struct Layout {
+        static let tableBaseBottomInset: CGFloat = 100
+        static let suggestionsHideOffset: CGFloat = 12
+    }
+
     struct Text {
         static let headline = "Enter Custom Promt".localized
         static let placeholder = "Describe your design style idea...".localized
@@ -18,7 +23,8 @@ private struct Defaults {
         // Метод для отримання промптів залежно від DesignOption
         static func promptList(for option: DesignOption) -> [String] {
             switch option {
-            case .interior, .reference, .replace, .delete, .newWalls, .newFlooring:
+            case .interior, .reference, .replace, .delete, .newWalls, .newFlooring,
+                 .rearrange, .furnish, .floolPlan:
                 return interiorPrompts
             case .exterior:
                 return exteriorPrompts
@@ -82,8 +88,11 @@ class PromptViewController: UIViewController {
     
     var promptManager: GemeniPromptManager?
     var onSelectPrompt: ((String) -> Void)?
+    var onCancelPrompt: (() -> Void)?
     var showSuggestions: Bool = true // Чи показувати список саджестів
     var initialPrompt: String? // Початковий текст промпту для редагування
+    
+    private var didCompletePrompt = false
     
     private var promptList: [String] {
         let option = promptManager?.designOption ?? .interior
@@ -102,10 +111,17 @@ class PromptViewController: UIViewController {
     
     
     private var selectedPromptIndex: Int?
+    private var isKeyboardVisible = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
+        observeKeyboard()
+        setupDismissKeyboardOnOutsideTap()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override func viewDidLayoutSubviews() {
@@ -120,23 +136,37 @@ class PromptViewController: UIViewController {
         updateNextButtonState()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        focusTextViewIfNeeded()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        guard isBeingDismissed, !didCompletePrompt else { return }
+        onCancelPrompt?()
+    }
+    
     private func configure() {
-        title = Defaults.Text.headline
+        navigationItem.title = nil
         
         // Приховуємо список саджестів, якщо showSuggestions = false
         if showSuggestions {
             headlineLabel?.text = Defaults.Text.examplePrompt
-            headlineLabel?.isHidden = false
         } else {
-            headlineLabel?.isHidden = true
+            headlineLabel?.text = Defaults.Text.headline
             tableView?.isHidden = true
         }
+        headlineLabel?.isHidden = false
         
         guard let tableView = tableView else { return }
         tableView.register(UINib(nibName: "SuggestionTableViewCell", bundle: nil), forCellReuseIdentifier: "SuggestionTableViewCell")
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
-        tableView.isHidden = !showSuggestions
+        tableView.keyboardDismissMode = .interactive
+        tableView.tintColor = .label
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Defaults.Layout.tableBaseBottomInset, right: 0)
+        tableView.verticalScrollIndicatorInsets.bottom = Defaults.Layout.tableBaseBottomInset
+        updateSuggestionsVisibility(animated: false)
         
         guard let textView = textView else { return }
         textView.layer.cornerRadius = 12
@@ -162,6 +192,109 @@ class PromptViewController: UIViewController {
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Done".localized, style: .done, target: self, action: #selector(doneTapped))
+    }
+    
+    private func focusTextViewIfNeeded() {
+        guard let textView else { return }
+        DispatchQueue.main.async {
+            textView.becomeFirstResponder()
+        }
+    }
+    
+    private func observeKeyboard() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(keyboardWillChangeFrame(_:)),
+            name: UIResponder.keyboardWillChangeFrameNotification,
+            object: nil
+        )
+    }
+    
+    @objc private func keyboardWillChangeFrame(_ note: Notification) {
+        guard
+            let endFrame = (note.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue,
+            let duration = note.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double,
+            let curveRaw = note.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt
+        else { return }
+        
+        let screenHeight = view.window?.bounds.height ?? UIScreen.main.bounds.height
+        let keyboardVisible = endFrame.minY < screenHeight - 1
+        guard keyboardVisible != isKeyboardVisible else { return }
+        isKeyboardVisible = keyboardVisible
+        
+        let options = UIView.AnimationOptions(rawValue: curveRaw << 16)
+        updateSuggestionsVisibility(animated: true, duration: duration, options: options)
+    }
+    
+    private var suggestionsViews: [UIView] {
+        guard showSuggestions else { return [] }
+        return [headlineLabel, tableView].compactMap { $0 }
+    }
+    
+    private func updateSuggestionsVisibility(
+        animated: Bool,
+        duration: TimeInterval = 0.25,
+        options: UIView.AnimationOptions = [.curveEaseInOut]
+    ) {
+        guard showSuggestions else {
+            tableView?.isHidden = true
+            headlineLabel?.isHidden = false
+            headlineLabel?.alpha = 1
+            headlineLabel?.transform = .identity
+            return
+        }
+        
+        let shouldShow = !isKeyboardVisible
+        let views = suggestionsViews
+        let hiddenTransform = CGAffineTransform(translationX: 0, y: Defaults.Layout.suggestionsHideOffset)
+        
+        if shouldShow {
+            views.forEach { $0.isHidden = false }
+        }
+        
+        let applyState = {
+            views.forEach { view in
+                view.alpha = shouldShow ? 1 : 0
+                view.transform = shouldShow ? .identity : hiddenTransform
+                view.isUserInteractionEnabled = shouldShow
+            }
+        }
+        
+        guard animated else {
+            applyState()
+            if !shouldShow {
+                views.forEach { $0.isHidden = true }
+            }
+            return
+        }
+        
+        if shouldShow {
+            views.forEach {
+                $0.alpha = 0
+                $0.transform = hiddenTransform
+            }
+        }
+        
+        UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
+            applyState()
+            self.view.layoutIfNeeded()
+        }, completion: { _ in
+            if !shouldShow {
+                views.forEach { $0.isHidden = true }
+            }
+        })
+    }
+    
+    private func setupDismissKeyboardOnOutsideTap() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboardFromBackgroundTap))
+        tap.cancelsTouchesInView = false
+        tap.delegate = self
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc private func dismissKeyboardFromBackgroundTap() {
+        guard textView?.isFirstResponder == true else { return }
+        view.endEditing(true)
     }
     
     private func setupPlaceholder() {
@@ -199,13 +332,14 @@ class PromptViewController: UIViewController {
         let prompt = textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !prompt.isEmpty else { return }
         
+        didCompletePrompt = true
         promptManager?.updateCustomPrompt(prompt)
         onSelectPrompt?(prompt)
         dismiss(animated: true)
     }
     
     @IBAction func clearAction(_ sender: UIButton) {
-        guard let textView = textView else { return }
+        guard let textView else { return }
         textView.text = ""
         selectedPromptIndex = nil
         tableView?.reloadData()
@@ -218,6 +352,7 @@ class PromptViewController: UIViewController {
         let prompt = textView.text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !prompt.isEmpty else { return }
         
+        didCompletePrompt = true
         promptManager?.updateCustomPrompt(prompt)
         onSelectPrompt?(prompt)
         dismiss(animated: true)
@@ -232,18 +367,13 @@ extension PromptViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SuggestionTableViewCell", for: indexPath) as! SuggestionTableViewCell
-        let prompt = promptList[indexPath.row]
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SuggestionTableViewCell", for: indexPath) as? SuggestionTableViewCell else {
+            return UITableViewCell()
+        }
+        guard let prompt = promptList[safe: indexPath.row] else { return cell }
         cell.configure(suggestion: prompt)
-        
         cell.selectionStyle = .none
-        
-//        if let selectedIndex = selectedPromptIndex, selectedIndex == indexPath.row {
-//            cell.contentView.backgroundColor = UIColor.systemGreen.withAlphaComponent(0.1)
-//        } else {
-//            cell.contentView.backgroundColor = .clear
-//        }
-        
+        cell.tintColor = .label
         return cell
     }
 }
@@ -251,26 +381,20 @@ extension PromptViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension PromptViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         guard let textView = textView else { return }
         
-        if let previous = selectedPromptIndex {
-            let prevIndexPath = IndexPath(row: previous, section: 0)
-            if let prevCell = tableView.cellForRow(at: prevIndexPath) {
-//                prevCell.contentView.backgroundColor = .clear
-            }
-        }
-        
         selectedPromptIndex = indexPath.row
-        let prompt = promptList[indexPath.row]
+        guard let prompt = promptList[safe: indexPath.row] else { return }
         textView.text = prompt
         updatePlaceholderVisibility()
-        
-        if let cell = tableView.cellForRow(at: indexPath) {
-//            cell.contentView.backgroundColor = UIColor.systemGreen.withAlphaComponent(0.1)
-        }
+        textView.becomeFirstResponder()
     }
 }
 
@@ -300,5 +424,22 @@ extension PromptViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         updatePlaceholderVisibility()
+    }
+}
+
+// MARK: - UIGestureRecognizerDelegate
+extension PromptViewController: UIGestureRecognizerDelegate {
+    
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        if touch.view is UIControl {
+            return false
+        }
+        if let textView, touch.view?.isDescendant(of: textView) == true {
+            return false
+        }
+        if let tableView, touch.view?.isDescendant(of: tableView) == true {
+            return false
+        }
+        return true
     }
 }

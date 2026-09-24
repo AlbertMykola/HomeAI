@@ -86,7 +86,10 @@ final class InspirationViewController: UIViewController {
             return
         }
 
-        let item = categories[selectedSectionIndex].items[indexPath.item]
+        guard let item = categories[safe: selectedSectionIndex]?.items[safe: indexPath.item] else {
+            completion(nil)
+            return
+        }
         let key = item.image
 
         if let mem = ImageCache.default.retrieveImageInMemoryCache(forKey: key) {
@@ -174,7 +177,7 @@ extension InspirationViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             let isSelected = indexPath.item == selectedSectionIndex
-            let title = categories[indexPath.item].category
+            let title = categories[safe: indexPath.item]?.localizedTitle ?? ""
             cell.config(title: title)
             cell.isSelected = isSelected
             return cell
@@ -186,7 +189,9 @@ extension InspirationViewController: UICollectionViewDataSource {
             ) as? InspirationCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            let item = categories[selectedSectionIndex].items[indexPath.item]
+            guard let item = categories[safe: selectedSectionIndex]?.items[safe: indexPath.item] else {
+                return cell
+            }
             cell.configure(storagePath: item.image)
             return cell
         }
@@ -199,7 +204,8 @@ extension InspirationViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         if indexPath.section == 0 {
-            guard indexPath.item != selectedSectionIndex else { return }
+            guard categories.indices.contains(indexPath.item),
+                  indexPath.item != selectedSectionIndex else { return }
 
             let previousIndex = selectedSectionIndex
             selectedSectionIndex = indexPath.item
@@ -214,10 +220,11 @@ extension InspirationViewController: UICollectionViewDelegate {
 
             collectionView.reloadSections(IndexSet(integer: 1))
         } else {
-            let item = categories[selectedSectionIndex].items[indexPath.item]
+            guard let category = categories[safe: selectedSectionIndex],
+                  let item = category.items[safe: indexPath.item] else { return }
             retrieveImageForItem(at: indexPath) { [weak self] image in
                 guard let self, let image else { return }
-                let option = designOption(for: categories[selectedSectionIndex].category)
+                let option = designOption(for: category.category)
                 _ = NavigationManager.shared.showInspirationDetail(
                     model: ImageDetailModel(
                         previewsImage: nil,

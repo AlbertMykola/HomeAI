@@ -12,13 +12,7 @@ class SuggestionCollectionViewCell: UICollectionViewCell {
     
     override var isSelected: Bool {
         didSet {
-            if isSelected {
-                containerView.borderWidth = 1.5
-                containerView.borderColor = UIColor.systemGreen
-            } else {
-                containerView.borderWidth = 0
-                containerView.borderColor = UIColor.clear
-            }
+            updateSelectionAppearance()
         }
     }
     
@@ -26,34 +20,48 @@ class SuggestionCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         contentView.clipsToBounds = true
         clipsToBounds = true
+        contentView.layer.cornerRadius = 20
         suggestionImageView.layer.cornerRadius = 20
         suggestionImageView.clipsToBounds = true
         suggestionImageView.contentMode = .scaleAspectFill
         containerView.borderColor = UIColor.clear
         containerView.layer.cornerRadius = 20
         containerView.layer.masksToBounds = true
+        updateSelectionAppearance()
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         imageService.cancel(on: suggestionImageView)
-        suggestionImageView.image = nil
-        containerView.isHidden = false
+        suggestionImageView.image = Constants.Images.previewPlaceholder
+        containerView.isHidden = true
         containerView.borderWidth = 0
         containerView.borderColor = UIColor.clear
         representedIdentifier = nil
+        updateSelectionAppearance()
+    }
+    
+    private func updateSelectionAppearance() {
+        if isSelected {
+            contentView.borderWidth = 2
+            contentView.borderColor = UIColor.systemGreen
+        } else {
+            contentView.borderWidth = 0
+            contentView.borderColor = UIColor.clear
+        }
     }
     
     func configure(with template: SuggestionTemplateType) {
         representedIdentifier = template.imagePath
-        containerView.isHidden = false
-        suggestionImageView.image = nil
+        containerView.isHidden = true
+        suggestionImageView.image = Constants.Images.previewPlaceholder
         
-        imageService.setImage(on: suggestionImageView, path: template.imagePath, placeholder: nil) { [weak self] image in
+        imageService.setImage(on: suggestionImageView, path: template.imagePath, placeholder: Constants.Images.previewPlaceholder) { [weak self] image in
             guard let self else { return }
             guard self.representedIdentifier == template.imagePath else { return }
-            self.containerView.isHidden = image != nil
+            self.updateSelectionAppearance()
         }
+        updateSelectionAppearance()
     }
 
 }

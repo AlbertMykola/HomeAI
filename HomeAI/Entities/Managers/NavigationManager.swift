@@ -1,5 +1,16 @@
 import UIKit
 
+final class PortraitNavigationController: UINavigationController {
+
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        UIDevice.portraitLockedInterfaceOrientations
+    }
+
+    override var shouldAutorotate: Bool {
+        !UIDevice.isPadPortraitLocked
+    }
+}
+
 final class NavigationManager {
 
     enum ModalMode: Equatable {
@@ -14,6 +25,12 @@ final class NavigationManager {
 
     // MARK: - State
     private var window: UIWindow?
+    private var pendingPremiumPurchaseCompletion: (() -> Void)?
+    private var pendingLocalPushOpen = false
+
+    var isShowingMainApp: Bool {
+        window?.rootViewController is UITabBarController
+    }
 
     /// Якщо користувач пішов у редагування з детальки (delete object тощо), після `pop` назад на Processing знову показати цю детальку.
     private(set) var pendingInspirationDetailReopen: (model: ImageDetailModel, promptManager: GemeniPromptManager?)?
@@ -57,25 +74,38 @@ final class NavigationManager {
     func proceedToApp() {
         guard let window else { return }
         let didShowOB: Bool? = UserDefaultsManager.shared.getValue(forKey: Constants.Keys.didShowOnboarding)
+        let openedFromLocalPush = pendingLocalPushOpen
+        pendingLocalPushOpen = false
 
-        if didShowOB == nil {
-            // ЗМІНА: анімація ввімкнена для плавного переходу
+        if didShowOB == nil || Constants.Debug.alwaysShowOnboarding {
             setOnboardingAsRoot(in: window, animated: true)
         } else {
-            // ЗМІНА: анімація ввімкнена для плавного переходу
-            setTabBarAsRoot(in: window, animated: true)
+            setTabBarAsRoot(
+                in: window,
+                animated: true,
+                showsLaunchPaywall: !openedFromLocalPush,
+                selectOptionsTab: openedFromLocalPush
+            )
         }
     }
 
     // MARK: - Root builders
-    private func setTabBarAsRoot(in window: UIWindow, animated: Bool) {
+    private func setTabBarAsRoot(
+        in window: UIWindow,
+        animated: Bool,
+        showsLaunchPaywall: Bool = false,
+        selectOptionsTab: Bool = false
+    ) {
         guard let tabBarController = mainStoryboard.instantiateViewController(withIdentifier: "TabBarController") as? UITabBarController else {
             assertionFailure("TabBarController not found in Main.storyboard")
             return
         }
         tabBarController.viewControllers = (tabBarController.viewControllers ?? []).map { vc in
             guard !(vc is UINavigationController) else { return vc }
-            return UINavigationController(rootViewController: vc)
+            return PortraitNavigationController(rootViewController: vc)
+        }
+        if selectOptionsTab {
+            tabBarController.selectedIndex = 0
         }
         let applyRoot = { window.rootViewController = tabBarController }
         if animated {
@@ -84,13 +114,15 @@ final class NavigationManager {
             applyRoot()
         }
         window.makeKeyAndVisible()
+        LocalNotificationService.shared.sync(requestPermissionIfNeeded: false)
+        if showsLaunchPaywall {
+            scheduleLaunchPaywallIfNeeded()
+        }
+        scheduleForcedPaywallIfNeeded()
     }
 
     private func setOnboardingAsRoot(in window: UIWindow, animated: Bool) {
-        guard let ob = mainStoryboard.instantiateViewController(withIdentifier: "OBPageViewController") as? OBPageViewController else {
-            assertionFailure("OBPageViewController not found")
-            return
-        }
+        let ob = OBPageViewController()
         let applyRoot = { window.rootViewController = ob }
         if animated {
             UIView.transition(with: window, duration: 0.35, options: .transitionCrossDissolve, animations: applyRoot)
@@ -100,34 +132,81 @@ final class NavigationManager {
         window.makeKeyAndVisible()
     }
 
+    func handleLocalPushOpen() {
+        if isShowingMainApp {
+            selectOptionsTab()
+            return
+        }
+        pendingLocalPushOpen = true
+    }
+
     func completeOnboarding() {
         UserDefaultsManager.shared.saveValue(true, forKey: Constants.Keys.didShowOnboarding)
         if let window { setTabBarAsRoot(in: window, animated: true) }
     }
 
+    private func selectOptionsTab() {
+        guard let tab = window?.rootViewController as? UITabBarController else { return }
+        tab.selectedIndex = 0
+        (tab.selectedViewController as? UINavigationController)?.popToRootViewController(animated: false)
+    }
+
     private func configureNavigationBarAppearance() {
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithTransparentBackground()
-        appearance.shadowColor = .clear
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.label]
-        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor.label]
+        let titleAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.label]
+        let largeTitleAttributes: [NSAttributedString.Key: Any] = [.foregroundColor: UIColor.label]
+
+        // Різні appearance: один і той самий об'єкт на standard + scrollEdge ламає collapse large title.
+        let standard = UINavigationBarAppearance()
+        standard.configureWithTransparentBackground()
+        standard.shadowColor = .clear
+        standard.titleTextAttributes = titleAttributes
+
+        let scrollEdge = UINavigationBarAppearance()
+        scrollEdge.configureWithTransparentBackground()
+        scrollEdge.shadowColor = .clear
+        scrollEdge.titleTextAttributes = titleAttributes
+        scrollEdge.largeTitleTextAttributes = largeTitleAttributes
 
         let navProxy = UINavigationBar.appearance()
-        navProxy.standardAppearance = appearance
-        navProxy.scrollEdgeAppearance = appearance
-        navProxy.compactAppearance = appearance
+        navProxy.standardAppearance = standard
+        navProxy.scrollEdgeAppearance = scrollEdge
+        navProxy.compactAppearance = standard
         if #available(iOS 15.0, *) {
-            navProxy.compactScrollEdgeAppearance = appearance
+            navProxy.compactScrollEdgeAppearance = scrollEdge
         }
         navProxy.tintColor = .label
         navProxy.isTranslucent = true
     }
 
+    /// Debug: paywall після TabBar лише без підписки.
+    private func scheduleForcedPaywallIfNeeded() {
+        guard Constants.Debug.alwaysShowPaywallOnLaunch else { return }
+        guard !AdaptyService.shared.hasActiveSubscription else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) { [weak self] in
+            self?.showPremium(placement: Constants.Keys.optionPlacememt, origin: .inApp)
+        }
+    }
+
+    /// Returning users: після launch screen відкриваємо TabBar і одразу показуємо окремий paywall.
+    private func scheduleLaunchPaywallIfNeeded() {
+        guard !AdaptyService.shared.hasActiveSubscription else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) { [weak self] in
+            self?.showPremium(placement: Constants.Keys.appLaunchPlacement, origin: .inApp)
+        }
+    }
+
     // MARK: - Premium (Paywall)
 
-    func showPremium(placement: String, origin: PaywallOrigin) {
-        let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        guard let vc = storyboard.instantiateViewController(withIdentifier: "PaywallViewController") as? PaywallViewController else { return }
+    func showPremium(placement: String, origin: PaywallOrigin, onPurchase: (() -> Void)? = nil) {
+        guard !AdaptyService.shared.hasActiveSubscription else { return }
+        let vc = PaywallViewController(nibName: "PaywallViewController", bundle: .main)
+        pendingPremiumPurchaseCompletion = onPurchase
+        vc.onSuccessfulPurchase = { [weak self] in
+            guard let self else { return }
+            let completion = self.pendingPremiumPurchaseCompletion
+            self.pendingPremiumPurchaseCompletion = nil
+            completion?()
+        }
         vc.placement = placement
         vc.origin = origin
         let mode: ModalMode = (origin == .onboarding) ? .full : .overFull
@@ -220,20 +299,49 @@ final class NavigationManager {
         presenter?.present(vc, animated: true)
     }
     
-    func showPrompt(promptManager: GemeniPromptManager, showSuggestions: Bool = true, initialPrompt: String? = nil, onSelect: @escaping (String) -> Void) {
+    func showPrompt(
+        promptManager: GemeniPromptManager,
+        showSuggestions: Bool = true,
+        initialPrompt: String? = nil,
+        onSelect: @escaping (String) -> Void,
+        onCancel: (() -> Void)? = nil
+    ) {
         let sb = UIStoryboard(name: "Main", bundle: .main)
         guard let vc = sb.instantiateViewController(withIdentifier: "PromptViewController") as? PromptViewController else { return }
         vc.promptManager = promptManager
         vc.showSuggestions = showSuggestions
         vc.initialPrompt = initialPrompt
         vc.onSelectPrompt = onSelect
+        vc.onCancelPrompt = onCancel
         present(vc, mode: .sheet(detents: [.medium(), .large()], grabber: true))
     }
 
     func showPageViewController(option: DesignOption) {
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        let vc = storyboard.instantiateViewController(withIdentifier: "PageViewController") as! PageViewController
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "PageViewController") as? PageViewController else {
+            return
+        }
         vc.selectedOption = option
+        push(vc)
+    }
+
+    func showFeaturesViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "FeaturesViewController") as? FeaturesViewController else { return }
+        push(vc)
+    }
+
+    func showAssistantList() {
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "AssistantListViewController") as? AssistantListViewController else { return }
+        push(vc)
+    }
+
+    func showChat(assistantType: AssistantType, initialMessage: String? = nil) {
+        let storyboard = UIStoryboard(name: "Main", bundle: .main)
+        guard let vc = storyboard.instantiateViewController(withIdentifier: "ChatViewController") as? ChatViewController else { return }
+        vc.assistantType    = assistantType
+        vc.initialMessage   = initialMessage
         push(vc)
     }
 
@@ -371,7 +479,7 @@ final class NavigationManager {
         if let nav = tab.selectedViewController as? UINavigationController { return nav }
         guard let selected = tab.selectedViewController else { return currentNavigationController }
 
-        let nav = UINavigationController(rootViewController: selected)
+        let nav = PortraitNavigationController(rootViewController: selected)
         var vcs = tab.viewControllers ?? []
         if let idx = vcs.firstIndex(of: selected) {
             vcs[idx] = nav
@@ -406,11 +514,51 @@ final class NavigationManager {
             vc.modalPresentationStyle = .fullScreen // для онбордингу
         }
 
-        let anchor = UIApplication.getTopViewController() ?? currentNavigationController
-        if mode == .overContext {
-            (anchor)?.definesPresentationContext = true
+        guard let anchor = presentationAnchor() else {
+            retryPresent(vc, mode: mode, animated: animated, completion: completion)
+            return
         }
-        (anchor)?.present(vc, animated: animated, completion: completion)
+        if mode == .overContext {
+            anchor.definesPresentationContext = true
+        }
+        anchor.presentSafely(vc, animated: animated, completion: completion)
+    }
+
+    private func retryPresent(_ vc: UIViewController, mode: ModalMode, animated: Bool, completion: (() -> Void)?, attempt: Int = 0) {
+        guard attempt < 3 else { return }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) { [weak self] in
+            guard let self else { return }
+            guard let anchor = self.presentationAnchor() else {
+                self.retryPresent(vc, mode: mode, animated: animated, completion: completion, attempt: attempt + 1)
+                return
+            }
+            if mode == .overContext {
+                anchor.definesPresentationContext = true
+            }
+            anchor.presentSafely(vc, animated: animated, completion: completion)
+        }
+    }
+
+    private func presentationAnchor() -> UIViewController? {
+        if let top = UIApplication.getTopViewController(), top.canPresentModal {
+            return top
+        }
+
+        if let root = getRootViewController() {
+            if root.canPresentModal { return root }
+            if let tab = root as? UITabBarController {
+                if tab.canPresentModal { return tab }
+                if let selected = tab.selectedViewController, selected.canPresentModal {
+                    return selected
+                }
+            }
+        }
+
+        if let nav = currentNavigationController, nav.canPresentModal {
+            return nav
+        }
+
+        return nil
     }
 
     // MARK: - Back & Dismiss
@@ -445,7 +593,7 @@ extension UIApplication {
 
     class func getTopViewController(base: UIViewController? = UIApplication.getKeyWindow()?.rootViewController) -> UIViewController? {
         if let nav = base as? UINavigationController {
-            return getTopViewController(base: nav.visibleViewController)
+            return getTopViewController(base: nav.topViewController ?? nav.visibleViewController)
         }
         if let tab = base as? UITabBarController, let selected = tab.selectedViewController {
             return getTopViewController(base: selected)

@@ -1,88 +1,155 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24123.1" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24062"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geologica-Light.ttf">
+            <string>Geologica-Light</string>
+        </array>
+        <array key="Geologica-Medium.ttf">
+            <string>Geologica-Medium</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="OptionsCollectionCell" customModule="HomeAI" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="290" height="426"/>
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="OptionsCollectionCell" customModule="HomeAI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="355" height="107"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="290" height="426"/>
+                <rect key="frame" x="0.0" y="0.0" width="355" height="107"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CHN-4Y-or1" customClass="LiquidGlassView" customModule="HomeAI" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="10" width="290" height="416"/>
+                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1RL-7O-JOP">
+                        <rect key="frame" x="5" y="5" width="345" height="97"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JG4-cS-6OU">
-                                <rect key="frame" x="115.33333333333333" y="60" width="59.666666666666671" height="29"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Label">
-                                        <attributes>
-                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="23" name="Geologica-Thin_Regular"/>
-                                            <font key="NSOriginalFont" size="17" name="Geologica-Thin_Regular"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2JI-H1-cgP">
+                                <rect key="frame" x="113" y="0.0" width="232" height="97"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M45-3B-VhV">
+                                <rect key="frame" x="0.0" y="0.0" width="196" height="97"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r28-ed-P9x">
+                                        <rect key="frame" x="16" y="35" width="27" height="27"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="r28-ed-P9x" secondAttribute="height" multiplier="1:1" id="ysQ-6N-ewW"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KeU-tG-FdP">
+                                        <rect key="frame" x="53" y="27.333333333333336" width="45" height="21.333333333333336"/>
+                                        <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="17"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D1a-Wi-YKk" customClass="LiquidGlassView" customModule="HomeAI" customModuleProvider="target">
+                                        <rect key="frame" x="150" y="32.666666666666664" width="32" height="31.999999999999993"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="D1a-Wi-YKk" secondAttribute="height" multiplier="1:1" id="TjV-Uy-Vst"/>
+                                            <constraint firstAttribute="width" constant="32" id="cw-glass-w"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="glassStyle">
+                                                <integer key="value" value="0"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="glassInteractive" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="fallbackGradient" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="fallbackShadow" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="topLeftCorner" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="topRightCorner" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="bottomLeftCorner" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="bottomRightCorner" value="YES"/>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="glassTintColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.forward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="uPY-K5-UKV">
+                                        <rect key="frame" x="156" y="41.333333333333343" width="20" height="14.666666666666664"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U1J-jb-pBl">
+                                        <rect key="frame" x="52.999999999999993" y="48.666666666666664" width="30.666666666666664" height="15.333333333333336"/>
+                                        <fontDescription key="fontDescription" name="Geologica-Light" family="Geologica" pointSize="12"/>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="r28-ed-P9x" firstAttribute="height" secondItem="M45-3B-VhV" secondAttribute="height" multiplier="0.28" id="1Jm-w4-QNl"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="U1J-jb-pBl" secondAttribute="bottom" constant="3" id="1ge-3p-9w2"/>
+                                    <constraint firstItem="D1a-Wi-YKk" firstAttribute="trailing" secondItem="M45-3B-VhV" secondAttribute="trailing" constant="-14" id="DBP-FA-9pE"/>
+                                    <constraint firstItem="U1J-jb-pBl" firstAttribute="top" secondItem="M45-3B-VhV" secondAttribute="centerY" id="H1U-pH-BRS"/>
+                                    <constraint firstItem="U1J-jb-pBl" firstAttribute="leading" secondItem="KeU-tG-FdP" secondAttribute="leading" id="JSs-22-PBD"/>
+                                    <constraint firstItem="KeU-tG-FdP" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="D1a-Wi-YKk" secondAttribute="leading" constant="-7" id="KeU-trail-lte-glass"/>
+                                    <constraint firstItem="KeU-tG-FdP" firstAttribute="top" relation="greaterThanOrEqual" secondItem="M45-3B-VhV" secondAttribute="top" constant="3" id="M6G-Xl-yX9"/>
+                                    <constraint firstItem="r28-ed-P9x" firstAttribute="leading" secondItem="M45-3B-VhV" secondAttribute="leading" constant="16" id="QRW-9b-Ofe"/>
+                                    <constraint firstItem="U1J-jb-pBl" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="D1a-Wi-YKk" secondAttribute="leading" constant="-10" id="U1J-trail-lte-glass"/>
+                                    <constraint firstItem="uPY-K5-UKV" firstAttribute="centerX" secondItem="D1a-Wi-YKk" secondAttribute="centerX" id="arrow-cx"/>
+                                    <constraint firstItem="uPY-K5-UKV" firstAttribute="centerY" secondItem="D1a-Wi-YKk" secondAttribute="centerY" id="arrow-cy"/>
+                                    <constraint firstItem="D1a-Wi-YKk" firstAttribute="centerY" secondItem="M45-3B-VhV" secondAttribute="centerY" id="hoq-x2-hwX"/>
+                                    <constraint firstItem="KeU-tG-FdP" firstAttribute="bottom" secondItem="M45-3B-VhV" secondAttribute="centerY" id="jRh-iS-TRJ"/>
+                                    <constraint firstItem="KeU-tG-FdP" firstAttribute="leading" secondItem="r28-ed-P9x" secondAttribute="trailing" constant="10" id="lRH-yj-AXt"/>
+                                    <constraint firstItem="r28-ed-P9x" firstAttribute="centerY" secondItem="M45-3B-VhV" secondAttribute="centerY" id="ukI-fe-Rgi"/>
+                                </constraints>
+                            </view>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fh4-7t-7En" customClass="LiquidGlassView" customModule="HomeAI" customModuleProvider="target">
+                                <rect key="frame" x="306" y="76" width="25" height="15"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrow.forward" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="ana-nd-Kan">
+                                        <rect key="frame" x="3" y="2" width="19" height="11"/>
+                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="large"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="ana-nd-Kan" firstAttribute="leading" secondItem="fh4-7t-7En" secondAttribute="leading" constant="3" id="KHA-ud-R8G"/>
+                                    <constraint firstItem="ana-nd-Kan" firstAttribute="top" secondItem="fh4-7t-7En" secondAttribute="top" constant="2" id="L1K-Pc-vW4"/>
+                                    <constraint firstAttribute="trailing" secondItem="ana-nd-Kan" secondAttribute="trailing" constant="3" id="bXa-yH-Dkr"/>
+                                    <constraint firstAttribute="bottom" secondItem="ana-nd-Kan" secondAttribute="bottom" constant="2" id="hvh-aS-O9j"/>
+                                </constraints>
                                 <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="glassStyle">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="glassTintColor">
+                                        <color key="value" red="0.6470588235294118" green="0.93333333333333335" blue="0.18431372549019609" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aTV-Sa-hTF">
-                                <rect key="frame" x="122.66666666666667" y="114" width="44.666666666666671" height="22.666666666666657"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Label">
-                                        <attributes>
-                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                            <font key="NSFont" size="18" name="Geologica-Thin"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES"/>
-                                </userDefinedRuntimeAttributes>
-                            </label>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="JG4-cS-6OU" secondAttribute="trailing" constant="30" id="Hpz-ee-wtj"/>
-                            <constraint firstItem="JG4-cS-6OU" firstAttribute="centerX" secondItem="CHN-4Y-or1" secondAttribute="centerX" id="UcW-ej-j3y"/>
-                            <constraint firstItem="aTV-Sa-hTF" firstAttribute="centerX" secondItem="CHN-4Y-or1" secondAttribute="centerX" id="VNV-Gp-QDS"/>
-                            <constraint firstItem="JG4-cS-6OU" firstAttribute="top" secondItem="CHN-4Y-or1" secondAttribute="top" constant="60" id="VxQ-Y0-f7h"/>
-                            <constraint firstItem="aTV-Sa-hTF" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="CHN-4Y-or1" secondAttribute="leading" constant="15" id="dKF-9r-OiM"/>
-                            <constraint firstItem="JG4-cS-6OU" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="CHN-4Y-or1" secondAttribute="leading" constant="30" id="p1l-Iy-WCn"/>
-                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="aTV-Sa-hTF" secondAttribute="trailing" constant="15" id="qSF-Vm-n2h"/>
-                            <constraint firstItem="aTV-Sa-hTF" firstAttribute="top" secondItem="JG4-cS-6OU" secondAttribute="bottom" constant="25" id="r8h-ve-9Gm"/>
+                            <constraint firstAttribute="bottom" secondItem="M45-3B-VhV" secondAttribute="bottom" id="0Y8-8K-z4v"/>
+                            <constraint firstAttribute="bottom" secondItem="2JI-H1-cgP" secondAttribute="bottom" id="3fV-1N-JDV"/>
+                            <constraint firstAttribute="trailing" secondItem="2JI-H1-cgP" secondAttribute="trailing" id="5iv-Uw-KEy"/>
+                            <constraint firstAttribute="bottom" secondItem="fh4-7t-7En" secondAttribute="bottom" constant="6" id="79S-Ib-xbQ"/>
+                            <constraint firstItem="M45-3B-VhV" firstAttribute="leading" secondItem="1RL-7O-JOP" secondAttribute="leading" id="GnC-4b-nSD"/>
+                            <constraint firstItem="2JI-H1-cgP" firstAttribute="leading" secondItem="1RL-7O-JOP" secondAttribute="leading" constant="113" id="I9b-yt-NeD"/>
+                            <constraint firstItem="fh4-7t-7En" firstAttribute="width" secondItem="1RL-7O-JOP" secondAttribute="height" multiplier="25:97" id="OlC-6g-DQU"/>
+                            <constraint firstItem="2JI-H1-cgP" firstAttribute="top" secondItem="1RL-7O-JOP" secondAttribute="top" id="TQE-8u-avA"/>
+                            <constraint firstItem="fh4-7t-7En" firstAttribute="height" secondItem="1RL-7O-JOP" secondAttribute="height" multiplier="0.154639" id="a3v-Ke-cah"/>
+                            <constraint firstAttribute="trailing" secondItem="fh4-7t-7En" secondAttribute="trailing" constant="14" id="eFD-vW-gvp"/>
+                            <constraint firstAttribute="trailing" secondItem="M45-3B-VhV" secondAttribute="trailing" constant="149" id="gG0-i1-NXM"/>
+                            <constraint firstItem="M45-3B-VhV" firstAttribute="top" secondItem="1RL-7O-JOP" secondAttribute="top" id="rXh-I2-rwS"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="glassStyle">
-                                <integer key="value" value="1"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="glassInteractive" value="YES"/>
-                            <userDefinedRuntimeAttribute type="color" keyPath="glassTintColor">
-                                <color key="value" red="0.98039215686274506" green="0.98039215686274506" blue="0.98039215686274506" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="glassBlurOpacity">
-                                <real key="value" value="2"/>
-                            </userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="34"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="topLeftCorner" value="YES"/>
-                            <userDefinedRuntimeAttribute type="boolean" keyPath="topRightCorner" value="YES"/>
-                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusValue">
-                                <real key="value" value="34"/>
+                                <real key="value" value="17"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
@@ -90,24 +157,44 @@
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="CHN-4Y-or1" secondAttribute="bottom" id="YBf-zI-e6z"/>
-                <constraint firstAttribute="trailing" secondItem="CHN-4Y-or1" secondAttribute="trailing" id="sQ7-PL-o3A"/>
-                <constraint firstItem="CHN-4Y-or1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="sxd-Ki-9f7"/>
-                <constraint firstItem="CHN-4Y-or1" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="x5l-64-9KC"/>
+                <constraint firstItem="1RL-7O-JOP" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="4MB-fI-VWi"/>
+                <constraint firstItem="1RL-7O-JOP" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="eJm-bi-Hfm"/>
+                <constraint firstAttribute="trailing" secondItem="1RL-7O-JOP" secondAttribute="trailing" constant="5" id="ku5-6T-rhq"/>
+                <constraint firstAttribute="bottom" secondItem="1RL-7O-JOP" secondAttribute="bottom" constant="5" id="xsh-mh-Aee"/>
             </constraints>
-            <size key="customSize" width="178" height="221"/>
+            <size key="customSize" width="354" height="70"/>
             <connections>
-                <outlet property="descriptionLabel" destination="aTV-Sa-hTF" id="k3c-Ok-2yM"/>
-                <outlet property="glassView" destination="CHN-4Y-or1" id="vZc-YF-Rfy"/>
-                <outlet property="headlineLabel" destination="JG4-cS-6OU" id="N1b-q4-6Lt"/>
-                <outletCollection property="constraintHeight" destination="r8h-ve-9Gm" collectionClass="NSMutableArray" id="rzN-Hc-pW5"/>
-                <outletCollection property="constraintsWidth" destination="p1l-Iy-WCn" collectionClass="NSMutableArray" id="v4l-VH-EMi"/>
-                <outletCollection property="constraintsWidth" destination="Hpz-ee-wtj" collectionClass="NSMutableArray" id="AaE-tb-AW3"/>
-                <outletCollection property="constraintsWidth" destination="qSF-Vm-n2h" collectionClass="NSMutableArray" id="orV-Ji-fXz"/>
-                <outletCollection property="constraintsWidth" destination="dKF-9r-OiM" collectionClass="NSMutableArray" id="GZy-aR-etK"/>
-                <outletCollection property="constraintHeight" destination="VxQ-Y0-f7h" collectionClass="NSMutableArray" id="p51-t7-kyV"/>
+                <outlet property="arrowContainerView" destination="D1a-Wi-YKk" id="8fC-FM-oQl"/>
+                <outlet property="arrowRightImageView" destination="uPY-K5-UKV" id="XC7-xv-4PY"/>
+                <outlet property="bottomArrowContainerView" destination="fh4-7t-7En" id="XuS-x3-p55"/>
+                <outlet property="descriptionLabel" destination="U1J-jb-pBl" id="a9U-1f-Hv4"/>
+                <outlet property="gradientContainerView" destination="M45-3B-VhV" id="EoF-np-PsC"/>
+                <outlet property="headlineLabel" destination="KeU-tG-FdP" id="kc2-sv-eWY"/>
+                <outlet property="iconImageView" destination="r28-ed-P9x" id="icn-out-001"/>
+                <outlet property="rightImageLeftConstraint" destination="I9b-yt-NeD" id="Tuu-r3-vfJ"/>
+                <outlet property="rightImageView" destination="2JI-H1-cgP" id="Lao-ZX-mxA"/>
+                <outletCollection property="leftIconContstaints" destination="QRW-9b-Ofe" collectionClass="NSMutableArray" id="b82-RY-Ela"/>
+                <outletCollection property="leftIconContstaints" destination="lRH-yj-AXt" collectionClass="NSMutableArray" id="aDU-QK-BMH"/>
+                <outletCollection property="xConstraintsCollection" destination="lRH-yj-AXt" collectionClass="NSMutableArray" id="7XX-rL-s2j"/>
+                <outletCollection property="xConstraintsCollection" destination="DBP-FA-9pE" collectionClass="NSMutableArray" id="Ti2-AS-gFo"/>
+                <outletCollection property="xConstraintsCollection" destination="I9b-yt-NeD" collectionClass="NSMutableArray" id="FWA-qz-JNM"/>
+                <outletCollection property="xConstraintsCollection" destination="gG0-i1-NXM" collectionClass="NSMutableArray" id="qhR-8v-AlB"/>
+                <outletCollection property="yConstraintsCollection" destination="M6G-Xl-yX9" collectionClass="NSMutableArray" id="fW9-2f-KKp"/>
+                <outletCollection property="xConstraintsCollection" destination="eFD-vW-gvp" collectionClass="NSMutableArray" id="DNF-MH-hFC"/>
+                <outletCollection property="yConstraintsCollection" destination="79S-Ib-xbQ" collectionClass="NSMutableArray" id="gbg-Ql-9Il"/>
+                <outletCollection property="xConstraintsCollection" destination="QRW-9b-Ofe" collectionClass="NSMutableArray" id="Lkl-c6-EAL"/>
+                <outletCollection property="xConstraintsCollection" destination="QRW-9b-Ofe" collectionClass="NSMutableArray" id="jAr-Z8-3Ab"/>
+                <outletCollection property="xConstraintsCollection" destination="KeU-trail-lte-glass" collectionClass="NSMutableArray" id="OQD-gb-THI"/>
+                <outletCollection property="xConstraintsCollection" destination="U1J-trail-lte-glass" collectionClass="NSMutableArray" id="ZAW-ZE-Se1"/>
+                <outletCollection property="xConstraintsCollection" destination="cw-glass-w" collectionClass="NSMutableArray" id="aed-Hr-ExH"/>
             </connections>
-            <point key="canvasLocation" x="140.45801526717557" y="172.18309859154931"/>
+            <point key="canvasLocation" x="274.04580152671753" y="69.366197183098592"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="arrow.forward" catalog="system" width="128" height="95"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>

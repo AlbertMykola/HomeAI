@@ -13,8 +13,6 @@ private struct Defaults {
     }
 }
 
-import UIKit
-
 class RoomListViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, PageStepDelegate, PromptManagerHolder {
 
     @IBOutlet weak private var collectionView: UICollectionView!
@@ -33,8 +31,13 @@ class RoomListViewController: UIViewController, UICollectionViewDataSource, UICo
         config()
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        collectionView.applyPageFlowBottomInset(in: view)
+    }
+
     private func config() {
-        title = Defaults.Text.headline
+        navigationItem.title = nil
         
         configCollection()
     }
@@ -45,13 +48,14 @@ class RoomListViewController: UIViewController, UICollectionViewDataSource, UICo
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.allowsMultipleSelection = false
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 150, right: 0)
         
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.minimumInteritemSpacing = 8
             layout.minimumLineSpacing = 8
             layout.sectionInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
         }
+        
+        collectionView.applyPageFlowBottomInset(in: view)
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -59,19 +63,23 @@ class RoomListViewController: UIViewController, UICollectionViewDataSource, UICo
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RoomCollectionViewCell", for: indexPath) as! RoomCollectionViewCell
-        let room = InteriorType.allCases[indexPath.item]
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RoomCollectionViewCell", for: indexPath) as? RoomCollectionViewCell else {
+            return UICollectionViewCell()
+        }
+        guard let room = InteriorType.allCases[safe: indexPath.item] else { return cell }
         let isSelected = (indexPath == selectedIndexPath)
-        promptManager?.updateRoom(room)
         cell.configure(room: room, isSelected: isSelected)
 
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        hapticVibration()
         let previousSelected = selectedIndexPath
         selectedIndexPath = indexPath
-        amplitude.logEvent(.chooseRoom(room: InteriorType.allCases[indexPath.item].name))
+        guard let room = InteriorType.allCases[safe: indexPath.item] else { return }
+        promptManager?.updateRoom(room)
+        amplitude.logEvent(.chooseRoom(room: room.name))
         var pathsToReload: [IndexPath] = [indexPath]
         if let previous = previousSelected, previous != indexPath {
             pathsToReload.append(previous)
@@ -83,7 +91,7 @@ class RoomListViewController: UIViewController, UICollectionViewDataSource, UICo
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let layout = collectionViewLayout as! UICollectionViewFlowLayout
+        guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return .zero }
         let itemsPerRow: CGFloat = 3
         let totalPadding = layout.sectionInset.left + layout.sectionInset.right + layout.minimumInteritemSpacing * (itemsPerRow - 1)
         let isPad = UIDevice.current.userInterfaceIdiom == .pad

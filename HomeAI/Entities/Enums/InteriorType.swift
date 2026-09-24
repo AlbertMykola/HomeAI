@@ -4,23 +4,25 @@ enum InteriorType: CaseIterable {
     case kitchen, bedroom, bathroom, livingroom, dinningroom, office, study, gaming, kids, attic, toilet, balcony, hallway, laundry, garage
     
     var icon: UIImage {
+        let name: String
         switch self {
-            case .kitchen: UIImage(named: "kitchen_room_icon")!
-            case .bedroom: UIImage(named: "bedroom_room_icon")!
-            case .bathroom: UIImage(named: "bathroom_room_icon")!
-            case .livingroom: UIImage(named: "living_room_icon")!
-            case .dinningroom: UIImage(named: "dinning_room_icon")!
-            case .office: UIImage(named: "office_room_icon")!
-            case .study: UIImage(named: "study_room_icon")!
-            case .gaming: UIImage(named: "gaming_room_icon")!
-            case .kids: UIImage(named: "kids_room_icon")!
-            case .attic: UIImage(named: "attic_room_icon")!
-            case .toilet: UIImage(named: "toilet_room_icon")!
-            case .balcony: UIImage(named: "balcony _room_icon")!
-            case .hallway: UIImage(named: "hallway_room_icon")!
-            case .laundry: UIImage(named: "laundry_room_icon")!
-            case .garage: UIImage(named: "garage_room_icon")!
+        case .kitchen: name = "kitchen_room_icon"
+        case .bedroom: name = "bedroom_room_icon"
+        case .bathroom: name = "bathroom_room_icon"
+        case .livingroom: name = "living_room_icon"
+        case .dinningroom: name = "dinning_room_icon"
+        case .office: name = "office_room_icon"
+        case .study: name = "study_room_icon"
+        case .gaming: name = "gaming_room_icon"
+        case .kids: name = "kids_room_icon"
+        case .attic: name = "attic_room_icon"
+        case .toilet: name = "toilet_room_icon"
+        case .balcony: name = "balcony _room_icon"
+        case .hallway: name = "hallway_room_icon"
+        case .laundry: name = "laundry_room_icon"
+        case .garage: name = "garage_room_icon"
         }
+        return UIImage(named: name) ?? UIImage()
     }
     
     var name: String {
@@ -42,6 +44,26 @@ enum InteriorType: CaseIterable {
             case .garage: "Garage".localized
         }
     }
+
+    var promptDescriptor: String {
+        switch self {
+        case .kitchen: "kitchen"
+        case .bedroom: "bedroom"
+        case .bathroom: "bathroom"
+        case .livingroom: "living room"
+        case .dinningroom: "dining room"
+        case .office: "home office"
+        case .study: "study room"
+        case .gaming: "gaming room"
+        case .kids: "children's room"
+        case .attic: "attic"
+        case .toilet: "toilet room"
+        case .balcony: "balcony"
+        case .hallway: "hallway"
+        case .laundry: "laundry room"
+        case .garage: "garage"
+        }
+    }
 }
 
 enum ExteriorType: CaseIterable {
@@ -61,6 +83,23 @@ enum ExteriorType: CaseIterable {
             case .bungalow: "Bungalow".localized
             case .chalet: "Chalet".localized
             case .office: "Office".localized
+        }
+    }
+
+    var promptDescriptor: String {
+        switch self {
+        case .flat: "apartment building"
+        case .house: "detached house"
+        case .cottage: "cottage"
+        case .mansion: "mansion"
+        case .townhouse: "townhouse"
+        case .duplex: "duplex"
+        case .villa: "villa"
+        case .cabin: "cabin"
+        case .farmhouse: "farmhouse"
+        case .bungalow: "bungalow"
+        case .chalet: "chalet"
+        case .office: "office building"
         }
     }
     
@@ -101,6 +140,24 @@ enum GardenType: CaseIterable {
         case .bohemian: "Bohemian".localized
         case .retro: "Retro".localized
         case .rockery: "Rockery".localized
+        }
+    }
+
+    var promptDescriptor: String {
+        switch self {
+        case .noStyle, .custom: ""
+        case .frontGarden: "welcoming front garden"
+        case .cozy: "cozy garden"
+        case .minimalist: "minimalist garden"
+        case .christmas: "Christmas garden"
+        case .tropical: "tropical garden"
+        case .luxary: "luxury garden"
+        case .japaneese: "Japanese garden"
+        case .english: "English garden"
+        case .mediterranean: "Mediterranean garden"
+        case .bohemian: "bohemian garden"
+        case .retro: "retro garden"
+        case .rockery: "rock garden"
         }
     }
     

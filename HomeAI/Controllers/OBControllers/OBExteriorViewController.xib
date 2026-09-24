@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="dark"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geologica-Light.ttf">
+            <string>Geologica-Light</string>
+        </array>
+        <array key="Geologica-Regular.ttf">
+            <string>Geologica-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OBExteriorViewController" customModule="HomeAI" customModuleProvider="target">
+            <connections>
+                <outlet property="afterRevealTrailingConstraint" destination="after-trailing" id="out-after-trailing"/>
+                <outlet property="afterRevealWidthConstraint" destination="after-width" id="out-after-width"/>
+                <outlet property="bottomGradientView" destination="bottom-gradient" id="out-bottom-gradient"/>
+                <outlet property="dividerCenterXConstraint" destination="divider-center" id="out-divider-center"/>
+                <outlet property="dividerLineView" destination="divider-line" id="out-divider-line"/>
+                <outlet property="dividerView" destination="divider" id="out-divider"/>
+                <outlet property="headlineLabel" destination="headline" id="out-headline"/>
+                <outlet property="nextButton" destination="continue-button" id="out-button"/>
+                <outlet property="pageControl" destination="page-control" id="out-page-control"/>
+                <outlet property="subtitleLabel" destination="subtitle" id="out-subtitle"/>
+                <outlet property="topGradientView" destination="top-gradient" id="out-top-gradient"/>
+                <outlet property="view" destination="root-view" id="out-view"/>
+                <outletCollection property="contentHorizontalInsetConstraints" destination="headline-leading" collectionClass="NSMutableArray" id="inset-headline-leading"/>
+                <outletCollection property="contentHorizontalInsetConstraints" destination="headline-trailing" collectionClass="NSMutableArray" id="inset-headline-trailing"/>
+                <outletCollection property="contentHorizontalInsetConstraints" destination="subtitle-leading" collectionClass="NSMutableArray" id="inset-subtitle-leading"/>
+                <outletCollection property="contentHorizontalInsetConstraints" destination="subtitle-trailing" collectionClass="NSMutableArray" id="inset-subtitle-trailing"/>
+                <outletCollection property="contentHorizontalInsetConstraints" destination="button-leading" collectionClass="NSMutableArray" id="inset-button-leading"/>
+                <outletCollection property="contentHorizontalInsetConstraints" destination="button-trailing" collectionClass="NSMutableArray" id="inset-button-trailing"/>
+                <outletCollection property="constraintsCollection" destination="page-top" collectionClass="NSMutableArray" id="7QL-jd-Wnu"/>
+                <outletCollection property="constraintsCollection" destination="button-top" collectionClass="NSMutableArray" id="d5v-bq-C4y"/>
+                <outletCollection property="constraintsCollection" destination="button-bottom" collectionClass="NSMutableArray" id="6ZY-JV-apB"/>
+                <outletCollection property="constraintsCollection" destination="button-height" collectionClass="NSMutableArray" id="Z9t-bc-IAv"/>
+                <outletCollection property="constraintsCollection" destination="page-height" collectionClass="NSMutableArray" id="OZ2-St-d4V"/>
+                <outletCollection property="constraintsCollection" destination="subtitle-top" collectionClass="NSMutableArray" id="GRZ-JI-7DR"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" id="root-view">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="874"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="before-container">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="874"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="ob_2_before_image" translatesAutoresizingMaskIntoConstraints="NO" id="before-image">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="874"/>
+                        </imageView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="before-image" secondAttribute="bottom" id="before-image-bottom"/>
+                        <constraint firstItem="before-image" firstAttribute="leading" secondItem="before-container" secondAttribute="leading" id="before-image-leading"/>
+                        <constraint firstItem="before-image" firstAttribute="top" secondItem="before-container" secondAttribute="top" id="before-image-top"/>
+                        <constraint firstAttribute="trailing" secondItem="before-image" secondAttribute="trailing" id="before-image-trailing"/>
+                    </constraints>
+                </view>
+                <view clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="after-reveal">
+                    <rect key="frame" x="365" y="0.0" width="28" height="874"/>
+                    <subviews>
+                        <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="after-canvas">
+                            <rect key="frame" x="-365" y="0.0" width="393" height="874"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" image="ob_2_after_image" translatesAutoresizingMaskIntoConstraints="NO" id="after-image">
+                                    <rect key="frame" x="0.0" y="0.0" width="393" height="874"/>
+                                </imageView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="after-image" secondAttribute="bottom" id="after-image-bottom"/>
+                                <constraint firstItem="after-image" firstAttribute="leading" secondItem="after-canvas" secondAttribute="leading" id="after-image-leading"/>
+                                <constraint firstItem="after-image" firstAttribute="top" secondItem="after-canvas" secondAttribute="top" id="after-image-top"/>
+                                <constraint firstAttribute="trailing" secondItem="after-image" secondAttribute="trailing" id="after-image-trailing"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                </view>
+                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="divider">
+                    <rect key="frame" x="358" y="0.0" width="66" height="874"/>
+                    <subviews>
+                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="divider-line">
+                            <rect key="frame" x="31" y="0.0" width="4" height="874"/>
+                            <color key="backgroundColor" red="0.6470588235294118" green="0.93333333333333335" blue="0.18431372549019609" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </view>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" image="ob_1_divider" translatesAutoresizingMaskIntoConstraints="NO" id="divider-image">
+                            <rect key="frame" x="0.0" y="-12" width="66" height="898"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="divider-image" secondAttribute="height" multiplier="264:3592" id="divider-image-aspect"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="divider-image" firstAttribute="centerX" secondItem="divider" secondAttribute="centerX" id="divider-image-center"/>
+                        <constraint firstItem="divider-image" firstAttribute="centerY" secondItem="divider" secondAttribute="centerY" id="divider-image-centerY"/>
+                        <constraint firstItem="divider-image" firstAttribute="width" secondItem="divider" secondAttribute="width" id="divider-image-width"/>
+                        <constraint firstAttribute="bottom" secondItem="divider-line" secondAttribute="bottom" id="divider-line-bottom"/>
+                        <constraint firstItem="divider-line" firstAttribute="centerX" secondItem="divider" secondAttribute="centerX" id="divider-line-center"/>
+                        <constraint firstItem="divider-line" firstAttribute="top" secondItem="divider" secondAttribute="top" id="divider-line-top"/>
+                        <constraint firstItem="divider-line" firstAttribute="width" constant="4" id="divider-line-width"/>
+                    </constraints>
+                </view>
+                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bottom-gradient">
+                    <rect key="frame" x="0.0" y="594" width="393" height="280"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Transform your exterior" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="headline">
+                    <rect key="frame" x="20" y="658" width="353" height="35"/>
+                    <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="28"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Imagine it differently" textAlignment="center" lineBreakMode="tailTruncation" minimumScaleFactor="0.75" translatesAutoresizingMaskIntoConstraints="NO" id="subtitle">
+                    <rect key="frame" x="20" y="697" width="353" height="20"/>
+                    <fontDescription key="fontDescription" name="Geologica-Light" family="Geologica" pointSize="16"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </label>
+                <pageControl opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="4" currentPage="1" translatesAutoresizingMaskIntoConstraints="NO" id="page-control">
+                    <rect key="frame" x="151.33333333333334" y="729" width="90.666666666666657" height="44"/>
+                    <color key="pageIndicatorTintColor" white="1" alpha="0.25" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="currentPageIndicatorTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </pageControl>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="continue-button" customClass="LiquidGlassButton" customModule="HomeAI" customModuleProvider="target">
+                    <rect key="frame" x="20" y="785" width="353" height="55"/>
+                    <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="18"/>
+                    <state key="normal">
+                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="nextAction:" destination="-1" eventType="touchUpInside" id="continue-action"/>
+                    </connections>
+                </button>
+                <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="top-gradient">
+                    <rect key="frame" x="0.0" y="0.0" width="393" height="100"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="safe-area"/>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="bottom-gradient" firstAttribute="height" constant="280" id="bottom-gradient-height"/>
+                <constraint firstAttribute="bottom" secondItem="after-reveal" secondAttribute="bottom" id="after-bottom"/>
+                <constraint firstAttribute="bottom" secondItem="after-canvas" secondAttribute="bottom" id="after-canvas-bottom"/>
+                <constraint firstItem="after-canvas" firstAttribute="leading" secondItem="root-view" secondAttribute="leading" id="after-canvas-leading"/>
+                <constraint firstItem="after-canvas" firstAttribute="top" secondItem="root-view" secondAttribute="top" id="after-canvas-top"/>
+                <constraint firstAttribute="trailing" secondItem="after-canvas" secondAttribute="trailing" id="after-canvas-trailing"/>
+                <constraint firstItem="after-reveal" firstAttribute="top" secondItem="root-view" secondAttribute="top" id="after-top"/>
+                <constraint firstAttribute="trailing" secondItem="after-reveal" secondAttribute="trailing" id="after-trailing"/>
+                <constraint firstItem="after-reveal" firstAttribute="width" constant="28" id="after-width"/>
+                <constraint firstAttribute="bottom" secondItem="before-container" secondAttribute="bottom" id="before-bottom"/>
+                <constraint firstItem="before-container" firstAttribute="leading" secondItem="root-view" secondAttribute="leading" id="before-leading"/>
+                <constraint firstItem="before-container" firstAttribute="top" secondItem="root-view" secondAttribute="top" id="before-top"/>
+                <constraint firstAttribute="trailing" secondItem="before-container" secondAttribute="trailing" id="before-trailing"/>
+                <constraint firstAttribute="bottom" secondItem="bottom-gradient" secondAttribute="bottom" id="bottom-gradient-bottom"/>
+                <constraint firstItem="bottom-gradient" firstAttribute="leading" secondItem="root-view" secondAttribute="leading" id="bottom-gradient-leading"/>
+                <constraint firstAttribute="trailing" secondItem="bottom-gradient" secondAttribute="trailing" id="bottom-gradient-trailing"/>
+                <constraint firstAttribute="bottom" secondItem="continue-button" secondAttribute="bottom" constant="34" id="button-bottom"/>
+                <constraint firstItem="continue-button" firstAttribute="height" constant="55" id="button-height"/>
+                <constraint firstItem="continue-button" firstAttribute="leading" secondItem="root-view" secondAttribute="leading" constant="20" id="button-leading"/>
+                <constraint firstItem="continue-button" firstAttribute="top" secondItem="page-control" secondAttribute="bottom" constant="12" id="button-top"/>
+                <constraint firstAttribute="trailing" secondItem="continue-button" secondAttribute="trailing" constant="20" id="button-trailing"/>
+                <constraint firstAttribute="bottom" secondItem="divider" secondAttribute="bottom" id="divider-bottom"/>
+                <constraint firstItem="divider" firstAttribute="centerX" secondItem="root-view" secondAttribute="centerX" constant="194.5" id="divider-center"/>
+                <constraint firstItem="divider" firstAttribute="top" secondItem="root-view" secondAttribute="top" id="divider-top"/>
+                <constraint firstItem="divider" firstAttribute="width" constant="66" id="divider-width"/>
+                <constraint firstItem="headline" firstAttribute="leading" secondItem="root-view" secondAttribute="leading" constant="20" id="headline-leading"/>
+                <constraint firstAttribute="trailing" secondItem="headline" secondAttribute="trailing" constant="20" id="headline-trailing"/>
+                <constraint firstItem="page-control" firstAttribute="centerX" secondItem="root-view" secondAttribute="centerX" id="page-center"/>
+                <constraint firstItem="page-control" firstAttribute="height" constant="44" id="page-height"/>
+                <constraint firstItem="page-control" firstAttribute="top" secondItem="subtitle" secondAttribute="bottom" constant="12" id="page-top"/>
+                <constraint firstItem="subtitle" firstAttribute="leading" secondItem="root-view" secondAttribute="leading" constant="20" id="subtitle-leading"/>
+                <constraint firstItem="subtitle" firstAttribute="top" secondItem="headline" secondAttribute="bottom" constant="4" id="subtitle-top"/>
+                <constraint firstAttribute="trailing" secondItem="subtitle" secondAttribute="trailing" constant="20" id="subtitle-trailing"/>
+                <constraint firstItem="top-gradient" firstAttribute="height" constant="100" id="top-gradient-height"/>
+                <constraint firstItem="top-gradient" firstAttribute="leading" secondItem="root-view" secondAttribute="leading" id="top-gradient-leading"/>
+                <constraint firstItem="top-gradient" firstAttribute="top" secondItem="root-view" secondAttribute="top" id="top-gradient-top"/>
+                <constraint firstAttribute="trailing" secondItem="top-gradient" secondAttribute="trailing" id="top-gradient-trailing"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="140" y="100"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ob_1_divider" width="264" height="3592"/>
+        <image name="ob_2_after_image" width="2160" height="3840"/>
+        <image name="ob_2_before_image" width="2160" height="3840"/>
+    </resources>
+</document>

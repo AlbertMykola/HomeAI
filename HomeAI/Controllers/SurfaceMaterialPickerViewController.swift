@@ -23,11 +23,16 @@ final class SurfaceMaterialPickerViewController: UIViewController, PageStepDeleg
     
     @IBOutlet weak private var promptContainerView: UIView!
     
-    @IBOutlet weak private var generateButton: UIButton!
     @IBOutlet weak private var promptButton: UIButton!
     @IBOutlet weak private var clearButton: UIButton!
     
     @IBOutlet var byWidthConstraints: [NSLayoutConstraint]!
+    
+    private let generateButton = UIButton(type: .system)
+    
+    private var isEmbeddedInPageFlow: Bool {
+        parent is PageViewController
+    }
     
     var completion: (() -> Void)?
     
@@ -61,14 +66,33 @@ final class SurfaceMaterialPickerViewController: UIViewController, PageStepDeleg
         super.viewDidLoad()
         configureUI()
         amplitude.logEvent(.showSurfaceMaterialPicker(type: placement ?? .wall))
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        generateButton.isHidden = isEmbeddedInPageFlow
+    }
+    
+    private func setupGenerateButton() {
+        generateButton.translatesAutoresizingMaskIntoConstraints = false
+        generateButton.setTitle(Defaults.Text.generate, for: .normal)
+        generateButton.setTitleColor(.black, for: .normal)
+        generateButton.backgroundColor = Constants.Colors.yellowPremium
+        generateButton.layer.cornerRadius = 27
+        generateButton.layer.masksToBounds = true
+        generateButton.addTarget(self, action: #selector(generateAction(_:)), for: .touchUpInside)
+        view.addSubview(generateButton)
         
-        // Hide generate button when embedded in PageViewController (it has its own button)
-        if parent is UIPageViewController {
-            generateButton.isHidden = true
-        }
+        NSLayoutConstraint.activate([
+            generateButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -UICollectionView.PageFlowBottomInset.overlayButtonBottomOffset),
+            generateButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            generateButton.widthAnchor.constraint(equalToConstant: 165),
+            generateButton.heightAnchor.constraint(equalToConstant: UICollectionView.PageFlowBottomInset.overlayButtonHeight)
+        ])
     }
     
     private func configureUI() {
+        setupGenerateButton()
         myCollectionView.dataSource = self
         myCollectionView.delegate = self
         myCollectionView.isScrollEnabled = true
@@ -90,7 +114,7 @@ final class SurfaceMaterialPickerViewController: UIViewController, PageStepDeleg
         }
         
         clearButton.setTitle(Defaults.Text.clear, for: .normal)
-        generateButton.setTitle(Defaults.Text.generate, for: .normal)
+        generateButton.isHidden = isEmbeddedInPageFlow
         
         placementLabel.text = Defaults.Text.placement
         placementLabel.textColor = .secondaryLabel
@@ -163,7 +187,7 @@ final class SurfaceMaterialPickerViewController: UIViewController, PageStepDeleg
         applySegmentUI()
     }
     
-    @IBAction private func generateAction(_ sender: UIButton) {
+    @objc @IBAction private func generateAction(_ sender: UIButton) {
         guard let promptManager else { return }
         
         if isCustomSelected {
@@ -206,7 +230,7 @@ extension SurfaceMaterialPickerViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
         
-        let model = optionItems[indexPath.item]
+        guard let model = optionItems[safe: indexPath.item] else { return cell }
         cell.config(style: model)
         
         if let selectedIndexPath, selectedIndexPath == indexPath {
@@ -224,6 +248,9 @@ extension SurfaceMaterialPickerViewController: UICollectionViewDataSource {
 extension SurfaceMaterialPickerViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if parent is PageViewController {
+            hapticVibration()
+        }
         if let previous = selectedIndexPath, previous != indexPath {
             collectionView.deselectItem(at: previous, animated: false)
             if let prevCell = collectionView.cellForItem(at: previous) as? StyleCollectionViewCell {

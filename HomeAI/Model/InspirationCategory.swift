@@ -7,6 +7,8 @@ struct InspirationsResponse: Decodable {
 struct InspirationCategory: Decodable {
     let category: String
     let items: [InspirationItem]
+
+    var localizedTitle: String { category.localized }
 }
 
 struct InspirationItem: Decodable {

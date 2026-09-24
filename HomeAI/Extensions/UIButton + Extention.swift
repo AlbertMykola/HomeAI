@@ -175,6 +175,35 @@ extension UIButton {
 
     // MARK: - Font by PostScript name
     @IBInspectable
+    var scaleFontByHeight: Bool {
+        get { false }
+        set {
+            if newValue {
+                applyScaledFontByHeight()
+            }
+        }
+    }
+
+    func applyScaledFontByHeight(baseHeight: CGFloat = 852) {
+        guard let titleLabelFont = titleLabel?.font else { return }
+
+        let scaleFactor = UIScreen.main.bounds.height / baseHeight
+        let scaledFont = UIFont(
+            descriptor: titleLabelFont.fontDescriptor,
+            size: titleLabelFont.pointSize * scaleFactor
+        )
+
+        if var config = configuration {
+            var attributed = config.attributedTitle ?? AttributedString(config.title ?? "")
+            attributed.font = scaledFont
+            config.attributedTitle = attributed
+            configuration = config
+        } else {
+            titleLabel?.font = scaledFont
+        }
+    }
+
+    @IBInspectable
     var buttonFontName: String? {
         get { nil }
         set {

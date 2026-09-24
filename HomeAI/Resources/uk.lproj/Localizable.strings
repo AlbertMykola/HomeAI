@@ -1,6 +1,41 @@
-// OB
-"WELCOME TO THE WORLD OF CREATIVITY!" = "ЛАСКАВО ПРОСИМО У СВІТ КРЕАТИВНОСТІ!";
-"Discover ideas and create your dream home in minutes." = "Відкривайте ідеї та створюйте дім своєї мрії за лічені хвилини.";
+// OB — Onboarding
+"ob_welcome_headline" = "Переосмисліть свій простір";
+"ob_welcome_description" = "Перетворіть будь-яку кімнату за допомогою ШІ";
+"ob_welcome_get_started" = "Розпочати";
+"ob_welcome_trusted_users" = "Користувачів довіряють";
+"ob_welcome_average_rating" = "Середній рейтинг";
+
+"ob_design_headline" = "Переосмисліть свій дім";
+"ob_design_description" = "Миттєво оновіть простір — нові стилі, кольори та меблі.";
+"ob_feature_new_walls" = "Нові стіни";
+"ob_feature_replace_object" = "Замінити об'єкт";
+"ob_feature_delete_object" = "Видалити об'єкт";
+"ob_feature_new_color" = "Новий колір";
+"ob_feature_new_style" = "Новий стиль";
+"ob_feature_new_floor" = "Нова підлога";
+
+"ob_exterior_headline" = "Перетворіть свій екстер'єр";
+"ob_exterior_description" = "Уявіть це інакше";
+
+"ob_garden_headline" = "Оживіть свій сад";
+"ob_garden_description" = "Створіть ідеальний простір на вулиці";
+
+"ob_change_headline" = "Змініть будь-що";
+"ob_change_description" = "Видаляйте. Замінюйте. Переосмислюйте.";
+
+"ob_rate_headline_format" = "Ваш дім мрії виглядає %@";
+"ob_rate_headline_highlight" = "НЕЙМОВІРНО";
+"ob_rate_description" = "Оцініть нас, щоб відкрити більше стилів і функцій та допомогти покращити ReHomely для вас";
+"ob_rate_unlock_title" = "Розблокуйте";
+"ob_rate_unlock_subtitle" = "преміум-стилі";
+"ob_rate_bonus_title" = "Отримайте бонус";
+"ob_rate_bonus_subtitle" = "дизайн";
+"ob_rate_help_title" = "Допоможіть нам";
+"ob_rate_help_subtitle" = "стати кращими для вас";
+
+"ob_continue" = "Продовжити";
+
+// OB — legacy keys
 "Next" = "Далі";
 "INSPIRE.DESIGN.TRANSFORM" = "НАДИХАЙСЯ.ДИЗАЙНУЙ.ПЕРЕТВОРЮЙ";
 "Explore a world of stunning interior and exterior ideas, and bring them into your own designs." = "Досліджуйте світ вражаючих ідей для інтер’єру та екстер’єру й втілюйте їх у власному дизайні.";
@@ -9,6 +44,8 @@
 "Get Started" = "Розпочати";
 
 // Home
+"Smart tools" = "Розумні інструменти";
+"See all" = "Переглянути все";
 "Interior Design" = "Дизайн інтер’єру";
 "Transform your space — snap a room and let AI do the rest." = "Перетворіть свій простір — сфотографуйте кімнату, а решту зробить ШІ.";
 "Exterior Design" = "Дизайн екстер’єру";
@@ -27,9 +64,27 @@
 "New Walls" = "Нові стіни";
 "Try new flooring in seconds. AI instantly detects and replaces your floor." = "Спробуйте нову підлогу за секунди. ШІ миттєво визначає та замінює покриття підлоги.";
 "Reimagine your walls with AI. Instantly preview colors, textures, and finishes in your space." = "Переосмисліть свої стіни за допомогою ШІ. Миттєво переглядайте кольори, текстури та оздоблення у своєму просторі.";
+"Chat with AI-Assistant" = "Чат з ШІ-помічником";
+"Get personalized renovation advice and inspiration" = "Отримайте персоналізовані поради та ідеї для ремонту";
+"Change your indoor space" = "Змініть свій внутрішній простір";
+"Transform the look of your home" = "Перетворіть вигляд свого будинку";
+"Restyle your outdoor space" = "Оновіть ваш відкритий простір";
+"Match any styles" = "Підберіть будь-який стиль";
+"Swap furniture instantly" = "Замінюйте меблі миттєво";
+"Remove Objects" = "Видалити об'єкти";
+"Remove unwanted items" = "Видаліть небажані предмети";
+"Try new floor styles" = "Спробуйте нові стилі підлоги";
+"Repaint your walls" = "Перефарбуйте ваші стіни";
+"Rearrange Furniture" = "Переставте меблі";
+"Optimize your layout" = "Оптимізуйте планування";
+"Furnish Room" = "Обставте кімнату";
+"Fill empty spaces" = "Заповніть порожній простір";
+"Floor Plan" = "Планування поверху";
+"Turn plans into 3D" = "Перетворіть плани на 3D";
 
 //Page
 "Generate" = "Згенерувати";
+"Remove" = "Видалити";
 "Delete Objects" = "Видалити об’єкти";
 "Select an object and let AI remove it instantly." = "Оберіть об’єкт, і ШІ миттєво його видалить.";
 
@@ -42,6 +97,14 @@
 "Upload a photo of your current room." = "Завантажте фото вашої поточної кімнати.";
 "Upload a photo to redesign your floor" = "Завантажте фото, щоб оновити підлогу";
 "Upload a photo of your current walls." = "Завантажте фото ваших поточних стін.";
+"Upload a photo of your current layout" = "Завантажте фото поточного планування";
+"Upload a photo of your empty room" = "Завантажте фото порожньої кімнати";
+"Upload a photo of your floor plan" = "Завантажте фото плану приміщення";
+"Rearrange Only" = "Лише перестановка";
+"New layout with same furniture" = "Нове планування з тими ж меблями";
+"Rearrange & Refresh" = "Перестановка та оновлення";
+"New layout with small furniture change" = "Нове планування з невеликими змінами меблів";
+"Rearrange" = "Перестановка";
 "" = "";
 
 "Get your dream design" = "Отримайте дизайн своєї мрії";
@@ -83,6 +146,9 @@
 
 // Room
 "Choose Room" = "Оберіть кімнату";
+"All" = "Усі";
+"Exterior" = "Екстер'єр";
+"Garden" = "Сад";
 "Kitchen" = "Кухня";
 "Bedroom" = "Спальня";
 "Bathroom" = "Ванна кімната";
@@ -178,6 +244,15 @@
 "Color" = "Колір";
 "Style" = "Стиль";
 "LIKE THE APP?" = "ПОДОБАЄТЬСЯ ДОДАТОК?";
+"like_alert_title_prefix" = "Вам подобається";
+"like_alert_description" = "Ваш відгук допомагає нам покращувати та створювати ще кращі дизайни для вас.";
+"generations_left_alert_title_format" = "У вас залишилось %@ спроб";
+"generations_left_alert_subtitle" = "Продовжуйте створювати без обмежень з PRO.";
+"generations_left_alert_feature_unlimited" = "Необмежені генерації";
+"generations_left_alert_feature_quality" = "Вища якість зображень";
+"generations_left_alert_feature_faster" = "Швидший результат";
+"generations_left_alert_get_pro" = "ОТРИМАТИ PRO";
+"generations_left_alert_maybe_later" = "Можливо пізніше";
 "Enjoy creating beautiful spaces? Share your feedback and help us make home redesign better for you" = "Подобається створювати красиві простори? Поділіться відгуком і допоможіть нам зробити редизайн дому ще кращим для вас";
 "YES, RATE!" = "ТАК, ОЦІНИТИ!";
 "No, thanks" = "Ні, дякую";
@@ -185,6 +260,7 @@
 "Would you like to tell us what you didn't like?" = "Хочете розповісти, що вам не сподобалося?";
 "Share feedback" = "Надіслати відгук";
 "Delete Object" = "Видалити об’єкт";
+"Brush Size" = "Розмір пензля";
 "Replace Object" = "Замінити об’єкт";
 "New Floor" = "Нова підлога";
 "New Style" = "Новий стиль";
@@ -192,6 +268,8 @@
 "" = "";
 
 //Paywall
+"Go Premium Design Without Limits" = "Перейдіть на Преміум\nДизайн без обмежень";
+"Premium" = "Преміум";
 "Unlock Unlimited Access" = "Розблокуйте необмежений доступ";
 "Unlimited interior, exterior, and garden transformations. All styles, custom presets, and high‑quality exports" = "Необмежені перетворення інтер’єру, екстер’єру та саду. Усі стилі, власні пресети та експорт у високій якості";
 "Enable Free Trial" = "Активувати безкоштовний пробний період";
@@ -202,7 +280,39 @@
 "Not now" = "Не зараз";
 "No payment due now" = "Зараз оплата не потрібна";
 "Try Free 3 days" = "Спробувати безкоштовно 3 дні";
+"Try Free trial" = "Спробувати безкоштовно";
+"3 days trial" = "3 дні безкоштовно";
+"%d days trial" = "%d днів безкоштовно";
+"Best Value" = "Найкраща ціна";
+"week" = "тиждень";
+"/year" = "/рік";
+"/month" = "/місяць";
+"/week" = "/тиждень";
+"Monthly Access" = "Місячний доступ";
+"YEARLY" = "РІЧНА";
+"MONTHLY" = "МІСЯЧНА";
+"WEEKLY" = "ТИЖНЕВА";
 "Cancel Anytime" = "Скасуйте будь-коли";
+"No paying now" = "Зараз без оплати";
+"Not commitment. Cancel anytime" = "Без зобов’язань. Скасуйте будь-коли";
+"Not interested?" = "Не цікавить?";
+"Go with Basic" = "Залишитись на Basic";
+"Trusted users" = "Користувачів довіряють";
+"Avarage Rating" = "Середній рейтинг";
+"Terms" = "Умови";
+"Privacy" = "Конфіденційність";
+"Restore" = "Відновити";
+"100.000+" = "100 000+";
+"Unlimited Redesigns" = "Необмежені редизайни";
+"All Premium Styles" = "Усі преміум-стилі";
+"Ultra Fast Rendering" = "Надшвидкий рендер";
+"Design Every Corner" = "Створюйте дизайн кожного куточка";
+"Redesign as much as you want " = "Редизайньте скільки завгодно";
+"Access to every styles and materials" = "Доступ до всіх стилів і матеріалів";
+"Get stunning results in seconds" = "Вражаючі результати за секунди";
+"Enjoy without any interruptions" = "Без перешкод і перерв";
+"Paywall placement not found" = "Розміщення paywall не знайдено";
+"Paywall requires at least two products" = "Paywall потребує щонайменше два продукти";
 
 //Settings
 "Notification" = "Сповіщення";
@@ -218,10 +328,15 @@
 "Use natural light whenever possible, or switch on all lights in the room.\nShoot at eye level to keep the perspective natural and realistic.\nPTake photos from a corner or doorway to capture more of the space.\nClear away clutter and tidy up to achieve a clean, polished look." = "За можливості використовуйте природне освітлення або ввімкніть усе світло в кімнаті.\nЗнімайте на рівні очей, щоб зберегти природну та реалістичну перспективу.\nФотографуйте з кута кімнати або від дверного проходу, щоб охопити більше простору.\nПриберіть зайві речі та наведіть лад, щоб отримати чистий і охайний результат.";
 "Photograph the building in daylight.\nRemove cars, people, trash bins, and other distractions from the scene.\nPreserve natural and realistic colors.\nUpload images in high resolution and sharp focus." = "Фотографуйте будівлю при денному світлі.\nПриберіть із кадру автомобілі, людей, сміттєві баки та інші відволікаючі елементи.\nЗберігайте природні та реалістичні кольори.\nЗавантажуйте зображення у високій роздільній здатності та з чітким фокусом.";
 "Use natural daylight and avoid harsh sunlight or deep shadows.\nKeep the garden clean and well-maintained, without tools or temporary objects.\nShow the overall layout clearly, including paths, plants, and open areas.\nEnsure sharp focus, accurate colors, and a straight horizon." = "Використовуйте природне денне світло та уникайте різкого сонця або глибоких тіней.\nПідтримуйте сад чистим і доглянутим, без інструментів чи тимчасових предметів.\nЧітко показуйте загальне планування, включно з доріжками, рослинами та відкритими зонами.\nПереконайтеся, що фото має чіткий фокус, точні кольори та рівний горизонт.";
+"Full 2D floor plan with every room clearly visible.\nSharp, high-quality image with clean lines.\nSimple layout without extra notes or markings.\nAvoid blurry, cropped, or low-resolution plans." = "Повний 2D-план із чітко видимими кімнатами.\nРізке зображення високої якості з чистими лініями.\nПросте планування без зайвих нотаток і позначок.\nУникайте розмитих, обрізаних або низькоякісних планів.";
 
 "Too Close" = "Занадто близько";
 "Too Dark" = "Занадто темно";
 "Too Mess" = "Безлад";
+"Blurred" = "Розмито";
+"Cropped" = "Обрізано";
+"Clean lines" = "Чисті лінії";
+"Full plan" = "Повний план";
 
 "View at eye level" = "Рівень очей";
 "Good light" = "Добре освітлення";
@@ -301,6 +416,7 @@
 
 // Daily generation limit
 "Daily limit reached" = "Денний ліміт вичерпано";
+"daily_limit_reached_message" = "Ви використали всі %d генерацій зображень на сьогодні. Спробуйте завтра.";
 "You've used all 15 image generations for today. Please try again tomorrow." = "Ви використали всі 15 генерацій зображень на сьогодні. Спробуйте завтра.";
 "" = "";
 "" = "";
@@ -313,3 +429,113 @@
 "" = "";
 "" = "";
 "" = "";
+
+// Assistant chat
+"Meet Your AI Experts:" = "Познайомтесь з вашими ШІ-експертами:";
+"AI Renovation Assistant" = "ШІ-помічник з ремонту";
+"I'm Here to transform space  and bring your ideas to life" = "Я тут, щоб трансформувати простір та втілити ваші ідеї";
+"Interior Designer" = "Дизайнер інтер'єру";
+"Budget Estimator" = "Оцінювач бюджету";
+"Exterior Expert" = "Експерт з екстер'єру";
+"Material Guide" = "Гід з матеріалів";
+"assistant_chat_badge_caption" = "Експерт ШІ";
+"assistant_short_desc_interior_designer" = "Створюйте красиві інтер'єри";
+"assistant_short_desc_budget_estimator" = "Плануйте розумно і вкладайтесь у бюджет";
+"assistant_short_desc_exterior_expert" = "Вдосконалюйте фасади впевнено";
+"assistant_short_desc_material_guide" = "Знайдіть кращі матеріали для проєкту";
+"What flooring is best for a high-traffic area?" = "Яка підлога краща для місць з великим трафіком?";
+"assistant_chat_bio_interior_designer" = "Планування, стилі, меблі — підлаштовано під ваш простір.";
+"assistant_chat_bio_budget_estimator" = "Орієнтовні суми й де можна заощадити без втрати якості.";
+"assistant_chat_bio_exterior_expert" = "Фасади, «curb appeal», оздоблення зовні — реалістичні покращення.";
+"assistant_chat_bio_material_guide" = "Підлога, фарби, оздоблення — що доречно де й чому.";
+"assistant_chat_greeting_interior_designer" = "Привіт! Я Моніка. Розкажіть про кімнату — розмір, що дратує, який настрій хочете — і я запропоную планування, палітру та кілька швидких ідей.";
+"assistant_chat_greeting_budget_estimator" = "Привіт, я Олівія. Опишіть ремонт (кімнати, обсяг, рівень оздоблення) — і я дам приблизний діапазон бюджету та де можна заощадити.";
+"assistant_chat_greeting_exterior_expert" = "Привіт! Я Джейкоб. Розкажіть про будинок — стиль, проблемні місця, який вигляд хочете — і запропоную зміни фасаду, що реально працюють.";
+"assistant_chat_greeting_material_guide" = "Привіт, я Мартін. Скажіть, для якої поверхні підбираєте матеріал і як його використовуватимете — звужу до кількох розумних варіантів.";
+"chat_input_placeholder" = "Запитайте що завгодно…";
+"chat_error_generic" = "Не вдалося зв’язатися з сервером. Спробуйте за мить ще раз.";
+"assistant_suggest_interior_1" = "Які кольори зроблять мою вітальню візуально просторішою?";
+"assistant_suggest_interior_2" = "Як покращити освітлення у вітальні?";
+"assistant_suggest_interior_3" = "Покажи ідеї сучасної вітальні";
+"assistant_suggest_interior_4" = "Як зробити вітальню затишнішою?";
+"assistant_suggest_budget_1" = "Як заощадити на ремонті?";
+"assistant_suggest_budget_2" = "Оціни вартість ремонту кухні";
+"assistant_suggest_budget_3" = "Ідеї для дому з обмеженим бюджетом";
+"assistant_suggest_budget_4" = "Де варто вкласти більше, а де заощадити?";
+"assistant_suggest_exterior_1" = "Які кольори екстер’єру найкраще підійдуть моєму дому?";
+"assistant_suggest_exterior_2" = "Як зробити фасад будинку дорожчим на вигляд?";
+"assistant_suggest_exterior_3" = "Який стиль екстер’єру найкраще пасує моєму будинку?";
+"assistant_suggest_exterior_4" = "Запропонуй ідеї ландшафту переднього двору";
+"assistant_suggest_material_1" = "Які матеріали найстійкіші для будинку з родиною?";
+"assistant_suggest_material_2" = "Які матеріали для стін для розкішного вигляду?";
+"assistant_suggest_material_3" = "Як правильно поєднувати різні текстури?";
+"assistant_suggest_material_4" = "Який матеріал найкращий для кухонних фасадів?";
+
+// Profile
+"No design yet" = "Ще немає дизайнів";
+"Start transform your space" = "Почніть перетворювати свій простір";
+"Options" = "Опції";
+"Inspiration" = "Натхнення";
+"Profile" = "Профіль";
+"Settings" = "Налаштування";
+"Delete design?" = "Видалити дизайн?";
+"This action will permanently remove the image from your history." = "Цю дію не можна скасувати — зображення буде назавжди видалено з історії.";
+"Delete" = "Видалити";
+"Unable to delete" = "Не вдалося видалити";
+"Start creating" = "Почати створювати";
+
+// Dark cinematic paywall
+"Get Premium Access" = "Отримайте преміум-доступ";
+"Unlimited AI Renders" = "Необмежені AI-візуалізації";
+"No Pay Now" = "Зараз без оплати";
+"Before" = "До";
+"After" = "Після";
+"Cancel anytime" = "Скасуйте будь-коли";
+"annually" = "щороку";
+"monthly" = "щомісяця";
+"weekly" = "щотижня";
+"%@ billed %@" = "%@, оплата %@";
+"%d%% OFF" = "ЗНИЖКА %d%%";
+
+// Local re-engagement pushes (free users)
+"local_push_1_title" = "Тут ховається помилка... 🔍";
+"local_push_1_body" = "Дизайнери помітили б це одразу. Перевір своє фото кімнати в один клік.";
+"local_push_2_title" = "Ти теж це бачиш? 🤨";
+"local_push_2_body" = "Твоя кімната може виглядати вдвічі просторішою. Поглянь, що треба прибрати.";
+"local_push_3_title" = "Не купуй нові меблі 🚫";
+"local_push_3_body" = "Тобі потрібна лише інша розстановка. Відкрий і глянь, як оживити простір за 0 грн.";
+"local_push_4_title" = "Якби це був готель 5 зірок... 🍸";
+"local_push_4_body" = "AI перетворив твою спальню на номер люкс. Зазирни на результат.";
+"local_push_5_title" = "Всі роблять цю помилку зі світлом 💡";
+"local_push_5_body" = "Твій інтер'єр втрачає затишок через одну деталь. Зроби фото та перевір.";
+"local_push_6_title" = "Твоя кімната через 3 роки ⏳";
+"local_push_6_body" = "Тренди змінюються. Подивись, який стиль інтер'єру пасуватиме твоєму дому далі.";
+"local_push_7_title" = "Що скаже штучний інтелект? 🤖";
+"local_push_7_body" = "Завантаж фото будь-якої кімнати — результат тебе точно здивує.";
+"local_push_8_title" = "Тобі сподобається цей варіант 🔥";
+"local_push_8_body" = "Ми підібрали стиль, який кардинально змінить твоє відчуття простору. Відкривай!";
+"local_push_9_title" = "Секрет ідеального ракурсу 📸";
+"local_push_9_body" = "Один куточок у твоїй оселі може стати зіркою Instagram. Знайди його прямо зараз.";
+"local_push_10_title" = "Здається, ти забув про цю стіну 🖼️";
+"local_push_10_body" = "Порожній простір псує загальний вигляд. Поглянь, чим його заповнити.";
+"local_push_11_title" = "Ця кімната просить змін 👀";
+"local_push_11_body" = "Зроби фото будь-якого куточка, а AI покаже, як зробити його вау за 5 секунд.";
+"local_push_12_title" = "Щось тут не так... 🤔";
+"local_push_12_body" = "Можливо, диван не на своєму місці? Завантаж фото кімнати та перевір ідеї перестановки.";
+"local_push_13_title" = "Секрет затишку розкрито ✨";
+"local_push_13_body" = "Додай лише одну деталь, щоб освіжити вітальню. Поглянь, що пропонує AI.";
+"local_push_14_title" = "Як би виглядала твоя кімната в Парижі? 🥐";
+"local_push_14_body" = "Приміряй французький шик до свого інтер'єру прямо зараз.";
+"local_push_15_title" = "Твій дім заслуговує на апгрейд 🪴";
+"local_push_15_body" = "1 фото = 5 свіжих стилів. Подивись, який пасує найбільше.";
+"See your room in a new style" = "Побачте свою кімнату в новому стилі";
+"Create the next design for your space" = "Створіть наступний варіант вашого простору";
+"Keep the design you love" = "Збережіть дизайн, який вам сподобався";
+"Make your design feel just right" = "Доведіть ваш дизайн до бажаного вигляду";
+"Preparing your design" = "Готуємо ваш дизайн";
+"Creating your design" = "Створюємо ваш дизайн";
+"Saving your design" = "Зберігаємо ваш дизайн";
+"Keep the app open while we create it." = "Залишайте застосунок відкритим, поки ми створюємо дизайн.";
+"This is taking longer than usual. Your design is still in progress." = "Це триває довше, ніж зазвичай. Ми продовжуємо створювати дизайн.";
+"Couldn't create your design" = "Не вдалося створити дизайн";
+"Your photo and choices are saved. Try again." = "Фото й налаштування збережено. Спробуйте ще раз.";

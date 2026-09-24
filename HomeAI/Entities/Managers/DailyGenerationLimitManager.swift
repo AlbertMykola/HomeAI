@@ -2,7 +2,7 @@ import Foundation
 import Security
 import UIKit
 
-/// Денний ліміт **15 генерацій** для **підписників** (Keychain). Без підписки ліміт — одна безкоштовна загалом (`FreeGenerationManager`).
+/// Денний ліміт генерацій для **підписників** (Keychain). Без підписки — `FreeGenerationManager`.
 final class DailyGenerationLimitManager {
 
     static let shared = DailyGenerationLimitManager()
@@ -10,26 +10,31 @@ final class DailyGenerationLimitManager {
     private let service = (Bundle.main.bundleIdentifier ?? "HomeAI") + ".dailyGenerationLimit"
     private let dayAccount = "daily_gen_calendar_day_v1"
     private let countAccount = "daily_gen_count_v1"
-    private let maxPerDay = 15
+
+    private var maxPerDay: Int {
+        WorkerConfigService.shared.premiumGenerationsPerDay
+    }
 
     private init() {}
 
-    /// Чи залишилась квота на сьогодні для преміуму (15 / день). Для не-підписників не використовується для блокування.
+    /// Чи залишилась квота на сьогодні для преміуму. Для не-підписників не використовується для блокування.
     var hasRemainingToday: Bool {
         countForToday() < maxPerDay
     }
 
     /// Лише для підписників: після успішної генерації збільшити денний лічильник.
     func recordSuccessfulGeneration() {
-        guard ApphudService.shared.hasActiveSubscription else { return }
+        guard AdaptyService.shared.hasActiveSubscription else { return }
         incrementTodayCount()
     }
 
     @MainActor
     func presentDailyLimitAlert(from viewController: UIViewController?) {
         AmplitudeService.shared.logEvent(.dailyGenerationLimitReached)
+        let limit = maxPerDay
         let title = "Daily limit reached".localized
-        let message = "You've used all 15 image generations for today. Please try again tomorrow.".localized
+        let format = "daily_limit_reached_message".localized
+        let message = String(format: format, limit)
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK".localized, style: .default))
         let presenter = viewController ?? UIApplication.getTopViewController()
@@ -105,9 +110,9 @@ enum GenerationAccess {
         case requiresSubscription
     }
 
-    /// Підписка: лише денний ліміт 15. Без підписки: лише одна безкоштовна генерація (`FreeGenerationManager`).
+    /// Підписка: денний ліміт з worker config. Без підписки: безкоштовні генерації (`FreeGenerationManager`).
     static func evaluate() -> Result {
-        if ApphudService.shared.hasActiveSubscription {
+        if AdaptyService.shared.hasActiveSubscription {
             if !DailyGenerationLimitManager.shared.hasRemainingToday { return .dailyLimitExceeded }
             return .allowed
         }
@@ -118,7 +123,10 @@ enum GenerationAccess {
     /// Повертає `true`, якщо можна запускати Processing / генерацію. Інакше показує потрібний UI і повертає `false`.
     @MainActor
     @discardableResult
-    static func requestProcessingIfAllowed(presentingFrom viewController: UIViewController?) -> Bool {
+    static func requestProcessingIfAllowed(
+        presentingFrom viewController: UIViewController?,
+        onPurchase: (() -> Void)? = nil
+    ) -> Bool {
         switch evaluate() {
         case .allowed:
             return true
@@ -126,7 +134,11 @@ enum GenerationAccess {
             DailyGenerationLimitManager.shared.presentDailyLimitAlert(from: viewController)
             return false
         case .requiresSubscription:
-            NavigationManager.shared.showPremium(placement: Constants.Keys.reachedLimit)
+            NavigationManager.shared.showPremium(
+                placement: Constants.Keys.reachedLimit,
+                origin: .inApp,
+                onPurchase: onPurchase
+            )
             return false
         }
     }

@@ -127,7 +127,8 @@ public final class CarouselEngine<Item, Cell: UICollectionViewCell>: NSObject, U
     @objc private func step() {
         guard !baseRows.isEmpty else { return }
         for (section, sv) in orthScrollers {
-            let base = baseWidth(forCount: baseRows[section].count)
+            guard let row = baseRows[safe: section] else { continue }
+            let base = baseWidth(forCount: row.count)
             guard base > 0 else { continue }
 
             var x = sv.contentOffset.x + pixelsPerFrame
@@ -188,24 +189,25 @@ public final class CarouselEngine<Item, Cell: UICollectionViewCell>: NSObject, U
 
     // Заміна collectionView(_:numberOfItemsInSection:)
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let baseCount = baseRows[section].count
+        let baseCount = baseRows[safe: section]?.count ?? 0
+        guard baseCount > 0 else { return 0 }
         return max(baseCount * repeatFactor, baseCount)
     }
 
 
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let base = baseRows[indexPath.section]
+        guard let base = baseRows[safe: indexPath.section], !base.isEmpty else {
+            return UICollectionViewCell()
+        }
         let baseItem = base[indexPath.item % base.count]
         return collectionView.dequeueConfiguredReusableCell(using: registration, for: indexPath, item: baseItem)
     }
 
     public func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let row = indexPath.section
-        let baseCount = baseRows[row].count
-        guard baseCount > 0 else { return }
-        let baseIndex = indexPath.item % baseCount
-        let item = baseRows[row][baseIndex]
-        onSelect?(row, baseIndex, item)
+        guard let items = baseRows[safe: row], !items.isEmpty else { return }
+        let baseIndex = indexPath.item % items.count
+        onSelect?(row, baseIndex, items[baseIndex])
     }
 
     // MARK: - Discover inner orthogonal scrollers
@@ -220,7 +222,8 @@ public final class CarouselEngine<Item, Cell: UICollectionViewCell>: NSObject, U
                 sv.bounces = false
                 sv.panGestureRecognizer.isEnabled = false
 
-                let base = baseWidth(forCount: baseRows[indexPath.section].count)
+                let rowCount = self.baseRows[safe: indexPath.section]?.count ?? 0
+                let base = baseWidth(forCount: rowCount)
                 let centerX = base * CGFloat(repeatFactor / 2)
                 let startPhase = (phaseX[safe: indexPath.section] ?? 0).truncatingRemainder(dividingBy: max(base, 1))
                 sv.setContentOffset(CGPoint(x: centerX + startPhase, y: 0), animated: false)
@@ -228,11 +231,5 @@ public final class CarouselEngine<Item, Cell: UICollectionViewCell>: NSObject, U
             }
             v = s
         }
-    }
-}
-
-private extension Array {
-    subscript(safe index: Int) -> Element? {
-        return indices.contains(index) ? self[index] : nil
     }
 }

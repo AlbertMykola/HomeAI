@@ -30,13 +30,14 @@ final class ImageStorageService {
         }
 
         let resolvedSize = resolvedSizeForImageView(imageView, explicit: targetPointSize)
+        let scale = UIScreen.main.scale
 
         var work: DispatchWorkItem!
         work = DispatchWorkItem { [weak self, weak imageView] in
             guard let self else { return }
-            let image = self.loadImage(path: path, targetPointSize: resolvedSize)
+            let image = self.loadImage(path: path, targetPointSize: resolvedSize, scale: scale)
             if let image = image {
-                let bytes = self.byteCost(for: resolvedSize)
+                let bytes = self.byteCost(for: resolvedSize, scale: scale)
                 self.cache.setObject(image, forKey: path as NSString, cost: bytes)
             }
             DispatchQueue.main.async {
@@ -64,11 +65,11 @@ final class ImageStorageService {
             return
         }
 
+        let scale = UIScreen.main.scale
         DispatchQueue.global(qos: .userInitiated).async { [weak self] in
             guard let self else { return }
-            let image = self.loadImage(path: path, targetPointSize: .zero)
+            let image = self.loadImage(path: path, targetPointSize: .zero, scale: scale)
             if let image = image {
-                let scale = UIScreen.main.scale
                 let pxW = Int(image.size.width * scale)
                 let pxH = Int(image.size.height * scale)
                 self.cache.setObject(image, forKey: path as NSString, cost: pxW * pxH * 4)
@@ -85,10 +86,12 @@ final class ImageStorageService {
         }
         return try await withCheckedThrowingContinuation { continuation in
             fetchImage(path: path) { image in
-                if let image {
-                    continuation.resume(returning: image)
-                } else {
-                    continuation.resume(throwing: NSError(domain: "image.load", code: -1))
+                DispatchQueue.main.async {
+                    if let image {
+                        continuation.resume(returning: image)
+                    } else {
+                        continuation.resume(throwing: NSError(domain: "image.load", code: -1))
+                    }
                 }
             }
         }
@@ -105,18 +108,17 @@ final class ImageStorageService {
         return CGSize(width: 1, height: 1)
     }
 
-    private func byteCost(for size: CGSize) -> Int {
-        let scale = UIScreen.main.scale
+    private func byteCost(for size: CGSize, scale: CGFloat) -> Int {
         return Int(size.width * scale) * Int(size.height * scale) * 4
     }
 
-    private func loadImage(path: String, targetPointSize: CGSize) -> UIImage? {
+    private func loadImage(path: String, targetPointSize: CGSize, scale: CGFloat) -> UIImage? {
         if let remoteURL = remoteURL(for: path) {
-            if let image = loadRemoteImage(at: remoteURL, targetPointSize: targetPointSize) {
+            if let image = loadRemoteImage(at: remoteURL, targetPointSize: targetPointSize, scale: scale) {
                 return image
             }
             if let fallbackURL = fallbackRemoteURL(for: path, primaryURL: remoteURL) {
-                return loadRemoteImage(at: fallbackURL, targetPointSize: targetPointSize)
+                return loadRemoteImage(at: fallbackURL, targetPointSize: targetPointSize, scale: scale)
             }
             return nil
         }
@@ -126,16 +128,16 @@ final class ImageStorageService {
             if targetPointSize == .zero {
                 return UIImage(contentsOfFile: fileURL.path)
             }
-            if let downsampled = downsample(imageAt: fileURL, to: targetPointSize, scale: UIScreen.main.scale) {
+            if let downsampled = downsample(imageAt: fileURL, to: targetPointSize, scale: scale) {
                 return downsampled
             }
             return UIImage(contentsOfFile: fileURL.path)
         }
 
-        return loadBundledImage(namedPath: path, targetPointSize: targetPointSize)
+        return loadBundledImage(namedPath: path, targetPointSize: targetPointSize, scale: scale)
     }
 
-    private func loadBundledImage(namedPath path: String, targetPointSize: CGSize) -> UIImage? {
+    private func loadBundledImage(namedPath path: String, targetPointSize: CGSize, scale: CGFloat) -> UIImage? {
         let lastComponent = (path as NSString).lastPathComponent
         let baseName = (lastComponent as NSString).deletingPathExtension
         let ext = (lastComponent as NSString).pathExtension
@@ -145,7 +147,7 @@ final class ImageStorageService {
             if targetPointSize == .zero {
                 return UIImage(contentsOfFile: url.path)
             }
-            return downsample(imageAt: url, to: targetPointSize, scale: UIScreen.main.scale)
+            return downsample(imageAt: url, to: targetPointSize, scale: scale)
         }
 
         return UIImage(named: baseName) ?? UIImage(named: lastComponent) ?? UIImage(named: path)
@@ -202,7 +204,7 @@ final class ImageStorageService {
         return fallback
     }
     
-    private func loadRemoteImage(at url: URL, targetPointSize: CGSize) -> UIImage? {
+    private func loadRemoteImage(at url: URL, targetPointSize: CGSize, scale: CGFloat) -> UIImage? {
         do {
             let data = try Data(contentsOf: url)
             if targetPointSize == .zero {
@@ -211,7 +213,7 @@ final class ImageStorageService {
             let cfData = data as CFData
             let options = [kCGImageSourceShouldCache: false] as CFDictionary
             guard let src = CGImageSourceCreateWithData(cfData, options) else { return UIImage(data: data) }
-            let maxDimension = max(targetPointSize.width, targetPointSize.height) * UIScreen.main.scale
+            let maxDimension = max(targetPointSize.width, targetPointSize.height) * scale
             let downsampleOptions = [
                 kCGImageSourceCreateThumbnailFromImageAlways: true,
                 kCGImageSourceShouldCacheImmediately: true,
@@ -230,7 +232,7 @@ final class ImageStorageService {
         }
     }
 
-    private func downsample(imageAt url: URL, to pointSize: CGSize, scale: CGFloat = UIScreen.main.scale) -> UIImage? {
+    private func downsample(imageAt url: URL, to pointSize: CGSize, scale: CGFloat) -> UIImage? {
         let imageSourceOptions = [kCGImageSourceShouldCache: false] as CFDictionary
         guard let src = CGImageSourceCreateWithURL(url as CFURL, imageSourceOptions) else { return nil }
         let maxDimensionInPixels = max(pointSize.width, pointSize.height) * scale

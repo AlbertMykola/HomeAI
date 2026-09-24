@@ -4,7 +4,10 @@ import Security
 final class FreeGenerationManager {
     static let shared = FreeGenerationManager()
     private let key = "generationCount"
-    private let maxCount = 1
+
+    private var maxCount: Int {
+        WorkerConfigService.shared.freeGenerationsLifetime
+    }
 
     private init() {}
 
@@ -46,7 +49,7 @@ final class FreeGenerationManager {
     // Для зовнішнього доступу
     var canGenerateForFree: Bool {
         // Якщо є підписка, дозволяємо генерацію без обмежень
-        if ApphudService.shared.hasActiveSubscription { return true }
+        if AdaptyService.shared.hasActiveSubscription { return true }
         return loadCount() < maxCount
     }
 
@@ -62,5 +65,10 @@ final class FreeGenerationManager {
     // Отримати поточну кількість генерацій
     var currentCount: Int {
         return loadCount()
+    }
+
+    var remainingFreeGenerations: Int {
+        if AdaptyService.shared.hasActiveSubscription { return 0 }
+        return max(0, maxCount - currentCount)
     }
 }

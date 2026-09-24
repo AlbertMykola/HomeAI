@@ -13,12 +13,14 @@ class PhotoTipsExampleCollectionCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        exampleImageView.contentMode = .scaleAspectFill
+        exampleImageView.clipsToBounds = true
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         imageService.cancel(on: exampleImageView)
-        exampleImageView.image = nil
+        exampleImageView.image = Constants.Images.previewPlaceholder
         representedIdentifier = nil
     }
     
@@ -36,7 +38,7 @@ class PhotoTipsExampleCollectionCell: UICollectionViewCell {
         let imagePath = "photo_tips/\(model.image).webp"
         representedIdentifier = imagePath
         
-        imageService.setImage(on: exampleImageView, path: imagePath, placeholder: nil) { [weak self] image in
+        imageService.setImage(on: exampleImageView, path: imagePath, placeholder: Constants.Images.previewPlaceholder) { [weak self] image in
             guard let self else { return }
             guard self.representedIdentifier == imagePath else { return }
         }

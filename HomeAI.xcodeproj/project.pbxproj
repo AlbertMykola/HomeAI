@@ -25,17 +25,31 @@
 		846000DF2E91394B00546BC9 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 846000DE2E91394B00546BC9 /* FirebaseStorage */; };
 		846000E12E91394B00546BC9 /* FirebaseStorageCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 846000E02E91394B00546BC9 /* FirebaseStorageCombine-Community */; };
 		84A6C1C42F17DECF00B5327D /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 84A6C1C32F17DECF00B5327D /* Lottie */; };
+		84AF7E032F4A6B1100AF0001 /* AppsFlyerLib-Static in Frameworks */ = {isa = PBXBuildFile; productRef = 84AF7E022F4A6B1100AF0001 /* AppsFlyerLib-Static */; };
 		84B6871B2F3354960076A343 /* FacebookAEM in Frameworks */ = {isa = PBXBuildFile; productRef = 84B6871A2F3354960076A343 /* FacebookAEM */; };
 		84B6871D2F3354960076A343 /* FacebookBasics in Frameworks */ = {isa = PBXBuildFile; productRef = 84B6871C2F3354960076A343 /* FacebookBasics */; };
 		84B6871F2F3354960076A343 /* FacebookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 84B6871E2F3354960076A343 /* FacebookCore */; };
 		84B687212F3354960076A343 /* FacebookLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 84B687202F3354960076A343 /* FacebookLogin */; };
-		84C476932E7C6B9400629A54 /* ApphudSDK in Frameworks */ = {isa = PBXBuildFile; productRef = 84C476922E7C6B9400629A54 /* ApphudSDK */; };
+		84C476932E7C6B9400629A54 /* Adapty in Frameworks */ = {isa = PBXBuildFile; productRef = 84C476922E7C6B9400629A54 /* Adapty */; };
+		84C8E0032F4C8A0100AF0001 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 84C8E0022F4C8A0100AF0001 /* Sentry */; };
 		84D2B4582E758A5100039C35 /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 84D2B4572E758A5100039C35 /* OpenAI */; };
+		AA00000C3000000000000001 /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = 8438E9C22EB25BAD00DF0127 /* GoogleGenerativeAI */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		AA0000073000000000000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84206B462E6EBA0100119340 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84206B4D2E6EBA0100119340;
+			remoteInfo = HomeAI;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		84206B4E2E6EBA0100119340 /* HomeAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846000C92E91369900546BC9 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		AA0000013000000000000001 /* HomeAITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeAITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -55,6 +69,11 @@
 				84206B602E6EBA0200119340 /* Exceptions for "HomeAI" folder in "HomeAI" target */,
 			);
 			path = HomeAI;
+			sourceTree = "<group>";
+		};
+		AA0000023000000000000001 /* HomeAITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = HomeAITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -78,7 +97,9 @@
 				846000DF2E91394B00546BC9 /* FirebaseStorage in Frameworks */,
 				846000D72E91394B00546BC9 /* FirebaseCrashlytics in Frameworks */,
 				846000E12E91394B00546BC9 /* FirebaseStorageCombine-Community in Frameworks */,
-				84C476932E7C6B9400629A54 /* ApphudSDK in Frameworks */,
+				84AF7E032F4A6B1100AF0001 /* AppsFlyerLib-Static in Frameworks */,
+				84C8E0032F4C8A0100AF0001 /* Sentry in Frameworks */,
+				84C476932E7C6B9400629A54 /* Adapty in Frameworks */,
 				8455E6972E9008C900878679 /* AmplitudeSwift in Frameworks */,
 				841810642EEB52800023C777 /* Supabase in Frameworks */,
 				84B6871B2F3354960076A343 /* FacebookAEM in Frameworks */,
@@ -91,6 +112,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AA0000033000000000000001 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA00000C3000000000000001 /* GoogleGenerativeAI in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -98,6 +127,7 @@
 			isa = PBXGroup;
 			children = (
 				84206B502E6EBA0100119340 /* HomeAI */,
+				AA0000023000000000000001 /* HomeAITests */,
 				846000C82E91369900546BC9 /* Frameworks */,
 				84206B4F2E6EBA0100119340 /* Products */,
 			);
@@ -107,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				84206B4E2E6EBA0100119340 /* HomeAI.app */,
+				AA0000013000000000000001 /* HomeAITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -129,7 +160,7 @@
 				84206B4A2E6EBA0100119340 /* Sources */,
 				84206B4B2E6EBA0100119340 /* Frameworks */,
 				84206B4C2E6EBA0100119340 /* Resources */,
-				846000C32E9111A100546BC9 /* ShellScript */,
+				846000C32E9111A100546BC9 /* Upload Crashlytics dSYMs */,
 			);
 			buildRules = (
 			);
@@ -141,7 +172,9 @@
 			name = HomeAI;
 			packageProductDependencies = (
 				84D2B4572E758A5100039C35 /* OpenAI */,
-				84C476922E7C6B9400629A54 /* ApphudSDK */,
+				84C476922E7C6B9400629A54 /* Adapty */,
+				84AF7E022F4A6B1100AF0001 /* AppsFlyerLib-Static */,
+				84C8E0022F4C8A0100AF0001 /* Sentry */,
 				8455E6932E8FEDAB00878679 /* Kingfisher */,
 				8455E6962E9008C900878679 /* AmplitudeSwift */,
 				846000CC2E91394B00546BC9 /* FirebaseAnalytics */,
@@ -168,6 +201,30 @@
 			productReference = 84206B4E2E6EBA0100119340 /* HomeAI.app */;
 			productType = "com.apple.product-type.application";
 		};
+		AA0000063000000000000001 /* HomeAITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AA00000B3000000000000001 /* Build configuration list for PBXNativeTarget "HomeAITests" */;
+			buildPhases = (
+				AA0000053000000000000001 /* Sources */,
+				AA0000033000000000000001 /* Frameworks */,
+				AA0000043000000000000001 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AA0000083000000000000001 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				AA0000023000000000000001 /* HomeAITests */,
+			);
+			name = HomeAITests;
+			packageProductDependencies = (
+				8438E9C22EB25BAD00DF0127 /* GoogleGenerativeAI */,
+			);
+			productName = HomeAITests;
+			productReference = AA0000013000000000000001 /* HomeAITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -180,6 +237,10 @@
 				TargetAttributes = {
 					84206B4D2E6EBA0100119340 = {
 						CreatedOnToolsVersion = 16.4;
+					};
+					AA0000063000000000000001 = {
+						CreatedOnToolsVersion = 26.0;
+						TestTargetID = 84206B4D2E6EBA0100119340;
 					};
 				};
 			};
@@ -208,7 +269,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				84D2B4562E758A5100039C35 /* XCRemoteSwiftPackageReference "OpenAI" */,
-				84C476912E7C6B9400629A54 /* XCRemoteSwiftPackageReference "ApphudSDK" */,
+				84C476912E7C6B9400629A54 /* XCRemoteSwiftPackageReference "AdaptySDK-iOS" */,
 				8455E6922E8FEDAB00878679 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				8455E6952E9008C900878679 /* XCRemoteSwiftPackageReference "Amplitude-Swift" */,
 				846000CB2E91394B00546BC9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
@@ -216,6 +277,8 @@
 				841810602EEB52800023C777 /* XCRemoteSwiftPackageReference "supabase-swift" */,
 				84A6C1C22F17DECF00B5327D /* XCRemoteSwiftPackageReference "lottie-spm" */,
 				84B687192F3354960076A343 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */,
+				84AF7E012F4A6B1100AF0001 /* XCRemoteSwiftPackageReference "AppsFlyerFramework-Static" */,
+				84C8E0012F4C8A0100AF0001 /* XCLocalSwiftPackageReference "Vendor/SentryCocoa" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 84206B4F2E6EBA0100119340 /* Products */;
@@ -223,6 +286,7 @@
 			projectRoot = "";
 			targets = (
 				84206B4D2E6EBA0100119340 /* HomeAI */,
+				AA0000063000000000000001 /* HomeAITests */,
 			);
 		};
 /* End PBXProject section */
@@ -235,28 +299,41 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AA0000043000000000000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		846000C32E9111A100546BC9 /* ShellScript */ = {
+		846000C32E9111A100546BC9 /* Upload Crashlytics dSYMs */ = {
 			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}",
-				"$(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}.debug.dylib",
+				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
 				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(INSTALL_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
+				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
 			);
+			name = "Upload Crashlytics dSYMs";
 			outputFileListPaths = (
 			);
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+			shellScript = "\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -268,7 +345,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AA0000053000000000000001 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		AA0000083000000000000001 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84206B4D2E6EBA0100119340 /* HomeAI */;
+			targetProxy = AA0000073000000000000001 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		84206B622E6EBA0200119340 /* Debug */ = {
@@ -277,10 +369,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = HomeAI/HomeAI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5998UF2M9Y;
+				ENABLE_DEBUG_DYLIB = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HomeAI/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ReHomely;
@@ -299,7 +393,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.13;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.albert.apps.design.ai;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -318,9 +416,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_ENTITLEMENTS = HomeAI/HomeAI.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5998UF2M9Y;
+				ENABLE_DEBUG_DYLIB = NO;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = HomeAI/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = ReHomely;
@@ -339,7 +440,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.0;
+				MARKETING_VERSION = 1.1.13;
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.albert.apps.design.ai;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
@@ -389,7 +494,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = 5998UF2M9Y;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
@@ -479,6 +584,42 @@
 			};
 			name = Release;
 		};
+		AA0000093000000000000001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5998UF2M9Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.albert.apps.design.ai.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HomeAI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HomeAI";
+			};
+			name = Debug;
+		};
+		AA00000A3000000000000001 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5998UF2M9Y;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.albert.apps.design.ai.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HomeAI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/HomeAI";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -500,7 +641,23 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		AA00000B3000000000000001 /* Build configuration list for PBXNativeTarget "HomeAITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AA0000093000000000000001 /* Debug */,
+				AA00000A3000000000000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		84C8E0012F4C8A0100AF0001 /* XCLocalSwiftPackageReference "Vendor/SentryCocoa" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Vendor/SentryCocoa;
+		};
+/* End XCLocalSwiftPackageReference section */
 
 /* Begin XCRemoteSwiftPackageReference section */
 		841810602EEB52800023C777 /* XCRemoteSwiftPackageReference "supabase-swift" */ = {
@@ -508,7 +665,7 @@
 			repositoryURL = "https://github.com/supabase/supabase-swift";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.5.1;
+				minimumVersion = 2.55.2;
 			};
 		};
 		8438E9C12EB25BAD00DF0127 /* XCRemoteSwiftPackageReference "generative-ai-swift" */ = {
@@ -524,15 +681,15 @@
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 8.5.0;
+				minimumVersion = 8.12.0;
 			};
 		};
 		8455E6952E9008C900878679 /* XCRemoteSwiftPackageReference "Amplitude-Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/amplitude/Amplitude-Swift.git";
 			requirement = {
-				branch = main;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.19.0;
 			};
 		};
 		846000CB2E91394B00546BC9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
@@ -540,7 +697,7 @@
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 12.3.0;
+				minimumVersion = 12.19.2;
 			};
 		};
 		84A6C1C22F17DECF00B5327D /* XCRemoteSwiftPackageReference "lottie-spm" */ = {
@@ -548,7 +705,15 @@
 			repositoryURL = "https://github.com/airbnb/lottie-spm.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.6.0;
+				minimumVersion = 4.6.1;
+			};
+		};
+		84AF7E012F4A6B1100AF0001 /* XCRemoteSwiftPackageReference "AppsFlyerFramework-Static" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppsFlyerSDK/AppsFlyerFramework-Static";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.2;
 			};
 		};
 		84B687192F3354960076A343 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */ = {
@@ -556,15 +721,15 @@
 			repositoryURL = "https://github.com/facebook/facebook-ios-sdk";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 18.0.1;
+				minimumVersion = 18.1.1;
 			};
 		};
-		84C476912E7C6B9400629A54 /* XCRemoteSwiftPackageReference "ApphudSDK" */ = {
+		84C476912E7C6B9400629A54 /* XCRemoteSwiftPackageReference "AdaptySDK-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/apphud/ApphudSDK";
+			repositoryURL = "https://github.com/adaptyteam/AdaptySDK-iOS.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 3.6.2;
+				minimumVersion = 4.1.3;
 			};
 		};
 		84D2B4562E758A5100039C35 /* XCRemoteSwiftPackageReference "OpenAI" */ = {
@@ -572,7 +737,7 @@
 			repositoryURL = "https://github.com/MacPaw/OpenAI.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.4.6;
+				minimumVersion = 0.5.1;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -663,6 +828,11 @@
 			package = 84A6C1C22F17DECF00B5327D /* XCRemoteSwiftPackageReference "lottie-spm" */;
 			productName = Lottie;
 		};
+		84AF7E022F4A6B1100AF0001 /* AppsFlyerLib-Static */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84AF7E012F4A6B1100AF0001 /* XCRemoteSwiftPackageReference "AppsFlyerFramework-Static" */;
+			productName = "AppsFlyerLib-Static";
+		};
 		84B6871A2F3354960076A343 /* FacebookAEM */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 84B687192F3354960076A343 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
@@ -683,10 +853,15 @@
 			package = 84B687192F3354960076A343 /* XCRemoteSwiftPackageReference "facebook-ios-sdk" */;
 			productName = FacebookLogin;
 		};
-		84C476922E7C6B9400629A54 /* ApphudSDK */ = {
+		84C476922E7C6B9400629A54 /* Adapty */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 84C476912E7C6B9400629A54 /* XCRemoteSwiftPackageReference "ApphudSDK" */;
-			productName = ApphudSDK;
+			package = 84C476912E7C6B9400629A54 /* XCRemoteSwiftPackageReference "AdaptySDK-iOS" */;
+			productName = Adapty;
+		};
+		84C8E0022F4C8A0100AF0001 /* Sentry */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84C8E0012F4C8A0100AF0001 /* XCLocalSwiftPackageReference "Vendor/SentryCocoa" */;
+			productName = Sentry;
 		};
 		84D2B4572E758A5100039C35 /* OpenAI */ = {
 			isa = XCSwiftPackageProductDependency;

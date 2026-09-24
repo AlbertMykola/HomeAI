@@ -1,5 +1,6 @@
 import UIKit
 import QuartzCore
+import ObjectiveC
 
 // MARK: - UIView Extensions
 public extension UIView {
@@ -129,10 +130,190 @@ public extension UIView {
         pulse.autoreverses = true
         pulse.repeatCount = .infinity
         pulse.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        self.layer.add(pulse, forKey: "pulse")
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
+            self?.layer.add(pulse, forKey: "pulse")
+        }
+    }
+
+    func stopPulseView() {
+        layer.removeAnimation(forKey: "pulse")
+    }
+
+    private static let shimmerLayerName = "PaywallShimmerLayer"
+    private static let highlightLayerName = "PaywallHighlightShimmerLayer"
+    private static var shimmerBackgroundColorKey: UInt8 = 0
+    private static var shimmerHighlightColorKey: UInt8 = 0
+    private static var shimmerOverlayKey: UInt8 = 0
+
+    private var paywallShimmerOverlay: UIView? {
+        get { objc_getAssociatedObject(self, &Self.shimmerOverlayKey) as? UIView }
+        set { objc_setAssociatedObject(self, &Self.shimmerOverlayKey, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
+    }
+
+    var isPaywallShimmering: Bool { paywallShimmerOverlay != nil }
+
+    /// Кольори skeleton для paywall (темний / світлий фон).
+    static func paywallSkeletonShimmerColors(for traitCollection: UITraitCollection) -> (
+        background: UIColor,
+        highlight: UIColor
+    ) {
+        if traitCollection.userInterfaceStyle == .dark {
+            return (
+                UIColor(white: 1, alpha: 0.14),
+                UIColor(white: 1, alpha: 0.38)
+            )
+        }
+        return (
+            UIColor(white: 0.82, alpha: 1),
+            UIColor(white: 1, alpha: 0.75)
+        )
+    }
+
+    /// Skeleton shimmer (поки підвантажуються продукти).
+    func startShimmer(
+        highlightColor: UIColor = UIColor.white.withAlphaComponent(0.45),
+        backgroundColor: UIColor = UIColor(white: 0.88, alpha: 1)
+    ) {
+        stopShimmer()
+
+        let overlay = UIView()
+        overlay.isUserInteractionEnabled = false
+        overlay.translatesAutoresizingMaskIntoConstraints = false
+        overlay.clipsToBounds = true
+        overlay.backgroundColor = backgroundColor
+        overlay.layer.cornerRadius = layer.cornerRadius
+        overlay.layer.cornerCurve = .continuous
+        addSubview(overlay)
+        NSLayoutConstraint.activate([
+            overlay.leadingAnchor.constraint(equalTo: leadingAnchor),
+            overlay.trailingAnchor.constraint(equalTo: trailingAnchor),
+            overlay.topAnchor.constraint(equalTo: topAnchor),
+            overlay.bottomAnchor.constraint(equalTo: bottomAnchor)
+        ])
+        paywallShimmerOverlay = overlay
+        objc_setAssociatedObject(self, &Self.shimmerBackgroundColorKey, backgroundColor, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        objc_setAssociatedObject(self, &Self.shimmerHighlightColorKey, highlightColor, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        layoutIfNeeded()
+        addSweepGradient(
+            to: overlay,
+            named: Self.shimmerLayerName,
+            highlightColor: highlightColor,
+            duration: 1.15
+        )
+    }
+
+    func stopShimmer() {
+        paywallShimmerOverlay?.removeFromSuperview()
+        paywallShimmerOverlay = nil
+        objc_setAssociatedObject(self, &Self.shimmerBackgroundColorKey, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        objc_setAssociatedObject(self, &Self.shimmerHighlightColorKey, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
+
+    func updateShimmerFrame() {
+        guard let overlay = paywallShimmerOverlay else { return }
+        overlay.layer.cornerRadius = layer.cornerRadius
+        overlay.layoutIfNeeded()
+        let highlightColor = (objc_getAssociatedObject(self, &Self.shimmerHighlightColorKey) as? UIColor)
+            ?? UIColor.white.withAlphaComponent(0.38)
+        addSweepGradient(
+            to: overlay,
+            named: Self.shimmerLayerName,
+            highlightColor: highlightColor,
+            duration: 1.15
+        )
+    }
+
+    /// М’який shine поверх кнопки: не ховає текст і крутиться постійно.
+    func startHighlightShimmer(highlightColor: UIColor = UIColor.white.withAlphaComponent(0.55)) {
+        stopHighlightShimmer()
+        clipsToBounds = true
+        addSweepGradient(
+            to: self,
+            named: Self.highlightLayerName,
+            highlightColor: highlightColor,
+            duration: 2.1,
+            insertAtZero: true,
+            diagonal: true
+        )
+    }
+
+    func stopHighlightShimmer() {
+        layer.sublayers?
+            .filter { $0.name == Self.highlightLayerName }
+            .forEach { $0.removeFromSuperlayer() }
+    }
+
+    func updateHighlightShimmerFrame() {
+        guard bounds.width > 1, bounds.height > 1 else { return }
+        addSweepGradient(
+            to: self,
+            named: Self.highlightLayerName,
+            highlightColor: UIColor.white.withAlphaComponent(0.55),
+            duration: 2.1,
+            insertAtZero: true,
+            diagonal: true
+        )
+    }
+
+    private func addSweepGradient(
+        to host: UIView,
+        named name: String,
+        highlightColor: UIColor,
+        duration: TimeInterval,
+        insertAtZero: Bool = false,
+        diagonal: Bool = false
+    ) {
+        let bounds = host.bounds
+        guard bounds.width > 1, bounds.height > 1 else { return }
+
+        if UIAccessibility.isReduceMotionEnabled {
+            host.layer.sublayers?.filter { $0.name == name }.forEach { $0.removeFromSuperlayer() }
+            return
+        }
+
+        let existing = host.layer.sublayers?.first(where: { $0.name == name }) as? CAGradientLayer
+        let gradient = existing ?? CAGradientLayer()
+        gradient.name = name
+        let newFrame = CGRect(x: -bounds.width, y: 0, width: bounds.width * 3, height: bounds.height)
+        let needsLayout = existing == nil
+            || abs(gradient.frame.width - newFrame.width) > 1
+            || abs(gradient.frame.height - newFrame.height) > 1
+        guard needsLayout else { return }
+
+        gradient.frame = newFrame
+        gradient.colors = [
+            UIColor.clear.cgColor,
+            highlightColor.withAlphaComponent(0.12).cgColor,
+            highlightColor.cgColor,
+            highlightColor.withAlphaComponent(0.12).cgColor,
+            UIColor.clear.cgColor
+        ]
+        gradient.locations = [0.25, 0.44, 0.5, 0.56, 0.75]
+        if diagonal {
+            gradient.startPoint = CGPoint(x: 0, y: 0.15)
+            gradient.endPoint = CGPoint(x: 1, y: 0.85)
+        } else {
+            gradient.startPoint = CGPoint(x: 0, y: 0.5)
+            gradient.endPoint = CGPoint(x: 1, y: 0.5)
+        }
+        gradient.removeAnimation(forKey: "shimmer")
+        let animation = CABasicAnimation(keyPath: "transform.translation.x")
+        animation.fromValue = -bounds.width
+        animation.toValue = bounds.width
+        animation.duration = duration
+        animation.repeatCount = .infinity
+        animation.timingFunction = CAMediaTimingFunction(name: .easeInEaseOut)
+        gradient.add(animation, forKey: "shimmer")
+
+        if gradient.superlayer == nil {
+            if insertAtZero {
+                host.layer.insertSublayer(gradient, at: 0)
+            } else {
+                host.layer.addSublayer(gradient)
+            }
+        }
     }
 }
-
 
 public extension UIView {
 
@@ -186,9 +367,15 @@ public extension UIView {
         }
     }
 
-    // Викликати з layoutSubviews()/viewDidLayoutSubviews
-    func updateGradientFrame() {
-        ppxGradientLayer?.frame = bounds
+    /// Оновити розмір градієнта під поточні `bounds` (після layout).
+    /// Якщо задано `cornerRadius`, шар підганяється під заокруглення батька (капсула картки тощо).
+    func updateGradientFrame(cornerRadius: CGFloat? = nil) {
+        guard let g = ppxGradientLayer else { return }
+        g.frame = bounds
+        if let r = cornerRadius {
+            g.cornerRadius = r
+            g.masksToBounds = true
+        }
     }
 
     // Перетворення кута у start/end у unit‑просторі
@@ -259,7 +446,8 @@ extension UIView {
         let base = generic.components(separatedBy: "<").first ?? generic
         let bundle = Bundle(for: T.self)
         guard let view = bundle.loadNibNamed(base, owner: nil, options: nil)?.first as? T else {
-            fatalError("Missing nib \(base)")
+            assertionFailure("Missing nib \(base)")
+            return T(frame: .zero)
         }
         return view
     }

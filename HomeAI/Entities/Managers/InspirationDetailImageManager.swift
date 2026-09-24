@@ -10,7 +10,7 @@ final class InspirationDetailImageManager {
     }
 
     func saveToGallery(image: UIImage, storagePath: String?, from viewController: UIViewController) {
-        guard ApphudService.shared.hasActiveSubscription else {
+        guard AdaptyService.shared.hasActiveSubscription else {
             NavigationManager.shared.showPremium(placement: Constants.Keys.saveImagePlacement)
             return
         }
@@ -37,7 +37,7 @@ final class InspirationDetailImageManager {
     }
 
     func share(image: UIImage, from viewController: UIViewController) {
-        guard ApphudService.shared.hasActiveSubscription else {
+        guard AdaptyService.shared.hasActiveSubscription else {
             NavigationManager.shared.showPremium(placement: Constants.Keys.shareImagePlacement)
             return
         }

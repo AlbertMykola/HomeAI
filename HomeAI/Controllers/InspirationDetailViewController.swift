@@ -72,7 +72,10 @@ final class InspirationDetailViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        feedbackManager.showRateAlertIfNeeded(in: self)
+        feedbackManager.showSystemReviewIfNeeded(
+            in: self,
+            isGeneratedResult: data?.canRegenerate == true
+        )
     }
     
     override func viewDidLayoutSubviews() {
@@ -414,12 +417,13 @@ extension InspirationDetailViewController: UICollectionViewDataSource, UICollect
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "EditorActionCollectionCell", for: indexPath) as? EditorActionCollectionCell else {
             return UICollectionViewCell()
         }
-        cell.configure(action: visibleEditorActions[indexPath.item])
+        guard let action = visibleEditorActions[safe: indexPath.item] else { return cell }
+        cell.configure(action: action)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let action = visibleEditorActions[indexPath.row]
+        guard let action = visibleEditorActions[safe: indexPath.item] else { return }
         editorRouter.route(
             action: action,
             currentImage: afterImage ?? insirationImageView.image,

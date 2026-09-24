@@ -18,6 +18,25 @@ public enum GeologicaWeight: String {
     case black = "Black"
 }
 
+// MARK: - App typography
+
+/// Готові стилі тексту: Geologica + базовий pt з макету (висота 852), масштаб через `scaledByHeight`.
+public enum AppTypography {
+    /// Заголовок секції (напр. «Smart tools»).
+    case sectionHeaderTitle
+    /// Другорядне посилання в шапці секції (напр. «See all»).
+    case sectionHeaderLink
+
+    public var font: UIFont {
+        switch self {
+        case .sectionHeaderTitle:
+            UIFont.geologica(.standard(.medium), size: CGFloat(18).scaledByHeight())
+        case .sectionHeaderLink:
+            UIFont.geologica(.standard(.medium), size: CGFloat(15).scaledByHeight())
+        }
+    }
+}
+
 public extension UIFont {
 
     static func geologica(_ family: GeologicaFamily, size: CGFloat, textStyle: UIFont.TextStyle? = nil, maximumPointSize: CGFloat? = nil) -> UIFont {

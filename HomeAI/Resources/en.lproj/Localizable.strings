@@ -1,6 +1,46 @@
-// OB
-"WELCOME TO THE WORLD OF CREATIVITY!" = "WELCOME TO THE WORLD OF CREATIVITY!";
-"Discover ideas and create your dream home in minutes." = "Discover ideas and create your dream home in minutes.";
+// OB — Onboarding
+"ob_welcome_headline" = "Redesign your space";
+"ob_welcome_description" = "Transform any room with AI";
+"ob_welcome_get_started" = "Get Started";
+"ob_welcome_trusted_users" = "Trusted users";
+"ob_welcome_average_rating" = "Average Rating";
+
+"ob_design_headline" = "Reimagine Your Home";
+"ob_design_description" = "Instantly redesign your space with new styles, colors, and furniture.";
+"ob_feature_new_walls" = "New Walls";
+"ob_feature_replace_object" = "Replace Object";
+"ob_feature_delete_object" = "Delete Object";
+"ob_feature_new_color" = "New Color";
+"ob_feature_new_style" = "New Style";
+"ob_feature_new_floor" = "New Floor";
+
+"ob_exterior_headline" = "Transform your exterior";
+"ob_exterior_description" = "Imagine it differently";
+
+"ob_garden_headline" = "Bring your garden to life";
+"ob_garden_description" = "Create your perfect outdoor space";
+
+"ob_change_headline" = "Change anything";
+"ob_change_description" = "Remove. Replace. Reimagine.";
+
+"ob_rate_headline_format" = "Your dream home looks %@";
+"ob_rate_headline_highlight" = "AMAZING";
+"ob_rate_description" = "Rate us to unlock more styles and features and help improve ReHomely for you";
+"ob_rate_unlock_title" = "Unlock";
+"ob_rate_unlock_subtitle" = "premium styles";
+"ob_rate_bonus_title" = "Get bonus";
+"ob_rate_bonus_subtitle" = "design";
+"ob_rate_help_title" = "Help us build";
+"ob_rate_help_subtitle" = "better for you";
+
+"ob_continue" = "Continue";
+
+// OB — legacy keys (інші екрани / старі рядки)
+"Transform Your Facade" = "Transform Your Facade";
+"Your dream home looks %@" = "Your dream home looks %@";
+"AMAZING" = "AMAZING";
+"Rate us to unlock more styles and features and help improve ReHomely for you" = "Rate us to unlock more styles and features and help improve ReHomely for you";
+"Instantly visualize a new look for your house exterior." = "Instantly visualize a new look for your house exterior.";
 "Next" = "Next";
 "INSPIRE.DESIGN.TRANSFORM" = "INSPIRE.DESIGN.TRANSFORM";
 "Explore a world of stunning interior and exterior ideas, and bring them into your own designs." = "Explore a world of stunning interior and exterior ideas, and bring them into your own designs.";
@@ -9,27 +49,46 @@
 "Get Started" = "Get Started";
 
 // Home
+"Smart tools" = "Smart tools";
+"See all" = "See all";
+"Chat with AI-Assistant" = "Chat with AI-Assistant";
+"Get personalized renovation advice and inspiration" = "Get personalized renovation advice and inspiration";
 "Interior Design" = "Interior Design";
-"Transform your space — snap a room and let AI do the rest." = "Transform your space — snap a room and let AI do the rest.";
 "Exterior Design" = "Exterior Design";
-"Upload a photo of your home, choose your style and let AI redesign your facade!" = "Upload a photo of your home, choose your style and let AI redesign your facade!";
 "Garden Design" = "Garden Design";
-"Take a photo, and let AI reveal your garden's full potential." = "Take a photo, and let AI reveal your garden's full potential.";
 "Reference Style" = "Reference Style";
-"Bring your ideas to life — select a reference style and discover a new vibe with AI." = "Bring your ideas to life — select a reference style and discover a new vibe with AI.";
 "Replace Objects" = "Replace Objects";
-"Choose an object and let AI replace it instantly." = "Choose an object and let AI replace it instantly.";
-
 "Replace Object" = "Replace Object";
-"Replace objects in your photo with AI-powered precision." = "Replace objects in your photo with AI-powered precision.";
 "New Flooring" = "New Flooring";
-"Choose an object and let AI replace it instantly." = "Choose an object and let AI replace it instantly.";
 "New Walls" = "New Walls";
-"Try new flooring in seconds. AI instantly detects and replaces your floor." = "Try new flooring in seconds. AI instantly detects and replaces your floor.";
-"Reimagine your walls with AI. Instantly preview colors, textures, and finishes in your space." = "Reimagine your walls with AI. Instantly preview colors, textures, and finishes in your space.";
+"Change your indoor space" = "Change your indoor space";
+"Transform the look of your home" = "Transform the look of your home";
+"Restyle your outdoor space" = "Restyle your outdoor space";
+"Match any styles" = "Match any styles";
+"Swap furniture instantly" = "Swap furniture instantly";
+"Try new floor styles" = "Try new floor styles";
+"Repaint your walls" = "Repaint your walls";
+"Remove Objects" = "Remove Objects";
+"Remove unwanted items" = "Remove unwanted items";
+"Rearrange Furniture" = "Rearrange Furniture";
+"Optimize your layout" = "Optimize your layout";
+"Furnish Room" = "Furnish Room";
+"Fill empty spaces" = "Fill empty spaces";
+"Floor Plan" = "Floor Plan";
+"Turn plans into 3D" = "Turn plans into 3D";
+" " = " ";
+"Upload a photo of your current layout" = "Upload a photo of your current layout";
+"Upload a photo of your empty room" = "Upload a photo of your empty room";
+"Upload a photo of your floor plan" = "Upload a photo of your floor plan";
+"Rearrange Only" = "Rearrange Only";
+"New layout with same furniture" = "New layout with same furniture";
+"Rearrange & Refresh" = "Rearrange & Refresh";
+"New layout with small furniture change" = "New layout with small furniture change";
+"Rearrange" = "Rearrange";
 
 //Page
 "Generate" = "Generate";
+"Remove" = "Remove";
 "Delete Objects" = "Delete Objects";
 "Select an object and let AI remove it instantly." = "Select an object and let AI remove it instantly.";
 
@@ -83,6 +142,9 @@
 
 // Room
 "Choose Room" = "Choose Room";
+"All" = "All";
+"Exterior" = "Exterior";
+"Garden" = "Garden";
 "Kitchen" = "Kitchen";
 "Bedroom" = "Bedroom";
 "Bathroom" = "Bathroom";
@@ -178,6 +240,15 @@
 "Color" = "Color";
 "Style" = "Style";
 "LIKE THE APP?" = "LIKE THE APP?";
+"like_alert_title_prefix" = "Do you like";
+"like_alert_description" = "Your feedback helps us improve and create even better designs for you.";
+"generations_left_alert_title_format" = "You have %@ tries left";
+"generations_left_alert_subtitle" = "Keep creating without limits with PRO.";
+"generations_left_alert_feature_unlimited" = "Unlimited generations";
+"generations_left_alert_feature_quality" = "Higher image quality";
+"generations_left_alert_feature_faster" = "Faster result";
+"generations_left_alert_get_pro" = "GET PRO";
+"generations_left_alert_maybe_later" = "Maybe Later";
 "Enjoy creating beautiful spaces? Share your feedback and help us make home redesign better for you" = "Enjoy creating beautiful spaces? Share your feedback and help us make home redesign better for you";
 "YES, RATE!" = "YES, RATE!";
 "No, thanks" = "No, thanks";
@@ -185,6 +256,7 @@
 "Would you like to tell us what you didn't like?" = "Would you like to tell us what you didn't like?";
 "Share feedback" = "Share feedback";
 "Delete Object" = "Delete Object";
+"Brush Size" = "Brush Size";
 "Replace Object" = "Replace Object";
 "New Floor" = "New Floor";
 "New Style" = "New Style";
@@ -192,6 +264,8 @@
 "" = "";
 
 //Paywall
+"Go Premium Design Without Limits" = "Go Premium\nDesign Without Limits";
+"Premium" = "Premium";
 "Unlock Unlimited Access" = "Unlock Unlimited Access";
 "Unlimited interior, exterior, and garden transformations. All styles, custom presets, and high‑quality exports" = "Unlimited interior, exterior, and garden transformations. All styles, custom presets, and high‑quality exports";
 "Enable Free Trial" = "Enable Free Trial";
@@ -202,7 +276,39 @@
 "Not now" = "Not now";
 "No payment due now" = "No payment due now";
 "Try Free 3 days" = "Try Free 3 days";
+"Try Free trial" = "Try Free trial";
+"3 days trial" = "3 days trial";
+"%d days trial" = "%d days trial";
+"Best Value" = "Best Value";
+"week" = "week";
+"/year" = "/year";
+"/month" = "/month";
+"/week" = "/week";
+"Monthly Access" = "Monthly Access";
+"YEARLY" = "YEARLY";
+"MONTHLY" = "MONTHLY";
+"WEEKLY" = "WEEKLY";
 "Cancel Anytime" = "Cancel Anytime";
+"No paying now" = "No paying now";
+"Not commitment. Cancel anytime" = "Not commitment. Cancel anytime";
+"Not interested?" = "Not interested?";
+"Go with Basic" = "Go with Basic";
+"Trusted users" = "Trusted users";
+"Avarage Rating" = "Average Rating";
+"Terms" = "Terms";
+"Privacy" = "Privacy";
+"Restore" = "Restore";
+"100.000+" = "100.000+";
+"Unlimited Redesigns" = "Unlimited Redesigns";
+"All Premium Styles" = "All Premium Styles";
+"Ultra Fast Rendering" = "Ultra Fast Rendering";
+"Design Every Corner" = "Design Every Corner";
+"Redesign as much as you want " = "Redesign as much as you want";
+"Access to every styles and materials" = "Access to every style and material";
+"Get stunning results in seconds" = "Get stunning results in seconds";
+"Enjoy without any interruptions" = "Enjoy without any interruptions";
+"Paywall placement not found" = "Paywall placement not found";
+"Paywall requires at least two products" = "Paywall requires at least two products";
 
 //Settings
 "Notification" = "Notification";
@@ -219,6 +325,10 @@
 "Photograph the building in daylight.\nRemove cars, people, trash bins, and other distractions from the scene.\nPreserve natural and realistic colors.\nUpload images in high resolution and sharp focus." = "Photograph the building in daylight.\nRemove cars, people, trash bins, and other distractions from the scene.\nPreserve natural and realistic colors.\nUpload images in high resolution and sharp focus.";
 "Use natural daylight and avoid harsh sunlight or deep shadows.\nKeep the garden clean and well-maintained, without tools or temporary objects.\nShow the overall layout clearly, including paths, plants, and open areas.\nEnsure sharp focus, accurate colors, and a straight horizon." = "Use natural daylight and avoid harsh sunlight or deep shadows.\nKeep the garden clean and well-maintained, without tools or temporary objects.\nShow the overall layout clearly, including paths, plants, and open areas.\nEnsure sharp focus, accurate colors, and a straight horizon.";
 
+"Blurred" = "Blurred";
+"Cropped" = "Cropped";
+"Clean lines" = "Clean lines";
+"Full plan" = "Full plan";
 "Too Close" = "Too Close";
 "Too Dark" = "Too Dark";
 "Too Mess" = "Too Mess";
@@ -233,6 +343,9 @@
 "Clear view" = "Clear view";
 "Good focus" = "Good focus";
 "View at eye level" = "View at eye level";
+"Clear layout" = "Clear layout";
+"Good quality" = "Good quality";
+"Full 2D floor plan with every room clearly visible.\nSharp, high-quality image with clean lines.\nSimple layout without extra notes or markings.\nAvoid blurry, cropped, or low-resolution plans." = "Full 2D floor plan with every room clearly visible.\nSharp, high-quality image with clean lines.\nSimple layout without extra notes or markings.\nAvoid blurry, cropped, or low-resolution plans.";
 "Info" = "Info";
 "Tips" = "Tips";
 "Bad Example:" = "Bad Example:";
@@ -301,6 +414,7 @@
 
 // Daily generation limit
 "Daily limit reached" = "Daily limit reached";
+"daily_limit_reached_message" = "You've used all %d image generations for today. Please try again tomorrow.";
 "You've used all 15 image generations for today. Please try again tomorrow." = "You've used all 15 image generations for today. Please try again tomorrow.";
 "" = "";
 "" = "";
@@ -313,3 +427,111 @@
 "" = "";
 "" = "";
 "" = "";
+"Meet Your AI Experts:" = "Meet Your AI Experts:";
+"AI Renovation Assistant" = "AI Renovation Assistant";
+"I'm Here to transform space  and bring your ideas to life" = "I'm Here to transform space  and bring your ideas to life";
+"Interior Designer" = "Interior Designer";
+"Budget Estimator" = "Budget Estimator";
+"Exterior Expert" = "Exterior Expert";
+"Material Guide" = "Material Guide";
+"assistant_chat_badge_caption" = "AI Expert";
+"assistant_short_desc_interior_designer" = "Design beautiful interiors";
+"assistant_short_desc_budget_estimator" = "Plan smart and stay on budget";
+"assistant_short_desc_exterior_expert" = "Enhance your home's exteriors with confidence";
+"assistant_short_desc_material_guide" = "Find the best materials for your project";
+"What flooring is best for a high-traffic area?" = "What flooring is best for a high-traffic area?";
+"assistant_chat_bio_interior_designer" = "Layout, styles, furniture ideas — tailored to your space.";
+"assistant_chat_bio_budget_estimator" = "Rough cost ranges and where to save without sacrificing quality.";
+"assistant_chat_bio_exterior_expert" = "Facades, curb appeal, outdoor finishes — realistic upgrades.";
+"assistant_chat_bio_material_guide" = "Flooring, paint, finishes — what works where and why.";
+"assistant_chat_greeting_interior_designer" = "Hi! I'm Monica. Tell me about the room — size, what bothers you, what feeling you want, and I'll suggest a layout, palette and a few quick wins.";
+"assistant_chat_greeting_budget_estimator" = "Hi, I'm Olivia. Describe the renovation you're planning (rooms, scope, finish level) and I'll give you a rough budget range and where to save.";
+"assistant_chat_greeting_exterior_expert" = "Hey! I'm Jacob. Tell me about your house — style, problem areas, the vibe you want — and I'll suggest exterior changes that actually move the needle.";
+"assistant_chat_greeting_material_guide" = "Hi, I'm Martin. Tell me what surface you're choosing materials for and how you'll use it, and I'll narrow it down to a few smart options.";
+"chat_input_placeholder" = "Ask anything…";
+"chat_error_generic" = "Sorry, I couldn't reach the server. Please try again in a moment.";
+"assistant_suggest_interior_1" = "What colors will make my living room look bigger?";
+"assistant_suggest_interior_2" = "How can I improve the lighting in my living room?";
+"assistant_suggest_interior_3" = "Show me modern living room ideas";
+"assistant_suggest_interior_4" = "How can I make my living room more cozy?";
+"assistant_suggest_budget_1" = "How can I save money on renovation?";
+"assistant_suggest_budget_2" = "Estimate the cost of a kitchen remodel";
+"assistant_suggest_budget_3" = "Budget-friendly ideas for my home";
+"assistant_suggest_budget_4" = "Where should I spend more vs save?";
+"assistant_suggest_exterior_1" = "Best exterior colors for my home?";
+"assistant_suggest_exterior_2" = "Make my house exterior look more expensive";
+"assistant_suggest_exterior_3" = "What exterior style fits my house best?";
+"assistant_suggest_exterior_4" = "Suggest front yard landscaping ideas";
+"assistant_suggest_material_1" = "Durable materials for a family home?";
+"assistant_suggest_material_2" = "Best wall materials for a luxury look?";
+"assistant_suggest_material_3" = "How do I mix different textures correctly?";
+"assistant_suggest_material_4" = "What material works best for kitchen cabinets?";
+
+// Profile
+"No design yet" = "No design yet";
+"Start transform your space" = "Start transform your space";
+"Options" = "Options";
+"Inspiration" = "Inspiration";
+"Profile" = "Profile";
+"Settings" = "Settings";
+"Delete design?" = "Delete design?";
+"This action will permanently remove the image from your history." = "This action will permanently remove the image from your history.";
+"Delete" = "Delete";
+"Unable to delete" = "Unable to delete";
+"Start creating" = "Start creating";
+
+// Dark cinematic paywall
+"Get Premium Access" = "Get Premium Access";
+"Unlimited AI Renders" = "Unlimited AI Renders";
+"No Pay Now" = "No Pay Now";
+"Before" = "Before";
+"After" = "After";
+"Cancel anytime" = "Cancel anytime";
+"annually" = "annually";
+"monthly" = "monthly";
+"weekly" = "weekly";
+"%@ billed %@" = "%@ billed %@";
+"%d%% OFF" = "%d%% OFF";
+
+// Local re-engagement pushes (free users)
+"local_push_1_title" = "There's a mistake hiding here... 🔍";
+"local_push_1_body" = "Designers would spot it instantly. Check your room photo in one tap.";
+"local_push_2_title" = "Do you see it too? 🤨";
+"local_push_2_body" = "Your room could look twice as spacious. See what to remove.";
+"local_push_3_title" = "Don't buy new furniture 🚫";
+"local_push_3_body" = "You only need a new layout. Open and see how to refresh the space for $0.";
+"local_push_4_title" = "If this were a 5-star hotel... 🍸";
+"local_push_4_body" = "AI turned your bedroom into a luxury suite. Take a look at the result.";
+"local_push_5_title" = "Everyone makes this lighting mistake 💡";
+"local_push_5_body" = "Your interior is losing its coziness because of one detail. Take a photo and check.";
+"local_push_6_title" = "Your room in 3 years ⏳";
+"local_push_6_body" = "Trends change. See which interior style will suit your home next.";
+"local_push_7_title" = "What will AI say? 🤖";
+"local_push_7_body" = "Upload a photo of any room — the result will surprise you.";
+"local_push_8_title" = "You'll love this look 🔥";
+"local_push_8_body" = "We picked a style that will completely change how your space feels. Open it!";
+"local_push_9_title" = "The secret of the perfect angle 📸";
+"local_push_9_body" = "One corner of your home could become an Instagram star. Find it right now.";
+"local_push_10_title" = "Looks like you forgot this wall 🖼️";
+"local_push_10_body" = "Empty space is hurting the overall look. See how to fill it.";
+"local_push_11_title" = "This room is asking for a change 👀";
+"local_push_11_body" = "Snap any corner and AI will show how to make it wow in 5 seconds.";
+"local_push_12_title" = "Something's off... 🤔";
+"local_push_12_body" = "Maybe the sofa is in the wrong place? Upload a room photo and check rearrangement ideas.";
+"local_push_13_title" = "The cozy-home secret is out ✨";
+"local_push_13_body" = "Add just one detail to refresh the living room. See what AI suggests.";
+"local_push_14_title" = "How would your room look in Paris? 🥐";
+"local_push_14_body" = "Try French chic on your interior right now.";
+"local_push_15_title" = "Your home deserves an upgrade 🪴";
+"local_push_15_body" = "1 photo = 5 fresh styles. See which one fits best.";
+"See your room in a new style" = "See your room in a new style";
+"Create the next design for your space" = "Create the next design for your space";
+"Keep the design you love" = "Keep the design you love";
+"Make your design feel just right" = "Make your design feel just right";
+"Preparing your design" = "Preparing your design";
+"Creating your design" = "Creating your design";
+"Saving your design" = "Saving your design";
+"Keep the app open while we create it." = "Keep the app open while we create it.";
+"This is taking longer than usual. Your design is still in progress." = "This is taking longer than usual. Your design is still in progress.";
+"Couldn't create your design" = "Couldn't create your design";
+"Your photo and choices are saved. Try again." = "Your photo and choices are saved. Try again.";

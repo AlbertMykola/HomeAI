@@ -11,7 +11,6 @@ final class SettingsTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        selectionStyle = .default
         onSwitch.addTarget(self, action: #selector(handleSwitch(_:)), for: .valueChanged)
         iconImageView.tintColor = .label
         chevronImageView.tintColor = .tertiaryLabel

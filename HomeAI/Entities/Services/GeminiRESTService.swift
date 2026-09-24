@@ -1,91 +1,301 @@
 import UIKit
 import GoogleGenerativeAI
 
-// ... (GeminiServiceError залишається без змін) ...
+enum GeminiServiceError: ImageGenerationFailure {
+    case invalidURL
+    case requestFailed(Error)
+    case httpError(statusCode: Int, message: String)
+    case payloadTooLarge(maxBytes: Int)
+    case noImageInResponse
+    case responseDecodingFailed
+    case imageDecodingFailed
+    case partConversionFailed
 
-final class GeminiRESTService {
-    
-    // ❌ ВИДАЛЕНО: private let apiKey: String
-    
-    // ✅ ОНОВЛЕНО: Тепер ми звертаємось до нашого власного проксі-сервера
-    private let proxyURL = Constants.API.gemini // 👈 ЗАМІНІТЬ ЦЕ
-    
-    init() {
-        // ❌ ВИДАЛЕНО: self.apiKey = apiKey
+    var category: String {
+        switch self {
+        case .invalidURL: "invalid_url"
+        case .requestFailed(let error):
+            (error as? URLError)?.code == .timedOut ? "timeout" : "network"
+        case .httpError(let statusCode, _):
+            switch statusCode {
+            case 413: "payload_too_large"
+            case 429: "rate_limited"
+            case 500...599: "server"
+            default: "http"
+            }
+        case .payloadTooLarge: "payload_too_large"
+        case .noImageInResponse: "no_image"
+        case .responseDecodingFailed, .imageDecodingFailed: "decoding"
+        case .partConversionFailed: "request_encoding"
+        }
+    }
+
+    var statusCode: Int? {
+        if case .httpError(let statusCode, _) = self { return statusCode }
+        return nil
+    }
+
+    var isRetryable: Bool {
+        switch self {
+        case .requestFailed(let error):
+            guard let urlError = error as? URLError else { return false }
+            return urlError.code == .timedOut
+        case .httpError(let statusCode, _):
+            return [429, 502, 503, 504].contains(statusCode)
+        default:
+            return false
+        }
+    }
+
+    var errorDescription: String? {
+        switch self {
+        case .invalidURL, .partConversionFailed:
+            return "The generation request could not be prepared. Please try again.".localized
+        case .requestFailed(let error):
+            if (error as? URLError)?.code == .timedOut {
+                return "Generation is taking longer than expected. Please try again.".localized
+            }
+            return "Please check your internet connection and try again.".localized
+        case .httpError(let statusCode, _):
+            if statusCode == 413 {
+                return "The selected image is too large. Please choose a smaller image.".localized
+            }
+            if statusCode == 429 {
+                return "The generation service is busy. Please try again shortly.".localized
+            }
+            return "The generation service is temporarily unavailable. Please try again.".localized
+        case .payloadTooLarge:
+            return "The selected image is too large. Please choose a smaller image.".localized
+        case .noImageInResponse:
+            return "No image was generated. Please adjust your request and try again.".localized
+        case .responseDecodingFailed, .imageDecodingFailed:
+            return "The generated image could not be opened. Please try again.".localized
+        }
+    }
+}
+
+private enum GeminiGenerationPreset {
+    case precise
+    case redesign
+    case creative
+
+    init(option: DesignOption) {
+        switch option {
+        case .replace, .delete, .reference, .newFlooring, .newWalls, .floolPlan:
+            self = .precise
+        case .interior, .exterior, .garden, .furnish:
+            self = .redesign
+        case .rearrange:
+            self = .creative
+        }
+    }
+
+    var temperature: Double {
+        switch self {
+        case .precise: 0.2
+        case .redesign: 0.45
+        case .creative: 0.6
+        }
+    }
+
+    var topP: Double {
+        switch self {
+        case .precise: 0.8
+        case .redesign, .creative: 0.9
+        }
+    }
+}
+
+final class GeminiRESTService: ImageGenerationService {
+
+    private let proxyURL: String
+    private let session: URLSession
+    private let retryDelay: (UInt64) async throws -> Void
+    private let resultProvider: ImageGenerationProvider
+    private let modelResolver: (DesignOption) -> String
+
+    var provider: ImageGenerationProvider { resultProvider }
+
+    func model(for option: DesignOption) -> String {
+        modelResolver(option)
+    }
+
+    init(
+        session: URLSession? = nil,
+        proxyURL: String = Constants.API.gemini,
+        resultProvider: ImageGenerationProvider = .gemini,
+        modelResolver: @escaping (DesignOption) -> String = { _ in Constants.Generation.modelID },
+        retryDelay: @escaping (UInt64) async throws -> Void = { try await Task.sleep(nanoseconds: $0) }
+    ) {
+        self.proxyURL = proxyURL
+        self.resultProvider = resultProvider
+        self.modelResolver = modelResolver
+        self.retryDelay = retryDelay
+        if let session {
+            self.session = session
+        } else {
+            let configuration = URLSessionConfiguration.default
+            configuration.timeoutIntervalForRequest = Constants.Generation.requestTimeout
+            configuration.timeoutIntervalForResource = Constants.Generation.resourceTimeout
+            self.session = URLSession(configuration: configuration)
+        }
     }
     
-    func generateImage(from parts: [ModelContent.Part]) async throws -> (image: UIImage, promptText: String) {
-        
-        // ❌ ВИДАЛЕНО: guard !apiKey.isEmpty else { throw GeminiServiceError.invalidAPIKey }
-        
-        // ✅ ОНОВЛЕНО: Перевіряємо URL нашого проксі
+    func generateImage(
+        from parts: [ModelContent.Part],
+        designOption: DesignOption
+    ) async throws -> (image: UIImage, promptText: String) {
         guard let url = URL(string: proxyURL) else { throw GeminiServiceError.invalidURL }
-        
-        // 1. Конвертуємо [ModelContent.Part] у тіло JSON-запиту (без змін)
-        let (requestBody, promptText) = try convertToRequestBody(parts)
+
+        // 1. Конвертуємо parts у JSON-тіло запиту.
+        let (requestBody, promptText) = try convertToRequestBody(parts, preset: GeminiGenerationPreset(option: designOption))
         let requestData = try JSONEncoder().encode(requestBody)
-        
-        // 2. Створюємо запит
+        guard requestData.count <= Constants.Generation.maxRequestBodyBytes else {
+            throw GeminiServiceError.payloadTooLarge(maxBytes: Constants.Generation.maxRequestBodyBytes)
+        }
+
+        // Розмір вхідного зображення для контролю (щоб порівняти з вихідним).
+        let inputImageBytes = parts.reduce(into: 0) { acc, part in
+            if case let .data(_, data) = part { acc += data.count }
+        }
+        print("[Gemini] → POST \(url.absoluteString) | promptLen=\(promptText.count) | inputImageBytes=\(inputImageBytes)")
+
+        // 2. URL request.
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.httpBody = requestData
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        // ❌ ВИДАЛЕНО: request.setValue(apiKey, forHTTPHeaderField: "x-goog-api-key")
-        // Ключ тепер додає Cloudflare, а не додаток!
-        
-        // 3. Виконуємо запит (без змін)
-        let responseData: Data
-        let httpResponse: HTTPURLResponse
-        
+
+        // 3. Виконуємо запит.
+        request.timeoutInterval = Constants.Generation.requestTimeout
+
+        let (responseData, httpResponse) = try await performRequestWithRetry(request)
+
+        print("[Gemini] ← status=\(httpResponse.statusCode) | bodyBytes=\(responseData.count)")
+
+        let decodedResponse: GeminiRESTResponse
         do {
-            let (data, response) = try await URLSession.shared.data(for: request)
-            responseData = data
-            guard let resp = response as? HTTPURLResponse else {
-                throw GeminiServiceError.requestFailed(NSError(domain: "NetworkError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid HTTP response"]))
-            }
-            httpResponse = resp
+            decodedResponse = try JSONDecoder().decode(GeminiRESTResponse.self, from: responseData)
         } catch {
-            throw GeminiServiceError.requestFailed(error)
+            throw GeminiServiceError.responseDecodingFailed
         }
-        
-        // ... (вся інша логіка обробки помилок та відповіді залишається без змін) ...
-        
-        // 4. Обробка помилок (без змін)
-        if !(200...299).contains(httpResponse.statusCode) {
-            let errorMessage = parseError(from: responseData)
-            print("===== 🚨 HTTP ERROR: \(httpResponse.statusCode) 🚨 =====")
-            print(errorMessage)
-            print("=========================================")
-            throw GeminiServiceError.httpError(statusCode: httpResponse.statusCode, message: errorMessage)
+
+        if let finishReason = decodedResponse.candidates?.first?.finishReason {
+            print("[Gemini] finishReason=\(finishReason)")
         }
-        
-        // 5. Обробка успішної відповіді (без змін)
-        let decodedResponse = try JSONDecoder().decode(GeminiRESTResponse.self, from: responseData)
-        
+        if let textPart = decodedResponse.candidates?.first?.content.parts.first(where: { $0.text != nil })?.text,
+           !textPart.isEmpty {
+            print("[Gemini] model text (first 200): \(textPart.prefix(200))")
+        }
+
         guard let base64String = decodedResponse.candidates?
             .first?.content.parts
             .first(where: { $0.inlineData != nil })?
             .inlineData?.data else {
-            
-            print("Gemini REST response contained no image data.")
+
+            // Друкуємо «сирий хвіст» відповіді, щоб бачити причину (safety, prompt rejected тощо).
+            let raw = String(data: responseData.prefix(500), encoding: .utf8) ?? "<binary>"
+            print("[Gemini] ❌ no inlineData. Raw head: \(raw)")
             throw GeminiServiceError.noImageInResponse
         }
-        
+
         guard let imageData = Data(base64Encoded: base64String) else {
             throw GeminiServiceError.imageDecodingFailed
         }
-        
         guard let image = UIImage(data: imageData) else {
             throw GeminiServiceError.imageDecodingFailed
         }
-        
+
+        // Перевіряємо, чи модель не повернула просто копію вхідного зображення.
+        if imageData.count == inputImageBytes {
+            print("[Gemini] ⚠️ outputBytes == inputBytes (\(imageData.count)) — модель, ймовірно, повернула вхідне зображення без змін.")
+        } else {
+            print("[Gemini] ✅ outputImageBytes=\(imageData.count) (input=\(inputImageBytes))")
+        }
+
         return (image, promptText)
+    }
+
+    func generateImage(from input: ImageGenerationInput) async throws -> ImageGenerationResult {
+        guard let baseData = input.baseImage.jpegData(
+            compressionQuality: Constants.Generation.jpegCompressionQuality
+        ) else {
+            throw GeminiServiceError.partConversionFailed
+        }
+
+        var parts: [ModelContent.Part] = [
+            .data(mimetype: "image/jpeg", baseData)
+        ]
+        if let referenceImage = input.referenceImage {
+            guard let referenceData = referenceImage.jpegData(
+                compressionQuality: Constants.Generation.jpegCompressionQuality
+            ) else {
+                throw GeminiServiceError.partConversionFailed
+            }
+            parts.append(.data(mimetype: "image/jpeg", referenceData))
+        }
+        if let maskImage = input.maskImage {
+            guard let maskData = maskImage.pngData() else {
+                throw GeminiServiceError.partConversionFailed
+            }
+            parts.append(.data(mimetype: "image/png", maskData))
+        }
+        parts.append(.text(input.prompt(for: .gemini)))
+
+        let generated = try await generateImage(
+            from: parts,
+            designOption: input.designOption
+        )
+        return ImageGenerationResult(
+            image: generated.image,
+            prompt: generated.promptText,
+            provider: resultProvider,
+            model: model(for: input.designOption)
+        )
+    }
+
+    private func performRequestWithRetry(_ request: URLRequest) async throws -> (Data, HTTPURLResponse) {
+        var retryCount = 0
+
+        while true {
+            try Task.checkCancellation()
+            do {
+                let (data, response) = try await session.data(for: request)
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    throw GeminiServiceError.requestFailed(
+                        URLError(.badServerResponse)
+                    )
+                }
+                guard (200...299).contains(httpResponse.statusCode) else {
+                    throw GeminiServiceError.httpError(
+                        statusCode: httpResponse.statusCode,
+                        message: parseError(from: data)
+                    )
+                }
+                return (data, httpResponse)
+            } catch is CancellationError {
+                throw CancellationError()
+            } catch let error as URLError where error.code == .cancelled || Task.isCancelled {
+                throw CancellationError()
+            } catch {
+                let serviceError = (error as? GeminiServiceError) ?? .requestFailed(error)
+                guard serviceError.isRetryable,
+                      retryCount < Constants.Generation.maximumRetryCount else {
+                    throw serviceError
+                }
+                let delay = UInt64(pow(2, Double(retryCount)) * 500_000_000)
+                retryCount += 1
+                try await retryDelay(delay)
+            }
+        }
     }
     
     // ... (всі приватні хелпери: convertToRequestBody, parseError залишаються без змін) ...
     
-    private func convertToRequestBody(_ sdkParts: [ModelContent.Part]) throws -> (body: GeminiRESTRequest, prompt: String) {
+    private func convertToRequestBody(
+        _ sdkParts: [ModelContent.Part],
+        preset: GeminiGenerationPreset
+    ) throws -> (body: GeminiRESTRequest, prompt: String) {
         // ... (код без змін) ...
         var promptText = ""
         
@@ -102,7 +312,21 @@ final class GeminiRESTService {
             }
         }
         
-        let body = GeminiRESTRequest(contents: [GeminiRESTContent(parts: jsonParts)])
+        // `responseModalities = [TEXT, IMAGE]` рекомендовано документацією Nano Banana 2 —
+        // модель "думає" текстом перед видачою картинки. У `generateImage(...)` ми все одно
+        // беремо лише `inlineData`-частину, тож текст не блокує image-вихід.
+        //
+        // Precise edits use lower sampling; redesign remains moderately creative;
+        // rearrange keeps the existing 0.6 value that avoided chaotic layouts.
+        let config = GeminiRESTGenerationConfig(
+            responseModalities: ["TEXT", "IMAGE"],
+            temperature: preset.temperature,
+            topP: preset.topP
+        )
+        let body = GeminiRESTRequest(
+            contents: [GeminiRESTContent(parts: jsonParts)],
+            generationConfig: config
+        )
         return (body, promptText)
     }
     
@@ -183,7 +407,7 @@ final class GeminiRESTService {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         
         // Виконуємо запит
-        let (data, response) = try await URLSession.shared.data(for: request)
+        let (data, response) = try await session.data(for: request)
         
         guard let httpResponse = response as? HTTPURLResponse else {
             throw GeminiServiceError.requestFailed(NSError(domain: "NetworkError", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid HTTP response"]))
@@ -251,6 +475,13 @@ struct DetectedObject: Codable {
 
 private struct GeminiRESTRequest: Encodable {
     let contents: [GeminiRESTContent]
+    let generationConfig: GeminiRESTGenerationConfig?
+}
+
+private struct GeminiRESTGenerationConfig: Encodable {
+    let responseModalities: [String]
+    let temperature: Double?
+    let topP: Double?
 }
 
 private struct GeminiRESTContent: Encodable {
@@ -294,6 +525,7 @@ private struct GeminiRESTResponse: Decodable {
 
 private struct GeminiRESTCandidate: Decodable {
     let content: GeminiRESTContentResponse
+    let finishReason: String?
 }
 
 private struct GeminiRESTContentResponse: Decodable {

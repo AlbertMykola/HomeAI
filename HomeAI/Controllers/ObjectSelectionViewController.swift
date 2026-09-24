@@ -3,8 +3,10 @@ import UIKit
 private struct Defaults {
     struct Text {
         static let generate = "Generate".localized
+        static let remove = "Remove".localized
         static let detecting = "Detecting...".localized
         static let placeholder = "Swap the floor lamp for a plant.".localized
+        static let brushSize = "Brush Size".localized
     }
 }
 
@@ -13,9 +15,12 @@ class ObjectSelectionViewController: UIViewController, PageStepDelegate, PromptM
     // MARK: - Outlets
     @IBOutlet weak private var previewImageView: UIImageView?
     @IBOutlet weak private var brushSizeSlider: UISlider?
+    @IBOutlet weak var deleteBrushSizeSlider: UISlider!
+    @IBOutlet weak var deleteContainerView: LiquidGlassView!
     
     @IBOutlet weak private var promptLabel: UILabel?
     
+    @IBOutlet weak var deleteHeadlineLabel: UILabel!
     @IBOutlet weak private var generateButton: UIButton!
     @IBOutlet weak private var undoButton: UIButton?
     @IBOutlet weak private var redoButton: UIButton?
@@ -43,7 +48,11 @@ class ObjectSelectionViewController: UIViewController, PageStepDelegate, PromptM
     private let scrollView = UIScrollView()
     private var baseImageForProcessing: UIImage?
     private var debugMaskPreviewEnabled: Bool = false
-    
+
+    private var isDeleteObjectMode: Bool {
+        !requiresPromptInput
+    }
+
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,22 +70,35 @@ class ObjectSelectionViewController: UIViewController, PageStepDelegate, PromptM
     
     // MARK: - Setup
     private func setupUI() {
-        brushSizeSlider?.minimumValue = 200
-        brushSizeSlider?.maximumValue = 15000000
-        brushSizeSlider?.value = 200
+        configureBrushSlider(brushSizeSlider)
+        configureBrushSlider(deleteBrushSizeSlider)
 
         generateButton.isHidden = !showsGenerateButton
-        generateButton.setTitle(Defaults.Text.generate, for: .normal)
-        if !requiresPromptInput {
-            promptLabel?.superview?.isHidden = true
-        }
+        generateButton.setTitle(isDeleteObjectMode ? Defaults.Text.remove : Defaults.Text.generate, for: .normal)
+        deleteHeadlineLabel.text = Defaults.Text.brushSize
+
         drawingCanvas.maskGenerationMode = requiresPromptInput ? .strokes : .boundingRect
-        // Встановлюємо placeholder текст
         promptLabel?.text = Defaults.Text.placeholder
         hasCustomPrompt = false
-        
+
         drawingCanvas.brushSize = 200
         setupUndoRedoButtons()
+        updateEditingControlsVisibility()
+    }
+
+    private func configureBrushSlider(_ slider: UISlider?) {
+        slider?.minimumValue = 200
+        slider?.maximumValue = 15_000_000
+        slider?.value = 200
+        slider?.addTarget(self, action: #selector(sliderAction(_:)), for: .valueChanged)
+    }
+
+    private func updateEditingControlsVisibility() {
+        deleteContainerView.isHidden = !isDeleteObjectMode
+        brushSizeSlider?.isHidden = isDeleteObjectMode
+        undoButton?.isHidden = isDeleteObjectMode
+        redoButton?.isHidden = isDeleteObjectMode
+        promptLabel?.superview?.isHidden = isDeleteObjectMode
     }
     
     private func setupUndoRedoButtons() {
@@ -196,7 +218,7 @@ class ObjectSelectionViewController: UIViewController, PageStepDelegate, PromptM
         
         drawingCanvas.objectRect = rect
         
-        let maskImage = createMaskImage(from: rect, imageSize: baseImage.size, canvasSize: drawingCanvas.bounds.size)
+        let maskImage = createMaskImage(from: rect, imageSize: baseImage.size)
         
         if let mask = maskImage {
             promptManager?.updateMask(mask)
@@ -207,16 +229,8 @@ class ObjectSelectionViewController: UIViewController, PageStepDelegate, PromptM
         checkDrawingState()
     }
     
-    private func createMaskImage(from rect: CGRect, imageSize: CGSize, canvasSize: CGSize) -> UIImage? {
-        let scaleX = canvasSize.width / imageSize.width
-        let scaleY = canvasSize.height / imageSize.height
-        
-        let scaledRect = CGRect(
-            x: rect.origin.x * scaleX,
-            y: rect.origin.y * scaleY,
-            width: rect.width * scaleX,
-            height: rect.height * scaleY
-        )
+    private func createMaskImage(from rect: CGRect, imageSize: CGSize) -> UIImage? {
+        guard imageSize.width > 0, imageSize.height > 0 else { return nil }
         
         let renderer = UIGraphicsImageRenderer(size: imageSize)
         return renderer.image { context in
@@ -297,8 +311,8 @@ class ObjectSelectionViewController: UIViewController, PageStepDelegate, PromptM
     
     // MARK: - Actions
     @IBAction func sliderAction(_ sender: UISlider) {
-        let brushSize = CGFloat(sender.value)
-        updateBrushSize(brushSize)
+        updateBrushSize(CGFloat(sender.value))
+        syncBrushSliders(with: sender)
     }
     
     @IBAction func undoAction(_ sender: UIButton) {
@@ -325,10 +339,18 @@ class ObjectSelectionViewController: UIViewController, PageStepDelegate, PromptM
     }
     
     @objc private func brushSizeChanged(_ slider: UISlider) {
-        let brushSize = CGFloat(slider.value)
-        updateBrushSize(brushSize)
+        updateBrushSize(CGFloat(slider.value))
+        syncBrushSliders(with: slider)
     }
-    
+
+    private func syncBrushSliders(with source: UISlider) {
+        let sliders = [brushSizeSlider, deleteBrushSizeSlider].compactMap { $0 }
+        sliders.forEach { slider in
+            guard slider !== source else { return }
+            slider.value = source.value
+        }
+    }
+
     private func updateBrushSize(_ size: CGFloat) {
         drawingCanvas.brushSize = size
     }
@@ -362,11 +384,7 @@ class ObjectSelectionViewController: UIViewController, PageStepDelegate, PromptM
                 self.hasCustomPrompt = true
             }
             
-            if !trimmedPrompt.isEmpty {
-                self.promptManager?.updateObjectToReplace(trimmedPrompt)
-            } else {
-                self.promptManager?.updateObjectToReplace("")
-            }
+            self.promptManager?.updateObjectToReplace(trimmedPrompt.isEmpty ? nil : trimmedPrompt)
             
             self.checkDrawingState()
         }
@@ -397,19 +415,28 @@ class ObjectSelectionViewController: UIViewController, PageStepDelegate, PromptM
             }
         }
 
+        // `requiresPromptInput` — фактично перемикач Replace vs Delete:
+        //   true  → користувач описує замінник → REPLACE flow
+        //   false → користувач лише обводить ділянку, нічого не вписує → DELETE flow
         if requiresPromptInput {
             let promptText = promptLabel?.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
             if hasCustomPrompt && !promptText.isEmpty && promptText != Defaults.Text.placeholder {
                 promptManager.updateObjectToReplace(promptText)
             }
             promptManager.updateReplaceMode(.replace)
+            promptManager.updateOption(.replace)
         } else {
+            // Для delete опис об'єкта не використовується — `buildReplacePrompt`
+            // у гілці `.remove` каже моделі прибрати все в межах білої маски.
             let description = replacementDescription?.trimmingCharacters(in: .whitespacesAndNewlines)
-            let fallback = "an empty spot with clean background that matches the surroundings, no objects"
-            promptManager.updateObjectToReplace((description?.isEmpty == false) ? description! : fallback)
-            promptManager.updateReplaceMode(.replace)
+            if let description, !description.isEmpty {
+                promptManager.updateObjectToReplace(description)
+            } else {
+                promptManager.updateObjectToReplace(nil)
+            }
+            promptManager.updateReplaceMode(.remove)
+            promptManager.updateOption(.delete)
         }
-        promptManager.updateOption(.replace)
         return true
     }
     

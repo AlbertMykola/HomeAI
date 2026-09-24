@@ -1,0 +1,11 @@
+name = "homeai-openai-images"
+main = "worker.js"
+compatibility_date = "2026-09-17"
+
+# Required:
+#   npx wrangler secret put OPENAI_API_KEY
+#
+# Optional:
+#   npx wrangler secret put MOBILE_GATE_KEY
+#   npx wrangler secret put OPENAI_IMAGE_MODEL
+#   npx wrangler secret put OPENAI_IMAGE_QUALITY

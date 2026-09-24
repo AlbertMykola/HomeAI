@@ -2,16 +2,6 @@ import UIKit
 import GoogleGenerativeAI
 // import FirebaseAuth
 
-enum GeminiServiceError: Error {
-    case invalidAPIKey // Цей кейс нам більше не потрібен, але нехай залишається
-    case invalidURL
-    case requestFailed(Error)
-    case httpError(statusCode: Int, message: String)
-    case noImageInResponse
-    case imageDecodingFailed
-    case partConversionFailed
-}
-
 
 private struct Defaults {
     struct Text {
@@ -76,18 +66,19 @@ final class ProcessingViewController: UIViewController {
 
     // Guard to avoid parallel generations
     private var isGenerating = false
+    private var isBlockedByAccess = false
     /// Після успішної генерації не запускати знову при `viewDidAppear` (закриття деталі, pop назад тощо).
     private var hasCompletedGenerationSuccessfully = false
     private let amplitude = AmplitudeService.shared
+    private var progressTimer: Timer?
+    private var currentAttemptID: String?
+    private var currentAttemptStartedAt: Date?
+    private var lastFailureReason = "unknown"
+    private var retryNumber = 0
 
     // MARK: - Cancellation
     private var generationTask: Task<Void, Never>?
     
-    // MARK: - Gemini Model
-    private lazy var geminiService: GeminiRESTService? = {
-        return GeminiRESTService() // Ініціалізуємо без ключа
-    }()
-
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,7 +108,7 @@ final class ProcessingViewController: UIViewController {
             return
         }
         startSequence()
-        if !isGenerating {
+        if !isGenerating && !isBlockedByAccess {
             startGeneration()
         }
     }
@@ -127,11 +118,13 @@ final class ProcessingViewController: UIViewController {
         if isMovingFromParent {
             generationTask?.cancel()
             stopSequence()
+            stopProgressTimer()
         }
     }
 
     deinit {
         generationTask?.cancel()
+        progressTimer?.invalidate()
     }
 
     // MARK: - Public
@@ -140,33 +133,104 @@ final class ProcessingViewController: UIViewController {
         hasCompletedGenerationSuccessfully = false
         NavigationManager.shared.clearPendingInspirationDetailReopen()
         amplitude.logEvent(.startGeneration)
+        let attemptID = UUID().uuidString
+        let startedAt = Date()
+        currentAttemptID = attemptID
+        currentAttemptStartedAt = startedAt
+        processingLabel.text = "Preparing your design".localized
+        descriptionLabel.text = "Keep the app open while we create it.".localized
+        startProgressTimer()
+        let selectedOption = promptManager?.designOption ?? .interior
+        let option = promptManager?.designOption.rawValue ?? "unknown"
+        let service = ImageGenerationServiceFactory.make()
+        let provider = service.provider
+        let model = service.model(for: selectedOption)
+        let promptVersion = ImageGenerationServiceFactory.promptVersion(for: provider)
+        amplitude.logEvent(.generationStarted(
+            attemptID: attemptID,
+            option: option,
+            promptVersion: promptVersion,
+            provider: provider.rawValue,
+            model: model
+        ))
+        updateGenerationStage("preparing", attemptID: attemptID, startedAt: startedAt)
 
         isGenerating = true
         stopSequence()
         startSequence()
         
-        startGeminiGenerationTask()
+        startImageGenerationTask(
+            attemptID: attemptID,
+            startedAt: startedAt,
+            promptVersion: promptVersion,
+            provider: provider.rawValue,
+            model: model,
+            service: service
+        )
     }
 
     // MARK: - Private
     private func finishGeneration() {
-        amplitude.logEvent(.finishGeneration)
         isGenerating = false
         generationTask = nil
+        stopProgressTimer()
     }
 
-    private func startGeminiGenerationTask() {
+    private func startProgressTimer() {
+        stopProgressTimer()
+        progressTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] _ in
+            guard let self, let startedAt = self.currentAttemptStartedAt else { return }
+            if Date().timeIntervalSince(startedAt) >= 25 {
+                self.descriptionLabel.text = "This is taking longer than usual. Your design is still in progress.".localized
+            }
+        }
+    }
+
+    private func stopProgressTimer() {
+        progressTimer?.invalidate()
+        progressTimer = nil
+    }
+
+    private func updateGenerationStage(_ stage: String, attemptID: String, startedAt: Date) {
+        let title: String
+        switch stage {
+        case "generating": title = "Creating your design".localized
+        case "saving": title = "Saving your design".localized
+        default: title = "Preparing your design".localized
+        }
+        processingLabel.text = title
+        amplitude.logEvent(.generationStage(
+            attemptID: attemptID,
+            stage: stage,
+            elapsedMS: latencyMilliseconds(since: startedAt)
+        ))
+    }
+
+    private func startImageGenerationTask(
+        attemptID: String,
+        startedAt: Date,
+        promptVersion: String,
+        provider: String,
+        model: String,
+        service: any ImageGenerationService
+    ) {
         guard let gpm = promptManager else {
+            lastFailureReason = "configuration"
             amplitude.logEvent(.error(message: "PromptManager_nil"))
+            amplitude.logEvent(.generationFailed(
+                attemptID: attemptID,
+                option: "unknown",
+                promptVersion: promptVersion,
+                provider: provider,
+                model: model,
+                category: "configuration",
+                statusCode: nil,
+                latencyMS: latencyMilliseconds(since: startedAt)
+            ))
             finishGeneration()
             return
         }
         print(gpm)
-        guard let service = geminiService else {
-            amplitude.logEvent(.error(message: "GeminiService_nil"))
-            finishGeneration()
-            return
-        }
             
         let access = GenerationAccess.evaluate()
         if access != .allowed {
@@ -176,30 +240,50 @@ final class ProcessingViewController: UIViewController {
                 case .allowed:
                     break
                 case .dailyLimitExceeded:
+                    self.isBlockedByAccess = true
+                    self.amplitude.logEvent(.generationBlocked(
+                        attemptID: attemptID,
+                        option: gpm.designOption.rawValue,
+                        promptVersion: promptVersion,
+                        reason: "daily_limit"
+                    ))
                     DailyGenerationLimitManager.shared.presentDailyLimitAlert(from: self)
                 case .requiresSubscription:
+                    self.isBlockedByAccess = true
                     self.amplitude.logEvent(.reachedLimit)
-                    NavigationManager.shared.showPremium(placement: Constants.Keys.reachedLimit)
+                    self.amplitude.logEvent(.generationBlocked(
+                        attemptID: attemptID,
+                        option: gpm.designOption.rawValue,
+                        promptVersion: promptVersion,
+                        reason: "subscription_required"
+                    ))
+                    NavigationManager.shared.showPremium(
+                        placement: Constants.Keys.reachedLimit,
+                        origin: .inApp,
+                        onPurchase: { [weak self] in
+                            guard let self else { return }
+                            self.isBlockedByAccess = false
+                            self.startGeneration()
+                        }
+                    )
                 }
                 self.finishGeneration()
             }
             return
         }
 
-        if !ApphudService.shared.hasActiveSubscription {
-            FreeGenerationManager.shared.increment()
-        }
+        let isPremiumGeneration = AdaptyService.shared.hasActiveSubscription
 
         generationTask = Task { [weak self] in
             guard let self else { return }
             
             do {
-                let parts = try gpm.generatePromptParts()
-                print(parts)
-                // (Логування промпту - без змін)
-                let tempTextForLog = parts.compactMap { $0.text }.joined(separator: "\n")
-                let truncatedPrompt = String(tempTextForLog.prefix(100))
-                amplitude.logEvent(.prompt(p: truncatedPrompt))
+                let input = try gpm.makeGenerationInput()
+                amplitude.logEvent(.generationPromptMetadata(
+                    option: gpm.designOption.rawValue,
+                    promptVersion: promptVersion,
+                    promptLength: input.prompt.count
+                ))
                 
                 try Task.checkCancellation()
                 
@@ -208,28 +292,51 @@ final class ProcessingViewController: UIViewController {
                 
                 try Task.checkCancellation()
 
-                // 3. 🔥 ВИКЛИКАЄМО НАШ НОВИЙ СЕРВІС 🔥
-                print("Calling Gemini API via REST Service...")
-                let (generatedImage, promptText) = try await service.generateImage(from: parts)
+                await MainActor.run {
+                    self.updateGenerationStage("generating", attemptID: attemptID, startedAt: startedAt)
+                }
+                print("Calling \(provider) image generation service...")
+                let result = try await service.generateImage(from: input)
                 
                 try Task.checkCancellation()
 
+                await MainActor.run {
+                    self.updateGenerationStage("saving", attemptID: attemptID, startedAt: startedAt)
+                }
                 // 4. Зберігаємо локально в історію
                 let builtModel = try await self.saveGenerationLocally(
-                    generatedImage: generatedImage,
-                    baseImage: gpm.baseImage,
-                    prompt: promptText
+                    result: result,
+                    baseImage: gpm.baseImage
                 )
 
                 try Task.checkCancellation()
 
                 await MainActor.run {
                     guard !Task.isCancelled else {
+                        self.amplitude.logEvent(.generationCancelled(
+                            attemptID: attemptID,
+                            option: gpm.designOption.rawValue,
+                            promptVersion: promptVersion,
+                            latencyMS: self.latencyMilliseconds(since: startedAt)
+                        ))
                         self.finishGeneration()
                         return
                     }
-                    DailyGenerationLimitManager.shared.recordSuccessfulGeneration()
+                    if isPremiumGeneration {
+                        DailyGenerationLimitManager.shared.recordSuccessfulGeneration()
+                    } else {
+                        FreeGenerationManager.shared.increment()
+                    }
                     self.hasCompletedGenerationSuccessfully = true
+                    self.amplitude.logEvent(.generationSucceeded(
+                        attemptID: attemptID,
+                        option: gpm.designOption.rawValue,
+                        promptVersion: promptVersion,
+                        provider: result.provider.rawValue,
+                        model: result.model,
+                        latencyMS: self.latencyMilliseconds(since: startedAt)
+                    ))
+                    self.amplitude.logEvent(.finishGeneration)
                     _ = NavigationManager.shared.showInspirationDetail(model: builtModel, promptManager: self.promptManager)
                     self.finishGeneration()
                 }
@@ -237,17 +344,45 @@ final class ProcessingViewController: UIViewController {
             } catch is CancellationError {
                 await MainActor.run {
                     self.processingLabel.text = "Cancelled"
+                    self.amplitude.logEvent(.generationCancelled(
+                        attemptID: attemptID,
+                        option: gpm.designOption.rawValue,
+                        promptVersion: promptVersion,
+                        latencyMS: self.latencyMilliseconds(since: startedAt)
+                    ))
                     self.finishGeneration()
                 }
             } catch let error as PromptError {
                 await MainActor.run {
+                    self.lastFailureReason = "prompt_validation"
+                    self.amplitude.logEvent(.generationFailed(
+                        attemptID: attemptID,
+                        option: gpm.designOption.rawValue,
+                        promptVersion: promptVersion,
+                        provider: provider,
+                        model: model,
+                        category: "prompt_validation",
+                        statusCode: nil,
+                        latencyMS: self.latencyMilliseconds(since: startedAt)
+                    ))
                     self.showErrorAlert(message: error.localizedDescription)
                     self.finishGeneration()
                 }
-            } catch let error as GeminiServiceError {
-                print("===== 🚨 GeminiServiceError caught 🚨 =====")
+            } catch let error as any ImageGenerationFailure {
+                print("===== 🚨 ImageGenerationFailure caught 🚨 =====")
                 print(error)
                 await MainActor.run {
+                    self.lastFailureReason = error.category
+                    self.amplitude.logEvent(.generationFailed(
+                        attemptID: attemptID,
+                        option: gpm.designOption.rawValue,
+                        promptVersion: promptVersion,
+                        provider: provider,
+                        model: model,
+                        category: error.category,
+                        statusCode: error.statusCode,
+                        latencyMS: self.latencyMilliseconds(since: startedAt)
+                    ))
                     self.showErrorAlert(message: error.localizedDescription)
                     self.finishGeneration()
                 }
@@ -255,7 +390,18 @@ final class ProcessingViewController: UIViewController {
                 print("===== 🚨 Unknown Error caught 🚨 =====")
                 print(error)
                 await MainActor.run {
-                    self.showErrorAlert(message: error.localizedDescription)
+                    self.lastFailureReason = "unknown"
+                    self.amplitude.logEvent(.generationFailed(
+                        attemptID: attemptID,
+                        option: gpm.designOption.rawValue,
+                        promptVersion: promptVersion,
+                        provider: provider,
+                        model: model,
+                        category: "unknown",
+                        statusCode: nil,
+                        latencyMS: self.latencyMilliseconds(since: startedAt)
+                    ))
+                    self.showErrorAlert(message: "Something went wrong. Please try again.".localized)
                     self.finishGeneration()
                 }
             }
@@ -271,7 +417,14 @@ final class ProcessingViewController: UIViewController {
         print("[Firebase Stub] 1. User 'authenticated'.")
     }
 
-    private func saveGenerationLocally(generatedImage: UIImage, baseImage: UIImage?, prompt: String) async throws -> ImageDetailModel {
+    private func latencyMilliseconds(since date: Date) -> Int {
+        max(0, Int(Date().timeIntervalSince(date) * 1_000))
+    }
+
+    private func saveGenerationLocally(
+        result: ImageGenerationResult,
+        baseImage: UIImage?
+    ) async throws -> ImageDetailModel {
             print("2. Saving generated image to local history...")
             
             guard let gpm = promptManager else {
@@ -292,22 +445,25 @@ final class ProcessingViewController: UIViewController {
                     return gpm.gardenType?.name ?? "No Style"
                 case .newFlooring, .newWalls:
                     return gpm.surfaceMaterial?.title ?? gpm.surfaceCustomPrompt ?? "Custom"
+                case .rearrange:
+                    return gpm.rearrangeSubOption?.displayTitle ?? "Rearrange".localized
                 default:
                     return gpm.interiorStyle?.name ?? gpm.exteriorStyle?.name ?? gpm.gardenType?.name ?? "Edited"
                 }
             }()
             let colorName = gpm.colorType?.name
 
-            guard let imageData = generatedImage.jpegData(compressionQuality: 0.9) else {
+            guard let imageData = result.image.jpegData(compressionQuality: 0.9) else {
                 throw PromptError.imageConversionFailed
             }
 
             let savedDoc = try await imageStore.saveGeneratedImage(
                 imageData,
-                prompt: prompt,
-                model: "gemini-2.5-flash-image", // Модель, яку ми використовуємо
-                size: nil, // Gemini не повертає ці дані
-                seed: nil, // Gemini не повертає ці дані
+                prompt: result.prompt,
+                provider: result.provider.rawValue,
+                model: result.model,
+                size: nil,
+                seed: nil,
                 makePreview: true, // Вмикаємо створення прев'ю (як у вашому сервісі)
                 style: styleName,
                 colorName: colorName,
@@ -323,7 +479,8 @@ final class ProcessingViewController: UIViewController {
                 surfaceMaterial: gpm.surfaceMaterial,
                 surfaceCustomPrompt: gpm.surfaceCustomPrompt,
                 replaceMode: gpm.replaceMode,
-                objectToReplace: gpm.objectToReplace
+                objectToReplace: gpm.objectToReplace,
+                rearrangeSubOption: gpm.rearrangeSubOption
             )
             
             print("2. Image saved locally.")
@@ -332,7 +489,7 @@ final class ProcessingViewController: UIViewController {
             // Створюємо модель для наступного екрану (цей код вже правильний)
             let modelDetail = ImageDetailModel(
                 previewsImage: baseImage,
-                image: generatedImage,
+                image: result.image,
                 color: colorName ?? "Random",
                 style: styleName,
                 option: gpm.designOption,
@@ -349,10 +506,19 @@ private extension ProcessingViewController {
     
     func showErrorAlert(message: String) {
         amplitude.logEvent(.alert(message: message))
+        processingLabel.text = "Couldn't create your design".localized
+        descriptionLabel.text = "Your photo and choices are saved. Try again.".localized
         let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Try again".localized, style: .default, handler: { [weak self] _ in
-            self?.amplitude.logEvent(.tryAgainAction)
-            self?.startGeneration()
+            guard let self else { return }
+            self.amplitude.logEvent(.tryAgainAction)
+            self.retryNumber += 1
+            self.amplitude.logEvent(.generationRetry(
+                previousAttemptID: self.currentAttemptID ?? "unknown",
+                reason: self.lastFailureReason,
+                retryNumber: self.retryNumber
+            ))
+            self.startGeneration()
         }))
         alert.addAction(UIAlertAction(title: "OK".localized, style: .cancel))
         present(alert, animated: true)

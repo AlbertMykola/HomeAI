@@ -64,8 +64,10 @@ final class CustomLoaderView: UIView {
     deinit { stopSequence() } // страховка
     
     // MARK: - Factory
-    static func loadFromNib() -> CustomLoaderView {
-        let v = Bundle.main.loadNibNamed("CustomLoaderView", owner: nil, options: nil)!.first as! CustomLoaderView
+    static func loadFromNib() -> CustomLoaderView? {
+        guard let v = Bundle.main.loadNibNamed("CustomLoaderView", owner: nil, options: nil)?.first as? CustomLoaderView else {
+            return nil
+        }
         v.frames = Defaults.Images.images
         if v.frames.isEmpty, let img = v.loadImageView.image { v.frames = [img] }
         

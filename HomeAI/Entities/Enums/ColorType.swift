@@ -34,6 +34,57 @@ enum ColorType: CaseIterable {
         case .fresh: "Fresh".localized
         }
     }
+
+    var promptDescriptor: String {
+        switch self {
+        case .random: "harmonious designer-selected"
+        case .lively: "lively jewel-tone"
+        case .stormy: "stormy blue and mauve"
+        case .minimalistic: "minimal neutral"
+        case .beige: "warm beige"
+        case .pastel: "soft pastel"
+        case .floral: "floral blue and rose"
+        case .winterBerry: "winter berry"
+        case .beach: "coastal beach"
+        case .ocean: "deep ocean blue"
+        case .calm: "calm muted"
+        case .blush: "soft blush"
+        case .elegant: "elegant navy, black, and gold"
+        case .harmony: "harmonious earth neutral"
+        case .azure: "fresh azure and mint"
+        case .lilac: "soft lilac and powder blue"
+        case .earthy: "natural earthy"
+        case .velvet: "dusty velvet rose"
+        case .sensual: "sensual burgundy and taupe"
+        case .spicied: "spiced terracotta"
+        case .fresh: "fresh forest and sky"
+        }
+    }
+
+    var promptColorNames: [String] {
+        switch self {
+        case .random: []
+        case .lively: ["charcoal", "forest green", "sage", "violet", "dusty lilac", "warm ivory"]
+        case .stormy: ["deep navy", "muted plum", "mauve", "blue gray", "mist gray", "off-white"]
+        case .minimalistic: ["white", "off-white", "light gray", "mid gray", "charcoal", "graphite"]
+        case .beige: ["peach beige", "warm ivory", "sand", "blush", "apricot", "taupe"]
+        case .pastel: ["powder blue", "cream", "sage", "soft gray", "lilac", "mint"]
+        case .floral: ["dusty blue", "denim blue", "ivory", "peach", "rose", "berry"]
+        case .winterBerry, .calm: ["indigo", "slate", "sage green", "dusty violet", "warm ivory", "dusty rose"]
+        case .beach: ["navy", "coastal blue", "sky blue", "warm white", "seafoam gray", "off-white"]
+        case .ocean: ["near-black blue", "deep navy", "slate blue", "powder blue", "white", "mist gray"]
+        case .blush: ["midnight blue", "dusty rose", "muted berry", "blush pink", "pale pink", "cream"]
+        case .elegant: ["black", "deep navy", "silver gray", "muted gold", "cream", "blush ivory"]
+        case .harmony: ["warm gray", "stone", "sand", "camel", "warm ivory", "muted rose"]
+        case .azure: ["sand", "soft white", "pale aqua", "mint", "azure blue", "pale green"]
+        case .lilac: ["powder blue", "pale lilac", "mist gray", "blue gray", "ice blue", "orchid"]
+        case .earthy: ["linen", "walnut brown", "taupe", "khaki", "sage", "olive"]
+        case .velvet: ["aubergine", "mauve", "dusty rose", "champagne", "ivory", "blush"]
+        case .sensual: ["black", "burgundy", "warm taupe", "caramel", "silver gray", "oxblood"]
+        case .spicied: ["espresso", "brick red", "terracotta", "saffron", "peach", "warm cream"]
+        case .fresh: ["deep brown", "warm gray", "sage", "sky blue", "cool gray", "warm white"]
+        }
+    }
     
     var image: String {
         switch self {

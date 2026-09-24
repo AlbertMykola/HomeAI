@@ -24,13 +24,15 @@ final class InspirationCollectionViewCell: UICollectionViewCell {
             deleteButton.isUserInteractionEnabled = false
             deleteButton.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         }
+        inspirationImageView.contentMode = .scaleAspectFill
+        inspirationImageView.clipsToBounds = true
     }
     
     override func prepareForReuse() {
         super.prepareForReuse()
         imageService.cancel(on: inspirationImageView)
-        inspirationImageView.image = nil
-        containerView.isHidden = false
+        inspirationImageView.image = Constants.Images.previewPlaceholder
+        containerView.isHidden = true
         representedIdentifier = nil
         currentImage = nil
         deleteButton?.isHidden = true
@@ -40,9 +42,9 @@ final class InspirationCollectionViewCell: UICollectionViewCell {
     
     func configure(storagePath: String, showsDeleteButton: Bool = false, onDelete: (() -> Void)? = nil) {
         representedIdentifier = storagePath
-        containerView.isHidden = false
+        containerView.isHidden = true
         currentImage = nil
-        inspirationImageView.image = nil
+        inspirationImageView.image = Constants.Images.previewPlaceholder
         onDeleteTapped = onDelete
         deleteButton?.isHidden = !showsDeleteButton
         deleteButton?.isUserInteractionEnabled = showsDeleteButton
@@ -51,11 +53,10 @@ final class InspirationCollectionViewCell: UICollectionViewCell {
         ? CGSize(width: contentView.bounds.width, height: contentView.bounds.height)
         : inspirationImageView.bounds.size
         
-        imageService.setImage(on: inspirationImageView, path: storagePath, placeholder: nil, targetPointSize: targetSize) { [weak self] image in
+        imageService.setImage(on: inspirationImageView, path: storagePath, placeholder: Constants.Images.previewPlaceholder, targetPointSize: targetSize) { [weak self] image in
             guard let self else { return }
             guard self.representedIdentifier == storagePath else { return }
             self.currentImage = image
-            self.containerView.isHidden = image != nil
         }
     }
     

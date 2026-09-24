@@ -1,38 +1,89 @@
-// OB
-"WELCOME TO THE WORLD OF CREATIVITY!" = "창의성의 세계에 오신 것을 환영합니다!";
-"Discover ideas and create your dream home in minutes." = "아이디어를 발견하고 몇 분 만에 꿈의 집을 만들어 보세요.";
+// OB — Onboarding
+"ob_welcome_headline" = "공간을 새롭게 디자인하세요";
+"ob_welcome_description" = "AI로 어떤 방이든 바꿔보세요";
+"ob_welcome_get_started" = "시작하기";
+"ob_welcome_trusted_users" = "신뢰받는 사용자";
+"ob_welcome_average_rating" = "평균 평점";
+"ob_design_headline" = "집을 새롭게 상상해 보세요";
+"ob_design_description" = "새로운 스타일, 색상, 가구로 공간을 즉시 리디자인하세요.";
+"ob_feature_new_walls" = "새 벽";
+"ob_feature_replace_object" = "객체 교체";
+"ob_feature_delete_object" = "객체 삭제";
+"ob_feature_new_color" = "새 색상";
+"ob_feature_new_style" = "새 스타일";
+"ob_feature_new_floor" = "새 바닥";
+"ob_exterior_headline" = "외관을 바꾸세요";
+"ob_exterior_description" = "다르게 상상해보세요";
+
+"ob_garden_headline" = "정원에 생명을 불어넣으세요";
+"ob_garden_description" = "나만의 완벽한 야외 공간을 만들어보세요";
+
+"ob_change_headline" = "무엇이든 바꾸세요";
+"ob_change_description" = "삭제. 교체. 재구성.";
+"ob_rate_headline_format" = "꿈의 집이 %@ 보여요";
+"ob_rate_headline_highlight" = "놀라워요";
+"ob_rate_description" = "평가해 주시면 더 많은 스타일과 기능을 잠금 해제하고 ReHomely 개선에 도움이 됩니다";
+"ob_rate_unlock_title" = "잠금 해제";
+"ob_rate_unlock_subtitle" = "프리미엄 스타일";
+"ob_rate_bonus_title" = "보너스";
+"ob_rate_bonus_subtitle" = "디자인 받기";
+"ob_rate_help_title" = "더 나은 앱을";
+"ob_rate_help_subtitle" = "함께 만들어 주세요";
+"ob_continue" = "계속";
+// OB — legacy keys (інші екрани / старі рядки)
+"Transform Your Facade" = "외관을 변화시키세요";
+"Your dream home looks %@" = "꿈의 집이 %@ 보여요";
+"AMAZING" = "놀라워요";
+"Rate us to unlock more styles and features and help improve ReHomely for you" = "평가해 주시면 더 많은 스타일과 기능을 잠금 해제하고 ReHomely 개선에 도움이 됩니다";
+"Instantly visualize a new look for your house exterior." = "집 외관의 새로운 모습을 즉시 미리 확인하세요.";
 "Next" = "다음";
 "INSPIRE.DESIGN.TRANSFORM" = "영감. 디자인. 변화.";
 "Explore a world of stunning interior and exterior ideas, and bring them into your own designs." = "멋진 인테리어와 익스테리어 아이디어의 세계를 탐험하고, 이를 나만의 디자인에 적용해 보세요.";
 "HELP US GROW!" = "더 나은 앱으로 성장할 수 있도록 도와주세요!";
 "Support us with a quick review! Your feedback keeps us going and helps us bring even more smart design magic to life" = "짧은 리뷰로 응원해 주세요! 여러분의 피드백은 저희가 계속 나아갈 힘이 되며, 더 많은 스마트 디자인 마법을 선보이는 데 큰 도움이 됩니다";
 "Get Started" = "시작하기";
-
 // Home
+"Smart tools" = "스마트 도구";
+"See all" = "모두 보기";
+"Chat with AI-Assistant" = "AI 어시스턴트와 채팅";
+"Get personalized renovation advice and inspiration" = "맞춤형 리모델링 조언과 영감을 받아 보세요";
 "Interior Design" = "인테리어 디자인";
-"Transform your space — snap a room and let AI do the rest." = "공간을 바꿔보세요 — 방 사진을 찍으면 나머지는 AI가 알아서 해드립니다.";
 "Exterior Design" = "익스테리어 디자인";
-"Upload a photo of your home, choose your style and let AI redesign your facade!" = "집 사진을 업로드하고 스타일을 선택하면 AI가 외관을 새롭게 디자인해 드립니다!";
 "Garden Design" = "정원 디자인";
-"Take a photo, and let AI reveal your garden's full potential." = "사진을 찍으면 AI가 정원의 잠재력을 최대한 끌어내 드립니다.";
 "Reference Style" = "참고 스타일";
-"Bring your ideas to life — select a reference style and discover a new vibe with AI." = "아이디어를 현실로 만들어 보세요 — 참고 스타일을 선택하고 AI와 함께 새로운 분위기를 발견해 보세요.";
 "Replace Objects" = "객체 교체";
-"Choose an object and let AI replace it instantly." = "객체를 선택하면 AI가 즉시 교체해 드립니다.";
-
 "Replace Object" = "객체 교체";
-"Replace objects in your photo with AI-powered precision." = "AI의 정밀한 기능으로 사진 속 객체를 교체하세요.";
 "New Flooring" = "새 바닥";
-"Choose an object and let AI replace it instantly." = "객체를 선택하면 AI가 즉시 교체해 드립니다.";
 "New Walls" = "새 벽";
-"Try new flooring in seconds. AI instantly detects and replaces your floor." = "몇 초 만에 새로운 바닥을 적용해 보세요. AI가 바닥을 즉시 감지하고 교체합니다.";
-"Reimagine your walls with AI. Instantly preview colors, textures, and finishes in your space." = "AI로 벽을 새롭게 꾸며보세요. 공간에서 색상, 질감, 마감을 즉시 미리 볼 수 있습니다.";
-
+"Change your indoor space" = "실내 공간을 바꿔 보세요";
+"Transform the look of your home" = "집의 외관을 변화시키세요";
+"Restyle your outdoor space" = "야외 공간 스타일을 새롭게";
+"Match any styles" = "어떤 스타일과도 맞추기";
+"Swap furniture instantly" = "가구를 즉시 교체";
+"Try new floor styles" = "새로운 바닥 스타일 시도";
+"Repaint your walls" = "벽을 새로 칠하기";
+"Remove Objects" = "객체 삭제";
+"Remove unwanted items" = "원치 않는 물건 제거";
+"Rearrange Furniture" = "가구 재배치";
+"Optimize your layout" = "배치 최적화";
+"Furnish Room" = "방 꾸미기";
+"Fill empty spaces" = "빈 공간 채우기";
+"Floor Plan" = "평면도";
+"Turn plans into 3D" = "평면도를 3D로 변환";
+" " = " ";
+"Upload a photo of your current layout" = "현재 배치 사진 업로드";
+"Upload a photo of your empty room" = "빈 방 사진 업로드";
+"Upload a photo of your floor plan" = "평면도 사진 업로드";
+"Rearrange Only" = "재배치만";
+"New layout with same furniture" = "같은 가구로 새 배치";
+"Rearrange & Refresh" = "재배치 및 리프레시";
+"New layout with small furniture change" = "가구를 조금 바꾼 새 배치";
+"Rearrange" = "재배치";
 //Page
 "Generate" = "생성";
+"Remove" = "제거";
 "Delete Objects" = "객체 삭제";
 "Select an object and let AI remove it instantly." = "객체를 선택하면 AI가 즉시 제거해 드립니다.";
-
 // Photo
 "Add a photo" = "사진 추가";
 "Upload a photo of your current room." = "현재 방 사진을 업로드하세요.";
@@ -50,7 +101,6 @@
 "Cancel" = "취소";
 "Photo Tips" = "사진 팁";
 "Upload a reference photo." = "참고 사진을 업로드하세요.";
-
 // Color
 "Choose Color" = "색상 선택";
 "Random" = "랜덤";
@@ -83,12 +133,15 @@
 
 // Room
 "Choose Room" = "공간 선택";
+"All" = "전체";
+"Exterior" = "외관";
+"Garden" = "정원";
 "Kitchen" = "주방";
 "Bedroom" = "침실";
 "Bathroom" = "욕실";
 "Living room" = "거실";
 "Dinning room" = "식당";
-"Office" = "사무실";
+"Office" = "오피스";
 "Study room" = "서재";
 "Gaming room" = "게임룸";
 "Kids room" = "아이 방";
@@ -98,7 +151,6 @@
 "Hallway" = "복도";
 "Laundry room" = "세탁실";
 "Garage" = "차고";
-
 // Style
 "Choose Style" = "스타일 선택";
 "Modern" = "모던";
@@ -160,7 +212,7 @@
 "Wood" = "우드";
 "Creepy" = "으스스한";
 "Chocolate" = "초콜릿";
-
+"Cyberpunk" = "사이버펑크";
 //Inspiration Detail
 "Done" = "완료";
 "Save" = "저장";
@@ -178,6 +230,15 @@
 "Color" = "색상";
 "Style" = "스타일";
 "LIKE THE APP?" = "앱이 마음에 드시나요?";
+"like_alert_title_prefix" = "마음에 드시나요";
+"like_alert_description" = "여러분의 피드백은 더 나은 디자인을 만드는 데 도움이 됩니다.";
+"generations_left_alert_title_format" = "%@번 남았습니다";
+"generations_left_alert_subtitle" = "PRO로 제한 없이 계속 만들어 보세요.";
+"generations_left_alert_feature_unlimited" = "무제한 생성";
+"generations_left_alert_feature_quality" = "더 높은 이미지 품질";
+"generations_left_alert_feature_faster" = "더 빠른 결과";
+"generations_left_alert_get_pro" = "PRO 받기";
+"generations_left_alert_maybe_later" = "나중에";
 "Enjoy creating beautiful spaces? Share your feedback and help us make home redesign better for you" = "아름다운 공간을 만드는 일이 즐거우신가요? 피드백을 공유해 주시면 더 나은 홈 리디자인 경험을 만드는 데 도움이 됩니다";
 "YES, RATE!" = "네, 평가할게요!";
 "No, thanks" = "아니요, 괜찮아요";
@@ -185,6 +246,7 @@
 "Would you like to tell us what you didn't like?" = "마음에 들지 않았던 점을 알려주시겠어요?";
 "Share feedback" = "피드백 보내기";
 "Delete Object" = "객체 삭제";
+"Brush Size" = "브러시 크기";
 "Replace Object" = "객체 교체";
 "New Floor" = "새 바닥";
 "New Style" = "새 스타일";
@@ -192,6 +254,8 @@
 "" = "";
 
 //Paywall
+"Go Premium Design Without Limits" = "Premium으로\n제한 없이 디자인";
+"Premium" = "Premium";
 "Unlock Unlimited Access" = "무제한 이용 잠금 해제";
 "Unlimited interior, exterior, and garden transformations. All styles, custom presets, and high‑quality exports" = "무제한 인테리어, 익스테리어, 정원 변환. 모든 스타일, 사용자 지정 프리셋, 고화질 내보내기 제공";
 "Enable Free Trial" = "무료 체험 시작";
@@ -202,8 +266,39 @@
 "Not now" = "나중에";
 "No payment due now" = "지금은 결제되지 않습니다";
 "Try Free 3 days" = "3일 무료 체험";
+"Try Free trial" = "무료 체험";
+"3 days trial" = "3일 체험";
+"%d days trial" = "%d일 체험";
+"Best Value" = "가장 알뜰한 선택";
+"week" = "주";
+"/year" = "/년";
+"/month" = "/월";
+"/week" = "/주";
+"Monthly Access" = "월간 이용";
+"YEARLY" = "연간";
+"MONTHLY" = "월간";
+"WEEKLY" = "주간";
 "Cancel Anytime" = "언제든지 해지 가능";
-
+"No paying now" = "지금은 결제 없음";
+"Not commitment. Cancel anytime" = "약정 없음. 언제든 해지 가능";
+"Not interested?" = "관심 없으신가요?";
+"Go with Basic" = "Basic으로 계속";
+"Trusted users" = "신뢰받는 사용자";
+"Avarage Rating" = "평균 평점";
+"Terms" = "약관";
+"Privacy" = "개인정보";
+"Restore" = "복원";
+"100.000+" = "100.000+";
+"Unlimited Redesigns" = "무제한 리디자인";
+"All Premium Styles" = "모든 프리미엄 스타일";
+"Ultra Fast Rendering" = "초고속 렌더링";
+"Design Every Corner" = "모든 공간을 디자인하세요";
+"Redesign as much as you want " = "원하는 만큼 리디자인";
+"Access to every styles and materials" = "모든 스타일과 자재 이용";
+"Get stunning results in seconds" = "몇 초 만에 놀라운 결과";
+"Enjoy without any interruptions" = "방해 없이 즐기세요";
+"Paywall placement not found" = "페이월 배치를 찾을 수 없습니다";
+"Paywall requires at least two products" = "페이월에는 최소 2개의 상품이 필요합니다";
 //Settings
 "Notification" = "알림";
 "Vibration" = "진동";
@@ -218,26 +313,29 @@
 "Use natural light whenever possible, or switch on all lights in the room.\nShoot at eye level to keep the perspective natural and realistic.\nPTake photos from a corner or doorway to capture more of the space.\nClear away clutter and tidy up to achieve a clean, polished look." = "가능하면 자연광을 사용하거나, 방 안의 조명을 모두 켜세요.\n자연스럽고 현실적인 원근감을 위해 눈높이에서 촬영하세요.\n공간을 더 넓게 담기 위해 방의 모서리나 출입구에서 사진을 찍으세요.\n깔끔하고 정돈된 결과를 위해 잡동사니를 치우고 공간을 정리하세요.";
 "Photograph the building in daylight.\nRemove cars, people, trash bins, and other distractions from the scene.\nPreserve natural and realistic colors.\nUpload images in high resolution and sharp focus." = "건물은 낮에 촬영하세요.\n차량, 사람, 쓰레기통 등 장면을 방해하는 요소는 치워 주세요.\n자연스럽고 현실적인 색감을 유지하세요.\n고해상도와 선명한 초점의 이미지를 업로드하세요.";
 "Use natural daylight and avoid harsh sunlight or deep shadows.\nKeep the garden clean and well-maintained, without tools or temporary objects.\nShow the overall layout clearly, including paths, plants, and open areas.\nEnsure sharp focus, accurate colors, and a straight horizon." = "자연광을 사용하고 강한 직사광선이나 짙은 그림자는 피하세요.\n정원은 도구나 임시 물건 없이 깔끔하게 정돈된 상태로 유지하세요.\n산책로, 식물, 열린 공간을 포함해 전체 레이아웃이 잘 보이도록 촬영하세요.\n선명한 초점, 정확한 색감, 수평이 맞는 구도를 유지하세요.";
-
+"Blurred" = "흐림";
+"Cropped" = "잘림";
+"Clean lines" = "깔끔한 선";
+"Full plan" = "전체 평면도";
 "Too Close" = "너무 가까움";
 "Too Dark" = "너무 어두움";
 "Too Mess" = "너무 지저분함";
-
 "View at eye level" = "눈높이 시점";
 "Good light" = "좋은 조명";
 "Clean Room" = "깔끔한 공간";
-
 "Too Far" = "너무 멂";
 "High resolution" = "고해상도";
 "Too Messy" = "너무 지저분함";
 "Clear view" = "선명한 구도";
 "Good focus" = "초점이 선명함";
 "View at eye level" = "눈높이 시점";
+"Clear layout" = "명확한 배치";
+"Good quality" = "좋은 품질";
+"Full 2D floor plan with every room clearly visible.\nSharp, high-quality image with clean lines.\nSimple layout without extra notes or markings.\nAvoid blurry, cropped, or low-resolution plans." = "모든 방이 선명하게 보이는 2D 평면도.\n깔끔한 선의 선명하고 고품질 이미지.\n추가 메모나 표시 없는 단순한 배치.\n흐리거나 잘린, 저해상도 평면도는 피하세요.";
 "Info" = "정보";
 "Tips" = "팁";
 "Bad Example:" = "나쁜 예:";
 "Good Example:" = "좋은 예:";
-
 // Custom Prompt
 "Enter Custom Promt" = "맞춤 프롬프트 입력";
 "Describe your design style idea..." = "원하는 디자인 스타일을 설명해 보세요...";
@@ -262,7 +360,6 @@
 "Building facade visualization focusing on geometry, depth, and material accuracy" = "기하학, 깊이감, 소재의 정확성에 초점을 맞춘 건물 파사드 비주얼";
 "Exterior design of a residential property with clear lines, natural proportions, and daylight conditions" = "명확한 선, 자연스러운 비례, 주간 조명 조건이 돋보이는 주거 외관 디자인";
 "Realistic exterior rendering of a building with attention to lighting, textures, and spatial balance" = "조명, 질감, 공간 균형을 세심하게 표현한 사실적인 건물 외관 렌더링";
-
 "Garden exterior with well-planned pathways, natural greenery, and balanced outdoor composition" = "잘 계획된 산책로, 자연스러운 녹지, 균형 잡힌 야외 구도의 정원 외관";
 "Outdoor garden area featuring landscaped plants, clear zoning, and natural daylight" = "조경된 식물, 명확한 공간 구분, 자연광이 돋보이는 야외 정원 공간";
 "Garden design with integrated seating areas, realistic vegetation, and harmonious proportions" = "휴식 공간, 사실적인 식생, 조화로운 비례가 어우러진 정원 디자인";
@@ -273,11 +370,9 @@
 "Garden visualization with natural light, well-maintained greenery, and clear composition" = "자연광, 잘 관리된 녹지, 명확한 구도가 돋보이는 정원 비주얼";
 "Outdoor garden environment with realistic vegetation density and natural color balance" = "사실적인 식생 밀도와 자연스러운 색 균형을 갖춘 야외 정원 환경";
 "Garden design focusing on functionality, comfort, and harmony with the surroundings" = "기능성, 편안함, 주변 환경과의 조화에 초점을 맞춘 정원 디자인";
-
 // Processing
 "Processing..." = "처리 중...";
 "Please, don't close the app " = "앱을 닫지 마세요 ";
-
 // Replace Object
 "Action Required" = "작업 필요";
 "Please select an element on the image to replace or write a prompt describing what you want to change." = "교체할 이미지 요소를 선택하거나 변경하고 싶은 내용을 설명하는 프롬프트를 입력해 주세요.";
@@ -298,9 +393,9 @@
 "Describe your design style idea..." = "원하는 디자인 스타일을 설명해 보세요...";
 "Floor options" = "바닥 옵션";
 "Wall options" = "벽 옵션";
-
 // Daily generation limit
 "Daily limit reached" = "일일 한도 도달";
+"daily_limit_reached_message" = "오늘 %d회의 이미지 생성을 모두 사용했습니다. 내일 다시 시도해 주세요.";
 "You've used all 15 image generations for today. Please try again tomorrow." = "오늘 사용 가능한 이미지 생성 15회를 모두 사용했습니다. 내일 다시 시도해 주세요.";
 "" = "";
 "" = "";
@@ -313,3 +408,120 @@
 "" = "";
 "" = "";
 "" = "";
+"Meet Your AI Experts:" = "AI 전문가를 만나보세요:";
+"AI Renovation Assistant" = "AI 리모델링 어시스턴트";
+"I'm Here to transform space  and bring your ideas to life" = "공간을 변화시키고 아이디어를 현실로 만드는 것을 돕습니다";
+"Interior Designer" = "인테리어 디자이너";
+"Budget Estimator" = "예산 추정";
+"Exterior Expert" = "외관 전문가";
+"Material Guide" = "자재 가이드";
+"assistant_chat_badge_caption" = "AI 전문가";
+"assistant_short_desc_interior_designer" = "아름다운 인테리어 디자인";
+"assistant_short_desc_budget_estimator" = "똑똑하게 계획하고 예산 지키기";
+"assistant_short_desc_exterior_expert" = "집 외관을 자신 있게 개선";
+"assistant_short_desc_material_guide" = "프로젝트에 맞는 최고의 자재 찾기";
+"What flooring is best for a high-traffic area?" = "사람이 많이 다니는 공간에 좋은 바닥재는?";
+"assistant_chat_bio_interior_designer" = "배치, 스타일, 가구 아이디어 — 공간에 맞춤.";
+"assistant_chat_bio_budget_estimator" = "대략적인 비용 범위와 품질을 유지하며 절약하는 방법.";
+"assistant_chat_bio_exterior_expert" = "파사드, 외관 매력, 외부 마감 — 현실적인 업그레이드.";
+"assistant_chat_bio_material_guide" = "바닥, 페인트, 마감 — 어디에 무엇이 맞는지, 그 이유까지.";
+"assistant_chat_greeting_interior_designer" = "안녕하세요, Monica입니다. 방 크기, 불편한 점, 원하는 분위기를 알려주세요. 배치, 색상 팔레트, 빠른 개선 아이디어를 제안해 드릴게요.";
+"assistant_chat_greeting_budget_estimator" = "안녕하세요, Olivia입니다. 계획 중인 리모델링(방, 범위, 마감 수준)을 설명해 주시면 대략적인 예산과 절약 팁을 알려드릴게요.";
+"assistant_chat_greeting_exterior_expert" = "안녕하세요, Jacob입니다. 집 스타일, 문제 구역, 원하는 분위기를 알려주세요. 정말 효과 있는 외관 변경을 제안해 드릴게요.";
+"assistant_chat_greeting_material_guide" = "안녕하세요, Martin입니다. 어떤 표면의 자재를 고르는지, 어떻게 사용할지 알려주세요. 몇 가지 좋은 옵션으로 좁혀 드릴게요.";
+"chat_input_placeholder" = "무엇이든 물어보세요…";
+"chat_error_generic" = "죄송합니다. 서버에 연결할 수 없습니다. 잠시 후 다시 시도해 주세요.";
+"assistant_suggest_interior_1" = "거실을 더 넓어 보이게 하는 색은?";
+"assistant_suggest_interior_2" = "거실 조명을 어떻게 개선할까요?";
+"assistant_suggest_interior_3" = "모던 거실 아이디어 보여줘";
+"assistant_suggest_interior_4" = "거실을 더 아늑하게 만드는 방법은?";
+"assistant_suggest_budget_1" = "리모델링 비용을 어떻게 아낄까요?";
+"assistant_suggest_budget_2" = "주방 리모델링 비용 추정해 줘";
+"assistant_suggest_budget_3" = "예산에 맞는 집 아이디어";
+"assistant_suggest_budget_4" = "어디에 더 투자하고 어디서 절약할까요?";
+"assistant_suggest_exterior_1" = "우리 집에 어울리는 외벽 색상은?";
+"assistant_suggest_exterior_2" = "집 외관을 더 고급스럽게 보이게";
+"assistant_suggest_exterior_3" = "우리 집에 맞는 외관 스타일은?";
+"assistant_suggest_exterior_4" = "앞마당 조경 아이디어 제안해 줘";
+"assistant_suggest_material_1" = "가족 주택에 내구성 좋은 자재는?";
+"assistant_suggest_material_2" = "럭셔리 느낌의 벽 자재는?";
+"assistant_suggest_material_3" = "다양한 질감을 올바르게 믹스하는 방법은?";
+"assistant_suggest_material_4" = "주방 캐비닛에 가장 좋은 자재는?";
+
+// Profile
+"No design yet" = "아직 디자인이 없습니다";
+"Start transform your space" = "공간 변화를 시작해 보세요";
+"Options" = "옵션";
+"Inspiration" = "영감";
+"Profile" = "프로필";
+"Settings" = "설정";
+"Delete design?" = "디자인을 삭제할까요?";
+"This action will permanently remove the image from your history." = "이 작업을 수행하면 이미지가 기록에서 영구적으로 삭제됩니다.";
+"Delete" = "삭제";
+"Unable to delete" = "삭제할 수 없습니다";
+"Start creating" = "만들기 시작";
+// Legacy home descriptions
+"Transform your space — snap a room and let AI do the rest." = "공간을 바꿔보세요 — 방 사진을 찍으면 나머지는 AI가 알아서 해드립니다.";
+"Upload a photo of your home, choose your style and let AI redesign your facade!" = "집 사진을 업로드하고 스타일을 선택하면 AI가 외관을 새롭게 디자인해 드립니다!";
+"Take a photo, and let AI reveal your garden's full potential." = "사진을 찍으면 AI가 정원의 잠재력을 최대한 끌어내 드립니다.";
+"Bring your ideas to life — select a reference style and discover a new vibe with AI." = "아이디어를 현실로 만들어 보세요 — 참고 스타일을 선택하고 AI와 함께 새로운 분위기를 발견해 보세요.";
+"Choose an object and let AI replace it instantly." = "객체를 선택하면 AI가 즉시 교체해 드립니다.";
+"Replace objects in your photo with AI-powered precision." = "AI의 정밀한 기능으로 사진 속 객체를 교체하세요.";
+"Try new flooring in seconds. AI instantly detects and replaces your floor." = "몇 초 만에 새로운 바닥을 적용해 보세요. AI가 바닥을 즉시 감지하고 교체합니다.";
+"Reimagine your walls with AI. Instantly preview colors, textures, and finishes in your space." = "AI로 벽을 새롭게 꾸며보세요. 공간에서 색상, 질감, 마감을 즉시 미리 볼 수 있습니다.";
+
+// Dark cinematic paywall
+"Get Premium Access" = "프리미엄 이용하기";
+"Unlimited AI Renders" = "무제한 AI 렌더링";
+"No Pay Now" = "지금 결제 없음";
+"Before" = "이전";
+"After" = "이후";
+"Cancel anytime" = "언제든지 취소 가능";
+"annually" = "매년";
+"monthly" = "매월";
+"weekly" = "매주";
+"%@ billed %@" = "%@, %@ 청구";
+"%d%% OFF" = "%d%% 할인";
+
+// Local re-engagement pushes (free users)
+"local_push_1_title" = "여기 실수가 숨어 있어요... 🔍";
+"local_push_1_body" = "디자이너라면 바로 알아챌 거예요. 방 사진을 한 번에 확인해 보세요.";
+"local_push_2_title" = "당신도 보이시나요? 🤨";
+"local_push_2_body" = "방이 두 배는 넓어 보일 수 있어요. 무엇을 치울지 보세요.";
+"local_push_3_title" = "새 가구는 사지 마세요 🚫";
+"local_push_3_body" = "필요한 건 다른 배치뿐. 0원으로 공간을 살리는 법을 열어 보세요.";
+"local_push_4_title" = "5성급 호텔이었다면... 🍸";
+"local_push_4_body" = "AI가 침실을 럭셔리 스위트로 바꿨어요. 결과를 들여다보세요.";
+"local_push_5_title" = "조명에서 다들 하는 실수 💡";
+"local_push_5_body" = "디테일 하나 때문에 아늑함이 떨어져요. 사진을 찍고 확인해 보세요.";
+"local_push_6_title" = "3년 뒤의 당신의 방 ⏳";
+"local_push_6_body" = "트렌드는 바뀝니다. 다음에 집에 어울릴 인테리어 스타일을 보세요.";
+"local_push_7_title" = "인공지능은 뭐라고 할까요? 🤖";
+"local_push_7_body" = "어떤 방이든 사진을 올리면 결과가 분명 놀라울 거예요.";
+"local_push_8_title" = "이 안이 마음에 드실 거예요 🔥";
+"local_push_8_body" = "공간 느낌을 완전히 바꿀 스타일을 골랐어요. 열어 보세요!";
+"local_push_9_title" = "완벽한 각도의 비밀 📸";
+"local_push_9_body" = "집 한구석이 인스타 스타가 될 수 있어요. 지금 찾아보세요.";
+"local_push_10_title" = "이 벽, 잊으신 것 같아요 🖼️";
+"local_push_10_body" = "빈 공간이 전체 분위기를 해쳐요. 무엇으로 채울지 보세요.";
+"local_push_11_title" = "이 방이 변화를 원해요 👀";
+"local_push_11_body" = "아무 코너나 찍으면 AI가 5초 만에 와우 버전을 보여 줘요.";
+"local_push_12_title" = "여기 뭔가 이상해요... 🤔";
+"local_push_12_body" = "소파 자리가 아닌가요? 방 사진을 올리고 재배치 아이디어를 확인해 보세요.";
+"local_push_13_title" = "아늑함의 비밀이 공개됐어요 ✨";
+"local_push_13_body" = "디테일 하나만 더하면 거실이 새로워져요. AI 제안을 보세요.";
+"local_push_14_title" = "파리라면 이 방이 어떨까요? 🥐";
+"local_push_14_body" = "프렌치 시크를 지금 바로 인테리어에 입어 보세요.";
+"local_push_15_title" = "당신의 집은 업그레이드가 필요해요 🪴";
+"local_push_15_body" = "사진 1장 = 새 스타일 5개. 가장 잘 어울리는 걸 보세요.";
+"See your room in a new style" = "내 방을 새로운 스타일로 만나보세요";
+"Create the next design for your space" = "내 공간의 다음 디자인을 만들어 보세요";
+"Keep the design you love" = "마음에 드는 디자인을 저장하세요";
+"Make your design feel just right" = "원하는 모습이 될 때까지 디자인을 다듬으세요";
+"Preparing your design" = "디자인 준비 중";
+"Creating your design" = "디자인 생성 중";
+"Saving your design" = "디자인 저장 중";
+"Keep the app open while we create it." = "디자인을 만드는 동안 앱을 열어 두세요.";
+"This is taking longer than usual. Your design is still in progress." = "평소보다 오래 걸리고 있습니다. 디자인을 계속 만들고 있어요.";
+"Couldn't create your design" = "디자인을 만들지 못했습니다";
+"Your photo and choices are saved. Try again." = "사진과 선택 사항이 저장되었습니다. 다시 시도해 주세요.";

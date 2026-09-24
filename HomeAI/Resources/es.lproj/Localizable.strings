@@ -1,38 +1,89 @@
-// OB
-"WELCOME TO THE WORLD OF CREATIVITY!" = "¡BIENVENIDO AL MUNDO DE LA CREATIVIDAD!";
-"Discover ideas and create your dream home in minutes." = "Descubre ideas y crea la casa de tus sueños en minutos.";
+// OB — Onboarding
+"ob_welcome_headline" = "Rediseña tu espacio";
+"ob_welcome_description" = "Transforma cualquier habitación con IA";
+"ob_welcome_get_started" = "Empezar";
+"ob_welcome_trusted_users" = "Usuarios de confianza";
+"ob_welcome_average_rating" = "Valoración media";
+"ob_design_headline" = "Reimagina tu hogar";
+"ob_design_description" = "Rediseña tu espacio al instante con nuevos estilos, colores y muebles.";
+"ob_feature_new_walls" = "Nuevas paredes";
+"ob_feature_replace_object" = "Reemplazar objeto";
+"ob_feature_delete_object" = "Eliminar objeto";
+"ob_feature_new_color" = "Nuevo color";
+"ob_feature_new_style" = "Nuevo estilo";
+"ob_feature_new_floor" = "Nuevo suelo";
+"ob_exterior_headline" = "Transforma tu exterior";
+"ob_exterior_description" = "Imagínalo de otra forma";
+
+"ob_garden_headline" = "Da vida a tu jardín";
+"ob_garden_description" = "Crea tu espacio exterior perfecto";
+
+"ob_change_headline" = "Cambia cualquier cosa";
+"ob_change_description" = "Elimina. Sustituye. Reimagina.";
+"ob_rate_headline_format" = "Tu hogar soñado se ve %@";
+"ob_rate_headline_highlight" = "INCREÍBLE";
+"ob_rate_description" = "Califícanos para desbloquear más estilos y funciones y ayudarnos a mejorar ReHomely para ti";
+"ob_rate_unlock_title" = "Desbloquea";
+"ob_rate_unlock_subtitle" = "estilos premium";
+"ob_rate_bonus_title" = "Obtén un bonus";
+"ob_rate_bonus_subtitle" = "de diseño";
+"ob_rate_help_title" = "Ayúdanos a crear";
+"ob_rate_help_subtitle" = "algo mejor para ti";
+"ob_continue" = "Continuar";
+// OB — legacy keys (інші екрани / старі рядки)
+"Transform Your Facade" = "Transforma tu fachada";
+"Your dream home looks %@" = "Tu hogar soñado se ve %@";
+"AMAZING" = "INCREÍBLE";
+"Rate us to unlock more styles and features and help improve ReHomely for you" = "Califícanos para desbloquear más estilos y funciones y ayudarnos a mejorar ReHomely para ti";
+"Instantly visualize a new look for your house exterior." = "Visualiza al instante un nuevo aspecto para el exterior de tu casa.";
 "Next" = "Siguiente";
 "INSPIRE.DESIGN.TRANSFORM" = "INSPIRA.DISEÑA.TRANSFORMA";
 "Explore a world of stunning interior and exterior ideas, and bring them into your own designs." = "Explora un mundo de increíbles ideas para interiores y exteriores, y llévalas a tus propios diseños.";
 "HELP US GROW!" = "¡AYÚDANOS A CRECER!";
 "Support us with a quick review! Your feedback keeps us going and helps us bring even more smart design magic to life" = "Apóyanos con una reseña rápida. Tus comentarios nos impulsan y nos ayudan a dar vida a aún más magia de diseño inteligente";
 "Get Started" = "Empezar";
-
 // Home
+"Smart tools" = "Herramientas inteligentes";
+"See all" = "Ver todo";
+"Chat with AI-Assistant" = "Chatea con el asistente de IA";
+"Get personalized renovation advice and inspiration" = "Obtén consejos e inspiración personalizados para renovar";
 "Interior Design" = "Diseño de interiores";
-"Transform your space — snap a room and let AI do the rest." = "Transforma tu espacio: toma una foto de una habitación y deja que la IA haga el resto.";
 "Exterior Design" = "Diseño de exteriores";
-"Upload a photo of your home, choose your style and let AI redesign your facade!" = "Sube una foto de tu casa, elige tu estilo y deja que la IA rediseñe tu fachada.";
 "Garden Design" = "Diseño de jardines";
-"Take a photo, and let AI reveal your garden's full potential." = "Toma una foto y deja que la IA revele todo el potencial de tu jardín.";
 "Reference Style" = "Estilo de referencia";
-"Bring your ideas to life — select a reference style and discover a new vibe with AI." = "Haz realidad tus ideas: elige un estilo de referencia y descubre una nueva atmósfera con IA.";
 "Replace Objects" = "Reemplazar objetos";
-"Choose an object and let AI replace it instantly." = "Elige un objeto y deja que la IA lo reemplace al instante.";
-
 "Replace Object" = "Reemplazar objeto";
-"Replace objects in your photo with AI-powered precision." = "Reemplaza objetos en tu foto con precisión impulsada por IA.";
 "New Flooring" = "Nuevo suelo";
-"Choose an object and let AI replace it instantly." = "Elige un objeto y deja que la IA lo reemplace al instante.";
 "New Walls" = "Nuevas paredes";
-"Try new flooring in seconds. AI instantly detects and replaces your floor." = "Prueba un suelo nuevo en segundos. La IA detecta y reemplaza tu suelo al instante.";
-"Reimagine your walls with AI. Instantly preview colors, textures, and finishes in your space." = "Reimagina tus paredes con IA. Visualiza al instante colores, texturas y acabados en tu espacio.";
-
+"Change your indoor space" = "Transforma tu espacio interior";
+"Transform the look of your home" = "Transforma el aspecto de tu hogar";
+"Restyle your outdoor space" = "Renueva tu espacio exterior";
+"Match any styles" = "Combina con cualquier estilo";
+"Swap furniture instantly" = "Cambia muebles al instante";
+"Try new floor styles" = "Prueba nuevos estilos de suelo";
+"Repaint your walls" = "Repinta tus paredes";
+"Remove Objects" = "Eliminar objetos";
+"Remove unwanted items" = "Elimina objetos no deseados";
+"Rearrange Furniture" = "Reorganizar muebles";
+"Optimize your layout" = "Optimiza tu distribución";
+"Furnish Room" = "Amueblar habitación";
+"Fill empty spaces" = "Rellena espacios vacíos";
+"Floor Plan" = "Plano";
+"Turn plans into 3D" = "Convierte planos en 3D";
+" " = " ";
+"Upload a photo of your current layout" = "Sube una foto de tu distribución actual";
+"Upload a photo of your empty room" = "Sube una foto de tu habitación vacía";
+"Upload a photo of your floor plan" = "Sube una foto de tu plano";
+"Rearrange Only" = "Solo reorganizar";
+"New layout with same furniture" = "Nueva distribución con los mismos muebles";
+"Rearrange & Refresh" = "Reorganizar y renovar";
+"New layout with small furniture change" = "Nueva distribución con pequeños cambios de muebles";
+"Rearrange" = "Reorganizar";
 //Page
 "Generate" = "Generar";
+"Remove" = "Eliminar";
 "Delete Objects" = "Eliminar objetos";
 "Select an object and let AI remove it instantly." = "Selecciona un objeto y deja que la IA lo elimine al instante.";
-
 // Photo
 "Add a photo" = "Añadir foto";
 "Upload a photo of your current room." = "Sube una foto de tu habitación actual.";
@@ -50,7 +101,6 @@
 "Cancel" = "Cancelar";
 "Photo Tips" = "Consejos para fotos";
 "Upload a reference photo." = "Sube una foto de referencia.";
-
 // Color
 "Choose Color" = "Elegir color";
 "Random" = "Aleatorio";
@@ -83,6 +133,9 @@
 
 // Room
 "Choose Room" = "Elegir habitación";
+"All" = "Todo";
+"Exterior" = "Exterior";
+"Garden" = "Jardín";
 "Kitchen" = "Cocina";
 "Bedroom" = "Dormitorio";
 "Bathroom" = "Baño";
@@ -98,7 +151,6 @@
 "Hallway" = "Pasillo";
 "Laundry room" = "Lavandería";
 "Garage" = "Garaje";
-
 // Style
 "Choose Style" = "Elegir estilo";
 "Modern" = "Moderno";
@@ -160,7 +212,7 @@
 "Wood" = "Madera";
 "Creepy" = "Espeluznante";
 "Chocolate" = "Chocolate";
-
+"Cyberpunk" = "Cyberpunk";
 //Inspiration Detail
 "Done" = "Listo";
 "Save" = "Guardar";
@@ -178,6 +230,15 @@
 "Color" = "Color";
 "Style" = "Estilo";
 "LIKE THE APP?" = "¿TE GUSTA LA APP?";
+"like_alert_title_prefix" = "¿Te gusta";
+"like_alert_description" = "Tu opinión nos ayuda a mejorar y crear diseños aún mejores para ti.";
+"generations_left_alert_title_format" = "Te quedan %@ intentos";
+"generations_left_alert_subtitle" = "Sigue creando sin límites con PRO.";
+"generations_left_alert_feature_unlimited" = "Generaciones ilimitadas";
+"generations_left_alert_feature_quality" = "Mayor calidad de imagen";
+"generations_left_alert_feature_faster" = "Resultado más rápido";
+"generations_left_alert_get_pro" = "OBTENER PRO";
+"generations_left_alert_maybe_later" = "Quizás más tarde";
 "Enjoy creating beautiful spaces? Share your feedback and help us make home redesign better for you" = "¿Disfrutas creando espacios hermosos? Comparte tu opinión y ayúdanos a mejorar el rediseño del hogar para ti";
 "YES, RATE!" = "¡SÍ, CALIFICAR!";
 "No, thanks" = "No, gracias";
@@ -185,6 +246,7 @@
 "Would you like to tell us what you didn't like?" = "¿Quieres contarnos qué no te gustó?";
 "Share feedback" = "Enviar comentarios";
 "Delete Object" = "Eliminar objeto";
+"Brush Size" = "Tamaño del pincel";
 "Replace Object" = "Reemplazar objeto";
 "New Floor" = "Nuevo suelo";
 "New Style" = "Nuevo estilo";
@@ -192,6 +254,8 @@
 "" = "";
 
 //Paywall
+"Go Premium Design Without Limits" = "Hazte Premium\nDiseña sin límites";
+"Premium" = "Premium";
 "Unlock Unlimited Access" = "Desbloquea acceso ilimitado";
 "Unlimited interior, exterior, and garden transformations. All styles, custom presets, and high‑quality exports" = "Transformaciones ilimitadas de interiores, exteriores y jardines. Todos los estilos, ajustes preestablecidos personalizados y exportaciones en alta calidad";
 "Enable Free Trial" = "Activar prueba gratuita";
@@ -202,8 +266,39 @@
 "Not now" = "Ahora no";
 "No payment due now" = "No se cobra nada ahora";
 "Try Free 3 days" = "Probar gratis 3 días";
+"Try Free trial" = "Probar gratis";
+"3 days trial" = "Prueba de 3 días";
+"%d days trial" = "Prueba de %d días";
+"Best Value" = "Mejor relación calidad-precio";
+"week" = "semana";
+"/year" = "/año";
+"/month" = "/mes";
+"/week" = "/semana";
+"Monthly Access" = "Acceso mensual";
+"YEARLY" = "ANUAL";
+"MONTHLY" = "MENSUAL";
+"WEEKLY" = "SEMANAL";
 "Cancel Anytime" = "Cancela en cualquier momento";
-
+"No paying now" = "No pagas nada ahora";
+"Not commitment. Cancel anytime" = "Sin compromiso. Cancela cuando quieras";
+"Not interested?" = "¿No te interesa?";
+"Go with Basic" = "Continuar con Basic";
+"Trusted users" = "Usuarios de confianza";
+"Avarage Rating" = "Valoración media";
+"Terms" = "Términos";
+"Privacy" = "Privacidad";
+"Restore" = "Restaurar";
+"100.000+" = "100.000+";
+"Unlimited Redesigns" = "Rediseños ilimitados";
+"All Premium Styles" = "Todos los estilos premium";
+"Ultra Fast Rendering" = "Renderizado ultrarrápido";
+"Design Every Corner" = "Diseña cada rincón";
+"Redesign as much as you want " = "Rediseña todo lo que quieras";
+"Access to every styles and materials" = "Acceso a todos los estilos y materiales";
+"Get stunning results in seconds" = "Obtén resultados increíbles en segundos";
+"Enjoy without any interruptions" = "Disfruta sin interrupciones";
+"Paywall placement not found" = "No se encontró la ubicación del paywall";
+"Paywall requires at least two products" = "El paywall requiere al menos dos productos";
 //Settings
 "Notification" = "Notificaciones";
 "Vibration" = "Vibración";
@@ -218,26 +313,29 @@
 "Use natural light whenever possible, or switch on all lights in the room.\nShoot at eye level to keep the perspective natural and realistic.\nPTake photos from a corner or doorway to capture more of the space.\nClear away clutter and tidy up to achieve a clean, polished look." = "Usa luz natural siempre que sea posible, o enciende todas las luces de la habitación.\nToma la foto a la altura de los ojos para mantener una perspectiva natural y realista.\nToma fotos desde una esquina o desde la puerta para captar mejor el espacio.\nRetira el desorden y ordena el ambiente para lograr un aspecto limpio y cuidado.";
 "Photograph the building in daylight.\nRemove cars, people, trash bins, and other distractions from the scene.\nPreserve natural and realistic colors.\nUpload images in high resolution and sharp focus." = "Fotografía el edificio con luz natural.\nRetira coches, personas, cubos de basura y otros elementos que distraigan de la escena.\nMantén colores naturales y realistas.\nSube imágenes en alta resolución y con enfoque nítido.";
 "Use natural daylight and avoid harsh sunlight or deep shadows.\nKeep the garden clean and well-maintained, without tools or temporary objects.\nShow the overall layout clearly, including paths, plants, and open areas.\nEnsure sharp focus, accurate colors, and a straight horizon." = "Usa luz natural de día y evita la luz solar intensa o las sombras profundas.\nMantén el jardín limpio y bien cuidado, sin herramientas ni objetos temporales.\nMuestra claramente la distribución general, incluyendo caminos, plantas y zonas abiertas.\nAsegúrate de que la imagen tenga enfoque nítido, colores precisos y un horizonte recto.";
-
+"Blurred" = "Borrosa";
+"Cropped" = "Recortado";
+"Clean lines" = "Líneas limpias";
+"Full plan" = "Plano completo";
 "Too Close" = "Demasiado cerca";
 "Too Dark" = "Demasiado oscuro";
 "Too Mess" = "Demasiado desorden";
-
 "View at eye level" = "Vista a la altura de los ojos";
 "Good light" = "Buena luz";
 "Clean Room" = "Habitación limpia";
-
 "Too Far" = "Demasiado lejos";
 "High resolution" = "Alta resolución";
 "Too Messy" = "Demasiado desordenado";
 "Clear view" = "Vista clara";
 "Good focus" = "Buen enfoque";
 "View at eye level" = "Vista a la altura de los ojos";
+"Clear layout" = "Distribución clara";
+"Good quality" = "Buena calidad";
+"Full 2D floor plan with every room clearly visible.\nSharp, high-quality image with clean lines.\nSimple layout without extra notes or markings.\nAvoid blurry, cropped, or low-resolution plans." = "Plano 2D completo con todas las habitaciones claramente visibles.\nImagen nítida y de alta calidad con líneas limpias.\nDistribución simple sin notas ni marcas adicionales.\nEvita planos borrosos, recortados o de baja resolución.";
 "Info" = "Información";
 "Tips" = "Consejos";
 "Bad Example:" = "Mal ejemplo:";
 "Good Example:" = "Buen ejemplo:";
-
 // Custom Prompt
 "Enter Custom Promt" = "Introduce un prompt personalizado";
 "Describe your design style idea..." = "Describe tu idea de estilo de diseño...";
@@ -262,7 +360,6 @@
 "Building facade visualization focusing on geometry, depth, and material accuracy" = "Visualización de la fachada de un edificio centrada en la geometría, la profundidad y la fidelidad de los materiales";
 "Exterior design of a residential property with clear lines, natural proportions, and daylight conditions" = "Diseño exterior de una propiedad residencial con líneas limpias, proporciones naturales y condiciones de luz diurna";
 "Realistic exterior rendering of a building with attention to lighting, textures, and spatial balance" = "Render exterior realista de un edificio con atención a la iluminación, las texturas y el equilibrio espacial";
-
 "Garden exterior with well-planned pathways, natural greenery, and balanced outdoor composition" = "Exterior de jardín con senderos bien planificados, vegetación natural y composición exterior equilibrada";
 "Outdoor garden area featuring landscaped plants, clear zoning, and natural daylight" = "Zona de jardín exterior con plantas paisajísticas, zonificación clara y luz natural";
 "Garden design with integrated seating areas, realistic vegetation, and harmonious proportions" = "Diseño de jardín con zonas de descanso integradas, vegetación realista y proporciones armoniosas";
@@ -273,11 +370,9 @@
 "Garden visualization with natural light, well-maintained greenery, and clear composition" = "Visualización de jardín con luz natural, vegetación bien cuidada y composición clara";
 "Outdoor garden environment with realistic vegetation density and natural color balance" = "Entorno de jardín exterior con densidad realista de vegetación y equilibrio natural de color";
 "Garden design focusing on functionality, comfort, and harmony with the surroundings" = "Diseño de jardín centrado en la funcionalidad, la comodidad y la armonía con el entorno";
-
 // Processing
 "Processing..." = "Procesando...";
 "Please, don't close the app " = "Por favor, no cierres la app ";
-
 // Replace Object
 "Action Required" = "Acción requerida";
 "Please select an element on the image to replace or write a prompt describing what you want to change." = "Selecciona un elemento de la imagen para reemplazarlo o escribe un prompt que describa lo que quieres cambiar.";
@@ -298,9 +393,9 @@
 "Describe your design style idea..." = "Describe tu idea de estilo de diseño...";
 "Floor options" = "Opciones de suelo";
 "Wall options" = "Opciones de pared";
-
 // Daily generation limit
 "Daily limit reached" = "Límite diario alcanzado";
+"daily_limit_reached_message" = "Has usado las %d generaciones de imágenes de hoy. Vuelve a intentarlo mañana.";
 "You've used all 15 image generations for today. Please try again tomorrow." = "Has usado las 15 generaciones de imágenes de hoy. Vuelve a intentarlo mañana.";
 "" = "";
 "" = "";
@@ -313,3 +408,120 @@
 "" = "";
 "" = "";
 "" = "";
+"Meet Your AI Experts:" = "Conoce a tus expertos en IA:";
+"AI Renovation Assistant" = "Asistente de renovación con IA";
+"I'm Here to transform space  and bring your ideas to life" = "Estoy aquí para transformar espacios y dar vida a tus ideas";
+"Interior Designer" = "Diseñador de interiores";
+"Budget Estimator" = "Estimador de presupuesto";
+"Exterior Expert" = "Experto en exteriores";
+"Material Guide" = "Guía de materiales";
+"assistant_chat_badge_caption" = "Experto en IA";
+"assistant_short_desc_interior_designer" = "Diseña interiores hermosos";
+"assistant_short_desc_budget_estimator" = "Planifica con inteligencia y mantén el presupuesto";
+"assistant_short_desc_exterior_expert" = "Mejora el exterior de tu hogar con confianza";
+"assistant_short_desc_material_guide" = "Encuentra los mejores materiales para tu proyecto";
+"What flooring is best for a high-traffic area?" = "¿Qué suelo es mejor para una zona de mucho tránsito?";
+"assistant_chat_bio_interior_designer" = "Distribución, estilos, ideas de muebles — adaptados a tu espacio.";
+"assistant_chat_bio_budget_estimator" = "Rangos de coste aproximados y dónde ahorrar sin sacrificar calidad.";
+"assistant_chat_bio_exterior_expert" = "Fachadas, atractivo exterior, acabados exteriores — mejoras realistas.";
+"assistant_chat_bio_material_guide" = "Suelos, pintura, acabados — qué funciona dónde y por qué.";
+"assistant_chat_greeting_interior_designer" = "¡Hola! Soy Monica. Cuéntame sobre la habitación — tamaño, qué te molesta, qué sensación buscas — y te sugeriré una distribución, paleta y algunas mejoras rápidas.";
+"assistant_chat_greeting_budget_estimator" = "Hola, soy Olivia. Describe la renovación que planeas (habitaciones, alcance, nivel de acabado) y te daré un presupuesto aproximado y consejos para ahorrar.";
+"assistant_chat_greeting_exterior_expert" = "¡Hola! Soy Jacob. Cuéntame sobre tu casa — estilo, zonas problemáticas, la atmósfera que buscas — y te sugeriré cambios exteriores que realmente marquen la diferencia.";
+"assistant_chat_greeting_material_guide" = "Hola, soy Martin. Dime para qué superficie eliges materiales y cómo se usará — y reduciré la selección a unas pocas opciones inteligentes.";
+"chat_input_placeholder" = "Pregunta lo que quieras…";
+"chat_error_generic" = "Lo siento, no pude conectar con el servidor. Inténtalo de nuevo en un momento.";
+"assistant_suggest_interior_1" = "¿Qué colores harán que mi salón parezca más grande?";
+"assistant_suggest_interior_2" = "¿Cómo puedo mejorar la iluminación de mi salón?";
+"assistant_suggest_interior_3" = "Muéstrame ideas para un salón moderno";
+"assistant_suggest_interior_4" = "¿Cómo puedo hacer mi salón más acogedor?";
+"assistant_suggest_budget_1" = "¿Cómo puedo ahorrar dinero en una renovación?";
+"assistant_suggest_budget_2" = "Estima el coste de reformar la cocina";
+"assistant_suggest_budget_3" = "Ideas económicas para mi hogar";
+"assistant_suggest_budget_4" = "¿Dónde debería invertir más y dónde ahorrar?";
+"assistant_suggest_exterior_1" = "¿Mejores colores exteriores para mi casa?";
+"assistant_suggest_exterior_2" = "Hacer que el exterior de mi casa parezca más lujoso";
+"assistant_suggest_exterior_3" = "¿Qué estilo exterior encaja mejor con mi casa?";
+"assistant_suggest_exterior_4" = "Sugiere ideas para el jardín delantero";
+"assistant_suggest_material_1" = "¿Materiales duraderos para una casa familiar?";
+"assistant_suggest_material_2" = "¿Mejores materiales de pared para un look de lujo?";
+"assistant_suggest_material_3" = "¿Cómo combino correctamente diferentes texturas?";
+"assistant_suggest_material_4" = "¿Qué material funciona mejor para los armarios de cocina?";
+
+// Profile
+"No design yet" = "Aún no hay diseños";
+"Start transform your space" = "Empieza a transformar tu espacio";
+"Options" = "Opciones";
+"Inspiration" = "Inspiración";
+"Profile" = "Perfil";
+"Settings" = "Ajustes";
+"Delete design?" = "¿Eliminar diseño?";
+"This action will permanently remove the image from your history." = "Esta acción eliminará permanentemente la imagen de tu historial.";
+"Delete" = "Eliminar";
+"Unable to delete" = "No se pudo eliminar";
+"Start creating" = "Empezar a crear";
+// Legacy home descriptions
+"Transform your space — snap a room and let AI do the rest." = "Transforma tu espacio: toma una foto de una habitación y deja que la IA haga el resto.";
+"Upload a photo of your home, choose your style and let AI redesign your facade!" = "Sube una foto de tu casa, elige tu estilo y deja que la IA rediseñe tu fachada.";
+"Take a photo, and let AI reveal your garden's full potential." = "Toma una foto y deja que la IA revele todo el potencial de tu jardín.";
+"Bring your ideas to life — select a reference style and discover a new vibe with AI." = "Haz realidad tus ideas: elige un estilo de referencia y descubre una nueva atmósfera con IA.";
+"Choose an object and let AI replace it instantly." = "Elige un objeto y deja que la IA lo reemplace al instante.";
+"Replace objects in your photo with AI-powered precision." = "Reemplaza objetos en tu foto con precisión impulsada por IA.";
+"Try new flooring in seconds. AI instantly detects and replaces your floor." = "Prueba un suelo nuevo en segundos. La IA detecta y reemplaza tu suelo al instante.";
+"Reimagine your walls with AI. Instantly preview colors, textures, and finishes in your space." = "Reimagina tus paredes con IA. Visualiza al instante colores, texturas y acabados en tu espacio.";
+
+// Dark cinematic paywall
+"Get Premium Access" = "Obtén acceso Premium";
+"Unlimited AI Renders" = "Renders con IA ilimitados";
+"No Pay Now" = "No pagues ahora";
+"Before" = "Antes";
+"After" = "Después";
+"Cancel anytime" = "Cancela cuando quieras";
+"annually" = "anualmente";
+"monthly" = "mensualmente";
+"weekly" = "semanalmente";
+"%@ billed %@" = "%@ facturado %@";
+"%d%% OFF" = "%d%% DE DESCUENTO";
+
+// Local re-engagement pushes (free users)
+"local_push_1_title" = "Aquí se esconde un error... 🔍";
+"local_push_1_body" = "Los diseñadores lo verían al instante. Revisa la foto de tu habitación en un toque.";
+"local_push_2_title" = "¿Tú también lo ves? 🤨";
+"local_push_2_body" = "Tu habitación podría parecer el doble de amplia. Mira qué quitar.";
+"local_push_3_title" = "No compres muebles nuevos 🚫";
+"local_push_3_body" = "Solo necesitas otra disposición. Abre y mira cómo dar vida al espacio por 0 €.";
+"local_push_4_title" = "Si esto fuera un hotel 5 estrellas... 🍸";
+"local_push_4_body" = "La IA convirtió tu dormitorio en una suite de lujo. Mira el resultado.";
+"local_push_5_title" = "Todos cometen este error con la luz 💡";
+"local_push_5_body" = "Tu interior pierde calidez por un detalle. Haz una foto y compruébalo.";
+"local_push_6_title" = "Tu habitación dentro de 3 años ⏳";
+"local_push_6_body" = "Las tendencias cambian. Mira qué estilo de interior le irá a tu casa después.";
+"local_push_7_title" = "¿Qué dirá la inteligencia artificial? 🤖";
+"local_push_7_body" = "Sube la foto de cualquier habitación: el resultado te va a sorprender.";
+"local_push_8_title" = "Te va a encantar esta versión 🔥";
+"local_push_8_body" = "Elegimos un estilo que cambiará por completo cómo sientes el espacio. ¡Ábrelo!";
+"local_push_9_title" = "El secreto del ángulo perfecto 📸";
+"local_push_9_body" = "Un rincón de tu casa puede ser estrella de Instagram. Encuéntralo ahora.";
+"local_push_10_title" = "Parece que olvidaste esta pared 🖼️";
+"local_push_10_body" = "El vacío estropea el conjunto. Mira con qué llenarlo.";
+"local_push_11_title" = "Esta habitación pide un cambio 👀";
+"local_push_11_body" = "Haz una foto de cualquier rincón y la IA mostrará el wow en 5 segundos.";
+"local_push_12_title" = "Algo no encaja... 🤔";
+"local_push_12_body" = "¿El sofá está mal colocado? Sube una foto y revisa ideas de redistribución.";
+"local_push_13_title" = "El secreto del confort, al descubierto ✨";
+"local_push_13_body" = "Añade un solo detalle para renovar el salón. Mira lo que propone la IA.";
+"local_push_14_title" = "¿Cómo se vería tu habitación en París? 🥐";
+"local_push_14_body" = "Prueba el chic francés en tu interior ahora mismo.";
+"local_push_15_title" = "Tu casa merece un upgrade 🪴";
+"local_push_15_body" = "1 foto = 5 estilos nuevos. Mira cuál encaja mejor.";
+"See your room in a new style" = "Mira tu habitación con un estilo nuevo";
+"Create the next design for your space" = "Crea otro diseño para tu espacio";
+"Keep the design you love" = "Guarda el diseño que te encanta";
+"Make your design feel just right" = "Ajusta tu diseño hasta que quede perfecto";
+"Preparing your design" = "Preparando tu diseño";
+"Creating your design" = "Creando tu diseño";
+"Saving your design" = "Guardando tu diseño";
+"Keep the app open while we create it." = "Mantén la app abierta mientras lo creamos.";
+"This is taking longer than usual. Your design is still in progress." = "Está tardando más de lo habitual. Seguimos creando tu diseño.";
+"Couldn't create your design" = "No se pudo crear tu diseño";
+"Your photo and choices are saved. Try again." = "Tu foto y tus elecciones están guardadas. Inténtalo de nuevo.";

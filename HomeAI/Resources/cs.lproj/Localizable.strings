@@ -1,54 +1,113 @@
-// OB
-"WELCOME TO THE WORLD OF CREATIVITY!" = "VÍTEJTE VE SVĚTĚ KREATIVITY!";
-"Discover ideas and create your dream home in minutes." = "Objevujte nové nápady a vytvořte si domov snů během několika minut.";
+// OB — Onboarding
+"ob_welcome_headline" = "Přepracujte svůj prostor";
+"ob_welcome_description" = "Proměňte jakoukoli místnost pomocí AI";
+"ob_welcome_get_started" = "Začít";
+"ob_welcome_trusted_users" = "Důvěryhodní uživatelé";
+"ob_welcome_average_rating" = "Průměrné hodnocení";
+
+"ob_design_headline" = "Proměňte svůj domov";
+"ob_design_description" = "Okamžitě proměňte svůj prostor pomocí nových stylů, barev a nábytku.";
+"ob_feature_new_walls" = "Nové stěny";
+"ob_feature_replace_object" = "Nahradit objekt";
+"ob_feature_delete_object" = "Odstranit objekt";
+"ob_feature_new_color" = "Nová barva";
+"ob_feature_new_style" = "Nový styl";
+"ob_feature_new_floor" = "Nová podlaha";
+
+"ob_exterior_headline" = "Proměňte svůj exteriér";
+"ob_exterior_description" = "Představte si to jinak";
+
+"ob_garden_headline" = "Oživte svou zahradu";
+"ob_garden_description" = "Vytvořte si ideální venkovní prostor";
+
+"ob_change_headline" = "Změňte cokoli";
+"ob_change_description" = "Odstraňte. Nahraďte. Přehodnoťte.";
+
+"ob_rate_headline_format" = "Váš vysněný domov vypadá %@";
+"ob_rate_headline_highlight" = "ÚŽASNĚ";
+"ob_rate_description" = "Ohodnoťte nás, odemkněte více stylů a funkcí a pomozte nám zlepšovat ReHomely pro vás";
+"ob_rate_unlock_title" = "Odemkněte";
+"ob_rate_unlock_subtitle" = "prémiové styly";
+"ob_rate_bonus_title" = "Získejte";
+"ob_rate_bonus_subtitle" = "bonusový návrh";
+"ob_rate_help_title" = "Pomozte nám tvořit";
+"ob_rate_help_subtitle" = "lepší aplikaci pro vás";
+
+"ob_continue" = "Pokračovat";
+
+// OB — legacy keys (інші екрани / старі рядки)
+"Transform Your Facade" = "Proměňte svou fasádu";
+"Your dream home looks %@" = "Váš vysněný domov vypadá %@";
+"AMAZING" = "ÚŽASNĚ";
+"Rate us to unlock more styles and features and help improve ReHomely for you" = "Ohodnoťte nás, odemkněte více stylů a funkcí a pomozte nám zlepšovat ReHomely pro vás";
+"Instantly visualize a new look for your house exterior." = "Okamžitě si představte nový vzhled exteriéru svého domu.";
 "Next" = "Další";
-"INSPIRE.DESIGN.TRANSFORM" = "INSPIRUJ.TVOR.PROMĚŇUJ";
-"Explore a world of stunning interior and exterior ideas, and bring them into your own designs." = "Objevte svět úžasných nápadů pro interiér i exteriér a proměňte je ve své vlastní návrhy.";
+"INSPIRE.DESIGN.TRANSFORM" = "INSPIRUJTE.TVŮRTE.PROMĚŇUJTE";
+"Explore a world of stunning interior and exterior ideas, and bring them into your own designs." = "Objevte svět úžasných nápadů pro interiér i exteriér a přeneste je do svých vlastních návrhů.";
 "HELP US GROW!" = "POMOZTE NÁM RŮST!";
-"Support us with a quick review! Your feedback keeps us going and helps us bring even more smart design magic to life" = "Podpořte nás krátkým hodnocením! Vaše zpětná vazba nás posouvá dál a pomáhá nám přinášet ještě více chytrých designových kouzel";
+"Support us with a quick review! Your feedback keeps us going and helps us bring even more smart design magic to life" = "Podpořte nás krátkým hodnocením! Vaše zpětná vazba nás posouvá dál a pomáhá nám přinášet ještě více chytrých designových kouzel.";
 "Get Started" = "Začít";
 
 // Home
+"Smart tools" = "Chytré nástroje";
+"See all" = "Zobrazit vše";
+"Chat with AI-Assistant" = "Chatovat s AI asistentem";
+"Get personalized renovation advice and inspiration" = "Získejte personalizované rady a inspiraci pro renovaci";
 "Interior Design" = "Návrh interiéru";
-"Transform your space — snap a room and let AI do the rest." = "Proměňte svůj prostor — vyfoťte místnost a nechte AI udělat zbytek.";
 "Exterior Design" = "Návrh exteriéru";
-"Upload a photo of your home, choose your style and let AI redesign your facade!" = "Nahrajte fotku svého domu, vyberte si styl a nechte AI přepracovat vaši fasádu!";
 "Garden Design" = "Návrh zahrady";
-"Take a photo, and let AI reveal your garden's full potential." = "Pořiďte fotku a nechte AI odhalit plný potenciál vaší zahrady.";
 "Reference Style" = "Referenční styl";
-"Bring your ideas to life — select a reference style and discover a new vibe with AI." = "Proměňte své nápady ve skutečnost — vyberte referenční styl a objevte s AI novou atmosféru.";
 "Replace Objects" = "Nahradit objekty";
-"Choose an object and let AI replace it instantly." = "Vyberte objekt a nechte AI jej okamžitě nahradit.";
-
 "Replace Object" = "Nahradit objekt";
-"Replace objects in your photo with AI-powered precision." = "Nahrazujte objekty na své fotografii s přesností poháněnou AI.";
 "New Flooring" = "Nová podlaha";
-"Choose an object and let AI replace it instantly." = "Vyberte objekt a nechte AI jej okamžitě nahradit.";
 "New Walls" = "Nové stěny";
-"Try new flooring in seconds. AI instantly detects and replaces your floor." = "Vyzkoušejte novou podlahu během několika sekund. AI okamžitě rozpozná a nahradí vaši podlahu.";
-"Reimagine your walls with AI. Instantly preview colors, textures, and finishes in your space." = "Přetvořte své stěny s pomocí AI. Okamžitě si prohlédněte barvy, textury a povrchové úpravy ve svém prostoru.";
+"Change your indoor space" = "Proměňte svůj interiér";
+"Transform the look of your home" = "Proměňte vzhled svého domova";
+"Restyle your outdoor space" = "Změňte styl svého venkovního prostoru";
+"Match any styles" = "Sladěte s libovolným stylem";
+"Swap furniture instantly" = "Okamžitě vyměňte nábytek";
+"Try new floor styles" = "Vyzkoušejte nové styly podlah";
+"Repaint your walls" = "Přemalujte své stěny";
+"Remove Objects" = "Odstranit objekty";
+"Remove unwanted items" = "Odstraňte nežádoucí předměty";
+"Rearrange Furniture" = "Přeskupit nábytek";
+"Optimize your layout" = "Optimalizujte své uspořádání";
+"Furnish Room" = "Zařídit místnost";
+"Fill empty spaces" = "Vyplňte prázdná místa";
+"Floor Plan" = "Půdorys";
+"Turn plans into 3D" = "Převeďte plány do 3D";
+" " = " ";
+"Upload a photo of your current layout" = "Nahrajte fotografii svého aktuálního uspořádání";
+"Upload a photo of your empty room" = "Nahrajte fotografii svého prázdného pokoje";
+"Upload a photo of your floor plan" = "Nahrajte fotografii svého půdorysu";
+"Rearrange Only" = "Pouze přeskupit";
+"New layout with same furniture" = "Nové uspořádání se stejným nábytkem";
+"Rearrange & Refresh" = "Přeskupit a obnovit";
+"New layout with small furniture change" = "Nové uspořádání s menší změnou nábytku";
+"Rearrange" = "Přeskupit";
 
 //Page
 "Generate" = "Generovat";
+"Remove" = "Odstranit";
 "Delete Objects" = "Odstranit objekty";
 "Select an object and let AI remove it instantly." = "Vyberte objekt a nechte AI jej okamžitě odstranit.";
 
 // Photo
 "Add a photo" = "Přidat fotografii";
-"Upload a photo of your current room." = "Nahrajte fotografii své současné místnosti.";
+"Upload a photo of your current room." = "Nahrajte fotografii svého současného pokoje.";
 "Upload a photo of your current facade." = "Nahrajte fotografii své současné fasády.";
 "Upload a photo of your current outdoor space." = "Nahrajte fotografii svého současného venkovního prostoru.";
 "Upload a photo of your current design." = "Nahrajte fotografii svého současného návrhu.";
-"Upload a photo of your current room." = "Nahrajte fotografii své současné místnosti.";
-"Upload a photo to redesign your floor" = "Nahrajte fotografii pro nový návrh podlahy";
+"Upload a photo of your current room." = "Nahrajte fotografii svého současného pokoje.";
+"Upload a photo to redesign your floor" = "Nahrajte fotografii pro přepracování podlahy";
 "Upload a photo of your current walls." = "Nahrajte fotografii svých současných stěn.";
 "" = "";
 
-"Get your dream design" = "Získejte svůj vysněný design";
+"Get your dream design" = "Získejte svůj vysněný návrh";
 "Take a photo" = "Pořídit fotografii";
 "Select from gallery" = "Vybrat z galerie";
 "Cancel" = "Zrušit";
-"Photo Tips" = "Tipy pro focení";
+"Photo Tips" = "Tipy pro fotografie";
 "Upload a reference photo." = "Nahrajte referenční fotografii.";
 
 // Color
@@ -64,25 +123,28 @@
 "Beach" = "Pláž";
 "Ocean" = "Oceán";
 "Calm" = "Klidná";
-"Blush" = "Jemně růžová";
+"Blush" = "Pudrová";
 "Elegant" = "Elegantní";
-"Harmony" = "Harmonie";
+"Harmony" = "Harmonická";
 "Azure" = "Azurová";
 "Lilac" = "Lila";
-"Earthy" = "Přírodní";
+"Earthy" = "Zemité";
 "Velvet" = "Sametová";
 "Sensual" = "Smyslná";
 "Spicied" = "Kořeněná";
 "Fresh" = "Svěží";
-"Keep Layout" = "Zachovat rozvržení";
-"Change Layout" = "Změnit rozvržení";
-"Follow the current room" = "Řídit se současnou místností";
+"Keep Layout" = "Zachovat uspořádání";
+"Change Layout" = "Změnit uspořádání";
+"Follow the current room" = "Vycházet ze stávající místnosti";
 "Redesign without restrictions" = "Přepracovat bez omezení";
 "Color Palette" = "Barevná paleta";
 "" = "";
 
 // Room
 "Choose Room" = "Vyberte místnost";
+"All" = "Vše";
+"Exterior" = "Exteriér";
+"Garden" = "Zahrada";
 "Kitchen" = "Kuchyně";
 "Bedroom" = "Ložnice";
 "Bathroom" = "Koupelna";
@@ -112,8 +174,8 @@
 "Georgian" = "Georgiánský";
 "Victorian" = "Viktoriánský";
 "Tudor" = "Tudorovský";
-"Craftsman" = "Řemeslný";
-"Cottage style" = "Chalupářský styl";
+"Craftsman" = "Craftsman";
+"Cottage style" = "Venkovský styl";
 "Art Deco" = "Art Deco";
 "Classic" = "Klasický";
 "Japanese" = "Japonský";
@@ -126,17 +188,17 @@
 "Wabi-sabi" = "Wabi-sabi";
 "Vintage" = "Vintage";
 "Rustic" = "Rustikální";
-"Farmhouse" = "Farmářský";
+"Farmhouse" = "Farmhouse";
 "Tropical" = "Tropický";
 "Flat" = "Byt";
 "House" = "Dům";
-"Cottage" = "Chata";
-"Mansion" = "Vila";
+"Cottage" = "Venkovský dům";
+"Mansion" = "Velkostatek";
 "Townhouse" = "Řadový dům";
 "Duplex" = "Dvojdům";
 "Villa" = "Vila";
 "Cabin" = "Srub";
-"Farmhouse" = "Farmářský";
+"Farmhouse" = "Farmhouse";
 "Bungalow" = "Bungalov";
 "Chalet" = "Horská chata";
 "Office" = "Kancelář";
@@ -150,16 +212,17 @@
 "No Style" = "Bez stylu";
 "Custom" = "Vlastní";
 "Glam" = "Glamour";
-"Marble" = "Mramor";
+"Marble" = "Mramorový";
 "Pink" = "Růžová";
 "Halloween" = "Halloween";
 "Cartoon" = "Kreslený";
 "Medieval" = "Středověký";
 "Baroque" = "Barokní";
-"Rainbow" = "Duha";
-"Wood" = "Dřevo";
+"Rainbow" = "Duhový";
+"Wood" = "Dřevěný";
 "Creepy" = "Strašidelný";
-"Chocolate" = "Čokoládová";
+"Chocolate" = "Čokoládový";
+"Cyberpunk" = "Cyberpunk";
 
 //Inspiration Detail
 "Done" = "Hotovo";
@@ -169,22 +232,32 @@
 "Error" = "Chyba";
 "Image saved to photo gallery" = "Obrázek byl uložen do fotogalerie";
 "OK" = "OK";
-"Permission Denied" = "Přístup zamítnut";
-"Please grant access to your photo library in Settings." = "Povolte prosím přístup ke své fotoknihovně v Nastavení.";
-"Regeneration" = "Opětovné generování";
-"Regenerate Image" = "Znovu vygenerovat obrázek";
-"Do you want to regenerate this image?" = "Chcete tento obrázek znovu vygenerovat?";
-"Regenerate" = "Generovat znovu";
+"Permission Denied" = "Přístup odepřen";
+"Please grant access to your photo library in Settings." = "Povolte prosím přístup ke své fotogalerii v Nastavení.";
+"Regeneration" = "Regenerace";
+"Regenerate Image" = "Regenerovat obrázek";
+"Do you want to regenerate this image?" = "Chcete tento obrázek regenerovat?";
+"Regenerate" = "Regenerovat";
 "Color" = "Barva";
 "Style" = "Styl";
 "LIKE THE APP?" = "LÍBÍ SE VÁM APLIKACE?";
-"Enjoy creating beautiful spaces? Share your feedback and help us make home redesign better for you" = "Baví vás vytvářet krásné prostory? Podělte se o svůj názor a pomozte nám vylepšit redesign domova právě pro vás";
+"like_alert_title_prefix" = "Líbí se vám";
+"like_alert_description" = "Vaše zpětná vazba nám pomáhá zlepšovat se a vytvářet pro vás ještě lepší designy.";
+"generations_left_alert_title_format" = "Zbývá vám %@ pokusů";
+"generations_left_alert_subtitle" = "Pokračujte v tvorbě bez limitů s PRO.";
+"generations_left_alert_feature_unlimited" = "Neomezené generování";
+"generations_left_alert_feature_quality" = "Vyšší kvalita obrazu";
+"generations_left_alert_feature_faster" = "Rychlejší výsledek";
+"generations_left_alert_get_pro" = "ZÍSKAT PRO";
+"generations_left_alert_maybe_later" = "Možná později";
+"Enjoy creating beautiful spaces? Share your feedback and help us make home redesign better for you" = "Baví vás vytvářet krásné prostory? Podělte se o svou zpětnou vazbu a pomozte nám vylepšit návrh domova pro vás.";
 "YES, RATE!" = "ANO, OHODNOTIT!";
 "No, thanks" = "Ne, děkuji";
-"Help us improve" = "Pomozte nám se zlepšovat";
-"Would you like to tell us what you didn't like?" = "Chcete nám říct, co se vám nelíbilo?";
-"Share feedback" = "Poslat zpětnou vazbu";
+"Help us improve" = "Pomozte nám zlepšit se";
+"Would you like to tell us what you didn't like?" = "Chtěli byste nám říct, co se vám nelíbilo?";
+"Share feedback" = "Sdílet zpětnou vazbu";
 "Delete Object" = "Odstranit objekt";
+"Brush Size" = "Velikost štětce";
 "Replace Object" = "Nahradit objekt";
 "New Floor" = "Nová podlaha";
 "New Style" = "Nový styl";
@@ -192,17 +265,51 @@
 "" = "";
 
 //Paywall
+"Go Premium Design Without Limits" = "Přejít na Premium\nNavrhujte bez omezení";
+"Premium" = "Premium";
 "Unlock Unlimited Access" = "Odemkněte neomezený přístup";
 "Unlimited interior, exterior, and garden transformations. All styles, custom presets, and high‑quality exports" = "Neomezené proměny interiéru, exteriéru i zahrady. Všechny styly, vlastní předvolby a exporty ve vysoké kvalitě";
-"Enable Free Trial" = "Aktivovat bezplatnou zkušební verzi";
+"Enable Free Trial" = "Zapnout bezplatnou zkušební verzi";
 "Yearly Access" = "Roční přístup";
 "Per week" = "Za týden";
 "Weekly Access" = "Týdenní přístup";
 "Continue" = "Pokračovat";
 "Not now" = "Teď ne";
-"No payment due now" = "Nyní není vyžadována žádná platba";
+"No payment due now" = "Nyní není splatná žádná platba";
 "Try Free 3 days" = "Vyzkoušet zdarma na 3 dny";
+"Try Free trial" = "Vyzkoušet zdarma";
+"3 days trial" = "3denní zkušební verze";
+"%d days trial" = "%ddenní zkušební verze";
+"Best Value" = "Nejvýhodnější";
+"week" = "týden";
+"/year" = "/rok";
+"/month" = "/měsíc";
+"/week" = "/týden";
+"Monthly Access" = "Měsíční přístup";
+"YEARLY" = "ROČNÍ";
+"MONTHLY" = "MĚSÍČNÍ";
+"WEEKLY" = "TÝDENNÍ";
 "Cancel Anytime" = "Zrušit kdykoli";
+"No paying now" = "Nyní nic neplatíte";
+"Not commitment. Cancel anytime" = "Bez závazků. Zrušte kdykoli";
+"Not interested?" = "Nemáte zájem?";
+"Go with Basic" = "Pokračovat se základní verzí";
+"Trusted users" = "Důvěryhodní uživatelé";
+"Avarage Rating" = "Průměrné hodnocení";
+"Terms" = "Podmínky";
+"Privacy" = "Soukromí";
+"Restore" = "Obnovit";
+"100.000+" = "100.000+";
+"Unlimited Redesigns" = "Neomezené redesigny";
+"All Premium Styles" = "Všechny prémiové styly";
+"Ultra Fast Rendering" = "Ultra rychlé renderování";
+"Design Every Corner" = "Navrhněte každý kout";
+"Redesign as much as you want " = "Přepracovávejte, jak jen chcete";
+"Access to every styles and materials" = "Přístup ke všem stylům a materiálům";
+"Get stunning results in seconds" = "Získejte úžasné výsledky během několika sekund";
+"Enjoy without any interruptions" = "Užívejte si bez přerušení";
+"Paywall placement not found" = "Umístění paywallu nebylo nalezeno";
+"Paywall requires at least two products" = "Paywall vyžaduje alespoň dva produkty";
 
 //Settings
 "Notification" = "Oznámení";
@@ -215,67 +322,74 @@
 "" = "";
 
 // Photo Tips
-"Use natural light whenever possible, or switch on all lights in the room.\nShoot at eye level to keep the perspective natural and realistic.\nPTake photos from a corner or doorway to capture more of the space.\nClear away clutter and tidy up to achieve a clean, polished look." = "Kdykoli je to možné, používejte přirozené světlo nebo rozsviťte všechna světla v místnosti.\nFoťte ve výšce očí, aby perspektiva působila přirozeně a realisticky.\nPořizujte fotografie z rohu místnosti nebo ode dveří, abyste zachytili více prostoru.\nUkliďte nepořádek a upravte místnost, abyste dosáhli čistého a uhlazeného vzhledu.";
-"Photograph the building in daylight.\nRemove cars, people, trash bins, and other distractions from the scene.\nPreserve natural and realistic colors.\nUpload images in high resolution and sharp focus." = "Fotografujte budovu za denního světla.\nOdstraňte ze záběru auta, lidi, popelnice a další rušivé prvky.\nZachovejte přirozené a realistické barvy.\nNahrávejte snímky ve vysokém rozlišení a s ostrým zaostřením.";
-"Use natural daylight and avoid harsh sunlight or deep shadows.\nKeep the garden clean and well-maintained, without tools or temporary objects.\nShow the overall layout clearly, including paths, plants, and open areas.\nEnsure sharp focus, accurate colors, and a straight horizon." = "Používejte přirozené denní světlo a vyhněte se ostrému slunci nebo hlubokým stínům.\nUdržujte zahradu čistou a upravenou, bez nářadí nebo dočasných předmětů.\nJasně ukažte celkové uspořádání, včetně cest, rostlin a otevřených ploch.\nDbejte na ostré zaostření, přesné barvy a rovný horizont.";
+"Use natural light whenever possible, or switch on all lights in the room.\nShoot at eye level to keep the perspective natural and realistic.\nPTake photos from a corner or doorway to capture more of the space.\nClear away clutter and tidy up to achieve a clean, polished look." = "Pokud je to možné, používejte přirozené světlo nebo rozsviťte všechna světla v místnosti.\nFoťte ve výšce očí, aby perspektiva působila přirozeně a realisticky.\nPořizujte fotografie z rohu místnosti nebo ode dveří, abyste zachytili více prostoru.\nUkliďte nepořádek a prostor upravte, aby působil čistě a upraveně.";
+"Photograph the building in daylight.\nRemove cars, people, trash bins, and other distractions from the scene.\nPreserve natural and realistic colors.\nUpload images in high resolution and sharp focus." = "Fotografujte budovu za denního světla.\nOdstraňte ze záběru auta, lidi, odpadkové koše a další rušivé prvky.\nZachovejte přirozené a realistické barvy.\nNahrávejte snímky ve vysokém rozlišení a s ostrým zaostřením.";
+"Use natural daylight and avoid harsh sunlight or deep shadows.\nKeep the garden clean and well-maintained, without tools or temporary objects.\nShow the overall layout clearly, including paths, plants, and open areas.\nEnsure sharp focus, accurate colors, and a straight horizon." = "Používejte přirozené denní světlo a vyhněte se ostrému slunci nebo hlubokým stínům.\nUdržujte zahradu čistou a upravenou, bez nářadí a dočasných předmětů.\nJasně ukažte celkové uspořádání, včetně cestiček, rostlin a otevřených ploch.\nZajistěte ostré zaostření, přesné barvy a rovný horizont.";
 
+"Blurred" = "Rozmazané";
+"Cropped" = "Oříznutý";
+"Clean lines" = "Čisté linie";
+"Full plan" = "Kompletní plán";
 "Too Close" = "Příliš blízko";
 "Too Dark" = "Příliš tmavé";
-"Too Mess" = "Přílišný nepořádek";
+"Too Mess" = "Příliš neuklizené";
 
-"View at eye level" = "Záběr ve výšce očí";
+"View at eye level" = "Pohled ve výšce očí";
 "Good light" = "Dobré světlo";
-"Clean Room" = "Čistá místnost";
+"Clean Room" = "Čistý pokoj";
 
 "Too Far" = "Příliš daleko";
 "High resolution" = "Vysoké rozlišení";
 "Too Messy" = "Příliš neuklizené";
 "Clear view" = "Jasný pohled";
 "Good focus" = "Dobré zaostření";
-"View at eye level" = "Záběr ve výšce očí";
-"Info" = "Informace";
+"View at eye level" = "Pohled ve výšce očí";
+"Clear layout" = "Přehledné uspořádání";
+"Good quality" = "Dobrá kvalita";
+"Full 2D floor plan with every room clearly visible.\nSharp, high-quality image with clean lines.\nSimple layout without extra notes or markings.\nAvoid blurry, cropped, or low-resolution plans." = "Kompletní 2D půdorys se všemi místnostmi jasně viditelnými.\nOstrý a kvalitní obrázek s čistými liniemi.\nJednoduché rozvržení bez poznámek a dalších značek.\nVyhněte se rozmazaným, oříznutým nebo nízkorozlišovacím plánům.";
+"Info" = "Info";
 "Tips" = "Tipy";
 "Bad Example:" = "Špatný příklad:";
 "Good Example:" = "Dobrý příklad:";
 
 // Custom Prompt
 "Enter Custom Promt" = "Zadejte vlastní prompt";
-"Describe your design style idea..." = "Popište svůj nápad na styl designu...";
+"Describe your design style idea..." = "Popište svou představu o stylu návrhu...";
 "Clear" = "Vymazat";
-"Example Promt" = "Příklad promptu";
-"A calm interior with soft daylight, light walls, natural textures, simple furniture forms, cozy seating, subtle shadows, balanced composition, realistic materials, high detail, photorealistic render" = "Klidný interiér s jemným denním světlem, světlými stěnami, přírodními texturami, jednoduchými tvary nábytku, útulným sezením, decentními stíny, vyváženou kompozicí, realistickými materiály, vysokými detaily a fotorealistickým renderem";
-"A warm living space with evening lighting, layered lamps, textured fabrics, wooden surfaces, comfortable furniture arrangement, intimate atmosphere, realistic lighting, cinematic mood" = "Teplý obytný prostor s večerním osvětlením, vrstvenými lampami, texturovanými látkami, dřevěnými povrchy, pohodlným uspořádáním nábytku, intimní atmosférou, realistickým světlem a filmovou náladou";
-"A compact interior with smart layout, multifunctional furniture, light color palette, mirrors to enhance space, clean surfaces, practical design, realistic proportions" = "Kompaktní interiér s chytrým uspořádáním, multifunkčním nábytkem, světlou barevnou paletou, zrcadly pro zvětšení prostoru, čistými povrchy, praktickým designem a realistickými proporcemi";
+"Example Promt" = "Ukázkový prompt";
+"A calm interior with soft daylight, light walls, natural textures, simple furniture forms, cozy seating, subtle shadows, balanced composition, realistic materials, high detail, photorealistic render" = "Klidný interiér s jemným denním světlem, světlými stěnami, přírodními texturami, jednoduchými tvary nábytku, útulným posezením, jemnými stíny, vyváženou kompozicí, realistickými materiály, vysokými detaily a fotorealistickým renderem";
+"A warm living space with evening lighting, layered lamps, textured fabrics, wooden surfaces, comfortable furniture arrangement, intimate atmosphere, realistic lighting, cinematic mood" = "Teplý obytný prostor s večerním osvětlením, vrstvenými lampami, texturovanými látkami, dřevěnými povrchy, pohodlným uspořádáním nábytku, intimní atmosférou, realistickým osvětlením a filmovou náladou";
+"A compact interior with smart layout, multifunctional furniture, light color palette, mirrors to enhance space, clean surfaces, practical design, realistic proportions" = "Kompaktní interiér s chytrým uspořádáním, multifunkčním nábytkem, světlou barevnou paletou, zrcadly pro optické zvětšení prostoru, čistými povrchy, praktickým designem a realistickými proporcemi";
 "A spacious interior with high ceilings, large windows, flowing curtains, airy atmosphere, minimal decor, natural color harmony, soft light diffusion, wide-angle view" = "Prostorný interiér s vysokými stropy, velkými okny, splývavými závěsy, vzdušnou atmosférou, minimální dekorací, přirozenou barevnou harmonií, jemně rozptýleným světlem a širokoúhlým pohledem";
-"A cozy home interior with tactile materials, rounded furniture shapes, warm tones, ambient lighting, plants integrated into the space, lived-in feeling, photorealistic details" = "Útulný domácí interiér s hmatovými materiály, zaoblenými tvary nábytku, teplými tóny, ambientním osvětlením, rostlinami začleněnými do prostoru, pocitem zabydlenosti a fotorealistickými detaily";
-"A functional interior focused on comfort, ergonomic furniture placement, clear zoning, neutral tones with warm accents, natural and artificial light balance" = "Funkční interiér zaměřený na pohodlí, ergonomické rozmístění nábytku, jasné zónování, neutrální tóny s teplými akcenty a vyváženost přirozeného i umělého světla";
-"An artistic interior with expressive lighting, sculptural furniture pieces, textured walls, layered materials, visual depth, mood-driven atmosphere" = "Umělecký interiér s výrazným osvětlením, sochařsky pojatým nábytkem, texturovanými stěnami, vrstvenými materiály, vizuální hloubkou a atmosférou utvářející náladu";
+"A cozy home interior with tactile materials, rounded furniture shapes, warm tones, ambient lighting, plants integrated into the space, lived-in feeling, photorealistic details" = "Útulný domácí interiér s haptickými materiály, zaoblenými tvary nábytku, teplými tóny, ambientním osvětlením, rostlinami začleněnými do prostoru, zabydleným dojmem a fotorealistickými detaily";
+"A functional interior focused on comfort, ergonomic furniture placement, clear zoning, neutral tones with warm accents, natural and artificial light balance" = "Funkční interiér zaměřený na pohodlí, ergonomické rozmístění nábytku, jasné zónování, neutrální tóny s teplými akcenty a vyvážené přirozené i umělé osvětlení";
+"An artistic interior with expressive lighting, sculptural furniture pieces, textured walls, layered materials, visual depth, mood-driven atmosphere" = "Umělecký interiér s výrazným osvětlením, sochařsky pojatými kusy nábytku, texturovanými stěnami, vrstvenými materiály, vizuální hloubkou a atmosférou utvářenou náladou";
 "A modern residential interior with clean geometry, large open space, smooth surfaces, soft indirect lighting, minimal accessories, high realism" = "Moderní obytný interiér s čistou geometrií, velkým otevřeným prostorem, hladkými povrchy, jemným nepřímým osvětlením, minimem doplňků a vysokou mírou realismu";
-"A welcoming interior with warm color palette, soft textiles, diffused daylight, balanced composition, cozy and comfortable mood, realistic home environment" = "Přívětivý interiér s teplou barevnou paletou, jemnými textiliemi, rozptýleným denním světlem, vyváženou kompozicí, útulnou a pohodlnou atmosférou a realistickým domácím prostředím";
+"A welcoming interior with warm color palette, soft textiles, diffused daylight, balanced composition, cozy and comfortable mood, realistic home environment" = "Přívětivý interiér s teplou barevnou paletou, měkkými textiliemi, rozptýleným denním světlem, vyváženou kompozicí, útulnou a pohodlnou náladou a realistickým domácím prostředím";
 "Exterior view of a residential building with clear architectural structure, natural daylight, and realistic materials" = "Pohled na exteriér obytné budovy s jasnou architektonickou strukturou, přirozeným denním světlem a realistickými materiály";
 "House exterior with balanced proportions, well-defined facade elements, and soft natural lighting" = "Exteriér domu s vyváženými proporcemi, dobře definovanými prvky fasády a jemným přirozeným osvětlením";
 "Building exterior design featuring large windows, accurate scale, and detailed surface textures" = "Návrh exteriéru budovy s velkými okny, přesným měřítkem a detailními texturami povrchů";
 "Exterior visualization of a private house with realistic shadows, clean composition, and landscaped surroundings" = "Vizualizace exteriéru rodinného domu s realistickými stíny, čistou kompozicí a upraveným okolím";
-"Residential exterior showing material contrast, depth, and harmony with the environment" = "Exteriér obytného domu ukazující kontrast materiálů, hloubku a harmonii s okolním prostředím";
+"Residential exterior showing material contrast, depth, and harmony with the environment" = "Obytný exteriér ukazující kontrast materiálů, hloubku a harmonii s okolím";
 "Architectural exterior rendering with neutral colors, realistic lighting, and high level of detail" = "Architektonický render exteriéru s neutrálními barvami, realistickým osvětlením a vysokou úrovní detailu";
 "Exterior view of a house with integrated outdoor space, natural light, and realistic environment" = "Pohled na exteriér domu s integrovaným venkovním prostorem, přirozeným světlem a realistickým prostředím";
-"Building facade visualization focusing on geometry, depth, and material accuracy" = "Vizualizace fasády budovy se zaměřením na geometrii, hloubku a věrnost materiálů";
+"Building facade visualization focusing on geometry, depth, and material accuracy" = "Vizualizace fasády budovy se zaměřením na geometrii, hloubku a přesnost materiálů";
 "Exterior design of a residential property with clear lines, natural proportions, and daylight conditions" = "Návrh exteriéru obytné nemovitosti s čistými liniemi, přirozenými proporcemi a denním osvětlením";
 "Realistic exterior rendering of a building with attention to lighting, textures, and spatial balance" = "Realistický render exteriéru budovy s důrazem na osvětlení, textury a prostorovou vyváženost";
 
-"Garden exterior with well-planned pathways, natural greenery, and balanced outdoor composition" = "Exteriér zahrady s dobře naplánovanými cestičkami, přirozenou zelení a vyváženou venkovní kompozicí";
+"Garden exterior with well-planned pathways, natural greenery, and balanced outdoor composition" = "Zahradní exteriér s dobře navrženými cestičkami, přirozenou zelení a vyváženou venkovní kompozicí";
 "Outdoor garden area featuring landscaped plants, clear zoning, and natural daylight" = "Venkovní zahradní prostor s upravenými rostlinami, jasným zónováním a přirozeným denním světlem";
-"Garden design with integrated seating areas, realistic vegetation, and harmonious proportions" = "Návrh zahrady s integrovanými místy k sezení, realistickou vegetací a harmonickými proporcemi";
+"Garden design with integrated seating areas, realistic vegetation, and harmonious proportions" = "Návrh zahrady s integrovanými posezeními, realistickou vegetací a harmonickými proporcemi";
 "Private garden visualization with natural materials, soft lighting, and detailed greenery" = "Vizualizace soukromé zahrady s přírodními materiály, jemným osvětlením a detailní zelení";
 "Garden space with defined walkways, layered planting, and realistic outdoor textures" = "Zahradní prostor s vymezenými cestičkami, vrstvenou výsadbou a realistickými venkovními texturami";
 "Exterior garden view showing depth, natural shadows, and a calm atmosphere" = "Pohled na zahradu zvenčí ukazující hloubku, přirozené stíny a klidnou atmosféru";
-"Landscaped garden area with attention to scale, plant diversity, and spatial balance" = "Krajinářsky upravená zahradní plocha s důrazem na měřítko, rozmanitost rostlin a prostorovou rovnováhu";
+"Landscaped garden area with attention to scale, plant diversity, and spatial balance" = "Upravená zahradní plocha s důrazem na měřítko, rozmanitost rostlin a prostorovou rovnováhu";
 "Garden visualization with natural light, well-maintained greenery, and clear composition" = "Vizualizace zahrady s přirozeným světlem, dobře udržovanou zelení a jasnou kompozicí";
-"Outdoor garden environment with realistic vegetation density and natural color balance" = "Venkovní zahradní prostředí s realistickou hustotou vegetace a přirozenou barevnou vyvážeností";
+"Outdoor garden environment with realistic vegetation density and natural color balance" = "Venkovní zahradní prostředí s realistickou hustotou vegetace a přirozenou barevnou rovnováhou";
 "Garden design focusing on functionality, comfort, and harmony with the surroundings" = "Návrh zahrady zaměřený na funkčnost, pohodlí a harmonii s okolím";
 
 // Processing
-"Processing..." = "Zpracovává se...";
+"Processing..." = "Zpracování...";
 "Please, don't close the app " = "Prosím, nezavírejte aplikaci ";
 
 // Replace Object
@@ -286,22 +400,23 @@
 "Select Object" = "Vyberte objekt";
 "Multiple objects found. Please select one:" = "Bylo nalezeno více objektů. Vyberte prosím jeden:";
 "Swap the floor lamp for a plant." = "Vyměňte stojací lampu za rostlinu.";
-"Clearly highlight only the object you want to replace.\nDo not cover or mark the entire image area.\nAvoid outlining or drawing around the selected object.\nMake sure the selected object is fully visible and not cropped." = "Jasně označte pouze objekt, který chcete nahradit.\nNezakrývejte ani neoznačujte celou oblast obrázku.\nVyhněte se obkreslování nebo kreslení kolem vybraného objektu.\nUjistěte se, že je vybraný objekt plně viditelný a není oříznutý.";
+"Clearly highlight only the object you want to replace.\nDo not cover or mark the entire image area.\nAvoid outlining or drawing around the selected object.\nMake sure the selected object is fully visible and not cropped." = "Jasně zvýrazněte pouze objekt, který chcete nahradit.\nNezakrývejte ani neoznačujte celou plochu obrázku.\nVyhněte se obkreslování nebo kreslení kolem vybraného objektu.\nUjistěte se, že je vybraný objekt plně viditelný a není oříznutý.";
 "Full screen painted" = "Vybarvená celá obrazovka";
 "Outlined object" = "Obkreslený objekt";
 "Correct Selection " = "Správný výběr";
-"Clear highlight" = "Jasné označení";
+"Clear highlight" = "Jasné zvýraznění";
 "" = "";
 "" = "";
 
 //SurfaceMaterialPickerViewController
-"Describe your design style idea..." = "Popište svůj nápad na styl designu...";
+"Describe your design style idea..." = "Popište svou představu o stylu návrhu...";
 "Floor options" = "Možnosti podlahy";
 "Wall options" = "Možnosti stěn";
 
 // Daily generation limit
-"Daily limit reached" = "Denní limit vyčerpán";
-"You've used all 15 image generations for today. Please try again tomorrow." = "Vyčerpali jste všech 15 generování obrázků na dnešek. Zkuste to zítra znovu.";
+"Daily limit reached" = "Denní limit dosažen";
+"daily_limit_reached_message" = "Dnes jste využili všech %d generování obrázků. Zkuste to prosím znovu zítra.";
+"You've used all 15 image generations for today. Please try again tomorrow." = "Dnes jste využili všech 15 generování obrázků. Zkuste to prosím znovu zítra.";
 "" = "";
 "" = "";
 "" = "";
@@ -313,3 +428,111 @@
 "" = "";
 "" = "";
 "" = "";
+"Meet Your AI Experts:" = "Seznamte se se svými AI experty:";
+"AI Renovation Assistant" = "AI asistent pro renovace";
+"I'm Here to transform space  and bring your ideas to life" = "Jsem tady, abych proměnil prostor a oživil vaše nápady";
+"Interior Designer" = "Interiérový designér";
+"Budget Estimator" = "Odhadce rozpočtu";
+"Exterior Expert" = "Expert na exteriér";
+"Material Guide" = "Průvodce po materiálech";
+"assistant_chat_badge_caption" = "AI expert";
+"assistant_short_desc_interior_designer" = "Navrhujte krásné interiéry";
+"assistant_short_desc_budget_estimator" = "Plánujte chytře a držte se rozpočtu";
+"assistant_short_desc_exterior_expert" = "Vylepšete exteriér svého domova s jistotou";
+"assistant_short_desc_material_guide" = "Najděte nejlepší materiály pro svůj projekt";
+"What flooring is best for a high-traffic area?" = "Jaká podlaha je nejlepší do frekventovaných prostor?";
+"assistant_chat_bio_interior_designer" = "Rozvržení, styly, nápady na nábytek — přizpůsobené vašemu prostoru.";
+"assistant_chat_bio_budget_estimator" = "Přibližné cenové rozpětí a tipy, kde ušetřit bez ztráty kvality.";
+"assistant_chat_bio_exterior_expert" = "Fasády, vzhled domu zvenku, venkovní povrchy — realistická vylepšení.";
+"assistant_chat_bio_material_guide" = "Podlahy, barvy, povrchy — co se kam hodí a proč.";
+"assistant_chat_greeting_interior_designer" = "Ahoj! Jsem Monica. Řekněte mi něco o místnosti — její velikost, co vám vadí, jakou atmosféru chcete — a navrhnu rozvržení, paletu i pár rychlých vylepšení.";
+"assistant_chat_greeting_budget_estimator" = "Ahoj, jsem Olivia. Popište renovaci, kterou plánujete (místnosti, rozsah, úroveň dokončení), a já vám dám přibližný rozpočet i tipy, kde ušetřit.";
+"assistant_chat_greeting_exterior_expert" = "Ahoj! Jsem Jacob. Řekněte mi něco o svém domě — styl, problematická místa, jakou atmosféru chcete — a navrhnu změny exteriéru, které opravdu udělají rozdíl.";
+"assistant_chat_greeting_material_guide" = "Ahoj, jsem Martin. Řekněte mi, pro jaký povrch vybíráte materiál a jak bude používán, a já výběr zúžím na několik chytrých možností.";
+"chat_input_placeholder" = "Zeptejte se na cokoli…";
+"chat_error_generic" = "Promiňte, nepodařilo se připojit k serveru. Zkuste to prosím znovu za chvíli.";
+"assistant_suggest_interior_1" = "Jaké barvy opticky zvětší můj obývací pokoj?";
+"assistant_suggest_interior_2" = "Jak mohu zlepšit osvětlení v obývacím pokoji?";
+"assistant_suggest_interior_3" = "Ukažte mi nápady na moderní obývací pokoj";
+"assistant_suggest_interior_4" = "Jak mohu udělat svůj obývací pokoj útulnější?";
+"assistant_suggest_budget_1" = "Jak mohu ušetřit na renovaci?";
+"assistant_suggest_budget_2" = "Odhadněte cenu rekonstrukce kuchyně";
+"assistant_suggest_budget_3" = "Cenově dostupné nápady pro můj domov";
+"assistant_suggest_budget_4" = "Kde bych měl více investovat a kde naopak ušetřit?";
+"assistant_suggest_exterior_1" = "Jaké jsou nejlepší barvy exteriéru pro můj dům?";
+"assistant_suggest_exterior_2" = "Luxusnější vzhled exteriéru domu";
+"assistant_suggest_exterior_3" = "Jaký styl exteriéru se k mému domu hodí nejlépe?";
+"assistant_suggest_exterior_4" = "Navrhněte nápady na úpravu předzahrádky";
+"assistant_suggest_material_1" = "Odolné materiály pro rodinný dům?";
+"assistant_suggest_material_2" = "Nejlepší materiály na stěny pro luxusní vzhled?";
+"assistant_suggest_material_3" = "Jak správně kombinovat různé textury?";
+"assistant_suggest_material_4" = "Jaký materiál je nejlepší pro kuchyňské skříňky?";
+
+// Profile
+"No design yet" = "Zatím žádný design";
+"Start transform your space" = "Začněte proměňovat svůj prostor";
+"Options" = "Možnosti";
+"Inspiration" = "Inspirace";
+"Profile" = "Profil";
+"Settings" = "Nastavení";
+"Delete design?" = "Smazat design?";
+"This action will permanently remove the image from your history." = "Tato akce trvale odstraní obrázek z historie.";
+"Delete" = "Smazat";
+"Unable to delete" = "Nepodařilo se smazat";
+"Start creating" = "Začít vytvářet";
+
+// Dark cinematic paywall
+"Get Premium Access" = "Získejte prémiový přístup";
+"Unlimited AI Renders" = "Neomezené AI vizualizace";
+"No Pay Now" = "Nyní nic neplatíte";
+"Before" = "Před";
+"After" = "Po";
+"Cancel anytime" = "Kdykoli zrušit";
+"annually" = "ročně";
+"monthly" = "měsíčně";
+"weekly" = "týdně";
+"%@ billed %@" = "%@, účtováno %@";
+"%d%% OFF" = "SLEVA %d%%";
+
+// Local re-engagement pushes (free users)
+"local_push_1_title" = "Tady se schovává chyba... 🔍";
+"local_push_1_body" = "Designéři by ji viděli hned. Zkontroluj fotku pokoje jedním klepnutím.";
+"local_push_2_title" = "Vidíš to taky? 🤨";
+"local_push_2_body" = "Tvůj pokoj může působit dvakrát prostorněji. Podívej se, co odstranit.";
+"local_push_3_title" = "Nekupuj nový nábytek 🚫";
+"local_push_3_body" = "Stačí jiné rozložení. Otevři a koukni, jak oživit prostor za 0 Kč.";
+"local_push_4_title" = "Kdyby to byl 5hvězdičkový hotel... 🍸";
+"local_push_4_body" = "AI proměnila tvoji ložnici v luxusní apartmá. Podívej se na výsledek.";
+"local_push_5_title" = "Tuhle chybu se světlem dělají všichni 💡";
+"local_push_5_body" = "Interiér ztrácí útulnost kvůli jednomu detailu. Vyfoť a zkontroluj.";
+"local_push_6_title" = "Tvůj pokoj za 3 roky ⏳";
+"local_push_6_body" = "Trendy se mění. Podívej se, jaký styl interiéru bude domu sedět dál.";
+"local_push_7_title" = "Co řekne umělá inteligence? 🤖";
+"local_push_7_body" = "Nahraj fotku jakéhokoli pokoje — výsledek tě překvapí.";
+"local_push_8_title" = "Tahle verze se ti bude líbit 🔥";
+"local_push_8_body" = "Vybrali jsme styl, který úplně změní pocit z prostoru. Otevři!";
+"local_push_9_title" = "Tajemství ideálního úhlu 📸";
+"local_push_9_body" = "Jeden kout domova může být hvězdou Instagramu. Najdi ho hned.";
+"local_push_10_title" = "Tu zeď jsi asi zapomněl 🖼️";
+"local_push_10_body" = "Prázdný prostor kazí celek. Podívej se, čím ho zaplnit.";
+"local_push_11_title" = "Tenhle pokoj chce změnu 👀";
+"local_push_11_body" = "Vyfoť jakýkoli kout a AI ukáže wow za 5 sekund.";
+"local_push_12_title" = "Něco tu nesedí... 🤔";
+"local_push_12_body" = "Možná gauč není na svém místě? Nahraj fotku a zkontroluj nápady na přeskládání.";
+"local_push_13_title" = "Tajemství útulnosti je venku ✨";
+"local_push_13_body" = "Přidej jeden detail a obývák osvěžíš. Podívej se, co navrhuje AI.";
+"local_push_14_title" = "Jak by vypadal tvůj pokoj v Paříži? 🥐";
+"local_push_14_body" = "Zkus francouzský šik na interiéru hned teď.";
+"local_push_15_title" = "Tvůj dům si zaslouží upgrade 🪴";
+"local_push_15_body" = "1 foto = 5 svěžího stylu. Podívej se, který sedí nejvíc.";
+"See your room in a new style" = "Podívejte se na svůj pokoj v novém stylu";
+"Create the next design for your space" = "Vytvořte další návrh svého prostoru";
+"Keep the design you love" = "Uložte si návrh, který se vám líbí";
+"Make your design feel just right" = "Dolaďte svůj návrh k dokonalosti";
+"Preparing your design" = "Připravujeme váš návrh";
+"Creating your design" = "Vytváříme váš návrh";
+"Saving your design" = "Ukládáme váš návrh";
+"Keep the app open while we create it." = "Nechte aplikaci otevřenou, než návrh vytvoříme.";
+"This is taking longer than usual. Your design is still in progress." = "Trvá to déle než obvykle. Na návrhu stále pracujeme.";
+"Couldn't create your design" = "Návrh se nepodařilo vytvořit";
+"Your photo and choices are saved. Try again." = "Vaše fotka a nastavení zůstaly uložené. Zkuste to znovu.";

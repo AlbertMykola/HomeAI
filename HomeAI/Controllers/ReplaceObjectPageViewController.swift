@@ -49,6 +49,14 @@ class ReplaceObjectPageViewController: UIPageViewController {
     }()
 
     private var proceedStates: [Bool] = []
+    private var autoAdvanceWorkItem: DispatchWorkItem?
+
+    private enum Defaults {
+        static let autoAdvanceDelay: TimeInterval = 0.35
+        static let next = "Next".localized
+        static let generate = "Generate".localized
+        static let remove = "Remove".localized
+    }
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -75,9 +83,12 @@ class ReplaceObjectPageViewController: UIPageViewController {
 
         for (index, vc) in orderedViewControllers.enumerated() {
             if let delegateVC = vc as? PageStepDelegate {
-                delegateVC.completion = { [weak self] in
-                    self?.proceedStates[index] = true
-                    self?.updateNextButtonState()
+                delegateVC.completion = { [weak self, weak delegateVC] in
+                    guard let self, let delegateVC else { return }
+                    guard self.proceedStates.indices.contains(index) else { return }
+                    self.proceedStates[index] = delegateVC.canProceedToNextStep
+                    self.updateNextButtonState()
+                    self.scheduleAutoAdvanceIfNeeded(from: vc, index: index)
                 }
             }
             if let holder = vc as? (any PromptManagerHolder) {
@@ -86,7 +97,7 @@ class ReplaceObjectPageViewController: UIPageViewController {
         }
         
         if let first = orderedViewControllers.first {
-            setViewControllers([first], direction: .forward, animated: false, completion: nil)
+            setPageSafely(first, animated: false)
             applyNavFromChild(first)
         }
 
@@ -94,12 +105,12 @@ class ReplaceObjectPageViewController: UIPageViewController {
         pageControl.currentPage = 0
 
         updateNextButtonState()
-        if !ApphudService.shared.hasActiveSubscription {
-            let item = ProBadgeButton.makeBarButtonItem(target: self, action: #selector(didTapPro))
-            navigationItem.rightBarButtonItem = item
-        }
-
         setupNavBar()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        refreshProGenerationsBarButton()
     }
     
     override func viewDidLayoutSubviews() {
@@ -140,10 +151,7 @@ class ReplaceObjectPageViewController: UIPageViewController {
         }
 
         navigationController?.navigationBar.isTranslucent = true
-        if !ApphudService.shared.hasActiveSubscription {
-            let item = ProBadgeButton.makeBarButtonItem(target: self, action: #selector(didTapPro))
-            navigationItem.rightBarButtonItem = item
-        }
+        configureProGenerationsBarButton()
     }
 
     private func applyNavFromChild(_ vc: UIViewController) {
@@ -153,7 +161,7 @@ class ReplaceObjectPageViewController: UIPageViewController {
 
     private func setupNextButton() {
         nextButton.translatesAutoresizingMaskIntoConstraints = false
-        nextButton.setTitle("Next".localized, for: .normal)
+        nextButton.setTitle(Defaults.next, for: .normal)
         nextButton.setTitleColor(.black, for: .normal)
         nextButton.backgroundColor = Constants.Colors.yellowPremium
         nextButton.addTarget(self, action: #selector(nextButtonTapped), for: .touchUpInside)
@@ -170,12 +178,60 @@ class ReplaceObjectPageViewController: UIPageViewController {
     private func updateNextButtonState() {
         guard let currentVC = viewControllers?.first,
               let currentIndex = orderedViewControllers.firstIndex(of: currentVC) else { return }
-        nextButton.isEnabled = proceedStates[currentIndex]
+        let isLastStep = currentIndex == orderedViewControllers.count - 1
+        let lastStepTitle = flowMode == .delete ? Defaults.remove : Defaults.generate
+        nextButton.setTitle(isLastStep ? lastStepTitle : Defaults.next, for: .normal)
+        nextButton.isHidden = currentIndex == 0
+        nextButton.isEnabled = proceedStates[safe: currentIndex] ?? false
         nextButton.alpha = nextButton.isEnabled ? 1.0 : 0.5
+    }
+    
+    private func scheduleAutoAdvanceIfNeeded(from completedVC: UIViewController, index: Int) {
+        guard index == 0 else { return }
+        guard viewControllers?.first === completedVC else { return }
+        guard proceedStates.indices.contains(index), proceedStates[index] else { return }
+
+        autoAdvanceWorkItem?.cancel()
+        let workItem = DispatchWorkItem { [weak self, weak completedVC] in
+            guard let self, let completedVC else { return }
+            guard self.viewControllers?.first === completedVC else { return }
+            guard self.proceedStates.indices.contains(index), self.proceedStates[index] else { return }
+            if self.isPageChangeUnsafe {
+                self.scheduleAutoAdvanceIfNeeded(from: completedVC, index: index)
+                return
+            }
+            self.advanceFromAddPhotoStep()
+        }
+        autoAdvanceWorkItem = workItem
+        DispatchQueue.main.asyncAfter(deadline: .now() + Defaults.autoAdvanceDelay, execute: workItem)
+    }
+
+    private func cancelPendingAutoAdvance() {
+        autoAdvanceWorkItem?.cancel()
+        autoAdvanceWorkItem = nil
+    }
+
+    private func advanceFromAddPhotoStep() {
+        autoAdvanceWorkItem?.cancel()
+        autoAdvanceWorkItem = nil
+        guard orderedViewControllers.count > 1 else { return }
+        let nextVC = orderedViewControllers[1]
+        let didStart = setPageSafely(nextVC, animated: true) { [weak self] finished in
+            guard let self, finished else { return }
+            self.applyNavFromChild(nextVC)
+            self.pageControl.currentPage = 1
+            self.updateNextButtonState()
+        }
+        if didStart {
+            applyNavFromChild(nextVC)
+            pageControl.currentPage = 1
+            updateNextButtonState()
+        }
     }
 
     // MARK: - Actions
     @objc private func nextButtonTapped() {
+        guard !isPageChangeUnsafe else { return }
         guard let currentVC = viewControllers?.first,
               let currentIndex = orderedViewControllers.firstIndex(of: currentVC) else {
             return
@@ -188,7 +244,7 @@ class ReplaceObjectPageViewController: UIPageViewController {
             }
         }
         
-        guard proceedStates[currentIndex] else {
+        guard proceedStates[safe: currentIndex] == true else {
             let alert = UIAlertController(title: "Not completed".localized, message: "Perform the necessary action to continue.".localized, preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "OK".localized, style: .default))
             present(alert, animated: true)
@@ -198,20 +254,23 @@ class ReplaceObjectPageViewController: UIPageViewController {
         let nextIndex = currentIndex + 1
 
         if nextIndex < orderedViewControllers.count {
-            setViewControllers([orderedViewControllers[nextIndex]], direction: .forward, animated: true, completion: nil)
-            navigationItem.title = orderedViewControllers[nextIndex].navigationItem.title
-            pageControl.currentPage = nextIndex
-            updateNextButtonState()
+            let nextVC = orderedViewControllers[nextIndex]
+            let didStart = setPageSafely(nextVC, animated: true) { [weak self] finished in
+                guard let self, finished else { return }
+                self.navigationItem.title = nextVC.navigationItem.title
+                self.pageControl.currentPage = nextIndex
+                self.updateNextButtonState()
+            }
+            if didStart {
+                navigationItem.title = nextVC.navigationItem.title
+                pageControl.currentPage = nextIndex
+                updateNextButtonState()
+            }
         } else {
-            // Перехід до генерації
             if GenerationAccess.requestProcessingIfAllowed(presentingFrom: self) {
                 NavigationManager.shared.showProcessing(manager: promptManager)
             }
         }
-    }
-    
-    @objc private func didTapPro() {
-        NavigationManager.shared.showPremium(placement: Constants.Keys.optionPlacememt)
     }
 }
 
@@ -219,28 +278,37 @@ class ReplaceObjectPageViewController: UIPageViewController {
 extension ReplaceObjectPageViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+        guard !isPageTransitionLocked else { return nil }
         guard let index = orderedViewControllers.firstIndex(of: viewController), index > 0 else { return nil }
         return orderedViewControllers[index - 1]
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+        guard !isPageTransitionLocked else { return nil }
         guard let index = orderedViewControllers.firstIndex(of: viewController),
-              proceedStates[index],
+              proceedStates[safe: index] == true,
               index < orderedViewControllers.count - 1 else { return nil }
         return orderedViewControllers[index + 1]
     }
 
     func pageViewController(_ pageViewController: UIPageViewController, didFinishAnimating finished: Bool, previousViewControllers: [UIViewController], transitionCompleted completed: Bool) {
+        if isPageTransitionLocked {
+            endInteractivePageTransitionIfNeeded()
+        }
         if completed, let visibleVC = pageViewController.viewControllers?.first, let index = orderedViewControllers.firstIndex(of: visibleVC) {
             pageControl.currentPage = index
+            navigationItem.title = visibleVC.navigationItem.title
             updateNextButtonState()
         }
     }
-}
 
-// MARK: - Safe index helper
-private extension Array {
-    subscript(safe index: Int) -> Element? {
-        return indices.contains(index) ? self[index] : nil
+    func pageViewController(
+        _ pageViewController: UIPageViewController,
+        willTransitionTo pendingViewControllers: [UIViewController]
+    ) {
+        cancelPendingAutoAdvance()
+        if !isPageTransitionLocked {
+            beginPageTransition()
+        }
     }
 }

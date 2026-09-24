@@ -2,7 +2,12 @@ import UIKit
 
 @IBDesignable
 extension UILabel {
-    
+
+    /// Готовий стиль шрифту з `AppTypography` (Geologica + `scaledByHeight`).
+    func applyTypography(_ style: AppTypography) {
+        font = style.font
+    }
+
     // Базова висота для масштабу, можна змінити у Interface Builder
     @IBInspectable var scaleFontByHeight: Bool {
         get {

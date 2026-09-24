@@ -1,129 +1,182 @@
 import UIKit
 
+// MARK: - Defaults
+
+private struct Defaults {
+
+    struct Layout {
+        static let primaryRowHeight: CGFloat = 107
+        static let primarySectionTopInset: CGFloat = 10
+        static let primaryInterGroupSpacing: CGFloat = 16
+        static let primaryHorizontalInset: CGFloat = 16
+
+        static let smartToolsSectionTopInset: CGFloat = 8
+        static let smartToolsSectionBottomInset: CGFloat = 24
+        static let smartToolsHorizontalInset: CGFloat = 16
+        static let smartToolsInterItem: CGFloat = 12
+        static let smartToolsHeaderHeight: CGFloat = 44
+        /// Розмір `OBFeaturesCollectionViewCell` у макеті (@ 852), далі `scaledByHeight`.
+        static let obFeatureCellWidth: CGFloat = 74
+        static let obFeatureCellHeight: CGFloat = 87
+        /// Відстань між рядом з 3 інструментами та карткою чату.
+        static let smartToolsRowSpacing: CGFloat = 30
+        /// Базова висота картки чату (pt @ 852), далі `scaledByHeight`.
+        static let chatCellHeight: CGFloat = 85
+    }
+
+    struct Text {
+        static let smartToolsTitle = "Smart tools".localized
+        static let seeAll = "See all".localized
+    }
+}
+
+// MARK: - OptionsViewController
+
 final class OptionsViewController: UIViewController {
 
-    @IBOutlet weak private var collectionView: UICollectionView!
-    @IBOutlet weak private var backgroundImageView: UIImageView!
-    @IBOutlet weak private var gradientBlurView: GradientBlurView!
+    // MARK: - Properties
 
-    private let cellScale: CGFloat = 0.8
-    private let centerCellScale: CGFloat = 1.0
-    private var didApplyInitialLayout = false
-
-    private let dataSource: [OptionsCollectionModel] = DesignOption.models
-    private let amplitude = AmplitudeService.shared
+    @IBOutlet var constraintsCollection: [NSLayoutConstraint]!
     
+    @IBOutlet weak private var collectionView: UICollectionView!
+
+    private let amplitude = AmplitudeService.shared
+
+    private enum Section: Int, CaseIterable {
+        case primary
+        case smartTools
+    }
+
+    /// Великі картки: інтер’єр, екстер’єр, сад.
+    private static let primaryOptions: [DesignOption] = [.interior, .exterior, .garden]
+    /// Горизонтальний ряд: 4 «фічі»; останнім елементом секції є картка чату (`OptionsChatCollectionViewCell`).
+    private static let smartToolOptions: [DesignOption] = [.reference, .replace, .delete, .newFlooring]
+
+    // MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
         amplitude.logEvent(.showOptions)
-        configure()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        // Ensure initial scaling/alpha is applied even if layout happens before cells are visible.
-        DispatchQueue.main.async { [weak self] in
-            guard let self else { return }
-            self.collectionView.layoutIfNeeded()
-            self.transformCells()
-            self.centerCellDidShow()
-        }
-    }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        applyLayoutIfNeeded()
+        configureCollectionView()
+        constraintsCollection.forEach { $0.scaleConstant() }
     }
 
-    private func configure() {
-        
-        collectionView.register(UINib(nibName: "OptionsCollectionCell", bundle: nil), forCellWithReuseIdentifier: "OptionsCollectionCell")
+    // MARK: - Setup
+
+    private func configureCollectionView() {
+        collectionView.clipsToBounds = false
+        collectionView.collectionViewLayout = makeCompositionalLayout()
+        collectionView.register(UINib(nibName: OptionsCollectionCell.reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: OptionsCollectionCell.reuseIdentifier)
+        collectionView.register(UINib(nibName: OBFeaturesCollectionViewCell.reuseIdentifier, bundle: nil),
+            forCellWithReuseIdentifier: OBFeaturesCollectionViewCell.reuseIdentifier)
+        collectionView.register(UINib(nibName: OptionsChatCollectionViewCell.reuseIdentifier, bundle: nil),
+            forCellWithReuseIdentifier: OptionsChatCollectionViewCell.reuseIdentifier)
+        collectionView.register(
+            SmartToolsSectionHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: SmartToolsSectionHeaderView.reuseIdentifier
+        )
         collectionView.dataSource = self
         collectionView.delegate = self
-        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.estimatedItemSize = .zero
-            layout.scrollDirection = .horizontal
-            // Use a noticeable spacing; very small values can look like "no spacing" on some screens.
-            layout.minimumLineSpacing = 16
-            layout.minimumInteritemSpacing = 0
-        }
-
-        collectionView.contentInsetAdjustmentBehavior = .never
-
-        collectionView.isPagingEnabled = false
-        collectionView.decelerationRate = .fast
-        collectionView.showsHorizontalScrollIndicator = false
-        
-        if !ApphudService.shared.hasActiveSubscription {
-            let item = ProBadgeButton.makeBarButtonItem(target: self, action: #selector(didTapPro))
-            navigationItem.rightBarButtonItem = item
-        }
-
-        // Initial positioning is done in `applyLayoutIfNeeded()` once bounds are final.
-    }
-    
-    @objc private func didTapPro() {
-        amplitude.logEvent(.pressPro)
-        NavigationManager.shared.showPremium(placement: Constants.Keys.optionPlacememt)
-    }
-}
-
-// MARK: - UICollectionViewDataSource
-extension OptionsViewController: UICollectionViewDataSource {
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        dataSource.count
     }
 
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "OptionsCollectionCell", for: indexPath) as? OptionsCollectionCell else {
-            return UICollectionViewCell()
-        }
-        let item = dataSource[indexPath.item]
-        cell.config(model: item)
-        return cell
-    }
-}
+    // MARK: - Layout
 
-
-
-// MARK: - UICollectionViewDelegate
-extension OptionsViewController: UICollectionViewDelegate {
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        transformCells()
-    }
-
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-        let cellWidthIncludingSpacing = layout.itemSize.width + layout.minimumLineSpacing
-
-        let adjustedOffset = targetContentOffset.pointee.x + collectionView.contentInset.left
-        let estimatedIndex = adjustedOffset / cellWidthIncludingSpacing
-        let index = round(estimatedIndex)
-
-        let clampedIndex = max(0, min(index, CGFloat(dataSource.count - 1)))
-
-        targetContentOffset.pointee = CGPoint(x: clampedIndex * cellWidthIncludingSpacing - collectionView.contentInset.left, y: 0)
-    }
-
-    // Додано: Викликаємо centerCellDidShow() після завершення скролу (коли колекція зупиняється)
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        centerCellDidShow()
-    }
-
-    // Додано: Викликаємо centerCellDidShow() після завершення драггінгу зі швидкістю (для snapping)
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if !decelerate {
-            centerCellDidShow()  // Якщо немає декелерації, оновлюємо відразу
+    private func makeCompositionalLayout() -> UICollectionViewCompositionalLayout {
+        UICollectionViewCompositionalLayout { sectionIndex, environment in
+            guard let section = Section(rawValue: sectionIndex) else { return nil }
+            switch section {
+            case .primary:
+                return Self.primarySectionLayout()
+            case .smartTools:
+                return Self.smartToolsSectionLayout(containerWidth: environment.container.effectiveContentSize.width)
+            }
         }
     }
 
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let option = DesignOption.allCases[indexPath.item]
-        amplitude.logEvent(.selectOption(name: option.title))
+    private static func primarySectionLayout() -> NSCollectionLayoutSection {
+        let rowHeight = Defaults.Layout.primaryRowHeight.scaledByHeight()
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),heightDimension: .absolute(rowHeight))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let group = NSCollectionLayoutGroup.vertical(
+            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),heightDimension: .absolute(rowHeight)),subitems: [item])
+        let sectionLayout = NSCollectionLayoutSection(group: group)
+        sectionLayout.interGroupSpacing = Defaults.Layout.primaryInterGroupSpacing
+        let inset = Defaults.Layout.primaryHorizontalInset
+        sectionLayout.contentInsets = NSDirectionalEdgeInsets(top: Defaults.Layout.primarySectionTopInset,leading: inset,bottom: 0,trailing: inset)
+        return sectionLayout
+    }
+
+    private static func smartToolsSectionLayout(containerWidth: CGFloat) -> NSCollectionLayoutSection {
+        let inset = Defaults.Layout.smartToolsHorizontalInset
+        let interItem = Defaults.Layout.smartToolsInterItem
+        let itemCount: CGFloat = CGFloat(smartToolOptions.count)
+        guard itemCount > 0 else {
+            let chatHeight = max(1, floor(Defaults.Layout.chatCellHeight.scaledByHeight()))
+            let chatItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(chatHeight))
+            let chatItem = NSCollectionLayoutItem(layoutSize: chatItemSize)
+            let chatGroup = NSCollectionLayoutGroup.horizontal(
+                layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(chatHeight)),
+                subitems: [chatItem]
+            )
+            let headerHeight = max(1, floor(Defaults.Layout.smartToolsHeaderHeight.scaledByHeight()))
+            let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(headerHeight))
+            let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+            let sectionLayout = NSCollectionLayoutSection(group: chatGroup)
+            sectionLayout.boundarySupplementaryItems = [header]
+            return sectionLayout
+        }
+
+        let availableWidth = max(0, containerWidth - inset * 2)
+        let topHeight = max(1, floor(Defaults.Layout.obFeatureCellHeight.scaledByHeight()))
+        // Ширина клітинки: рівномірно по 4 стовпці, але не більше висоти —
+        // XIB має width==height на зображенні, тому надширокі клітинки ламають layout на iPad.
+        let computedWidth = floor((availableWidth - interItem * (itemCount - 1)) / itemCount)
+        let topCellWidth = max(1, min(computedWidth, topHeight))
+
+        let topItemSize = NSCollectionLayoutSize(
+            widthDimension: .absolute(topCellWidth),
+            heightDimension: .absolute(topHeight)
+        )
+        let topItem = NSCollectionLayoutItem(layoutSize: topItemSize)
+        let topGroupWidth = topCellWidth * itemCount + interItem * (itemCount - 1)
+        let topGroup = NSCollectionLayoutGroup.horizontal(
+            layoutSize: NSCollectionLayoutSize(widthDimension: .absolute(topGroupWidth), heightDimension: .absolute(topHeight)),
+            subitems: Array(repeating: topItem, count: Int(itemCount))
+        )
+        topGroup.interItemSpacing = .fixed(interItem)
+
+        let rowSpacing = floor(Defaults.Layout.smartToolsRowSpacing.scaledByHeight())
+        let chatHeight = max(1, floor(Defaults.Layout.chatCellHeight.scaledByHeight()))
+        let chatItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(chatHeight))
+        let chatItem = NSCollectionLayoutItem(layoutSize: chatItemSize)
+        let chatGroup = NSCollectionLayoutGroup.horizontal(
+            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(chatHeight)),subitems: [chatItem])
+
+        let combinedHeight = topHeight + rowSpacing + chatHeight
+        let combined = NSCollectionLayoutGroup.vertical(
+            layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1),heightDimension: .absolute(combinedHeight)),subitems: [topGroup, chatGroup])
+        combined.interItemSpacing = .fixed(rowSpacing)
+
+        let headerHeight = max(1, floor(Defaults.Layout.smartToolsHeaderHeight.scaledByHeight()))
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .absolute(headerHeight))
+        let header = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+
+        let bottomInset = floor(Defaults.Layout.smartToolsSectionBottomInset.scaledByHeight())
+        let sectionLayout = NSCollectionLayoutSection(group: combined)
+        sectionLayout.boundarySupplementaryItems = [header]
+        sectionLayout.contentInsets = NSDirectionalEdgeInsets(
+            top: Defaults.Layout.smartToolsSectionTopInset,leading: inset,bottom: bottomInset,trailing: inset)
+        return sectionLayout
+    }
+
+    // MARK: - Navigation (через NavigationManager)
+    private func open(option: DesignOption, logSelection: Bool = true) {
+        if logSelection {
+            amplitude.logEvent(.selectOption(name: option.title))
+        }
         if option == .reference {
-            NavigationManager.shared.showAddPhoto()
+            NavigationManager.shared.showPageViewController(option: option)
         } else if option == .replace {
             NavigationManager.shared.showReplaceObjectPage()
         } else if option == .delete {
@@ -134,95 +187,95 @@ extension OptionsViewController: UICollectionViewDelegate {
             NavigationManager.shared.showPageViewController(option: option)
         }
     }
-}
 
-// MARK: - UICollectionViewDelegateFlowLayout
-extension OptionsViewController: UICollectionViewDelegateFlowLayout {
+    private func openOverflowSmartTools() {
+        amplitude.logEvent(.selectOption(name: Constants.Keys.amplitudeSeeAllSmartToolsOption))
+        NavigationManager.shared.showFeaturesViewController()
+    }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        // Size is applied in `viewDidLayoutSubviews` to avoid 0-height bounds on first layout for some devices.
-        let containerWidth = view.bounds.width
-        let width = containerWidth * 0.65
-        let height = max(1, collectionView.bounds.height * 0.8)
-        return CGSize(width: width, height: height)
+    /// Чат з AI з екрана Options (через NavigationManager).
+    private func openChatAssistant() {
+        amplitude.logEvent(.selectOption(name: Constants.Keys.amplitudeChatAssistantOption))
+        NavigationManager.shared.showAssistantList()
     }
 }
 
+// MARK: - UICollectionViewDataSource
+extension OptionsViewController: UICollectionViewDataSource {
 
-// MARK: - Private Methods
-private extension OptionsViewController {
-    
-    func applyLayoutIfNeeded() {
-        // Prevent repeated invalidations; layout becomes correct after first pass.
-        guard !didApplyInitialLayout else { return }
-        // Ensure we have final bounds (esp. safe area) before sizing.
-        guard collectionView.bounds.width > 0, collectionView.bounds.height > 0 else { return }
-        
-        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-        
-        let containerWidth = view.bounds.width
-        let cellWidth = containerWidth * 0.65
-        let cellHeight = collectionView.bounds.height * 0.8
-        
-        layout.itemSize = CGSize(width: cellWidth, height: cellHeight)
-        
-        let insetX = max(0, (containerWidth - cellWidth) / 2.0)
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: insetX, bottom: 0, right: insetX)
-        
-        // Force layout pass before we scroll/transform.
-        layout.invalidateLayout()
-        collectionView.layoutIfNeeded()
-        collectionView.performBatchUpdates(nil)
-        
-        // Ensure the first cell is centered with correct insets/spacings applied.
-        if dataSource.isEmpty == false {
-            collectionView.scrollToItem(at: IndexPath(item: 0, section: 0), at: .centeredHorizontally, animated: false)
-        } else {
-            collectionView.setContentOffset(CGPoint(x: -collectionView.contentInset.left, y: 0), animated: false)
-        }
-        collectionView.layoutIfNeeded()
-        
-        // If cells are not yet visible, wait for next layout pass.
-        guard collectionView.visibleCells.isEmpty == false else { return }
-        
-        transformCells()
-        centerCellDidShow()
-        
-        didApplyInitialLayout = true
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        Section.allCases.count
     }
 
-    func transformCells() {
-        let collectionViewCenter = view.convert(collectionView.center, to: collectionView)
-
-        for cell in collectionView.visibleCells {
-            let cellCenter = cell.center
-            let distance = abs(collectionViewCenter.x - cellCenter.x)
-            let maxDistance = collectionView.bounds.width / 2
-
-            let normalizedDistance = min(distance / maxDistance, 1.0)
-            let scale = centerCellScale - (centerCellScale - cellScale) * normalizedDistance
-
-            cell.transform = CGAffineTransform(scaleX: scale, y: scale)
-            cell.alpha = 0.6 + (0.4 * (1 - normalizedDistance))
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        guard let section = Section(rawValue: section) else { return 0 }
+        switch section {
+        case .primary:
+            return Self.primaryOptions.count
+        case .smartTools:
+            return Self.smartToolOptions.count + 1
         }
     }
 
-    func centerCellDidShow() {
-        let centerPoint = view.convert(collectionView.center, to: collectionView)
-        guard let indexPath = collectionView.indexPathForItem(at: centerPoint) else { return }
-        let centeredIndex = indexPath.item
-        let model = dataSource[centeredIndex]
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let section = Section(rawValue: indexPath.section) else {
+            return UICollectionViewCell()
+        }
+        switch section {
+        case .primary:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OptionsCollectionCell.reuseIdentifier,for: indexPath) as? OptionsCollectionCell else {
+                return UICollectionViewCell()
+            }
+            guard let option = Self.primaryOptions[safe: indexPath.item] else { return cell }
+            cell.config(model: option.model)
+            return cell
 
-        gradientBlurView.endColor = model.glassColor
-        gradientBlurView.startColor = model.startColor
-        gradientBlurView.startLocationPercent = 0
-        gradientBlurView.endLocationPercent = model.endLocationPercent
-        view.backgroundColor = model.glassColor
+        case .smartTools:
+            if indexPath.item < Self.smartToolOptions.count {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OBFeaturesCollectionViewCell.reuseIdentifier,for: indexPath) as? OBFeaturesCollectionViewCell else {
+                    return UICollectionViewCell()
+                }
+                let option = Self.smartToolOptions[indexPath.item]
+                cell.configureStatic(title: option.title, icon: option.icon)
+                return cell
+            }
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: OptionsChatCollectionViewCell.reuseIdentifier,for: indexPath) as? OptionsChatCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            return cell
+        }
+    }
 
-        UIView.transition(with: backgroundImageView, duration: 0.5, options: [.transitionCrossDissolve], animations: {
-            self.backgroundImageView.image = model.imageName
-        }, completion: nil)
+    func collectionView(_ collectionView: UICollectionView,viewForSupplementaryElementOfKind kind: String,at indexPath: IndexPath) -> UICollectionReusableView {
+        guard kind == UICollectionView.elementKindSectionHeader,
+              let section = Section(rawValue: indexPath.section),
+              section == .smartTools,
+              let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind,withReuseIdentifier: SmartToolsSectionHeaderView.reuseIdentifier,for: indexPath) as? SmartToolsSectionHeaderView else {
+            return UICollectionReusableView()
+        }
+        header.configure(title: Defaults.Text.smartToolsTitle, seeAllTitle: Defaults.Text.seeAll)
+        header.onSeeAll = { [weak self] in
+            self?.openOverflowSmartTools()
+        }
+        return header
+    }
+}
 
-        print("Центральна клітинка:", centeredIndex, model)
+// MARK: - UICollectionViewDelegate
+extension OptionsViewController: UICollectionViewDelegate {
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let section = Section(rawValue: indexPath.section) else { return }
+        switch section {
+        case .primary:
+            guard let option = Self.primaryOptions[safe: indexPath.item] else { return }
+            open(option: option)
+        case .smartTools:
+            if indexPath.item < Self.smartToolOptions.count {
+                open(option: Self.smartToolOptions[indexPath.item])
+            } else {
+                openChatAssistant()
+            }
+        }
     }
 }

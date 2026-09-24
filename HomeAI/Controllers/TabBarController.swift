@@ -1,12 +1,42 @@
 import UIKit
 
+private struct Defaults {
+    struct Text {
+        static let options = "Options".localized
+        static let inspiration = "Inspiration".localized
+        static let profile = "Profile".localized
+    }
+}
+
 final class TabBarController: UITabBarController {
 
     private var fallbackBackgroundView: UIView?
 
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        UIDevice.portraitLockedInterfaceOrientations
+    }
+
+    override var shouldAutorotate: Bool {
+        !UIDevice.isPadPortraitLocked
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        localizeTabBarTitles()
         applyFallbackTabBarBackgroundIfNeeded()
+    }
+
+    private func localizeTabBarTitles() {
+        let titles = [Defaults.Text.options, Defaults.Text.inspiration, Defaults.Text.profile]
+        viewControllers?.enumerated().forEach { index, controller in
+            guard titles.indices.contains(index) else { return }
+            let title = titles[index]
+            if let nav = controller as? UINavigationController {
+                nav.tabBarItem.title = title
+            } else {
+                controller.tabBarItem.title = title
+            }
+        }
     }
 
     override func viewDidLayoutSubviews() {

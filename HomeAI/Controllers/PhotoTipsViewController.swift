@@ -57,8 +57,8 @@ final class PhotoTipsViewController: UIViewController {
             guard let self = self else { return nil }
             
             // Item size
-            let itemWidth = CGFloat(163).scaledByHeight()
-            let itemHeight = CGFloat(114).scaledByHeight()
+            let itemWidth = CGFloat(200).scaledByHeight()
+            let itemHeight = CGFloat(140).scaledByHeight()
             let itemSize = NSCollectionLayoutSize(
                 widthDimension: .absolute(itemWidth),
                 heightDimension: .absolute(itemHeight)
@@ -121,13 +121,8 @@ extension PhotoTipsViewController: UICollectionViewDataSource {
         }
         
         let isGoodExample = indexPath.section == 1
-        let model: PhotoTipsModel
-        
-        if isGoodExample {
-            model = designOption.goodExample[indexPath.item]
-        } else {
-            model = designOption.badExample[indexPath.item]
-        }
+        let examples = isGoodExample ? designOption.goodExample : designOption.badExample
+        guard let model = examples[safe: indexPath.item] else { return cell }
         
         cell.configure(with: model, isGoodExample: isGoodExample)
         return cell

@@ -3,6 +3,8 @@ import AdSupport
 import Foundation
 
 struct TrackingManager {
+    private static var isTrackingPermissionRequestInProgress = false
+    private static var trackingPermissionCompletions: [(ATTrackingManager.AuthorizationStatus) -> Void] = []
     
     /**
      Запитує дозвіл на відстеження (ATT).
@@ -10,45 +12,28 @@ struct TrackingManager {
      Вона повертає кінцевий статус у completion блоці.
      */
     static func requestPermission(completion: @escaping (ATTrackingManager.AuthorizationStatus) -> Void) {
-        
-        if #available(iOS 14, *) {
-            let currentStatus = ATTrackingManager.trackingAuthorizationStatus
-            print("[ATT] Поточний статус (до запиту): \(currentStatus.name)")
-
-            switch currentStatus {
-            case .authorized, .denied, .restricted:
-                // Якщо статус вже відомий (authorized, denied, or restricted),
-                // алерт не буде показаний. Просто повертаємо поточний статус.
-                print("[ATT] Статус вже відомий: \(currentStatus.name). Запит не буде показаний.")
-                DispatchQueue.main.async {
+        DispatchQueue.main.async {
+            if #available(iOS 14, *) {
+                let currentStatus = ATTrackingManager.trackingAuthorizationStatus
+                guard currentStatus == .notDetermined else {
                     completion(currentStatus)
+                    return
                 }
-                
-            case .notDetermined:
-                // Це єдиний випадок, коли алерт МАЄ з'явитися.
-                print("[ATT] Статус 'notDetermined'. Запускаємо запит...")
-                
-                // Виконуємо сам запит
+
+                trackingPermissionCompletions.append(completion)
+                guard !isTrackingPermissionRequestInProgress else { return }
+                isTrackingPermissionRequestInProgress = true
+
                 ATTrackingManager.requestTrackingAuthorization { status in
-                    // Відповідь повертається у фоновому потоці,
-                    // тому важливо повернутися на головний потік.
                     DispatchQueue.main.async {
-                        print("[ATT] Отримано відповідь. Новий статус: \(status.name)")
-                        completion(status)
+                        let completions = trackingPermissionCompletions
+                        trackingPermissionCompletions.removeAll()
+                        isTrackingPermissionRequestInProgress = false
+                        completions.forEach { $0(status) }
                     }
                 }
-            @unknown default:
-                print("[ATT] Невідомий статус.")
-                DispatchQueue.main.async {
-                    completion(currentStatus)
-                }
-            }
-        } else {
-            // Для iOS < 14, ми не можемо показати запит.
-            // Стара логіка 'isAdvertisingTrackingEnabled' працюватиме.
-            print("[ATT] iOS < 14. Повертаємо 'authorized' для сумісності.")
-            DispatchQueue.main.async {
-                completion(.authorized) // Припускаємо, що дозвіл є (як у старі часи)
+            } else {
+                completion(.authorized)
             }
         }
     }

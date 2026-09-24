@@ -154,7 +154,7 @@ final class SettingsViewController: UIViewController {
         subject customSubject: String? = nil,
         body: String? = nil
     ) {
-        let userId = ApphudService.shared.userID
+        let userId = AdaptyService.shared.userID
         let subject = customSubject ?? "HomeAI \(userId)"
         
         if MFMailComposeViewController.canSendMail() {

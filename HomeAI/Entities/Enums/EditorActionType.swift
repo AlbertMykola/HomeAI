@@ -23,14 +23,15 @@ enum EditorActionType: CaseIterable {
     }
     
     var icon: UIImage {
+        let name: String
         switch self {
-            
-        case .deleteObject: UIImage(named: "delete_object_icon")!
-        case .replaceObject: UIImage(named: "replace_object_icon")!
-        case .newWalls:UIImage(named: "new_walls_icon")!
-        case .newFloor: UIImage(named: "new_floor_icon")!
-        case .newStyle: UIImage(named: "new_style_icon")!
-        case .newColor: UIImage(named: "new_color_icon")!
+        case .deleteObject: name = "delete_object_icon"
+        case .replaceObject: name = "replace_object_icon"
+        case .newWalls: name = "new_walls_icon"
+        case .newFloor: name = "new_floor_icon"
+        case .newStyle: name = "new_style_icon"
+        case .newColor: name = "new_color_icon"
         }
+        return UIImage(named: name) ?? UIImage()
     }
 }

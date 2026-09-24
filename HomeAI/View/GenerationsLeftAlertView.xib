@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geologica-Regular.ttf">
+            <string>Geologica-Regular</string>
+        </array>
+        <array key="Geologica-VariableFont_CRSV,SHRP,slnt,wght.ttf">
+            <string>Geologica-Thin_Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="gen-alert-root" customClass="GenerationsLeftAlertView" customModule="HomeAI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="303" height="444"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="card-glass" customClass="LiquidGlassView" customModule="HomeAI" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="303" height="444"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="trophy-img">
+                            <rect key="frame" x="96.5" y="14" width="110" height="110"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="110" id="trophy-w"/>
+                                <constraint firstAttribute="height" constant="110" id="trophy-h"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have 6 tries left" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="headline-label">
+                            <rect key="frame" x="16" y="136" width="271" height="32"/>
+                            <fontDescription key="fontDescription" name="Geologica-Thin_Medium" family="Geologica" pointSize="25"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keep creating without limits with PRO." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="subtitle-label">
+                            <rect key="frame" x="16" y="176" width="271" height="30"/>
+                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="features-glass" customClass="LiquidGlassView" customModule="HomeAI" customModuleProvider="target">
+                            <rect key="frame" x="21" y="224" width="261" height="107"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pw_infinity_icon" translatesAutoresizingMaskIntoConstraints="NO" id="icon-unlimited">
+                                    <rect key="frame" x="22" y="12" width="20" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="20" id="icon-u-w"/>
+                                        <constraint firstAttribute="height" constant="20" id="icon-u-h"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Unlimited generations" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="label-unlimited">
+                                    <rect key="frame" x="50" y="14.5" width="189" height="15"/>
+                                    <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="13"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pw_stars_icon" translatesAutoresizingMaskIntoConstraints="NO" id="icon-quality">
+                                    <rect key="frame" x="22" y="43" width="20" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="20" id="icon-q-w"/>
+                                        <constraint firstAttribute="height" constant="20" id="icon-q-h"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Higher image quality" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="label-quality">
+                                    <rect key="frame" x="50" y="45.5" width="189" height="15"/>
+                                    <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="13"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pw_flash_icon" translatesAutoresizingMaskIntoConstraints="NO" id="icon-faster">
+                                    <rect key="frame" x="22" y="74" width="20" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="20" id="icon-f-w"/>
+                                        <constraint firstAttribute="height" constant="20" id="icon-f-h"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Faster result" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="label-faster">
+                                    <rect key="frame" x="50" y="76.5" width="189" height="15"/>
+                                    <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="13"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="icon-unlimited" firstAttribute="leading" secondItem="features-glass" secondAttribute="leading" constant="22" id="fu-lead"/>
+                                <constraint firstItem="icon-unlimited" firstAttribute="top" secondItem="features-glass" secondAttribute="top" constant="12" id="fu-top"/>
+                                <constraint firstItem="label-unlimited" firstAttribute="leading" secondItem="icon-unlimited" secondAttribute="trailing" constant="8" id="fu-text-lead"/>
+                                <constraint firstItem="label-unlimited" firstAttribute="centerY" secondItem="icon-unlimited" secondAttribute="centerY" id="fu-text-cy"/>
+                                <constraint firstAttribute="trailing" secondItem="label-unlimited" secondAttribute="trailing" constant="22" id="fu-text-trail"/>
+                                <constraint firstItem="icon-quality" firstAttribute="leading" secondItem="features-glass" secondAttribute="leading" constant="22" id="fq-lead"/>
+                                <constraint firstItem="icon-quality" firstAttribute="top" secondItem="icon-unlimited" secondAttribute="bottom" constant="11" id="fq-top"/>
+                                <constraint firstItem="label-quality" firstAttribute="leading" secondItem="icon-quality" secondAttribute="trailing" constant="8" id="fq-text-lead"/>
+                                <constraint firstItem="label-quality" firstAttribute="centerY" secondItem="icon-quality" secondAttribute="centerY" id="fq-text-cy"/>
+                                <constraint firstAttribute="trailing" secondItem="label-quality" secondAttribute="trailing" constant="22" id="fq-text-trail"/>
+                                <constraint firstItem="icon-faster" firstAttribute="leading" secondItem="features-glass" secondAttribute="leading" constant="22" id="ff-lead"/>
+                                <constraint firstItem="icon-faster" firstAttribute="top" secondItem="icon-quality" secondAttribute="bottom" constant="11" id="ff-top"/>
+                                <constraint firstItem="label-faster" firstAttribute="leading" secondItem="icon-faster" secondAttribute="trailing" constant="8" id="ff-text-lead"/>
+                                <constraint firstItem="label-faster" firstAttribute="centerY" secondItem="icon-faster" secondAttribute="centerY" id="ff-text-cy"/>
+                                <constraint firstAttribute="trailing" secondItem="label-faster" secondAttribute="trailing" constant="22" id="ff-text-trail"/>
+                                <constraint firstAttribute="bottom" secondItem="icon-faster" secondAttribute="bottom" constant="13" id="ff-bottom"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusValue">
+                                    <real key="value" value="12.3"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="glassStyle">
+                                    <integer key="value" value="0"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="get-pro-btn">
+                            <rect key="frame" x="74.5" y="352" width="154" height="43"/>
+                            <color key="backgroundColor" red="1" green="0.17647058823529413" blue="0.11372549019607843" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="43" id="get-pro-h"/>
+                                <constraint firstAttribute="width" constant="154" id="get-pro-w"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/>
+                            <state key="normal" title="GET PRO">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="getProAction:" destination="gen-alert-root" eventType="touchUpInside" id="get-pro-action"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="maybe-later-btn">
+                            <rect key="frame" x="121.5" y="407" width="60" height="15"/>
+                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="10"/>
+                            <state key="normal" title="Maybe Later">
+                                <color key="titleColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="maybeLaterAction:" destination="gen-alert-root" eventType="touchUpInside" id="maybe-later-action"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="trophy-img" firstAttribute="top" secondItem="card-glass" secondAttribute="top" constant="14" id="c-trophy-top"/>
+                        <constraint firstItem="trophy-img" firstAttribute="centerX" secondItem="card-glass" secondAttribute="centerX" id="c-trophy-cx"/>
+                        <constraint firstItem="headline-label" firstAttribute="top" secondItem="trophy-img" secondAttribute="bottom" constant="12" id="c-head-top"/>
+                        <constraint firstItem="headline-label" firstAttribute="leading" secondItem="card-glass" secondAttribute="leading" constant="16" id="c-head-lead"/>
+                        <constraint firstAttribute="trailing" secondItem="headline-label" secondAttribute="trailing" constant="16" id="c-head-trail"/>
+                        <constraint firstItem="subtitle-label" firstAttribute="top" secondItem="headline-label" secondAttribute="bottom" constant="8" id="c-sub-top"/>
+                        <constraint firstItem="subtitle-label" firstAttribute="leading" secondItem="card-glass" secondAttribute="leading" constant="16" id="c-sub-lead"/>
+                        <constraint firstAttribute="trailing" secondItem="subtitle-label" secondAttribute="trailing" constant="16" id="c-sub-trail"/>
+                        <constraint firstItem="features-glass" firstAttribute="top" secondItem="subtitle-label" secondAttribute="bottom" constant="18" id="c-feat-top"/>
+                        <constraint firstItem="features-glass" firstAttribute="leading" secondItem="card-glass" secondAttribute="leading" constant="21" id="c-feat-lead"/>
+                        <constraint firstAttribute="trailing" secondItem="features-glass" secondAttribute="trailing" constant="21" id="c-feat-trail"/>
+                        <constraint firstItem="features-glass" firstAttribute="height" constant="107" id="c-feat-h"/>
+                        <constraint firstItem="get-pro-btn" firstAttribute="top" secondItem="features-glass" secondAttribute="bottom" constant="21" id="c-pro-top"/>
+                        <constraint firstItem="get-pro-btn" firstAttribute="centerX" secondItem="card-glass" secondAttribute="centerX" id="c-pro-cx"/>
+                        <constraint firstItem="maybe-later-btn" firstAttribute="top" secondItem="get-pro-btn" secondAttribute="bottom" constant="12" id="c-later-top"/>
+                        <constraint firstItem="maybe-later-btn" firstAttribute="centerX" secondItem="card-glass" secondAttribute="centerX" id="c-later-cx"/>
+                        <constraint firstAttribute="bottom" secondItem="maybe-later-btn" secondAttribute="bottom" constant="22" id="c-later-bottom"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadiusValue">
+                            <real key="value" value="34"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="glassStyle">
+                            <integer key="value" value="0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="card-glass" firstAttribute="top" secondItem="gen-alert-root" secondAttribute="top" id="root-top"/>
+                <constraint firstItem="card-glass" firstAttribute="leading" secondItem="gen-alert-root" secondAttribute="leading" id="root-lead"/>
+                <constraint firstAttribute="trailing" secondItem="card-glass" secondAttribute="trailing" id="root-trail"/>
+                <constraint firstAttribute="bottom" secondItem="card-glass" secondAttribute="bottom" id="root-bottom"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <connections>
+                <outlet property="cardGlassView" destination="card-glass" id="out-card"/>
+                <outlet property="fasterIconView" destination="icon-faster" id="out-faster-icon"/>
+                <outlet property="fasterLabel" destination="label-faster" id="out-faster-label"/>
+                <outlet property="featuresGlassView" destination="features-glass" id="out-features"/>
+                <outlet property="getProButton" destination="get-pro-btn" id="out-get-pro"/>
+                <outlet property="headlineLabel" destination="headline-label" id="out-headline"/>
+                <outlet property="maybeLaterButton" destination="maybe-later-btn" id="out-maybe"/>
+                <outlet property="qualityIconView" destination="icon-quality" id="out-quality-icon"/>
+                <outlet property="qualityLabel" destination="label-quality" id="out-quality-label"/>
+                <outlet property="subtitleLabel" destination="subtitle-label" id="out-subtitle"/>
+                <outlet property="trophyImageView" destination="trophy-img" id="out-trophy"/>
+                <outlet property="unlimitedIconView" destination="icon-unlimited" id="out-unlimited-icon"/>
+                <outlet property="unlimitedLabel" destination="label-unlimited" id="out-unlimited-label"/>
+            </connections>
+            <point key="canvasLocation" x="208" y="394"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="pw_flash_icon" width="33" height="33"/>
+        <image name="pw_infinity_icon" width="33" height="33"/>
+        <image name="pw_stars_icon" width="33" height="33"/>
+    </resources>
+</document>

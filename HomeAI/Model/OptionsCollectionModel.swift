@@ -1,11 +1,9 @@
 import UIKit
 
 struct OptionsCollectionModel {
-    
+
     let title: String
     let description: String
-    let imageName: UIImage
-    let glassColor: UIColor
-    let startColor: UIColor
-    let endLocationPercent: CGFloat
+    let icon: UIImage
+    let heroImage: UIImage
 }

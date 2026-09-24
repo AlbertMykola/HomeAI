@@ -1,190 +1,102 @@
 import UIKit
 
-@IBDesignable
-final class ProBadgeButton: UIButton {
+enum ProBadgeButton {
 
-    // MARK: - Inspectables (уникати імен, що вже є в UIButton extension)
-    @IBInspectable var titleText: String = "PRO" { didSet { applyTitle() } }
-    @IBInspectable var proSystemImageName: String = "star_icon" { didSet { applyImage() } } // уникаємо конфлікту
-    @IBInspectable var usesProminent: Bool = true { didSet { applyStyle() } }
-    @IBInspectable var pillCorner: CGFloat = 12 { didSet { layer.cornerRadius = pillCorner } }
-    @IBInspectable var fgColor: UIColor = .black { didSet { applyColors() } }
-    @IBInspectable var bgColor: UIColor = Constants.Colors.yellowPremium { didSet { applyColors() } }
-    @IBInspectable var contentTopBottom: CGFloat = 6 { didSet { updateInsets() } }
-    @IBInspectable var contentLeftRight: CGFloat = 12 { didSet { updateInsets() } }
-    @IBInspectable var imagePaddingValue: CGFloat = 6 { didSet { applyImagePadding() } }
-    @IBInspectable var enableSymbolReplace: Bool = true { didSet { applySymbolTransition() } }
-    @IBInspectable var fontName: String = "" { didSet { applyFont() } }
-    @IBInspectable var fontSize: CGFloat = 13 { didSet { applyFont() } }
+    private struct Defaults {
+        struct Images {
+            static let sparkles = "pw_stars_icon"
+        }
 
-    // MARK: - Init
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        commonInit()
-    }
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        commonInit()
-    }
-    override func prepareForInterfaceBuilder() {
-        super.prepareForInterfaceBuilder()
-        commonInit()
-    }
+        struct Layout {
+            static let height: CGFloat = 33
+            static let minWidth: CGFloat = 55
+        }
 
-    // MARK: - Public factories
-    static func makeDefault() -> ProBadgeButton {
-        let b = ProBadgeButton(type: .system)
-        b.translatesAutoresizingMaskIntoConstraints = false
-        return b
+        struct Colors {
+            static let title = UIColor.black
+            static let fallbackBackground = UIColor(red: 204 / 255, green: 204 / 255, blue: 204 / 255, alpha: 0.67)
+        }
     }
 
     static func makeBarButtonItem(target: Any?, action: Selector) -> UIBarButtonItem {
-        let btn = ProBadgeButton.makeDefault()
-        btn.addTarget(target, action: action, for: .touchUpInside)
+        let button = makeButton(remaining: FreeGenerationManager.shared.remainingFreeGenerations)
+        button.addTarget(target, action: action, for: .touchUpInside)
 
-        let container = UIView()
-        container.addSubview(btn)
+        let item = UIBarButtonItem(customView: button)
+        if #available(iOS 26.0, *) {
+            item.hidesSharedBackground = true
+        }
+        return item
+    }
+
+    static func refreshBarButtonItem(_ item: UIBarButtonItem?) {
+        guard let button = button(from: item) else { return }
+        updateRemainingGenerations(on: button, remaining: FreeGenerationManager.shared.remainingFreeGenerations)
+    }
+
+    static func button(from item: UIBarButtonItem?) -> LiquidGlassButton? {
+        item?.customView as? LiquidGlassButton
+    }
+
+    private static func makeButton(remaining: Int) -> LiquidGlassButton {
+        let button = LiquidGlassButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            btn.leadingAnchor.constraint(equalTo: container.leadingAnchor),
-            btn.trailingAnchor.constraint(equalTo: container.trailingAnchor),
-            btn.topAnchor.constraint(equalTo: container.topAnchor),
-            btn.bottomAnchor.constraint(equalTo: container.bottomAnchor),
-            btn.heightAnchor.constraint(greaterThanOrEqualToConstant: 28)
+            button.heightAnchor.constraint(equalToConstant: Defaults.Layout.height.scaledByHeight()),
+            button.widthAnchor.constraint(greaterThanOrEqualToConstant: Defaults.Layout.minWidth.scaledByWidth())
         ])
-        return UIBarButtonItem(customView: container)
+        updateRemainingGenerations(on: button, remaining: remaining)
+        return button
     }
 
-    // MARK: - Setup
-    private func commonInit() {
-        layer.cornerRadius = pillCorner
-        clipsToBounds = true
+    private static func updateRemainingGenerations(on button: LiquidGlassButton, remaining: Int) {
+        button.applyLiquidGlass(
+            LiquidGlassConfig(
+                style: .glass,
+                mode: .light,
+                title: "\(remaining)",
+                foregroundColor: Defaults.Colors.title,
+                backgroundColor: Defaults.Colors.fallbackBackground,
+                contentInsets: NSDirectionalEdgeInsets(top: 6, leading: 8, bottom: 6, trailing: 10),
+                font: UIFont.systemFont(ofSize: 15, weight: .regular),
+                image: UIImage(named: Defaults.Images.sparkles),
+                imagePlacement: .leading,
+                imagePadding: 4,
+                cornerStyle: .capsule
+            )
+        )
+        button.alpha = 0.8
+    }
+}
 
-        applyBaseConfiguration()
-        applyTitle()
-        applyImage()
-        applyImagePlacement()
-        applyImagePadding()
-        applyColors()
-        applyFont()
-        applySymbolTransition()
-        updateInsets()
+extension UIViewController {
+
+    func configureProGenerationsBarButton() {
+        guard !AdaptyService.shared.hasActiveSubscription else {
+            navigationItem.rightBarButtonItem = nil
+            return
+        }
+        navigationItem.rightBarButtonItem = ProBadgeButton.makeBarButtonItem(
+            target: self,
+            action: #selector(handleProGenerationsBarButtonTap)
+        )
     }
 
-    private func applyBaseConfiguration() {
-        if #available(iOS 26.0, *) {
-            configuration = usesProminent ? .prominentGlass() : .glass()
+    func refreshProGenerationsBarButton() {
+        guard !AdaptyService.shared.hasActiveSubscription else {
+            navigationItem.rightBarButtonItem = nil
+            return
+        }
+
+        if ProBadgeButton.button(from: navigationItem.rightBarButtonItem) != nil {
+            ProBadgeButton.refreshBarButtonItem(navigationItem.rightBarButtonItem)
         } else {
-            var cfg = configuration ?? .filled()
-            cfg.background.backgroundColor = bgColor
-            cfg.baseForegroundColor = fgColor
-            cfg.cornerStyle = .capsule
-            configuration = cfg
+            configureProGenerationsBarButton()
         }
     }
 
-    private func applyStyle() {
-        if #available(iOS 26.0, *) {
-            let old = configuration
-            configuration = usesProminent ? .prominentGlass() : .glass()
-            configuration?.title = old?.title
-            configuration?.image = old?.image
-            configuration?.imagePlacement = old?.imagePlacement ?? .leading
-            configuration?.imagePadding = old?.imagePadding ?? imagePaddingValue
-            configuration?.attributedTitle = old?.attributedTitle
-            configuration?.baseForegroundColor = old?.baseForegroundColor
-            configuration?.baseBackgroundColor = old?.baseBackgroundColor
-            configuration?.background = old?.background ?? configuration?.background ?? UIBackgroundConfiguration.clear()
-            configuration?.contentInsets = old?.contentInsets ?? NSDirectionalEdgeInsets(top: contentTopBottom, leading: contentLeftRight, bottom: contentTopBottom, trailing: contentLeftRight)
-            applyColors()
-        } else {
-            applyColors()
-        }
-    }
-
-    private func applyTitle() {
-        if var cfg = configuration {
-            if var attr = cfg.attributedTitle {
-                let currentFont = attr.font
-                var new = AttributedString(titleText)
-                new.font = currentFont
-                cfg.attributedTitle = new
-                cfg.title = titleText
-            } else {
-                cfg.title = titleText
-            }
-            configuration = cfg
-        } else {
-            setTitle(titleText, for: .normal)
-        }
-    }
-
-    private func applyImage() {
-        // Використовуємо властивість з UIButton extension, але щоб уникнути override-конфлікту,
-        // тут лише перенаправляємо на неї значення (якщо вона присутня в проєкті).
-        // Якщо extension немає — присвоїмо напряму в configuration.
-        if responds(to: Selector(("setSystemImageName:"))) {
-            // KVC виклик @IBInspectable з extension (необов'язково; простіше напряму конфігурацію)
-            var cfg = configuration ?? UIButton.Configuration.plain()
-            cfg.image = UIImage(named: proSystemImageName)
-            configuration = cfg
-        } else {
-            var cfg = configuration ?? UIButton.Configuration.plain()
-            cfg.image = UIImage(systemName: proSystemImageName)
-            configuration = cfg
-        }
-    }
-
-    private func applyImagePlacement() {
-        var cfg = configuration ?? .plain()
-        cfg.imagePlacement = .leading
-        configuration = cfg
-    }
-
-    private func applyImagePadding() {
-        var cfg = configuration ?? .plain()
-        cfg.imagePadding = imagePaddingValue
-        configuration = cfg
-    }
-
-    private func applyColors() {
-        var cfg = configuration ?? .plain()
-        cfg.baseForegroundColor = fgColor
-        var bg = cfg.background
-        bg.backgroundColor = bgColor
-        cfg.background = bg
-        configuration = cfg
-    }
-
-    private func applySymbolTransition() {
-        if #available(iOS 26.0, *) {
-            var cfg = configuration ?? .glass()
-            cfg.symbolContentTransition = enableSymbolReplace ? UISymbolContentTransition(.replace) : nil
-            configuration = cfg
-        }
-    }
-
-    private func applyFont() {
-        let uiFont: UIFont
-        if fontName.isEmpty {
-            uiFont = UIFont.systemFont(ofSize: fontSize, weight: .semibold)
-        } else {
-            uiFont = UIFont(name: fontName, size: fontSize) ?? UIFont.systemFont(ofSize: fontSize, weight: .semibold)
-        }
-        var cfg = configuration ?? .plain()
-        if var attr = cfg.attributedTitle {
-            attr.font = uiFont
-            cfg.attributedTitle = attr
-        } else {
-            var attr = AttributedString(cfg.title ?? titleText)
-            attr.font = uiFont
-            cfg.attributedTitle = attr
-        }
-        configuration = cfg
-    }
-
-    private func updateInsets() {
-        var cfg = configuration ?? .plain()
-        cfg.contentInsets = NSDirectionalEdgeInsets(top: contentTopBottom, leading: contentLeftRight, bottom: contentTopBottom, trailing: contentLeftRight)
-        configuration = cfg
+    @objc func handleProGenerationsBarButtonTap() {
+        AmplitudeService.shared.logEvent(.pressPro)
+        GenerationsLeftAlertView.present(from: self)
     }
 }

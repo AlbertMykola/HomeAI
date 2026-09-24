@@ -30,13 +30,12 @@ final class StyleListViewController: UIViewController, PageStepDelegate, PromptM
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Choose Style".localized
+        applyNavigationTitleForContext()
         getData()
         collectionView.dataSource = self
         collectionView.delegate = self
 
         collectionView.register(UINib(nibName: "StyleCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "StyleCollectionViewCell")
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 150, right: 0)
         collectionView.allowsMultipleSelection = false
 
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -52,14 +51,96 @@ final class StyleListViewController: UIViewController, PageStepDelegate, PromptM
         }
         
         prefetchImages()
+        applyCollectionBottomInset()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        applyCollectionBottomInset()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        applyNavigationTitleForContext()
+        syncCollectionSelection()
+    }
+
+    private func applyNavigationTitleForContext() {
+        if parent is PageViewController { return }
+        title = "Choose Style".localized
+    }
+    
+    private func syncCollectionSelection() {
+        let selectedPaths = Set(collectionView.indexPathsForSelectedItems ?? [])
+        let expectedPath = selectedIndexPath.map { Set([$0]) } ?? []
+        
+        for indexPath in selectedPaths.subtracting(expectedPath) {
+            collectionView.deselectItem(at: indexPath, animated: false)
+            (collectionView.cellForItem(at: indexPath) as? StyleCollectionViewCell)?.isSelected = false
+        }
+        
+        guard let selectedIndexPath else { return }
+        collectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: [])
+        (collectionView.cellForItem(at: selectedIndexPath) as? StyleCollectionViewCell)?.isSelected = true
+    }
+    
+    private func applySelection(at indexPath: IndexPath) {
+        if let previous = selectedIndexPath, previous != indexPath {
+            collectionView.deselectItem(at: previous, animated: false)
+            (collectionView.cellForItem(at: previous) as? StyleCollectionViewCell)?.isSelected = false
+        }
+        
+        selectedIndexPath = indexPath
+        collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
+        (collectionView.cellForItem(at: indexPath) as? StyleCollectionViewCell)?.isSelected = true
+    }
+    
+    private func revertPendingSelection(at indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: false)
+        (collectionView.cellForItem(at: indexPath) as? StyleCollectionViewCell)?.isSelected = false
+        syncCollectionSelection()
+    }
+    
+    private func notifyPageFlowCompleted() {
+        completion?()
+        onProceedToNextStep?()
+    }
+    
+    private func presentCustomStylePrompt(
+        at indexPath: IndexPath,
+        promptManager: GemeniPromptManager,
+        onSuccess: @escaping () -> Void
+    ) {
+        (parent as? PageViewController)?.cancelPendingAutoAdvance()
+        revertPendingSelection(at: indexPath)
+        
+        NavigationManager.shared.showPrompt(
+            promptManager: promptManager,
+            onSelect: { [weak self] _ in
+                guard let self else { return }
+                onSuccess()
+                self.applySelection(at: indexPath)
+                self.didSelectForGenerate = true
+                
+                if self.isPresentedModall {
+                    self.updateGenerateButtonVisibility()
+                } else {
+                    self.notifyPageFlowCompleted()
+                }
+            },
+            onCancel: { [weak self] in
+                self?.syncCollectionSelection()
+            }
+        )
     }
     
     private func getData() {
         switch selectedOption {
-            case .exterior: StyleExteriorType.allCases.forEach {
+        case .exterior:
+            StyleExteriorType.allCases.forEach {
                 dataSource.append(StyleCellModel(name: $0.name, imageName: $0.image))
             }
-        case .interior:
+        case .interior, .furnish, .floolPlan:
             StyleInteriorType.allCases.forEach {
                 dataSource.append(StyleCellModel(name: $0.name, imageName: $0.image, isNew: $0.isNew))
             }
@@ -67,7 +148,7 @@ final class StyleListViewController: UIViewController, PageStepDelegate, PromptM
             GardenType.allCases.forEach {
                 dataSource.append(StyleCellModel(name: $0.name, imageName: $0.icon))
             }
-        case .reference, .replace, .newFlooring, .newWalls, .delete:
+        default:
             break
         }
     }
@@ -98,11 +179,18 @@ final class StyleListViewController: UIViewController, PageStepDelegate, PromptM
         view.addSubview(generateButton)
         
         NSLayoutConstraint.activate([
-            generateButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            generateButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -UICollectionView.PageFlowBottomInset.overlayButtonBottomOffset),
             generateButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             generateButton.widthAnchor.constraint(equalToConstant: 165),
-            generateButton.heightAnchor.constraint(equalToConstant: 54)
+            generateButton.heightAnchor.constraint(equalToConstant: UICollectionView.PageFlowBottomInset.overlayButtonHeight)
         ])
+    }
+    
+    private func applyCollectionBottomInset() {
+        collectionView.applyPageFlowBottomInset(
+            in: view,
+            overlayButton: isPresentedModall ? generateButton : nil
+        )
     }
     
     private func updateGenerateButtonVisibility() {
@@ -110,6 +198,7 @@ final class StyleListViewController: UIViewController, PageStepDelegate, PromptM
         generateButton.isHidden = !shouldShow
         generateButton.isEnabled = shouldShow
         generateButton.alpha = shouldShow ? 1.0 : 0.5
+        applyCollectionBottomInset()
     }
     
     @objc private func generateTapped() {
@@ -132,7 +221,7 @@ extension StyleListViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
 
-        let model = dataSource[indexPath.item]
+        guard let model = dataSource[safe: indexPath.item] else { return cell }
         cell.config(style: model)
 
         if let selectedIndexPath, selectedIndexPath == indexPath {
@@ -150,7 +239,7 @@ extension StyleListViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellsPerRow: CGFloat = 3
-        let layout = collectionViewLayout as! UICollectionViewFlowLayout
+        guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return .zero }
 
         let sectionInsets = layout.sectionInset
         let interItemSpacing = layout.minimumInteritemSpacing
@@ -177,51 +266,31 @@ extension StyleListViewController: UICollectionViewDelegateFlowLayout {
 extension StyleListViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-
-        if let previous = selectedIndexPath, previous != indexPath,
-           let prevCell = collectionView.cellForItem(at: previous) as? StyleCollectionViewCell {
-            prevCell.isSelected = false
-            collectionView.deselectItem(at: previous, animated: false)
+        if parent is PageViewController {
+            hapticVibration()
         }
 
-        if let newCell = collectionView.cellForItem(at: indexPath) as? StyleCollectionViewCell {
-            newCell.isSelected = true
-        }
-
-        let selectedModel = dataSource[indexPath.item]
-
-        // Підготуємо єдиний об’єкт стилю для обох випадків
+        guard let selectedModel = dataSource[safe: indexPath.item] else { return }
         var unified: UnifiedStyle?
 
         switch selectedOption {
-        case .interior:
+        case .interior, .furnish, .floolPlan:
             if let interiorStyle = StyleInteriorType.allCases.first(where: { $0.name == selectedModel.name }) {
-                // Handle special cases
                 if interiorStyle == .custom {
-                    // Present PromptViewController
-                    NavigationManager.shared.showPrompt(promptManager: promptManager ?? GemeniPromptManager()) { [weak self] customPrompt in
-                        // Custom prompt is already saved to promptManager in PromptViewController
-                        // Set the style to custom
+                    presentCustomStylePrompt(
+                        at: indexPath,
+                        promptManager: promptManager ?? GemeniPromptManager()
+                    ) { [weak self] in
                         let unified: UnifiedStyle = .interior(.custom)
                         self?.promptManager?.updateStyle(unified)
-                        self?.selectedIndexPath = indexPath
-                        self?.didSelectForGenerate = true
                         self?.onSelectStyle?(unified)
-                        if self?.isPresentedModall == true {
-                            self?.updateGenerateButtonVisibility()
-                        } else {
-                            self?.completion?()
-                            self?.onProceedToNextStep?()
-                        }
                     }
                     return
                 }
                 
-                // For .noStyle, set style to nil (or handle specially)
                 if interiorStyle == .noStyle {
-                    // Set style to nil - will be handled in prompt generation
                     promptManager?.clearInteriorStyle()
-                    unified = .interior(.noStyle) // Still create UnifiedStyle for consistency
+                    unified = .interior(.noStyle)
                 } else {
                     let u: UnifiedStyle = .interior(interiorStyle)
                     promptManager?.updateStyle(u)
@@ -230,23 +299,14 @@ extension StyleListViewController: UICollectionViewDelegate {
             }
         case .exterior:
             if let exteriorStyle = StyleExteriorType.allCases.first(where: { $0.name == selectedModel.name }) {
-                // Handle special cases
                 if exteriorStyle == .custom {
-                    // Present PromptViewController
-                    NavigationManager.shared.showPrompt(promptManager: promptManager ?? GemeniPromptManager()) { [weak self] customPrompt in
-                        // Custom prompt is already saved to promptManager in PromptViewController
-                        // Set the style to custom
+                    presentCustomStylePrompt(
+                        at: indexPath,
+                        promptManager: promptManager ?? GemeniPromptManager()
+                    ) { [weak self] in
                         let unified: UnifiedStyle = .exterior(.custom)
                         self?.promptManager?.updateStyle(unified)
-                        self?.selectedIndexPath = indexPath
-                        self?.didSelectForGenerate = true
                         self?.onSelectStyle?(unified)
-                        if self?.isPresentedModall == true {
-                            self?.updateGenerateButtonVisibility()
-                        } else {
-                            self?.completion?()
-                            self?.onProceedToNextStep?()
-                        }
                     }
                     return
                 }
@@ -264,21 +324,12 @@ extension StyleListViewController: UICollectionViewDelegate {
             if let gardenStyle = GardenType.allCases.first(where: { $0.name == selectedModel.name }) {
                 if gardenStyle == .custom {
                     let pm = promptManager ?? GemeniPromptManager()
-                    // Ensure custom prompt is handled as garden-style customization.
                     pm.updateOption(.garden)
-                    NavigationManager.shared.showPrompt(promptManager: pm) { [weak self] _ in
+                    presentCustomStylePrompt(at: indexPath, promptManager: pm) { [weak self] in
                         pm.updateGardenType(.custom)
                         let u: UnifiedStyle = .garden(GardenType.custom.name)
                         self?.promptManager?.updateStyle(u)
-                        self?.selectedIndexPath = indexPath
-                        self?.didSelectForGenerate = true
                         self?.onSelectStyle?(u)
-                        if self?.isPresentedModall == true {
-                            self?.updateGenerateButtonVisibility()
-                        } else {
-                            self?.completion?()
-                            self?.onProceedToNextStep?()
-                        }
                     }
                     return
                 }
@@ -294,7 +345,7 @@ extension StyleListViewController: UICollectionViewDelegate {
         default: break
         }
 
-        selectedIndexPath = indexPath
+        applySelection(at: indexPath)
         didSelectForGenerate = true
 
         if isPresentedModall, let u = unified {
@@ -303,8 +354,6 @@ extension StyleListViewController: UICollectionViewDelegate {
             return
         }
 
-        // Інакше — зберігаємо поточну поведінку
-        // Викликаємо completion для активації кнопки Next (працює і для .noStyle)
         completion?()
     }
 

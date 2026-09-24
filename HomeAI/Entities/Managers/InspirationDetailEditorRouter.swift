@@ -55,7 +55,7 @@ final class InspirationDetailEditorRouter {
     ) {
         AmplitudeService.shared.logEvent(.selectingEdit(type: action))
 
-        guard ApphudService.shared.hasActiveSubscription else {
+        guard AdaptyService.shared.hasActiveSubscription else {
             NavigationManager.shared.showPremium(placement: Constants.Keys.detailsEditPlacement)
             return
         }

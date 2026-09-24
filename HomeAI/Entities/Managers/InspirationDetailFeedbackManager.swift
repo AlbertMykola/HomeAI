@@ -1,25 +1,31 @@
 import UIKit
 import MessageUI
+import StoreKit
 
 @MainActor
 final class InspirationDetailFeedbackManager: NSObject, MFMailComposeViewControllerDelegate {
+
+    private var pendingSystemReviewWork: DispatchWorkItem?
 
     // MARK: - Like
 
     func handleLike(from viewController: UIViewController, onLikeFeedback: (() -> Void)? = nil) {
         AmplitudeService.shared.logEvent(.detailLikeTap)
-        let didShowLikeAlert = UserDefaults.standard.bool(forKey: Constants.Keys.didShowRateAlert)
-        if didShowLikeAlert {
+        let didShowCustomAlert = UserDefaults.standard.bool(forKey: Constants.Keys.didShowRateAlert)
+        if didShowCustomAlert {
+            requestSystemReview(in: viewController)
             DispatchQueue.main.async { onLikeFeedback?() }
-        } else {
-            showLikeAlert(in: viewController, onDismissed: onLikeFeedback)
+            return
         }
+        pendingSystemReviewWork?.cancel()
+        presentLikeAlert(in: viewController, persistDismissal: true, onDismissed: onLikeFeedback)
     }
 
     // MARK: - Dislike
 
     func handleDislike(from viewController: UIViewController, onFeedbackPromptDismissed: (() -> Void)? = nil) {
         AmplitudeService.shared.logEvent(.detailDislikeTap)
+        pendingSystemReviewWork?.cancel()
 
         let alert = UIAlertController(
             title: "Help us improve".localized,
@@ -42,23 +48,51 @@ final class InspirationDetailFeedbackManager: NSObject, MFMailComposeViewControl
             }
         })
 
-        viewController.present(alert, animated: true)
+        viewController.presentSafely(alert)
     }
 
-    // MARK: - Rate alert (auto-show after first generation)
+    // MARK: - System review (Apple лімітить частоту)
 
-    func showRateAlertIfNeeded(in viewController: UIViewController) {
-        let isFirstGeneration = FreeGenerationManager.shared.currentCount == 1
-        let didShowAlert = UserDefaults.standard.bool(forKey: Constants.Keys.didShowRateAlert)
-        guard isFirstGeneration && !didShowAlert else { return }
-        showLikeAlert(in: viewController, onDismissed: nil)
+    func showSystemReviewIfNeeded(in viewController: UIViewController, isGeneratedResult: Bool) {
+        pendingSystemReviewWork?.cancel()
+        guard isGeneratedResult else { return }
+        let work = DispatchWorkItem { [weak self, weak viewController] in
+            guard let self, let viewController, viewController.view.window != nil else { return }
+            self.requestSystemReview(in: viewController)
+        }
+        pendingSystemReviewWork = work
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.55, execute: work)
+    }
+
+    func requestSystemReview(in viewController: UIViewController) {
+        guard SupabaseAppConfigService.shared.obSwRateAlert else { return }
+        guard viewController.canPresentModal else { return }
+        AmplitudeService.shared.logEvent(.detailReviewRequest)
+
+        guard let scene = viewController.view.window?.windowScene else { return }
+        SKStoreReviewController.requestReview(in: scene)
+    }
+
+    func presentLikeAlert(in viewController: UIViewController, persistDismissal: Bool = true, onDismissed: (() -> Void)? = nil) {
+        guard viewController.canPresentModal else { return }
+        AmplitudeService.shared.logEvent(.detailLikeShowAlert)
+        guard let alertView = Bundle.main.loadNibNamed("LikeAlertView", owner: nil, options: nil)?.first as? LikeAlertView else {
+            return
+        }
+        alertView.show(in: viewController) {
+            if persistDismissal {
+                UserDefaults.standard.set(true, forKey: Constants.Keys.didShowRateAlert)
+                UserDefaults.standard.synchronize()
+            }
+            onDismissed?()
+        }
     }
 
     // MARK: - MFMailComposeViewControllerDelegate
 
-    func mailComposeController(_ controller: MFMailComposeViewController,
-                               didFinishWith result: MFMailComposeResult,
-                               error: Error?) {
+    nonisolated func mailComposeController(_ controller: MFMailComposeViewController,
+                                          didFinishWith result: MFMailComposeResult,
+                                          error: Error?) {
         let resultString: String
         switch result {
         case .cancelled: resultString = "cancelled"
@@ -67,8 +101,10 @@ final class InspirationDetailFeedbackManager: NSObject, MFMailComposeViewControl
         case .failed:    resultString = "failed"
         @unknown default: resultString = "unknown"
         }
-        AmplitudeService.shared.logEvent(.detailDislikeMailResult(result: resultString))
-        controller.dismiss(animated: true)
+        Task { @MainActor in
+            AmplitudeService.shared.logEvent(.detailDislikeMailResult(result: resultString))
+            controller.dismiss(animated: true)
+        }
     }
 }
 
@@ -80,20 +116,8 @@ private extension InspirationDetailFeedbackManager {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.32, execute: work)
     }
 
-    func showLikeAlert(in viewController: UIViewController, onDismissed: (() -> Void)? = nil) {
-        AmplitudeService.shared.logEvent(.detailLikeShowAlert)
-        guard let alertView = Bundle.main.loadNibNamed("LikeAlertView", owner: nil, options: nil)?.first as? LikeAlertView else {
-            return
-        }
-        alertView.show(in: viewController) {
-            UserDefaults.standard.set(true, forKey: Constants.Keys.didShowRateAlert)
-            UserDefaults.standard.synchronize()
-            onDismissed?()
-        }
-    }
-
     func presentDislikeEmail(from viewController: UIViewController) {
-        let userId = ApphudService.shared.userID
+        let userId = AdaptyService.shared.userID
         let subject = "Dislike - HomeAI \(userId)"
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
         let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
@@ -109,7 +133,7 @@ private extension InspirationDetailFeedbackManager {
 
 
         Technical details:
-        - Apphud user ID: \(userId)
+        - Adapty profile ID: \(userId)
         - App version: \(appVersion) (\(build))
         - Device: \(deviceModel)
         - iOS: \(systemVersion)
@@ -121,7 +145,7 @@ private extension InspirationDetailFeedbackManager {
             mail.setToRecipients(["m.albert.apps@gmail.com"])
             mail.setSubject(subject)
             mail.setMessageBody(body, isHTML: false)
-            viewController.present(mail, animated: true)
+            viewController.presentSafely(mail)
         } else {
             let encodedSubject = subject.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? subject
             let encodedBody = body.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? body

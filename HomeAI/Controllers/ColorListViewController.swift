@@ -37,7 +37,7 @@ class ColorListViewController: UIViewController, PageStepDelegate, PromptManager
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Choose Color".localized
+        navigationItem.title = nil
         amplitude.logEvent(.showColorList)
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -48,7 +48,6 @@ class ColorListViewController: UIViewController, PageStepDelegate, PromptManager
         collectionView.register(SectionHeaderView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
                                 withReuseIdentifier: SectionHeaderView.reuseIdentifier)
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 150, right: 0)
         collectionView.allowsMultipleSelection = true
         
         // Початково встановлюємо Structural
@@ -80,6 +79,13 @@ class ColorListViewController: UIViewController, PageStepDelegate, PromptManager
             setupGenerateButton()
             updateGenerateButtonVisibility()
         }
+        
+        applyCollectionBottomInset()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        applyCollectionBottomInset()
     }
     
     private func markCompleted() {
@@ -97,11 +103,18 @@ class ColorListViewController: UIViewController, PageStepDelegate, PromptManager
         view.addSubview(generateButton)
         
         NSLayoutConstraint.activate([
-            generateButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
+            generateButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -UICollectionView.PageFlowBottomInset.overlayButtonBottomOffset),
             generateButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             generateButton.widthAnchor.constraint(equalToConstant: 165),
-            generateButton.heightAnchor.constraint(equalToConstant: 54)
+            generateButton.heightAnchor.constraint(equalToConstant: UICollectionView.PageFlowBottomInset.overlayButtonHeight)
         ])
+    }
+    
+    private func applyCollectionBottomInset() {
+        collectionView.applyPageFlowBottomInset(
+            in: view,
+            overlayButton: isPresentedModall ? generateButton : nil
+        )
     }
     
     private func updateGenerateButtonVisibility() {
@@ -109,6 +122,7 @@ class ColorListViewController: UIViewController, PageStepDelegate, PromptManager
         generateButton.isHidden = !shouldShow
         generateButton.isEnabled = shouldShow
         generateButton.alpha = shouldShow ? 1.0 : 0.5
+        applyCollectionBottomInset()
     }
     
     @objc private func generateTapped() {
@@ -137,8 +151,10 @@ extension ColorListViewController: UICollectionViewDataSource {
         guard let section = Section(rawValue: indexPath.section) else { return UICollectionViewCell() }
         switch section {
         case .mode:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ModeCollectionViewCell", for: indexPath) as! ModeCollectionViewCell
-            let mode = modes[indexPath.item]
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ModeCollectionViewCell", for: indexPath) as? ModeCollectionViewCell else {
+                return UICollectionViewCell()
+            }
+            guard let mode = modes[safe: indexPath.item] else { return cell }
             cell.configure(mode: mode)
             let isSelected = indexPath == selectedModeIndexPath
             cell.isSelected = isSelected
@@ -148,7 +164,7 @@ extension ColorListViewController: UICollectionViewDataSource {
                 return UICollectionViewCell()
             }
             
-            let style = colors[indexPath.item]
+            guard let style = colors[safe: indexPath.item] else { return cell }
             let model = StyleCellModel(name: style.name, imageName: style.image, isNew: false)
             cell.config(style: model)
             if let selectedColorIndexPath, selectedColorIndexPath == indexPath {
@@ -181,7 +197,7 @@ extension ColorListViewController: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         guard let section = Section(rawValue: indexPath.section) else { return .zero }
-        let layout = collectionViewLayout as! UICollectionViewFlowLayout
+        guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return .zero }
         let sectionInsets = layout.sectionInset
         let interItemSpacing = layout.minimumInteritemSpacing
         
@@ -227,6 +243,9 @@ extension ColorListViewController: UICollectionViewDelegateFlowLayout {
 extension ColorListViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if parent is PageViewController {
+            hapticVibration()
+        }
         guard let section = Section(rawValue: indexPath.section) else { return }
         switch section {
         case .mode:
@@ -245,7 +264,7 @@ extension ColorListViewController: UICollectionViewDelegate {
             }
             
             selectedModeIndexPath = indexPath
-            let mode = modes[indexPath.item]
+            guard let mode = modes[safe: indexPath.item] else { return }
             selectedMode = mode
             promptManager?.updateDesignMode(mode)
             // Не викликаємо markCompleted() тут - крок вважається виконаним тільки після вибору кольору
@@ -261,7 +280,7 @@ extension ColorListViewController: UICollectionViewDelegate {
                 newCell.isSelected = true
             }
 
-            let palette = colors[indexPath.item]
+            guard let palette = colors[safe: indexPath.item] else { return }
             promptManager?.updateColor(palette)
             selectedColorIndexPath = indexPath
             didSelectForGenerate = true

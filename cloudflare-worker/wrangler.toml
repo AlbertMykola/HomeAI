@@ -1,0 +1,20 @@
+name = "homeai-secure-proxy"
+main = "worker.js"
+compatibility_date = "2025-01-01"
+
+# Секрети (Vertex — рекомендовано для GCP billing / $300 credit):
+#   wrangler secret put GCP_SERVICE_ACCOUNT_JSON   # весь JSON service account одним рядком
+#   wrangler secret put GCP_REGION                   # опційно, default us-central1
+#   wrangler secret put GCP_PROJECT_ID               # опційно, якщо є project_id в JSON
+#   wrangler secret put GEMINI_UPSTREAM              # vertex | ai_studio (опційно; auto якщо порожньо)
+#
+# Rollback на AI Studio:
+#   wrangler secret put GEMINI_API_KEY
+#   wrangler secret put GEMINI_UPSTREAM
+#   (введи: ai_studio)
+#
+#   wrangler secret put OPENAI_API_KEY
+#   wrangler secret put MOBILE_GATE_KEY   # опційний
+#
+# Деплой:
+#   wrangler deploy

@@ -7,6 +7,7 @@ extension Notification.Name {
 struct ImageDoc: Codable {
     let id: String
     let prompt: String
+    let provider: String?
     let model: String
     let size: String?
     let seed: Int?
@@ -28,7 +29,8 @@ struct ImageDoc: Codable {
     let surfaceCustomPrompt: String?
     let replaceMode: String?
     let objectToReplace: String?
-    
+    let rearrangeSubOption: String?
+
     var designOption: DesignOption? {
         option.flatMap { DesignOption(rawValue: $0) }
     }
@@ -86,7 +88,11 @@ struct ImageDoc: Codable {
             }
         }
     }
-    
+
+    var savedRearrangeSubOption: GemeniPromptManager.RearrangeSubOption? {
+        rearrangeSubOption.flatMap { GemeniPromptManager.RearrangeSubOption(rawValue: $0) }
+    }
+
     var hasLocalOriginal: Bool {
         guard let originalPath else { return false }
         return FileManager.default.fileExists(atPath: originalPath)
@@ -101,6 +107,8 @@ struct ImageDoc: Codable {
             return savedExteriorBuildingType != nil
         case .garden:
             return savedGardenType != nil
+        case .rearrange:
+            return savedRearrangeSubOption != nil
         default:
             return false
         }
@@ -152,6 +160,7 @@ final class ImageHistoryService {
     @discardableResult
     func saveGeneratedImage(_ data: Data,
                             prompt: String,
+                            provider: String? = nil,
                             model: String,
                             size: String?,
                             seed: Int?,
@@ -170,7 +179,8 @@ final class ImageHistoryService {
                             surfaceMaterial: SurfaceMaterialOption?,
                             surfaceCustomPrompt: String?,
                             replaceMode: GemeniPromptManager.ReplaceMode?,
-                            objectToReplace: String?) async throws -> ImageDoc {
+                            objectToReplace: String?,
+                            rearrangeSubOption: GemeniPromptManager.RearrangeSubOption? = nil) async throws -> ImageDoc {
         let fileId = UUID().uuidString.lowercased()
         let entryFolder = historyDirectory.appendingPathComponent(fileId, isDirectory: true)
         try fileManager.createDirectory(at: entryFolder, withIntermediateDirectories: true)
@@ -198,6 +208,7 @@ final class ImageHistoryService {
         let doc = ImageDoc(
             id: fileId,
             prompt: prompt,
+            provider: provider,
             model: model,
             size: size,
             seed: seed,
@@ -218,9 +229,10 @@ final class ImageHistoryService {
             surfaceMaterial: surfaceMaterial.map { "\($0)" },
             surfaceCustomPrompt: surfaceCustomPrompt,
             replaceMode: replaceMode.map { "\($0)" },
-            objectToReplace: objectToReplace
+            objectToReplace: objectToReplace,
+            rearrangeSubOption: rearrangeSubOption?.rawValue
         )
-        
+
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
         let metadataURL = entryFolder.appendingPathComponent("metadata.json")
@@ -231,6 +243,13 @@ final class ImageHistoryService {
         nextIndex = 0
         hasMore = !cachedDocs.isEmpty
         notifyHistoryChange()
+
+        SupabaseGenerationUploadService.shared.scheduleUpload(
+            fileId: fileId,
+            generatedFileURL: generatedURL,
+            originalFileURL: originalPath.map { URL(fileURLWithPath: $0) }
+        )
+
         return doc
     }
 
@@ -298,6 +317,7 @@ private extension ImageDoc {
         ImageDoc(
             id: id,
             prompt: prompt,
+            provider: provider,
             model: model,
             size: size,
             seed: seed,
@@ -318,7 +338,8 @@ private extension ImageDoc {
             surfaceMaterial: surfaceMaterial,
             surfaceCustomPrompt: surfaceCustomPrompt,
             replaceMode: replaceMode,
-            objectToReplace: objectToReplace
+            objectToReplace: objectToReplace,
+            rearrangeSubOption: rearrangeSubOption
         )
     }
     

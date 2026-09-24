@@ -298,7 +298,9 @@ class DrawingCanvasView: UIView {
     /// Встановлює маску на основі координат об'єкта (для використання з Gemini API)
     /// Створює візуалізацію маски в canvasView для відображення користувачу
     func setMaskFromRect(rect: CGRect, imageSize: CGSize) {
-        guard !canvasView.bounds.isEmpty else { return }
+        guard !canvasView.bounds.isEmpty,
+              imageSize.width > 0,
+              imageSize.height > 0 else { return }
         
         // Очищаємо поточне drawing
         canvasView.drawing = PKDrawing()
@@ -430,8 +432,11 @@ class DrawingCanvasView: UIView {
             return
         }
         
-        // Вирізаємо область об'єкта з зображення
-        let imageSize = baseImage.size
+        // Crop in an orientation-normalized, scale-1 coordinate space.
+        let normalizedImage = baseImage.normalizedForGeneration(
+            maxLongEdge: max(baseImage.size.width, baseImage.size.height)
+        )
+        let imageSize = normalizedImage.size
         let cropRect = CGRect(
             x: max(0, rect.origin.x - rect.width * 0.2), // Додаємо відступ
             y: max(0, rect.origin.y - rect.height * 0.2),
@@ -439,12 +444,12 @@ class DrawingCanvasView: UIView {
             height: min(imageSize.height - rect.origin.y, rect.height * 1.4)
         )
         
-        guard let cgImage = baseImage.cgImage?.cropping(to: cropRect) else {
+        guard let cgImage = normalizedImage.cgImage?.cropping(to: cropRect) else {
             zoomImageView.isHidden = true
             return
         }
         
-        let croppedImage = UIImage(cgImage: cgImage, scale: baseImage.scale, orientation: baseImage.imageOrientation)
+        let croppedImage = UIImage(cgImage: cgImage, scale: 1, orientation: .up)
         zoomImageView.image = croppedImage
         zoomImageView.isHidden = false
         
@@ -461,7 +466,10 @@ class DrawingCanvasView: UIView {
     /// Створює бінарну маску (чорне/біле) для API
     /// Білий = область для заміни, Чорний = область, яку не замінюємо
     private func generateMaskImage() -> UIImage? {
-        guard let image = baseImage, !canvasView.bounds.isEmpty else { return nil }
+        guard let image = baseImage,
+              image.size.width > 0,
+              image.size.height > 0,
+              !canvasView.bounds.isEmpty else { return nil }
         guard !canvasView.drawing.bounds.isEmpty else { return nil }
         
         let imageSize = image.size
@@ -492,7 +500,7 @@ class DrawingCanvasView: UIView {
             let fullDrawingImage = canvasView.drawing.image(from: canvasBounds, scale: scale)
             guard let drawingCGImage = fullDrawingImage.cgImage else { return nil }
             guard let binaryMask = binarizeUsingAlpha(drawingCGImage, alphaThreshold: 32) else { return nil }
-            return UIImage(cgImage: binaryMask, scale: UIScreen.main.scale, orientation: .up)
+            return UIImage(cgImage: binaryMask, scale: 1, orientation: .up)
         }
     }
     

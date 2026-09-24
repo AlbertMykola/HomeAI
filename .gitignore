@@ -1,0 +1,9 @@
+# Legacy local Sentry zip; Package.swift now uses the official GitHub binary URL.
+Vendor/SentryCocoa/Sentry.xcframework.zip
+Vendor/SentryCocoa/Sentry.xcframework
+
+# Local Cloudflare Worker secrets.
+cloudflare-worker/.dev.vars
+cloudflare-worker/.dev.vars.local
+cloudflare-worker-openai/.dev.vars
+cloudflare-worker-openai/.dev.vars.local

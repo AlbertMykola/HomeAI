@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24765" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24743"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geologica-Regular.ttf">
+            <string>Geologica-Regular</string>
+        </array>
+        <array key="Geologica-SemiBold.ttf">
+            <string>Geologica-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="AsisstentCollectionViewCell" customModule="HomeAI" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="358" height="88"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="358" height="88"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F5b-vj-nZ5">
+                        <rect key="frame" x="6" y="6" width="346" height="76"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="r3o-X8-XH5">
+                                <rect key="frame" x="14" y="16" width="44" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="qI7-87-4c7"/>
+                                    <constraint firstAttribute="width" secondItem="r3o-X8-XH5" secondAttribute="height" multiplier="1:1" id="rnD-ng-sJG"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="stk-asst-text">
+                                <rect key="frame" x="69.999999999999986" y="19.000000000000004" width="179.66666666666663" height="38.333333333333343"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fkb-yi-6lb">
+                                        <rect key="frame" x="0.0" y="0.0" width="179.66666666666666" height="19"/>
+                                        <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.72000002861022949" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4s1-sD-WzX">
+                                        <rect key="frame" x="0.0" y="23" width="179.66666666666666" height="15.333333333333336"/>
+                                        <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="fkb-yi-6lb" secondAttribute="trailing" id="86B-AR-oK1"/>
+                                    <constraint firstItem="fkb-yi-6lb" firstAttribute="leading" secondItem="stk-asst-text" secondAttribute="leading" id="kEG-7y-NZB"/>
+                                </constraints>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dMX-cm-La0">
+                                <rect key="frame" x="254.66666666666671" y="23" width="77.333333333333343" height="30"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ellipsis.message.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="2wx-Ur-GKz">
+                                        <rect key="frame" x="12" y="8.6666666666666661" width="16" height="11.66666666666667"/>
+                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="16" id="4dL-AI-lKd"/>
+                                            <constraint firstAttribute="height" constant="14" id="a20-Ty-zSl"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VzP-nx-Fo2">
+                                        <rect key="frame" x="33" y="7.3333333333333366" width="32.333333333333343" height="15.333333333333336"/>
+                                        <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="12"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="scaleFontByHeight" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="2wx-Ur-GKz" firstAttribute="centerY" secondItem="dMX-cm-La0" secondAttribute="centerY" id="3Ki-zs-RKx"/>
+                                    <constraint firstItem="VzP-nx-Fo2" firstAttribute="centerY" secondItem="dMX-cm-La0" secondAttribute="centerY" id="9ow-uH-ryC"/>
+                                    <constraint firstItem="VzP-nx-Fo2" firstAttribute="leading" secondItem="2wx-Ur-GKz" secondAttribute="trailing" constant="5" id="Ng9-Fd-GfY"/>
+                                    <constraint firstAttribute="trailing" secondItem="VzP-nx-Fo2" secondAttribute="trailing" constant="12" id="XJR-N0-9L1"/>
+                                    <constraint firstAttribute="height" constant="30" id="s9K-Fk-Q48"/>
+                                    <constraint firstItem="2wx-Ur-GKz" firstAttribute="leading" secondItem="dMX-cm-La0" secondAttribute="leading" constant="12" id="sbZ-Ca-H6a"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dMX-cm-La0" firstAttribute="leading" secondItem="stk-asst-text" secondAttribute="trailing" constant="5" id="0CT-pG-dOW"/>
+                            <constraint firstItem="dMX-cm-La0" firstAttribute="centerY" secondItem="F5b-vj-nZ5" secondAttribute="centerY" id="QAT-N5-Pqd"/>
+                            <constraint firstItem="r3o-X8-XH5" firstAttribute="leading" secondItem="F5b-vj-nZ5" secondAttribute="leading" constant="14" id="eAz-x2-Ode"/>
+                            <constraint firstItem="stk-asst-text" firstAttribute="leading" secondItem="r3o-X8-XH5" secondAttribute="trailing" constant="12" id="fQe-cw-saz"/>
+                            <constraint firstAttribute="trailing" secondItem="dMX-cm-La0" secondAttribute="trailing" constant="14" id="pIQ-Y9-RgD"/>
+                            <constraint firstItem="r3o-X8-XH5" firstAttribute="centerY" secondItem="F5b-vj-nZ5" secondAttribute="centerY" id="s6Y-Vy-eH9"/>
+                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="stk-asst-text" secondAttribute="bottom" constant="10" id="stk-bot-ge"/>
+                            <constraint firstItem="stk-asst-text" firstAttribute="centerY" secondItem="F5b-vj-nZ5" secondAttribute="centerY" id="stk-cntr-Y"/>
+                            <constraint firstItem="stk-asst-text" firstAttribute="top" relation="greaterThanOrEqual" secondItem="F5b-vj-nZ5" secondAttribute="top" constant="10" id="stk-top-ge"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="F5b-vj-nZ5" secondAttribute="bottom" constant="6" id="A1V-7B-b98"/>
+                <constraint firstItem="F5b-vj-nZ5" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="6" id="LUK-OX-zAI"/>
+                <constraint firstItem="F5b-vj-nZ5" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="6" id="MyF-6X-tYH"/>
+                <constraint firstAttribute="trailing" secondItem="F5b-vj-nZ5" secondAttribute="trailing" constant="6" id="z58-Mg-N1w"/>
+            </constraints>
+            <size key="customSize" width="358" height="88"/>
+            <connections>
+                <outlet property="assistantImageView" destination="r3o-X8-XH5" id="KaD-yS-mMV"/>
+                <outlet property="cardContainerView" destination="F5b-vj-nZ5" id="cCV-Xk-rT1"/>
+                <outlet property="chatIconImageView" destination="2wx-Ur-GKz" id="cIV-Xk-rT2"/>
+                <outlet property="chatLabel" destination="VzP-nx-Fo2" id="Pty-cO-qTQ"/>
+                <outlet property="chatPillView" destination="dMX-cm-La0" id="chP-Pi-llV"/>
+                <outlet property="descriptionLabel" destination="4s1-sD-WzX" id="hpZ-bo-5qx"/>
+                <outlet property="nameLabel" destination="fkb-yi-6lb" id="Bol-Ot-Aop"/>
+                <outletCollection property="yCollectionConstraint" destination="qI7-87-4c7" collectionClass="NSMutableArray" id="12w-p1-sao"/>
+                <outletCollection property="yCollectionConstraint" destination="s6Y-Vy-eH9" collectionClass="NSMutableArray" id="Mmf-xf-IQO"/>
+                <outletCollection property="yCollectionConstraint" destination="stk-cntr-Y" collectionClass="NSMutableArray" id="hbj-RN-79n"/>
+                <outletCollection property="yCollectionConstraint" destination="stk-top-ge" collectionClass="NSMutableArray" id="stk-top-oc"/>
+                <outletCollection property="yCollectionConstraint" destination="stk-bot-ge" collectionClass="NSMutableArray" id="stk-bot-oc"/>
+                <outletCollection property="yCollectionConstraint" destination="s9K-Fk-Q48" collectionClass="NSMutableArray" id="ys0-0S-LmD"/>
+                <outletCollection property="xCollectionConstraint" destination="eAz-x2-Ode" collectionClass="NSMutableArray" id="6R7-Rg-1ow"/>
+                <outletCollection property="xCollectionConstraint" destination="fQe-cw-saz" collectionClass="NSMutableArray" id="pby-36-oQ1"/>
+                <outletCollection property="xCollectionConstraint" destination="XJR-N0-9L1" collectionClass="NSMutableArray" id="Vh5-vn-Y7p"/>
+                <outletCollection property="xCollectionConstraint" destination="Ng9-Fd-GfY" collectionClass="NSMutableArray" id="AkO-Px-M60"/>
+                <outletCollection property="xCollectionConstraint" destination="sbZ-Ca-H6a" collectionClass="NSMutableArray" id="VjS-mc-4Of"/>
+            </connections>
+            <point key="canvasLocation" x="343.51145038167937" y="158.09859154929578"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="ellipsis.message.fill" catalog="system" width="128" height="104"/>
+    </resources>
+</document>

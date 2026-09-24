@@ -1,38 +1,89 @@
-// OB
-"WELCOME TO THE WORLD OF CREATIVITY!" = "創造の世界へようこそ！";
-"Discover ideas and create your dream home in minutes." = "アイデアを見つけて、数分で理想の住まいを作りましょう。";
+// OB — Onboarding
+"ob_welcome_headline" = "空間をリデザイン";
+"ob_welcome_description" = "AIでどんな部屋も変身";
+"ob_welcome_get_started" = "はじめる";
+"ob_welcome_trusted_users" = "信頼されているユーザー";
+"ob_welcome_average_rating" = "平均評価";
+"ob_design_headline" = "理想の住まいを再想像";
+"ob_design_description" = "新しいスタイル、色、家具ですぐに空間をリデザイン。";
+"ob_feature_new_walls" = "新しい壁";
+"ob_feature_replace_object" = "オブジェクトを置き換え";
+"ob_feature_delete_object" = "オブジェクトを削除";
+"ob_feature_new_color" = "新しい色";
+"ob_feature_new_style" = "新しいスタイル";
+"ob_feature_new_floor" = "新しい床";
+"ob_exterior_headline" = "外観を変える";
+"ob_exterior_description" = "違ったイメージを描いて";
+
+"ob_garden_headline" = "庭に命を吹き込む";
+"ob_garden_description" = "理想の屋外空間をつくろう";
+
+"ob_change_headline" = "何でも変えられる";
+"ob_change_description" = "削除。置換。再想像。";
+"ob_rate_headline_format" = "理想の住まいは%@";
+"ob_rate_headline_highlight" = "素晴らしい";
+"ob_rate_description" = "評価してより多くのスタイルと機能を解除し、ReHomelyの改善にご協力ください";
+"ob_rate_unlock_title" = "解除";
+"ob_rate_unlock_subtitle" = "プレミアムスタイル";
+"ob_rate_bonus_title" = "ボーナスを";
+"ob_rate_bonus_subtitle" = "ゲット";
+"ob_rate_help_title" = "より良いアプリ";
+"ob_rate_help_subtitle" = "作りにご協力";
+"ob_continue" = "続ける";
+// OB — legacy keys (інші екрани / старі рядки)
+"Transform Your Facade" = "外観を変える";
+"Your dream home looks %@" = "理想の住まいは%@";
+"AMAZING" = "素晴らしい";
+"Rate us to unlock more styles and features and help improve ReHomely for you" = "評価してより多くのスタイルと機能を解除し、ReHomelyの改善にご協力ください";
+"Instantly visualize a new look for your house exterior." = "家の外観の新しいイメージをすぐにプレビュー。";
 "Next" = "次へ";
 "INSPIRE.DESIGN.TRANSFORM" = "ひらめく。デザインする。変える。";
 "Explore a world of stunning interior and exterior ideas, and bring them into your own designs." = "魅力的なインテリアとエクステリアのアイデアを見つけて、あなた自身のデザインに取り入れましょう。";
 "HELP US GROW!" = "アプリの成長を応援してください！";
 "Support us with a quick review! Your feedback keeps us going and helps us bring even more smart design magic to life" = "簡単なレビューで応援してください。あなたのフィードバックが私たちの励みとなり、さらに多くのスマートなデザイン体験をお届けする力になります";
 "Get Started" = "はじめる";
-
 // Home
+"Smart tools" = "スマートツール";
+"See all" = "すべて見る";
+"Chat with AI-Assistant" = "AIアシスタントとチャット";
+"Get personalized renovation advice and inspiration" = "リフォームのアドバイスとインスピレーションをパーソナライズ";
 "Interior Design" = "インテリアデザイン";
-"Transform your space — snap a room and let AI do the rest." = "お部屋を撮影するだけで、あとはAIにおまかせ。";
 "Exterior Design" = "エクステリアデザイン";
-"Upload a photo of your home, choose your style and let AI redesign your facade!" = "家の写真をアップロードしてスタイルを選ぶだけで、AIが外観をデザインし直します。";
 "Garden Design" = "ガーデンデザイン";
-"Take a photo, and let AI reveal your garden's full potential." = "写真を撮るだけで、AIが庭の可能性を引き出します。";
 "Reference Style" = "参考スタイル";
-"Bring your ideas to life — select a reference style and discover a new vibe with AI." = "参考スタイルを選んで、AIと一緒に新しい雰囲気を見つけましょう。";
 "Replace Objects" = "オブジェクトを置き換える";
-"Choose an object and let AI replace it instantly." = "オブジェクトを選ぶだけで、AIがすぐに置き換えます。";
-
 "Replace Object" = "オブジェクトを置き換える";
-"Replace objects in your photo with AI-powered precision." = "AIの高精度な機能で、写真内のオブジェクトを置き換えます。";
 "New Flooring" = "新しい床";
-"Choose an object and let AI replace it instantly." = "オブジェクトを選ぶだけで、AIがすぐに置き換えます。";
 "New Walls" = "新しい壁";
-"Try new flooring in seconds. AI instantly detects and replaces your floor." = "数秒で新しい床を試せます。AIが床を瞬時に認識して置き換えます。";
-"Reimagine your walls with AI. Instantly preview colors, textures, and finishes in your space." = "AIで壁を新しくイメージしましょう。色・質感・仕上がりをその場でプレビューできます。";
-
+"Change your indoor space" = "室内空間を変える";
+"Transform the look of your home" = "住まいの外観を変える";
+"Restyle your outdoor space" = "屋外空間のスタイルを一新";
+"Match any styles" = "どんなスタイルにも合わせる";
+"Swap furniture instantly" = "家具をすぐに入れ替え";
+"Try new floor styles" = "新しい床スタイルを試す";
+"Repaint your walls" = "壁を塗り替える";
+"Remove Objects" = "オブジェクトを削除";
+"Remove unwanted items" = "不要な物を削除";
+"Rearrange Furniture" = "家具を再配置";
+"Optimize your layout" = "レイアウトを最適化";
+"Furnish Room" = "部屋を家具で整える";
+"Fill empty spaces" = "空きスペースを埋める";
+"Floor Plan" = "間取り図";
+"Turn plans into 3D" = "間取り図を3Dに変換";
+" " = " ";
+"Upload a photo of your current layout" = "現在のレイアウトの写真をアップロード";
+"Upload a photo of your empty room" = "空の部屋の写真をアップロード";
+"Upload a photo of your floor plan" = "間取り図の写真をアップロード";
+"Rearrange Only" = "再配置のみ";
+"New layout with same furniture" = "同じ家具で新しいレイアウト";
+"Rearrange & Refresh" = "再配置＆リフレッシュ";
+"New layout with small furniture change" = "家具を少し変えた新レイアウト";
+"Rearrange" = "再配置";
 //Page
 "Generate" = "生成";
+"Remove" = "削除";
 "Delete Objects" = "オブジェクトを削除";
 "Select an object and let AI remove it instantly." = "オブジェクトを選ぶだけで、AIがすぐに削除します。";
-
 // Photo
 "Add a photo" = "写真を追加";
 "Upload a photo of your current room." = "現在の部屋の写真をアップロードしてください。";
@@ -50,7 +101,6 @@
 "Cancel" = "キャンセル";
 "Photo Tips" = "撮影のヒント";
 "Upload a reference photo." = "参考写真をアップロードしてください。";
-
 // Color
 "Choose Color" = "色を選択";
 "Random" = "ランダム";
@@ -83,6 +133,9 @@
 
 // Room
 "Choose Room" = "部屋を選択";
+"All" = "すべて";
+"Exterior" = "外観";
+"Garden" = "庭";
 "Kitchen" = "キッチン";
 "Bedroom" = "寝室";
 "Bathroom" = "バスルーム";
@@ -98,7 +151,6 @@
 "Hallway" = "廊下";
 "Laundry room" = "ランドリールーム";
 "Garage" = "ガレージ";
-
 // Style
 "Choose Style" = "スタイルを選択";
 "Modern" = "モダン";
@@ -160,7 +212,7 @@
 "Wood" = "ウッド";
 "Creepy" = "不気味";
 "Chocolate" = "チョコレート";
-
+"Cyberpunk" = "サイバーパンク";
 //Inspiration Detail
 "Done" = "完了";
 "Save" = "保存";
@@ -178,6 +230,15 @@
 "Color" = "色";
 "Style" = "スタイル";
 "LIKE THE APP?" = "このアプリは気に入りましたか？";
+"like_alert_title_prefix" = "気に入りましたか";
+"like_alert_description" = "ご意見は、アプリの改善とより良いデザイン作りに役立ちます。";
+"generations_left_alert_title_format" = "残り%@回試せます";
+"generations_left_alert_subtitle" = "PROで制限なく作成を続けましょう。";
+"generations_left_alert_feature_unlimited" = "無制限の生成";
+"generations_left_alert_feature_quality" = "より高画質";
+"generations_left_alert_feature_faster" = "より高速な結果";
+"generations_left_alert_get_pro" = "PROを取得";
+"generations_left_alert_maybe_later" = "後で";
 "Enjoy creating beautiful spaces? Share your feedback and help us make home redesign better for you" = "美しい空間づくりを楽しんでいますか？ご意見をお聞かせいただければ、より良いホームデザイン体験の提供に役立ちます";
 "YES, RATE!" = "はい、評価する";
 "No, thanks" = "いいえ、結構です";
@@ -185,6 +246,7 @@
 "Would you like to tell us what you didn't like?" = "気に入らなかった点をお聞かせください";
 "Share feedback" = "フィードバックを送る";
 "Delete Object" = "オブジェクトを削除";
+"Brush Size" = "ブラシサイズ";
 "Replace Object" = "オブジェクトを置き換える";
 "New Floor" = "新しい床";
 "New Style" = "新しいスタイル";
@@ -192,6 +254,8 @@
 "" = "";
 
 //Paywall
+"Go Premium Design Without Limits" = "Premiumへ\n制限なしでデザイン";
+"Premium" = "Premium";
 "Unlock Unlimited Access" = "無制限アクセスを解除";
 "Unlimited interior, exterior, and garden transformations. All styles, custom presets, and high‑quality exports" = "インテリア・エクステリア・ガーデンの変換が無制限。すべてのスタイル、カスタムプリセット、高画質エクスポートが利用できます";
 "Enable Free Trial" = "無料トライアルを開始";
@@ -202,8 +266,39 @@
 "Not now" = "今はしない";
 "No payment due now" = "今すぐの支払いはありません";
 "Try Free 3 days" = "3日間無料で試す";
+"Try Free trial" = "無料で試す";
+"3 days trial" = "3日間トライアル";
+"%d days trial" = "%d日間トライアル";
+"Best Value" = "最もお得";
+"week" = "週";
+"/year" = "/年";
+"/month" = "/月";
+"/week" = "/週";
+"Monthly Access" = "月額アクセス";
+"YEARLY" = "年額";
+"MONTHLY" = "月額";
+"WEEKLY" = "週額";
 "Cancel Anytime" = "いつでも解約可能";
-
+"No paying now" = "今は支払い不要";
+"Not commitment. Cancel anytime" = "縛りなし。いつでも解約可能";
+"Not interested?" = "興味がない？";
+"Go with Basic" = "Basicで続ける";
+"Trusted users" = "信頼されているユーザー";
+"Avarage Rating" = "平均評価";
+"Terms" = "利用規約";
+"Privacy" = "プライバシー";
+"Restore" = "復元";
+"100.000+" = "100.000+";
+"Unlimited Redesigns" = "無制限リデザイン";
+"All Premium Styles" = "すべてのプレミアムスタイル";
+"Ultra Fast Rendering" = "超高速レンダリング";
+"Design Every Corner" = "あらゆる空間をデザイン";
+"Redesign as much as you want " = "好きなだけリデザイン";
+"Access to every styles and materials" = "すべてのスタイルと素材にアクセス";
+"Get stunning results in seconds" = "数秒で驚きの結果を";
+"Enjoy without any interruptions" = "中断なくお楽しみください";
+"Paywall placement not found" = "ペイウォールの配置が見つかりません";
+"Paywall requires at least two products" = "ペイウォールには2つ以上の商品が必要です";
 //Settings
 "Notification" = "通知";
 "Vibration" = "バイブレーション";
@@ -218,26 +313,29 @@
 "Use natural light whenever possible, or switch on all lights in the room.\nShoot at eye level to keep the perspective natural and realistic.\nPTake photos from a corner or doorway to capture more of the space.\nClear away clutter and tidy up to achieve a clean, polished look." = "できるだけ自然光を使うか、部屋の照明をすべて点けてください。\n自然でリアルな遠近感を保つため、目の高さで撮影してください。\n部屋全体をより広く写せるよう、部屋の角や出入口から撮影してください。\n散らかった物を片づけて整えると、すっきりした仕上がりになります。";
 "Photograph the building in daylight.\nRemove cars, people, trash bins, and other distractions from the scene.\nPreserve natural and realistic colors.\nUpload images in high resolution and sharp focus." = "建物は日中の明るい時間に撮影してください。\n車、人、ゴミ箱など、画面の邪魔になるものは取り除いてください。\n自然でリアルな色味を保ってください。\n高解像度で、ピントの合った画像をアップロードしてください。";
 "Use natural daylight and avoid harsh sunlight or deep shadows.\nKeep the garden clean and well-maintained, without tools or temporary objects.\nShow the overall layout clearly, including paths, plants, and open areas.\nEnsure sharp focus, accurate colors, and a straight horizon." = "自然光で撮影し、強すぎる直射日光や濃い影は避けてください。\n庭はきれいに整え、道具や一時的な物は置かないでください。\n通路、植物、開けたスペースを含め、全体のレイアウトが分かるようにしてください。\nピントが合っていて、色が正確で、水平が保たれていることを確認してください。";
-
+"Blurred" = "ぼやけ";
+"Cropped" = "切り取り";
+"Clean lines" = "きれいな線";
+"Full plan" = "完全な間取り図";
 "Too Close" = "近すぎる";
 "Too Dark" = "暗すぎる";
 "Too Mess" = "散らかりすぎ";
-
 "View at eye level" = "目の高さで撮影";
 "Good light" = "明るさが十分";
 "Clean Room" = "片づいた部屋";
-
 "Too Far" = "遠すぎる";
 "High resolution" = "高解像度";
 "Too Messy" = "散らかりすぎ";
 "Clear view" = "見通しがよい";
 "Good focus" = "ピント良好";
 "View at eye level" = "目の高さで撮影";
+"Clear layout" = "レイアウトが明確";
+"Good quality" = "高品質";
+"Full 2D floor plan with every room clearly visible.\nSharp, high-quality image with clean lines.\nSimple layout without extra notes or markings.\nAvoid blurry, cropped, or low-resolution plans." = "すべての部屋がはっきり見える2D間取り図。\nくっきりした高品質な画像で、線がはっきり。\n余計なメモやマークのないシンプルなレイアウト。\nぼやけた、切り取られた、低解像度の図面は避けてください。";
 "Info" = "情報";
 "Tips" = "ヒント";
 "Bad Example:" = "悪い例:";
 "Good Example:" = "良い例:";
-
 // Custom Prompt
 "Enter Custom Promt" = "カスタムプロンプトを入力";
 "Describe your design style idea..." = "デザインスタイルのアイデアを入力してください...";
@@ -262,7 +360,6 @@
 "Building facade visualization focusing on geometry, depth, and material accuracy" = "形状、奥行き、素材表現の正確さに重点を置いた建物ファサードのビジュアライゼーション";
 "Exterior design of a residential property with clear lines, natural proportions, and daylight conditions" = "明確なライン、自然な比率、日中の光環境を備えた住宅外観デザイン";
 "Realistic exterior rendering of a building with attention to lighting, textures, and spatial balance" = "照明、質感、空間バランスに配慮したリアルな建物外観レンダリング";
-
 "Garden exterior with well-planned pathways, natural greenery, and balanced outdoor composition" = "よく計画された小道、自然な緑、バランスの取れた屋外構成を備えた庭の外観";
 "Outdoor garden area featuring landscaped plants, clear zoning, and natural daylight" = "景観設計された植物、明確なゾーニング、自然光を備えた屋外ガーデンエリア";
 "Garden design with integrated seating areas, realistic vegetation, and harmonious proportions" = "一体化した座席エリア、リアルな植栽、調和の取れた比率を備えたガーデンデザイン";
@@ -273,11 +370,9 @@
 "Garden visualization with natural light, well-maintained greenery, and clear composition" = "自然光、手入れの行き届いた緑、明快な構図を備えた庭のビジュアライゼーション";
 "Outdoor garden environment with realistic vegetation density and natural color balance" = "リアルな植栽密度と自然な色のバランスを備えた屋外ガーデン環境";
 "Garden design focusing on functionality, comfort, and harmony with the surroundings" = "機能性、快適さ、周囲との調和を重視したガーデンデザイン";
-
 // Processing
 "Processing..." = "処理中...";
 "Please, don't close the app " = "アプリを閉じないでください ";
-
 // Replace Object
 "Action Required" = "操作が必要です";
 "Please select an element on the image to replace or write a prompt describing what you want to change." = "置き換えたい画像内の要素を選択するか、変更したい内容を説明するプロンプトを入力してください。";
@@ -298,9 +393,9 @@
 "Describe your design style idea..." = "デザインスタイルのアイデアを入力してください...";
 "Floor options" = "床のオプション";
 "Wall options" = "壁のオプション";
-
 // Daily generation limit
 "Daily limit reached" = "1日の上限に達しました";
+"daily_limit_reached_message" = "本日の画像生成（%d回）をすべて使用しました。明日もう一度お試しください。";
 "You've used all 15 image generations for today. Please try again tomorrow." = "本日分の画像生成15回をすべて使いました。明日もう一度お試しください。";
 "" = "";
 "" = "";
@@ -313,3 +408,120 @@
 "" = "";
 "" = "";
 "" = "";
+"Meet Your AI Experts:" = "AIエキスパートをご紹介：";
+"AI Renovation Assistant" = "AIリノベーションアシスタント";
+"I'm Here to transform space  and bring your ideas to life" = "空間を変え、アイデアを形にするお手伝いをします";
+"Interior Designer" = "インテリアデザイナー";
+"Budget Estimator" = "予算見積もり";
+"Exterior Expert" = "エクステリアの専門家";
+"Material Guide" = "素材ガイド";
+"assistant_chat_badge_caption" = "AIエキスパート";
+"assistant_short_desc_interior_designer" = "美しいインテリアをデザイン";
+"assistant_short_desc_budget_estimator" = "賢く計画して予算内で";
+"assistant_short_desc_exterior_expert" = "外観を自信を持って改善";
+"assistant_short_desc_material_guide" = "プロジェクトに最適な素材を見つける";
+"What flooring is best for a high-traffic area?" = "通行量の多い場所に最適な床材は？";
+"assistant_chat_bio_interior_designer" = "レイアウト、スタイル、家具のアイデア — あなたの空間に合わせて。";
+"assistant_chat_bio_budget_estimator" = "おおよその費用感と、品質を落とさず節約できるポイント。";
+"assistant_chat_bio_exterior_expert" = "ファサード、外観の魅力、外装仕上げ — 現実的なアップグレード。";
+"assistant_chat_bio_material_guide" = "床、塗料、仕上げ — どこに何が合うか、理由も。";
+"assistant_chat_greeting_interior_designer" = "こんにちは、Monicaです。部屋の広さ、気になる点、理想の雰囲気を教えてください。レイアウト、配色、すぐできる改善案をご提案します。";
+"assistant_chat_greeting_budget_estimator" = "こんにちは、Oliviaです。計画中のリフォーム（部屋、規模、仕上げレベル）を教えてください。おおよその予算と節約のヒントをお伝えします。";
+"assistant_chat_greeting_exterior_expert" = "こんにちは、Jacobです。家のスタイル、気になる箇所、理想の雰囲気を教えてください。本当に効果のある外観の変更をご提案します。";
+"assistant_chat_greeting_material_guide" = "こんにちは、Martinです。どの面の素材を選ぶか、どう使うか教えてください。候補をいくつかに絞り込みます。";
+"chat_input_placeholder" = "何でも聞いてください…";
+"chat_error_generic" = "申し訳ありません。サーバーに接続できませんでした。しばらくしてからもう一度お試しください。";
+"assistant_suggest_interior_1" = "リビングを広く見せる色は？";
+"assistant_suggest_interior_2" = "リビングの照明を改善するには？";
+"assistant_suggest_interior_3" = "モダンなリビングのアイデアを見せて";
+"assistant_suggest_interior_4" = "リビングをもっと居心地よくするには？";
+"assistant_suggest_budget_1" = "リフォームで節約するには？";
+"assistant_suggest_budget_2" = "キッチンリフォームの費用を見積もって";
+"assistant_suggest_budget_3" = "予算に優しい自宅アイデア";
+"assistant_suggest_budget_4" = "どこにお金をかけ、どこで節約すべき？";
+"assistant_suggest_exterior_1" = "我が家に合う外壁色は？";
+"assistant_suggest_exterior_2" = "外観をより高級感のある見た目に";
+"assistant_suggest_exterior_3" = "我が家に合う外観スタイルは？";
+"assistant_suggest_exterior_4" = "前庭のランドスケープアイデアを提案して";
+"assistant_suggest_material_1" = "家族向け住宅に耐久性のある素材は？";
+"assistant_suggest_material_2" = "高級感のある壁材は？";
+"assistant_suggest_material_3" = "異なるテクスチャを正しく組み合わせるには？";
+"assistant_suggest_material_4" = "キッチンキャビネットに最適な素材は？";
+
+// Profile
+"No design yet" = "まだデザインがありません";
+"Start transform your space" = "空間の変身を始めましょう";
+"Options" = "オプション";
+"Inspiration" = "インスピレーション";
+"Profile" = "プロフィール";
+"Settings" = "設定";
+"Delete design?" = "デザインを削除しますか？";
+"This action will permanently remove the image from your history." = "この操作により、画像が履歴から完全に削除されます。";
+"Delete" = "削除";
+"Unable to delete" = "削除できませんでした";
+"Start creating" = "作成を始める";
+// Legacy home descriptions
+"Transform your space — snap a room and let AI do the rest." = "お部屋を撮影するだけで、あとはAIにおまかせ。";
+"Upload a photo of your home, choose your style and let AI redesign your facade!" = "家の写真をアップロードしてスタイルを選ぶだけで、AIが外観をデザインし直します。";
+"Take a photo, and let AI reveal your garden's full potential." = "写真を撮るだけで、AIが庭の可能性を引き出します。";
+"Bring your ideas to life — select a reference style and discover a new vibe with AI." = "参考スタイルを選んで、AIと一緒に新しい雰囲気を見つけましょう。";
+"Choose an object and let AI replace it instantly." = "オブジェクトを選ぶだけで、AIがすぐに置き換えます。";
+"Replace objects in your photo with AI-powered precision." = "AIの高精度な機能で、写真内のオブジェクトを置き換えます。";
+"Try new flooring in seconds. AI instantly detects and replaces your floor." = "数秒で新しい床を試せます。AIが床を瞬時に認識して置き換えます。";
+"Reimagine your walls with AI. Instantly preview colors, textures, and finishes in your space." = "AIで壁を新しくイメージしましょう。色・質感・仕上がりをその場でプレビューできます。";
+
+// Dark cinematic paywall
+"Get Premium Access" = "プレミアムアクセスを入手";
+"Unlimited AI Renders" = "AIレンダリング無制限";
+"No Pay Now" = "今すぐのお支払いはありません";
+"Before" = "変更前";
+"After" = "変更後";
+"Cancel anytime" = "いつでもキャンセル可能";
+"annually" = "年ごと";
+"monthly" = "月ごと";
+"weekly" = "週ごと";
+"%@ billed %@" = "%@（%@請求）";
+"%d%% OFF" = "%d%%オフ";
+
+// Local re-engagement pushes (free users)
+"local_push_1_title" = "ここにミスが隠れています... 🔍";
+"local_push_1_body" = "デザイナーならすぐ気づきます。部屋の写真をワンタップでチェック。";
+"local_push_2_title" = "あなたにも見えますか？ 🤨";
+"local_push_2_body" = "部屋が倍広く見えるかもしれません。何を片づけるか見てみましょう。";
+"local_push_3_title" = "新しい家具は買わないで 🚫";
+"local_push_3_body" = "必要なのは配置の見直しだけ。0円で空間を生き返らせる方法を開いて見て。";
+"local_push_4_title" = "もし5つ星ホテルだったら... 🍸";
+"local_push_4_body" = "AIが寝室をラグジュアリーなスイートに変えました。結果をのぞいてみて。";
+"local_push_5_title" = "照明でみんなやるミス 💡";
+"local_push_5_body" = "たった一つのディテールで居心地が落ちています。写真を撮って確認を。";
+"local_push_6_title" = "3年後のあなたの部屋 ⏳";
+"local_push_6_body" = "トレンドは変わります。次に似合うインテリアスタイルを見てみましょう。";
+"local_push_7_title" = "AIはなんて言う？ 🤖";
+"local_push_7_body" = "どの部屋でも写真をアップロード — 結果にきっと驚きます。";
+"local_push_8_title" = "この案、気に入るはず 🔥";
+"local_push_8_body" = "空間の印象を一変させるスタイルを選びました。開いて！";
+"local_push_9_title" = "完璧なアングルの秘密 📸";
+"local_push_9_body" = "家の一角がInstagramのスターになるかも。今すぐ見つけて。";
+"local_push_10_title" = "この壁、忘れてない？ 🖼️";
+"local_push_10_body" = "空っぽのスペースが全体を損なっています。何で埋めるか見てみましょう。";
+"local_push_11_title" = "この部屋は変化を求めています 👀";
+"local_push_11_body" = "どの角でも写真を撮れば、AIが5秒でWowな案を見せます。";
+"local_push_12_title" = "何かがおかしい... 🤔";
+"local_push_12_body" = "ソファの位置、間違ってない？部屋の写真を上げて模様替えのアイデアを確認。";
+"local_push_13_title" = "居心地の秘密、公開 ✨";
+"local_push_13_body" = "ディテールを一つ足すだけでリビングが新鮮に。AIの提案を見て。";
+"local_push_14_title" = "パリだったら、この部屋は？ 🥐";
+"local_push_14_body" = "今すぐフレンチシックをインテリアに試してみて。";
+"local_push_15_title" = "あなたの家にはアップグレードが必要 🪴";
+"local_push_15_body" = "写真1枚 = 新鮮なスタイル5つ。一番似合うものを見て。";
+"See your room in a new style" = "お部屋を新しいスタイルで見てみよう";
+"Create the next design for your space" = "あなたの空間の次のデザインを作成";
+"Keep the design you love" = "気に入ったデザインを保存";
+"Make your design feel just right" = "理想の仕上がりまでデザインを調整";
+"Preparing your design" = "デザインを準備中";
+"Creating your design" = "デザインを作成中";
+"Saving your design" = "デザインを保存中";
+"Keep the app open while we create it." = "作成中はアプリを開いたままにしてください。";
+"This is taking longer than usual. Your design is still in progress." = "通常より時間がかかっています。デザインを引き続き作成しています。";
+"Couldn't create your design" = "デザインを作成できませんでした";
+"Your photo and choices are saved. Try again." = "写真と設定は保存されています。もう一度お試しください。";

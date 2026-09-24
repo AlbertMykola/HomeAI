@@ -18,6 +18,7 @@ class TypeViewController: UIViewController, PageStepDelegate, PromptManagerHolde
     @IBOutlet weak private var collectionView: UICollectionView!
     
     var completion: (() -> Void)?
+    var onProceedToNextStep: (() -> Void)?
     var canProceedToNextStep: Bool { selectedIndexPath != nil }
     
     private var selectedIndexPath: IndexPath?
@@ -30,14 +31,13 @@ class TypeViewController: UIViewController, PageStepDelegate, PromptManagerHolde
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = Defaults.Text.chooseStyle
+        navigationItem.title = nil
         getData()
         
         collectionView.dataSource = self
         collectionView.delegate = self
 
         collectionView.register(UINib(nibName: "StyleCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "StyleCollectionViewCell")
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 150, right: 0)
         collectionView.allowsMultipleSelection = false
 
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
@@ -46,6 +46,54 @@ class TypeViewController: UIViewController, PageStepDelegate, PromptManagerHolde
             layout.minimumLineSpacing = 20
             layout.minimumInteritemSpacing = 16
         }
+        
+        collectionView.applyPageFlowBottomInset(in: view)
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        collectionView.applyPageFlowBottomInset(in: view)
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        syncCollectionSelection()
+    }
+    
+    private func syncCollectionSelection() {
+        let selectedPaths = Set(collectionView.indexPathsForSelectedItems ?? [])
+        let expectedPath = selectedIndexPath.map { Set([$0]) } ?? []
+        
+        for indexPath in selectedPaths.subtracting(expectedPath) {
+            collectionView.deselectItem(at: indexPath, animated: false)
+            (collectionView.cellForItem(at: indexPath) as? StyleCollectionViewCell)?.isSelected = false
+        }
+        
+        guard let selectedIndexPath else { return }
+        collectionView.selectItem(at: selectedIndexPath, animated: false, scrollPosition: [])
+        (collectionView.cellForItem(at: selectedIndexPath) as? StyleCollectionViewCell)?.isSelected = true
+    }
+    
+    private func applySelection(at indexPath: IndexPath) {
+        if let previous = selectedIndexPath, previous != indexPath {
+            collectionView.deselectItem(at: previous, animated: false)
+            (collectionView.cellForItem(at: previous) as? StyleCollectionViewCell)?.isSelected = false
+        }
+        
+        selectedIndexPath = indexPath
+        collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
+        (collectionView.cellForItem(at: indexPath) as? StyleCollectionViewCell)?.isSelected = true
+    }
+    
+    private func revertPendingSelection(at indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: false)
+        (collectionView.cellForItem(at: indexPath) as? StyleCollectionViewCell)?.isSelected = false
+        syncCollectionSelection()
+    }
+    
+    private func notifyPageFlowCompleted() {
+        completion?()
+        onProceedToNextStep?()
     }
     
     private func getData() {
@@ -77,7 +125,8 @@ extension TypeViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
 
-        let model = dataSource[indexPath.row]
+        let model = dataSource[safe: indexPath.row]
+        guard let model else { return cell }
         cell.config(style: model)
 
         if let selectedIndexPath, selectedIndexPath == indexPath {
@@ -96,7 +145,7 @@ extension TypeViewController: UICollectionViewDelegateFlowLayout {
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         let cellsPerRow: CGFloat = 3
-        let layout = collectionViewLayout as! UICollectionViewFlowLayout
+        guard let layout = collectionViewLayout as? UICollectionViewFlowLayout else { return .zero }
 
         let sectionInsets = layout.sectionInset
         let interItemSpacing = layout.minimumInteritemSpacing
@@ -127,60 +176,54 @@ extension TypeViewController: UICollectionViewDelegateFlowLayout {
 extension TypeViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        hapticVibration()
         
-        // --- 1. Логіка для UI (виділення комірок) ---
-        if let previous = selectedIndexPath, previous != indexPath,
-           let prevCell = collectionView.cellForItem(at: previous) as? StyleCollectionViewCell {
-            prevCell.isSelected = false
-            collectionView.deselectItem(at: previous, animated: false)
-        }
-
-        if let newCell = collectionView.cellForItem(at: indexPath) as? StyleCollectionViewCell {
-            newCell.isSelected = true
-        }
-        
-        selectedIndexPath = indexPath
-        
-        amplitude.logEvent(.chooseType(type: dataSource[indexPath.row].name))
+        guard let model = dataSource[safe: indexPath.row] else { return }
+        amplitude.logEvent(.chooseType(type: model.name))
 
         guard let manager = promptManager else {
             print("ПОМИЛКА: PromptManager не було передано у TypeViewController.")
+            applySelection(at: indexPath)
             completion?()
             return
         }
 
         switch selectedOption {
         case .exterior:
-            manager.updateExteriorType(ExteriorType.allCases[indexPath.row])
+            guard let selectedType = ExteriorType.allCases[safe: indexPath.row] else { return }
+            applySelection(at: indexPath)
+            manager.updateExteriorType(selectedType)
         case .garden:
-            let selectedGardenType = GardenType.allCases[indexPath.row]
-            // Handle special cases
+            guard let selectedGardenType = GardenType.allCases[safe: indexPath.row] else { return }
             if selectedGardenType == .custom {
-                // Present PromptViewController
-                NavigationManager.shared.showPrompt(promptManager: manager) { [weak self] customPrompt in
-                    // Custom prompt is already saved to promptManager in PromptViewController
-                    // Set the garden type to custom
-                    manager.updateGardenType(.custom)
-                    self?.selectedIndexPath = indexPath
-                    self?.completion?()
-                }
+                (parent as? PageViewController)?.cancelPendingAutoAdvance()
+                revertPendingSelection(at: indexPath)
+                NavigationManager.shared.showPrompt(
+                    promptManager: manager,
+                    onSelect: { [weak self] _ in
+                        manager.updateGardenType(.custom)
+                        self?.applySelection(at: indexPath)
+                        self?.notifyPageFlowCompleted()
+                    },
+                    onCancel: { [weak self] in
+                        self?.syncCollectionSelection()
+                    }
+                )
                 return
             }
             
-            // For .noStyle, set garden type to nil (or handle specially)
+            applySelection(at: indexPath)
             if selectedGardenType == .noStyle {
                 manager.clearGardenType()
             } else {
                 manager.updateGardenType(selectedGardenType)
             }
-        case .interior, .reference, .replace, .newWalls, .newFlooring, .delete:
-            // Цей VC не повинен викликатись для .interior, .reference, .replace
-            // (PageViewController обробляє це і показує RoomListViewController),
-            // тому ми нічого не робимо.
+        case .interior, .reference, .replace, .newWalls, .newFlooring, .delete,
+             .rearrange, .furnish, .floolPlan:
+            applySelection(at: indexPath)
             break
         }
         
-        // --- 4. Повідомляємо PageViewController, що крок завершено ---
         completion?()
     }
 

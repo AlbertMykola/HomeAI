@@ -26,6 +26,8 @@ final class StyleCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         containerView.borderColor = UIColor.clear
+        styleImageView.contentMode = .scaleAspectFill
+        styleImageView.clipsToBounds = true
         
         loadingIndicator.translatesAutoresizingMaskIntoConstraints = false
         loadingIndicator.hidesWhenStopped = true
@@ -39,7 +41,7 @@ final class StyleCollectionViewCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
   
-        styleImageView.image = nil
+        styleImageView.image = Constants.Images.previewPlaceholder
         currentImagePath = nil
         styleImageView.backgroundColor = .clear
         loadingIndicator.stopAnimating()
@@ -60,18 +62,15 @@ final class StyleCollectionViewCell: UICollectionViewCell {
             // 2) Otherwise treat it as a remote (Supabase) path and load via shared loader + cache
             let path = style.imageName
             currentImagePath = path
-            
-            // Placeholder while loading (matches other remote-image cells' behavior)
-            styleImageView.image = nil
-            styleImageView.backgroundColor = UIColor.systemGray5
-            loadingIndicator.startAnimating()
+            styleImageView.image = Constants.Images.previewPlaceholder
+            styleImageView.backgroundColor = .clear
+            loadingIndicator.stopAnimating()
             
             SharedImageLoader.shared.loadImage(path: path) { [weak self] image in
                 guard let self else { return }
                 guard self.currentImagePath == path else { return }
-                self.styleImageView.image = image
+                self.styleImageView.image = image ?? Constants.Images.previewPlaceholder
                 self.styleImageView.backgroundColor = .clear
-                self.loadingIndicator.stopAnimating()
             }
         }
         newImageView.isHidden = !style.isNew

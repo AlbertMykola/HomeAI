@@ -1,14 +1,6 @@
-//
-//  SceneDelegate.swift
-//  HomeAI
-//
-//  Created by Mykola Albert on 08.09.2025.
-//
-
 import UIKit
-import AppTrackingTransparency
-import AdSupport
 import FBSDKCoreKit
+import UserNotifications
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -20,11 +12,38 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
+        UIDevice.lockToPortraitIfNeeded(in: windowScene)
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("--paywall-layout-preview") {
+            let previewWindow = UIWindow(windowScene: windowScene)
+            let preview = PaywallViewController(nibName: "PaywallViewController", bundle: .main)
+            let previewArguments = ProcessInfo.processInfo.arguments
+            if previewArguments.contains("--paywall-placement-save") {
+                preview.placement = Constants.Keys.saveImagePlacement
+            } else if previewArguments.contains("--paywall-placement-edit") {
+                preview.placement = Constants.Keys.detailsEditPlacement
+            } else if previewArguments.contains("--paywall-placement-default") {
+                preview.placement = Constants.Keys.defaults
+            } else {
+                preview.placement = Constants.Keys.reachedLimit
+            }
+            previewWindow.rootViewController = preview
+            previewWindow.makeKeyAndVisible()
+            window = previewWindow
+            return
+        }
+        #endif
         NavigationManager.shared.setupWindow(with: windowScene)
+
+        if let response = connectionOptions.notificationResponse {
+            LocalNotificationService.shared.handleTap(response)
+        }
 
         if let shortcutItem = connectionOptions.shortcutItem {
             handle(shortcutItem: shortcutItem)
         }
+
+        AppsFlyerService.shared.handle(connectionOptions: connectionOptions)
     }
 
     func windowScene(_ windowScene: UIWindowScene,
@@ -38,7 +57,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private func handle(shortcutItem: UIApplicationShortcutItem) -> Bool {
         guard shortcutItem.type == ShortcutType.exclusiveOffer else { return false }
 
-        let userId = ApphudService.shared.userID
+        let userId = AdaptyService.shared.userID
         let subject = "Get an Exclusive Offer - HomeAI \(userId)"
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
         let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
@@ -51,7 +70,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         I'd love to get an exclusive offer for HomeAI.
 
         My details:
-        - Apphud user ID: \(userId)
+        - Adapty profile ID: \(userId)
         - App version: \(appVersion) (\(build))
         - Device: \(deviceModel)
         - iOS: \(systemVersion)
@@ -76,9 +95,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("--paywall-layout-preview") { return }
+        #endif
         AppEvents.shared.activateApp()
         Task { @MainActor in
-            ApphudService.shared.setMetaAttributionForCAPIIfNeeded()
+            AdaptyService.shared.setMetaAttributionForCAPIIfNeeded()
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+            LocalNotificationService.shared.sync(requestPermissionIfNeeded: false)
         }
 
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
@@ -95,11 +121,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 AmplitudeService.shared.logEvent(.trackingPermission(granted: granted))
                 UserDefaults.standard.set(true, forKey: Constants.Keys.didLogTrackingPermission)
                 
-                if granted {
-                    if let idfa = TrackingManager.getIDFA() {
-                        print("[SceneDelegate] Отримано IDFA: \(idfa)")
-                    }
-                } else {
+                if !granted {
                     print("[SceneDelegate] Дозвіл на відстеження НЕ надано.")
                 }
             }
@@ -121,6 +143,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
+
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        AppsFlyerService.shared.continueUserActivity(userActivity)
+    }
+
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        AppsFlyerService.shared.handle(openURLContexts: URLContexts)
+    }
 }
-
-
