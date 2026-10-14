@@ -6,7 +6,7 @@ SLOT_BORDER = "#C7C7CC"
 
 
 def segmented(id, titles, outlet_prefix, action, height=38):
-    knob = View(id=f"{id}-knob", cls="DSView", bg="dsCard", outlet=f"{outlet_prefix}Knob",
+    knob = View(id=f"{id}-knob", cls="DSView", bg="dsKnob", outlet=f"{outlet_prefix}Knob",
                 runtime={"cornerRadius": (height - 6) / 2, "shadowOpacity": 0.12, "shadowRadius": 3, "shadowOffsetY": 2})
     segs = []
     for i, t in enumerate(titles):

@@ -303,7 +303,7 @@ def compare():
     close = glass_button("close", "xmark", outlet="closeButton", action="didTapClose:", dark=True, accessibility="Close")
     fit = glass_button("fit", "viewfinder", outlet="fitButton", action="didTapFit:", dark=True,
                        accessibility="Reset zoom")
-    seg_knob = View(id="seg-knob", cls="DSView", bg="dsCard", outlet="segmentKnob", runtime={"pill": True})
+    seg_knob = View(id="seg-knob", cls="DSView", bg="dsKnob", outlet="segmentKnob", runtime={"pill": True})
     segs = []
     for i, t in enumerate(["Original", "Split", "Result"]):
         c = Control(id=f"seg{i}", cls="DSPressableControl", tag_value=i, collection="segmentControls",
@@ -362,7 +362,7 @@ def change_style_sheet():
     grid = Collection(id="grid", spacing=12, item=(104, 128), outlet="collectionView")
     see_all = Button("See all styles", id="see-all", font=("Medium", 14), color="dsLink", outlet="seeAllButton").on(
         "didTapSeeAll:")
-    seg_knob = View(id="seg-knob", cls="DSView", bg="dsCard", outlet="strengthKnob",
+    seg_knob = View(id="seg-knob", cls="DSView", bg="dsKnob", outlet="strengthKnob",
                     runtime={"cornerRadius": 16, "shadowOpacity": 0.12, "shadowRadius": 3, "shadowOffsetY": 2})
     segs = []
     for i, t in enumerate(["Subtle", "Balanced", "Bold"]):
@@ -443,7 +443,7 @@ def share_sheet():
     preview = View(id="preview", cls="DSView", bg="black", clips=True, runtime={"cornerRadius": 22},
                    outlet="previewView",
                    children=[HStack([before, after], id="ba", spacing=2, dist="fillEqually"), single])
-    seg_knob = View(id="seg-knob", cls="DSView", bg="dsCard", outlet="formatKnob",
+    seg_knob = View(id="seg-knob", cls="DSView", bg="dsKnob", outlet="formatKnob",
                     runtime={"cornerRadius": 16, "shadowOpacity": 0.12, "shadowRadius": 3, "shadowOffsetY": 2})
     segs = []
     for i, t in enumerate(["Before / After", "Result", "Story 9:16"]):

@@ -100,7 +100,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="formats" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="formatView">
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seg-knob" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="formatKnob">
-                                    <color key="backgroundColor" name="dsCard"/>
+                                    <color key="backgroundColor" name="dsKnob"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="16"/></userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.12"/></userDefinedRuntimeAttribute>
@@ -609,6 +609,9 @@
         </namedColor>
         <namedColor name="dsGlassBorder">
             <color red="1.0000" green="1.0000" blue="1.0000" alpha="0.900" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsKnob">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="dsLime">
             <color red="0.6471" green="0.9333" blue="0.1843" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>

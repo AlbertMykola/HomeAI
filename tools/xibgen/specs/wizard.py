@@ -60,7 +60,7 @@ def wizard_photo():
 
     def source(id, title, sub, symbol, dark, action, outlet):
         box_icon = Image(id=f"{id}-icon", system=symbol, size=21, weight="medium", tint="dsTextPrimary")
-        box = View(id=f"{id}-box", cls="DSView", bg="dsLime" if dark else "white", runtime={"cornerRadius": 18},
+        box = View(id=f"{id}-box", cls="DSView", bg="dsLime" if dark else "dsCard", runtime={"cornerRadius": 18},
                    children=[box_icon])
         t = Label(title, id=f"{id}-t", font=("SemiBold", 18), color="white" if dark else "dsTextPrimary",
                   minScale=0.8, collection="sourceTitleLabels", tag_value=0 if dark else 1)
@@ -70,7 +70,7 @@ def wizard_photo():
         chev = Image(id=f"{id}-chev", system="chevron.right", size=15, weight="semibold",
                      tint="white" if dark else "dsTextTertiary")
         row = HStack([box, texts, chev], id=f"{id}-row", spacing=16, align="center", margins=(0, 20, 0, 20))
-        card = Control(id=id, cls="DSPressableControl", bg="black" if dark else "dsSurface", outlet=outlet,
+        card = Control(id=id, cls="DSPressableControl", bg="dsInk" if dark else "dsSurface", outlet=outlet,
                        runtime={"cornerRadius": 28}, children=[row]).on(action)
         size(card, h=120)
         pin(row)
@@ -169,10 +169,10 @@ def wizard_tile_cell():
     label = Label("Living room", id="label", font=("Medium", 13), align="center", minScale=0.75, outlet="titleLabel")
     col = VStack([icon, label], id="col", spacing=8, align="center")
     check_icon = Image(id="check-icon", system="checkmark", size=11, weight="bold", tint="dsLime")
-    check = View(id="check", cls="DSView", bg="black", outlet="checkView", alpha=0, runtime={"pill": True},
+    check = View(id="check", cls="DSView", bg="dsInk", outlet="checkView", alpha=0, runtime={"pill": True},
                  children=[check_icon])
-    badge_label = Label("Detected", id="badge-label", font=("SemiBold", 10), outlet="badgeLabel")
-    badge = View(id="badge", cls="DSView", bg="white", outlet="badgeView", hidden=True, runtime={"pill": True},
+    badge_label = Label("Detected", id="badge-label", font=("SemiBold", 10), color="dsTextPrimary", outlet="badgeLabel")
+    badge = View(id="badge", cls="DSView", bg="dsCard", outlet="badgeView", hidden=True, runtime={"pill": True},
                  children=[badge_label])
     tile = View(id="tile", cls="DSView", bg="dsSurface", outlet="tileView", runtime={"cornerRadius": 24},
                 children=[col, check, badge])
@@ -255,7 +255,7 @@ def wizard_style_cell():
     describe = Label("Describe", id="describe", font=("Medium", 12), color=("#FFFFFF", 0.8), outlet="describeLabel")
     custom = VStack([pen_box, describe], id="custom", spacing=6, align="center", outlet="customStack", hidden=True)
     check_icon = Image(id="check-icon", system="checkmark", size=12, weight="bold", tint="dsLime")
-    check = View(id="check", cls="DSView", bg="black", outlet="checkView", alpha=0, runtime={"pill": True},
+    check = View(id="check", cls="DSView", bg="dsInk", outlet="checkView", alpha=0, runtime={"pill": True},
                  children=[check_icon])
     tile = View(id="tile", cls="DSView", clips=True, bg="dsSurface", outlet="tileView",
                 runtime={"cornerRadius": 22}, children=[img, pop, custom, check])
@@ -302,7 +302,7 @@ def wizard_final():
                                     margins=(12, 12, 12, 12))])
 
     structure_title = Label("Structure", id="structure-title", font=("SemiBold", 17), outlet="structureTitleLabel")
-    seg_knob = View(id="seg-knob", cls="DSView", bg="dsCard", outlet="segmentKnob",
+    seg_knob = View(id="seg-knob", cls="DSView", bg="dsKnob", outlet="segmentKnob",
                     runtime={"cornerRadius": 19, "shadowOpacity": 0.12, "shadowRadius": 3, "shadowOffsetY": 2})
     seg_keep = Control(id="seg-keep", cls="DSPressableControl", tag_value=0, collection="segmentControls",
                        runtime={"pressedScale": 0.98, "hapticOnPress": False},

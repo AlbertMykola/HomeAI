@@ -55,7 +55,7 @@ final class WizardStyleCell: UICollectionViewCell {
         customStack.isHidden = false
         popularBadge.isHidden = true
         previewImageView.image = nil
-        tileView.backgroundColor = .black
+        tileView.backgroundColor = UIColor(named: "dsInk")
         setChosen(chosen, animated: false)
     }
 

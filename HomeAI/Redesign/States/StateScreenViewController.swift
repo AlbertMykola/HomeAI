@@ -95,7 +95,7 @@ final class StateScreenViewController: UIViewController {
                 contentBelowPhotoConstraint.isActive = true
             }
             iconSizeConstraint.constant = 64
-            iconBoxView.backgroundColor = .black
+            iconBoxView.backgroundColor = UIColor(named: "dsInk")
             iconImageView.tintColor = .white
             iconImageView.image = UIImage(systemName: "checkmark.shield")
             titleLabel.text = "We can't create this one".localized

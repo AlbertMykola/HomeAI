@@ -56,15 +56,12 @@ class WizardStepViewController: UIViewController {
             exitWizard()
             return
         }
-        let alert = UIAlertController(title: "Discard this design?".localized,
-                                      message: "Your photo and choices won't be saved.".localized,
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Keep editing".localized, style: .cancel))
-        alert.addAction(UIAlertAction(title: "Discard".localized, style: .destructive) { [weak self] _ in
-            self?.exitWizard()
-        })
         DS.Haptic.warning()
-        present(alert, animated: true)
+        DSAlertViewController.show(from: self, title: "Discard this design?".localized,
+                                   message: "Your photo and choices won't be saved.".localized, actions: [
+            .init(title: "Keep editing".localized, style: .cancel),
+            .init(title: "Discard".localized, style: .destructive) { [weak self] in self?.exitWizard() }
+        ])
     }
 
     func exitWizard() {

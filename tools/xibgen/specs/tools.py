@@ -71,7 +71,7 @@ def chip_scroll(id, titles, collection, action, first_selected=True, outlet=None
 
 
 def segmented(id, titles, outlet_prefix, action, height=40):
-    knob = View(id=f"{id}-knob", cls="DSView", bg="dsCard", outlet=f"{outlet_prefix}Knob",
+    knob = View(id=f"{id}-knob", cls="DSView", bg="dsKnob", outlet=f"{outlet_prefix}Knob",
                 runtime={"cornerRadius": (height - 6) / 2, "shadowOpacity": 0.12, "shadowRadius": 3, "shadowOffsetY": 2})
     segs = []
     for i, t in enumerate(titles):
@@ -393,7 +393,7 @@ def rearrange_tool():
         tl = Label(t, id=f"opt{i}-t", font=("SemiBold", 15), collection="optionTitleLabels", tag_value=i)
         sl = Label(s, id=f"opt{i}-s", font=("Regular", 12), color="dsTextTertiary", collection="optionSubtitleLabels",
                    tag_value=i, minScale=0.8)
-        radio_dot = View(id=f"opt{i}-dot", cls="DSView", bg="black", runtime={"pill": True}, alpha=0,
+        radio_dot = View(id=f"opt{i}-dot", cls="DSView", bg="dsTextPrimary", runtime={"pill": True}, alpha=0,
                          collection="optionRadioDots", tag_value=i)
         radio = View(id=f"opt{i}-radio", cls="DSView", bg="dsCard", runtime={"pill": True, "borderWidth": 1.5,
                                                                             "borderColor": "#C7C7CC"},

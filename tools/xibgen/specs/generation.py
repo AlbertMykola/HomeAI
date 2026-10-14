@@ -38,7 +38,7 @@ def generation():
                 hug=(750, 251))
     percent_row = HStack([percent, View(id="pr-spacer", bg="clear", hug=(1, 250)), eta], id="percent-row",
                          align="lastBaseline", spacing=8)
-    track = View(id="track", cls="DSView", bg="#EDEDED", clips=True, runtime={"cornerRadius": 4}, outlet="trackView")
+    track = View(id="track", cls="DSView", bg="dsChip", clips=True, runtime={"cornerRadius": 4}, outlet="trackView")
     fill = View(id="fill", cls="DSGradientView", outlet="fillView",
                 runtime={"cornerRadius": 4, "startColor": "#B8F655", "endColor": "#8FDB1C", "angle": 90})
     track.add(fill)
@@ -50,7 +50,7 @@ def generation():
         ring = View(id=f"s{i}-ring", cls="DSView", bg="clear", collection="stepRings", tag_value=i,
                     runtime={"pill": True, "borderWidth": 2, "borderColor": "#D1D1D6"})
         check = Image(id=f"s{i}-check", system="checkmark", size=10, weight="bold", tint="dsLime")
-        done = View(id=f"s{i}-done", cls="DSView", bg="black", collection="stepDoneViews", tag_value=i, alpha=0,
+        done = View(id=f"s{i}-done", cls="DSView", bg="dsInk", collection="stepDoneViews", tag_value=i, alpha=0,
                     runtime={"pill": True}, children=[check])
         spin = View(id=f"s{i}-spin", bg="clear", collection="stepSpinnerViews", tag_value=i, alpha=0)
         ind = View(id=f"s{i}-ind", bg="clear", children=[ring, done, spin])
@@ -85,7 +85,7 @@ def generation():
     f_tint = View(id="f-tint", cls="DSView", bg=("#FFFFFF", 0.55), runtime={"cornerRadius": 28}, interaction=False)
     f_icon_img = Image(id="f-icon-img", system="arrow.clockwise", size=24, weight="semibold", tint="dsLime",
                        outlet="failureIconImageView")
-    f_icon = View(id="f-icon", cls="DSView", bg="black", outlet="failureIconView",
+    f_icon = View(id="f-icon", cls="DSView", bg="dsInk", outlet="failureIconView",
                   runtime={"pill": True, "shadowOpacity": 0.2, "shadowRadius": 10, "shadowOffsetY": 8},
                   children=[f_icon_img])
     f_title = Label("Something went wrong", id="f-title", font=("SemiBold", 26), kern=-0.13, align="center", lines=0,

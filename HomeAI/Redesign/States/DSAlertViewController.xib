@@ -67,10 +67,10 @@
                                             </subviews>
                                             <color key="backgroundColor" name="dsChip"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="48" id="c1"/>
-                                                <constraint firstItem="btn0-label" firstAttribute="centerX" secondItem="btn0" secondAttribute="centerX" id="c2"/>
-                                                <constraint firstItem="btn0-label" firstAttribute="centerY" secondItem="btn0" secondAttribute="centerY" id="c3"/>
-                                                <constraint firstItem="btn0-label" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="btn0" secondAttribute="leading" constant="10" id="c4"/>
+                                                <constraint firstAttribute="height" constant="48" id="c2729"/>
+                                                <constraint firstItem="btn0-label" firstAttribute="centerX" secondItem="btn0" secondAttribute="centerX" id="c2730"/>
+                                                <constraint firstItem="btn0-label" firstAttribute="centerY" secondItem="btn0" secondAttribute="centerY" id="c2731"/>
+                                                <constraint firstItem="btn0-label" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="btn0" secondAttribute="leading" constant="10" id="c2732"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -85,10 +85,10 @@
                                             </subviews>
                                             <color key="backgroundColor" name="dsChip"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="48" id="c5"/>
-                                                <constraint firstItem="btn1-label" firstAttribute="centerX" secondItem="btn1" secondAttribute="centerX" id="c6"/>
-                                                <constraint firstItem="btn1-label" firstAttribute="centerY" secondItem="btn1" secondAttribute="centerY" id="c7"/>
-                                                <constraint firstItem="btn1-label" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="btn1" secondAttribute="leading" constant="10" id="c8"/>
+                                                <constraint firstAttribute="height" constant="48" id="c2733"/>
+                                                <constraint firstItem="btn1-label" firstAttribute="centerX" secondItem="btn1" secondAttribute="centerX" id="c2734"/>
+                                                <constraint firstItem="btn1-label" firstAttribute="centerY" secondItem="btn1" secondAttribute="centerY" id="c2735"/>
+                                                <constraint firstItem="btn1-label" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="btn1" secondAttribute="leading" constant="10" id="c2736"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -102,10 +102,10 @@
                     </subviews>
                     <color key="backgroundColor" name="dsBackground"/>
                     <constraints>
-                        <constraint firstItem="col" firstAttribute="leading" secondItem="card" secondAttribute="leading" constant="18" id="c17"/>
-                        <constraint firstItem="col" firstAttribute="top" secondItem="card" secondAttribute="top" constant="22" id="c18"/>
-                        <constraint firstItem="card" firstAttribute="trailing" secondItem="col" secondAttribute="trailing" constant="18" id="c19"/>
-                        <constraint firstItem="card" firstAttribute="bottom" secondItem="col" secondAttribute="bottom" constant="18" id="c20"/>
+                        <constraint firstItem="col" firstAttribute="leading" secondItem="card" secondAttribute="leading" constant="18" id="c2745"/>
+                        <constraint firstItem="col" firstAttribute="top" secondItem="card" secondAttribute="top" constant="22" id="c2746"/>
+                        <constraint firstItem="card" firstAttribute="trailing" secondItem="col" secondAttribute="trailing" constant="18" id="c2747"/>
+                        <constraint firstItem="card" firstAttribute="bottom" secondItem="col" secondAttribute="bottom" constant="18" id="c2748"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="28"/></userDefinedRuntimeAttribute>
@@ -118,14 +118,14 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="root-safeArea"/>
             <constraints>
-                <constraint firstItem="dim" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c9"/>
-                <constraint firstItem="dim" firstAttribute="top" secondItem="root" secondAttribute="top" id="c10"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="dim" secondAttribute="trailing" id="c11"/>
-                <constraint firstItem="root" firstAttribute="bottom" secondItem="dim" secondAttribute="bottom" id="c12"/>
-                <constraint firstItem="card" firstAttribute="centerX" secondItem="root" secondAttribute="centerX" id="c13"/>
-                <constraint firstItem="card" firstAttribute="centerY" secondItem="root" secondAttribute="centerY" id="c14"/>
-                <constraint firstItem="card" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="46" id="c15"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="card" secondAttribute="trailing" constant="46" id="c16"/>
+                <constraint firstItem="dim" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c2737"/>
+                <constraint firstItem="dim" firstAttribute="top" secondItem="root" secondAttribute="top" id="c2738"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="dim" secondAttribute="trailing" id="c2739"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="dim" secondAttribute="bottom" id="c2740"/>
+                <constraint firstItem="card" firstAttribute="centerX" secondItem="root" secondAttribute="centerX" id="c2741"/>
+                <constraint firstItem="card" firstAttribute="centerY" secondItem="root" secondAttribute="centerY" id="c2742"/>
+                <constraint firstItem="card" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="46" id="c2743"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="card" secondAttribute="trailing" constant="46" id="c2744"/>
             </constraints>
         </view>
         </objects>

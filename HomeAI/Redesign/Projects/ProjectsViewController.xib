@@ -185,7 +185,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seg" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="segmentView">
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seg-knob" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="segmentKnob">
-                                    <color key="backgroundColor" name="dsCard"/>
+                                    <color key="backgroundColor" name="dsKnob"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="16.0"/></userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.12"/></userDefinedRuntimeAttribute>
@@ -401,14 +401,14 @@
         <namedColor name="dsBackgroundClear">
             <color red="1.0000" green="1.0000" blue="1.0000" alpha="0.000" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="dsCard">
-            <color red="1.0000" green="1.0000" blue="1.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="dsChip">
             <color red="0.9490" green="0.9490" blue="0.9490" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="dsGlassBorder">
             <color red="1.0000" green="1.0000" blue="1.0000" alpha="0.900" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsKnob">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="dsSegment">
             <color red="0.9412" green="0.9412" blue="0.9412" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>

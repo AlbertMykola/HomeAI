@@ -237,7 +237,7 @@
                                     </userDefinedRuntimeAttributes>
                                 </view>
                             </subviews>
-                            <color key="backgroundColor" red="0.9294" green="0.9294" blue="0.9294" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="backgroundColor" name="dsChip"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="8" id="c833"/>
                                 <constraint firstItem="fill" firstAttribute="leading" secondItem="track" secondAttribute="leading" id="c834"/>
@@ -275,7 +275,7 @@
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" name="dsInk"/>
                                             <constraints>
                                                 <constraint firstItem="s0-check" firstAttribute="centerX" secondItem="s0-done" secondAttribute="centerX" id="c723"/>
                                                 <constraint firstItem="s0-check" firstAttribute="centerY" secondItem="s0-done" secondAttribute="centerY" id="c724"/>
@@ -334,7 +334,7 @@
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" name="dsInk"/>
                                             <constraints>
                                                 <constraint firstItem="s1-check" firstAttribute="centerX" secondItem="s1-done" secondAttribute="centerX" id="c741"/>
                                                 <constraint firstItem="s1-check" firstAttribute="centerY" secondItem="s1-done" secondAttribute="centerY" id="c742"/>
@@ -393,7 +393,7 @@
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" name="dsInk"/>
                                             <constraints>
                                                 <constraint firstItem="s2-check" firstAttribute="centerX" secondItem="s2-done" secondAttribute="centerX" id="c759"/>
                                                 <constraint firstItem="s2-check" firstAttribute="centerY" secondItem="s2-done" secondAttribute="centerY" id="c760"/>
@@ -452,7 +452,7 @@
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" name="dsInk"/>
                                             <constraints>
                                                 <constraint firstItem="s3-check" firstAttribute="centerX" secondItem="s3-done" secondAttribute="centerX" id="c777"/>
                                                 <constraint firstItem="s3-check" firstAttribute="centerY" secondItem="s3-done" secondAttribute="centerY" id="c778"/>
@@ -587,7 +587,7 @@
                                     </constraints>
                                 </imageView>
                             </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="backgroundColor" name="dsInk"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="64" id="c868"/>
                                 <constraint firstAttribute="height" constant="64" id="c869"/>
@@ -726,11 +726,17 @@
         <namedColor name="dsBackground">
             <color red="1.0000" green="1.0000" blue="1.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
+        <namedColor name="dsChip">
+            <color red="0.9490" green="0.9490" blue="0.9490" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="dsGlass">
             <color red="1.0000" green="1.0000" blue="1.0000" alpha="0.750" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="dsGlassBorder">
             <color red="1.0000" green="1.0000" blue="1.0000" alpha="0.900" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsInk">
+            <color red="0.0000" green="0.0000" blue="0.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="dsLime">
             <color red="0.6471" green="0.9333" blue="0.1843" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>

@@ -152,7 +152,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="segmented" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="segmentedView">
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seg-knob" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="segmentKnob">
-                            <color key="backgroundColor" name="dsCard"/>
+                            <color key="backgroundColor" name="dsKnob"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                             </userDefinedRuntimeAttributes>
@@ -248,11 +248,11 @@
         <image name="ds_compare_handle" width="64" height="64"/>
         <image name="viewfinder" catalog="system" width="128" height="128"/>
         <image name="xmark" catalog="system" width="128" height="128"/>
-        <namedColor name="dsCard">
-            <color red="1.0000" green="1.0000" blue="1.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="dsGlass">
             <color red="1.0000" green="1.0000" blue="1.0000" alpha="0.750" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsKnob">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="dsTextSecondary">
             <color red="0.2510" green="0.2510" blue="0.2510" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>

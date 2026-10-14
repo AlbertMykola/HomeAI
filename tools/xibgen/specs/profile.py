@@ -121,7 +121,7 @@ def profile():
     size(resub, h=44)
     center(resub_label)
     p_col = VStack([p_head, perks_row, resub], id="pro-col", spacing=14, align="fill")
-    pro_card = View(id="pro-card", cls="DSView", bg="#111111", outlet="proCardView", hidden=True,
+    pro_card = View(id="pro-card", cls="DSView", bg="dsInk", outlet="proCardView", hidden=True,
                     runtime={"cornerRadius": 26}, children=[p_col])
 
     # billing retry banner

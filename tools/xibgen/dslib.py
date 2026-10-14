@@ -99,7 +99,7 @@ def title_group(title, subtitle, id="title", title_outlet="titleLabel", subtitle
 
 def bottom_fade(id="fade", height=140):
     v = View(id=id, cls="DSGradientView", interaction=False,
-             runtime={"startColor": ("#FFFFFF", 0.0), "midColor": "white", "endColor": "white", "angle": 180})
+             runtime={"startColor": "dsBackgroundClear", "midColor": "dsBackground", "endColor": "dsBackground", "angle": 180})
     return v
 
 

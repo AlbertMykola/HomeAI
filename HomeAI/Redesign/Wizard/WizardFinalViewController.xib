@@ -80,7 +80,7 @@
                 <outlet property="generateIconView" destination="generate-icon" id="generate-icon-o"/>
                 <outlet property="generateTitleLabel" destination="generate-title" id="generate-title-o"/>
                 <outlet property="generateSubtitleLabel" destination="generate-sub" id="generate-sub-o"/>
-                <outlet property="segmentKnobLeading" destination="c3839" id="c3839-o"/>
+                <outlet property="segmentKnobLeading" destination="c3915" id="c3915-o"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -113,10 +113,10 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="title-group" firstAttribute="leading" secondItem="w-title" secondAttribute="leading" constant="20" id="c3767"/>
-                                        <constraint firstItem="title-group" firstAttribute="top" secondItem="w-title" secondAttribute="top" id="c3768"/>
-                                        <constraint firstItem="w-title" firstAttribute="trailing" secondItem="title-group" secondAttribute="trailing" constant="20" id="c3769"/>
-                                        <constraint firstItem="w-title" firstAttribute="bottom" secondItem="title-group" secondAttribute="bottom" id="c3770"/>
+                                        <constraint firstItem="title-group" firstAttribute="leading" secondItem="w-title" secondAttribute="leading" constant="20" id="c3843"/>
+                                        <constraint firstItem="title-group" firstAttribute="top" secondItem="w-title" secondAttribute="top" id="c3844"/>
+                                        <constraint firstItem="w-title" firstAttribute="trailing" secondItem="title-group" secondAttribute="trailing" constant="20" id="c3845"/>
+                                        <constraint firstItem="w-title" firstAttribute="bottom" secondItem="title-group" secondAttribute="bottom" id="c3846"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w-summary">
@@ -127,8 +127,8 @@
                                                     <subviews>
                                                         <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thumb" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" userLabel="thumbImageView" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="64" id="c3825"/>
-                                                                <constraint firstAttribute="height" constant="64" id="c3826"/>
+                                                                <constraint firstAttribute="width" constant="64" id="c3901"/>
+                                                                <constraint firstAttribute="height" constant="64" id="c3902"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="16"/></userDefinedRuntimeAttribute>
@@ -146,8 +146,8 @@
                                                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="13" weight="medium"/>
                                                                                             <color key="tintColor" name="dsTextPrimary"/>
                                                                                             <constraints>
-                                                                                                <constraint firstAttribute="width" constant="16" id="c3758"/>
-                                                                                                <constraint firstAttribute="height" constant="16" id="c3759"/>
+                                                                                                <constraint firstAttribute="width" constant="16" id="c3834"/>
+                                                                                                <constraint firstAttribute="height" constant="16" id="c3835"/>
                                                                                             </constraints>
                                                                                         </imageView>
                                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="room-chip-label" opaque="NO" text="Living room" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
@@ -158,11 +158,11 @@
                                                                                 </stackView>
                                                                             </subviews>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="height" constant="32" id="c3753"/>
-                                                                                <constraint firstItem="room-chip-row" firstAttribute="leading" secondItem="room-chip" secondAttribute="leading" id="c3754"/>
-                                                                                <constraint firstItem="room-chip-row" firstAttribute="top" secondItem="room-chip" secondAttribute="top" id="c3755"/>
-                                                                                <constraint firstItem="room-chip" firstAttribute="trailing" secondItem="room-chip-row" secondAttribute="trailing" id="c3756"/>
-                                                                                <constraint firstItem="room-chip" firstAttribute="bottom" secondItem="room-chip-row" secondAttribute="bottom" id="c3757"/>
+                                                                                <constraint firstAttribute="height" constant="32" id="c3829"/>
+                                                                                <constraint firstItem="room-chip-row" firstAttribute="leading" secondItem="room-chip" secondAttribute="leading" id="c3830"/>
+                                                                                <constraint firstItem="room-chip-row" firstAttribute="top" secondItem="room-chip" secondAttribute="top" id="c3831"/>
+                                                                                <constraint firstItem="room-chip" firstAttribute="trailing" secondItem="room-chip-row" secondAttribute="trailing" id="c3832"/>
+                                                                                <constraint firstItem="room-chip" firstAttribute="bottom" secondItem="room-chip-row" secondAttribute="bottom" id="c3833"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -178,8 +178,8 @@
                                                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="13" weight="medium"/>
                                                                                             <color key="tintColor" name="dsTextPrimary"/>
                                                                                             <constraints>
-                                                                                                <constraint firstAttribute="width" constant="16" id="c3765"/>
-                                                                                                <constraint firstAttribute="height" constant="16" id="c3766"/>
+                                                                                                <constraint firstAttribute="width" constant="16" id="c3841"/>
+                                                                                                <constraint firstAttribute="height" constant="16" id="c3842"/>
                                                                                             </constraints>
                                                                                         </imageView>
                                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="style-chip-label" opaque="NO" text="Japandi" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
@@ -190,11 +190,11 @@
                                                                                 </stackView>
                                                                             </subviews>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="height" constant="32" id="c3760"/>
-                                                                                <constraint firstItem="style-chip-row" firstAttribute="leading" secondItem="style-chip" secondAttribute="leading" id="c3761"/>
-                                                                                <constraint firstItem="style-chip-row" firstAttribute="top" secondItem="style-chip" secondAttribute="top" id="c3762"/>
-                                                                                <constraint firstItem="style-chip" firstAttribute="trailing" secondItem="style-chip-row" secondAttribute="trailing" id="c3763"/>
-                                                                                <constraint firstItem="style-chip" firstAttribute="bottom" secondItem="style-chip-row" secondAttribute="bottom" id="c3764"/>
+                                                                                <constraint firstAttribute="height" constant="32" id="c3836"/>
+                                                                                <constraint firstItem="style-chip-row" firstAttribute="leading" secondItem="style-chip" secondAttribute="leading" id="c3837"/>
+                                                                                <constraint firstItem="style-chip-row" firstAttribute="top" secondItem="style-chip" secondAttribute="top" id="c3838"/>
+                                                                                <constraint firstItem="style-chip" firstAttribute="trailing" secondItem="style-chip-row" secondAttribute="trailing" id="c3839"/>
+                                                                                <constraint firstItem="style-chip" firstAttribute="bottom" secondItem="style-chip-row" secondAttribute="bottom" id="c3840"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -218,10 +218,10 @@
                                             </subviews>
                                             <color key="backgroundColor" name="dsSurface"/>
                                             <constraints>
-                                                <constraint firstItem="summary-row" firstAttribute="leading" secondItem="summary" secondAttribute="leading" id="c3827"/>
-                                                <constraint firstItem="summary-row" firstAttribute="top" secondItem="summary" secondAttribute="top" id="c3828"/>
-                                                <constraint firstItem="summary" firstAttribute="trailing" secondItem="summary-row" secondAttribute="trailing" id="c3829"/>
-                                                <constraint firstItem="summary" firstAttribute="bottom" secondItem="summary-row" secondAttribute="bottom" id="c3830"/>
+                                                <constraint firstItem="summary-row" firstAttribute="leading" secondItem="summary" secondAttribute="leading" id="c3903"/>
+                                                <constraint firstItem="summary-row" firstAttribute="top" secondItem="summary" secondAttribute="top" id="c3904"/>
+                                                <constraint firstItem="summary" firstAttribute="trailing" secondItem="summary-row" secondAttribute="trailing" id="c3905"/>
+                                                <constraint firstItem="summary" firstAttribute="bottom" secondItem="summary-row" secondAttribute="bottom" id="c3906"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="24"/></userDefinedRuntimeAttribute>
@@ -230,10 +230,10 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="summary" firstAttribute="leading" secondItem="w-summary" secondAttribute="leading" constant="20" id="c3771"/>
-                                        <constraint firstItem="summary" firstAttribute="top" secondItem="w-summary" secondAttribute="top" constant="24" id="c3772"/>
-                                        <constraint firstItem="w-summary" firstAttribute="trailing" secondItem="summary" secondAttribute="trailing" constant="20" id="c3773"/>
-                                        <constraint firstItem="w-summary" firstAttribute="bottom" secondItem="summary" secondAttribute="bottom" id="c3774"/>
+                                        <constraint firstItem="summary" firstAttribute="leading" secondItem="w-summary" secondAttribute="leading" constant="20" id="c3847"/>
+                                        <constraint firstItem="summary" firstAttribute="top" secondItem="w-summary" secondAttribute="top" constant="24" id="c3848"/>
+                                        <constraint firstItem="w-summary" firstAttribute="trailing" secondItem="summary" secondAttribute="trailing" constant="20" id="c3849"/>
+                                        <constraint firstItem="w-summary" firstAttribute="bottom" secondItem="summary" secondAttribute="bottom" id="c3850"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w-structure">
@@ -244,10 +244,10 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="structure-title" firstAttribute="leading" secondItem="w-structure" secondAttribute="leading" constant="20" id="c3775"/>
-                                        <constraint firstItem="structure-title" firstAttribute="top" secondItem="w-structure" secondAttribute="top" constant="16" id="c3776"/>
-                                        <constraint firstItem="w-structure" firstAttribute="trailing" secondItem="structure-title" secondAttribute="trailing" constant="20" id="c3777"/>
-                                        <constraint firstItem="w-structure" firstAttribute="bottom" secondItem="structure-title" secondAttribute="bottom" id="c3778"/>
+                                        <constraint firstItem="structure-title" firstAttribute="leading" secondItem="w-structure" secondAttribute="leading" constant="20" id="c3851"/>
+                                        <constraint firstItem="structure-title" firstAttribute="top" secondItem="w-structure" secondAttribute="top" constant="16" id="c3852"/>
+                                        <constraint firstItem="w-structure" firstAttribute="trailing" secondItem="structure-title" secondAttribute="trailing" constant="20" id="c3853"/>
+                                        <constraint firstItem="w-structure" firstAttribute="bottom" secondItem="structure-title" secondAttribute="bottom" id="c3854"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w-seg">
@@ -255,7 +255,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="segmented" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="segmentedView">
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seg-knob" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="segmentKnob">
-                                                    <color key="backgroundColor" name="dsCard"/>
+                                                    <color key="backgroundColor" name="dsKnob"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="19"/></userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.12"/></userDefinedRuntimeAttribute>
@@ -272,8 +272,8 @@
                                                                 </label>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="seg-keep-label" firstAttribute="centerX" secondItem="seg-keep" secondAttribute="centerX" id="c3840"/>
-                                                                <constraint firstItem="seg-keep-label" firstAttribute="centerY" secondItem="seg-keep" secondAttribute="centerY" id="c3841"/>
+                                                                <constraint firstItem="seg-keep-label" firstAttribute="centerX" secondItem="seg-keep" secondAttribute="centerX" id="c3916"/>
+                                                                <constraint firstItem="seg-keep-label" firstAttribute="centerY" secondItem="seg-keep" secondAttribute="centerY" id="c3917"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="pressedScale"><real key="value" value="0.98"/></userDefinedRuntimeAttribute>
@@ -288,8 +288,8 @@
                                                                 </label>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="seg-free-label" firstAttribute="centerX" secondItem="seg-free" secondAttribute="centerX" id="c3842"/>
-                                                                <constraint firstItem="seg-free-label" firstAttribute="centerY" secondItem="seg-free" secondAttribute="centerY" id="c3843"/>
+                                                                <constraint firstItem="seg-free-label" firstAttribute="centerX" secondItem="seg-free" secondAttribute="centerX" id="c3918"/>
+                                                                <constraint firstItem="seg-free-label" firstAttribute="centerY" secondItem="seg-free" secondAttribute="centerY" id="c3919"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="pressedScale"><real key="value" value="0.98"/></userDefinedRuntimeAttribute>
@@ -302,15 +302,15 @@
                                             </subviews>
                                             <color key="backgroundColor" name="dsSegment"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="44" id="c3831"/>
-                                                <constraint firstItem="seg-row" firstAttribute="leading" secondItem="segmented" secondAttribute="leading" constant="3" id="c3832"/>
-                                                <constraint firstItem="seg-row" firstAttribute="top" secondItem="segmented" secondAttribute="top" constant="3" id="c3833"/>
-                                                <constraint firstItem="segmented" firstAttribute="trailing" secondItem="seg-row" secondAttribute="trailing" constant="3" id="c3834"/>
-                                                <constraint firstItem="segmented" firstAttribute="bottom" secondItem="seg-row" secondAttribute="bottom" constant="3" id="c3835"/>
-                                                <constraint firstItem="seg-knob" firstAttribute="top" secondItem="segmented" secondAttribute="top" constant="3" id="c3836"/>
-                                                <constraint firstItem="segmented" firstAttribute="bottom" secondItem="seg-knob" secondAttribute="bottom" constant="3" id="c3837"/>
-                                                <constraint firstItem="seg-knob" firstAttribute="width" secondItem="seg-keep" secondAttribute="width" id="c3838"/>
-                                                <constraint firstItem="seg-knob" firstAttribute="leading" secondItem="segmented" secondAttribute="leading" constant="3" id="c3839"/>
+                                                <constraint firstAttribute="height" constant="44" id="c3907"/>
+                                                <constraint firstItem="seg-row" firstAttribute="leading" secondItem="segmented" secondAttribute="leading" constant="3" id="c3908"/>
+                                                <constraint firstItem="seg-row" firstAttribute="top" secondItem="segmented" secondAttribute="top" constant="3" id="c3909"/>
+                                                <constraint firstItem="segmented" firstAttribute="trailing" secondItem="seg-row" secondAttribute="trailing" constant="3" id="c3910"/>
+                                                <constraint firstItem="segmented" firstAttribute="bottom" secondItem="seg-row" secondAttribute="bottom" constant="3" id="c3911"/>
+                                                <constraint firstItem="seg-knob" firstAttribute="top" secondItem="segmented" secondAttribute="top" constant="3" id="c3912"/>
+                                                <constraint firstItem="segmented" firstAttribute="bottom" secondItem="seg-knob" secondAttribute="bottom" constant="3" id="c3913"/>
+                                                <constraint firstItem="seg-knob" firstAttribute="width" secondItem="seg-keep" secondAttribute="width" id="c3914"/>
+                                                <constraint firstItem="seg-knob" firstAttribute="leading" secondItem="segmented" secondAttribute="leading" constant="3" id="c3915"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="22"/></userDefinedRuntimeAttribute>
@@ -319,10 +319,10 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="segmented" firstAttribute="leading" secondItem="w-seg" secondAttribute="leading" constant="20" id="c3779"/>
-                                        <constraint firstItem="segmented" firstAttribute="top" secondItem="w-seg" secondAttribute="top" constant="12" id="c3780"/>
-                                        <constraint firstItem="w-seg" firstAttribute="trailing" secondItem="segmented" secondAttribute="trailing" constant="20" id="c3781"/>
-                                        <constraint firstItem="w-seg" firstAttribute="bottom" secondItem="segmented" secondAttribute="bottom" id="c3782"/>
+                                        <constraint firstItem="segmented" firstAttribute="leading" secondItem="w-seg" secondAttribute="leading" constant="20" id="c3855"/>
+                                        <constraint firstItem="segmented" firstAttribute="top" secondItem="w-seg" secondAttribute="top" constant="12" id="c3856"/>
+                                        <constraint firstItem="w-seg" firstAttribute="trailing" secondItem="segmented" secondAttribute="trailing" constant="20" id="c3857"/>
+                                        <constraint firstItem="w-seg" firstAttribute="bottom" secondItem="segmented" secondAttribute="bottom" id="c3858"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w-explainer">
@@ -333,8 +333,8 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="medium"/>
                                                     <color key="tintColor" name="dsLink"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="18" id="c3844"/>
-                                                        <constraint firstAttribute="height" constant="18" id="c3845"/>
+                                                        <constraint firstAttribute="width" constant="18" id="c3920"/>
+                                                        <constraint firstAttribute="height" constant="18" id="c3921"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="explainer" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="modeExplainerLabel" opaque="NO" text="Walls, windows and furniture layout stay. Only the style changes." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
@@ -348,10 +348,10 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="explainer-row" firstAttribute="leading" secondItem="w-explainer" secondAttribute="leading" constant="20" id="c3783"/>
-                                        <constraint firstItem="explainer-row" firstAttribute="top" secondItem="w-explainer" secondAttribute="top" constant="10" id="c3784"/>
-                                        <constraint firstItem="w-explainer" firstAttribute="trailing" secondItem="explainer-row" secondAttribute="trailing" constant="20" id="c3785"/>
-                                        <constraint firstItem="w-explainer" firstAttribute="bottom" secondItem="explainer-row" secondAttribute="bottom" id="c3786"/>
+                                        <constraint firstItem="explainer-row" firstAttribute="leading" secondItem="w-explainer" secondAttribute="leading" constant="20" id="c3859"/>
+                                        <constraint firstItem="explainer-row" firstAttribute="top" secondItem="w-explainer" secondAttribute="top" constant="10" id="c3860"/>
+                                        <constraint firstItem="w-explainer" firstAttribute="trailing" secondItem="explainer-row" secondAttribute="trailing" constant="20" id="c3861"/>
+                                        <constraint firstItem="w-explainer" firstAttribute="bottom" secondItem="explainer-row" secondAttribute="bottom" id="c3862"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w-pal-title">
@@ -362,10 +362,10 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="palette-title" firstAttribute="leading" secondItem="w-pal-title" secondAttribute="leading" constant="20" id="c3787"/>
-                                        <constraint firstItem="palette-title" firstAttribute="top" secondItem="w-pal-title" secondAttribute="top" constant="18" id="c3788"/>
-                                        <constraint firstItem="w-pal-title" firstAttribute="trailing" secondItem="palette-title" secondAttribute="trailing" constant="20" id="c3789"/>
-                                        <constraint firstItem="w-pal-title" firstAttribute="bottom" secondItem="palette-title" secondAttribute="bottom" id="c3790"/>
+                                        <constraint firstItem="palette-title" firstAttribute="leading" secondItem="w-pal-title" secondAttribute="leading" constant="20" id="c3863"/>
+                                        <constraint firstItem="palette-title" firstAttribute="top" secondItem="w-pal-title" secondAttribute="top" constant="18" id="c3864"/>
+                                        <constraint firstItem="w-pal-title" firstAttribute="trailing" secondItem="palette-title" secondAttribute="trailing" constant="20" id="c3865"/>
+                                        <constraint firstItem="w-pal-title" firstAttribute="bottom" secondItem="palette-title" secondAttribute="bottom" id="c3866"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w-pal">
@@ -386,15 +386,15 @@
                                                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="18" weight="medium"/>
                                                                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                             <constraints>
-                                                                                                <constraint firstAttribute="width" constant="22" id="c3872"/>
-                                                                                                <constraint firstAttribute="height" constant="22" id="c3873"/>
+                                                                                                <constraint firstAttribute="width" constant="22" id="c3948"/>
+                                                                                                <constraint firstAttribute="height" constant="22" id="c3949"/>
                                                                                             </constraints>
                                                                                         </imageView>
                                                                                     </subviews>
                                                                                     <color key="backgroundColor" name="dsLimeSoft"/>
                                                                                     <constraints>
-                                                                                        <constraint firstItem="pal-auto-icon" firstAttribute="centerX" secondItem="pal-auto-swatch" secondAttribute="centerX" id="c3870"/>
-                                                                                        <constraint firstItem="pal-auto-icon" firstAttribute="centerY" secondItem="pal-auto-swatch" secondAttribute="centerY" id="c3871"/>
+                                                                                        <constraint firstItem="pal-auto-icon" firstAttribute="centerX" secondItem="pal-auto-swatch" secondAttribute="centerX" id="c3946"/>
+                                                                                        <constraint firstItem="pal-auto-icon" firstAttribute="centerY" secondItem="pal-auto-swatch" secondAttribute="centerY" id="c3947"/>
                                                                                     </constraints>
                                                                                     <userDefinedRuntimeAttributes>
                                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -411,16 +411,16 @@
                                                                             </subviews>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="56" id="c3860"/>
-                                                                                <constraint firstAttribute="height" constant="56" id="c3861"/>
-                                                                                <constraint firstItem="pal-auto-swatch" firstAttribute="leading" secondItem="pal-auto-wrap" secondAttribute="leading" id="c3862"/>
-                                                                                <constraint firstItem="pal-auto-swatch" firstAttribute="top" secondItem="pal-auto-wrap" secondAttribute="top" id="c3863"/>
-                                                                                <constraint firstItem="pal-auto-wrap" firstAttribute="trailing" secondItem="pal-auto-swatch" secondAttribute="trailing" id="c3864"/>
-                                                                                <constraint firstItem="pal-auto-wrap" firstAttribute="bottom" secondItem="pal-auto-swatch" secondAttribute="bottom" id="c3865"/>
-                                                                                <constraint firstItem="pal-auto-ring" firstAttribute="leading" secondItem="pal-auto-wrap" secondAttribute="leading" id="c3866"/>
-                                                                                <constraint firstItem="pal-auto-ring" firstAttribute="top" secondItem="pal-auto-wrap" secondAttribute="top" id="c3867"/>
-                                                                                <constraint firstItem="pal-auto-wrap" firstAttribute="trailing" secondItem="pal-auto-ring" secondAttribute="trailing" id="c3868"/>
-                                                                                <constraint firstItem="pal-auto-wrap" firstAttribute="bottom" secondItem="pal-auto-ring" secondAttribute="bottom" id="c3869"/>
+                                                                                <constraint firstAttribute="width" constant="56" id="c3936"/>
+                                                                                <constraint firstAttribute="height" constant="56" id="c3937"/>
+                                                                                <constraint firstItem="pal-auto-swatch" firstAttribute="leading" secondItem="pal-auto-wrap" secondAttribute="leading" id="c3938"/>
+                                                                                <constraint firstItem="pal-auto-swatch" firstAttribute="top" secondItem="pal-auto-wrap" secondAttribute="top" id="c3939"/>
+                                                                                <constraint firstItem="pal-auto-wrap" firstAttribute="trailing" secondItem="pal-auto-swatch" secondAttribute="trailing" id="c3940"/>
+                                                                                <constraint firstItem="pal-auto-wrap" firstAttribute="bottom" secondItem="pal-auto-swatch" secondAttribute="bottom" id="c3941"/>
+                                                                                <constraint firstItem="pal-auto-ring" firstAttribute="leading" secondItem="pal-auto-wrap" secondAttribute="leading" id="c3942"/>
+                                                                                <constraint firstItem="pal-auto-ring" firstAttribute="top" secondItem="pal-auto-wrap" secondAttribute="top" id="c3943"/>
+                                                                                <constraint firstItem="pal-auto-wrap" firstAttribute="trailing" secondItem="pal-auto-ring" secondAttribute="trailing" id="c3944"/>
+                                                                                <constraint firstItem="pal-auto-wrap" firstAttribute="bottom" secondItem="pal-auto-ring" secondAttribute="bottom" id="c3945"/>
                                                                             </constraints>
                                                                         </view>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="pal-auto-label" opaque="NO" text="Auto" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.6" horizontalHuggingPriority="251" verticalHuggingPriority="251">
@@ -430,10 +430,10 @@
                                                                 </stackView>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="60" id="c3856"/>
-                                                                <constraint firstItem="pal-auto-col" firstAttribute="leading" secondItem="pal-auto" secondAttribute="leading" id="c3857"/>
-                                                                <constraint firstItem="pal-auto-col" firstAttribute="top" secondItem="pal-auto" secondAttribute="top" id="c3858"/>
-                                                                <constraint firstItem="pal-auto" firstAttribute="trailing" secondItem="pal-auto-col" secondAttribute="trailing" id="c3859"/>
+                                                                <constraint firstAttribute="width" constant="60" id="c3932"/>
+                                                                <constraint firstItem="pal-auto-col" firstAttribute="leading" secondItem="pal-auto" secondAttribute="leading" id="c3933"/>
+                                                                <constraint firstItem="pal-auto-col" firstAttribute="top" secondItem="pal-auto" secondAttribute="top" id="c3934"/>
+                                                                <constraint firstItem="pal-auto" firstAttribute="trailing" secondItem="pal-auto-col" secondAttribute="trailing" id="c3935"/>
                                                             </constraints>
                                                             <accessibility key="accessibilityConfiguration" label="Auto"/>
                                                             <userDefinedRuntimeAttributes>
@@ -464,10 +464,10 @@
                                                                                     </subviews>
                                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <constraints>
-                                                                                        <constraint firstItem="pal-warm-bands" firstAttribute="leading" secondItem="pal-warm-swatch" secondAttribute="leading" id="c3888"/>
-                                                                                        <constraint firstItem="pal-warm-bands" firstAttribute="top" secondItem="pal-warm-swatch" secondAttribute="top" id="c3889"/>
-                                                                                        <constraint firstItem="pal-warm-swatch" firstAttribute="trailing" secondItem="pal-warm-bands" secondAttribute="trailing" id="c3890"/>
-                                                                                        <constraint firstItem="pal-warm-swatch" firstAttribute="bottom" secondItem="pal-warm-bands" secondAttribute="bottom" id="c3891"/>
+                                                                                        <constraint firstItem="pal-warm-bands" firstAttribute="leading" secondItem="pal-warm-swatch" secondAttribute="leading" id="c3964"/>
+                                                                                        <constraint firstItem="pal-warm-bands" firstAttribute="top" secondItem="pal-warm-swatch" secondAttribute="top" id="c3965"/>
+                                                                                        <constraint firstItem="pal-warm-swatch" firstAttribute="trailing" secondItem="pal-warm-bands" secondAttribute="trailing" id="c3966"/>
+                                                                                        <constraint firstItem="pal-warm-swatch" firstAttribute="bottom" secondItem="pal-warm-bands" secondAttribute="bottom" id="c3967"/>
                                                                                     </constraints>
                                                                                     <userDefinedRuntimeAttributes>
                                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -484,16 +484,16 @@
                                                                             </subviews>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="56" id="c3878"/>
-                                                                                <constraint firstAttribute="height" constant="56" id="c3879"/>
-                                                                                <constraint firstItem="pal-warm-swatch" firstAttribute="leading" secondItem="pal-warm-wrap" secondAttribute="leading" id="c3880"/>
-                                                                                <constraint firstItem="pal-warm-swatch" firstAttribute="top" secondItem="pal-warm-wrap" secondAttribute="top" id="c3881"/>
-                                                                                <constraint firstItem="pal-warm-wrap" firstAttribute="trailing" secondItem="pal-warm-swatch" secondAttribute="trailing" id="c3882"/>
-                                                                                <constraint firstItem="pal-warm-wrap" firstAttribute="bottom" secondItem="pal-warm-swatch" secondAttribute="bottom" id="c3883"/>
-                                                                                <constraint firstItem="pal-warm-ring" firstAttribute="leading" secondItem="pal-warm-wrap" secondAttribute="leading" id="c3884"/>
-                                                                                <constraint firstItem="pal-warm-ring" firstAttribute="top" secondItem="pal-warm-wrap" secondAttribute="top" id="c3885"/>
-                                                                                <constraint firstItem="pal-warm-wrap" firstAttribute="trailing" secondItem="pal-warm-ring" secondAttribute="trailing" id="c3886"/>
-                                                                                <constraint firstItem="pal-warm-wrap" firstAttribute="bottom" secondItem="pal-warm-ring" secondAttribute="bottom" id="c3887"/>
+                                                                                <constraint firstAttribute="width" constant="56" id="c3954"/>
+                                                                                <constraint firstAttribute="height" constant="56" id="c3955"/>
+                                                                                <constraint firstItem="pal-warm-swatch" firstAttribute="leading" secondItem="pal-warm-wrap" secondAttribute="leading" id="c3956"/>
+                                                                                <constraint firstItem="pal-warm-swatch" firstAttribute="top" secondItem="pal-warm-wrap" secondAttribute="top" id="c3957"/>
+                                                                                <constraint firstItem="pal-warm-wrap" firstAttribute="trailing" secondItem="pal-warm-swatch" secondAttribute="trailing" id="c3958"/>
+                                                                                <constraint firstItem="pal-warm-wrap" firstAttribute="bottom" secondItem="pal-warm-swatch" secondAttribute="bottom" id="c3959"/>
+                                                                                <constraint firstItem="pal-warm-ring" firstAttribute="leading" secondItem="pal-warm-wrap" secondAttribute="leading" id="c3960"/>
+                                                                                <constraint firstItem="pal-warm-ring" firstAttribute="top" secondItem="pal-warm-wrap" secondAttribute="top" id="c3961"/>
+                                                                                <constraint firstItem="pal-warm-wrap" firstAttribute="trailing" secondItem="pal-warm-ring" secondAttribute="trailing" id="c3962"/>
+                                                                                <constraint firstItem="pal-warm-wrap" firstAttribute="bottom" secondItem="pal-warm-ring" secondAttribute="bottom" id="c3963"/>
                                                                             </constraints>
                                                                         </view>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="pal-warm-label" opaque="NO" text="Warm" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.6" horizontalHuggingPriority="251" verticalHuggingPriority="251">
@@ -503,10 +503,10 @@
                                                                 </stackView>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="60" id="c3874"/>
-                                                                <constraint firstItem="pal-warm-col" firstAttribute="leading" secondItem="pal-warm" secondAttribute="leading" id="c3875"/>
-                                                                <constraint firstItem="pal-warm-col" firstAttribute="top" secondItem="pal-warm" secondAttribute="top" id="c3876"/>
-                                                                <constraint firstItem="pal-warm" firstAttribute="trailing" secondItem="pal-warm-col" secondAttribute="trailing" id="c3877"/>
+                                                                <constraint firstAttribute="width" constant="60" id="c3950"/>
+                                                                <constraint firstItem="pal-warm-col" firstAttribute="leading" secondItem="pal-warm" secondAttribute="leading" id="c3951"/>
+                                                                <constraint firstItem="pal-warm-col" firstAttribute="top" secondItem="pal-warm" secondAttribute="top" id="c3952"/>
+                                                                <constraint firstItem="pal-warm" firstAttribute="trailing" secondItem="pal-warm-col" secondAttribute="trailing" id="c3953"/>
                                                             </constraints>
                                                             <accessibility key="accessibilityConfiguration" label="Warm"/>
                                                             <userDefinedRuntimeAttributes>
@@ -537,10 +537,10 @@
                                                                                     </subviews>
                                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <constraints>
-                                                                                        <constraint firstItem="pal-sage-bands" firstAttribute="leading" secondItem="pal-sage-swatch" secondAttribute="leading" id="c3906"/>
-                                                                                        <constraint firstItem="pal-sage-bands" firstAttribute="top" secondItem="pal-sage-swatch" secondAttribute="top" id="c3907"/>
-                                                                                        <constraint firstItem="pal-sage-swatch" firstAttribute="trailing" secondItem="pal-sage-bands" secondAttribute="trailing" id="c3908"/>
-                                                                                        <constraint firstItem="pal-sage-swatch" firstAttribute="bottom" secondItem="pal-sage-bands" secondAttribute="bottom" id="c3909"/>
+                                                                                        <constraint firstItem="pal-sage-bands" firstAttribute="leading" secondItem="pal-sage-swatch" secondAttribute="leading" id="c3982"/>
+                                                                                        <constraint firstItem="pal-sage-bands" firstAttribute="top" secondItem="pal-sage-swatch" secondAttribute="top" id="c3983"/>
+                                                                                        <constraint firstItem="pal-sage-swatch" firstAttribute="trailing" secondItem="pal-sage-bands" secondAttribute="trailing" id="c3984"/>
+                                                                                        <constraint firstItem="pal-sage-swatch" firstAttribute="bottom" secondItem="pal-sage-bands" secondAttribute="bottom" id="c3985"/>
                                                                                     </constraints>
                                                                                     <userDefinedRuntimeAttributes>
                                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -557,16 +557,16 @@
                                                                             </subviews>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="56" id="c3896"/>
-                                                                                <constraint firstAttribute="height" constant="56" id="c3897"/>
-                                                                                <constraint firstItem="pal-sage-swatch" firstAttribute="leading" secondItem="pal-sage-wrap" secondAttribute="leading" id="c3898"/>
-                                                                                <constraint firstItem="pal-sage-swatch" firstAttribute="top" secondItem="pal-sage-wrap" secondAttribute="top" id="c3899"/>
-                                                                                <constraint firstItem="pal-sage-wrap" firstAttribute="trailing" secondItem="pal-sage-swatch" secondAttribute="trailing" id="c3900"/>
-                                                                                <constraint firstItem="pal-sage-wrap" firstAttribute="bottom" secondItem="pal-sage-swatch" secondAttribute="bottom" id="c3901"/>
-                                                                                <constraint firstItem="pal-sage-ring" firstAttribute="leading" secondItem="pal-sage-wrap" secondAttribute="leading" id="c3902"/>
-                                                                                <constraint firstItem="pal-sage-ring" firstAttribute="top" secondItem="pal-sage-wrap" secondAttribute="top" id="c3903"/>
-                                                                                <constraint firstItem="pal-sage-wrap" firstAttribute="trailing" secondItem="pal-sage-ring" secondAttribute="trailing" id="c3904"/>
-                                                                                <constraint firstItem="pal-sage-wrap" firstAttribute="bottom" secondItem="pal-sage-ring" secondAttribute="bottom" id="c3905"/>
+                                                                                <constraint firstAttribute="width" constant="56" id="c3972"/>
+                                                                                <constraint firstAttribute="height" constant="56" id="c3973"/>
+                                                                                <constraint firstItem="pal-sage-swatch" firstAttribute="leading" secondItem="pal-sage-wrap" secondAttribute="leading" id="c3974"/>
+                                                                                <constraint firstItem="pal-sage-swatch" firstAttribute="top" secondItem="pal-sage-wrap" secondAttribute="top" id="c3975"/>
+                                                                                <constraint firstItem="pal-sage-wrap" firstAttribute="trailing" secondItem="pal-sage-swatch" secondAttribute="trailing" id="c3976"/>
+                                                                                <constraint firstItem="pal-sage-wrap" firstAttribute="bottom" secondItem="pal-sage-swatch" secondAttribute="bottom" id="c3977"/>
+                                                                                <constraint firstItem="pal-sage-ring" firstAttribute="leading" secondItem="pal-sage-wrap" secondAttribute="leading" id="c3978"/>
+                                                                                <constraint firstItem="pal-sage-ring" firstAttribute="top" secondItem="pal-sage-wrap" secondAttribute="top" id="c3979"/>
+                                                                                <constraint firstItem="pal-sage-wrap" firstAttribute="trailing" secondItem="pal-sage-ring" secondAttribute="trailing" id="c3980"/>
+                                                                                <constraint firstItem="pal-sage-wrap" firstAttribute="bottom" secondItem="pal-sage-ring" secondAttribute="bottom" id="c3981"/>
                                                                             </constraints>
                                                                         </view>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="pal-sage-label" opaque="NO" text="Sage" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.6" horizontalHuggingPriority="251" verticalHuggingPriority="251">
@@ -576,10 +576,10 @@
                                                                 </stackView>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="60" id="c3892"/>
-                                                                <constraint firstItem="pal-sage-col" firstAttribute="leading" secondItem="pal-sage" secondAttribute="leading" id="c3893"/>
-                                                                <constraint firstItem="pal-sage-col" firstAttribute="top" secondItem="pal-sage" secondAttribute="top" id="c3894"/>
-                                                                <constraint firstItem="pal-sage" firstAttribute="trailing" secondItem="pal-sage-col" secondAttribute="trailing" id="c3895"/>
+                                                                <constraint firstAttribute="width" constant="60" id="c3968"/>
+                                                                <constraint firstItem="pal-sage-col" firstAttribute="leading" secondItem="pal-sage" secondAttribute="leading" id="c3969"/>
+                                                                <constraint firstItem="pal-sage-col" firstAttribute="top" secondItem="pal-sage" secondAttribute="top" id="c3970"/>
+                                                                <constraint firstItem="pal-sage" firstAttribute="trailing" secondItem="pal-sage-col" secondAttribute="trailing" id="c3971"/>
                                                             </constraints>
                                                             <accessibility key="accessibilityConfiguration" label="Sage"/>
                                                             <userDefinedRuntimeAttributes>
@@ -610,10 +610,10 @@
                                                                                     </subviews>
                                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <constraints>
-                                                                                        <constraint firstItem="pal-cool-bands" firstAttribute="leading" secondItem="pal-cool-swatch" secondAttribute="leading" id="c3924"/>
-                                                                                        <constraint firstItem="pal-cool-bands" firstAttribute="top" secondItem="pal-cool-swatch" secondAttribute="top" id="c3925"/>
-                                                                                        <constraint firstItem="pal-cool-swatch" firstAttribute="trailing" secondItem="pal-cool-bands" secondAttribute="trailing" id="c3926"/>
-                                                                                        <constraint firstItem="pal-cool-swatch" firstAttribute="bottom" secondItem="pal-cool-bands" secondAttribute="bottom" id="c3927"/>
+                                                                                        <constraint firstItem="pal-cool-bands" firstAttribute="leading" secondItem="pal-cool-swatch" secondAttribute="leading" id="c4000"/>
+                                                                                        <constraint firstItem="pal-cool-bands" firstAttribute="top" secondItem="pal-cool-swatch" secondAttribute="top" id="c4001"/>
+                                                                                        <constraint firstItem="pal-cool-swatch" firstAttribute="trailing" secondItem="pal-cool-bands" secondAttribute="trailing" id="c4002"/>
+                                                                                        <constraint firstItem="pal-cool-swatch" firstAttribute="bottom" secondItem="pal-cool-bands" secondAttribute="bottom" id="c4003"/>
                                                                                     </constraints>
                                                                                     <userDefinedRuntimeAttributes>
                                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -630,16 +630,16 @@
                                                                             </subviews>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="56" id="c3914"/>
-                                                                                <constraint firstAttribute="height" constant="56" id="c3915"/>
-                                                                                <constraint firstItem="pal-cool-swatch" firstAttribute="leading" secondItem="pal-cool-wrap" secondAttribute="leading" id="c3916"/>
-                                                                                <constraint firstItem="pal-cool-swatch" firstAttribute="top" secondItem="pal-cool-wrap" secondAttribute="top" id="c3917"/>
-                                                                                <constraint firstItem="pal-cool-wrap" firstAttribute="trailing" secondItem="pal-cool-swatch" secondAttribute="trailing" id="c3918"/>
-                                                                                <constraint firstItem="pal-cool-wrap" firstAttribute="bottom" secondItem="pal-cool-swatch" secondAttribute="bottom" id="c3919"/>
-                                                                                <constraint firstItem="pal-cool-ring" firstAttribute="leading" secondItem="pal-cool-wrap" secondAttribute="leading" id="c3920"/>
-                                                                                <constraint firstItem="pal-cool-ring" firstAttribute="top" secondItem="pal-cool-wrap" secondAttribute="top" id="c3921"/>
-                                                                                <constraint firstItem="pal-cool-wrap" firstAttribute="trailing" secondItem="pal-cool-ring" secondAttribute="trailing" id="c3922"/>
-                                                                                <constraint firstItem="pal-cool-wrap" firstAttribute="bottom" secondItem="pal-cool-ring" secondAttribute="bottom" id="c3923"/>
+                                                                                <constraint firstAttribute="width" constant="56" id="c3990"/>
+                                                                                <constraint firstAttribute="height" constant="56" id="c3991"/>
+                                                                                <constraint firstItem="pal-cool-swatch" firstAttribute="leading" secondItem="pal-cool-wrap" secondAttribute="leading" id="c3992"/>
+                                                                                <constraint firstItem="pal-cool-swatch" firstAttribute="top" secondItem="pal-cool-wrap" secondAttribute="top" id="c3993"/>
+                                                                                <constraint firstItem="pal-cool-wrap" firstAttribute="trailing" secondItem="pal-cool-swatch" secondAttribute="trailing" id="c3994"/>
+                                                                                <constraint firstItem="pal-cool-wrap" firstAttribute="bottom" secondItem="pal-cool-swatch" secondAttribute="bottom" id="c3995"/>
+                                                                                <constraint firstItem="pal-cool-ring" firstAttribute="leading" secondItem="pal-cool-wrap" secondAttribute="leading" id="c3996"/>
+                                                                                <constraint firstItem="pal-cool-ring" firstAttribute="top" secondItem="pal-cool-wrap" secondAttribute="top" id="c3997"/>
+                                                                                <constraint firstItem="pal-cool-wrap" firstAttribute="trailing" secondItem="pal-cool-ring" secondAttribute="trailing" id="c3998"/>
+                                                                                <constraint firstItem="pal-cool-wrap" firstAttribute="bottom" secondItem="pal-cool-ring" secondAttribute="bottom" id="c3999"/>
                                                                             </constraints>
                                                                         </view>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="pal-cool-label" opaque="NO" text="Cool" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.6" horizontalHuggingPriority="251" verticalHuggingPriority="251">
@@ -649,10 +649,10 @@
                                                                 </stackView>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="60" id="c3910"/>
-                                                                <constraint firstItem="pal-cool-col" firstAttribute="leading" secondItem="pal-cool" secondAttribute="leading" id="c3911"/>
-                                                                <constraint firstItem="pal-cool-col" firstAttribute="top" secondItem="pal-cool" secondAttribute="top" id="c3912"/>
-                                                                <constraint firstItem="pal-cool" firstAttribute="trailing" secondItem="pal-cool-col" secondAttribute="trailing" id="c3913"/>
+                                                                <constraint firstAttribute="width" constant="60" id="c3986"/>
+                                                                <constraint firstItem="pal-cool-col" firstAttribute="leading" secondItem="pal-cool" secondAttribute="leading" id="c3987"/>
+                                                                <constraint firstItem="pal-cool-col" firstAttribute="top" secondItem="pal-cool" secondAttribute="top" id="c3988"/>
+                                                                <constraint firstItem="pal-cool" firstAttribute="trailing" secondItem="pal-cool-col" secondAttribute="trailing" id="c3989"/>
                                                             </constraints>
                                                             <accessibility key="accessibilityConfiguration" label="Cool"/>
                                                             <userDefinedRuntimeAttributes>
@@ -683,10 +683,10 @@
                                                                                     </subviews>
                                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <constraints>
-                                                                                        <constraint firstItem="pal-earthy-bands" firstAttribute="leading" secondItem="pal-earthy-swatch" secondAttribute="leading" id="c3942"/>
-                                                                                        <constraint firstItem="pal-earthy-bands" firstAttribute="top" secondItem="pal-earthy-swatch" secondAttribute="top" id="c3943"/>
-                                                                                        <constraint firstItem="pal-earthy-swatch" firstAttribute="trailing" secondItem="pal-earthy-bands" secondAttribute="trailing" id="c3944"/>
-                                                                                        <constraint firstItem="pal-earthy-swatch" firstAttribute="bottom" secondItem="pal-earthy-bands" secondAttribute="bottom" id="c3945"/>
+                                                                                        <constraint firstItem="pal-earthy-bands" firstAttribute="leading" secondItem="pal-earthy-swatch" secondAttribute="leading" id="c4018"/>
+                                                                                        <constraint firstItem="pal-earthy-bands" firstAttribute="top" secondItem="pal-earthy-swatch" secondAttribute="top" id="c4019"/>
+                                                                                        <constraint firstItem="pal-earthy-swatch" firstAttribute="trailing" secondItem="pal-earthy-bands" secondAttribute="trailing" id="c4020"/>
+                                                                                        <constraint firstItem="pal-earthy-swatch" firstAttribute="bottom" secondItem="pal-earthy-bands" secondAttribute="bottom" id="c4021"/>
                                                                                     </constraints>
                                                                                     <userDefinedRuntimeAttributes>
                                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -703,16 +703,16 @@
                                                                             </subviews>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="56" id="c3932"/>
-                                                                                <constraint firstAttribute="height" constant="56" id="c3933"/>
-                                                                                <constraint firstItem="pal-earthy-swatch" firstAttribute="leading" secondItem="pal-earthy-wrap" secondAttribute="leading" id="c3934"/>
-                                                                                <constraint firstItem="pal-earthy-swatch" firstAttribute="top" secondItem="pal-earthy-wrap" secondAttribute="top" id="c3935"/>
-                                                                                <constraint firstItem="pal-earthy-wrap" firstAttribute="trailing" secondItem="pal-earthy-swatch" secondAttribute="trailing" id="c3936"/>
-                                                                                <constraint firstItem="pal-earthy-wrap" firstAttribute="bottom" secondItem="pal-earthy-swatch" secondAttribute="bottom" id="c3937"/>
-                                                                                <constraint firstItem="pal-earthy-ring" firstAttribute="leading" secondItem="pal-earthy-wrap" secondAttribute="leading" id="c3938"/>
-                                                                                <constraint firstItem="pal-earthy-ring" firstAttribute="top" secondItem="pal-earthy-wrap" secondAttribute="top" id="c3939"/>
-                                                                                <constraint firstItem="pal-earthy-wrap" firstAttribute="trailing" secondItem="pal-earthy-ring" secondAttribute="trailing" id="c3940"/>
-                                                                                <constraint firstItem="pal-earthy-wrap" firstAttribute="bottom" secondItem="pal-earthy-ring" secondAttribute="bottom" id="c3941"/>
+                                                                                <constraint firstAttribute="width" constant="56" id="c4008"/>
+                                                                                <constraint firstAttribute="height" constant="56" id="c4009"/>
+                                                                                <constraint firstItem="pal-earthy-swatch" firstAttribute="leading" secondItem="pal-earthy-wrap" secondAttribute="leading" id="c4010"/>
+                                                                                <constraint firstItem="pal-earthy-swatch" firstAttribute="top" secondItem="pal-earthy-wrap" secondAttribute="top" id="c4011"/>
+                                                                                <constraint firstItem="pal-earthy-wrap" firstAttribute="trailing" secondItem="pal-earthy-swatch" secondAttribute="trailing" id="c4012"/>
+                                                                                <constraint firstItem="pal-earthy-wrap" firstAttribute="bottom" secondItem="pal-earthy-swatch" secondAttribute="bottom" id="c4013"/>
+                                                                                <constraint firstItem="pal-earthy-ring" firstAttribute="leading" secondItem="pal-earthy-wrap" secondAttribute="leading" id="c4014"/>
+                                                                                <constraint firstItem="pal-earthy-ring" firstAttribute="top" secondItem="pal-earthy-wrap" secondAttribute="top" id="c4015"/>
+                                                                                <constraint firstItem="pal-earthy-wrap" firstAttribute="trailing" secondItem="pal-earthy-ring" secondAttribute="trailing" id="c4016"/>
+                                                                                <constraint firstItem="pal-earthy-wrap" firstAttribute="bottom" secondItem="pal-earthy-ring" secondAttribute="bottom" id="c4017"/>
                                                                             </constraints>
                                                                         </view>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="pal-earthy-label" opaque="NO" text="Earthy" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.6" horizontalHuggingPriority="251" verticalHuggingPriority="251">
@@ -722,10 +722,10 @@
                                                                 </stackView>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="60" id="c3928"/>
-                                                                <constraint firstItem="pal-earthy-col" firstAttribute="leading" secondItem="pal-earthy" secondAttribute="leading" id="c3929"/>
-                                                                <constraint firstItem="pal-earthy-col" firstAttribute="top" secondItem="pal-earthy" secondAttribute="top" id="c3930"/>
-                                                                <constraint firstItem="pal-earthy" firstAttribute="trailing" secondItem="pal-earthy-col" secondAttribute="trailing" id="c3931"/>
+                                                                <constraint firstAttribute="width" constant="60" id="c4004"/>
+                                                                <constraint firstItem="pal-earthy-col" firstAttribute="leading" secondItem="pal-earthy" secondAttribute="leading" id="c4005"/>
+                                                                <constraint firstItem="pal-earthy-col" firstAttribute="top" secondItem="pal-earthy" secondAttribute="top" id="c4006"/>
+                                                                <constraint firstItem="pal-earthy" firstAttribute="trailing" secondItem="pal-earthy-col" secondAttribute="trailing" id="c4007"/>
                                                             </constraints>
                                                             <accessibility key="accessibilityConfiguration" label="Earthy"/>
                                                             <userDefinedRuntimeAttributes>
@@ -756,10 +756,10 @@
                                                                                     </subviews>
                                                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <constraints>
-                                                                                        <constraint firstItem="pal-bold-bands" firstAttribute="leading" secondItem="pal-bold-swatch" secondAttribute="leading" id="c3960"/>
-                                                                                        <constraint firstItem="pal-bold-bands" firstAttribute="top" secondItem="pal-bold-swatch" secondAttribute="top" id="c3961"/>
-                                                                                        <constraint firstItem="pal-bold-swatch" firstAttribute="trailing" secondItem="pal-bold-bands" secondAttribute="trailing" id="c3962"/>
-                                                                                        <constraint firstItem="pal-bold-swatch" firstAttribute="bottom" secondItem="pal-bold-bands" secondAttribute="bottom" id="c3963"/>
+                                                                                        <constraint firstItem="pal-bold-bands" firstAttribute="leading" secondItem="pal-bold-swatch" secondAttribute="leading" id="c4036"/>
+                                                                                        <constraint firstItem="pal-bold-bands" firstAttribute="top" secondItem="pal-bold-swatch" secondAttribute="top" id="c4037"/>
+                                                                                        <constraint firstItem="pal-bold-swatch" firstAttribute="trailing" secondItem="pal-bold-bands" secondAttribute="trailing" id="c4038"/>
+                                                                                        <constraint firstItem="pal-bold-swatch" firstAttribute="bottom" secondItem="pal-bold-bands" secondAttribute="bottom" id="c4039"/>
                                                                                     </constraints>
                                                                                     <userDefinedRuntimeAttributes>
                                                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -776,16 +776,16 @@
                                                                             </subviews>
                                                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="56" id="c3950"/>
-                                                                                <constraint firstAttribute="height" constant="56" id="c3951"/>
-                                                                                <constraint firstItem="pal-bold-swatch" firstAttribute="leading" secondItem="pal-bold-wrap" secondAttribute="leading" id="c3952"/>
-                                                                                <constraint firstItem="pal-bold-swatch" firstAttribute="top" secondItem="pal-bold-wrap" secondAttribute="top" id="c3953"/>
-                                                                                <constraint firstItem="pal-bold-wrap" firstAttribute="trailing" secondItem="pal-bold-swatch" secondAttribute="trailing" id="c3954"/>
-                                                                                <constraint firstItem="pal-bold-wrap" firstAttribute="bottom" secondItem="pal-bold-swatch" secondAttribute="bottom" id="c3955"/>
-                                                                                <constraint firstItem="pal-bold-ring" firstAttribute="leading" secondItem="pal-bold-wrap" secondAttribute="leading" id="c3956"/>
-                                                                                <constraint firstItem="pal-bold-ring" firstAttribute="top" secondItem="pal-bold-wrap" secondAttribute="top" id="c3957"/>
-                                                                                <constraint firstItem="pal-bold-wrap" firstAttribute="trailing" secondItem="pal-bold-ring" secondAttribute="trailing" id="c3958"/>
-                                                                                <constraint firstItem="pal-bold-wrap" firstAttribute="bottom" secondItem="pal-bold-ring" secondAttribute="bottom" id="c3959"/>
+                                                                                <constraint firstAttribute="width" constant="56" id="c4026"/>
+                                                                                <constraint firstAttribute="height" constant="56" id="c4027"/>
+                                                                                <constraint firstItem="pal-bold-swatch" firstAttribute="leading" secondItem="pal-bold-wrap" secondAttribute="leading" id="c4028"/>
+                                                                                <constraint firstItem="pal-bold-swatch" firstAttribute="top" secondItem="pal-bold-wrap" secondAttribute="top" id="c4029"/>
+                                                                                <constraint firstItem="pal-bold-wrap" firstAttribute="trailing" secondItem="pal-bold-swatch" secondAttribute="trailing" id="c4030"/>
+                                                                                <constraint firstItem="pal-bold-wrap" firstAttribute="bottom" secondItem="pal-bold-swatch" secondAttribute="bottom" id="c4031"/>
+                                                                                <constraint firstItem="pal-bold-ring" firstAttribute="leading" secondItem="pal-bold-wrap" secondAttribute="leading" id="c4032"/>
+                                                                                <constraint firstItem="pal-bold-ring" firstAttribute="top" secondItem="pal-bold-wrap" secondAttribute="top" id="c4033"/>
+                                                                                <constraint firstItem="pal-bold-wrap" firstAttribute="trailing" secondItem="pal-bold-ring" secondAttribute="trailing" id="c4034"/>
+                                                                                <constraint firstItem="pal-bold-wrap" firstAttribute="bottom" secondItem="pal-bold-ring" secondAttribute="bottom" id="c4035"/>
                                                                             </constraints>
                                                                         </view>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="pal-bold-label" opaque="NO" text="Bold" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.6" horizontalHuggingPriority="251" verticalHuggingPriority="251">
@@ -795,10 +795,10 @@
                                                                 </stackView>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="60" id="c3946"/>
-                                                                <constraint firstItem="pal-bold-col" firstAttribute="leading" secondItem="pal-bold" secondAttribute="leading" id="c3947"/>
-                                                                <constraint firstItem="pal-bold-col" firstAttribute="top" secondItem="pal-bold" secondAttribute="top" id="c3948"/>
-                                                                <constraint firstItem="pal-bold" firstAttribute="trailing" secondItem="pal-bold-col" secondAttribute="trailing" id="c3949"/>
+                                                                <constraint firstAttribute="width" constant="60" id="c4022"/>
+                                                                <constraint firstItem="pal-bold-col" firstAttribute="leading" secondItem="pal-bold" secondAttribute="leading" id="c4023"/>
+                                                                <constraint firstItem="pal-bold-col" firstAttribute="top" secondItem="pal-bold" secondAttribute="top" id="c4024"/>
+                                                                <constraint firstItem="pal-bold" firstAttribute="trailing" secondItem="pal-bold-col" secondAttribute="trailing" id="c4025"/>
                                                             </constraints>
                                                             <accessibility key="accessibilityConfiguration" label="Bold"/>
                                                             <userDefinedRuntimeAttributes>
@@ -811,21 +811,21 @@
                                             </subviews>
                                             <viewLayoutGuide key="contentLayoutGuide" id="pal-scroll-contentLayoutGuide"/><viewLayoutGuide key="frameLayoutGuide" id="pal-scroll-frameLayoutGuide"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="78" id="c3850"/>
-                                                <constraint firstItem="pal-stack" firstAttribute="leading" secondItem="pal-scroll-contentLayoutGuide" secondAttribute="leading" id="c3851"/>
-                                                <constraint firstItem="pal-stack" firstAttribute="top" secondItem="pal-scroll-contentLayoutGuide" secondAttribute="top" id="c3852"/>
-                                                <constraint firstItem="pal-scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="pal-stack" secondAttribute="trailing" id="c3853"/>
-                                                <constraint firstItem="pal-scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="pal-stack" secondAttribute="bottom" id="c3854"/>
-                                                <constraint firstItem="pal-stack" firstAttribute="height" secondItem="pal-scroll-frameLayoutGuide" secondAttribute="height" id="c3855"/>
+                                                <constraint firstAttribute="height" constant="78" id="c3926"/>
+                                                <constraint firstItem="pal-stack" firstAttribute="leading" secondItem="pal-scroll-contentLayoutGuide" secondAttribute="leading" id="c3927"/>
+                                                <constraint firstItem="pal-stack" firstAttribute="top" secondItem="pal-scroll-contentLayoutGuide" secondAttribute="top" id="c3928"/>
+                                                <constraint firstItem="pal-scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="pal-stack" secondAttribute="trailing" id="c3929"/>
+                                                <constraint firstItem="pal-scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="pal-stack" secondAttribute="bottom" id="c3930"/>
+                                                <constraint firstItem="pal-stack" firstAttribute="height" secondItem="pal-scroll-frameLayoutGuide" secondAttribute="height" id="c3931"/>
                                             </constraints>
                                         </scrollView>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="pal-scroll" firstAttribute="leading" secondItem="w-pal" secondAttribute="leading" id="c3846"/>
-                                        <constraint firstItem="pal-scroll" firstAttribute="top" secondItem="w-pal" secondAttribute="top" constant="12" id="c3847"/>
-                                        <constraint firstItem="w-pal" firstAttribute="trailing" secondItem="pal-scroll" secondAttribute="trailing" id="c3848"/>
-                                        <constraint firstItem="w-pal" firstAttribute="bottom" secondItem="pal-scroll" secondAttribute="bottom" id="c3849"/>
+                                        <constraint firstItem="pal-scroll" firstAttribute="leading" secondItem="w-pal" secondAttribute="leading" id="c3922"/>
+                                        <constraint firstItem="pal-scroll" firstAttribute="top" secondItem="w-pal" secondAttribute="top" constant="12" id="c3923"/>
+                                        <constraint firstItem="w-pal" firstAttribute="trailing" secondItem="pal-scroll" secondAttribute="trailing" id="c3924"/>
+                                        <constraint firstItem="w-pal" firstAttribute="bottom" secondItem="pal-scroll" secondAttribute="bottom" id="c3925"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w-details-title">
@@ -836,10 +836,10 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="details-title" firstAttribute="leading" secondItem="w-details-title" secondAttribute="leading" constant="20" id="c3791"/>
-                                        <constraint firstItem="details-title" firstAttribute="top" secondItem="w-details-title" secondAttribute="top" constant="12" id="c3792"/>
-                                        <constraint firstItem="w-details-title" firstAttribute="trailing" secondItem="details-title" secondAttribute="trailing" constant="20" id="c3793"/>
-                                        <constraint firstItem="w-details-title" firstAttribute="bottom" secondItem="details-title" secondAttribute="bottom" id="c3794"/>
+                                        <constraint firstItem="details-title" firstAttribute="leading" secondItem="w-details-title" secondAttribute="leading" constant="20" id="c3867"/>
+                                        <constraint firstItem="details-title" firstAttribute="top" secondItem="w-details-title" secondAttribute="top" constant="12" id="c3868"/>
+                                        <constraint firstItem="w-details-title" firstAttribute="trailing" secondItem="details-title" secondAttribute="trailing" constant="20" id="c3869"/>
+                                        <constraint firstItem="w-details-title" firstAttribute="bottom" secondItem="details-title" secondAttribute="bottom" id="c3870"/>
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w-details">
@@ -852,8 +852,8 @@
                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="medium"/>
                                                             <color key="tintColor" name="dsTextTertiary"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="18" id="c3969"/>
-                                                                <constraint firstAttribute="height" constant="18" id="c3970"/>
+                                                                <constraint firstAttribute="width" constant="18" id="c4045"/>
+                                                                <constraint firstAttribute="height" constant="18" id="c4046"/>
                                                             </constraints>
                                                         </imageView>
                                                         <textField contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="details-field" userLabel="detailsField" opaque="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="e.g. light oak floor, no rug" minimumFontSize="12">
@@ -865,11 +865,11 @@
                                             </subviews>
                                             <color key="backgroundColor" name="dsSurface"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="52" id="c3964"/>
-                                                <constraint firstItem="details-row" firstAttribute="leading" secondItem="details" secondAttribute="leading" id="c3965"/>
-                                                <constraint firstItem="details-row" firstAttribute="top" secondItem="details" secondAttribute="top" id="c3966"/>
-                                                <constraint firstItem="details" firstAttribute="trailing" secondItem="details-row" secondAttribute="trailing" id="c3967"/>
-                                                <constraint firstItem="details" firstAttribute="bottom" secondItem="details-row" secondAttribute="bottom" id="c3968"/>
+                                                <constraint firstAttribute="height" constant="52" id="c4040"/>
+                                                <constraint firstItem="details-row" firstAttribute="leading" secondItem="details" secondAttribute="leading" id="c4041"/>
+                                                <constraint firstItem="details-row" firstAttribute="top" secondItem="details" secondAttribute="top" id="c4042"/>
+                                                <constraint firstItem="details" firstAttribute="trailing" secondItem="details-row" secondAttribute="trailing" id="c4043"/>
+                                                <constraint firstItem="details" firstAttribute="bottom" secondItem="details-row" secondAttribute="bottom" id="c4044"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="18"/></userDefinedRuntimeAttribute>
@@ -878,10 +878,10 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstItem="details" firstAttribute="leading" secondItem="w-details" secondAttribute="leading" constant="20" id="c3795"/>
-                                        <constraint firstItem="details" firstAttribute="top" secondItem="w-details" secondAttribute="top" constant="12" id="c3796"/>
-                                        <constraint firstItem="w-details" firstAttribute="trailing" secondItem="details" secondAttribute="trailing" constant="20" id="c3797"/>
-                                        <constraint firstItem="w-details" firstAttribute="bottom" secondItem="details" secondAttribute="bottom" id="c3798"/>
+                                        <constraint firstItem="details" firstAttribute="leading" secondItem="w-details" secondAttribute="leading" constant="20" id="c3871"/>
+                                        <constraint firstItem="details" firstAttribute="top" secondItem="w-details" secondAttribute="top" constant="12" id="c3872"/>
+                                        <constraint firstItem="w-details" firstAttribute="trailing" secondItem="details" secondAttribute="trailing" constant="20" id="c3873"/>
+                                        <constraint firstItem="w-details" firstAttribute="bottom" secondItem="details" secondAttribute="bottom" id="c3874"/>
                                     </constraints>
                                 </view>
                             </subviews>
@@ -889,27 +889,27 @@
                     </subviews>
                     <viewLayoutGuide key="contentLayoutGuide" id="scroll-contentLayoutGuide"/><viewLayoutGuide key="frameLayoutGuide" id="scroll-frameLayoutGuide"/>
                     <constraints>
-                        <constraint firstItem="content" firstAttribute="leading" secondItem="scroll-contentLayoutGuide" secondAttribute="leading" id="c3820"/>
-                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="content" secondAttribute="trailing" id="c3821"/>
-                        <constraint firstItem="content" firstAttribute="top" secondItem="scroll-contentLayoutGuide" secondAttribute="top" constant="8" id="c3822"/>
-                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="content" secondAttribute="bottom" constant="120" id="c3823"/>
-                        <constraint firstItem="content" firstAttribute="width" secondItem="scroll-frameLayoutGuide" secondAttribute="width" id="c3824"/>
+                        <constraint firstItem="content" firstAttribute="leading" secondItem="scroll-contentLayoutGuide" secondAttribute="leading" id="c3896"/>
+                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="content" secondAttribute="trailing" id="c3897"/>
+                        <constraint firstItem="content" firstAttribute="top" secondItem="scroll-contentLayoutGuide" secondAttribute="top" constant="8" id="c3898"/>
+                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="content" secondAttribute="bottom" constant="120" id="c3899"/>
+                        <constraint firstItem="content" firstAttribute="width" secondItem="scroll-frameLayoutGuide" secondAttribute="width" id="c3900"/>
                     </constraints>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nav" customClass="WizardNavBar" customModule="HomeAI" customModuleProvider="target" userLabel="navBar">
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="56" id="c3802"/>
+                        <constraint firstAttribute="height" constant="56" id="c3878"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fade" customClass="DSGradientView" customModule="HomeAI" customModuleProvider="target">
                     <constraints>
-                        <constraint firstAttribute="height" constant="140" id="c3812"/>
+                        <constraint firstAttribute="height" constant="140" id="c3888"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="color" keyPath="startColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.000" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="midColor"><color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="endColor"><color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="startColor"><color key="value" name="dsBackgroundClear"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="midColor"><color key="value" name="dsBackground"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="endColor"><color key="value" name="dsBackground"/></userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="angle"><real key="value" value="180"/></userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
@@ -921,8 +921,8 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" weight="semibold"/>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="20" id="c3807"/>
-                                        <constraint firstAttribute="height" constant="20" id="c3808"/>
+                                        <constraint firstAttribute="width" constant="20" id="c3883"/>
+                                        <constraint firstAttribute="height" constant="20" id="c3884"/>
                                     </constraints>
                                 </imageView>
                                 <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="generate-labels" opaque="NO" axis="vertical" alignment="center" spacing="1">
@@ -939,10 +939,10 @@
                         </stackView>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="56" id="c3803"/>
-                        <constraint firstItem="generate-row" firstAttribute="centerX" secondItem="generate" secondAttribute="centerX" id="c3804"/>
-                        <constraint firstItem="generate-row" firstAttribute="centerY" secondItem="generate" secondAttribute="centerY" id="c3805"/>
-                        <constraint firstItem="generate-row" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="generate" secondAttribute="leading" constant="16" id="c3806"/>
+                        <constraint firstAttribute="height" constant="56" id="c3879"/>
+                        <constraint firstItem="generate-row" firstAttribute="centerX" secondItem="generate" secondAttribute="centerX" id="c3880"/>
+                        <constraint firstItem="generate-row" firstAttribute="centerY" secondItem="generate" secondAttribute="centerY" id="c3881"/>
+                        <constraint firstItem="generate-row" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="generate" secondAttribute="leading" constant="16" id="c3882"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapGenerate:"/>
@@ -952,19 +952,19 @@
             <color key="backgroundColor" name="dsBackground"/>
             <viewLayoutGuide key="safeArea" id="root-safeArea"/>
             <constraints>
-                <constraint firstItem="nav" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3799"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="nav" secondAttribute="trailing" id="c3800"/>
-                <constraint firstItem="nav" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-4" id="c3801"/>
-                <constraint firstItem="fade" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3809"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="fade" secondAttribute="trailing" id="c3810"/>
-                <constraint firstItem="root" firstAttribute="bottom" secondItem="fade" secondAttribute="bottom" id="c3811"/>
-                <constraint firstItem="generate" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c3813"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="generate" secondAttribute="trailing" constant="20" id="c3814"/>
-                <constraint firstItem="root-safeArea" firstAttribute="bottom" secondItem="generate" secondAttribute="bottom" id="c3815"/>
-                <constraint firstItem="scroll" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3816"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="scroll" secondAttribute="trailing" id="c3817"/>
-                <constraint firstItem="root" firstAttribute="bottom" secondItem="scroll" secondAttribute="bottom" id="c3818"/>
-                <constraint firstItem="scroll" firstAttribute="top" secondItem="nav" secondAttribute="bottom" id="c3819"/>
+                <constraint firstItem="nav" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3875"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="nav" secondAttribute="trailing" id="c3876"/>
+                <constraint firstItem="nav" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-4" id="c3877"/>
+                <constraint firstItem="fade" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3885"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="fade" secondAttribute="trailing" id="c3886"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="fade" secondAttribute="bottom" id="c3887"/>
+                <constraint firstItem="generate" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c3889"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="generate" secondAttribute="trailing" constant="20" id="c3890"/>
+                <constraint firstItem="root-safeArea" firstAttribute="bottom" secondItem="generate" secondAttribute="bottom" id="c3891"/>
+                <constraint firstItem="scroll" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3892"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="scroll" secondAttribute="trailing" id="c3893"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="scroll" secondAttribute="bottom" id="c3894"/>
+                <constraint firstItem="scroll" firstAttribute="top" secondItem="nav" secondAttribute="bottom" id="c3895"/>
             </constraints>
         </view>
         </objects>
@@ -977,7 +977,10 @@
         <namedColor name="dsBackground">
             <color red="1.0000" green="1.0000" blue="1.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="dsCard">
+        <namedColor name="dsBackgroundClear">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="0.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsKnob">
             <color red="1.0000" green="1.0000" blue="1.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="dsLimeSoft">

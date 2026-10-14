@@ -172,11 +172,11 @@ def home():
                       children=[pill_row([spark, credits_label], (11, 13), 6)]).on("didTapCredits:")
     crown = Image(id="pro-crown", system="crown.fill", size=11, weight="semibold", tint="dsLime")
     pro_label = Label("Get Pro", id="pro-label", font=("SemiBold", 13), color="white", outlet="getProLabel")
-    get_pro = Control(id="get-pro", cls="DSPressableControl", bg="black", outlet="getProControl",
+    get_pro = Control(id="get-pro", cls="DSPressableControl", bg="dsInk", outlet="getProControl",
                       runtime={"pill": True}, children=[pill_row([crown, pro_label], (10, 12), 4)]).on("didTapGetPro:")
     badge_crown = Image(id="badge-crown", system="crown.fill", size=11, weight="semibold", tint="dsLime")
     badge_label = Label("PRO", id="badge-label", font=("Bold", 13), color="white", kern=0.4)
-    pro_badge = View(id="pro-badge", cls="DSView", bg="black", outlet="proBadgeView", hidden=True,
+    pro_badge = View(id="pro-badge", cls="DSView", bg="dsInk", outlet="proBadgeView", hidden=True,
                      runtime={"pill": True}, children=[pill_row([badge_crown, badge_label], (10, 12), 4)])
     right = HStack([credits, get_pro, pro_badge], id="header-right", spacing=8, align="fill", hug=(750, 750))
     header_row = HStack([logo, View(id="header-spacer", bg="clear", hug=(1, 250)), right], id="header-row",
