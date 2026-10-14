@@ -39,6 +39,8 @@ class DSGradientView: DSView {
     @IBInspectable var startColor: UIColor = .white { didSet { update() } }
     @IBInspectable var endColor: UIColor = .white { didSet { update() } }
     @IBInspectable var midColor: UIColor? { didSet { update() } }
+    /// Position of `midColor` (0…1).
+    @IBInspectable var midLocation: CGFloat = 0.5 { didSet { update() } }
     @IBInspectable var angle: CGFloat = 180 { didSet { update() } }
 
     override class var layerClass: AnyClass { CAGradientLayer.self }
@@ -59,6 +61,7 @@ class DSGradientView: DSView {
         if let midColor { colors.append(midColor.cgColor) }
         colors.append(endColor.cgColor)
         gradient.colors = colors
+        gradient.locations = midColor == nil ? nil : [0, NSNumber(value: Double(midLocation)), 1]
         let rad = (angle - 90) * .pi / 180
         let dx = cos(rad) / 2, dy = sin(rad) / 2
         gradient.startPoint = CGPoint(x: 0.5 - dx, y: 0.5 - dy)

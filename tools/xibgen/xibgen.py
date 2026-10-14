@@ -799,7 +799,8 @@ class Doc:
             _place(c)
         root = self.root
         outlets_owner, outlets_root = [], []
-        for v in root.walk():
+        nodes = root.content.walk() if hasattr(root, "content") else root.walk()
+        for v in nodes:
             if v.outlet:
                 (outlets_owner if self.kind == "view" else outlets_root).append(
                     f'<outlet property="{v.outlet}" destination="{v.id}" id="{v.id}-o"/>')

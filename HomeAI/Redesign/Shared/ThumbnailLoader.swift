@@ -56,3 +56,15 @@ extension Date {
         return f.string(from: self)
     }
 }
+
+/// Bundled asset first (names in enums carry a ".png" suffix), remote/shared loader as fallback.
+enum CatalogImage {
+    static func load(_ path: String, completion: @escaping (UIImage?) -> Void) {
+        let base = ((path as NSString).lastPathComponent as NSString).deletingPathExtension
+        if let local = UIImage(named: base) ?? UIImage(named: path) {
+            completion(local)
+            return
+        }
+        SharedImageLoader.shared.loadImage(path: path, completion: completion)
+    }
+}

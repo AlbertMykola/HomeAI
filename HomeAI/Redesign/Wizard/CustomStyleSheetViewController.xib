@@ -1,0 +1,310 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geologica-Regular.ttf">
+            <string>Geologica-Regular</string>
+        </array>
+        <array key="Geologica-SemiBold.ttf">
+            <string>Geologica-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CustomStyleSheetViewController" customModule="HomeAI" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="root" id="root-view-o"/>
+                <outlet property="titleLabel" destination="title" id="title-o"/>
+                <outlet property="subtitleLabel" destination="sub" id="sub-o"/>
+                <outlet property="fieldView" destination="field" id="field-o"/>
+                <outlet property="textView" destination="text" id="text-o"/>
+                <outlet property="placeholderLabel" destination="placeholder" id="placeholder-o"/>
+                <outlet property="counterLabel" destination="counter" id="counter-o"/>
+                <outletCollection property="exampleChips" destination="ex0" collectionClass="NSMutableArray" id="ex0-oc"/>
+                <outletCollection property="exampleChips" destination="ex1" collectionClass="NSMutableArray" id="ex1-oc"/>
+                <outletCollection property="exampleChips" destination="ex2" collectionClass="NSMutableArray" id="ex2-oc"/>
+                <outletCollection property="exampleChips" destination="ex3" collectionClass="NSMutableArray" id="ex3-oc"/>
+                <outlet property="useButton" destination="use" id="use-o"/>
+                <outlet property="useLabel" destination="use-title" id="use-title-o"/>
+                <outlet property="closeButton" destination="close" id="close-o"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="root" userLabel="Root">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="520"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="col" opaque="NO" axis="vertical" spacing="14">
+                    <subviews>
+                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title" userLabel="titleLabel" opaque="NO" text="Describe your style" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="24"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                        </label>
+                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sub" userLabel="subtitleLabel" opaque="NO" text="Materials, colors, mood — in your own words." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15"/><color key="textColor" name="dsTextSecondary"/><nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="field" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="fieldView">
+                            <subviews>
+                                <textView contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="text" userLabel="textView" multipleTouchEnabled="YES" scrollEnabled="NO" textAlignment="natural" text="">
+                                    <color key="textColor" name="dsTextPrimary"/><fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="16"/><textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </textView>
+                                <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="placeholder" userLabel="placeholderLabel" opaque="NO" text="Warm minimal with travertine, linen curtains and soft evening light" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                    <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="16"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                </label>
+                                <label contentMode="scaleToFill" hidden="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="counter" userLabel="counterLabel" opaque="NO" text="0/200" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                    <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" name="dsSurface"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="110" id="c551"/>
+                                <constraint firstItem="text" firstAttribute="leading" secondItem="field" secondAttribute="leading" constant="12" id="c552"/>
+                                <constraint firstItem="text" firstAttribute="top" secondItem="field" secondAttribute="top" constant="8" id="c553"/>
+                                <constraint firstItem="field" firstAttribute="trailing" secondItem="text" secondAttribute="trailing" constant="12" id="c554"/>
+                                <constraint firstItem="field" firstAttribute="bottom" secondItem="text" secondAttribute="bottom" constant="8" id="c555"/>
+                                <constraint firstItem="placeholder" firstAttribute="leading" secondItem="field" secondAttribute="leading" constant="17" id="c556"/>
+                                <constraint firstItem="placeholder" firstAttribute="top" secondItem="field" secondAttribute="top" constant="16" id="c557"/>
+                                <constraint firstItem="field" firstAttribute="trailing" secondItem="placeholder" secondAttribute="trailing" constant="17" id="c558"/>
+                                <constraint firstItem="field" firstAttribute="trailing" secondItem="counter" secondAttribute="trailing" constant="14" id="c559"/>
+                                <constraint firstItem="field" firstAttribute="bottom" secondItem="counter" secondAttribute="bottom" constant="10" id="c560"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="2"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" name="dsLime"/></userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="examples" opaque="NO" axis="vertical" alignment="leading" spacing="8">
+                            <subviews>
+                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ex-row1" opaque="NO" spacing="8">
+                                    <subviews>
+                                        <view contentMode="scaleToFill" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="ex0" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ex0-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                    <subviews>
+                                                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ex0-icon" image="sparkles" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="13" weight="medium"/>
+                                                            <color key="tintColor" name="dsTextPrimary"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="16" id="c519"/>
+                                                                <constraint firstAttribute="height" constant="16" id="c520"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="ex0-label" opaque="NO" text="Cozy cabin" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="c514"/>
+                                                <constraint firstItem="ex0-row" firstAttribute="leading" secondItem="ex0" secondAttribute="leading" id="c515"/>
+                                                <constraint firstItem="ex0-row" firstAttribute="top" secondItem="ex0" secondAttribute="top" id="c516"/>
+                                                <constraint firstItem="ex0" firstAttribute="trailing" secondItem="ex0-row" secondAttribute="trailing" id="c517"/>
+                                                <constraint firstItem="ex0" firstAttribute="bottom" secondItem="ex0-row" secondAttribute="bottom" id="c518"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapExample:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="ex1" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ex1-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                    <subviews>
+                                                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ex1-icon" image="sparkles" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="13" weight="medium"/>
+                                                            <color key="tintColor" name="dsTextPrimary"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="16" id="c526"/>
+                                                                <constraint firstAttribute="height" constant="16" id="c527"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="ex1-label" opaque="NO" text="Parisian flat" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="c521"/>
+                                                <constraint firstItem="ex1-row" firstAttribute="leading" secondItem="ex1" secondAttribute="leading" id="c522"/>
+                                                <constraint firstItem="ex1-row" firstAttribute="top" secondItem="ex1" secondAttribute="top" id="c523"/>
+                                                <constraint firstItem="ex1" firstAttribute="trailing" secondItem="ex1-row" secondAttribute="trailing" id="c524"/>
+                                                <constraint firstItem="ex1" firstAttribute="bottom" secondItem="ex1-row" secondAttribute="bottom" id="c525"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapExample:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                </stackView>
+                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ex-row2" opaque="NO" spacing="8">
+                                    <subviews>
+                                        <view contentMode="scaleToFill" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="ex2" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ex2-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                    <subviews>
+                                                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ex2-icon" image="sparkles" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="13" weight="medium"/>
+                                                            <color key="tintColor" name="dsTextPrimary"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="16" id="c533"/>
+                                                                <constraint firstAttribute="height" constant="16" id="c534"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="ex2-label" opaque="NO" text="Hotel lobby" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="c528"/>
+                                                <constraint firstItem="ex2-row" firstAttribute="leading" secondItem="ex2" secondAttribute="leading" id="c529"/>
+                                                <constraint firstItem="ex2-row" firstAttribute="top" secondItem="ex2" secondAttribute="top" id="c530"/>
+                                                <constraint firstItem="ex2" firstAttribute="trailing" secondItem="ex2-row" secondAttribute="trailing" id="c531"/>
+                                                <constraint firstItem="ex2" firstAttribute="bottom" secondItem="ex2-row" secondAttribute="bottom" id="c532"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapExample:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="ex3" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ex3-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                    <subviews>
+                                                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ex3-icon" image="sparkles" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="13" weight="medium"/>
+                                                            <color key="tintColor" name="dsTextPrimary"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="16" id="c540"/>
+                                                                <constraint firstAttribute="height" constant="16" id="c541"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="ex3-label" opaque="NO" text="Bright coastal" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="c535"/>
+                                                <constraint firstItem="ex3-row" firstAttribute="leading" secondItem="ex3" secondAttribute="leading" id="c536"/>
+                                                <constraint firstItem="ex3-row" firstAttribute="top" secondItem="ex3" secondAttribute="top" id="c537"/>
+                                                <constraint firstItem="ex3" firstAttribute="trailing" secondItem="ex3-row" secondAttribute="trailing" id="c538"/>
+                                                <constraint firstItem="ex3" firstAttribute="bottom" secondItem="ex3-row" secondAttribute="bottom" id="c539"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapExample:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="use" customClass="DSPrimaryButton" customModule="HomeAI" customModuleProvider="target" userLabel="useButton">
+                            <subviews>
+                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="use-row" opaque="NO" alignment="center" spacing="8">
+                                    <subviews>
+                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="use-title" userLabel="useLabel" opaque="NO" text="Use this style" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="56" id="c542"/>
+                                <constraint firstItem="use-row" firstAttribute="centerX" secondItem="use" secondAttribute="centerX" id="c543"/>
+                                <constraint firstItem="use-row" firstAttribute="centerY" secondItem="use" secondAttribute="centerY" id="c544"/>
+                                <constraint firstItem="use-row" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="use" secondAttribute="leading" constant="16" id="c545"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapUse:"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="close" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="closeButton">
+                    <subviews>
+                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="close-icon" image="xmark" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="13.6" weight="semibold"/>
+                            <color key="tintColor" name="dsTextPrimary"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="16" id="c512"/>
+                                <constraint firstAttribute="height" constant="16" id="c513"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" name="dsGlass"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="36" id="c508"/>
+                        <constraint firstAttribute="height" constant="36" id="c509"/>
+                        <constraint firstItem="close-icon" firstAttribute="centerX" secondItem="close" secondAttribute="centerX" id="c510"/>
+                        <constraint firstItem="close-icon" firstAttribute="centerY" secondItem="close" secondAttribute="centerY" id="c511"/>
+                    </constraints>
+                    <accessibility key="accessibilityConfiguration" label="Close"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0.5"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.900" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.08"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="7"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="4"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapClose:"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="root-safeArea"/>
+            <constraints>
+                <constraint firstItem="col" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c546"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="col" secondAttribute="trailing" constant="20" id="c547"/>
+                <constraint firstItem="col" firstAttribute="top" secondItem="root" secondAttribute="top" constant="30" id="c548"/>
+                <constraint firstItem="close" firstAttribute="top" secondItem="root" secondAttribute="top" constant="16" id="c549"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="close" secondAttribute="trailing" constant="16" id="c550"/>
+            </constraints>
+        </view>
+        </objects>
+    <resources>
+        <image name="sparkles" catalog="system" width="128" height="128"/>
+        <image name="xmark" catalog="system" width="128" height="128"/>
+        <namedColor name="dsGlass">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="0.750" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsLime">
+            <color red="0.6471" green="0.9333" blue="0.1843" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsSurface">
+            <color red="0.9686" green="0.9686" blue="0.9686" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsTextPrimary">
+            <color red="0.0000" green="0.0000" blue="0.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsTextSecondary">
+            <color red="0.2510" green="0.2510" blue="0.2510" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsTextTertiary">
+            <color red="0.5569" green="0.5569" blue="0.5765" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

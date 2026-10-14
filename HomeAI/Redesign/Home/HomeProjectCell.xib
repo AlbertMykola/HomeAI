@@ -58,6 +58,11 @@
                     <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="texts" secondAttribute="trailing" id="c336"/>
                 </constraints>
             </view>
+            <connections>
+                <outlet property="thumbImageView" destination="thumb" id="thumb-o"/>
+                <outlet property="titleLabel" destination="title" id="title-o"/>
+                <outlet property="subtitleLabel" destination="sub" id="sub-o"/>
+            </connections>
         </collectionViewCell>
         </objects>
     <resources>

@@ -25,19 +25,22 @@ def xib(path):
 xibgen.xib = xib
 
 
-def swift_outlets(cls):
-    """@IBOutlet names of `cls` (searched across HomeAI/**/*.swift), or None if the class isn't found."""
+def swift_outlets(cls, depth=0):
+    """@IBOutlet names of `cls` and its superclasses (HomeAI/**/*.swift), or None if the class isn't found."""
     import re
-    pat = re.compile(r"(?:final\s+)?class\s+" + re.escape(cls) + r"\b")
+    pat = re.compile(r"class\s+" + re.escape(cls) + r"\b\s*(?::\s*(\w+))?")
     for dirpath, _, files in os.walk(os.path.join(REPO, "HomeAI")):
         for f in files:
             if not f.endswith(".swift"):
                 continue
             text = open(os.path.join(dirpath, f)).read()
-            if not pat.search(text):
+            m = pat.search(text)
+            if not m:
                 continue
             names = set(re.findall(r"@IBOutlet[^\n]*?var\s+(\w+)", text))
             names |= {"view", "contentView"}
+            if m.group(1) and depth < 5:
+                names |= swift_outlets(m.group(1), depth + 1) or set()
             return names
     return None
 

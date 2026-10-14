@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geologica-Regular.ttf">
+            <string>Geologica-Regular</string>
+        </array>
+        <array key="Geologica-SemiBold.ttf">
+            <string>Geologica-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="WizardRoomViewController" customModule="HomeAI" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="root" id="root-view-o"/>
+                <outlet property="titleStack" destination="title-group" id="title-group-o"/>
+                <outlet property="titleLabel" destination="title-title" id="title-title-o"/>
+                <outlet property="subtitleLabel" destination="title-sub" id="title-sub-o"/>
+                <outlet property="collectionView" destination="grid" id="grid-o"/>
+                <outlet property="navBar" destination="nav" id="nav-o"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="root" userLabel="Root">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="title-group" userLabel="titleStack" opaque="NO" axis="vertical" spacing="6">
+                    <subviews>
+                        <label contentMode="scaleToFill" horizontalCompressionResistancePriority="750" verticalCompressionResistancePriority="751" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title-title" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="titleLabel" opaque="NO" text="Which room is it?" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="28"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="letterSpacing"><real key="value" value="-0.14"/></userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title-sub" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="subtitleLabel" opaque="NO" text="We guessed from your photo. Tap to confirm." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15"/><color key="textColor" name="dsTextSecondary"/><nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="lineHeightMultiple"><real key="value" value="1.12"/></userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </label>
+                    </subviews>
+                </stackView>
+                <collectionView contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="grid" userLabel="collectionView" multipleTouchEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none">
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="13" minimumInteritemSpacing="13" id="grid-layout"><size key="itemSize" width="109" height="112"/><size key="headerReferenceSize" width="0.0" height="0.0"/><size key="footerReferenceSize" width="0.0" height="0.0"/><inset key="sectionInset" minX="20" minY="0" maxX="20" maxY="120"/></collectionViewFlowLayout>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </collectionView>
+                <view contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fade" customClass="DSGradientView" customModule="HomeAI" customModuleProvider="target">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="90" id="c164"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="startColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.000" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="midColor"><color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="endColor"><color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="angle"><real key="value" value="180"/></userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nav" customClass="WizardNavBar" customModule="HomeAI" customModuleProvider="target" userLabel="navBar">
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="c153"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="root-safeArea"/>
+            <constraints>
+                <constraint firstItem="nav" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c150"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="nav" secondAttribute="trailing" id="c151"/>
+                <constraint firstItem="nav" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-4" id="c152"/>
+                <constraint firstItem="title-group" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c154"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="title-group" secondAttribute="trailing" constant="20" id="c155"/>
+                <constraint firstItem="title-group" firstAttribute="top" secondItem="nav" secondAttribute="bottom" constant="8" id="c156"/>
+                <constraint firstItem="grid" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c157"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="grid" secondAttribute="trailing" id="c158"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="grid" secondAttribute="bottom" id="c159"/>
+                <constraint firstItem="grid" firstAttribute="top" secondItem="title-group" secondAttribute="bottom" constant="24" id="c160"/>
+                <constraint firstItem="fade" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c161"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="fade" secondAttribute="trailing" id="c162"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="fade" secondAttribute="bottom" id="c163"/>
+            </constraints>
+        </view>
+        </objects>
+    <resources>
+        <namedColor name="dsTextPrimary">
+            <color red="0.0000" green="0.0000" blue="0.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsTextSecondary">
+            <color red="0.2510" green="0.2510" blue="0.2510" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

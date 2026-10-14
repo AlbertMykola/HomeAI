@@ -338,6 +338,9 @@ final class NavigationManager {
     /// Starts a design flow for an option (Home, Projects, etc.).
     func startDesign(option: DesignOption) {
         switch option {
+        case .interior, .exterior, .garden:
+            let session = WizardSession(option: option)
+            push(WizardPhotoViewController.make(session: session))
         case .replace:
             showReplaceObjectPage()
         case .delete:
@@ -347,6 +350,12 @@ final class NavigationManager {
         default:
             showPageViewController(option: option)
         }
+    }
+
+    /// Starts generation for a prepared prompt (wizard W4, regenerate, …).
+    /// TODO(redesign): A/05 Generation screen replaces ProcessingViewController here.
+    func showGeneration(manager: GemeniPromptManager, sourcePhoto: UIImage?) {
+        showProcessing(manager: manager)
     }
 
     func showFeaturesViewController() {

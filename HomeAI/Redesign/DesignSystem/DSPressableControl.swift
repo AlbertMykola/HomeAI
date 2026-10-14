@@ -125,12 +125,14 @@ final class DSPrimaryButton: DSPressableControl {
         didSet { updateGradient() }
     }
 
+    /// Inactive = same lime pill at 40 % opacity (Button/Primary · Next, disabled).
     private func updateGradient() {
         let off = inactive || !isEnabled
-        gradient.colors = off
-            ? [UIColor(white: 0.9, alpha: 1).cgColor, UIColor(white: 0.88, alpha: 1).cgColor]
-            : [DS.Color.limeTop.cgColor, DS.Color.limeBottom.cgColor]
+        gradient.colors = [DS.Color.limeTop.cgColor, DS.Color.limeBottom.cgColor]
+        gradient.opacity = off ? 0.4 : 1
+        subviews.forEach { $0.alpha = off ? 0.4 : 1 }
         layer.shadowOpacity = off ? 0 : shadowOpacity
+        accessibilityTraits = off ? [.button, .notEnabled] : .button
     }
 
     /// One shimmer sweep (0.9 s, ease-in-out). Skipped with Reduce Motion.

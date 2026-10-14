@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geologica-Regular.ttf">
+            <string>Geologica-Regular</string>
+        </array>
+        <array key="Geologica-SemiBold.ttf">
+            <string>Geologica-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="OutOfCreditsSheetViewController" customModule="HomeAI" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="root" id="root-view-o"/>
+                <outlet property="titleLabel" destination="title" id="title-o"/>
+                <outlet property="subtitleLabel" destination="sub" id="sub-o"/>
+                <outlet property="photoImageView" destination="photo" id="photo-o"/>
+                <outlet property="lockedView" destination="locked" id="locked-o"/>
+                <outlet property="seeProButton" destination="see-pro" id="see-pro-o"/>
+                <outlet property="seeProLabel" destination="see-pro-title" id="see-pro-title-o"/>
+                <outlet property="notNowButton" destination="not-now" id="not-now-o"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="root" userLabel="Root">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="480"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="col" opaque="NO" axis="vertical" spacing="14">
+                    <subviews>
+                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title" userLabel="titleLabel" opaque="NO" text="You've used your free designs" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="24"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                        </label>
+                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sub" userLabel="subtitleLabel" opaque="NO" text="Go Pro to keep redesigning. Your photo and settings are saved." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15"/><color key="textColor" name="dsTextSecondary"/><nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="preview-wrap">
+                            <subviews>
+                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="preview" opaque="NO" alignment="center" spacing="10">
+                                    <subviews>
+                                        <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="photo" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" userLabel="photoImageView" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="120" id="c575"/>
+                                                <constraint firstAttribute="height" constant="150" id="c576"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="arrow" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="arrow-icon" image="arrow.right" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="semibold"/>
+                                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" name="dsSurface"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="36" id="c579"/>
+                                                <constraint firstAttribute="height" constant="36" id="c580"/>
+                                                <constraint firstItem="arrow-icon" firstAttribute="centerX" secondItem="arrow" secondAttribute="centerX" id="c581"/>
+                                                <constraint firstItem="arrow-icon" firstAttribute="centerY" secondItem="arrow" secondAttribute="centerY" id="c582"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="locked" customClass="DSGradientView" customModule="HomeAI" customModuleProvider="target" userLabel="lockedView">
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lock" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                                    <subviews>
+                                                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lock-icon" image="lock" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" weight="medium"/>
+                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.850" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="44" id="c583"/>
+                                                        <constraint firstAttribute="height" constant="44" id="c584"/>
+                                                        <constraint firstItem="lock-icon" firstAttribute="centerX" secondItem="lock" secondAttribute="centerX" id="c587"/>
+                                                        <constraint firstItem="lock-icon" firstAttribute="centerY" secondItem="lock" secondAttribute="centerY" id="c588"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="120" id="c577"/>
+                                                <constraint firstAttribute="height" constant="150" id="c578"/>
+                                                <constraint firstItem="lock" firstAttribute="centerX" secondItem="locked" secondAttribute="centerX" id="c585"/>
+                                                <constraint firstItem="lock" firstAttribute="centerY" secondItem="locked" secondAttribute="centerY" id="c586"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="startColor"><color key="value" red="0.8471" green="0.7765" blue="0.6824" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="endColor"><color key="value" red="0.5529" green="0.4824" blue="0.4000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="angle"><real key="value" value="129"/></userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="150" id="c570"/>
+                                <constraint firstItem="preview" firstAttribute="centerX" secondItem="preview-wrap" secondAttribute="centerX" id="c571"/>
+                                <constraint firstItem="preview" firstAttribute="centerY" secondItem="preview-wrap" secondAttribute="centerY" id="c572"/>
+                                <constraint firstItem="preview" firstAttribute="top" secondItem="preview-wrap" secondAttribute="top" id="c573"/>
+                                <constraint firstItem="preview-wrap" firstAttribute="bottom" secondItem="preview" secondAttribute="bottom" id="c574"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="see-pro" customClass="DSPrimaryButton" customModule="HomeAI" customModuleProvider="target" userLabel="seeProButton">
+                            <subviews>
+                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="see-pro-row" opaque="NO" alignment="center" spacing="8">
+                                    <subviews>
+                                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="see-pro-icon" image="crown" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" weight="semibold"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="c565"/>
+                                                <constraint firstAttribute="height" constant="20" id="c566"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="see-pro-title" userLabel="seeProLabel" opaque="NO" text="See Pro plans" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="56" id="c561"/>
+                                <constraint firstItem="see-pro-row" firstAttribute="centerX" secondItem="see-pro" secondAttribute="centerX" id="c562"/>
+                                <constraint firstItem="see-pro-row" firstAttribute="centerY" secondItem="see-pro" secondAttribute="centerY" id="c563"/>
+                                <constraint firstItem="see-pro-row" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="see-pro" secondAttribute="leading" constant="16" id="c564"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSeePro:"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <button contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="not-now" userLabel="notNowButton" opaque="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation">
+                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="15"/><inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/><state key="normal" title="Not now"><color key="titleColor" name="dsTextPrimary"/></state>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="c589"/>
+                            </constraints>
+                            <connections>
+                                <action selector="didTapNotNow:" destination="-1" eventType="touchUpInside" id="not-now-a0"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="root-safeArea"/>
+            <constraints>
+                <constraint firstItem="col" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c567"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="col" secondAttribute="trailing" constant="20" id="c568"/>
+                <constraint firstItem="col" firstAttribute="top" secondItem="root" secondAttribute="top" constant="30" id="c569"/>
+            </constraints>
+        </view>
+        </objects>
+    <resources>
+        <image name="arrow.right" catalog="system" width="128" height="128"/>
+        <image name="crown" catalog="system" width="128" height="128"/>
+        <image name="lock" catalog="system" width="128" height="128"/>
+        <namedColor name="dsSurface">
+            <color red="0.9686" green="0.9686" blue="0.9686" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsTextPrimary">
+            <color red="0.0000" green="0.0000" blue="0.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsTextSecondary">
+            <color red="0.2510" green="0.2510" blue="0.2510" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

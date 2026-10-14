@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geologica-Medium.ttf">
+            <string>Geologica-Medium</string>
+        </array>
+        <array key="Geologica-SemiBold.ttf">
+            <string>Geologica-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cell" customClass="WizardStyleCell" customModule="HomeAI" customModuleProvider="target" reuseIdentifier="WizardStyleCell">
+            <rect key="frame" x="0.0" y="0.0" width="109" height="159"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" contentMode="scaleToFill" id="cell-content" userLabel="Content">
+                <rect key="frame" x="0.0" y="0.0" width="109" height="159"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tile" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="tileView">
+                        <subviews>
+                            <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="img" userLabel="previewImageView" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                            </imageView>
+                            <view contentMode="scaleToFill" hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pop" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="popularBadge">
+                                <subviews>
+                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pop-label" opaque="NO" text="Popular" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                        <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="10"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.850" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="c227"/>
+                                    <constraint firstItem="pop-label" firstAttribute="leading" secondItem="pop" secondAttribute="leading" constant="7" id="c228"/>
+                                    <constraint firstItem="pop" firstAttribute="trailing" secondItem="pop-label" secondAttribute="trailing" constant="7" id="c229"/>
+                                    <constraint firstItem="pop-label" firstAttribute="centerY" secondItem="pop" secondAttribute="centerY" id="c230"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <stackView contentMode="scaleToFill" hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="custom" userLabel="customStack" opaque="NO" axis="vertical" alignment="center" spacing="6">
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pen-box" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="customIconBox">
+                                        <subviews>
+                                            <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pen" image="pencil" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" weight="semibold"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" name="dsLime"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="c233"/>
+                                            <constraint firstAttribute="height" constant="44" id="c234"/>
+                                            <constraint firstItem="pen" firstAttribute="centerX" secondItem="pen-box" secondAttribute="centerX" id="c235"/>
+                                            <constraint firstItem="pen" firstAttribute="centerY" secondItem="pen-box" secondAttribute="centerY" id="c236"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="describe" userLabel="describeLabel" opaque="NO" text="Describe" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                        <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="12"/><color key="textColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.800" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" alpha="0" translatesAutoresizingMaskIntoConstraints="NO" id="check" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="checkView">
+                                <subviews>
+                                    <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="check-icon" image="checkmark" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="12" weight="bold"/>
+                                        <color key="tintColor" name="dsLime"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="26" id="c239"/>
+                                    <constraint firstAttribute="height" constant="26" id="c240"/>
+                                    <constraint firstItem="check-icon" firstAttribute="centerX" secondItem="check" secondAttribute="centerX" id="c241"/>
+                                    <constraint firstItem="check-icon" firstAttribute="centerY" secondItem="check" secondAttribute="centerY" id="c242"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" name="dsSurface"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="136" id="c217"/>
+                            <constraint firstItem="img" firstAttribute="leading" secondItem="tile" secondAttribute="leading" id="c221"/>
+                            <constraint firstItem="img" firstAttribute="top" secondItem="tile" secondAttribute="top" id="c222"/>
+                            <constraint firstItem="tile" firstAttribute="trailing" secondItem="img" secondAttribute="trailing" id="c223"/>
+                            <constraint firstItem="tile" firstAttribute="bottom" secondItem="img" secondAttribute="bottom" id="c224"/>
+                            <constraint firstItem="pop" firstAttribute="leading" secondItem="tile" secondAttribute="leading" constant="8" id="c225"/>
+                            <constraint firstItem="pop" firstAttribute="top" secondItem="tile" secondAttribute="top" constant="8" id="c226"/>
+                            <constraint firstItem="custom" firstAttribute="centerX" secondItem="tile" secondAttribute="centerX" id="c231"/>
+                            <constraint firstItem="custom" firstAttribute="centerY" secondItem="tile" secondAttribute="centerY" id="c232"/>
+                            <constraint firstItem="check" firstAttribute="top" secondItem="tile" secondAttribute="top" constant="5" id="c237"/>
+                            <constraint firstItem="tile" firstAttribute="trailing" secondItem="check" secondAttribute="trailing" constant="5" id="c238"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="22"/></userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title" userLabel="titleLabel" opaque="NO" text="Modern" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.75" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                        <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="13"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="tile" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c214"/>
+                    <constraint firstItem="tile" firstAttribute="top" secondItem="cell-content" secondAttribute="top" id="c215"/>
+                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="tile" secondAttribute="trailing" id="c216"/>
+                    <constraint firstItem="title" firstAttribute="top" secondItem="tile" secondAttribute="bottom" constant="6" id="c218"/>
+                    <constraint firstItem="title" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c219"/>
+                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="title" secondAttribute="trailing" id="c220"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="tileView" destination="tile" id="tile-o"/>
+                <outlet property="previewImageView" destination="img" id="img-o"/>
+                <outlet property="popularBadge" destination="pop" id="pop-o"/>
+                <outlet property="customStack" destination="custom" id="custom-o"/>
+                <outlet property="customIconBox" destination="pen-box" id="pen-box-o"/>
+                <outlet property="describeLabel" destination="describe" id="describe-o"/>
+                <outlet property="checkView" destination="check" id="check-o"/>
+                <outlet property="titleLabel" destination="title" id="title-o"/>
+            </connections>
+        </collectionViewCell>
+        </objects>
+    <resources>
+        <image name="checkmark" catalog="system" width="128" height="128"/>
+        <image name="pencil" catalog="system" width="128" height="128"/>
+        <namedColor name="dsLime">
+            <color red="0.6471" green="0.9333" blue="0.1843" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsSurface">
+            <color red="0.9686" green="0.9686" blue="0.9686" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsTextPrimary">
+            <color red="0.0000" green="0.0000" blue="0.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

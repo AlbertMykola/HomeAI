@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geologica-Medium.ttf">
+            <string>Geologica-Medium</string>
+        </array>
+        <array key="Geologica-SemiBold.ttf">
+            <string>Geologica-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CameraViewController" customModule="HomeAI" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="root" id="root-view-o"/>
+                <outlet property="previewView" destination="preview" id="preview-o"/>
+                <outlet property="gridView" destination="grid" id="grid-o"/>
+                <outlet property="levelView" destination="level" id="level-o"/>
+                <outlet property="hintView" destination="hint" id="hint-o"/>
+                <outlet property="hintLabel" destination="hint-label" id="hint-label-o"/>
+                <outlet property="closeButton" destination="close" id="close-o"/>
+                <outlet property="flashButton" destination="flash" id="flash-o"/>
+                <outlet property="zoomButton" destination="zoom" id="zoom-o"/>
+                <outlet property="zoomLabel" destination="zoom-label" id="zoom-label-o"/>
+                <outlet property="libraryButton" destination="last" id="last-o"/>
+                <outlet property="lastPhotoView" destination="last-img" id="last-img-o"/>
+                <outlet property="shutterButton" destination="shutter" id="shutter-o"/>
+                <outlet property="flipButton" destination="flip" id="flip-o"/>
+                <outlet property="flashOverlay" destination="flash-overlay" id="flash-overlay-o"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="root" userLabel="Root">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" alpha="0" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="preview" customClass="CameraPreviewView" customModule="HomeAI" customModuleProvider="target" userLabel="previewView">
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <view contentMode="scaleToFill" alpha="0" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="grid" userLabel="gridView">
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grid-v1">
+                            <color key="backgroundColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.350" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="1" id="c618"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grid-v2">
+                            <color key="backgroundColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.350" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="1" id="c622"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grid-h1">
+                            <color key="backgroundColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.350" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="c626"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grid-h2">
+                            <color key="backgroundColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.350" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="1" id="c630"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="grid-v1" firstAttribute="top" secondItem="grid" secondAttribute="top" id="c616"/>
+                        <constraint firstItem="grid" firstAttribute="bottom" secondItem="grid-v1" secondAttribute="bottom" id="c617"/>
+                        <constraint firstItem="grid-v1" firstAttribute="centerX" secondItem="grid" secondAttribute="trailing" multiplier="0.3333" id="c619"/>
+                        <constraint firstItem="grid-v2" firstAttribute="top" secondItem="grid" secondAttribute="top" id="c620"/>
+                        <constraint firstItem="grid" firstAttribute="bottom" secondItem="grid-v2" secondAttribute="bottom" id="c621"/>
+                        <constraint firstItem="grid-v2" firstAttribute="centerX" secondItem="grid" secondAttribute="trailing" multiplier="0.6667" id="c623"/>
+                        <constraint firstItem="grid-h1" firstAttribute="leading" secondItem="grid" secondAttribute="leading" id="c624"/>
+                        <constraint firstItem="grid" firstAttribute="trailing" secondItem="grid-h1" secondAttribute="trailing" id="c625"/>
+                        <constraint firstItem="grid-h1" firstAttribute="centerY" secondItem="grid" secondAttribute="bottom" multiplier="0.3333" id="c627"/>
+                        <constraint firstItem="grid-h2" firstAttribute="leading" secondItem="grid" secondAttribute="leading" id="c628"/>
+                        <constraint firstItem="grid" firstAttribute="trailing" secondItem="grid-h2" secondAttribute="trailing" id="c629"/>
+                        <constraint firstItem="grid-h2" firstAttribute="centerY" secondItem="grid" secondAttribute="bottom" multiplier="0.6667" id="c631"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="level" userLabel="levelView">
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="120" id="c632"/>
+                        <constraint firstAttribute="height" constant="2" id="c633"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius"><real key="value" value="1"/></userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" alpha="0" translatesAutoresizingMaskIntoConstraints="NO" id="hint" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="hintView">
+                    <subviews>
+                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hint-row" opaque="NO" alignment="center" spacing="8" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                            <subviews>
+                                <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hint-icon" image="viewfinder" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="medium"/>
+                                    <color key="tintColor" name="dsLime"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="18" id="c643"/>
+                                        <constraint firstAttribute="height" constant="18" id="c644"/>
+                                    </constraints>
+                                </imageView>
+                                <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hint-label" userLabel="hintLabel" opaque="NO" text="Step back to fit the whole room" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                    <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/><nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <edgeInsets key="layoutMargins" top="0" left="16" bottom="0" right="16"/>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.450" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="c638"/>
+                        <constraint firstItem="hint-row" firstAttribute="leading" secondItem="hint" secondAttribute="leading" id="c639"/>
+                        <constraint firstItem="hint-row" firstAttribute="top" secondItem="hint" secondAttribute="top" id="c640"/>
+                        <constraint firstItem="hint" firstAttribute="trailing" secondItem="hint-row" secondAttribute="trailing" id="c641"/>
+                        <constraint firstItem="hint" firstAttribute="bottom" secondItem="hint-row" secondAttribute="bottom" id="c642"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="close" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="closeButton">
+                    <subviews>
+                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="close-icon" image="xmark" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17.0" weight="semibold"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="c594"/>
+                                <constraint firstAttribute="height" constant="20" id="c595"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.300" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="c590"/>
+                        <constraint firstAttribute="height" constant="44" id="c591"/>
+                        <constraint firstItem="close-icon" firstAttribute="centerX" secondItem="close" secondAttribute="centerX" id="c592"/>
+                        <constraint firstItem="close-icon" firstAttribute="centerY" secondItem="close" secondAttribute="centerY" id="c593"/>
+                    </constraints>
+                    <accessibility key="accessibilityConfiguration" label="Close"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0.5"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.200" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.08"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="7"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="4"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapClose:"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="flash" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="flashButton">
+                    <subviews>
+                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flash-icon" image="bolt.slash" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17.0" weight="semibold"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="c600"/>
+                                <constraint firstAttribute="height" constant="20" id="c601"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.300" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="c596"/>
+                        <constraint firstAttribute="height" constant="44" id="c597"/>
+                        <constraint firstItem="flash-icon" firstAttribute="centerX" secondItem="flash" secondAttribute="centerX" id="c598"/>
+                        <constraint firstItem="flash-icon" firstAttribute="centerY" secondItem="flash" secondAttribute="centerY" id="c599"/>
+                    </constraints>
+                    <accessibility key="accessibilityConfiguration" label="Flash"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0.5"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.200" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.08"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="7"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="4"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapFlash:"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zoom" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="zoomButton">
+                    <subviews>
+                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zoom-label" userLabel="zoomLabel" opaque="NO" text="0.5×" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="13"/><color key="textColor" name="dsLime"/><nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.450" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="52" id="c651"/>
+                        <constraint firstAttribute="height" constant="32" id="c652"/>
+                        <constraint firstItem="zoom-label" firstAttribute="centerX" secondItem="zoom" secondAttribute="centerX" id="c653"/>
+                        <constraint firstItem="zoom-label" firstAttribute="centerY" secondItem="zoom" secondAttribute="centerY" id="c654"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapZoom:"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="controls" opaque="NO" alignment="center" distribution="equalSpacing" spacing="0" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                    <subviews>
+                        <view contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="last" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="libraryButton">
+                            <subviews>
+                                <imageView contentMode="center" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="last-img" userLabel="lastPhotoView" image="photo.on.rectangle" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="18"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="48" id="c663"/>
+                                        <constraint firstAttribute="height" constant="48" id="c664"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.150" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="48" id="c659"/>
+                                <constraint firstAttribute="height" constant="48" id="c660"/>
+                                <constraint firstItem="last-img" firstAttribute="centerX" secondItem="last" secondAttribute="centerX" id="c661"/>
+                                <constraint firstItem="last-img" firstAttribute="centerY" secondItem="last" secondAttribute="centerY" id="c662"/>
+                            </constraints>
+                            <accessibility key="accessibilityConfiguration" label="Photo library"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="12"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="1"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.300" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapLibrary:"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="shutter" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="shutterButton">
+                            <subviews>
+                                <view contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shutter-inner" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="64" id="c667"/>
+                                        <constraint firstAttribute="height" constant="64" id="c668"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="78" id="c665"/>
+                                <constraint firstAttribute="height" constant="78" id="c666"/>
+                                <constraint firstItem="shutter-inner" firstAttribute="centerX" secondItem="shutter" secondAttribute="centerX" id="c669"/>
+                                <constraint firstItem="shutter-inner" firstAttribute="centerY" secondItem="shutter" secondAttribute="centerY" id="c670"/>
+                            </constraints>
+                            <accessibility key="accessibilityConfiguration" label="Take photo"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="4"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="hapticOnPress" value="NO"/>
+                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapShutter:"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="flip" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="flipButton">
+                            <subviews>
+                                <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flip-icon" image="arrow.triangle.2.circlepath" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17.0" weight="semibold"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="20" id="c606"/>
+                                        <constraint firstAttribute="height" constant="20" id="c607"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.300" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="48" id="c602"/>
+                                <constraint firstAttribute="height" constant="48" id="c603"/>
+                                <constraint firstItem="flip-icon" firstAttribute="centerX" secondItem="flip" secondAttribute="centerX" id="c604"/>
+                                <constraint firstItem="flip-icon" firstAttribute="centerY" secondItem="flip" secondAttribute="centerY" id="c605"/>
+                            </constraints>
+                            <accessibility key="accessibilityConfiguration" label="Switch camera"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0.5"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.200" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.08"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="7"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="4"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapFlip:"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <edgeInsets key="layoutMargins" top="0" left="40" bottom="0" right="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="108" id="c658"/>
+                    </constraints>
+                </stackView>
+                <view contentMode="scaleToFill" alpha="0" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flash-overlay" userLabel="flashOverlay">
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="root-safeArea"/>
+            <constraints>
+                <constraint firstItem="preview" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c608"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="preview" secondAttribute="trailing" id="c609"/>
+                <constraint firstItem="preview" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="51" id="c610"/>
+                <constraint firstItem="controls" firstAttribute="top" secondItem="preview" secondAttribute="bottom" id="c611"/>
+                <constraint firstItem="grid" firstAttribute="leading" secondItem="preview" secondAttribute="leading" id="c612"/>
+                <constraint firstItem="grid" firstAttribute="top" secondItem="preview" secondAttribute="top" id="c613"/>
+                <constraint firstItem="preview" firstAttribute="trailing" secondItem="grid" secondAttribute="trailing" id="c614"/>
+                <constraint firstItem="preview" firstAttribute="bottom" secondItem="grid" secondAttribute="bottom" id="c615"/>
+                <constraint firstItem="level" firstAttribute="centerX" secondItem="preview" secondAttribute="centerX" id="c634"/>
+                <constraint firstItem="level" firstAttribute="centerY" secondItem="preview" secondAttribute="centerY" id="c635"/>
+                <constraint firstItem="hint" firstAttribute="top" secondItem="preview" secondAttribute="top" constant="20" id="c636"/>
+                <constraint firstItem="hint" firstAttribute="centerX" secondItem="preview" secondAttribute="centerX" id="c637"/>
+                <constraint firstItem="close" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="16" id="c645"/>
+                <constraint firstItem="close" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-1" id="c646"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="flash" secondAttribute="trailing" constant="16" id="c647"/>
+                <constraint firstItem="flash" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-1" id="c648"/>
+                <constraint firstItem="zoom" firstAttribute="centerX" secondItem="preview" secondAttribute="centerX" id="c649"/>
+                <constraint firstItem="preview" firstAttribute="bottom" secondItem="zoom" secondAttribute="bottom" constant="16" id="c650"/>
+                <constraint firstItem="controls" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c655"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="controls" secondAttribute="trailing" id="c656"/>
+                <constraint firstItem="root-safeArea" firstAttribute="bottom" secondItem="controls" secondAttribute="bottom" id="c657"/>
+                <constraint firstItem="flash-overlay" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c671"/>
+                <constraint firstItem="flash-overlay" firstAttribute="top" secondItem="root" secondAttribute="top" id="c672"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="flash-overlay" secondAttribute="trailing" id="c673"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="flash-overlay" secondAttribute="bottom" id="c674"/>
+            </constraints>
+        </view>
+        </objects>
+    <resources>
+        <image name="arrow.triangle.2.circlepath" catalog="system" width="128" height="128"/>
+        <image name="bolt.slash" catalog="system" width="128" height="128"/>
+        <image name="photo.on.rectangle" catalog="system" width="128" height="128"/>
+        <image name="viewfinder" catalog="system" width="128" height="128"/>
+        <image name="xmark" catalog="system" width="128" height="128"/>
+        <namedColor name="dsLime">
+            <color red="0.6471" green="0.9333" blue="0.1843" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
