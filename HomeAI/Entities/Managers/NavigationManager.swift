@@ -355,7 +355,15 @@ final class NavigationManager {
     }
 
     /// A/09 AI designer (Home → "Ask AI designer").
+    /// Pro-only: non-Pro users get the paywall; its close button leaves them where they were.
     func showAssistant() {
+        guard !AssistantStore.requiresProForChat || AdaptyService.shared.hasActiveSubscription else {
+            AmplitudeService.shared.logRedesignEvent("assistant_paywall", properties: [:])
+            showPremium(placement: Constants.Keys.optionPlacememt, origin: .inApp) { [weak self] in
+                self?.push(AssistantViewController.make())
+            }
+            return
+        }
         push(AssistantViewController.make())
     }
 
@@ -395,10 +403,9 @@ final class NavigationManager {
         push(vc)
     }
 
+    /// Legacy entry (Options) → the new A/09 AI designer, same Pro gate.
     func showAssistantList() {
-        let storyboard = UIStoryboard(name: "Main", bundle: .main)
-        guard let vc = storyboard.instantiateViewController(withIdentifier: "AssistantListViewController") as? AssistantListViewController else { return }
-        push(vc)
+        showAssistant()
     }
 
     func showChat(assistantType: AssistantType, initialMessage: String? = nil) {

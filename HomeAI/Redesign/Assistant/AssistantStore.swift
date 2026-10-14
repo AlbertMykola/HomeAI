@@ -47,9 +47,9 @@ final class AssistantStore {
 
     static let shared = AssistantStore()
 
-    /// Design note A/09: text answers are free, only "Apply to my photo" spends a credit.
-    /// Flip to true to keep the old rule (assistant only with an active subscription).
-    static let requiresProForChat = false
+    /// Product decision (Albert): the AI designer is Pro-only, like the old assistant.
+    /// "Apply to my photo" still spends 1 credit on top.
+    static let requiresProForChat = true
 
     private let folder: URL = {
         let base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
