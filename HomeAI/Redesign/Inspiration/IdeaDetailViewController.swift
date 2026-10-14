@@ -72,17 +72,28 @@ final class IdeaDetailViewController: UIViewController {
         view.addGestureRecognizer(pan)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         guard !didRunEntrance else { return }
         didRunEntrance = true
         if !presentedWithZoom, !DS.Motion.reduceMotion {
-            // Hero settles 1.06 → 1 (slow spring).
+            // Figma A/08 I2: hero fades in 450 ms and settles 1.06 → 1 (critically damped, 1.2 s);
+            // nav fades 300 ms, tag rises at 50 ms, panel at 110 ms (y 12, 450 ms), panel blocks 60 ms apart.
+            heroImageView.alpha = 0
             heroImageView.transform = CGAffineTransform(scaleX: 1.06, y: 1.06)
-            UIView.animate(withDuration: 1.2, delay: 0, usingSpringWithDamping: 0.9, initialSpringVelocity: 0) {
-                self.heroImageView.transform = .identity
-            }
+            DS.Motion.animate(0.45) { self.heroImageView.alpha = 1 }
+            UIViewPropertyAnimator(duration: 1.2, dampingRatio: 1) { self.heroImageView.transform = .identity }
+                .startAnimation()
+            navView.alpha = 0
+            DS.Motion.animate(0.3) { self.navView.alpha = 1 }
+            DS.Motion.enter(aiTagView, delay: 0.05, dy: 12)
+            DS.Motion.enter(panelView, delay: 0.11, dy: 12)
+            animatePanelContent(delay: 0.17)
         }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) { [weak self] in self?.tryButton.runShimmer() }
     }
 

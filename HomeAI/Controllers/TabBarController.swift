@@ -33,7 +33,7 @@ final class TabBarController: UITabBarController {
         super.viewDidAppear(animated)
         guard !didRunEntrance else { return }
         didRunEntrance = true
-        floatingBar.animateEntrance(delay: 0.3)
+        floatingBar.animateEntrance(delay: 0.25)
     }
 
     override var selectedIndex: Int {

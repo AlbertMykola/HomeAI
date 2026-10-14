@@ -50,6 +50,18 @@ enum DS {
             return animator
         }
 
+        /// Figma "bouncy" entrance: opacity ease-out + transform spring (ζ≈0.75, 450 ms, ~3 % overshoot).
+        static func enterBouncy(_ view: UIView?, delay: TimeInterval, dy: CGFloat = 12, scale: CGFloat = 1,
+                                duration: TimeInterval = 0.45) {
+            guard let view else { return }
+            guard !reduceMotion else { enter(view, delay: delay); return }
+            view.alpha = 0
+            view.transform = CGAffineTransform(translationX: 0, y: dy).scaledBy(x: scale, y: scale)
+            animate(duration, delay: delay) { view.alpha = 1 }
+            let spring = UIViewPropertyAnimator(duration: duration, dampingRatio: 0.75) { view.transform = .identity }
+            spring.startAnimation(afterDelay: delay)
+        }
+
         /// Entrance used by most screens: fade + offset (+ optional scale) → identity.
         static func enter(_ view: UIView?, delay: TimeInterval, dy: CGFloat = 0, dx: CGFloat = 0,
                           scale: CGFloat = 1, duration: TimeInterval = 0.45, pop: Bool = false, spring: Bool = false) {

@@ -92,10 +92,11 @@ final class InspirationFeedViewController: UIViewController {
         super.viewDidAppear(animated)
         guard !didRunEntrance else { return }
         didRunEntrance = true
-        DS.Motion.enter(largeTitleLabel, delay: 0, duration: 0.35)
-        DS.Motion.enter(searchButton, delay: 0.05, scale: 0.9, duration: 0.35)
+        // Figma A/08 I1 timeline: title 0 ms (y 12), chips from 60 ms every 40 ms (x 16), all 450 ms ease-out.
+        DS.Motion.enter(largeTitleLabel, delay: 0, dy: 12)
+        DS.Motion.enter(searchButton, delay: 0, dy: 12)
         roomChips.sorted { $0.tag < $1.tag }.enumerated().forEach { i, chip in
-            DS.Motion.enter(chip, delay: 0.08 + Double(i) * 0.04, dx: 40)
+            DS.Motion.enter(chip, delay: 0.06 + Double(i) * 0.04, dx: 16)
         }
     }
 
@@ -190,10 +191,26 @@ final class InspirationFeedViewController: UIViewController {
 
     // MARK: Skeleton
 
+    /// Shimmer left → right 1.2 s (#ECECEC → #F5F5F5) + opacity pulse 1 → 0.45 → 1 (1.4 s, phase-shifted).
     private func startSkeleton() {
         skeletonView.isHidden = false
         guard !DS.Motion.reduceMotion else { return }
+        view.layoutIfNeeded()
         for block in skeletonBlocks {
+            let shimmer = CAGradientLayer()
+            shimmer.frame = block.bounds
+            shimmer.cornerRadius = block.layer.cornerRadius
+            shimmer.startPoint = CGPoint(x: 0, y: 0.5)
+            shimmer.endPoint = CGPoint(x: 1, y: 0.5)
+            let base = UIColor(hex: "ECECEC").cgColor, light = UIColor(hex: "F5F5F5").cgColor
+            shimmer.colors = [base, light, base]
+            let sweep = CABasicAnimation(keyPath: "locations")
+            sweep.fromValue = [-1.0, -0.5, 0.0]
+            sweep.toValue = [1.0, 1.5, 2.0]
+            sweep.duration = 1.2
+            sweep.repeatCount = .infinity
+            shimmer.add(sweep, forKey: "shimmer")
+            block.layer.addSublayer(shimmer)
             let pulse = CABasicAnimation(keyPath: "opacity")
             pulse.fromValue = 1
             pulse.toValue = 0.45
@@ -214,10 +231,12 @@ final class InspirationFeedViewController: UIViewController {
             self.skeletonBlocks.forEach { $0.layer.removeAllAnimations() }
         }
         collectionView.layoutIfNeeded()
-        // Cards appear one by one: scale 0.94 → 1 + fade, 60 ms apart.
-        let cells = collectionView.indexPathsForVisibleItems.sorted().compactMap { collectionView.cellForItem(at: $0) }
+        // Cards column by column from 140 ms, 60 ms apart: fade + y 12 + scale 0.94 → 1 (bouncy spring).
+        let cells = collectionView.visibleCells.sorted {
+            $0.frame.minX != $1.frame.minX ? $0.frame.minX < $1.frame.minX : $0.frame.minY < $1.frame.minY
+        }
         cells.enumerated().forEach { i, cell in
-            DS.Motion.enter(cell, delay: 0.05 + Double(i) * 0.06, scale: 0.94, duration: 0.4)
+            DS.Motion.enterBouncy(cell, delay: 0.14 + Double(i) * 0.06, dy: 12, scale: 0.94)
         }
     }
 
