@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geologica-Regular.ttf">
+            <string>Geologica-Regular</string>
+        </array>
+        <array key="Geologica-SemiBold.ttf">
+            <string>Geologica-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cell" customClass="ProjectCell" customModule="HomeAI" customModuleProvider="target" reuseIdentifier="ProjectCell">
+            <rect key="frame" x="0.0" y="0.0" width="170" height="246"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" contentMode="scaleToFill" id="cell-content" userLabel="Content">
+                <rect key="frame" x="0.0" y="0.0" width="170" height="246"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="img" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" userLabel="coverImageView" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
+                        <color key="backgroundColor" name="dsSurface"/>
+                        <constraints>
+                            <constraint firstItem="img" firstAttribute="height" secondItem="img" secondAttribute="width" multiplier="200:170" id="c89"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="22"/></userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <view contentMode="scaleToFill" hidden="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ring" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="selectionRingView">
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="22"/></userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="3"/></userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" name="dsLime"/></userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="version" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                        <subviews>
+                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="version-row" opaque="NO" alignment="center" spacing="0" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                <subviews>
+                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="version-label" userLabel="versionLabel" opaque="NO" text="V3" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                        <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="11"/><color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/><nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <edgeInsets key="layoutMargins" top="0" left="9" bottom="0" right="9"/>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.350" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="24" id="c81"/>
+                            <constraint firstItem="version-row" firstAttribute="leading" secondItem="version" secondAttribute="leading" id="c82"/>
+                            <constraint firstItem="version-row" firstAttribute="top" secondItem="version" secondAttribute="top" id="c83"/>
+                            <constraint firstItem="version" firstAttribute="trailing" secondItem="version-row" secondAttribute="trailing" id="c84"/>
+                            <constraint firstItem="version" firstAttribute="bottom" secondItem="version-row" secondAttribute="bottom" id="c85"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="12.0"/></userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <view contentMode="scaleToFill" hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="check" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="checkView">
+                        <subviews>
+                            <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="check-icon" userLabel="checkIconView" image="checkmark" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="12" weight="bold"/>
+                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="15" id="c102"/>
+                                    <constraint firstAttribute="height" constant="15" id="c103"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.350" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="26" id="c98"/>
+                            <constraint firstAttribute="height" constant="26" id="c99"/>
+                            <constraint firstItem="check-icon" firstAttribute="centerX" secondItem="check" secondAttribute="centerX" id="c100"/>
+                            <constraint firstItem="check-icon" firstAttribute="centerY" secondItem="check" secondAttribute="centerY" id="c101"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="13"/></userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="2"/></userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.2"/></userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="6"/></userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="2"/></userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="texts" opaque="NO" axis="vertical" spacing="2">
+                        <subviews>
+                            <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title" userLabel="titleLabel" opaque="NO" text="Japandi living room" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="15"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                            </label>
+                            <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sub" userLabel="subtitleLabel" opaque="NO" text="3 versions · Today" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="img" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c86"/>
+                    <constraint firstItem="img" firstAttribute="top" secondItem="cell-content" secondAttribute="top" id="c87"/>
+                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="img" secondAttribute="trailing" id="c88"/>
+                    <constraint firstItem="ring" firstAttribute="leading" secondItem="img" secondAttribute="leading" id="c90"/>
+                    <constraint firstItem="ring" firstAttribute="top" secondItem="img" secondAttribute="top" id="c91"/>
+                    <constraint firstItem="img" firstAttribute="trailing" secondItem="ring" secondAttribute="trailing" id="c92"/>
+                    <constraint firstItem="img" firstAttribute="bottom" secondItem="ring" secondAttribute="bottom" id="c93"/>
+                    <constraint firstItem="version" firstAttribute="leading" secondItem="img" secondAttribute="leading" constant="8" id="c94"/>
+                    <constraint firstItem="img" firstAttribute="bottom" secondItem="version" secondAttribute="bottom" constant="8" id="c95"/>
+                    <constraint firstItem="check" firstAttribute="top" secondItem="img" secondAttribute="top" constant="8" id="c96"/>
+                    <constraint firstItem="img" firstAttribute="trailing" secondItem="check" secondAttribute="trailing" constant="8" id="c97"/>
+                    <constraint firstItem="texts" firstAttribute="top" secondItem="img" secondAttribute="bottom" constant="8" id="c104"/>
+                    <constraint firstItem="texts" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" constant="4" id="c105"/>
+                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="texts" secondAttribute="trailing" constant="4" id="c106"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="coverImageView" destination="img" id="img-o"/>
+                <outlet property="selectionRingView" destination="ring" id="ring-o"/>
+                <outlet property="versionLabel" destination="version-label" id="version-label-o"/>
+                <outlet property="checkView" destination="check" id="check-o"/>
+                <outlet property="checkIconView" destination="check-icon" id="check-icon-o"/>
+                <outlet property="titleLabel" destination="title" id="title-o"/>
+                <outlet property="subtitleLabel" destination="sub" id="sub-o"/>
+            </connections>
+        </collectionViewCell>
+        </objects>
+    <resources>
+        <image name="checkmark" catalog="system" width="128" height="128"/>
+        <namedColor name="dsLime">
+            <color red="0.6471" green="0.9333" blue="0.1843" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsSurface">
+            <color red="0.9686" green="0.9686" blue="0.9686" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsTextPrimary">
+            <color red="0.0000" green="0.0000" blue="0.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsTextTertiary">
+            <color red="0.5569" green="0.5569" blue="0.5765" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

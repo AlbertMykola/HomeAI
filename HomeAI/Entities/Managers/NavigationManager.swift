@@ -137,8 +137,8 @@ final class NavigationManager {
     private func makeTabControllers() -> [UIViewController] {
         let home = HomeViewController(nibName: "HomeViewController", bundle: .main)
         let inspiration = InspirationFeedViewController(nibName: "InspirationFeedViewController", bundle: .main)
-        // TODO(redesign): replace with the new Projects / Profile screens (A/10, A/11).
-        let projects = mainStoryboard.instantiateViewController(withIdentifier: "ProfileViewController")
+        let projects = ProjectsViewController(nibName: "ProjectsViewController", bundle: .main)
+        // TODO(redesign): replace with the new Profile screen (A/11).
         let profile = mainStoryboard.instantiateViewController(withIdentifier: "SettingsViewController")
         return [home, inspiration, projects, profile].map { PortraitNavigationController(rootViewController: $0) }
     }

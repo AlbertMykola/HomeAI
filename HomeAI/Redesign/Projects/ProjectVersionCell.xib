@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geologica-Bold.ttf">
+            <string>Geologica-Bold</string>
+        </array>
+        <array key="Geologica-Regular.ttf">
+            <string>Geologica-Regular</string>
+        </array>
+        <array key="Geologica-SemiBold.ttf">
+            <string>Geologica-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cell" customClass="ProjectVersionCell" customModule="HomeAI" customModuleProvider="target" reuseIdentifier="ProjectVersionCell">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="76"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" contentMode="scaleToFill" id="cell-content" userLabel="Content">
+                <rect key="frame" x="0.0" y="0.0" width="393" height="76"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="box" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="boxView">
+                        <subviews>
+                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="row" opaque="NO" alignment="center" spacing="12" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                <subviews>
+                                    <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thumb" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" userLabel="thumbImageView" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="52" id="c206"/>
+                                            <constraint firstAttribute="height" constant="52" id="c207"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="12"/></userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
+                                    <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="texts" opaque="NO" axis="vertical" spacing="2">
+                                        <subviews>
+                                            <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title" userLabel="titleLabel" opaque="NO" text="V3 · Sage walls" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.8" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="15"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                            </label>
+                                            <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sub" userLabel="subtitleLabel" opaque="NO" text="Paint · Today 14:20" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="slot" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="slotControl">
+                                        <subviews>
+                                            <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slot-label" userLabel="slotLabel" opaque="NO" text="B" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                <fontDescription key="fontDescription" name="Geologica-Bold" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="26" id="c208"/>
+                                            <constraint firstAttribute="height" constant="26" id="c209"/>
+                                            <constraint firstItem="slot-label" firstAttribute="centerX" secondItem="slot" secondAttribute="centerX" id="c210"/>
+                                            <constraint firstItem="slot-label" firstAttribute="centerY" secondItem="slot" secondAttribute="centerY" id="c211"/>
+                                        </constraints>
+                                        <accessibility key="accessibilityConfiguration" label="Compare"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="13"/></userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="1.5"/></userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="0.7804" green="0.7804" blue="0.8000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSlot:"/>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <edgeInsets key="layoutMargins" top="0" left="8" bottom="0" right="14"/>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" name="dsSurface"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="68" id="c201"/>
+                            <constraint firstItem="row" firstAttribute="leading" secondItem="box" secondAttribute="leading" id="c202"/>
+                            <constraint firstItem="row" firstAttribute="top" secondItem="box" secondAttribute="top" id="c203"/>
+                            <constraint firstItem="box" firstAttribute="trailing" secondItem="row" secondAttribute="trailing" id="c204"/>
+                            <constraint firstItem="box" firstAttribute="bottom" secondItem="row" secondAttribute="bottom" id="c205"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="18"/></userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="box" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" constant="20" id="c197"/>
+                    <constraint firstItem="box" firstAttribute="top" secondItem="cell-content" secondAttribute="top" constant="4" id="c198"/>
+                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="box" secondAttribute="trailing" constant="20" id="c199"/>
+                    <constraint firstItem="cell-content" firstAttribute="bottom" secondItem="box" secondAttribute="bottom" constant="4" id="c200"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="boxView" destination="box" id="box-o"/>
+                <outlet property="thumbImageView" destination="thumb" id="thumb-o"/>
+                <outlet property="titleLabel" destination="title" id="title-o"/>
+                <outlet property="subtitleLabel" destination="sub" id="sub-o"/>
+                <outlet property="slotControl" destination="slot" id="slot-o"/>
+                <outlet property="slotLabel" destination="slot-label" id="slot-label-o"/>
+            </connections>
+        </tableViewCell>
+        </objects>
+    <resources>
+        <namedColor name="dsSurface">
+            <color red="0.9686" green="0.9686" blue="0.9686" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsTextPrimary">
+            <color red="0.0000" green="0.0000" blue="0.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsTextTertiary">
+            <color red="0.5569" green="0.5569" blue="0.5765" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

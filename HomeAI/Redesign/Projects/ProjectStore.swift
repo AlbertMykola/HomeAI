@@ -127,20 +127,56 @@ final class ProjectStore {
         save()
     }
 
+    func rename(projectID: String, firstDocID: String, to title: String) {
+        if let i = projects.firstIndex(where: { $0.id == projectID }) {
+            projects[i].title = title
+            save()
+        } else {
+            rename(projectContaining: firstDocID, to: title)
+        }
+    }
+
     /// Deletes one version (history entry). Removing the last version removes the project.
-    func deleteVersion(docID: String) async throws {
-        try await history.deleteImage(docId: docID)
-        if let i = projects.firstIndex(where: { $0.versionIDs.contains(docID) }) {
+    func deleteVersion(docID: String, inProject projectID: String? = nil) async throws {
+        let index = projectID.flatMap { id in projects.firstIndex { $0.id == id } }
+            ?? projects.firstIndex { $0.versionIDs.contains(docID) }
+        if let i = index {
             projects[i].versionIDs.removeAll { $0 == docID }
             if projects[i].versionIDs.isEmpty { projects.remove(at: i) }
+        }
+        if !projects.contains(where: { $0.versionIDs.contains(docID) }) {
+            try await history.deleteImage(docId: docID)
         }
         save()
     }
 
     func deleteProject(containing docID: String) async throws {
-        let ids = projects.first(where: { $0.versionIDs.contains(docID) })?.versionIDs ?? [docID]
-        for id in ids { try await history.deleteImage(docId: id) }
-        projects.removeAll { $0.versionIDs.contains(docID) }
+        try await deleteProject(id: projects.first(where: { $0.versionIDs.contains(docID) })?.id, fallbackDocID: docID)
+    }
+
+    /// Deletes a project; history files are removed only when no other project (duplicate) still uses them.
+    func deleteProject(id: String?, fallbackDocID: String) async throws {
+        let target = projects.first { $0.id == id }
+        let ids = target?.versionIDs ?? [fallbackDocID]
+        projects.removeAll { $0.id == id }
+        let stillUsed = Set(projects.flatMap(\.versionIDs))
+        for doc in ids where !stillUsed.contains(doc) { try await history.deleteImage(docId: doc) }
+        save()
+    }
+
+    /// PR1 Duplicate: a new project sharing the same versions (files are kept until no project uses them).
+    func duplicate(project: DesignProject, versions: [ImageDoc]) {
+        let now = Date()
+        let base = displayTitle(for: project, versions: versions)
+        var copy = DesignProject(id: UUID().uuidString, title: String(format: "%@ copy".localized, base),
+                                 createdAt: now, updatedAt: now, versionIDs: versions.map(\.id))
+        copy.notes = project.notes
+        if project.id.hasPrefix("legacy-") {
+            // A legacy single doc has no stored project yet; keep it as its own project next to the copy.
+            projects.insert(DesignProject(id: UUID().uuidString, title: nil, createdAt: project.createdAt,
+                                          updatedAt: project.updatedAt, versionIDs: project.versionIDs), at: 0)
+        }
+        projects.insert(copy, at: 0)
         save()
     }
 
