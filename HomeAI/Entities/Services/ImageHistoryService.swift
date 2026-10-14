@@ -135,6 +135,12 @@ final class ImageHistoryService {
         reloadCache()
     }
 
+    /// Every saved generation, newest first (Projects / versions).
+    func allDocs() -> [ImageDoc] {
+        reloadCache()
+        return cachedDocs
+    }
+
     private func reloadCache() {
         cachedDocs = loadAllDocs()
         nextIndex = 0

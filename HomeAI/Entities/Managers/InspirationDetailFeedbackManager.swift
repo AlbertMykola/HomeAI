@@ -118,14 +118,14 @@ private extension InspirationDetailFeedbackManager {
 
     func presentDislikeEmail(from viewController: UIViewController) {
         let userId = AdaptyService.shared.userID
-        let subject = "Dislike - HomeAI \(userId)"
+        let subject = "Dislike - Rehomely \(userId)"
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
         let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
         let systemVersion = UIDevice.current.systemVersion
         let deviceModel = UIDevice.current.model
 
         let body = """
-        Hi HomeAI team,
+        Hi Rehomely team,
 
         I'd like to share negative feedback.
 

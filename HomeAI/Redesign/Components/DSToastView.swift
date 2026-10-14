@@ -6,6 +6,7 @@ final class DSToastView: DSNibView {
     @IBOutlet private weak var cardView: DSView!
     @IBOutlet private weak var iconView: UIImageView!
     @IBOutlet private weak var messageLabel: UILabel!
+    @IBOutlet private weak var actionLabel: UILabel!
 
     enum Style {
         case success, info, warning
@@ -30,18 +31,21 @@ final class DSToastView: DSNibView {
     private var onTap: (() -> Void)?
 
     /// Slides in from the top (−40 pt, spring), stays `duration`, slides out.
-    static func show(_ message: String, style: Style = .info, symbol: String? = nil,
-                     in host: UIView? = nil, duration: TimeInterval = 2.5, onTap: (() -> Void)? = nil) {
+    static func show(_ message: String, style: Style = .info, symbol: String? = nil, action: String? = nil,
+                     in host: UIView? = nil, topOffset: CGFloat = 52, duration: TimeInterval = 2.5,
+                     onTap: (() -> Void)? = nil) {
         guard let host = host ?? UIApplication.getKeyWindow() else { return }
         current?.removeFromSuperview()
         let toast = DSToastView()
         toast.messageLabel.text = message
+        toast.actionLabel.text = action
+        toast.actionLabel.isHidden = action == nil
         toast.iconView.image = UIImage(systemName: symbol ?? style.symbol)
         toast.iconView.tintColor = style.tint
         toast.translatesAutoresizingMaskIntoConstraints = false
         host.addSubview(toast)
         NSLayoutConstraint.activate([
-            toast.topAnchor.constraint(equalTo: host.safeAreaLayoutGuide.topAnchor, constant: 8),
+            toast.topAnchor.constraint(equalTo: host.safeAreaLayoutGuide.topAnchor, constant: topOffset),
             toast.leadingAnchor.constraint(equalTo: host.leadingAnchor, constant: 20),
             toast.trailingAnchor.constraint(equalTo: host.trailingAnchor, constant: -20)
         ])
@@ -54,7 +58,7 @@ final class DSToastView: DSNibView {
         UIAccessibility.post(notification: .announcement, argument: message)
         host.layoutIfNeeded()
         toast.alpha = 0
-        toast.transform = CGAffineTransform(translationX: 0, y: -40)
+        toast.transform = CGAffineTransform(translationX: 0, y: -60)
         UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0,
                        options: [.allowUserInteraction]) {
             toast.alpha = 1

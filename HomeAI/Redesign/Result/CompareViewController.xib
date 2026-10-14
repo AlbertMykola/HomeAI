@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geologica-Medium.ttf">
+            <string>Geologica-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CompareViewController" customModule="HomeAI" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="root" id="root-view-o"/>
+                <outlet property="stageView" destination="stage" id="stage-o"/>
+                <outlet property="afterImageView" destination="after" id="after-o"/>
+                <outlet property="beforeClipView" destination="before-clip" id="before-clip-o"/>
+                <outlet property="beforeImageView" destination="before" id="before-o"/>
+                <outlet property="dividerView" destination="divider" id="divider-o"/>
+                <outlet property="handleView" destination="handle" id="handle-o"/>
+                <outlet property="closeButton" destination="close" id="close-o"/>
+                <outlet property="fitButton" destination="fit" id="fit-o"/>
+                <outlet property="segmentedView" destination="segmented" id="segmented-o"/>
+                <outlet property="segmentKnob" destination="seg-knob" id="seg-knob-o"/>
+                <outletCollection property="segmentControls" destination="seg0" collectionClass="NSMutableArray" id="seg0-oc"/>
+                <outletCollection property="segmentLabels" destination="seg0-label" collectionClass="NSMutableArray" id="seg0-label-oc"/>
+                <outletCollection property="segmentControls" destination="seg1" collectionClass="NSMutableArray" id="seg1-oc"/>
+                <outletCollection property="segmentLabels" destination="seg1-label" collectionClass="NSMutableArray" id="seg1-label-oc"/>
+                <outletCollection property="segmentControls" destination="seg2" collectionClass="NSMutableArray" id="seg2-oc"/>
+                <outletCollection property="segmentLabels" destination="seg2-label" collectionClass="NSMutableArray" id="seg2-label-oc"/>
+                <outlet property="beforeWidthConstraint" destination="c905" id="c905-o"/>
+                <outlet property="segmentKnobLeading" destination="c933" id="c933-o"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="root" userLabel="Root">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="stage" userLabel="stageView">
+                    <subviews>
+                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="after" userLabel="afterImageView" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                        </imageView>
+                        <view contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="before-clip" userLabel="beforeClipView">
+                            <subviews>
+                                <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="before" userLabel="beforeImageView" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstItem="before" firstAttribute="leading" secondItem="before-clip" secondAttribute="leading" id="c906"/>
+                                <constraint firstItem="before" firstAttribute="top" secondItem="before-clip" secondAttribute="top" id="c907"/>
+                                <constraint firstItem="before-clip" firstAttribute="bottom" secondItem="before" secondAttribute="bottom" id="c908"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="divider" userLabel="dividerView">
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="2" id="c912"/>
+                            </constraints>
+                        </view>
+                        <imageView contentMode="scaleAspectFit" clipsSubviews="NO" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="handle" userLabel="handleView" image="ds_compare_handle" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                            <constraints>
+                                <constraint firstAttribute="width" constant="32" id="c914"/>
+                                <constraint firstAttribute="height" constant="32" id="c915"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="after" firstAttribute="leading" secondItem="stage" secondAttribute="leading" id="c898"/>
+                        <constraint firstItem="after" firstAttribute="top" secondItem="stage" secondAttribute="top" id="c899"/>
+                        <constraint firstItem="stage" firstAttribute="trailing" secondItem="after" secondAttribute="trailing" id="c900"/>
+                        <constraint firstItem="stage" firstAttribute="bottom" secondItem="after" secondAttribute="bottom" id="c901"/>
+                        <constraint firstItem="before-clip" firstAttribute="leading" secondItem="stage" secondAttribute="leading" id="c902"/>
+                        <constraint firstItem="before-clip" firstAttribute="top" secondItem="stage" secondAttribute="top" id="c903"/>
+                        <constraint firstItem="stage" firstAttribute="bottom" secondItem="before-clip" secondAttribute="bottom" id="c904"/>
+                        <constraint firstItem="before-clip" firstAttribute="width" secondItem="stage" secondAttribute="width" multiplier="0.5" id="c905"/>
+                        <constraint firstItem="before" firstAttribute="width" secondItem="stage" secondAttribute="width" id="c909"/>
+                        <constraint firstItem="divider" firstAttribute="top" secondItem="stage" secondAttribute="top" id="c910"/>
+                        <constraint firstItem="stage" firstAttribute="bottom" secondItem="divider" secondAttribute="bottom" id="c911"/>
+                        <constraint firstItem="divider" firstAttribute="centerX" secondItem="before-clip" secondAttribute="trailing" id="c913"/>
+                        <constraint firstItem="handle" firstAttribute="centerX" secondItem="divider" secondAttribute="centerX" id="c916"/>
+                        <constraint firstItem="handle" firstAttribute="centerY" secondItem="divider" secondAttribute="centerY" id="c917"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="close" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="closeButton">
+                    <subviews>
+                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="close-icon" image="xmark" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17.0" weight="semibold"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="c880"/>
+                                <constraint firstAttribute="height" constant="20" id="c881"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.300" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="c876"/>
+                        <constraint firstAttribute="height" constant="44" id="c877"/>
+                        <constraint firstItem="close-icon" firstAttribute="centerX" secondItem="close" secondAttribute="centerX" id="c878"/>
+                        <constraint firstItem="close-icon" firstAttribute="centerY" secondItem="close" secondAttribute="centerY" id="c879"/>
+                    </constraints>
+                    <accessibility key="accessibilityConfiguration" label="Close"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0.5"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.200" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.08"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="7"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="4"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapClose:"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fit" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="fitButton">
+                    <subviews>
+                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fit-icon" image="viewfinder" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17.0" weight="semibold"/>
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="20" id="c886"/>
+                                <constraint firstAttribute="height" constant="20" id="c887"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.300" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="c882"/>
+                        <constraint firstAttribute="height" constant="44" id="c883"/>
+                        <constraint firstItem="fit-icon" firstAttribute="centerX" secondItem="fit" secondAttribute="centerX" id="c884"/>
+                        <constraint firstItem="fit-icon" firstAttribute="centerY" secondItem="fit" secondAttribute="centerY" id="c885"/>
+                    </constraints>
+                    <accessibility key="accessibilityConfiguration" label="Reset zoom"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0.5"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.200" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.08"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="7"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="4"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapFit:"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="segmented" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="segmentedView">
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seg-knob" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="segmentKnob">
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seg-row" opaque="NO" distribution="fillEqually" spacing="0">
+                            <subviews>
+                                <view contentMode="scaleToFill" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="seg0" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
+                                    <subviews>
+                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="seg0-label" opaque="NO" text="Original" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                            <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextSecondary"/><nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="seg0-label" firstAttribute="centerX" secondItem="seg0" secondAttribute="centerX" id="c888"/>
+                                        <constraint firstItem="seg0-label" firstAttribute="centerY" secondItem="seg0" secondAttribute="centerY" id="c889"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="hapticOnPress" value="NO"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="pressedScale"><real key="value" value="0.97"/></userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSegment:"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <view contentMode="scaleToFill" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="seg1" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
+                                    <subviews>
+                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="seg1-label" opaque="NO" text="Split" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                            <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextSecondary"/><nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="seg1-label" firstAttribute="centerX" secondItem="seg1" secondAttribute="centerX" id="c890"/>
+                                        <constraint firstItem="seg1-label" firstAttribute="centerY" secondItem="seg1" secondAttribute="centerY" id="c891"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="hapticOnPress" value="NO"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="pressedScale"><real key="value" value="0.97"/></userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSegment:"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <view contentMode="scaleToFill" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="seg2" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
+                                    <subviews>
+                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="seg2-label" opaque="NO" text="Result" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                            <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextSecondary"/><nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="seg2-label" firstAttribute="centerX" secondItem="seg2" secondAttribute="centerX" id="c892"/>
+                                        <constraint firstItem="seg2-label" firstAttribute="centerY" secondItem="seg2" secondAttribute="centerY" id="c893"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="hapticOnPress" value="NO"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="pressedScale"><real key="value" value="0.97"/></userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSegment:"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.900" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="c924"/>
+                        <constraint firstItem="seg-row" firstAttribute="leading" secondItem="segmented" secondAttribute="leading" constant="3" id="c926"/>
+                        <constraint firstItem="seg-row" firstAttribute="top" secondItem="segmented" secondAttribute="top" constant="3" id="c927"/>
+                        <constraint firstItem="segmented" firstAttribute="trailing" secondItem="seg-row" secondAttribute="trailing" constant="3" id="c928"/>
+                        <constraint firstItem="segmented" firstAttribute="bottom" secondItem="seg-row" secondAttribute="bottom" constant="3" id="c929"/>
+                        <constraint firstItem="seg-knob" firstAttribute="top" secondItem="segmented" secondAttribute="top" constant="3" id="c930"/>
+                        <constraint firstItem="segmented" firstAttribute="bottom" secondItem="seg-knob" secondAttribute="bottom" constant="3" id="c931"/>
+                        <constraint firstItem="seg-knob" firstAttribute="width" secondItem="seg0" secondAttribute="width" id="c932"/>
+                        <constraint firstItem="seg-knob" firstAttribute="leading" secondItem="segmented" secondAttribute="leading" constant="3" id="c933"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="root-safeArea"/>
+            <constraints>
+                <constraint firstItem="stage" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c894"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="stage" secondAttribute="trailing" id="c895"/>
+                <constraint firstItem="stage" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" id="c896"/>
+                <constraint firstItem="segmented" firstAttribute="top" secondItem="stage" secondAttribute="bottom" constant="12" id="c897"/>
+                <constraint firstItem="close" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="16" id="c918"/>
+                <constraint firstItem="close" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="4" id="c919"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="fit" secondAttribute="trailing" constant="16" id="c920"/>
+                <constraint firstItem="fit" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="4" id="c921"/>
+                <constraint firstItem="segmented" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="46" id="c922"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="segmented" secondAttribute="trailing" constant="46" id="c923"/>
+                <constraint firstItem="root-safeArea" firstAttribute="bottom" secondItem="segmented" secondAttribute="bottom" constant="8" id="c925"/>
+            </constraints>
+        </view>
+        </objects>
+    <resources>
+        <image name="ds_compare_handle" width="64" height="64"/>
+        <image name="viewfinder" catalog="system" width="128" height="128"/>
+        <image name="xmark" catalog="system" width="128" height="128"/>
+        <namedColor name="dsTextSecondary">
+            <color red="0.2510" green="0.2510" blue="0.2510" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

@@ -11,16 +11,16 @@ enum HistoryDocOpener {
     }
 
     static func open(doc: ImageDoc, image: UIImage) {
-        let fileManager = FileManager.default
-        let repo = ImageHistoryService()
-        let option = doc.designOption ?? .interior
-        var resolvedStyleName = doc.style
-        var resolvedColorName = doc.colorName
-        var canRegenerate = doc.canRegenerate && (doc.originalPath.flatMap { fileManager.fileExists(atPath: $0) } ?? false)
+        NavigationManager.shared.showResult(docID: doc.id, image: image, reveal: false)
+    }
 
+    /// Rebuilds the prompt state a version was made with (Again / Regenerate / Restyle).
+    /// `baseImage` is the photo the new generation starts from (usually the project's original).
+    static func restoredManager(for doc: ImageDoc, baseImage: UIImage) -> GemeniPromptManager {
+        let option = doc.designOption ?? .interior
         let promptManager = GemeniPromptManager()
         promptManager.updateOption(option)
-        promptManager.updateBaseImage(image)
+        promptManager.updateBaseImage(baseImage)
         if let mode = doc.savedDesignMode { promptManager.updateDesignMode(mode) }
         if let material = doc.savedSurfaceMaterial { promptManager.updateSurfaceMaterial(material) }
         if let custom = doc.surfaceCustomPrompt, !custom.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
@@ -30,69 +30,22 @@ enum HistoryDocOpener {
             promptManager.updateObjectToReplace(object)
         }
         if let replaceMode = doc.savedReplaceMode { promptManager.updateReplaceMode(replaceMode) }
-
-        switch option {
-        case .interior:
-            if let room = doc.savedInteriorRoomType { promptManager.updateRoom(room) } else { canRegenerate = false }
-        case .exterior:
-            if let building = doc.savedExteriorBuildingType { promptManager.updateExteriorType(building) } else { canRegenerate = false }
-        case .garden:
-            if let garden = doc.savedGardenType { promptManager.updateGardenType(garden) } else { canRegenerate = false }
-        case .rearrange:
-            if let sub = doc.savedRearrangeSubOption {
-                promptManager.updateRearrangeSubOption(sub)
-                resolvedStyleName = sub.displayTitle
-            } else {
-                canRegenerate = false
-            }
-        default:
-            break
-        }
-
+        if let room = doc.savedInteriorRoomType { promptManager.updateRoom(room) }
+        if let building = doc.savedExteriorBuildingType { promptManager.updateExteriorType(building) }
+        if let garden = doc.savedGardenType { promptManager.updateGardenType(garden) }
+        if let sub = doc.savedRearrangeSubOption { promptManager.updateRearrangeSubOption(sub) }
         if option != .rearrange {
             if let colorName = doc.colorName,
                let color = ColorType.allCases.first(where: { $0.name.caseInsensitiveCompare(colorName) == .orderedSame }) {
                 promptManager.updateColor(color)
-            } else {
-                let random = ColorType.allCases.randomElement() ?? .random
-                promptManager.updateColor(random)
-                resolvedColorName = random.name
             }
             if let saved = savedStyle(for: option, doc: doc) {
                 promptManager.updateStyle(saved.style)
-                resolvedStyleName = saved.name
-            } else if let random = randomStyle(for: option) {
-                promptManager.updateStyle(random.style)
-                resolvedStyleName = random.name
+            } else if doc.customPrompt?.isEmpty == false, let custom = doc.customPrompt {
+                promptManager.updateCustomPrompt(custom)
             }
         }
-
-        let model = ImageDetailModel(
-            previewsImage: nil,
-            image: image,
-            color: resolvedColorName ?? "Random",
-            style: resolvedStyleName ?? "",
-            option: option,
-            canRegenerate: canRegenerate,
-            storagePath: doc.storagePath,
-            originalPath: doc.originalPath
-        )
-        guard let detail = NavigationManager.shared.showInspirationDetail(model: model, promptManager: promptManager) else { return }
-
-        Task { @MainActor [weak detail] in
-            guard fileManager.fileExists(atPath: doc.storagePath),
-                  let full = try? await repo.loadImage(at: doc.storagePath) else { return }
-            detail?.updateAfterImage(full)
-        }
-        if let originalPath = doc.originalPath, fileManager.fileExists(atPath: originalPath) {
-            if canRegenerate { detail.startBeforeLoading() }
-            let regenerate = canRegenerate
-            Task { @MainActor [weak detail] in
-                guard let original = try? await repo.loadImage(at: originalPath) else { return }
-                if regenerate { promptManager.updateBaseImage(original) }
-                detail?.updateBeforeImage(original)
-            }
-        }
+        return promptManager
     }
 
     private static func savedStyle(for option: DesignOption, doc: ImageDoc) -> (style: UnifiedStyle, name: String)? {
@@ -117,14 +70,4 @@ enum HistoryDocOpener {
         }
     }
 
-    private static func randomStyle(for option: DesignOption) -> (style: UnifiedStyle, name: String)? {
-        switch option {
-        case .interior, .replace:
-            return StyleInteriorType.allCases.randomElement().map { (.interior($0), $0.name) }
-        case .exterior:
-            return StyleExteriorType.allCases.randomElement().map { (.exterior($0), $0.name) }
-        default:
-            return nil
-        }
-    }
 }

@@ -56,7 +56,7 @@
                 </collectionView>
                 <view contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fade" customClass="DSGradientView" customModule="HomeAI" customModuleProvider="target">
                     <constraints>
-                        <constraint firstAttribute="height" constant="90" id="c707"/>
+                        <constraint firstAttribute="height" constant="90" id="c1327"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="startColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.000" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
@@ -68,26 +68,26 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nav" customClass="WizardNavBar" customModule="HomeAI" customModuleProvider="target" userLabel="navBar">
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="56" id="c696"/>
+                        <constraint firstAttribute="height" constant="56" id="c1316"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="root-safeArea"/>
             <constraints>
-                <constraint firstItem="nav" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c693"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="nav" secondAttribute="trailing" id="c694"/>
-                <constraint firstItem="nav" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-4" id="c695"/>
-                <constraint firstItem="title-group" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c697"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="title-group" secondAttribute="trailing" constant="20" id="c698"/>
-                <constraint firstItem="title-group" firstAttribute="top" secondItem="nav" secondAttribute="bottom" constant="8" id="c699"/>
-                <constraint firstItem="grid" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c700"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="grid" secondAttribute="trailing" id="c701"/>
-                <constraint firstItem="root" firstAttribute="bottom" secondItem="grid" secondAttribute="bottom" id="c702"/>
-                <constraint firstItem="grid" firstAttribute="top" secondItem="title-group" secondAttribute="bottom" constant="24" id="c703"/>
-                <constraint firstItem="fade" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c704"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="fade" secondAttribute="trailing" id="c705"/>
-                <constraint firstItem="root" firstAttribute="bottom" secondItem="fade" secondAttribute="bottom" id="c706"/>
+                <constraint firstItem="nav" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c1313"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="nav" secondAttribute="trailing" id="c1314"/>
+                <constraint firstItem="nav" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-4" id="c1315"/>
+                <constraint firstItem="title-group" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c1317"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="title-group" secondAttribute="trailing" constant="20" id="c1318"/>
+                <constraint firstItem="title-group" firstAttribute="top" secondItem="nav" secondAttribute="bottom" constant="8" id="c1319"/>
+                <constraint firstItem="grid" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c1320"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="grid" secondAttribute="trailing" id="c1321"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="grid" secondAttribute="bottom" id="c1322"/>
+                <constraint firstItem="grid" firstAttribute="top" secondItem="title-group" secondAttribute="bottom" constant="24" id="c1323"/>
+                <constraint firstItem="fade" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c1324"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="fade" secondAttribute="trailing" id="c1325"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="fade" secondAttribute="bottom" id="c1326"/>
             </constraints>
         </view>
         </objects>

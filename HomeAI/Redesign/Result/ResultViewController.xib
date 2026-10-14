@@ -1,0 +1,1374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geologica-Medium.ttf">
+            <string>Geologica-Medium</string>
+        </array>
+        <array key="Geologica-Regular.ttf">
+            <string>Geologica-Regular</string>
+        </array>
+        <array key="Geologica-SemiBold.ttf">
+            <string>Geologica-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ResultViewController" customModule="HomeAI" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="root" id="root-view-o"/>
+                <outlet property="photoView" destination="photo" id="photo-o"/>
+                <outlet property="originalImageView" destination="original" id="original-o"/>
+                <outlet property="resultImageView" destination="result" id="result-o"/>
+                <outlet property="revealBlurView" destination="reveal-blur" id="reveal-blur-o"/>
+                <outlet property="revealBandView" destination="reveal-band" id="reveal-band-o"/>
+                <outlet property="editDimView" destination="loader-dim" id="loader-dim-o"/>
+                <outlet property="editLoaderView" destination="loader" id="loader-o"/>
+                <outlet property="editSpinner" destination="loader-spin" id="loader-spin-o"/>
+                <outlet property="editLoaderLabel" destination="loader-label" id="loader-label-o"/>
+                <outlet property="navView" destination="nav" id="nav-o"/>
+                <outlet property="backButton" destination="back" id="back-o"/>
+                <outlet property="downloadButton" destination="download" id="download-o"/>
+                <outlet property="shareButton" destination="share" id="share-o"/>
+                <outlet property="moreButton" destination="more" id="more-o"/>
+                <outlet property="compareView" destination="compare" id="compare-o"/>
+                <outlet property="compareLabel" destination="cmp-label" id="cmp-label-o"/>
+                <outlet property="versionBadgeView" destination="badge" id="badge-o"/>
+                <outlet property="versionBadgeLabel" destination="badge-label" id="badge-label-o"/>
+                <outlet property="panelView" destination="panel" id="panel-o"/>
+                <outlet property="panelStack" destination="panel-stack" id="panel-stack-o"/>
+                <outlet property="titleLabel" destination="title" id="title-o"/>
+                <outlet property="subtitleLabel" destination="subtitle" id="subtitle-o"/>
+                <outlet property="likeButton" destination="like" id="like-o"/>
+                <outlet property="dislikeButton" destination="dislike" id="dislike-o"/>
+                <outlet property="versionsCollectionView" destination="versions" id="versions-o"/>
+                <outlet property="toolsScrollView" destination="tools" id="tools-o"/>
+                <outletCollection property="toolControls" destination="tool-style" collectionClass="NSMutableArray" id="tool-style-oc"/>
+                <outletCollection property="toolLabels" destination="tool-style-label" collectionClass="NSMutableArray" id="tool-style-label-oc"/>
+                <outletCollection property="toolControls" destination="tool-paint" collectionClass="NSMutableArray" id="tool-paint-oc"/>
+                <outletCollection property="toolLabels" destination="tool-paint-label" collectionClass="NSMutableArray" id="tool-paint-label-oc"/>
+                <outletCollection property="toolControls" destination="tool-replace" collectionClass="NSMutableArray" id="tool-replace-oc"/>
+                <outletCollection property="toolLabels" destination="tool-replace-label" collectionClass="NSMutableArray" id="tool-replace-label-oc"/>
+                <outletCollection property="toolControls" destination="tool-remove" collectionClass="NSMutableArray" id="tool-remove-oc"/>
+                <outletCollection property="toolLabels" destination="tool-remove-label" collectionClass="NSMutableArray" id="tool-remove-label-oc"/>
+                <outletCollection property="toolControls" destination="tool-floor" collectionClass="NSMutableArray" id="tool-floor-oc"/>
+                <outletCollection property="toolLabels" destination="tool-floor-label" collectionClass="NSMutableArray" id="tool-floor-label-oc"/>
+                <outletCollection property="toolControls" destination="tool-furnish" collectionClass="NSMutableArray" id="tool-furnish-oc"/>
+                <outletCollection property="toolLabels" destination="tool-furnish-label" collectionClass="NSMutableArray" id="tool-furnish-label-oc"/>
+                <outletCollection property="toolControls" destination="tool-layout" collectionClass="NSMutableArray" id="tool-layout-oc"/>
+                <outletCollection property="toolLabels" destination="tool-layout-label" collectionClass="NSMutableArray" id="tool-layout-label-oc"/>
+                <outlet property="askBarView" destination="ask-bar" id="ask-bar-o"/>
+                <outlet property="askControl" destination="ask-tap" id="ask-tap-o"/>
+                <outlet property="askIconView" destination="ask-icon" id="ask-icon-o"/>
+                <outlet property="askPlaceholderLabel" destination="ask-label" id="ask-label-o"/>
+                <outlet property="micButton" destination="mic" id="mic-o"/>
+                <outlet property="askPanelView" destination="ask-panel" id="ask-panel-o"/>
+                <outlet property="askTitleLabel" destination="ask-title" id="ask-title-o"/>
+                <outlet property="askCostLabel" destination="ask-cost" id="ask-cost-o"/>
+                <outlet property="suggestionScrollView" destination="sug-scroll" id="sug-scroll-o"/>
+                <outletCollection property="suggestionChips" destination="sug0" collectionClass="NSMutableArray" id="sug0-oc"/>
+                <outletCollection property="suggestionChips" destination="sug1" collectionClass="NSMutableArray" id="sug1-oc"/>
+                <outletCollection property="suggestionChips" destination="sug2" collectionClass="NSMutableArray" id="sug2-oc"/>
+                <outletCollection property="suggestionChips" destination="sug3" collectionClass="NSMutableArray" id="sug3-oc"/>
+                <outletCollection property="suggestionChips" destination="sug4" collectionClass="NSMutableArray" id="sug4-oc"/>
+                <outlet property="askFieldView" destination="ask-field" id="ask-field-o"/>
+                <outlet property="askTextView" destination="ask-text" id="ask-text-o"/>
+                <outlet property="askTextPlaceholder" destination="ask-ph" id="ask-ph-o"/>
+                <outlet property="sendButton" destination="send" id="send-o"/>
+                <outlet property="voicePanelView" destination="voice-panel" id="voice-panel-o"/>
+                <outlet property="listeningLabel" destination="listening" id="listening-o"/>
+                <outlet property="waveView" destination="wave" id="wave-o"/>
+                <outlet property="transcriptLabel" destination="transcript" id="transcript-o"/>
+                <outlet property="voiceCancelButton" destination="v-cancel" id="v-cancel-o"/>
+                <outlet property="voicePulseView" destination="v-pulse" id="v-pulse-o"/>
+                <outlet property="voiceDoneButton" destination="v-done" id="v-done-o"/>
+                <outlet property="voiceTextButton" destination="v-text" id="v-text-o"/>
+                <outlet property="revealBandTopConstraint" destination="c737" id="c737-o"/>
+                <outlet property="askPanelBottomConstraint" destination="c808" id="c808-o"/>
+                <outlet property="askFieldHeightConstraint" destination="c821" id="c821-o"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="root" userLabel="Root">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="photo" userLabel="photoView">
+                    <subviews>
+                        <imageView contentMode="scaleAspectFill" alpha="0" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="original" userLabel="originalImageView" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                        </imageView>
+                        <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="result" userLabel="resultImageView" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                        </imageView>
+                        <visualEffectView contentMode="scaleToFill" alpha="0" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="reveal-blur" userLabel="revealBlurView">
+                            <view key="contentView" contentMode="scaleToFill" id="reveal-blur-cv">
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </view>
+                            <blurEffect style="regular"/>
+                        </visualEffectView>
+                        <view contentMode="scaleToFill" alpha="0" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="reveal-band" customClass="DSGradientView" customModule="HomeAI" customModuleProvider="target" userLabel="revealBandView">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="120" id="c736"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="startColor"><color key="value" red="0.6471" green="0.9333" blue="0.1843" alpha="0.000" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="midColor"><color key="value" red="0.9137" green="1.0000" blue="0.7882" alpha="0.850" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="endColor"><color key="value" red="0.6471" green="0.9333" blue="0.1843" alpha="0.000" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="angle"><real key="value" value="180"/></userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" alpha="0" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="loader-dim" userLabel="editDimView">
+                            <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.350" colorSpace="custom" customColorSpace="sRGB"/>
+                        </view>
+                        <view contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="top-scrim" customClass="DSGradientView" customModule="HomeAI" customModuleProvider="target">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="140" id="c741"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="color" keyPath="startColor"><color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.400" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="endColor"><color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.000" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="angle"><real key="value" value="180"/></userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" alpha="0" translatesAutoresizingMaskIntoConstraints="NO" id="loader" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="editLoaderView">
+                            <subviews>
+                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="loader-row" opaque="NO" alignment="center" spacing="10" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                    <subviews>
+                                        <activityIndicatorView contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="loader-spin" userLabel="editSpinner" opaque="NO" hidesWhenStopped="YES" style="medium" animating="YES">
+                                        </activityIndicatorView>
+                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="loader-label" userLabel="editLoaderLabel" opaque="NO" text="Applying your change…" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                            <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/><nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <edgeInsets key="layoutMargins" top="0" left="16" bottom="0" right="18"/>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.550" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="c744"/>
+                                <constraint firstItem="loader-row" firstAttribute="leading" secondItem="loader" secondAttribute="leading" id="c745"/>
+                                <constraint firstItem="loader-row" firstAttribute="top" secondItem="loader" secondAttribute="top" id="c746"/>
+                                <constraint firstItem="loader" firstAttribute="trailing" secondItem="loader-row" secondAttribute="trailing" id="c747"/>
+                                <constraint firstItem="loader" firstAttribute="bottom" secondItem="loader-row" secondAttribute="bottom" id="c748"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="original" firstAttribute="leading" secondItem="photo" secondAttribute="leading" id="c718"/>
+                        <constraint firstItem="original" firstAttribute="top" secondItem="photo" secondAttribute="top" id="c719"/>
+                        <constraint firstItem="photo" firstAttribute="trailing" secondItem="original" secondAttribute="trailing" id="c720"/>
+                        <constraint firstItem="photo" firstAttribute="bottom" secondItem="original" secondAttribute="bottom" id="c721"/>
+                        <constraint firstItem="result" firstAttribute="leading" secondItem="photo" secondAttribute="leading" id="c722"/>
+                        <constraint firstItem="result" firstAttribute="top" secondItem="photo" secondAttribute="top" id="c723"/>
+                        <constraint firstItem="photo" firstAttribute="trailing" secondItem="result" secondAttribute="trailing" id="c724"/>
+                        <constraint firstItem="photo" firstAttribute="bottom" secondItem="result" secondAttribute="bottom" id="c725"/>
+                        <constraint firstItem="loader-dim" firstAttribute="leading" secondItem="photo" secondAttribute="leading" id="c726"/>
+                        <constraint firstItem="loader-dim" firstAttribute="top" secondItem="photo" secondAttribute="top" id="c727"/>
+                        <constraint firstItem="photo" firstAttribute="trailing" secondItem="loader-dim" secondAttribute="trailing" id="c728"/>
+                        <constraint firstItem="photo" firstAttribute="bottom" secondItem="loader-dim" secondAttribute="bottom" id="c729"/>
+                        <constraint firstItem="reveal-blur" firstAttribute="leading" secondItem="photo" secondAttribute="leading" id="c730"/>
+                        <constraint firstItem="reveal-blur" firstAttribute="top" secondItem="photo" secondAttribute="top" id="c731"/>
+                        <constraint firstItem="photo" firstAttribute="trailing" secondItem="reveal-blur" secondAttribute="trailing" id="c732"/>
+                        <constraint firstItem="photo" firstAttribute="bottom" secondItem="reveal-blur" secondAttribute="bottom" id="c733"/>
+                        <constraint firstItem="reveal-band" firstAttribute="leading" secondItem="photo" secondAttribute="leading" id="c734"/>
+                        <constraint firstItem="photo" firstAttribute="trailing" secondItem="reveal-band" secondAttribute="trailing" id="c735"/>
+                        <constraint firstItem="reveal-band" firstAttribute="top" secondItem="photo" secondAttribute="top" constant="-120" id="c737"/>
+                        <constraint firstItem="top-scrim" firstAttribute="leading" secondItem="photo" secondAttribute="leading" id="c738"/>
+                        <constraint firstItem="top-scrim" firstAttribute="top" secondItem="photo" secondAttribute="top" id="c739"/>
+                        <constraint firstItem="photo" firstAttribute="trailing" secondItem="top-scrim" secondAttribute="trailing" id="c740"/>
+                        <constraint firstItem="loader" firstAttribute="centerX" secondItem="photo" secondAttribute="centerX" id="c742"/>
+                        <constraint firstItem="loader" firstAttribute="centerY" secondItem="photo" secondAttribute="centerY" constant="-36" id="c743"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nav" userLabel="navView">
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="back" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="backButton">
+                            <subviews>
+                                <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="back-icon" image="chevron.left" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17.0" weight="semibold"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="20" id="c548"/>
+                                        <constraint firstAttribute="height" constant="20" id="c549"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.300" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="44" id="c544"/>
+                                <constraint firstAttribute="height" constant="44" id="c545"/>
+                                <constraint firstItem="back-icon" firstAttribute="centerX" secondItem="back" secondAttribute="centerX" id="c546"/>
+                                <constraint firstItem="back-icon" firstAttribute="centerY" secondItem="back" secondAttribute="centerY" id="c547"/>
+                            </constraints>
+                            <accessibility key="accessibilityConfiguration" label="Back"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0.5"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.200" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.08"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="7"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="4"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapBack:"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nav-right" opaque="NO" spacing="8">
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="download" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="downloadButton">
+                                    <subviews>
+                                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="download-icon" image="arrow.down.to.line" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17.0" weight="semibold"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="c554"/>
+                                                <constraint firstAttribute="height" constant="20" id="c555"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.300" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="44" id="c550"/>
+                                        <constraint firstAttribute="height" constant="44" id="c551"/>
+                                        <constraint firstItem="download-icon" firstAttribute="centerX" secondItem="download" secondAttribute="centerX" id="c552"/>
+                                        <constraint firstItem="download-icon" firstAttribute="centerY" secondItem="download" secondAttribute="centerY" id="c553"/>
+                                    </constraints>
+                                    <accessibility key="accessibilityConfiguration" label="Save to Photos"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0.5"/></userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.200" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.08"/></userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="7"/></userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="4"/></userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapDownload:"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="share" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="shareButton">
+                                    <subviews>
+                                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="share-icon" image="square.and.arrow.up" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17.0" weight="semibold"/>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="20" id="c560"/>
+                                                <constraint firstAttribute="height" constant="20" id="c561"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.300" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="44" id="c556"/>
+                                        <constraint firstAttribute="height" constant="44" id="c557"/>
+                                        <constraint firstItem="share-icon" firstAttribute="centerX" secondItem="share" secondAttribute="centerX" id="c558"/>
+                                        <constraint firstItem="share-icon" firstAttribute="centerY" secondItem="share" secondAttribute="centerY" id="c559"/>
+                                    </constraints>
+                                    <accessibility key="accessibilityConfiguration" label="Share"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0.5"/></userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.200" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.08"/></userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="7"/></userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="4"/></userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapShare:"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <button contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="more" userLabel="moreButton" opaque="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation">
+                                    <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="15"/><inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/><state key="normal" image="ellipsis" catalog="system"><color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/><preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" weight="semibold"/></state>
+                                    <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.300" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="44" id="c757"/>
+                                        <constraint firstAttribute="height" constant="44" id="c758"/>
+                                    </constraints>
+                                    <accessibility key="accessibilityConfiguration" label="More"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius"><real key="value" value="22"/></userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth"><real key="value" value="0.5"/></userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="c752"/>
+                        <constraint firstItem="back" firstAttribute="leading" secondItem="nav" secondAttribute="leading" id="c753"/>
+                        <constraint firstItem="back" firstAttribute="centerY" secondItem="nav" secondAttribute="centerY" id="c754"/>
+                        <constraint firstItem="nav" firstAttribute="trailing" secondItem="nav-right" secondAttribute="trailing" id="c755"/>
+                        <constraint firstItem="nav-right" firstAttribute="centerY" secondItem="nav" secondAttribute="centerY" id="c756"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="compare" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="compareView">
+                    <subviews>
+                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cmp-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                            <subviews>
+                                <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmp-icon" image="rectangle.split.2x1" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="13" weight="semibold"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="16" id="c766"/>
+                                        <constraint firstAttribute="height" constant="16" id="c767"/>
+                                    </constraints>
+                                </imageView>
+                                <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cmp-label" userLabel="compareLabel" opaque="NO" text="Hold to compare" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                    <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="13"/><color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/><nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <edgeInsets key="layoutMargins" top="0" left="12" bottom="0" right="12"/>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.350" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="c761"/>
+                        <constraint firstItem="cmp-row" firstAttribute="leading" secondItem="compare" secondAttribute="leading" id="c762"/>
+                        <constraint firstItem="cmp-row" firstAttribute="top" secondItem="compare" secondAttribute="top" id="c763"/>
+                        <constraint firstItem="compare" firstAttribute="trailing" secondItem="cmp-row" secondAttribute="trailing" id="c764"/>
+                        <constraint firstItem="compare" firstAttribute="bottom" secondItem="cmp-row" secondAttribute="bottom" id="c765"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="badge" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="versionBadgeView">
+                    <subviews>
+                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="badge-label" userLabel="versionBadgeLabel" opaque="NO" text="V2" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="12"/><color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/><nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.350" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="c770"/>
+                        <constraint firstItem="badge-label" firstAttribute="leading" secondItem="badge" secondAttribute="leading" constant="10" id="c771"/>
+                        <constraint firstItem="badge" firstAttribute="trailing" secondItem="badge-label" secondAttribute="trailing" constant="10" id="c772"/>
+                        <constraint firstItem="badge-label" firstAttribute="centerY" secondItem="badge" secondAttribute="centerY" id="c773"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="panel" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="panelView">
+                    <subviews>
+                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="panel-stack" userLabel="panelStack" opaque="NO" axis="vertical" spacing="14">
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w-header">
+                                    <subviews>
+                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="header" opaque="NO" alignment="center" spacing="8">
+                                            <subviews>
+                                                <stackView contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="texts" opaque="NO" axis="vertical" spacing="2">
+                                                    <subviews>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title" userLabel="titleLabel" opaque="NO" text="Japandi living room" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.7" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="19"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="subtitle" userLabel="subtitleLabel" opaque="NO" text="Version 2 · Keep structure" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="13"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="like" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="likeButton">
+                                                    <subviews>
+                                                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="like-icon" image="hand.thumbsup" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="16" weight="medium"/>
+                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="19" id="c566"/>
+                                                                <constraint firstAttribute="height" constant="19" id="c567"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" name="dsSurface"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="c562"/>
+                                                        <constraint firstAttribute="height" constant="40" id="c563"/>
+                                                        <constraint firstItem="like-icon" firstAttribute="centerX" secondItem="like" secondAttribute="centerX" id="c564"/>
+                                                        <constraint firstItem="like-icon" firstAttribute="centerY" secondItem="like" secondAttribute="centerY" id="c565"/>
+                                                    </constraints>
+                                                    <accessibility key="accessibilityConfiguration" label="Like"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapLike:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dislike" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="dislikeButton">
+                                                    <subviews>
+                                                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dislike-icon" image="hand.thumbsdown" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="16" weight="medium"/>
+                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="19" id="c572"/>
+                                                                <constraint firstAttribute="height" constant="19" id="c573"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" name="dsSurface"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="40" id="c568"/>
+                                                        <constraint firstAttribute="height" constant="40" id="c569"/>
+                                                        <constraint firstItem="dislike-icon" firstAttribute="centerX" secondItem="dislike" secondAttribute="centerX" id="c570"/>
+                                                        <constraint firstItem="dislike-icon" firstAttribute="centerY" secondItem="dislike" secondAttribute="centerY" id="c571"/>
+                                                    </constraints>
+                                                    <accessibility key="accessibilityConfiguration" label="Dislike"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapDislike:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="header" firstAttribute="leading" secondItem="w-header" secondAttribute="leading" constant="20" id="c651"/>
+                                        <constraint firstItem="header" firstAttribute="top" secondItem="w-header" secondAttribute="top" id="c652"/>
+                                        <constraint firstItem="w-header" firstAttribute="trailing" secondItem="header" secondAttribute="trailing" constant="20" id="c653"/>
+                                        <constraint firstItem="w-header" firstAttribute="bottom" secondItem="header" secondAttribute="bottom" id="c654"/>
+                                    </constraints>
+                                </view>
+                                <collectionView contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="versions" userLabel="versionsCollectionView" multipleTouchEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none">
+                                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="12" minimumInteritemSpacing="12" id="versions-layout"><size key="itemSize" width="56" height="76"/><size key="headerReferenceSize" width="0.0" height="0.0"/><size key="footerReferenceSize" width="0.0" height="0.0"/><inset key="sectionInset" minX="20" minY="0" maxX="20" maxY="0"/></collectionViewFlowLayout>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="76" id="c781"/>
+                                    </constraints>
+                                </collectionView>
+                                <scrollView contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tools" userLabel="toolsScrollView" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" alwaysBounceHorizontal="YES">
+                                    <subviews>
+                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tools-stack" opaque="NO" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                            <subviews>
+                                                <view contentMode="scaleToFill" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="tool-style" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
+                                                    <subviews>
+                                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tool-style-col" opaque="NO" axis="vertical" alignment="center" spacing="5">
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tool-style-circle" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                                                    <subviews>
+                                                                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tool-style-icon" image="paintpalette" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="18" weight="medium"/>
+                                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="22" id="c583"/>
+                                                                                <constraint firstAttribute="height" constant="22" id="c584"/>
+                                                                            </constraints>
+                                                                        </imageView>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" name="dsSurface"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="52" id="c579"/>
+                                                                        <constraint firstAttribute="height" constant="52" id="c580"/>
+                                                                        <constraint firstItem="tool-style-icon" firstAttribute="centerX" secondItem="tool-style-circle" secondAttribute="centerX" id="c581"/>
+                                                                        <constraint firstItem="tool-style-icon" firstAttribute="centerY" secondItem="tool-style-circle" secondAttribute="centerY" id="c582"/>
+                                                                    </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </view>
+                                                                <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="tool-style-label" opaque="NO" text="Style" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.7" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                    <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="11"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="56" id="c574"/>
+                                                        <constraint firstItem="tool-style-col" firstAttribute="leading" secondItem="tool-style" secondAttribute="leading" id="c575"/>
+                                                        <constraint firstItem="tool-style-col" firstAttribute="top" secondItem="tool-style" secondAttribute="top" id="c576"/>
+                                                        <constraint firstItem="tool-style" firstAttribute="trailing" secondItem="tool-style-col" secondAttribute="trailing" id="c577"/>
+                                                        <constraint firstItem="tool-style" firstAttribute="bottom" secondItem="tool-style-col" secondAttribute="bottom" id="c578"/>
+                                                    </constraints>
+                                                    <accessibility key="accessibilityConfiguration" label="Style"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapTool:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="tool-paint" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
+                                                    <subviews>
+                                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tool-paint-col" opaque="NO" axis="vertical" alignment="center" spacing="5">
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tool-paint-circle" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                                                    <subviews>
+                                                                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tool-paint-icon" image="paintbrush.fill" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="18" weight="medium"/>
+                                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="22" id="c594"/>
+                                                                                <constraint firstAttribute="height" constant="22" id="c595"/>
+                                                                            </constraints>
+                                                                        </imageView>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" name="dsSurface"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="52" id="c590"/>
+                                                                        <constraint firstAttribute="height" constant="52" id="c591"/>
+                                                                        <constraint firstItem="tool-paint-icon" firstAttribute="centerX" secondItem="tool-paint-circle" secondAttribute="centerX" id="c592"/>
+                                                                        <constraint firstItem="tool-paint-icon" firstAttribute="centerY" secondItem="tool-paint-circle" secondAttribute="centerY" id="c593"/>
+                                                                    </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </view>
+                                                                <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="tool-paint-label" opaque="NO" text="Paint" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.7" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                    <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="11"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="56" id="c585"/>
+                                                        <constraint firstItem="tool-paint-col" firstAttribute="leading" secondItem="tool-paint" secondAttribute="leading" id="c586"/>
+                                                        <constraint firstItem="tool-paint-col" firstAttribute="top" secondItem="tool-paint" secondAttribute="top" id="c587"/>
+                                                        <constraint firstItem="tool-paint" firstAttribute="trailing" secondItem="tool-paint-col" secondAttribute="trailing" id="c588"/>
+                                                        <constraint firstItem="tool-paint" firstAttribute="bottom" secondItem="tool-paint-col" secondAttribute="bottom" id="c589"/>
+                                                    </constraints>
+                                                    <accessibility key="accessibilityConfiguration" label="Paint"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapTool:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="tool-replace" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
+                                                    <subviews>
+                                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tool-replace-col" opaque="NO" axis="vertical" alignment="center" spacing="5">
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tool-replace-circle" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                                                    <subviews>
+                                                                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tool-replace-icon" image="arrow.triangle.2.circlepath" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="18" weight="medium"/>
+                                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="22" id="c605"/>
+                                                                                <constraint firstAttribute="height" constant="22" id="c606"/>
+                                                                            </constraints>
+                                                                        </imageView>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" name="dsSurface"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="52" id="c601"/>
+                                                                        <constraint firstAttribute="height" constant="52" id="c602"/>
+                                                                        <constraint firstItem="tool-replace-icon" firstAttribute="centerX" secondItem="tool-replace-circle" secondAttribute="centerX" id="c603"/>
+                                                                        <constraint firstItem="tool-replace-icon" firstAttribute="centerY" secondItem="tool-replace-circle" secondAttribute="centerY" id="c604"/>
+                                                                    </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </view>
+                                                                <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="tool-replace-label" opaque="NO" text="Replace" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.7" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                    <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="11"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="56" id="c596"/>
+                                                        <constraint firstItem="tool-replace-col" firstAttribute="leading" secondItem="tool-replace" secondAttribute="leading" id="c597"/>
+                                                        <constraint firstItem="tool-replace-col" firstAttribute="top" secondItem="tool-replace" secondAttribute="top" id="c598"/>
+                                                        <constraint firstItem="tool-replace" firstAttribute="trailing" secondItem="tool-replace-col" secondAttribute="trailing" id="c599"/>
+                                                        <constraint firstItem="tool-replace" firstAttribute="bottom" secondItem="tool-replace-col" secondAttribute="bottom" id="c600"/>
+                                                    </constraints>
+                                                    <accessibility key="accessibilityConfiguration" label="Replace"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapTool:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="tool-remove" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
+                                                    <subviews>
+                                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tool-remove-col" opaque="NO" axis="vertical" alignment="center" spacing="5">
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tool-remove-circle" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                                                    <subviews>
+                                                                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tool-remove-icon" image="eraser" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="18" weight="medium"/>
+                                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="22" id="c616"/>
+                                                                                <constraint firstAttribute="height" constant="22" id="c617"/>
+                                                                            </constraints>
+                                                                        </imageView>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" name="dsSurface"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="52" id="c612"/>
+                                                                        <constraint firstAttribute="height" constant="52" id="c613"/>
+                                                                        <constraint firstItem="tool-remove-icon" firstAttribute="centerX" secondItem="tool-remove-circle" secondAttribute="centerX" id="c614"/>
+                                                                        <constraint firstItem="tool-remove-icon" firstAttribute="centerY" secondItem="tool-remove-circle" secondAttribute="centerY" id="c615"/>
+                                                                    </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </view>
+                                                                <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="tool-remove-label" opaque="NO" text="Remove" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.7" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                    <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="11"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="56" id="c607"/>
+                                                        <constraint firstItem="tool-remove-col" firstAttribute="leading" secondItem="tool-remove" secondAttribute="leading" id="c608"/>
+                                                        <constraint firstItem="tool-remove-col" firstAttribute="top" secondItem="tool-remove" secondAttribute="top" id="c609"/>
+                                                        <constraint firstItem="tool-remove" firstAttribute="trailing" secondItem="tool-remove-col" secondAttribute="trailing" id="c610"/>
+                                                        <constraint firstItem="tool-remove" firstAttribute="bottom" secondItem="tool-remove-col" secondAttribute="bottom" id="c611"/>
+                                                    </constraints>
+                                                    <accessibility key="accessibilityConfiguration" label="Remove"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapTool:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="tool-floor" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
+                                                    <subviews>
+                                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tool-floor-col" opaque="NO" axis="vertical" alignment="center" spacing="5">
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tool-floor-circle" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                                                    <subviews>
+                                                                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tool-floor-icon" image="square.grid.3x3" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="18" weight="medium"/>
+                                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="22" id="c627"/>
+                                                                                <constraint firstAttribute="height" constant="22" id="c628"/>
+                                                                            </constraints>
+                                                                        </imageView>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" name="dsSurface"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="52" id="c623"/>
+                                                                        <constraint firstAttribute="height" constant="52" id="c624"/>
+                                                                        <constraint firstItem="tool-floor-icon" firstAttribute="centerX" secondItem="tool-floor-circle" secondAttribute="centerX" id="c625"/>
+                                                                        <constraint firstItem="tool-floor-icon" firstAttribute="centerY" secondItem="tool-floor-circle" secondAttribute="centerY" id="c626"/>
+                                                                    </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </view>
+                                                                <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="tool-floor-label" opaque="NO" text="Floor" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.7" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                    <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="11"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="56" id="c618"/>
+                                                        <constraint firstItem="tool-floor-col" firstAttribute="leading" secondItem="tool-floor" secondAttribute="leading" id="c619"/>
+                                                        <constraint firstItem="tool-floor-col" firstAttribute="top" secondItem="tool-floor" secondAttribute="top" id="c620"/>
+                                                        <constraint firstItem="tool-floor" firstAttribute="trailing" secondItem="tool-floor-col" secondAttribute="trailing" id="c621"/>
+                                                        <constraint firstItem="tool-floor" firstAttribute="bottom" secondItem="tool-floor-col" secondAttribute="bottom" id="c622"/>
+                                                    </constraints>
+                                                    <accessibility key="accessibilityConfiguration" label="Floor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapTool:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="tool-furnish" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
+                                                    <subviews>
+                                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tool-furnish-col" opaque="NO" axis="vertical" alignment="center" spacing="5">
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tool-furnish-circle" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                                                    <subviews>
+                                                                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tool-furnish-icon" image="sofa" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="18" weight="medium"/>
+                                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="22" id="c638"/>
+                                                                                <constraint firstAttribute="height" constant="22" id="c639"/>
+                                                                            </constraints>
+                                                                        </imageView>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" name="dsSurface"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="52" id="c634"/>
+                                                                        <constraint firstAttribute="height" constant="52" id="c635"/>
+                                                                        <constraint firstItem="tool-furnish-icon" firstAttribute="centerX" secondItem="tool-furnish-circle" secondAttribute="centerX" id="c636"/>
+                                                                        <constraint firstItem="tool-furnish-icon" firstAttribute="centerY" secondItem="tool-furnish-circle" secondAttribute="centerY" id="c637"/>
+                                                                    </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </view>
+                                                                <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="tool-furnish-label" opaque="NO" text="Furnish" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.7" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                    <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="11"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="56" id="c629"/>
+                                                        <constraint firstItem="tool-furnish-col" firstAttribute="leading" secondItem="tool-furnish" secondAttribute="leading" id="c630"/>
+                                                        <constraint firstItem="tool-furnish-col" firstAttribute="top" secondItem="tool-furnish" secondAttribute="top" id="c631"/>
+                                                        <constraint firstItem="tool-furnish" firstAttribute="trailing" secondItem="tool-furnish-col" secondAttribute="trailing" id="c632"/>
+                                                        <constraint firstItem="tool-furnish" firstAttribute="bottom" secondItem="tool-furnish-col" secondAttribute="bottom" id="c633"/>
+                                                    </constraints>
+                                                    <accessibility key="accessibilityConfiguration" label="Furnish"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapTool:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="tool-layout" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
+                                                    <subviews>
+                                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tool-layout-col" opaque="NO" axis="vertical" alignment="center" spacing="5">
+                                                            <subviews>
+                                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tool-layout-circle" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                                                    <subviews>
+                                                                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tool-layout-icon" image="arrow.up.and.down.and.arrow.left.and.right" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="18" weight="medium"/>
+                                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                            <constraints>
+                                                                                <constraint firstAttribute="width" constant="22" id="c649"/>
+                                                                                <constraint firstAttribute="height" constant="22" id="c650"/>
+                                                                            </constraints>
+                                                                        </imageView>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" name="dsSurface"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="52" id="c645"/>
+                                                                        <constraint firstAttribute="height" constant="52" id="c646"/>
+                                                                        <constraint firstItem="tool-layout-icon" firstAttribute="centerX" secondItem="tool-layout-circle" secondAttribute="centerX" id="c647"/>
+                                                                        <constraint firstItem="tool-layout-icon" firstAttribute="centerY" secondItem="tool-layout-circle" secondAttribute="centerY" id="c648"/>
+                                                                    </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </view>
+                                                                <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="tool-layout-label" opaque="NO" text="Layout" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.7" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                    <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="11"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="56" id="c640"/>
+                                                        <constraint firstItem="tool-layout-col" firstAttribute="leading" secondItem="tool-layout" secondAttribute="leading" id="c641"/>
+                                                        <constraint firstItem="tool-layout-col" firstAttribute="top" secondItem="tool-layout" secondAttribute="top" id="c642"/>
+                                                        <constraint firstItem="tool-layout" firstAttribute="trailing" secondItem="tool-layout-col" secondAttribute="trailing" id="c643"/>
+                                                        <constraint firstItem="tool-layout" firstAttribute="bottom" secondItem="tool-layout-col" secondAttribute="bottom" id="c644"/>
+                                                    </constraints>
+                                                    <accessibility key="accessibilityConfiguration" label="Layout"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapTool:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <edgeInsets key="layoutMargins" top="0" left="20" bottom="0" right="20"/>
+                                        </stackView>
+                                    </subviews>
+                                    <viewLayoutGuide key="contentLayoutGuide" id="tools-contentLayoutGuide"/><viewLayoutGuide key="frameLayoutGuide" id="tools-frameLayoutGuide"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="74" id="c782"/>
+                                        <constraint firstItem="tools-stack" firstAttribute="leading" secondItem="tools-contentLayoutGuide" secondAttribute="leading" id="c783"/>
+                                        <constraint firstItem="tools-stack" firstAttribute="top" secondItem="tools-contentLayoutGuide" secondAttribute="top" id="c784"/>
+                                        <constraint firstItem="tools-contentLayoutGuide" firstAttribute="trailing" secondItem="tools-stack" secondAttribute="trailing" id="c785"/>
+                                        <constraint firstItem="tools-contentLayoutGuide" firstAttribute="bottom" secondItem="tools-stack" secondAttribute="bottom" id="c786"/>
+                                        <constraint firstItem="tools-stack" firstAttribute="height" secondItem="tools-frameLayoutGuide" secondAttribute="height" id="c787"/>
+                                    </constraints>
+                                </scrollView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w-ask">
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ask-bar" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="askBarView">
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ask-tap" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="askControl">
+                                                    <subviews>
+                                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ask-row" opaque="NO" alignment="center" spacing="10">
+                                                            <subviews>
+                                                                <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ask-icon" userLabel="askIconView" image="sparkles" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="medium"/>
+                                                                    <color key="tintColor" red="0.3647" green="0.6667" blue="0.0706" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="18" id="c804"/>
+                                                                        <constraint firstAttribute="height" constant="18" id="c805"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ask-label" userLabel="askPlaceholderLabel" opaque="NO" text="Ask for a change…" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                    <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstItem="ask-row" firstAttribute="leading" secondItem="ask-tap" secondAttribute="leading" id="c801"/>
+                                                        <constraint firstItem="ask-tap" firstAttribute="trailing" secondItem="ask-row" secondAttribute="trailing" id="c802"/>
+                                                        <constraint firstItem="ask-row" firstAttribute="centerY" secondItem="ask-tap" secondAttribute="centerY" id="c803"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="pressedScale"><real key="value" value="0.98"/></userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="hapticOnPress" value="NO"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapAsk:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mic" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="micButton">
+                                                    <subviews>
+                                                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mic-icon" image="mic" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="medium"/>
+                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="18" id="c799"/>
+                                                                <constraint firstAttribute="height" constant="18" id="c800"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="38" id="c795"/>
+                                                        <constraint firstAttribute="height" constant="38" id="c796"/>
+                                                        <constraint firstItem="mic-icon" firstAttribute="centerX" secondItem="mic" secondAttribute="centerX" id="c797"/>
+                                                        <constraint firstItem="mic-icon" firstAttribute="centerY" secondItem="mic" secondAttribute="centerY" id="c798"/>
+                                                    </constraints>
+                                                    <accessibility key="accessibilityConfiguration" label="Speak a change"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapMic:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" name="dsSurface"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="c788"/>
+                                                <constraint firstItem="ask-tap" firstAttribute="leading" secondItem="ask-bar" secondAttribute="leading" constant="16" id="c789"/>
+                                                <constraint firstItem="ask-tap" firstAttribute="top" secondItem="ask-bar" secondAttribute="top" id="c790"/>
+                                                <constraint firstItem="ask-bar" firstAttribute="bottom" secondItem="ask-tap" secondAttribute="bottom" id="c791"/>
+                                                <constraint firstItem="mic" firstAttribute="leading" secondItem="ask-tap" secondAttribute="trailing" constant="8" id="c792"/>
+                                                <constraint firstItem="ask-bar" firstAttribute="trailing" secondItem="mic" secondAttribute="trailing" constant="6" id="c793"/>
+                                                <constraint firstItem="mic" firstAttribute="centerY" secondItem="ask-bar" secondAttribute="centerY" id="c794"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="ask-bar" firstAttribute="leading" secondItem="w-ask" secondAttribute="leading" constant="20" id="c655"/>
+                                        <constraint firstItem="ask-bar" firstAttribute="top" secondItem="w-ask" secondAttribute="top" id="c656"/>
+                                        <constraint firstItem="w-ask" firstAttribute="trailing" secondItem="ask-bar" secondAttribute="trailing" constant="20" id="c657"/>
+                                        <constraint firstItem="w-ask" firstAttribute="bottom" secondItem="ask-bar" secondAttribute="bottom" id="c658"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="panel-stack" firstAttribute="leading" secondItem="panel" secondAttribute="leading" id="c777"/>
+                        <constraint firstItem="panel" firstAttribute="trailing" secondItem="panel-stack" secondAttribute="trailing" id="c778"/>
+                        <constraint firstItem="panel-stack" firstAttribute="top" secondItem="panel" secondAttribute="top" constant="18" id="c779"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="34"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.maskedCorners"><real key="value" value="3"/></userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ask-panel" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="askPanelView">
+                    <subviews>
+                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ask-stack" opaque="NO" axis="vertical" spacing="12">
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w-ask-head">
+                                    <subviews>
+                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ask-head" opaque="NO" alignment="center" spacing="0">
+                                            <subviews>
+                                                <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ask-title" userLabel="askTitleLabel" opaque="NO" text="Ask for a change" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                    <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="15"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                </label>
+                                                <view contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ask-head-sp">
+                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </view>
+                                                <label contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="251" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ask-cost" userLabel="askCostLabel" opaque="NO" text="1 credit · 2 left" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO">
+                                                    <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="ask-head" firstAttribute="leading" secondItem="w-ask-head" secondAttribute="leading" constant="20" id="c694"/>
+                                        <constraint firstItem="ask-head" firstAttribute="top" secondItem="w-ask-head" secondAttribute="top" id="c695"/>
+                                        <constraint firstItem="w-ask-head" firstAttribute="trailing" secondItem="ask-head" secondAttribute="trailing" constant="20" id="c696"/>
+                                        <constraint firstItem="w-ask-head" firstAttribute="bottom" secondItem="ask-head" secondAttribute="bottom" id="c697"/>
+                                    </constraints>
+                                </view>
+                                <scrollView contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sug-scroll" userLabel="suggestionScrollView" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" alwaysBounceHorizontal="YES">
+                                    <subviews>
+                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sug-stack" opaque="NO" spacing="8" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                            <subviews>
+                                                <view contentMode="scaleToFill" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="sug0" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                                    <subviews>
+                                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sug0-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                            <subviews>
+                                                                <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sug0-icon" image="sparkles" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="13" weight="medium"/>
+                                                                    <color key="tintColor" name="dsTextPrimary"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="16" id="c664"/>
+                                                                        <constraint firstAttribute="height" constant="16" id="c665"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="sug0-label" opaque="NO" text="Warmer light" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                    <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="c659"/>
+                                                        <constraint firstItem="sug0-row" firstAttribute="leading" secondItem="sug0" secondAttribute="leading" id="c660"/>
+                                                        <constraint firstItem="sug0-row" firstAttribute="top" secondItem="sug0" secondAttribute="top" id="c661"/>
+                                                        <constraint firstItem="sug0" firstAttribute="trailing" secondItem="sug0-row" secondAttribute="trailing" id="c662"/>
+                                                        <constraint firstItem="sug0" firstAttribute="bottom" secondItem="sug0-row" secondAttribute="bottom" id="c663"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSuggestion:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="sug1" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                                    <subviews>
+                                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sug1-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                            <subviews>
+                                                                <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sug1-icon" image="sparkles" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="13" weight="medium"/>
+                                                                    <color key="tintColor" name="dsTextPrimary"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="16" id="c671"/>
+                                                                        <constraint firstAttribute="height" constant="16" id="c672"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="sug1-label" opaque="NO" text="Add plants" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                    <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="c666"/>
+                                                        <constraint firstItem="sug1-row" firstAttribute="leading" secondItem="sug1" secondAttribute="leading" id="c667"/>
+                                                        <constraint firstItem="sug1-row" firstAttribute="top" secondItem="sug1" secondAttribute="top" id="c668"/>
+                                                        <constraint firstItem="sug1" firstAttribute="trailing" secondItem="sug1-row" secondAttribute="trailing" id="c669"/>
+                                                        <constraint firstItem="sug1" firstAttribute="bottom" secondItem="sug1-row" secondAttribute="bottom" id="c670"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSuggestion:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="sug2" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                                    <subviews>
+                                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sug2-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                            <subviews>
+                                                                <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sug2-icon" image="sparkles" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="13" weight="medium"/>
+                                                                    <color key="tintColor" name="dsTextPrimary"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="16" id="c678"/>
+                                                                        <constraint firstAttribute="height" constant="16" id="c679"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="sug2-label" opaque="NO" text="Darker floor" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                    <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="c673"/>
+                                                        <constraint firstItem="sug2-row" firstAttribute="leading" secondItem="sug2" secondAttribute="leading" id="c674"/>
+                                                        <constraint firstItem="sug2-row" firstAttribute="top" secondItem="sug2" secondAttribute="top" id="c675"/>
+                                                        <constraint firstItem="sug2" firstAttribute="trailing" secondItem="sug2-row" secondAttribute="trailing" id="c676"/>
+                                                        <constraint firstItem="sug2" firstAttribute="bottom" secondItem="sug2-row" secondAttribute="bottom" id="c677"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSuggestion:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="sug3" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                                    <subviews>
+                                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sug3-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                            <subviews>
+                                                                <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sug3-icon" image="sparkles" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="13" weight="medium"/>
+                                                                    <color key="tintColor" name="dsTextPrimary"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="16" id="c685"/>
+                                                                        <constraint firstAttribute="height" constant="16" id="c686"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="sug3-label" opaque="NO" text="Bigger rug" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                    <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="c680"/>
+                                                        <constraint firstItem="sug3-row" firstAttribute="leading" secondItem="sug3" secondAttribute="leading" id="c681"/>
+                                                        <constraint firstItem="sug3-row" firstAttribute="top" secondItem="sug3" secondAttribute="top" id="c682"/>
+                                                        <constraint firstItem="sug3" firstAttribute="trailing" secondItem="sug3-row" secondAttribute="trailing" id="c683"/>
+                                                        <constraint firstItem="sug3" firstAttribute="bottom" secondItem="sug3-row" secondAttribute="bottom" id="c684"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSuggestion:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="sug4" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                                    <subviews>
+                                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sug4-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                            <subviews>
+                                                                <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sug4-icon" image="sparkles" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="13" weight="medium"/>
+                                                                    <color key="tintColor" name="dsTextPrimary"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="16" id="c692"/>
+                                                                        <constraint firstAttribute="height" constant="16" id="c693"/>
+                                                                    </constraints>
+                                                                </imageView>
+                                                                <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="sug4-label" opaque="NO" text="Add art" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                    <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="c687"/>
+                                                        <constraint firstItem="sug4-row" firstAttribute="leading" secondItem="sug4" secondAttribute="leading" id="c688"/>
+                                                        <constraint firstItem="sug4-row" firstAttribute="top" secondItem="sug4" secondAttribute="top" id="c689"/>
+                                                        <constraint firstItem="sug4" firstAttribute="trailing" secondItem="sug4-row" secondAttribute="trailing" id="c690"/>
+                                                        <constraint firstItem="sug4" firstAttribute="bottom" secondItem="sug4-row" secondAttribute="bottom" id="c691"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSuggestion:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <edgeInsets key="layoutMargins" top="0" left="20" bottom="0" right="20"/>
+                                        </stackView>
+                                    </subviews>
+                                    <viewLayoutGuide key="contentLayoutGuide" id="sug-scroll-contentLayoutGuide"/><viewLayoutGuide key="frameLayoutGuide" id="sug-scroll-frameLayoutGuide"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="36" id="c813"/>
+                                        <constraint firstItem="sug-stack" firstAttribute="leading" secondItem="sug-scroll-contentLayoutGuide" secondAttribute="leading" id="c814"/>
+                                        <constraint firstItem="sug-stack" firstAttribute="top" secondItem="sug-scroll-contentLayoutGuide" secondAttribute="top" id="c815"/>
+                                        <constraint firstItem="sug-scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="sug-stack" secondAttribute="trailing" id="c816"/>
+                                        <constraint firstItem="sug-scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="sug-stack" secondAttribute="bottom" id="c817"/>
+                                        <constraint firstItem="sug-stack" firstAttribute="height" secondItem="sug-scroll-frameLayoutGuide" secondAttribute="height" id="c818"/>
+                                    </constraints>
+                                </scrollView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w-ask-row">
+                                    <subviews>
+                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ask-row2" opaque="NO" alignment="bottom" spacing="10">
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ask-field" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="askFieldView">
+                                                    <subviews>
+                                                        <textView contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ask-text" userLabel="askTextView" multipleTouchEnabled="YES" scrollEnabled="NO" textAlignment="natural" text="">
+                                                            <color key="textColor" name="dsTextPrimary"/><fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="16"/><textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        </textView>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ask-ph" userLabel="askTextPlaceholder" opaque="NO" text="Describe the change…" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="16"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <color key="backgroundColor" name="dsSurface"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="52" id="c819"/>
+                                                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="112" id="c820"/>
+                                                        <constraint firstAttribute="height" constant="52" priority="750" id="c821"/>
+                                                        <constraint firstItem="ask-text" firstAttribute="leading" secondItem="ask-field" secondAttribute="leading" constant="12" id="c822"/>
+                                                        <constraint firstItem="ask-text" firstAttribute="top" secondItem="ask-field" secondAttribute="top" constant="6" id="c823"/>
+                                                        <constraint firstItem="ask-field" firstAttribute="trailing" secondItem="ask-text" secondAttribute="trailing" constant="12" id="c824"/>
+                                                        <constraint firstItem="ask-field" firstAttribute="bottom" secondItem="ask-text" secondAttribute="bottom" constant="6" id="c825"/>
+                                                        <constraint firstItem="ask-ph" firstAttribute="leading" secondItem="ask-field" secondAttribute="leading" constant="17" id="c826"/>
+                                                        <constraint firstItem="ask-field" firstAttribute="trailing" secondItem="ask-ph" secondAttribute="trailing" constant="17" id="c827"/>
+                                                        <constraint firstItem="ask-ph" firstAttribute="top" secondItem="ask-field" secondAttribute="top" constant="15" id="c828"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="22"/></userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="1.5"/></userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" name="dsLime"/></userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="send" customClass="DSPrimaryButton" customModule="HomeAI" customModuleProvider="target" userLabel="sendButton">
+                                                    <subviews>
+                                                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="send-icon" image="arrow.up" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" weight="bold"/>
+                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="20" id="c833"/>
+                                                                <constraint firstAttribute="height" constant="20" id="c834"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="48" id="c829"/>
+                                                        <constraint firstAttribute="height" constant="48" id="c830"/>
+                                                        <constraint firstItem="send-icon" firstAttribute="centerX" secondItem="send" secondAttribute="centerX" id="c831"/>
+                                                        <constraint firstItem="send-icon" firstAttribute="centerY" secondItem="send" secondAttribute="centerY" id="c832"/>
+                                                    </constraints>
+                                                    <accessibility key="accessibilityConfiguration" label="Send"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSend:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstItem="ask-row2" firstAttribute="leading" secondItem="w-ask-row" secondAttribute="leading" constant="20" id="c698"/>
+                                        <constraint firstItem="ask-row2" firstAttribute="top" secondItem="w-ask-row" secondAttribute="top" id="c699"/>
+                                        <constraint firstItem="w-ask-row" firstAttribute="trailing" secondItem="ask-row2" secondAttribute="trailing" constant="20" id="c700"/>
+                                        <constraint firstItem="w-ask-row" firstAttribute="bottom" secondItem="ask-row2" secondAttribute="bottom" id="c701"/>
+                                    </constraints>
+                                </view>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="ask-stack" firstAttribute="leading" secondItem="ask-panel" secondAttribute="leading" id="c809"/>
+                        <constraint firstItem="ask-panel" firstAttribute="trailing" secondItem="ask-stack" secondAttribute="trailing" id="c810"/>
+                        <constraint firstItem="ask-stack" firstAttribute="top" secondItem="ask-panel" secondAttribute="top" constant="18" id="c811"/>
+                        <constraint firstItem="ask-panel" firstAttribute="bottom" secondItem="ask-stack" secondAttribute="bottom" constant="14" id="c812"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="28"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.maskedCorners"><real key="value" value="3"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.1"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="voice-panel" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="voicePanelView">
+                    <subviews>
+                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="voice-stack" opaque="NO" axis="vertical" alignment="center" spacing="16">
+                            <subviews>
+                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="listen-row" opaque="NO" alignment="center" spacing="6">
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rec-dot" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                            <color key="backgroundColor" red="1.0000" green="0.2314" blue="0.1882" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="8" id="c842"/>
+                                                <constraint firstAttribute="height" constant="8" id="c843"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="listening" userLabel="listeningLabel" opaque="NO" text="Listening…" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                            <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextSecondary"/><nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wave" userLabel="waveView">
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="200" id="c844"/>
+                                        <constraint firstAttribute="height" constant="44" id="c845"/>
+                                    </constraints>
+                                </view>
+                                <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="transcript" userLabel="transcriptLabel" opaque="NO" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                    <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="18"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                </label>
+                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v-controls" opaque="NO" alignment="center" distribution="equalSpacing" spacing="0" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v-cancel" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="voiceCancelButton">
+                                            <subviews>
+                                                <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v-cancel-icon" image="xmark" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17.0" weight="semibold"/>
+                                                    <color key="tintColor" name="dsTextPrimary"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="c706"/>
+                                                        <constraint firstAttribute="height" constant="20" id="c707"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" name="dsSurface"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="48" id="c702"/>
+                                                <constraint firstAttribute="height" constant="48" id="c703"/>
+                                                <constraint firstItem="v-cancel-icon" firstAttribute="centerX" secondItem="v-cancel" secondAttribute="centerX" id="c704"/>
+                                                <constraint firstItem="v-cancel-icon" firstAttribute="centerY" secondItem="v-cancel" secondAttribute="centerY" id="c705"/>
+                                            </constraints>
+                                            <accessibility key="accessibilityConfiguration" label="Cancel"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0.5"/></userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.900" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.08"/></userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="7"/></userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="4"/></userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapVoiceCancel:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v-done-wrap">
+                                            <subviews>
+                                                <view contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v-pulse" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="voicePulseView">
+                                                    <color key="backgroundColor" red="0.6471" green="0.9333" blue="0.1843" alpha="0.250" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v-done" customClass="DSPrimaryButton" customModule="HomeAI" customModuleProvider="target" userLabel="voiceDoneButton">
+                                                    <subviews>
+                                                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v-done-icon" image="checkmark" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" weight="bold"/>
+                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="24" id="c859"/>
+                                                                <constraint firstAttribute="height" constant="24" id="c860"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="72" id="c851"/>
+                                                        <constraint firstAttribute="height" constant="72" id="c852"/>
+                                                        <constraint firstItem="v-done-icon" firstAttribute="centerX" secondItem="v-done" secondAttribute="centerX" id="c857"/>
+                                                        <constraint firstItem="v-done-icon" firstAttribute="centerY" secondItem="v-done" secondAttribute="centerY" id="c858"/>
+                                                    </constraints>
+                                                    <accessibility key="accessibilityConfiguration" label="Done"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapVoiceDone:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="96" id="c847"/>
+                                                <constraint firstAttribute="height" constant="96" id="c848"/>
+                                                <constraint firstItem="v-done" firstAttribute="centerX" secondItem="v-done-wrap" secondAttribute="centerX" id="c849"/>
+                                                <constraint firstItem="v-done" firstAttribute="centerY" secondItem="v-done-wrap" secondAttribute="centerY" id="c850"/>
+                                                <constraint firstItem="v-pulse" firstAttribute="leading" secondItem="v-done-wrap" secondAttribute="leading" id="c853"/>
+                                                <constraint firstItem="v-pulse" firstAttribute="top" secondItem="v-done-wrap" secondAttribute="top" id="c854"/>
+                                                <constraint firstItem="v-done-wrap" firstAttribute="trailing" secondItem="v-pulse" secondAttribute="trailing" id="c855"/>
+                                                <constraint firstItem="v-done-wrap" firstAttribute="bottom" secondItem="v-pulse" secondAttribute="bottom" id="c856"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v-text" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="voiceTextButton">
+                                            <subviews>
+                                                <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v-text-icon" image="textformat" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17.0" weight="semibold"/>
+                                                    <color key="tintColor" name="dsTextPrimary"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="20" id="c712"/>
+                                                        <constraint firstAttribute="height" constant="20" id="c713"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
+                                            <color key="backgroundColor" name="dsSurface"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="48" id="c708"/>
+                                                <constraint firstAttribute="height" constant="48" id="c709"/>
+                                                <constraint firstItem="v-text-icon" firstAttribute="centerX" secondItem="v-text" secondAttribute="centerX" id="c710"/>
+                                                <constraint firstItem="v-text-icon" firstAttribute="centerY" secondItem="v-text" secondAttribute="centerY" id="c711"/>
+                                            </constraints>
+                                            <accessibility key="accessibilityConfiguration" label="Type instead"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0.5"/></userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.900" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.08"/></userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="7"/></userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="4"/></userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapVoiceKeyboard:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <edgeInsets key="layoutMargins" top="0" left="20" bottom="0" right="20"/>
+                                </stackView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="v-controls" firstAttribute="width" secondItem="voice-stack" secondAttribute="width" id="c846"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="voice-stack" firstAttribute="leading" secondItem="voice-panel" secondAttribute="leading" constant="20" id="c838"/>
+                        <constraint firstItem="voice-panel" firstAttribute="trailing" secondItem="voice-stack" secondAttribute="trailing" constant="20" id="c839"/>
+                        <constraint firstItem="voice-stack" firstAttribute="top" secondItem="voice-panel" secondAttribute="top" constant="24" id="c840"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="34"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.maskedCorners"><real key="value" value="3"/></userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="root-safeArea"/>
+            <constraints>
+                <constraint firstItem="photo" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c714"/>
+                <constraint firstItem="photo" firstAttribute="top" secondItem="root" secondAttribute="top" id="c715"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="photo" secondAttribute="trailing" id="c716"/>
+                <constraint firstItem="photo" firstAttribute="bottom" secondItem="panel" secondAttribute="top" constant="72" id="c717"/>
+                <constraint firstItem="nav" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="16" id="c749"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="nav" secondAttribute="trailing" constant="16" id="c750"/>
+                <constraint firstItem="nav" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-4" id="c751"/>
+                <constraint firstItem="compare" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="16" id="c759"/>
+                <constraint firstItem="panel" firstAttribute="top" secondItem="compare" secondAttribute="bottom" constant="16" id="c760"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="badge" secondAttribute="trailing" constant="16" id="c768"/>
+                <constraint firstItem="badge" firstAttribute="centerY" secondItem="compare" secondAttribute="centerY" id="c769"/>
+                <constraint firstItem="panel" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c774"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="panel" secondAttribute="trailing" id="c775"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="panel" secondAttribute="bottom" id="c776"/>
+                <constraint firstItem="root-safeArea" firstAttribute="bottom" secondItem="panel-stack" secondAttribute="bottom" constant="6" id="c780"/>
+                <constraint firstItem="ask-panel" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c806"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="ask-panel" secondAttribute="trailing" id="c807"/>
+                <constraint firstItem="ask-panel" firstAttribute="bottom" secondItem="root" secondAttribute="bottom" id="c808"/>
+                <constraint firstItem="voice-panel" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c835"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="voice-panel" secondAttribute="trailing" id="c836"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="voice-panel" secondAttribute="bottom" id="c837"/>
+                <constraint firstItem="root-safeArea" firstAttribute="bottom" secondItem="voice-stack" secondAttribute="bottom" constant="12" id="c841"/>
+            </constraints>
+        </view>
+        </objects>
+    <resources>
+        <image name="arrow.down.to.line" catalog="system" width="128" height="128"/>
+        <image name="arrow.triangle.2.circlepath" catalog="system" width="128" height="128"/>
+        <image name="arrow.up" catalog="system" width="128" height="128"/>
+        <image name="arrow.up.and.down.and.arrow.left.and.right" catalog="system" width="128" height="128"/>
+        <image name="checkmark" catalog="system" width="128" height="128"/>
+        <image name="chevron.left" catalog="system" width="128" height="128"/>
+        <image name="ellipsis" catalog="system" width="128" height="128"/>
+        <image name="eraser" catalog="system" width="128" height="128"/>
+        <image name="hand.thumbsdown" catalog="system" width="128" height="128"/>
+        <image name="hand.thumbsup" catalog="system" width="128" height="128"/>
+        <image name="mic" catalog="system" width="128" height="128"/>
+        <image name="paintbrush.fill" catalog="system" width="128" height="128"/>
+        <image name="paintpalette" catalog="system" width="128" height="128"/>
+        <image name="rectangle.split.2x1" catalog="system" width="128" height="128"/>
+        <image name="sofa" catalog="system" width="128" height="128"/>
+        <image name="sparkles" catalog="system" width="128" height="128"/>
+        <image name="square.and.arrow.up" catalog="system" width="128" height="128"/>
+        <image name="square.grid.3x3" catalog="system" width="128" height="128"/>
+        <image name="textformat" catalog="system" width="128" height="128"/>
+        <image name="xmark" catalog="system" width="128" height="128"/>
+        <namedColor name="dsLime">
+            <color red="0.6471" green="0.9333" blue="0.1843" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsSurface">
+            <color red="0.9686" green="0.9686" blue="0.9686" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsTextPrimary">
+            <color red="0.0000" green="0.0000" blue="0.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsTextSecondary">
+            <color red="0.2510" green="0.2510" blue="0.2510" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsTextTertiary">
+            <color red="0.5569" green="0.5569" blue="0.5765" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

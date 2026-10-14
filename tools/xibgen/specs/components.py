@@ -52,14 +52,16 @@ def toast():
     icon = Image(id="icon", system="checkmark.circle.fill", size=16, weight="semibold", tint="dsLime",
                  outlet="iconView")
     label = Label("Saved to Photos", id="label", font=("Medium", 14), color="white", lines=2, outlet="messageLabel")
-    row = HStack([icon, label], id="row", spacing=10, align="center", margins=(12, 16, 12, 18))
+    action = Label("Open", id="action", font=("SemiBold", 14), color="dsLime", outlet="actionLabel", hidden=True,
+                   hug=(751, 251), resist=(751, 750))
+    row = HStack([icon, label, action], id="row", spacing=10, align="center", margins=(10, 16, 10, 18))
     card = View(id="card", cls="DSView", bg="#1C1C1E", outlet="cardView", children=[row],
-                runtime={"cornerRadius": 22, "shadowOpacity": 0.18, "shadowRadius": 14, "shadowOffsetY": 6})
+                runtime={"cornerRadius": 20, "shadowOpacity": 0.18, "shadowRadius": 14, "shadowOffsetY": 6})
     root.add(card)
     pin(card, edges="tb")
     center(card, y=False)
     C(card, "leading", root, "leading", 0, rel="greaterThanOrEqual")
     pin(row)
     square(icon, 20)
-    C(card, "height", const=44, rel="greaterThanOrEqual")
+    C(card, "height", const=40, rel="greaterThanOrEqual")
     return d

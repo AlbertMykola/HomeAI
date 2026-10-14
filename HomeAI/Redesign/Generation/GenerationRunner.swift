@@ -13,15 +13,22 @@ final class GenerationRunner {
         case failed(code: String, message: String)
     }
 
+    struct Outcome {
+        let model: ImageDetailModel
+        let docID: String
+    }
+
     enum State {
         case idle
         case running(Stage)
         case blocked(GenerationAccess.Result)
-        case succeeded(ImageDetailModel)
+        case succeeded(Outcome)
         case failed(Failure)
     }
 
     let promptManager: GemeniPromptManager
+    /// Set when the result is an edit of an existing version → saved as the next version of that project.
+    let baseDocID: String?
     private(set) var state: State = .idle { didSet { onStateChange?(state) } }
     var onStateChange: ((State) -> Void)?
 
@@ -33,8 +40,9 @@ final class GenerationRunner {
     private let amplitude = AmplitudeService.shared
     private let imageStore = ImageHistoryService()
 
-    init(promptManager: GemeniPromptManager) {
+    init(promptManager: GemeniPromptManager, baseDocID: String? = nil) {
         self.promptManager = promptManager
+        self.baseDocID = baseDocID
     }
 
     deinit { task?.cancel() }
@@ -98,8 +106,8 @@ final class GenerationRunner {
                     self.state = .failed(.photoNotSuitable)
                 } else if let image = gpm.baseImage {
                     let fake = ImageGenerationResult(image: image, prompt: "fake", provider: service.provider, model: "fake")
-                    if let detail = try? await self.save(result: fake, baseImage: image) {
-                        self.state = .succeeded(detail)
+                    if let outcome = try? await self.save(result: fake, baseImage: image) {
+                        self.state = .succeeded(outcome)
                     }
                 }
             }
@@ -128,7 +136,7 @@ final class GenerationRunner {
                 let result = try await service.generateImage(from: input)
                 try Task.checkCancellation()
                 await MainActor.run { self.setStage(.saving) }
-                let detail = try await self.save(result: result, baseImage: gpm.baseImage)
+                let outcome = try await self.save(result: result, baseImage: gpm.baseImage)
                 try Task.checkCancellation()
                 await MainActor.run {
                     if isPremium {
@@ -141,7 +149,7 @@ final class GenerationRunner {
                                                                  provider: result.provider.rawValue, model: result.model,
                                                                  latencyMS: self.latency(since: started)))
                     self.amplitude.logEvent(.finishGeneration)
-                    self.state = .succeeded(detail)
+                    self.state = .succeeded(outcome)
                 }
             } catch is CancellationError {
                 await MainActor.run {
@@ -181,7 +189,7 @@ final class GenerationRunner {
     }
 
     /// Saves to local history (same fields as the legacy flow) and builds the result model.
-    private func save(result: ImageGenerationResult, baseImage: UIImage?) async throws -> ImageDetailModel {
+    private func save(result: ImageGenerationResult, baseImage: UIImage?) async throws -> Outcome {
         let gpm = promptManager
         let styleName: String = {
             switch gpm.designOption {
@@ -204,8 +212,16 @@ final class GenerationRunner {
             customPrompt: gpm.customPrompt, surfaceMaterial: gpm.surfaceMaterial,
             surfaceCustomPrompt: gpm.surfaceCustomPrompt, replaceMode: gpm.replaceMode,
             objectToReplace: gpm.objectToReplace, rearrangeSubOption: gpm.rearrangeSubOption)
-        return ImageDetailModel(previewsImage: baseImage, image: result.image, color: colorName ?? "Random",
-                                style: styleName, option: gpm.designOption, canRegenerate: true,
-                                storagePath: doc.storagePath, originalPath: doc.originalPath)
+        await MainActor.run {
+            if let baseDocID {
+                ProjectStore.shared.addVersion(docID: doc.id, toProjectContaining: baseDocID)
+            } else {
+                ProjectStore.shared.createProject(firstDocID: doc.id)
+            }
+        }
+        let model = ImageDetailModel(previewsImage: baseImage, image: result.image, color: colorName ?? "Random",
+                                     style: styleName, option: gpm.designOption, canRegenerate: true,
+                                     storagePath: doc.storagePath, originalPath: doc.originalPath)
+        return Outcome(model: model, docID: doc.id)
     }
 }

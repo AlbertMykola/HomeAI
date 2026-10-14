@@ -11,6 +11,10 @@
 	<false/>
 	<key>NSAdvertisingAttributionReportEndpoint</key>
 	<string>https://appsflyer-skadnetwork.com/</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Speak a change to your design instead of typing it.</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Turns what you say into an edit request for your design. Recognition runs on your device when possible.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Geologica-Thin.ttf</string>

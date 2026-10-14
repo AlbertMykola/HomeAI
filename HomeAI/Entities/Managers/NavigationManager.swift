@@ -368,9 +368,13 @@ final class NavigationManager {
         present(vc, mode: .full) { runner.start() }
     }
 
-    /// A/06 Result. TODO(redesign): R1 screen replaces InspirationDetailViewController here.
-    func showResult(model: ImageDetailModel, promptManager: GemeniPromptManager?, reveal: Bool) {
-        _ = showInspirationDetail(model: model, promptManager: promptManager)
+    /// A/06 · R1 Result for a saved version (doc id).
+    func showResult(docID: String, image: UIImage?, reveal: Bool) {
+        let vc = ResultViewController(nibName: "ResultViewController", bundle: .main)
+        vc.docID = docID
+        vc.initialImage = image
+        vc.reveal = reveal
+        push(vc)
     }
 
     func showFeaturesViewController() {

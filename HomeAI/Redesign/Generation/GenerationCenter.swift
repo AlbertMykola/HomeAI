@@ -17,13 +17,13 @@ final class GenerationCenter {
         runner.onStateChange = { [weak self] state in
             guard let self else { return }
             switch state {
-            case .succeeded(let model):
-                self.notifyIfInBackground(model: model, styleTitle: styleTitle)
+            case .succeeded(let outcome):
+                self.notifyIfInBackground(styleTitle: styleTitle)
                 if UIApplication.shared.applicationState == .active {
                     DS.Haptic.success()
-                    DSToastView.show("Your design is ready — tap to open".localized, style: .success, symbol: "sparkles",
-                                     duration: 4) {
-                        NavigationManager.shared.showResult(model: model, promptManager: runner.promptManager, reveal: true)
+                    DSToastView.show("Your design is ready".localized, style: .success, symbol: "sparkles",
+                                     action: "Open".localized, duration: 4) {
+                        NavigationManager.shared.showResult(docID: outcome.docID, image: outcome.model.image, reveal: true)
                     }
                 }
                 self.finished(runner: runner)
@@ -42,7 +42,7 @@ final class GenerationCenter {
     }
 
     /// Local "Your design is ready" with the style name when the app isn't in front (dev notes G1 state 3).
-    func notifyIfInBackground(model: ImageDetailModel, styleTitle: String?) {
+    func notifyIfInBackground(styleTitle: String?) {
         guard wantsReadyNotification, UIApplication.shared.applicationState != .active else { return }
         let content = UNMutableNotificationContent()
         content.title = Constants.Text.brand

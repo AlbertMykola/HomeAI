@@ -124,8 +124,8 @@ final class GenerationViewController: UIViewController {
                     self?.runner.start()
                 }
             }
-        case .succeeded(let model):
-            finish(with: model)
+        case .succeeded(let outcome):
+            finish(with: outcome)
         case .failed(let failure):
             failureCount += 1
             showFailure(failure)
@@ -284,7 +284,7 @@ final class GenerationViewController: UIViewController {
 
     // MARK: Success → result reveal
 
-    private func finish(with model: ImageDetailModel) {
+    private func finish(with outcome: GenerationRunner.Outcome) {
         DS.Haptic.success()
         UIView.animate(withDuration: 0.4) {
             self.progress = 1
@@ -292,13 +292,12 @@ final class GenerationViewController: UIViewController {
             self.trackView.layoutIfNeeded()
         }
         etaLabel.text = "Done".localized
-        GenerationCenter.shared.notifyIfInBackground(model: model, styleTitle: styleTitle)
+        GenerationCenter.shared.notifyIfInBackground(styleTitle: styleTitle)
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
             guard let self else { return }
-            let manager = self.runner.promptManager
             if self.presentingViewController != nil && self.view.window != nil {
                 self.dismiss(animated: false) {
-                    NavigationManager.shared.showResult(model: model, promptManager: manager, reveal: true)
+                    NavigationManager.shared.showResult(docID: outcome.docID, image: outcome.model.image, reveal: true)
                 }
             }
             GenerationCenter.shared.finished(runner: self.runner)

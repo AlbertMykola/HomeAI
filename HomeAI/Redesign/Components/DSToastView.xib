@@ -14,6 +14,9 @@
         <array key="Geologica-Medium.ttf">
             <string>Geologica-Medium</string>
         </array>
+        <array key="Geologica-SemiBold.ttf">
+            <string>Geologica-SemiBold</string>
+        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DSToastView" customModule="HomeAI" customModuleProvider="target">
@@ -22,6 +25,7 @@
                 <outlet property="cardView" destination="card" id="card-o"/>
                 <outlet property="iconView" destination="icon" id="icon-o"/>
                 <outlet property="messageLabel" destination="label" id="label-o"/>
+                <outlet property="actionLabel" destination="action" id="action-o"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -44,8 +48,11 @@
                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="label" userLabel="messageLabel" opaque="NO" text="Saved to Photos" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                     <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/><nil key="highlightedColor"/>
                                 </label>
+                                <label contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="750" hidden="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="action" userLabel="actionLabel" opaque="NO" text="Open" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO">
+                                    <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="14"/><color key="textColor" name="dsLime"/><nil key="highlightedColor"/>
+                                </label>
                             </subviews>
-                            <edgeInsets key="layoutMargins" top="12" left="16" bottom="12" right="18"/>
+                            <edgeInsets key="layoutMargins" top="10" left="16" bottom="10" right="18"/>
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" red="0.1098" green="0.1098" blue="0.1176" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
@@ -54,10 +61,10 @@
                         <constraint firstItem="row" firstAttribute="top" secondItem="card" secondAttribute="top" id="c54"/>
                         <constraint firstItem="card" firstAttribute="trailing" secondItem="row" secondAttribute="trailing" id="c55"/>
                         <constraint firstItem="card" firstAttribute="bottom" secondItem="row" secondAttribute="bottom" id="c56"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="c59"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="c59"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="22"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.18"/></userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="14"/></userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="6"/></userDefinedRuntimeAttribute>
