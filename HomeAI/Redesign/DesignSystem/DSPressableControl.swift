@@ -23,7 +23,7 @@ class DSPressableControl: UIControl {
         super.awakeFromNib()
         layer.cornerCurve = .continuous
         if let actionName, !actionName.isEmpty {
-            addTarget(nil, action: NSSelectorFromString(actionName), for: .touchUpInside)
+            addTarget(self, action: #selector(dispatchNamedAction), for: .touchUpInside)
         }
         // Everything inside is decoration — the control itself handles touches.
         allSubviews(of: self).forEach { $0.isUserInteractionEnabled = false }
@@ -32,6 +32,23 @@ class DSPressableControl: UIControl {
         if accessibilityLabel == nil {
             accessibilityLabel = allSubviews(of: self).compactMap { ($0 as? UILabel)?.text }.joined(separator: ", ")
         }
+    }
+
+    /// Walks this control's own responder chain (a nil target would start at the first responder instead).
+    @objc private func dispatchNamedAction() {
+        guard let actionName, !actionName.isEmpty else { return }
+        let selector = NSSelectorFromString(actionName)
+        var responder: UIResponder? = next
+        while let r = responder {
+            if r.responds(to: selector) {
+                UIApplication.shared.sendAction(selector, to: r, from: self, for: nil)
+                return
+            }
+            responder = r.next
+        }
+        #if DEBUG
+        print("[DSPressableControl] nobody handles \(actionName)")
+        #endif
     }
 
     override func layoutSubviews() {

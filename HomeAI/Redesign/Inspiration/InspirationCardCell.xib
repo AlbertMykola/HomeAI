@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geologica-Medium.ttf">
+            <string>Geologica-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="cell" customClass="InspirationCardCell" customModule="HomeAI" customModuleProvider="target" reuseIdentifier="InspirationCardCell">
+            <rect key="frame" x="0.0" y="0.0" width="170" height="230"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" contentMode="scaleToFill" id="cell-content" userLabel="Content">
+                <rect key="frame" x="0.0" y="0.0" width="170" height="230"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="photo" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" userLabel="photoImageView" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
+                        <color key="backgroundColor" red="0.9255" green="0.9255" blue="0.9255" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tag" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="tagView">
+                        <subviews>
+                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tag-row" opaque="NO" alignment="center" spacing="0" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                <subviews>
+                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tag-label" userLabel="tagLabel" opaque="NO" text="Japandi" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                        <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="12"/><color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/><nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <edgeInsets key="layoutMargins" top="0" left="10" bottom="0" right="10"/>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.350" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="26" id="c206"/>
+                            <constraint firstItem="tag-row" firstAttribute="leading" secondItem="tag" secondAttribute="leading" id="c207"/>
+                            <constraint firstItem="tag-row" firstAttribute="top" secondItem="tag" secondAttribute="top" id="c208"/>
+                            <constraint firstItem="tag" firstAttribute="trailing" secondItem="tag-row" secondAttribute="trailing" id="c209"/>
+                            <constraint firstItem="tag" firstAttribute="bottom" secondItem="tag-row" secondAttribute="bottom" id="c210"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bookmark" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="bookmarkControl">
+                        <subviews>
+                            <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bookmark-icon" image="bookmark" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="12.75" weight="semibold"/>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="15" id="c198"/>
+                                    <constraint firstAttribute="height" constant="15" id="c199"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.300" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="30" id="c194"/>
+                            <constraint firstAttribute="height" constant="30" id="c195"/>
+                            <constraint firstItem="bookmark-icon" firstAttribute="centerX" secondItem="bookmark" secondAttribute="centerX" id="c196"/>
+                            <constraint firstItem="bookmark-icon" firstAttribute="centerY" secondItem="bookmark" secondAttribute="centerY" id="c197"/>
+                        </constraints>
+                        <accessibility key="accessibilityConfiguration" label="Save idea"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0.5"/></userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.200" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.08"/></userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="7"/></userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="4"/></userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapBookmark:"/>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="photo" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c200"/>
+                    <constraint firstItem="photo" firstAttribute="top" secondItem="cell-content" secondAttribute="top" id="c201"/>
+                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="photo" secondAttribute="trailing" id="c202"/>
+                    <constraint firstItem="cell-content" firstAttribute="bottom" secondItem="photo" secondAttribute="bottom" id="c203"/>
+                    <constraint firstItem="tag" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" constant="8" id="c204"/>
+                    <constraint firstItem="cell-content" firstAttribute="bottom" secondItem="tag" secondAttribute="bottom" constant="8" id="c205"/>
+                    <constraint firstItem="tag" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="photo" secondAttribute="trailing" constant="-8" id="c211"/>
+                    <constraint firstItem="bookmark" firstAttribute="top" secondItem="cell-content" secondAttribute="top" constant="8" id="c212"/>
+                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="bookmark" secondAttribute="trailing" constant="8" id="c213"/>
+                </constraints>
+            </view>
+            <connections>
+                <outlet property="photoImageView" destination="photo" id="photo-o"/>
+                <outlet property="tagView" destination="tag" id="tag-o"/>
+                <outlet property="tagLabel" destination="tag-label" id="tag-label-o"/>
+                <outlet property="bookmarkControl" destination="bookmark" id="bookmark-o"/>
+            </connections>
+        </collectionViewCell>
+        </objects>
+    <resources>
+        <image name="bookmark" catalog="system" width="128" height="128"/>
+    </resources>
+</document>

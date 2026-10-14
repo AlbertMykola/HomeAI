@@ -85,3 +85,12 @@ enum DS {
         static func error() { UINotificationFeedbackGenerator().notificationOccurred(.error) }
     }
 }
+
+extension UIColor {
+    /// "EFE8DD" or "#EFE8DD".
+    convenience init(hex: String) {
+        let value = UInt32(hex.trimmingCharacters(in: CharacterSet(charactersIn: "#")), radix: 16) ?? 0
+        self.init(red: CGFloat((value >> 16) & 0xFF) / 255, green: CGFloat((value >> 8) & 0xFF) / 255,
+                  blue: CGFloat(value & 0xFF) / 255, alpha: 1)
+    }
+}

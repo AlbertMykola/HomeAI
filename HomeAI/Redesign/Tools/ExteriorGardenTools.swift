@@ -40,6 +40,8 @@ final class ExteriorToolViewController: ToolStepViewController {
         keepTitleLabel.text = "Keep structure".localized
         keepSubtitleLabel.text = "Roof, windows and doors stay in place".localized
         facadeLabels.sorted { $0.tag < $1.tag }.enumerated().forEach { $1.text = Self.facades[$0].title.localized }
+        if case .exterior(let preset)? = session.style,
+           let i = Self.facades.firstIndex(where: { $0.brief == nil && $0.style == preset }) { facade = i }
         let lightTitles = ["Day", "Golden hour", "Dusk"]
         lightLabels.sorted { $0.tag < $1.tag }.enumerated().forEach { $1.text = lightTitles[$0].localized }
         applyFacade(animated: false)
@@ -112,6 +114,7 @@ final class GardenToolViewController: ToolStepViewController {
         keepTitleLabel.text = "Keep paths & patio".localized
         keepSubtitleLabel.text = "Hardscape stays, we redo planting".localized
         setChipTitles(seasonChips, ["Spring", "Summer", "Autumn", "Winter"].map(\.localized))
+        if case .garden(let preset)? = session.style, let i = styles.firstIndex(of: preset) { selected = i }
         selectChip(seasonChips, tag: season)
         stylesCollectionView.register(UINib(nibName: "MaterialTileCell", bundle: nil),
                                       forCellWithReuseIdentifier: MaterialTileCell.reuseID)

@@ -72,6 +72,10 @@ final class WizardSession {
     var palette: Palette = .auto
     var keepStructure = true
     var details: String = ""
+    /// Exact palette from an Inspiration idea (W4 palette tap clears it).
+    var colorOverride: ColorType?
+    /// Style came from Inspiration ("Try on my room") → W3 is skipped.
+    private(set) var isStylePreset = false
 
     init(option: DesignOption) {
         self.option = option
@@ -81,7 +85,7 @@ final class WizardSession {
     /// Interior: W1–W4. Every other tool: W1 + its own settings screen (A/07, step 2/2).
     var steps: [Step] {
         switch option {
-        case .interior: return [.photo, .room, .style, .final]
+        case .interior: return isStylePreset ? [.photo, .room, .final] : [.photo, .room, .style, .final]
         case .replace, .delete: return [.photo]
         default: return [.photo, .tool]
         }
@@ -96,6 +100,22 @@ final class WizardSession {
         case .floolPlan: return "Floor plan to 3D".localized
         default: return "Interior redesign".localized
         }
+    }
+
+    /// A/08 · I2 "Try on my room": style + palette of the idea.
+    func applyInspiration(_ idea: InspirationIdea) {
+        switch option {
+        case .interior:
+            style = idea.interiorStyle.map { .interior($0) } ?? .custom("\(idea.style) interior style")
+            isStylePreset = true
+        case .exterior:
+            style = idea.exteriorStyle.map { .exterior($0) }
+        case .garden:
+            style = idea.gardenStyle.map { .garden($0) }
+        default:
+            break
+        }
+        colorOverride = idea.colorType
     }
 
     /// Pushes everything into the prompt manager right before generation.
@@ -115,7 +135,7 @@ final class WizardSession {
         case .custom(let text): promptManager.updateCustomPrompt(text)
         case nil: break
         }
-        promptManager.updateColor(palette.colorType)
+        promptManager.updateColor(colorOverride ?? palette.colorType)
         promptManager.updateDesignMode(keepStructure ? .structuralPreservation : .renovationDesign)
         promptManager.updateExtraDetails(details)
     }

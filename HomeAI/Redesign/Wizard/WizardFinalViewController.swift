@@ -153,6 +153,7 @@ final class WizardFinalViewController: WizardStepViewController {
     @IBAction private func didTapPalette(_ sender: UIControl) {
         guard let palette = WizardSession.Palette(rawValue: sender.tag), palette != session.palette else { return }
         session.palette = palette
+        session.colorOverride = nil
         DS.Haptic.selection()
         applyPalette(animated: true)
     }

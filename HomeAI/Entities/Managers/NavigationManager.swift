@@ -133,7 +133,7 @@ final class NavigationManager {
     /// Create · Inspiration · Projects · Profile.
     private func makeTabControllers() -> [UIViewController] {
         let home = HomeViewController(nibName: "HomeViewController", bundle: .main)
-        let inspiration = mainStoryboard.instantiateViewController(withIdentifier: "InspirationViewController")
+        let inspiration = InspirationFeedViewController(nibName: "InspirationFeedViewController", bundle: .main)
         // TODO(redesign): replace with the new Projects / Profile screens (A/10, A/11).
         let projects = mainStoryboard.instantiateViewController(withIdentifier: "ProfileViewController")
         let profile = mainStoryboard.instantiateViewController(withIdentifier: "SettingsViewController")
@@ -345,8 +345,15 @@ final class NavigationManager {
     }
 
     /// Starts a design flow for an option (Home, Projects, etc.).
-    func startDesign(option: DesignOption) {
-        push(WizardPhotoViewController.make(session: WizardSession(option: option)))
+    func startDesign(option: DesignOption, configure: ((WizardSession) -> Void)? = nil) {
+        let session = WizardSession(option: option)
+        configure?(session)
+        push(WizardPhotoViewController.make(session: session))
+    }
+
+    /// Switches the root tab (e.g. "View" in the Saved to Ideas toast).
+    func selectTab(_ tab: TabBarController.Tab) {
+        (window?.rootViewController as? TabBarController)?.select(tab)
     }
 
     func pushWizardStep(_ vc: UIViewController) {

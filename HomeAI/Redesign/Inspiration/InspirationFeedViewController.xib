@@ -1,0 +1,941 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geologica-Medium.ttf">
+            <string>Geologica-Medium</string>
+        </array>
+        <array key="Geologica-Regular.ttf">
+            <string>Geologica-Regular</string>
+        </array>
+        <array key="Geologica-SemiBold.ttf">
+            <string>Geologica-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InspirationFeedViewController" customModule="HomeAI" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="root" id="root-view-o"/>
+                <outlet property="collectionView" destination="feed-cv" id="feed-cv-o"/>
+                <outlet property="emptyStateView" destination="empty" id="empty-o"/>
+                <outlet property="emptyTitleLabel" destination="empty-title" id="empty-title-o"/>
+                <outlet property="emptySubtitleLabel" destination="empty-sub" id="empty-sub-o"/>
+                <outlet property="headerBackgroundView" destination="header-bg" id="header-bg-o"/>
+                <outlet property="headerHairline" destination="hairline" id="hairline-o"/>
+                <outlet property="headerView" destination="header" id="header-o"/>
+                <outlet property="largeTitleLabel" destination="big-title" id="big-title-o"/>
+                <outlet property="compactTitleLabel" destination="small-title" id="small-title-o"/>
+                <outlet property="searchButton" destination="search" id="search-o"/>
+                <outlet property="searchBarView" destination="search-bar" id="search-bar-o"/>
+                <outlet property="searchField" destination="search-field" id="search-field-o"/>
+                <outlet property="cancelSearchButton" destination="cancel" id="cancel-o"/>
+                <outlet property="roomScrollView" destination="room-scroll" id="room-scroll-o"/>
+                <outletCollection property="roomChips" destination="room-0" collectionClass="NSMutableArray" id="room-0-oc"/>
+                <outletCollection property="roomChips" destination="room-1" collectionClass="NSMutableArray" id="room-1-oc"/>
+                <outletCollection property="roomChips" destination="room-2" collectionClass="NSMutableArray" id="room-2-oc"/>
+                <outletCollection property="roomChips" destination="room-3" collectionClass="NSMutableArray" id="room-3-oc"/>
+                <outletCollection property="roomChips" destination="room-4" collectionClass="NSMutableArray" id="room-4-oc"/>
+                <outletCollection property="roomChips" destination="room-5" collectionClass="NSMutableArray" id="room-5-oc"/>
+                <outletCollection property="roomChips" destination="room-6" collectionClass="NSMutableArray" id="room-6-oc"/>
+                <outletCollection property="roomChips" destination="room-7" collectionClass="NSMutableArray" id="room-7-oc"/>
+                <outletCollection property="roomChips" destination="room-8" collectionClass="NSMutableArray" id="room-8-oc"/>
+                <outlet property="suggestionScrollView" destination="suggestion-scroll" id="suggestion-scroll-o"/>
+                <outletCollection property="suggestionChips" destination="suggestion-0" collectionClass="NSMutableArray" id="suggestion-0-oc"/>
+                <outletCollection property="suggestionChips" destination="suggestion-1" collectionClass="NSMutableArray" id="suggestion-1-oc"/>
+                <outletCollection property="suggestionChips" destination="suggestion-2" collectionClass="NSMutableArray" id="suggestion-2-oc"/>
+                <outletCollection property="suggestionChips" destination="suggestion-3" collectionClass="NSMutableArray" id="suggestion-3-oc"/>
+                <outletCollection property="suggestionChips" destination="suggestion-4" collectionClass="NSMutableArray" id="suggestion-4-oc"/>
+                <outletCollection property="suggestionChips" destination="suggestion-5" collectionClass="NSMutableArray" id="suggestion-5-oc"/>
+                <outletCollection property="suggestionChips" destination="suggestion-6" collectionClass="NSMutableArray" id="suggestion-6-oc"/>
+                <outletCollection property="suggestionChips" destination="suggestion-7" collectionClass="NSMutableArray" id="suggestion-7-oc"/>
+                <outletCollection property="suggestionChips" destination="suggestion-8" collectionClass="NSMutableArray" id="suggestion-8-oc"/>
+                <outletCollection property="suggestionChips" destination="suggestion-9" collectionClass="NSMutableArray" id="suggestion-9-oc"/>
+                <outlet property="skeletonView" destination="skeleton" id="skeleton-o"/>
+                <outletCollection property="skeletonBlocks" destination="sk-chip-0" collectionClass="NSMutableArray" id="sk-chip-0-oc"/>
+                <outletCollection property="skeletonBlocks" destination="sk-chip-1" collectionClass="NSMutableArray" id="sk-chip-1-oc"/>
+                <outletCollection property="skeletonBlocks" destination="sk-chip-2" collectionClass="NSMutableArray" id="sk-chip-2-oc"/>
+                <outletCollection property="skeletonBlocks" destination="sk-chip-3" collectionClass="NSMutableArray" id="sk-chip-3-oc"/>
+                <outletCollection property="skeletonBlocks" destination="sk-chip-4" collectionClass="NSMutableArray" id="sk-chip-4-oc"/>
+                <outletCollection property="skeletonBlocks" destination="sk-0-0" collectionClass="NSMutableArray" id="sk-0-0-oc"/>
+                <outletCollection property="skeletonBlocks" destination="sk-0-1" collectionClass="NSMutableArray" id="sk-0-1-oc"/>
+                <outletCollection property="skeletonBlocks" destination="sk-0-2" collectionClass="NSMutableArray" id="sk-0-2-oc"/>
+                <outletCollection property="skeletonBlocks" destination="sk-0-3" collectionClass="NSMutableArray" id="sk-0-3-oc"/>
+                <outletCollection property="skeletonBlocks" destination="sk-1-0" collectionClass="NSMutableArray" id="sk-1-0-oc"/>
+                <outletCollection property="skeletonBlocks" destination="sk-1-1" collectionClass="NSMutableArray" id="sk-1-1-oc"/>
+                <outletCollection property="skeletonBlocks" destination="sk-1-2" collectionClass="NSMutableArray" id="sk-1-2-oc"/>
+                <outletCollection property="skeletonBlocks" destination="sk-1-3" collectionClass="NSMutableArray" id="sk-1-3-oc"/>
+                <outlet property="offlineBannerView" destination="offline" id="offline-o"/>
+                <outlet property="offlineLabel" destination="offline-label" id="offline-label-o"/>
+                <outlet property="offlineTopConstraint" destination="c186" id="c186-o"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="root" userLabel="Root">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <collectionView contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="feed-cv" userLabel="collectionView" multipleTouchEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="YES" dataMode="none">
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="12" minimumInteritemSpacing="12" id="feed-cv-layout"><size key="itemSize" width="170" height="230"/><size key="headerReferenceSize" width="0.0" height="0.0"/><size key="footerReferenceSize" width="0.0" height="0.0"/><inset key="sectionInset" minX="0" minY="0" maxX="0" maxY="0"/></collectionViewFlowLayout>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </collectionView>
+                <stackView contentMode="scaleToFill" hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="empty" userLabel="emptyStateView" opaque="NO" axis="vertical" spacing="4">
+                    <subviews>
+                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="empty-title" userLabel="emptyTitleLabel" opaque="NO" text="Nothing found" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                        </label>
+                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="empty-sub" userLabel="emptySubtitleLabel" opaque="NO" text="Try another style or room" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextSecondary"/><nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                </stackView>
+                <visualEffectView contentMode="scaleToFill" alpha="0" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="header-bg" userLabel="headerBackgroundView">
+                    <view key="contentView" contentMode="scaleToFill" id="header-bg-cv">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <blurEffect style="systemUltraThinMaterialLight"/>
+                </visualEffectView>
+                <view contentMode="scaleToFill" alpha="0" translatesAutoresizingMaskIntoConstraints="NO" id="hairline" userLabel="headerHairline">
+                    <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.060" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="c138"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="header" userLabel="headerView">
+                    <subviews>
+                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="big-title" userLabel="largeTitleLabel" opaque="NO" text="Inspiration" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="32"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                        </label>
+                        <label contentMode="scaleToFill" alpha="0" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="small-title" userLabel="compactTitleLabel" opaque="NO" text="Inspiration" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                        </label>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="search" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="searchButton">
+                            <subviews>
+                                <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="search-icon" image="magnifyingglass" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17.0" weight="semibold"/>
+                                    <color key="tintColor" name="dsTextPrimary"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="20" id="c23"/>
+                                        <constraint firstAttribute="height" constant="20" id="c24"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" name="dsGlass"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="44" id="c19"/>
+                                <constraint firstAttribute="height" constant="44" id="c20"/>
+                                <constraint firstItem="search-icon" firstAttribute="centerX" secondItem="search" secondAttribute="centerX" id="c21"/>
+                                <constraint firstItem="search-icon" firstAttribute="centerY" secondItem="search" secondAttribute="centerY" id="c22"/>
+                            </constraints>
+                            <accessibility key="accessibilityConfiguration" label="Search"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0.5"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.900" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.08"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="7"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="4"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSearch:"/>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <stackView contentMode="scaleToFill" hidden="YES" alpha="0" translatesAutoresizingMaskIntoConstraints="NO" id="search-bar" userLabel="searchBarView" opaque="NO" spacing="12">
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="field-box" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                    <subviews>
+                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="field-row" opaque="NO" alignment="center" spacing="8" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                            <subviews>
+                                                <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="field-icon" image="magnifyingglass" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="medium"/>
+                                                    <color key="tintColor" name="dsTextTertiary"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="18" id="c154"/>
+                                                        <constraint firstAttribute="height" constant="18" id="c155"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <textField contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="search-field" userLabel="searchField" opaque="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Search styles" minimumFontSize="12">
+                                                    <color key="textColor" name="dsTextPrimary"/><fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="16"/><textInputTraits key="textInputTraits" autocapitalizationType="sentences" returnKeyType="done"/>
+                                                </textField>
+                                            </subviews>
+                                            <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" name="dsChip"/>
+                                    <constraints>
+                                        <constraint firstItem="field-row" firstAttribute="leading" secondItem="field-box" secondAttribute="leading" id="c150"/>
+                                        <constraint firstItem="field-row" firstAttribute="top" secondItem="field-box" secondAttribute="top" id="c151"/>
+                                        <constraint firstItem="field-box" firstAttribute="trailing" secondItem="field-row" secondAttribute="trailing" id="c152"/>
+                                        <constraint firstItem="field-box" firstAttribute="bottom" secondItem="field-row" secondAttribute="bottom" id="c153"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <button contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cancel" userLabel="cancelSearchButton" opaque="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation">
+                                    <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="16"/><inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/><state key="normal" title="Cancel"><color key="titleColor" name="dsTextPrimary"/></state>
+                                    <connections>
+                                        <action selector="didTapCancelSearch:" destination="-1" eventType="touchUpInside" id="cancel-a0"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="c149"/>
+                            </constraints>
+                        </stackView>
+                        <scrollView contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="room-scroll" userLabel="roomScrollView" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" alwaysBounceHorizontal="YES">
+                            <subviews>
+                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="room-stack" opaque="NO" spacing="8" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                    <subviews>
+                                        <view contentMode="scaleToFill" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="room-0" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="room-0-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                    <subviews>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="room-0-label" opaque="NO" text="All" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="c25"/>
+                                                <constraint firstItem="room-0-row" firstAttribute="leading" secondItem="room-0" secondAttribute="leading" id="c26"/>
+                                                <constraint firstItem="room-0-row" firstAttribute="top" secondItem="room-0" secondAttribute="top" id="c27"/>
+                                                <constraint firstItem="room-0" firstAttribute="trailing" secondItem="room-0-row" secondAttribute="trailing" id="c28"/>
+                                                <constraint firstItem="room-0" firstAttribute="bottom" secondItem="room-0-row" secondAttribute="bottom" id="c29"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapRoom:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="room-1" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="room-1-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                    <subviews>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="room-1-label" opaque="NO" text="Living" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="c30"/>
+                                                <constraint firstItem="room-1-row" firstAttribute="leading" secondItem="room-1" secondAttribute="leading" id="c31"/>
+                                                <constraint firstItem="room-1-row" firstAttribute="top" secondItem="room-1" secondAttribute="top" id="c32"/>
+                                                <constraint firstItem="room-1" firstAttribute="trailing" secondItem="room-1-row" secondAttribute="trailing" id="c33"/>
+                                                <constraint firstItem="room-1" firstAttribute="bottom" secondItem="room-1-row" secondAttribute="bottom" id="c34"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapRoom:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="room-2" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="room-2-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                    <subviews>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="room-2-label" opaque="NO" text="Bedroom" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="c35"/>
+                                                <constraint firstItem="room-2-row" firstAttribute="leading" secondItem="room-2" secondAttribute="leading" id="c36"/>
+                                                <constraint firstItem="room-2-row" firstAttribute="top" secondItem="room-2" secondAttribute="top" id="c37"/>
+                                                <constraint firstItem="room-2" firstAttribute="trailing" secondItem="room-2-row" secondAttribute="trailing" id="c38"/>
+                                                <constraint firstItem="room-2" firstAttribute="bottom" secondItem="room-2-row" secondAttribute="bottom" id="c39"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapRoom:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="room-3" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="room-3-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                    <subviews>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="room-3-label" opaque="NO" text="Kitchen" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="c40"/>
+                                                <constraint firstItem="room-3-row" firstAttribute="leading" secondItem="room-3" secondAttribute="leading" id="c41"/>
+                                                <constraint firstItem="room-3-row" firstAttribute="top" secondItem="room-3" secondAttribute="top" id="c42"/>
+                                                <constraint firstItem="room-3" firstAttribute="trailing" secondItem="room-3-row" secondAttribute="trailing" id="c43"/>
+                                                <constraint firstItem="room-3" firstAttribute="bottom" secondItem="room-3-row" secondAttribute="bottom" id="c44"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapRoom:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="room-4" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="room-4-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                    <subviews>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="room-4-label" opaque="NO" text="Bathroom" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="c45"/>
+                                                <constraint firstItem="room-4-row" firstAttribute="leading" secondItem="room-4" secondAttribute="leading" id="c46"/>
+                                                <constraint firstItem="room-4-row" firstAttribute="top" secondItem="room-4" secondAttribute="top" id="c47"/>
+                                                <constraint firstItem="room-4" firstAttribute="trailing" secondItem="room-4-row" secondAttribute="trailing" id="c48"/>
+                                                <constraint firstItem="room-4" firstAttribute="bottom" secondItem="room-4-row" secondAttribute="bottom" id="c49"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapRoom:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="room-5" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="room-5-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                    <subviews>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="room-5-label" opaque="NO" text="Dining" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="c50"/>
+                                                <constraint firstItem="room-5-row" firstAttribute="leading" secondItem="room-5" secondAttribute="leading" id="c51"/>
+                                                <constraint firstItem="room-5-row" firstAttribute="top" secondItem="room-5" secondAttribute="top" id="c52"/>
+                                                <constraint firstItem="room-5" firstAttribute="trailing" secondItem="room-5-row" secondAttribute="trailing" id="c53"/>
+                                                <constraint firstItem="room-5" firstAttribute="bottom" secondItem="room-5-row" secondAttribute="bottom" id="c54"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapRoom:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="room-6" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="room-6-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                    <subviews>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="room-6-label" opaque="NO" text="Hallway" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="c55"/>
+                                                <constraint firstItem="room-6-row" firstAttribute="leading" secondItem="room-6" secondAttribute="leading" id="c56"/>
+                                                <constraint firstItem="room-6-row" firstAttribute="top" secondItem="room-6" secondAttribute="top" id="c57"/>
+                                                <constraint firstItem="room-6" firstAttribute="trailing" secondItem="room-6-row" secondAttribute="trailing" id="c58"/>
+                                                <constraint firstItem="room-6" firstAttribute="bottom" secondItem="room-6-row" secondAttribute="bottom" id="c59"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapRoom:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="7" translatesAutoresizingMaskIntoConstraints="NO" id="room-7" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="room-7-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                    <subviews>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="7" translatesAutoresizingMaskIntoConstraints="NO" id="room-7-label" opaque="NO" text="Gaming" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="c60"/>
+                                                <constraint firstItem="room-7-row" firstAttribute="leading" secondItem="room-7" secondAttribute="leading" id="c61"/>
+                                                <constraint firstItem="room-7-row" firstAttribute="top" secondItem="room-7" secondAttribute="top" id="c62"/>
+                                                <constraint firstItem="room-7" firstAttribute="trailing" secondItem="room-7-row" secondAttribute="trailing" id="c63"/>
+                                                <constraint firstItem="room-7" firstAttribute="bottom" secondItem="room-7-row" secondAttribute="bottom" id="c64"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapRoom:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="8" translatesAutoresizingMaskIntoConstraints="NO" id="room-8" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="room-8-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                    <subviews>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="8" translatesAutoresizingMaskIntoConstraints="NO" id="room-8-label" opaque="NO" text="Outdoor" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="c65"/>
+                                                <constraint firstItem="room-8-row" firstAttribute="leading" secondItem="room-8" secondAttribute="leading" id="c66"/>
+                                                <constraint firstItem="room-8-row" firstAttribute="top" secondItem="room-8" secondAttribute="top" id="c67"/>
+                                                <constraint firstItem="room-8" firstAttribute="trailing" secondItem="room-8-row" secondAttribute="trailing" id="c68"/>
+                                                <constraint firstItem="room-8" firstAttribute="bottom" secondItem="room-8-row" secondAttribute="bottom" id="c69"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapRoom:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <edgeInsets key="layoutMargins" top="0" left="20" bottom="0" right="20"/>
+                                </stackView>
+                            </subviews>
+                            <viewLayoutGuide key="contentLayoutGuide" id="room-scroll-contentLayoutGuide"/><viewLayoutGuide key="frameLayoutGuide" id="room-scroll-frameLayoutGuide"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="c159"/>
+                                <constraint firstItem="room-stack" firstAttribute="leading" secondItem="room-scroll-contentLayoutGuide" secondAttribute="leading" id="c160"/>
+                                <constraint firstItem="room-stack" firstAttribute="top" secondItem="room-scroll-contentLayoutGuide" secondAttribute="top" id="c161"/>
+                                <constraint firstItem="room-scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="room-stack" secondAttribute="trailing" id="c162"/>
+                                <constraint firstItem="room-scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="room-stack" secondAttribute="bottom" id="c163"/>
+                                <constraint firstItem="room-stack" firstAttribute="height" secondItem="room-scroll-frameLayoutGuide" secondAttribute="height" id="c164"/>
+                            </constraints>
+                        </scrollView>
+                        <scrollView contentMode="scaleToFill" hidden="YES" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-scroll" userLabel="suggestionScrollView" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" alwaysBounceHorizontal="YES">
+                            <subviews>
+                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-stack" opaque="NO" spacing="8" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                    <subviews>
+                                        <view contentMode="scaleToFill" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-0" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-0-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                    <subviews>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-0-label" opaque="NO" text="Scandinavian" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="c70"/>
+                                                <constraint firstItem="suggestion-0-row" firstAttribute="leading" secondItem="suggestion-0" secondAttribute="leading" id="c71"/>
+                                                <constraint firstItem="suggestion-0-row" firstAttribute="top" secondItem="suggestion-0" secondAttribute="top" id="c72"/>
+                                                <constraint firstItem="suggestion-0" firstAttribute="trailing" secondItem="suggestion-0-row" secondAttribute="trailing" id="c73"/>
+                                                <constraint firstItem="suggestion-0" firstAttribute="bottom" secondItem="suggestion-0-row" secondAttribute="bottom" id="c74"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSuggestion:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-1" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-1-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                    <subviews>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-1-label" opaque="NO" text="Japanese" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="c75"/>
+                                                <constraint firstItem="suggestion-1-row" firstAttribute="leading" secondItem="suggestion-1" secondAttribute="leading" id="c76"/>
+                                                <constraint firstItem="suggestion-1-row" firstAttribute="top" secondItem="suggestion-1" secondAttribute="top" id="c77"/>
+                                                <constraint firstItem="suggestion-1" firstAttribute="trailing" secondItem="suggestion-1-row" secondAttribute="trailing" id="c78"/>
+                                                <constraint firstItem="suggestion-1" firstAttribute="bottom" secondItem="suggestion-1-row" secondAttribute="bottom" id="c79"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSuggestion:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-2" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-2-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                    <subviews>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-2-label" opaque="NO" text="Minimalist" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="c80"/>
+                                                <constraint firstItem="suggestion-2-row" firstAttribute="leading" secondItem="suggestion-2" secondAttribute="leading" id="c81"/>
+                                                <constraint firstItem="suggestion-2-row" firstAttribute="top" secondItem="suggestion-2" secondAttribute="top" id="c82"/>
+                                                <constraint firstItem="suggestion-2" firstAttribute="trailing" secondItem="suggestion-2-row" secondAttribute="trailing" id="c83"/>
+                                                <constraint firstItem="suggestion-2" firstAttribute="bottom" secondItem="suggestion-2-row" secondAttribute="bottom" id="c84"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSuggestion:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-3" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-3-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                    <subviews>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-3-label" opaque="NO" text="Modern" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="c85"/>
+                                                <constraint firstItem="suggestion-3-row" firstAttribute="leading" secondItem="suggestion-3" secondAttribute="leading" id="c86"/>
+                                                <constraint firstItem="suggestion-3-row" firstAttribute="top" secondItem="suggestion-3" secondAttribute="top" id="c87"/>
+                                                <constraint firstItem="suggestion-3" firstAttribute="trailing" secondItem="suggestion-3-row" secondAttribute="trailing" id="c88"/>
+                                                <constraint firstItem="suggestion-3" firstAttribute="bottom" secondItem="suggestion-3-row" secondAttribute="bottom" id="c89"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSuggestion:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-4" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-4-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                    <subviews>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-4-label" opaque="NO" text="Mediterranean" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="c90"/>
+                                                <constraint firstItem="suggestion-4-row" firstAttribute="leading" secondItem="suggestion-4" secondAttribute="leading" id="c91"/>
+                                                <constraint firstItem="suggestion-4-row" firstAttribute="top" secondItem="suggestion-4" secondAttribute="top" id="c92"/>
+                                                <constraint firstItem="suggestion-4" firstAttribute="trailing" secondItem="suggestion-4-row" secondAttribute="trailing" id="c93"/>
+                                                <constraint firstItem="suggestion-4" firstAttribute="bottom" secondItem="suggestion-4-row" secondAttribute="bottom" id="c94"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSuggestion:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-5" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-5-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                    <subviews>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-5-label" opaque="NO" text="Contemporary" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="c95"/>
+                                                <constraint firstItem="suggestion-5-row" firstAttribute="leading" secondItem="suggestion-5" secondAttribute="leading" id="c96"/>
+                                                <constraint firstItem="suggestion-5-row" firstAttribute="top" secondItem="suggestion-5" secondAttribute="top" id="c97"/>
+                                                <constraint firstItem="suggestion-5" firstAttribute="trailing" secondItem="suggestion-5-row" secondAttribute="trailing" id="c98"/>
+                                                <constraint firstItem="suggestion-5" firstAttribute="bottom" secondItem="suggestion-5-row" secondAttribute="bottom" id="c99"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSuggestion:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-6" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-6-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                    <subviews>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-6-label" opaque="NO" text="Bohemian" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="c100"/>
+                                                <constraint firstItem="suggestion-6-row" firstAttribute="leading" secondItem="suggestion-6" secondAttribute="leading" id="c101"/>
+                                                <constraint firstItem="suggestion-6-row" firstAttribute="top" secondItem="suggestion-6" secondAttribute="top" id="c102"/>
+                                                <constraint firstItem="suggestion-6" firstAttribute="trailing" secondItem="suggestion-6-row" secondAttribute="trailing" id="c103"/>
+                                                <constraint firstItem="suggestion-6" firstAttribute="bottom" secondItem="suggestion-6-row" secondAttribute="bottom" id="c104"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSuggestion:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="7" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-7" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-7-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                    <subviews>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="7" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-7-label" opaque="NO" text="Industrial" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="c105"/>
+                                                <constraint firstItem="suggestion-7-row" firstAttribute="leading" secondItem="suggestion-7" secondAttribute="leading" id="c106"/>
+                                                <constraint firstItem="suggestion-7-row" firstAttribute="top" secondItem="suggestion-7" secondAttribute="top" id="c107"/>
+                                                <constraint firstItem="suggestion-7" firstAttribute="trailing" secondItem="suggestion-7-row" secondAttribute="trailing" id="c108"/>
+                                                <constraint firstItem="suggestion-7" firstAttribute="bottom" secondItem="suggestion-7-row" secondAttribute="bottom" id="c109"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSuggestion:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="8" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-8" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-8-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                    <subviews>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="8" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-8-label" opaque="NO" text="Classic" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="c110"/>
+                                                <constraint firstItem="suggestion-8-row" firstAttribute="leading" secondItem="suggestion-8" secondAttribute="leading" id="c111"/>
+                                                <constraint firstItem="suggestion-8-row" firstAttribute="top" secondItem="suggestion-8" secondAttribute="top" id="c112"/>
+                                                <constraint firstItem="suggestion-8" firstAttribute="trailing" secondItem="suggestion-8-row" secondAttribute="trailing" id="c113"/>
+                                                <constraint firstItem="suggestion-8" firstAttribute="bottom" secondItem="suggestion-8-row" secondAttribute="bottom" id="c114"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSuggestion:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-9" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-9-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                    <subviews>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="suggestion-9-label" opaque="NO" text="Wabi-sabi" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                </stackView>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="36" id="c115"/>
+                                                <constraint firstItem="suggestion-9-row" firstAttribute="leading" secondItem="suggestion-9" secondAttribute="leading" id="c116"/>
+                                                <constraint firstItem="suggestion-9-row" firstAttribute="top" secondItem="suggestion-9" secondAttribute="top" id="c117"/>
+                                                <constraint firstItem="suggestion-9" firstAttribute="trailing" secondItem="suggestion-9-row" secondAttribute="trailing" id="c118"/>
+                                                <constraint firstItem="suggestion-9" firstAttribute="bottom" secondItem="suggestion-9-row" secondAttribute="bottom" id="c119"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSuggestion:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                    <edgeInsets key="layoutMargins" top="0" left="20" bottom="0" right="20"/>
+                                </stackView>
+                            </subviews>
+                            <viewLayoutGuide key="contentLayoutGuide" id="suggestion-scroll-contentLayoutGuide"/><viewLayoutGuide key="frameLayoutGuide" id="suggestion-scroll-frameLayoutGuide"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="c168"/>
+                                <constraint firstItem="suggestion-stack" firstAttribute="leading" secondItem="suggestion-scroll-contentLayoutGuide" secondAttribute="leading" id="c169"/>
+                                <constraint firstItem="suggestion-stack" firstAttribute="top" secondItem="suggestion-scroll-contentLayoutGuide" secondAttribute="top" id="c170"/>
+                                <constraint firstItem="suggestion-scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="suggestion-stack" secondAttribute="trailing" id="c171"/>
+                                <constraint firstItem="suggestion-scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="suggestion-stack" secondAttribute="bottom" id="c172"/>
+                                <constraint firstItem="suggestion-stack" firstAttribute="height" secondItem="suggestion-scroll-frameLayoutGuide" secondAttribute="height" id="c173"/>
+                            </constraints>
+                        </scrollView>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="big-title" firstAttribute="leading" secondItem="header" secondAttribute="leading" constant="20" id="c139"/>
+                        <constraint firstItem="header" firstAttribute="trailing" secondItem="search" secondAttribute="trailing" constant="20" id="c140"/>
+                        <constraint firstItem="search" firstAttribute="top" secondItem="header" secondAttribute="top" constant="8" id="c141"/>
+                        <constraint firstItem="big-title" firstAttribute="centerY" secondItem="search" secondAttribute="centerY" id="c142"/>
+                        <constraint firstItem="search" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="big-title" secondAttribute="trailing" constant="12" id="c143"/>
+                        <constraint firstItem="small-title" firstAttribute="centerY" secondItem="search" secondAttribute="centerY" id="c144"/>
+                        <constraint firstItem="small-title" firstAttribute="centerX" secondItem="header" secondAttribute="centerX" id="c145"/>
+                        <constraint firstItem="search-bar" firstAttribute="leading" secondItem="header" secondAttribute="leading" constant="20" id="c146"/>
+                        <constraint firstItem="header" firstAttribute="trailing" secondItem="search-bar" secondAttribute="trailing" constant="20" id="c147"/>
+                        <constraint firstItem="search-bar" firstAttribute="centerY" secondItem="search" secondAttribute="centerY" id="c148"/>
+                        <constraint firstItem="room-scroll" firstAttribute="leading" secondItem="header" secondAttribute="leading" id="c156"/>
+                        <constraint firstItem="header" firstAttribute="trailing" secondItem="room-scroll" secondAttribute="trailing" id="c157"/>
+                        <constraint firstItem="room-scroll" firstAttribute="top" secondItem="search" secondAttribute="bottom" constant="12" id="c158"/>
+                        <constraint firstItem="suggestion-scroll" firstAttribute="leading" secondItem="header" secondAttribute="leading" id="c165"/>
+                        <constraint firstItem="header" firstAttribute="trailing" secondItem="suggestion-scroll" secondAttribute="trailing" id="c166"/>
+                        <constraint firstItem="suggestion-scroll" firstAttribute="top" secondItem="search" secondAttribute="bottom" constant="12" id="c167"/>
+                        <constraint firstItem="header" firstAttribute="bottom" secondItem="room-scroll" secondAttribute="bottom" constant="10" id="c174"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="skeleton" userLabel="skeletonView">
+                    <subviews>
+                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sk-chips" opaque="NO" spacing="8">
+                            <subviews>
+                                <view contentMode="scaleToFill" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="sk-chip-0" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                    <color key="backgroundColor" red="0.9255" green="0.9255" blue="0.9255" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="60" id="c1"/>
+                                        <constraint firstAttribute="height" constant="36" id="c2"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <view contentMode="scaleToFill" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="sk-chip-1" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                    <color key="backgroundColor" red="0.9255" green="0.9255" blue="0.9255" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="74" id="c3"/>
+                                        <constraint firstAttribute="height" constant="36" id="c4"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <view contentMode="scaleToFill" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="sk-chip-2" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                    <color key="backgroundColor" red="0.9255" green="0.9255" blue="0.9255" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="70" id="c5"/>
+                                        <constraint firstAttribute="height" constant="36" id="c6"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <view contentMode="scaleToFill" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="sk-chip-3" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                    <color key="backgroundColor" red="0.9255" green="0.9255" blue="0.9255" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="84" id="c7"/>
+                                        <constraint firstAttribute="height" constant="36" id="c8"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <view contentMode="scaleToFill" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="sk-chip-4" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                    <color key="backgroundColor" red="0.9255" green="0.9255" blue="0.9255" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="60" id="c9"/>
+                                        <constraint firstAttribute="height" constant="36" id="c10"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                            </subviews>
+                        </stackView>
+                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sk-grid" opaque="NO" alignment="top" distribution="fillEqually" spacing="13">
+                            <subviews>
+                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sk-col-0" opaque="NO" axis="vertical" spacing="12">
+                                    <subviews>
+                                        <view contentMode="scaleToFill" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="sk-0-0" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                            <color key="backgroundColor" red="0.9255" green="0.9255" blue="0.9255" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="230" id="c11"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="7" translatesAutoresizingMaskIntoConstraints="NO" id="sk-0-1" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                            <color key="backgroundColor" red="0.9255" green="0.9255" blue="0.9255" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="170" id="c12"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="sk-0-2" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                            <color key="backgroundColor" red="0.9255" green="0.9255" blue="0.9255" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="210" id="c13"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="11" translatesAutoresizingMaskIntoConstraints="NO" id="sk-0-3" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                            <color key="backgroundColor" red="0.9255" green="0.9255" blue="0.9255" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="200" id="c14"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                </stackView>
+                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sk-col-1" opaque="NO" axis="vertical" spacing="12">
+                                    <subviews>
+                                        <view contentMode="scaleToFill" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="sk-1-0" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                            <color key="backgroundColor" red="0.9255" green="0.9255" blue="0.9255" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="170" id="c15"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="8" translatesAutoresizingMaskIntoConstraints="NO" id="sk-1-1" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                            <color key="backgroundColor" red="0.9255" green="0.9255" blue="0.9255" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="240" id="c16"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="10" translatesAutoresizingMaskIntoConstraints="NO" id="sk-1-2" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                            <color key="backgroundColor" red="0.9255" green="0.9255" blue="0.9255" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="180" id="c17"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="12" translatesAutoresizingMaskIntoConstraints="NO" id="sk-1-3" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                            <color key="backgroundColor" red="0.9255" green="0.9255" blue="0.9255" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="210" id="c18"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="sk-chips" firstAttribute="leading" secondItem="skeleton" secondAttribute="leading" constant="20" id="c179"/>
+                        <constraint firstItem="sk-chips" firstAttribute="top" secondItem="skeleton" secondAttribute="top" id="c180"/>
+                        <constraint firstItem="sk-grid" firstAttribute="leading" secondItem="skeleton" secondAttribute="leading" constant="20" id="c181"/>
+                        <constraint firstItem="skeleton" firstAttribute="trailing" secondItem="sk-grid" secondAttribute="trailing" constant="20" id="c182"/>
+                        <constraint firstItem="sk-grid" firstAttribute="top" secondItem="sk-chips" secondAttribute="bottom" constant="22" id="c183"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="offline" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="offlineBannerView">
+                    <subviews>
+                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="offline-row" opaque="NO" alignment="center" spacing="10" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                            <subviews>
+                                <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="offline-icon" image="wifi.slash" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="14" weight="semibold"/>
+                                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="18" id="c192"/>
+                                        <constraint firstAttribute="height" constant="18" id="c193"/>
+                                    </constraints>
+                                </imageView>
+                                <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="offline-label" userLabel="offlineLabel" opaque="NO" text="Offline. Showing saved ideas." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.75" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                    <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/><nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <edgeInsets key="layoutMargins" top="0" left="16" bottom="0" right="16"/>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.1098" green="0.1098" blue="0.1176" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="c187"/>
+                        <constraint firstItem="offline-row" firstAttribute="leading" secondItem="offline" secondAttribute="leading" id="c188"/>
+                        <constraint firstItem="offline-row" firstAttribute="top" secondItem="offline" secondAttribute="top" id="c189"/>
+                        <constraint firstItem="offline" firstAttribute="trailing" secondItem="offline-row" secondAttribute="trailing" id="c190"/>
+                        <constraint firstItem="offline" firstAttribute="bottom" secondItem="offline-row" secondAttribute="bottom" id="c191"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.15"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="10"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="4"/></userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="root-safeArea"/>
+            <constraints>
+                <constraint firstItem="feed-cv" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c120"/>
+                <constraint firstItem="feed-cv" firstAttribute="top" secondItem="root" secondAttribute="top" id="c121"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="feed-cv" secondAttribute="trailing" id="c122"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="feed-cv" secondAttribute="bottom" id="c123"/>
+                <constraint firstItem="empty" firstAttribute="centerX" secondItem="root" secondAttribute="centerX" id="c124"/>
+                <constraint firstItem="empty" firstAttribute="top" secondItem="header" secondAttribute="bottom" constant="120" id="c125"/>
+                <constraint firstItem="empty" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="40" id="c126"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="empty" secondAttribute="trailing" constant="40" id="c127"/>
+                <constraint firstItem="header" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c128"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="header" secondAttribute="trailing" id="c129"/>
+                <constraint firstItem="header" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" id="c130"/>
+                <constraint firstItem="header-bg" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c131"/>
+                <constraint firstItem="header-bg" firstAttribute="top" secondItem="root" secondAttribute="top" id="c132"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="header-bg" secondAttribute="trailing" id="c133"/>
+                <constraint firstItem="header-bg" firstAttribute="bottom" secondItem="header" secondAttribute="bottom" id="c134"/>
+                <constraint firstItem="hairline" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c135"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="hairline" secondAttribute="trailing" id="c136"/>
+                <constraint firstItem="hairline" firstAttribute="top" secondItem="header" secondAttribute="bottom" id="c137"/>
+                <constraint firstItem="skeleton" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c175"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="skeleton" secondAttribute="trailing" id="c176"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="skeleton" secondAttribute="bottom" id="c177"/>
+                <constraint firstItem="skeleton" firstAttribute="top" secondItem="room-scroll" secondAttribute="top" id="c178"/>
+                <constraint firstItem="offline" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c184"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="offline" secondAttribute="trailing" constant="20" id="c185"/>
+                <constraint firstItem="offline" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="6" id="c186"/>
+            </constraints>
+        </view>
+        </objects>
+    <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="128"/>
+        <image name="wifi.slash" catalog="system" width="128" height="128"/>
+        <namedColor name="dsChip">
+            <color red="0.9490" green="0.9490" blue="0.9490" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsGlass">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="0.750" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsTextPrimary">
+            <color red="0.0000" green="0.0000" blue="0.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsTextSecondary">
+            <color red="0.2510" green="0.2510" blue="0.2510" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsTextTertiary">
+            <color red="0.5569" green="0.5569" blue="0.5765" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
