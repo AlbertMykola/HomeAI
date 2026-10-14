@@ -139,6 +139,16 @@ final class NavigationManager {
                 tabBarController.present(StateScreenViewController.make(kind), animated: true)
             }
         }
+        if ProcessInfo.processInfo.arguments.contains("-showProFeature") {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                ProFeatureSheetViewController.present(.watermark, from: tabBarController)
+            }
+        }
+        if ProcessInfo.processInfo.arguments.contains("-showWelcomePro") {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                tabBarController.present(WelcomeProViewController.make {}, animated: true)
+            }
+        }
         if ProcessInfo.processInfo.arguments.contains("-openAssistant") {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in self?.showAssistant() }
         }
@@ -238,6 +248,12 @@ final class NavigationManager {
 
     func showPremium(placement: String, origin: PaywallOrigin, onPurchase: (() -> Void)? = nil) {
         guard !AdaptyService.shared.hasActiveSubscription else { return }
+        // A/02: everything in the app uses the redesigned paywall; onboarding keeps the old one for now.
+        if origin == .inApp {
+            present(ProPaywallViewController.make(placement: placement, source: placement, onPurchase: onPurchase),
+                    mode: .overFull)
+            return
+        }
         let vc = PaywallViewController(nibName: "PaywallViewController", bundle: .main)
         pendingPremiumPurchaseCompletion = onPurchase
         vc.onSuccessfulPurchase = { [weak self] in

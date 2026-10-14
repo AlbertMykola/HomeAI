@@ -84,8 +84,11 @@ final class ShareSheetViewController: UIViewController {
     }
 
     @objc private func didTapPro() {
+        // A/02 P3: contextual upsell for the watermark instead of the full paywall.
+        let presenter = presentingViewController
         dismiss(animated: true) {
-            NavigationManager.shared.showPremium(placement: Constants.Keys.shareImagePlacement, origin: .inApp)
+            guard let presenter else { return }
+            ProFeatureSheetViewController.present(.watermark, from: presenter, placement: Constants.Keys.shareImagePlacement)
         }
     }
 
