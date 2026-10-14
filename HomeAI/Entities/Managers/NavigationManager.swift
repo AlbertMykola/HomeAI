@@ -55,6 +55,9 @@ final class NavigationManager {
     // MARK: - Bootstrap
     func setupWindow(with windowScene: UIWindowScene) {
         window = UIWindow(windowScene: windowScene)
+        // Redesign A is light-only.
+        window?.overrideUserInterfaceStyle = .light
+        NetworkMonitor.shared.start()
         configureNavigationBarAppearance()
         
         // ЗМІНА: Завжди починаємо з LaunchViewController
@@ -100,10 +103,7 @@ final class NavigationManager {
             assertionFailure("TabBarController not found in Main.storyboard")
             return
         }
-        tabBarController.viewControllers = (tabBarController.viewControllers ?? []).map { vc in
-            guard !(vc is UINavigationController) else { return vc }
-            return PortraitNavigationController(rootViewController: vc)
-        }
+        tabBarController.setViewControllers(makeTabControllers(), animated: false)
         if selectOptionsTab {
             tabBarController.selectedIndex = 0
         }
@@ -119,6 +119,16 @@ final class NavigationManager {
             scheduleLaunchPaywallIfNeeded()
         }
         scheduleForcedPaywallIfNeeded()
+    }
+
+    /// Create · Inspiration · Projects · Profile.
+    private func makeTabControllers() -> [UIViewController] {
+        let home = HomeViewController(nibName: "HomeViewController", bundle: .main)
+        let inspiration = mainStoryboard.instantiateViewController(withIdentifier: "InspirationViewController")
+        // TODO(redesign): replace with the new Projects / Profile screens (A/10, A/11).
+        let projects = mainStoryboard.instantiateViewController(withIdentifier: "ProfileViewController")
+        let profile = mainStoryboard.instantiateViewController(withIdentifier: "SettingsViewController")
+        return [home, inspiration, projects, profile].map { PortraitNavigationController(rootViewController: $0) }
     }
 
     private func setOnboardingAsRoot(in window: UIWindow, animated: Bool) {
@@ -189,7 +199,7 @@ final class NavigationManager {
 
     /// Returning users: після launch screen відкриваємо TabBar і одразу показуємо окремий paywall.
     private func scheduleLaunchPaywallIfNeeded() {
-        guard !AdaptyService.shared.hasActiveSubscription else { return }
+        guard !AdaptyService.shared.hasActiveSubscription, !Constants.Debug.skipLaunchPaywall else { return }
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.45) { [weak self] in
             self?.showPremium(placement: Constants.Keys.appLaunchPlacement, origin: .inApp)
         }
@@ -323,6 +333,20 @@ final class NavigationManager {
         }
         vc.selectedOption = option
         push(vc)
+    }
+
+    /// Starts a design flow for an option (Home, Projects, etc.).
+    func startDesign(option: DesignOption) {
+        switch option {
+        case .replace:
+            showReplaceObjectPage()
+        case .delete:
+            let manager = GemeniPromptManager()
+            manager.updateOption(.delete)
+            showReplaceObjectPage(promptManager: manager, flowMode: .delete)
+        default:
+            showPageViewController(option: option)
+        }
     }
 
     func showFeaturesViewController() {

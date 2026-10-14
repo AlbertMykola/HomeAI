@@ -131,10 +131,18 @@ struct Constants {
     struct Debug {
         /// Якщо `true` — після TabBar показується paywall (лише без активної підписки). Для верстки paywall.
         static let alwaysShowPaywallOnLaunch = false
+        /// DEBUG: `-skipLaunchPaywall` launch argument — no launch paywall (screen QA in the simulator).
+        static let skipLaunchPaywall = {
+            #if DEBUG
+            ProcessInfo.processInfo.arguments.contains("-skipLaunchPaywall")
+            #else
+            false
+            #endif
+        }()
         /// DEBUG: після Launch завжди відкривати онбординг. У Release має бути false.
         static let alwaysShowOnboarding = {
             #if DEBUG
-            true
+            !ProcessInfo.processInfo.arguments.contains("-skipOnboarding")
             #else
             false
             #endif
