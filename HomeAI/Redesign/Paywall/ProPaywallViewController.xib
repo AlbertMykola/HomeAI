@@ -80,10 +80,14 @@
                             <fontDescription key="fontDescription" name="Geologica-Bold" family="Geologica" pointSize="31"/><color key="textColor" red="0.0588" green="0.1020" blue="0.0314" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="letterSpacing"><real key="value" value="-0.62"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Ready to go PRO?"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label contentMode="scaleToFill" horizontalCompressionResistancePriority="750" verticalCompressionResistancePriority="1000" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="subtitle" userLabel="subtitleLabel" opaque="NO" text="Enjoy 3 days free — cancel anytime." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.7" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="17"/><color key="textColor" red="0.0588" green="0.1020" blue="0.0314" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Enjoy 3 days free — cancel anytime."/>
+                            </userDefinedRuntimeAttributes>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="stage" userLabel="stageView">
                             <subviews>
@@ -140,15 +144,22 @@
                                     <subviews>
                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="card-title" userLabel="cardTitleLabel" opaque="NO" text="Rehomely PRO" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                             <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="21"/><color key="textColor" red="0.0588" green="0.1020" blue="0.0314" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Rehomely PRO"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="card-body" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="cardBodyLabel" opaque="NO" text="Unlimited AI redesigns for any room, real paint colors and HD export." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15"/><color key="textColor" red="0.3569" green="0.4000" blue="0.3137" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="lineHeightMultiple"><real key="value" value="1.12"/></userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Unlimited AI redesigns for any room, real paint colors and HD export."/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label contentMode="scaleToFill" horizontalCompressionResistancePriority="750" verticalCompressionResistancePriority="1000" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="card-price" userLabel="cardPriceLabel" opaque="NO" text="3-day free trial, then $9.99/year" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.7" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                             <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="15"/><color key="textColor" red="0.0588" green="0.1020" blue="0.0314" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="3-day free trial, then $9.99/year"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                     </subviews>
                                 </stackView>
@@ -170,6 +181,9 @@
                                     <subviews>
                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="trial-label" userLabel="trialLabel" opaque="NO" text="Free Trial Enabled" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.7" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                             <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" red="0.0588" green="0.1020" blue="0.0314" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Free Trial Enabled"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                         <view contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="trial-sp">
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -239,29 +253,38 @@
                                 </view>
                                 <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="due-row1" opaque="NO" alignment="center" spacing="6">
                                     <subviews>
-                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="due-title" userLabel="dueTodayLabel" opaque="NO" text="Due today" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                        <label contentMode="scaleToFill" horizontalCompressionResistancePriority="740" verticalCompressionResistancePriority="750" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="due-title" userLabel="dueTodayLabel" opaque="NO" text="Due today" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.75" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                             <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" red="0.0588" green="0.1020" blue="0.0314" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Due today"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                         <view contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="due-sp1">
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
-                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="due-free" userLabel="dueFreeLabel" opaque="NO" text="3 days free" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                        <label contentMode="scaleToFill" horizontalCompressionResistancePriority="745" verticalCompressionResistancePriority="750" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="due-free" userLabel="dueFreeLabel" opaque="NO" text="3 days free" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.7" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                             <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="16"/><color key="textColor" red="0.2431" green="0.4784" blue="0.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="3 days free"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
-                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="due-price" userLabel="dueTodayPriceLabel" opaque="NO" text="$0.00" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                        <label contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="750" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="due-price" userLabel="dueTodayPriceLabel" opaque="NO" text="$0.00" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                             <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" red="0.0588" green="0.1020" blue="0.0314" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </stackView>
                                 <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="due-row2" userLabel="chargeRow" opaque="NO" alignment="center" spacing="0">
                                     <subviews>
-                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="charge-title" userLabel="chargeDateLabel" opaque="NO" text="Due Oct 16, 2026" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="charge-title" userLabel="chargeDateLabel" opaque="NO" text="Due Oct 16, 2026" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.75" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="17"/><color key="textColor" red="0.0588" green="0.1020" blue="0.0314" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Due Oct 16, 2026"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                         <view contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="due-sp2">
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </view>
-                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="charge-price" userLabel="chargePriceLabel" opaque="NO" text="$9.99" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                        <label contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="750" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="charge-price" userLabel="chargePriceLabel" opaque="NO" text="$9.99" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="17"/><color key="textColor" red="0.0588" green="0.1020" blue="0.0314" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -301,6 +324,9 @@
                                         </imageView>
                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="note" userLabel="noteLabel" opaque="NO" text="No payment now" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                             <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="15"/><color key="textColor" red="0.0588" green="0.1020" blue="0.0314" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="No payment now"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                     </subviews>
                                 </stackView>
@@ -322,6 +348,9 @@
                                 </activityIndicatorView>
                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cta-label" userLabel="ctaLabel" opaque="NO" text="Start Free Trial" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                     <fontDescription key="fontDescription" name="Geologica-Bold" family="Geologica" pointSize="18"/><color key="textColor" red="0.0588" green="0.1020" blue="0.0314" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Start Free Trial"/>
+                                    </userDefinedRuntimeAttributes>
                                 </label>
                             </subviews>
                         </stackView>
@@ -339,6 +368,9 @@
                     <subviews>
                         <button contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="terms" userLabel="termsButton" opaque="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation">
                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/><state key="normal" title="Terms of Use"><color key="titleColor" red="0.2431" green="0.4784" blue="0.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/></state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Terms of Use"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="didTapTerms:" destination="-1" eventType="touchUpInside" id="terms-a0"/>
                             </connections>
@@ -348,6 +380,9 @@
                         </label>
                         <button contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="privacy" userLabel="privacyButton" opaque="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation">
                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/><state key="normal" title="Privacy Policy"><color key="titleColor" red="0.2431" green="0.4784" blue="0.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/></state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Privacy Policy"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="didTapPrivacy:" destination="-1" eventType="touchUpInside" id="privacy-a0"/>
                             </connections>
@@ -384,6 +419,9 @@
                             <subviews>
                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="restore-label" userLabel="restoreLabel" opaque="NO" text="Restore" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                     <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="16"/><color key="textColor" red="0.0588" green="0.1020" blue="0.0314" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Restore"/>
+                                    </userDefinedRuntimeAttributes>
                                 </label>
                             </subviews>
                             <edgeInsets key="layoutMargins" top="0" left="16" bottom="0" right="16"/>

@@ -103,6 +103,7 @@
                                     <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="lineHeightMultiple"><real key="value" value="1.15"/></userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="The app follows your iPhone language by default."/>
                                     </userDefinedRuntimeAttributes>
                                 </label>
                                 <view contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="langs" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
@@ -117,9 +118,15 @@
                                                                     <subviews>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="lang0-native" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="16"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="lang0-en" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
@@ -127,8 +134,8 @@
                                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="bold"/>
                                                                     <color key="tintColor" name="dsLink"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="20" id="c1758"/>
-                                                                        <constraint firstAttribute="height" constant="20" id="c1759"/>
+                                                                        <constraint firstAttribute="width" constant="20" id="c1936"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="c1937"/>
                                                                     </constraints>
                                                                 </imageView>
                                                             </subviews>
@@ -137,11 +144,11 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="56" id="c1760"/>
-                                                        <constraint firstItem="lang0-row" firstAttribute="leading" secondItem="lang0" secondAttribute="leading" id="c1761"/>
-                                                        <constraint firstItem="lang0-row" firstAttribute="top" secondItem="lang0" secondAttribute="top" id="c1762"/>
-                                                        <constraint firstItem="lang0" firstAttribute="trailing" secondItem="lang0-row" secondAttribute="trailing" id="c1763"/>
-                                                        <constraint firstItem="lang0" firstAttribute="bottom" secondItem="lang0-row" secondAttribute="bottom" id="c1764"/>
+                                                        <constraint firstAttribute="height" constant="56" id="c1938"/>
+                                                        <constraint firstItem="lang0-row" firstAttribute="leading" secondItem="lang0" secondAttribute="leading" id="c1939"/>
+                                                        <constraint firstItem="lang0-row" firstAttribute="top" secondItem="lang0" secondAttribute="top" id="c1940"/>
+                                                        <constraint firstItem="lang0" firstAttribute="trailing" secondItem="lang0-row" secondAttribute="trailing" id="c1941"/>
+                                                        <constraint firstItem="lang0" firstAttribute="bottom" secondItem="lang0-row" secondAttribute="bottom" id="c1942"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="pressedScale"><real key="value" value="0.98"/></userDefinedRuntimeAttribute>
@@ -152,7 +159,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldiv0">
                                                     <color key="backgroundColor" name="dsDivider"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="1" id="c1765"/>
+                                                        <constraint firstAttribute="height" constant="1" id="c1943"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="lang1" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
@@ -163,9 +170,15 @@
                                                                     <subviews>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="lang1-native" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="16"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="lang1-en" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
@@ -173,8 +186,8 @@
                                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="bold"/>
                                                                     <color key="tintColor" name="dsLink"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="20" id="c1766"/>
-                                                                        <constraint firstAttribute="height" constant="20" id="c1767"/>
+                                                                        <constraint firstAttribute="width" constant="20" id="c1944"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="c1945"/>
                                                                     </constraints>
                                                                 </imageView>
                                                             </subviews>
@@ -183,11 +196,11 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="56" id="c1768"/>
-                                                        <constraint firstItem="lang1-row" firstAttribute="leading" secondItem="lang1" secondAttribute="leading" id="c1769"/>
-                                                        <constraint firstItem="lang1-row" firstAttribute="top" secondItem="lang1" secondAttribute="top" id="c1770"/>
-                                                        <constraint firstItem="lang1" firstAttribute="trailing" secondItem="lang1-row" secondAttribute="trailing" id="c1771"/>
-                                                        <constraint firstItem="lang1" firstAttribute="bottom" secondItem="lang1-row" secondAttribute="bottom" id="c1772"/>
+                                                        <constraint firstAttribute="height" constant="56" id="c1946"/>
+                                                        <constraint firstItem="lang1-row" firstAttribute="leading" secondItem="lang1" secondAttribute="leading" id="c1947"/>
+                                                        <constraint firstItem="lang1-row" firstAttribute="top" secondItem="lang1" secondAttribute="top" id="c1948"/>
+                                                        <constraint firstItem="lang1" firstAttribute="trailing" secondItem="lang1-row" secondAttribute="trailing" id="c1949"/>
+                                                        <constraint firstItem="lang1" firstAttribute="bottom" secondItem="lang1-row" secondAttribute="bottom" id="c1950"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="pressedScale"><real key="value" value="0.98"/></userDefinedRuntimeAttribute>
@@ -198,7 +211,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldiv1">
                                                     <color key="backgroundColor" name="dsDivider"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="1" id="c1773"/>
+                                                        <constraint firstAttribute="height" constant="1" id="c1951"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="lang2" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
@@ -209,9 +222,15 @@
                                                                     <subviews>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="lang2-native" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="16"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="lang2-en" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
@@ -219,8 +238,8 @@
                                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="bold"/>
                                                                     <color key="tintColor" name="dsLink"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="20" id="c1774"/>
-                                                                        <constraint firstAttribute="height" constant="20" id="c1775"/>
+                                                                        <constraint firstAttribute="width" constant="20" id="c1952"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="c1953"/>
                                                                     </constraints>
                                                                 </imageView>
                                                             </subviews>
@@ -229,11 +248,11 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="56" id="c1776"/>
-                                                        <constraint firstItem="lang2-row" firstAttribute="leading" secondItem="lang2" secondAttribute="leading" id="c1777"/>
-                                                        <constraint firstItem="lang2-row" firstAttribute="top" secondItem="lang2" secondAttribute="top" id="c1778"/>
-                                                        <constraint firstItem="lang2" firstAttribute="trailing" secondItem="lang2-row" secondAttribute="trailing" id="c1779"/>
-                                                        <constraint firstItem="lang2" firstAttribute="bottom" secondItem="lang2-row" secondAttribute="bottom" id="c1780"/>
+                                                        <constraint firstAttribute="height" constant="56" id="c1954"/>
+                                                        <constraint firstItem="lang2-row" firstAttribute="leading" secondItem="lang2" secondAttribute="leading" id="c1955"/>
+                                                        <constraint firstItem="lang2-row" firstAttribute="top" secondItem="lang2" secondAttribute="top" id="c1956"/>
+                                                        <constraint firstItem="lang2" firstAttribute="trailing" secondItem="lang2-row" secondAttribute="trailing" id="c1957"/>
+                                                        <constraint firstItem="lang2" firstAttribute="bottom" secondItem="lang2-row" secondAttribute="bottom" id="c1958"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="pressedScale"><real key="value" value="0.98"/></userDefinedRuntimeAttribute>
@@ -244,7 +263,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldiv2">
                                                     <color key="backgroundColor" name="dsDivider"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="1" id="c1781"/>
+                                                        <constraint firstAttribute="height" constant="1" id="c1959"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="lang3" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
@@ -255,9 +274,15 @@
                                                                     <subviews>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="lang3-native" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="16"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="lang3-en" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
@@ -265,8 +290,8 @@
                                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="bold"/>
                                                                     <color key="tintColor" name="dsLink"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="20" id="c1782"/>
-                                                                        <constraint firstAttribute="height" constant="20" id="c1783"/>
+                                                                        <constraint firstAttribute="width" constant="20" id="c1960"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="c1961"/>
                                                                     </constraints>
                                                                 </imageView>
                                                             </subviews>
@@ -275,11 +300,11 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="56" id="c1784"/>
-                                                        <constraint firstItem="lang3-row" firstAttribute="leading" secondItem="lang3" secondAttribute="leading" id="c1785"/>
-                                                        <constraint firstItem="lang3-row" firstAttribute="top" secondItem="lang3" secondAttribute="top" id="c1786"/>
-                                                        <constraint firstItem="lang3" firstAttribute="trailing" secondItem="lang3-row" secondAttribute="trailing" id="c1787"/>
-                                                        <constraint firstItem="lang3" firstAttribute="bottom" secondItem="lang3-row" secondAttribute="bottom" id="c1788"/>
+                                                        <constraint firstAttribute="height" constant="56" id="c1962"/>
+                                                        <constraint firstItem="lang3-row" firstAttribute="leading" secondItem="lang3" secondAttribute="leading" id="c1963"/>
+                                                        <constraint firstItem="lang3-row" firstAttribute="top" secondItem="lang3" secondAttribute="top" id="c1964"/>
+                                                        <constraint firstItem="lang3" firstAttribute="trailing" secondItem="lang3-row" secondAttribute="trailing" id="c1965"/>
+                                                        <constraint firstItem="lang3" firstAttribute="bottom" secondItem="lang3-row" secondAttribute="bottom" id="c1966"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="pressedScale"><real key="value" value="0.98"/></userDefinedRuntimeAttribute>
@@ -290,7 +315,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldiv3">
                                                     <color key="backgroundColor" name="dsDivider"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="1" id="c1789"/>
+                                                        <constraint firstAttribute="height" constant="1" id="c1967"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="lang4" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
@@ -301,9 +326,15 @@
                                                                     <subviews>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="lang4-native" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="16"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="lang4-en" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
@@ -311,8 +342,8 @@
                                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="bold"/>
                                                                     <color key="tintColor" name="dsLink"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="20" id="c1790"/>
-                                                                        <constraint firstAttribute="height" constant="20" id="c1791"/>
+                                                                        <constraint firstAttribute="width" constant="20" id="c1968"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="c1969"/>
                                                                     </constraints>
                                                                 </imageView>
                                                             </subviews>
@@ -321,11 +352,11 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="56" id="c1792"/>
-                                                        <constraint firstItem="lang4-row" firstAttribute="leading" secondItem="lang4" secondAttribute="leading" id="c1793"/>
-                                                        <constraint firstItem="lang4-row" firstAttribute="top" secondItem="lang4" secondAttribute="top" id="c1794"/>
-                                                        <constraint firstItem="lang4" firstAttribute="trailing" secondItem="lang4-row" secondAttribute="trailing" id="c1795"/>
-                                                        <constraint firstItem="lang4" firstAttribute="bottom" secondItem="lang4-row" secondAttribute="bottom" id="c1796"/>
+                                                        <constraint firstAttribute="height" constant="56" id="c1970"/>
+                                                        <constraint firstItem="lang4-row" firstAttribute="leading" secondItem="lang4" secondAttribute="leading" id="c1971"/>
+                                                        <constraint firstItem="lang4-row" firstAttribute="top" secondItem="lang4" secondAttribute="top" id="c1972"/>
+                                                        <constraint firstItem="lang4" firstAttribute="trailing" secondItem="lang4-row" secondAttribute="trailing" id="c1973"/>
+                                                        <constraint firstItem="lang4" firstAttribute="bottom" secondItem="lang4-row" secondAttribute="bottom" id="c1974"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="pressedScale"><real key="value" value="0.98"/></userDefinedRuntimeAttribute>
@@ -336,7 +367,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldiv4">
                                                     <color key="backgroundColor" name="dsDivider"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="1" id="c1797"/>
+                                                        <constraint firstAttribute="height" constant="1" id="c1975"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="lang5" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
@@ -347,9 +378,15 @@
                                                                     <subviews>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="lang5-native" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="16"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="lang5-en" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
@@ -357,8 +394,8 @@
                                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="bold"/>
                                                                     <color key="tintColor" name="dsLink"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="20" id="c1798"/>
-                                                                        <constraint firstAttribute="height" constant="20" id="c1799"/>
+                                                                        <constraint firstAttribute="width" constant="20" id="c1976"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="c1977"/>
                                                                     </constraints>
                                                                 </imageView>
                                                             </subviews>
@@ -367,11 +404,11 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="56" id="c1800"/>
-                                                        <constraint firstItem="lang5-row" firstAttribute="leading" secondItem="lang5" secondAttribute="leading" id="c1801"/>
-                                                        <constraint firstItem="lang5-row" firstAttribute="top" secondItem="lang5" secondAttribute="top" id="c1802"/>
-                                                        <constraint firstItem="lang5" firstAttribute="trailing" secondItem="lang5-row" secondAttribute="trailing" id="c1803"/>
-                                                        <constraint firstItem="lang5" firstAttribute="bottom" secondItem="lang5-row" secondAttribute="bottom" id="c1804"/>
+                                                        <constraint firstAttribute="height" constant="56" id="c1978"/>
+                                                        <constraint firstItem="lang5-row" firstAttribute="leading" secondItem="lang5" secondAttribute="leading" id="c1979"/>
+                                                        <constraint firstItem="lang5-row" firstAttribute="top" secondItem="lang5" secondAttribute="top" id="c1980"/>
+                                                        <constraint firstItem="lang5" firstAttribute="trailing" secondItem="lang5-row" secondAttribute="trailing" id="c1981"/>
+                                                        <constraint firstItem="lang5" firstAttribute="bottom" secondItem="lang5-row" secondAttribute="bottom" id="c1982"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="pressedScale"><real key="value" value="0.98"/></userDefinedRuntimeAttribute>
@@ -382,7 +419,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldiv5">
                                                     <color key="backgroundColor" name="dsDivider"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="1" id="c1805"/>
+                                                        <constraint firstAttribute="height" constant="1" id="c1983"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="lang6" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
@@ -393,9 +430,15 @@
                                                                     <subviews>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="lang6-native" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="16"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="lang6-en" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
@@ -403,8 +446,8 @@
                                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="bold"/>
                                                                     <color key="tintColor" name="dsLink"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="20" id="c1806"/>
-                                                                        <constraint firstAttribute="height" constant="20" id="c1807"/>
+                                                                        <constraint firstAttribute="width" constant="20" id="c1984"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="c1985"/>
                                                                     </constraints>
                                                                 </imageView>
                                                             </subviews>
@@ -413,11 +456,11 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="56" id="c1808"/>
-                                                        <constraint firstItem="lang6-row" firstAttribute="leading" secondItem="lang6" secondAttribute="leading" id="c1809"/>
-                                                        <constraint firstItem="lang6-row" firstAttribute="top" secondItem="lang6" secondAttribute="top" id="c1810"/>
-                                                        <constraint firstItem="lang6" firstAttribute="trailing" secondItem="lang6-row" secondAttribute="trailing" id="c1811"/>
-                                                        <constraint firstItem="lang6" firstAttribute="bottom" secondItem="lang6-row" secondAttribute="bottom" id="c1812"/>
+                                                        <constraint firstAttribute="height" constant="56" id="c1986"/>
+                                                        <constraint firstItem="lang6-row" firstAttribute="leading" secondItem="lang6" secondAttribute="leading" id="c1987"/>
+                                                        <constraint firstItem="lang6-row" firstAttribute="top" secondItem="lang6" secondAttribute="top" id="c1988"/>
+                                                        <constraint firstItem="lang6" firstAttribute="trailing" secondItem="lang6-row" secondAttribute="trailing" id="c1989"/>
+                                                        <constraint firstItem="lang6" firstAttribute="bottom" secondItem="lang6-row" secondAttribute="bottom" id="c1990"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="pressedScale"><real key="value" value="0.98"/></userDefinedRuntimeAttribute>
@@ -428,7 +471,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldiv6">
                                                     <color key="backgroundColor" name="dsDivider"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="1" id="c1813"/>
+                                                        <constraint firstAttribute="height" constant="1" id="c1991"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" tag="7" translatesAutoresizingMaskIntoConstraints="NO" id="lang7" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
@@ -439,9 +482,15 @@
                                                                     <subviews>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="7" translatesAutoresizingMaskIntoConstraints="NO" id="lang7-native" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="16"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="7" translatesAutoresizingMaskIntoConstraints="NO" id="lang7-en" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
@@ -449,8 +498,8 @@
                                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="bold"/>
                                                                     <color key="tintColor" name="dsLink"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="20" id="c1814"/>
-                                                                        <constraint firstAttribute="height" constant="20" id="c1815"/>
+                                                                        <constraint firstAttribute="width" constant="20" id="c1992"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="c1993"/>
                                                                     </constraints>
                                                                 </imageView>
                                                             </subviews>
@@ -459,11 +508,11 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="56" id="c1816"/>
-                                                        <constraint firstItem="lang7-row" firstAttribute="leading" secondItem="lang7" secondAttribute="leading" id="c1817"/>
-                                                        <constraint firstItem="lang7-row" firstAttribute="top" secondItem="lang7" secondAttribute="top" id="c1818"/>
-                                                        <constraint firstItem="lang7" firstAttribute="trailing" secondItem="lang7-row" secondAttribute="trailing" id="c1819"/>
-                                                        <constraint firstItem="lang7" firstAttribute="bottom" secondItem="lang7-row" secondAttribute="bottom" id="c1820"/>
+                                                        <constraint firstAttribute="height" constant="56" id="c1994"/>
+                                                        <constraint firstItem="lang7-row" firstAttribute="leading" secondItem="lang7" secondAttribute="leading" id="c1995"/>
+                                                        <constraint firstItem="lang7-row" firstAttribute="top" secondItem="lang7" secondAttribute="top" id="c1996"/>
+                                                        <constraint firstItem="lang7" firstAttribute="trailing" secondItem="lang7-row" secondAttribute="trailing" id="c1997"/>
+                                                        <constraint firstItem="lang7" firstAttribute="bottom" secondItem="lang7-row" secondAttribute="bottom" id="c1998"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="pressedScale"><real key="value" value="0.98"/></userDefinedRuntimeAttribute>
@@ -474,7 +523,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldiv7">
                                                     <color key="backgroundColor" name="dsDivider"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="1" id="c1821"/>
+                                                        <constraint firstAttribute="height" constant="1" id="c1999"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" tag="8" translatesAutoresizingMaskIntoConstraints="NO" id="lang8" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
@@ -485,9 +534,15 @@
                                                                     <subviews>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="8" translatesAutoresizingMaskIntoConstraints="NO" id="lang8-native" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="16"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="8" translatesAutoresizingMaskIntoConstraints="NO" id="lang8-en" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
@@ -495,8 +550,8 @@
                                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="bold"/>
                                                                     <color key="tintColor" name="dsLink"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="20" id="c1822"/>
-                                                                        <constraint firstAttribute="height" constant="20" id="c1823"/>
+                                                                        <constraint firstAttribute="width" constant="20" id="c2000"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="c2001"/>
                                                                     </constraints>
                                                                 </imageView>
                                                             </subviews>
@@ -505,11 +560,11 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="56" id="c1824"/>
-                                                        <constraint firstItem="lang8-row" firstAttribute="leading" secondItem="lang8" secondAttribute="leading" id="c1825"/>
-                                                        <constraint firstItem="lang8-row" firstAttribute="top" secondItem="lang8" secondAttribute="top" id="c1826"/>
-                                                        <constraint firstItem="lang8" firstAttribute="trailing" secondItem="lang8-row" secondAttribute="trailing" id="c1827"/>
-                                                        <constraint firstItem="lang8" firstAttribute="bottom" secondItem="lang8-row" secondAttribute="bottom" id="c1828"/>
+                                                        <constraint firstAttribute="height" constant="56" id="c2002"/>
+                                                        <constraint firstItem="lang8-row" firstAttribute="leading" secondItem="lang8" secondAttribute="leading" id="c2003"/>
+                                                        <constraint firstItem="lang8-row" firstAttribute="top" secondItem="lang8" secondAttribute="top" id="c2004"/>
+                                                        <constraint firstItem="lang8" firstAttribute="trailing" secondItem="lang8-row" secondAttribute="trailing" id="c2005"/>
+                                                        <constraint firstItem="lang8" firstAttribute="bottom" secondItem="lang8-row" secondAttribute="bottom" id="c2006"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="pressedScale"><real key="value" value="0.98"/></userDefinedRuntimeAttribute>
@@ -520,7 +575,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldiv8">
                                                     <color key="backgroundColor" name="dsDivider"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="1" id="c1829"/>
+                                                        <constraint firstAttribute="height" constant="1" id="c2007"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="lang9" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
@@ -531,9 +586,15 @@
                                                                     <subviews>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="lang9-native" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="16"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="lang9-en" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
@@ -541,8 +602,8 @@
                                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="bold"/>
                                                                     <color key="tintColor" name="dsLink"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="20" id="c1830"/>
-                                                                        <constraint firstAttribute="height" constant="20" id="c1831"/>
+                                                                        <constraint firstAttribute="width" constant="20" id="c2008"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="c2009"/>
                                                                     </constraints>
                                                                 </imageView>
                                                             </subviews>
@@ -551,11 +612,11 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="56" id="c1832"/>
-                                                        <constraint firstItem="lang9-row" firstAttribute="leading" secondItem="lang9" secondAttribute="leading" id="c1833"/>
-                                                        <constraint firstItem="lang9-row" firstAttribute="top" secondItem="lang9" secondAttribute="top" id="c1834"/>
-                                                        <constraint firstItem="lang9" firstAttribute="trailing" secondItem="lang9-row" secondAttribute="trailing" id="c1835"/>
-                                                        <constraint firstItem="lang9" firstAttribute="bottom" secondItem="lang9-row" secondAttribute="bottom" id="c1836"/>
+                                                        <constraint firstAttribute="height" constant="56" id="c2010"/>
+                                                        <constraint firstItem="lang9-row" firstAttribute="leading" secondItem="lang9" secondAttribute="leading" id="c2011"/>
+                                                        <constraint firstItem="lang9-row" firstAttribute="top" secondItem="lang9" secondAttribute="top" id="c2012"/>
+                                                        <constraint firstItem="lang9" firstAttribute="trailing" secondItem="lang9-row" secondAttribute="trailing" id="c2013"/>
+                                                        <constraint firstItem="lang9" firstAttribute="bottom" secondItem="lang9-row" secondAttribute="bottom" id="c2014"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="pressedScale"><real key="value" value="0.98"/></userDefinedRuntimeAttribute>
@@ -566,7 +627,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldiv9">
                                                     <color key="backgroundColor" name="dsDivider"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="1" id="c1837"/>
+                                                        <constraint firstAttribute="height" constant="1" id="c2015"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" tag="10" translatesAutoresizingMaskIntoConstraints="NO" id="lang10" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
@@ -577,9 +638,15 @@
                                                                     <subviews>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="10" translatesAutoresizingMaskIntoConstraints="NO" id="lang10-native" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="16"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="10" translatesAutoresizingMaskIntoConstraints="NO" id="lang10-en" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
@@ -587,8 +654,8 @@
                                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="bold"/>
                                                                     <color key="tintColor" name="dsLink"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="20" id="c1838"/>
-                                                                        <constraint firstAttribute="height" constant="20" id="c1839"/>
+                                                                        <constraint firstAttribute="width" constant="20" id="c2016"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="c2017"/>
                                                                     </constraints>
                                                                 </imageView>
                                                             </subviews>
@@ -597,11 +664,11 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="56" id="c1840"/>
-                                                        <constraint firstItem="lang10-row" firstAttribute="leading" secondItem="lang10" secondAttribute="leading" id="c1841"/>
-                                                        <constraint firstItem="lang10-row" firstAttribute="top" secondItem="lang10" secondAttribute="top" id="c1842"/>
-                                                        <constraint firstItem="lang10" firstAttribute="trailing" secondItem="lang10-row" secondAttribute="trailing" id="c1843"/>
-                                                        <constraint firstItem="lang10" firstAttribute="bottom" secondItem="lang10-row" secondAttribute="bottom" id="c1844"/>
+                                                        <constraint firstAttribute="height" constant="56" id="c2018"/>
+                                                        <constraint firstItem="lang10-row" firstAttribute="leading" secondItem="lang10" secondAttribute="leading" id="c2019"/>
+                                                        <constraint firstItem="lang10-row" firstAttribute="top" secondItem="lang10" secondAttribute="top" id="c2020"/>
+                                                        <constraint firstItem="lang10" firstAttribute="trailing" secondItem="lang10-row" secondAttribute="trailing" id="c2021"/>
+                                                        <constraint firstItem="lang10" firstAttribute="bottom" secondItem="lang10-row" secondAttribute="bottom" id="c2022"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="pressedScale"><real key="value" value="0.98"/></userDefinedRuntimeAttribute>
@@ -612,7 +679,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldiv10">
                                                     <color key="backgroundColor" name="dsDivider"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="1" id="c1845"/>
+                                                        <constraint firstAttribute="height" constant="1" id="c2023"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" tag="11" translatesAutoresizingMaskIntoConstraints="NO" id="lang11" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
@@ -623,9 +690,15 @@
                                                                     <subviews>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="11" translatesAutoresizingMaskIntoConstraints="NO" id="lang11-native" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="16"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="11" translatesAutoresizingMaskIntoConstraints="NO" id="lang11-en" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
@@ -633,8 +706,8 @@
                                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="bold"/>
                                                                     <color key="tintColor" name="dsLink"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="20" id="c1846"/>
-                                                                        <constraint firstAttribute="height" constant="20" id="c1847"/>
+                                                                        <constraint firstAttribute="width" constant="20" id="c2024"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="c2025"/>
                                                                     </constraints>
                                                                 </imageView>
                                                             </subviews>
@@ -643,11 +716,11 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="56" id="c1848"/>
-                                                        <constraint firstItem="lang11-row" firstAttribute="leading" secondItem="lang11" secondAttribute="leading" id="c1849"/>
-                                                        <constraint firstItem="lang11-row" firstAttribute="top" secondItem="lang11" secondAttribute="top" id="c1850"/>
-                                                        <constraint firstItem="lang11" firstAttribute="trailing" secondItem="lang11-row" secondAttribute="trailing" id="c1851"/>
-                                                        <constraint firstItem="lang11" firstAttribute="bottom" secondItem="lang11-row" secondAttribute="bottom" id="c1852"/>
+                                                        <constraint firstAttribute="height" constant="56" id="c2026"/>
+                                                        <constraint firstItem="lang11-row" firstAttribute="leading" secondItem="lang11" secondAttribute="leading" id="c2027"/>
+                                                        <constraint firstItem="lang11-row" firstAttribute="top" secondItem="lang11" secondAttribute="top" id="c2028"/>
+                                                        <constraint firstItem="lang11" firstAttribute="trailing" secondItem="lang11-row" secondAttribute="trailing" id="c2029"/>
+                                                        <constraint firstItem="lang11" firstAttribute="bottom" secondItem="lang11-row" secondAttribute="bottom" id="c2030"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="pressedScale"><real key="value" value="0.98"/></userDefinedRuntimeAttribute>
@@ -658,7 +731,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldiv11">
                                                     <color key="backgroundColor" name="dsDivider"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="1" id="c1853"/>
+                                                        <constraint firstAttribute="height" constant="1" id="c2031"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" tag="12" translatesAutoresizingMaskIntoConstraints="NO" id="lang12" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
@@ -669,9 +742,15 @@
                                                                     <subviews>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="12" translatesAutoresizingMaskIntoConstraints="NO" id="lang12-native" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="16"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="12" translatesAutoresizingMaskIntoConstraints="NO" id="lang12-en" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
@@ -679,8 +758,8 @@
                                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="bold"/>
                                                                     <color key="tintColor" name="dsLink"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="20" id="c1854"/>
-                                                                        <constraint firstAttribute="height" constant="20" id="c1855"/>
+                                                                        <constraint firstAttribute="width" constant="20" id="c2032"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="c2033"/>
                                                                     </constraints>
                                                                 </imageView>
                                                             </subviews>
@@ -689,11 +768,11 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="56" id="c1856"/>
-                                                        <constraint firstItem="lang12-row" firstAttribute="leading" secondItem="lang12" secondAttribute="leading" id="c1857"/>
-                                                        <constraint firstItem="lang12-row" firstAttribute="top" secondItem="lang12" secondAttribute="top" id="c1858"/>
-                                                        <constraint firstItem="lang12" firstAttribute="trailing" secondItem="lang12-row" secondAttribute="trailing" id="c1859"/>
-                                                        <constraint firstItem="lang12" firstAttribute="bottom" secondItem="lang12-row" secondAttribute="bottom" id="c1860"/>
+                                                        <constraint firstAttribute="height" constant="56" id="c2034"/>
+                                                        <constraint firstItem="lang12-row" firstAttribute="leading" secondItem="lang12" secondAttribute="leading" id="c2035"/>
+                                                        <constraint firstItem="lang12-row" firstAttribute="top" secondItem="lang12" secondAttribute="top" id="c2036"/>
+                                                        <constraint firstItem="lang12" firstAttribute="trailing" secondItem="lang12-row" secondAttribute="trailing" id="c2037"/>
+                                                        <constraint firstItem="lang12" firstAttribute="bottom" secondItem="lang12-row" secondAttribute="bottom" id="c2038"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="pressedScale"><real key="value" value="0.98"/></userDefinedRuntimeAttribute>
@@ -704,7 +783,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldiv12">
                                                     <color key="backgroundColor" name="dsDivider"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="1" id="c1861"/>
+                                                        <constraint firstAttribute="height" constant="1" id="c2039"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" tag="13" translatesAutoresizingMaskIntoConstraints="NO" id="lang13" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
@@ -715,9 +794,15 @@
                                                                     <subviews>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="13" translatesAutoresizingMaskIntoConstraints="NO" id="lang13-native" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="16"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="13" translatesAutoresizingMaskIntoConstraints="NO" id="lang13-en" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
@@ -725,8 +810,8 @@
                                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="bold"/>
                                                                     <color key="tintColor" name="dsLink"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="20" id="c1862"/>
-                                                                        <constraint firstAttribute="height" constant="20" id="c1863"/>
+                                                                        <constraint firstAttribute="width" constant="20" id="c2040"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="c2041"/>
                                                                     </constraints>
                                                                 </imageView>
                                                             </subviews>
@@ -735,11 +820,11 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="56" id="c1864"/>
-                                                        <constraint firstItem="lang13-row" firstAttribute="leading" secondItem="lang13" secondAttribute="leading" id="c1865"/>
-                                                        <constraint firstItem="lang13-row" firstAttribute="top" secondItem="lang13" secondAttribute="top" id="c1866"/>
-                                                        <constraint firstItem="lang13" firstAttribute="trailing" secondItem="lang13-row" secondAttribute="trailing" id="c1867"/>
-                                                        <constraint firstItem="lang13" firstAttribute="bottom" secondItem="lang13-row" secondAttribute="bottom" id="c1868"/>
+                                                        <constraint firstAttribute="height" constant="56" id="c2042"/>
+                                                        <constraint firstItem="lang13-row" firstAttribute="leading" secondItem="lang13" secondAttribute="leading" id="c2043"/>
+                                                        <constraint firstItem="lang13-row" firstAttribute="top" secondItem="lang13" secondAttribute="top" id="c2044"/>
+                                                        <constraint firstItem="lang13" firstAttribute="trailing" secondItem="lang13-row" secondAttribute="trailing" id="c2045"/>
+                                                        <constraint firstItem="lang13" firstAttribute="bottom" secondItem="lang13-row" secondAttribute="bottom" id="c2046"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="pressedScale"><real key="value" value="0.98"/></userDefinedRuntimeAttribute>
@@ -750,7 +835,7 @@
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ldiv13">
                                                     <color key="backgroundColor" name="dsDivider"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="1" id="c1869"/>
+                                                        <constraint firstAttribute="height" constant="1" id="c2047"/>
                                                     </constraints>
                                                 </view>
                                                 <view contentMode="scaleToFill" tag="14" translatesAutoresizingMaskIntoConstraints="NO" id="lang14" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
@@ -761,9 +846,15 @@
                                                                     <subviews>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="14" translatesAutoresizingMaskIntoConstraints="NO" id="lang14-native" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="16"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="14" translatesAutoresizingMaskIntoConstraints="NO" id="lang14-en" opaque="NO" text="English" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="English"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
@@ -771,8 +862,8 @@
                                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="bold"/>
                                                                     <color key="tintColor" name="dsLink"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="width" constant="20" id="c1870"/>
-                                                                        <constraint firstAttribute="height" constant="20" id="c1871"/>
+                                                                        <constraint firstAttribute="width" constant="20" id="c2048"/>
+                                                                        <constraint firstAttribute="height" constant="20" id="c2049"/>
                                                                     </constraints>
                                                                 </imageView>
                                                             </subviews>
@@ -781,11 +872,11 @@
                                                     </subviews>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="56" id="c1872"/>
-                                                        <constraint firstItem="lang14-row" firstAttribute="leading" secondItem="lang14" secondAttribute="leading" id="c1873"/>
-                                                        <constraint firstItem="lang14-row" firstAttribute="top" secondItem="lang14" secondAttribute="top" id="c1874"/>
-                                                        <constraint firstItem="lang14" firstAttribute="trailing" secondItem="lang14-row" secondAttribute="trailing" id="c1875"/>
-                                                        <constraint firstItem="lang14" firstAttribute="bottom" secondItem="lang14-row" secondAttribute="bottom" id="c1876"/>
+                                                        <constraint firstAttribute="height" constant="56" id="c2050"/>
+                                                        <constraint firstItem="lang14-row" firstAttribute="leading" secondItem="lang14" secondAttribute="leading" id="c2051"/>
+                                                        <constraint firstItem="lang14-row" firstAttribute="top" secondItem="lang14" secondAttribute="top" id="c2052"/>
+                                                        <constraint firstItem="lang14" firstAttribute="trailing" secondItem="lang14-row" secondAttribute="trailing" id="c2053"/>
+                                                        <constraint firstItem="lang14" firstAttribute="bottom" secondItem="lang14-row" secondAttribute="bottom" id="c2054"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="pressedScale"><real key="value" value="0.98"/></userDefinedRuntimeAttribute>
@@ -798,10 +889,10 @@
                                     </subviews>
                                     <color key="backgroundColor" name="dsSurface"/>
                                     <constraints>
-                                        <constraint firstItem="langs-stack" firstAttribute="leading" secondItem="langs" secondAttribute="leading" id="c1877"/>
-                                        <constraint firstItem="langs-stack" firstAttribute="top" secondItem="langs" secondAttribute="top" id="c1878"/>
-                                        <constraint firstItem="langs" firstAttribute="trailing" secondItem="langs-stack" secondAttribute="trailing" id="c1879"/>
-                                        <constraint firstItem="langs" firstAttribute="bottom" secondItem="langs-stack" secondAttribute="bottom" id="c1880"/>
+                                        <constraint firstItem="langs-stack" firstAttribute="leading" secondItem="langs" secondAttribute="leading" id="c2055"/>
+                                        <constraint firstItem="langs-stack" firstAttribute="top" secondItem="langs" secondAttribute="top" id="c2056"/>
+                                        <constraint firstItem="langs" firstAttribute="trailing" secondItem="langs-stack" secondAttribute="trailing" id="c2057"/>
+                                        <constraint firstItem="langs" firstAttribute="bottom" secondItem="langs-stack" secondAttribute="bottom" id="c2058"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
@@ -812,11 +903,11 @@
                     </subviews>
                     <viewLayoutGuide key="contentLayoutGuide" id="scroll-contentLayoutGuide"/><viewLayoutGuide key="frameLayoutGuide" id="scroll-frameLayoutGuide"/>
                     <constraints>
-                        <constraint firstItem="content" firstAttribute="leading" secondItem="scroll-contentLayoutGuide" secondAttribute="leading" constant="20" id="c1893"/>
-                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="content" secondAttribute="trailing" constant="20" id="c1894"/>
-                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="content" secondAttribute="bottom" constant="24" id="c1895"/>
-                        <constraint firstItem="content" firstAttribute="top" secondItem="scroll-contentLayoutGuide" secondAttribute="top" constant="12" id="c1896"/>
-                        <constraint firstItem="content" firstAttribute="width" secondItem="scroll-frameLayoutGuide" secondAttribute="width" constant="-40" id="c1897"/>
+                        <constraint firstItem="content" firstAttribute="leading" secondItem="scroll-contentLayoutGuide" secondAttribute="leading" constant="20" id="c2071"/>
+                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="content" secondAttribute="trailing" constant="20" id="c2072"/>
+                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="content" secondAttribute="bottom" constant="24" id="c2073"/>
+                        <constraint firstItem="content" firstAttribute="top" secondItem="scroll-contentLayoutGuide" secondAttribute="top" constant="12" id="c2074"/>
+                        <constraint firstItem="content" firstAttribute="width" secondItem="scroll-frameLayoutGuide" secondAttribute="width" constant="-40" id="c2075"/>
                     </constraints>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nav">
@@ -827,17 +918,17 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17.0" weight="semibold"/>
                                     <color key="tintColor" name="dsTextPrimary"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="20" id="c1756"/>
-                                        <constraint firstAttribute="height" constant="20" id="c1757"/>
+                                        <constraint firstAttribute="width" constant="20" id="c1934"/>
+                                        <constraint firstAttribute="height" constant="20" id="c1935"/>
                                     </constraints>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" name="dsGlass"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="44" id="c1752"/>
-                                <constraint firstAttribute="height" constant="44" id="c1753"/>
-                                <constraint firstItem="back-icon" firstAttribute="centerX" secondItem="back" secondAttribute="centerX" id="c1754"/>
-                                <constraint firstItem="back-icon" firstAttribute="centerY" secondItem="back" secondAttribute="centerY" id="c1755"/>
+                                <constraint firstAttribute="width" constant="44" id="c1930"/>
+                                <constraint firstAttribute="height" constant="44" id="c1931"/>
+                                <constraint firstItem="back-icon" firstAttribute="centerX" secondItem="back" secondAttribute="centerX" id="c1932"/>
+                                <constraint firstItem="back-icon" firstAttribute="centerY" secondItem="back" secondAttribute="centerY" id="c1933"/>
                             </constraints>
                             <accessibility key="accessibilityConfiguration" label="Back"/>
                             <userDefinedRuntimeAttributes>
@@ -852,28 +943,31 @@
                         </view>
                         <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nav-title" userLabel="navTitleLabel" opaque="NO" text="Language" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                             <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Language"/>
+                            </userDefinedRuntimeAttributes>
                         </label>
                     </subviews>
                     <color key="backgroundColor" name="dsBackground"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="56" id="c1884"/>
-                        <constraint firstItem="back" firstAttribute="leading" secondItem="nav" secondAttribute="leading" constant="16" id="c1885"/>
-                        <constraint firstItem="back" firstAttribute="centerY" secondItem="nav" secondAttribute="centerY" id="c1886"/>
-                        <constraint firstItem="nav-title" firstAttribute="centerX" secondItem="nav" secondAttribute="centerX" id="c1887"/>
-                        <constraint firstItem="nav-title" firstAttribute="centerY" secondItem="nav" secondAttribute="centerY" id="c1888"/>
+                        <constraint firstAttribute="height" constant="56" id="c2062"/>
+                        <constraint firstItem="back" firstAttribute="leading" secondItem="nav" secondAttribute="leading" constant="16" id="c2063"/>
+                        <constraint firstItem="back" firstAttribute="centerY" secondItem="nav" secondAttribute="centerY" id="c2064"/>
+                        <constraint firstItem="nav-title" firstAttribute="centerX" secondItem="nav" secondAttribute="centerX" id="c2065"/>
+                        <constraint firstItem="nav-title" firstAttribute="centerY" secondItem="nav" secondAttribute="centerY" id="c2066"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" name="dsBackground"/>
             <viewLayoutGuide key="safeArea" id="root-safeArea"/>
             <constraints>
-                <constraint firstItem="nav" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c1881"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="nav" secondAttribute="trailing" id="c1882"/>
-                <constraint firstItem="nav" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" id="c1883"/>
-                <constraint firstItem="scroll" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c1889"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="scroll" secondAttribute="trailing" id="c1890"/>
-                <constraint firstItem="root" firstAttribute="bottom" secondItem="scroll" secondAttribute="bottom" id="c1891"/>
-                <constraint firstItem="scroll" firstAttribute="top" secondItem="nav" secondAttribute="bottom" id="c1892"/>
+                <constraint firstItem="nav" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c2059"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="nav" secondAttribute="trailing" id="c2060"/>
+                <constraint firstItem="nav" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" id="c2061"/>
+                <constraint firstItem="scroll" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c2067"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="scroll" secondAttribute="trailing" id="c2068"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="scroll" secondAttribute="bottom" id="c2069"/>
+                <constraint firstItem="scroll" firstAttribute="top" secondItem="nav" secondAttribute="bottom" id="c2070"/>
             </constraints>
         </view>
         </objects>

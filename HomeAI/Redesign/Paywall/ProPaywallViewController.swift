@@ -77,6 +77,7 @@ final class ProPaywallViewController: UIViewController {
         super.viewDidLoad()
         restoreLabel.text = "Restore".localized
         titleLabel.text = "Ready to go PRO?".localized
+        subtitleLabel.text = "Unlimited designs. Cancel anytime.".localized
         cardTitleLabel.text = "Rehomely PRO".localized
         cardBodyLabel.text = "Unlimited AI redesigns for any room, real paint colors and HD export.".localized
         dueTodayLabel.text = "Due today".localized
@@ -214,7 +215,8 @@ final class ProPaywallViewController: UIViewController {
         ctaButton.inactive = loading
         trialToggle.isUserInteractionEnabled = !loading
         if loading {
-            cardPriceLabel.text = " "
+            // Never show the XIB's sample prices / dates before StoreKit answers.
+            [cardPriceLabel, dueFreeLabel, dueTodayPriceLabel, chargeDateLabel, chargePriceLabel].forEach { $0?.text = " " }
             ctaLabel.text = "Loading…".localized
         }
     }

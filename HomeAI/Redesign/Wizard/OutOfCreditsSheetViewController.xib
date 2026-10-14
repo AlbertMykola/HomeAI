@@ -40,9 +40,15 @@
                     <subviews>
                         <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title" userLabel="titleLabel" opaque="NO" text="You've used your free designs" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                             <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="24"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="You've used your free designs"/>
+                            </userDefinedRuntimeAttributes>
                         </label>
                         <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sub" userLabel="subtitleLabel" opaque="NO" text="Go Pro to keep redesigning. Your photo and settings are saved." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15"/><color key="textColor" name="dsTextSecondary"/><nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Go Pro to keep redesigning. Your photo and settings are saved."/>
+                            </userDefinedRuntimeAttributes>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="preview-wrap">
                             <subviews>
@@ -50,8 +56,8 @@
                                     <subviews>
                                         <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="photo" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" userLabel="photoImageView" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="120" id="c4161"/>
-                                                <constraint firstAttribute="height" constant="150" id="c4162"/>
+                                                <constraint firstAttribute="width" constant="120" id="c4339"/>
+                                                <constraint firstAttribute="height" constant="150" id="c4340"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
@@ -66,10 +72,10 @@
                                             </subviews>
                                             <color key="backgroundColor" name="dsSurface"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="36" id="c4165"/>
-                                                <constraint firstAttribute="height" constant="36" id="c4166"/>
-                                                <constraint firstItem="arrow-icon" firstAttribute="centerX" secondItem="arrow" secondAttribute="centerX" id="c4167"/>
-                                                <constraint firstItem="arrow-icon" firstAttribute="centerY" secondItem="arrow" secondAttribute="centerY" id="c4168"/>
+                                                <constraint firstAttribute="width" constant="36" id="c4343"/>
+                                                <constraint firstAttribute="height" constant="36" id="c4344"/>
+                                                <constraint firstItem="arrow-icon" firstAttribute="centerX" secondItem="arrow" secondAttribute="centerX" id="c4345"/>
+                                                <constraint firstItem="arrow-icon" firstAttribute="centerY" secondItem="arrow" secondAttribute="centerY" id="c4346"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -86,10 +92,10 @@
                                                     </subviews>
                                                     <color key="backgroundColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.850" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="44" id="c4169"/>
-                                                        <constraint firstAttribute="height" constant="44" id="c4170"/>
-                                                        <constraint firstItem="lock-icon" firstAttribute="centerX" secondItem="lock" secondAttribute="centerX" id="c4173"/>
-                                                        <constraint firstItem="lock-icon" firstAttribute="centerY" secondItem="lock" secondAttribute="centerY" id="c4174"/>
+                                                        <constraint firstAttribute="width" constant="44" id="c4347"/>
+                                                        <constraint firstAttribute="height" constant="44" id="c4348"/>
+                                                        <constraint firstItem="lock-icon" firstAttribute="centerX" secondItem="lock" secondAttribute="centerX" id="c4351"/>
+                                                        <constraint firstItem="lock-icon" firstAttribute="centerY" secondItem="lock" secondAttribute="centerY" id="c4352"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -97,10 +103,10 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="120" id="c4163"/>
-                                                <constraint firstAttribute="height" constant="150" id="c4164"/>
-                                                <constraint firstItem="lock" firstAttribute="centerX" secondItem="locked" secondAttribute="centerX" id="c4171"/>
-                                                <constraint firstItem="lock" firstAttribute="centerY" secondItem="locked" secondAttribute="centerY" id="c4172"/>
+                                                <constraint firstAttribute="width" constant="120" id="c4341"/>
+                                                <constraint firstAttribute="height" constant="150" id="c4342"/>
+                                                <constraint firstItem="lock" firstAttribute="centerX" secondItem="locked" secondAttribute="centerX" id="c4349"/>
+                                                <constraint firstItem="lock" firstAttribute="centerY" secondItem="locked" secondAttribute="centerY" id="c4350"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
@@ -114,11 +120,11 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="150" id="c4156"/>
-                                <constraint firstItem="preview" firstAttribute="centerX" secondItem="preview-wrap" secondAttribute="centerX" id="c4157"/>
-                                <constraint firstItem="preview" firstAttribute="centerY" secondItem="preview-wrap" secondAttribute="centerY" id="c4158"/>
-                                <constraint firstItem="preview" firstAttribute="top" secondItem="preview-wrap" secondAttribute="top" id="c4159"/>
-                                <constraint firstItem="preview-wrap" firstAttribute="bottom" secondItem="preview" secondAttribute="bottom" id="c4160"/>
+                                <constraint firstAttribute="height" constant="150" id="c4334"/>
+                                <constraint firstItem="preview" firstAttribute="centerX" secondItem="preview-wrap" secondAttribute="centerX" id="c4335"/>
+                                <constraint firstItem="preview" firstAttribute="centerY" secondItem="preview-wrap" secondAttribute="centerY" id="c4336"/>
+                                <constraint firstItem="preview" firstAttribute="top" secondItem="preview-wrap" secondAttribute="top" id="c4337"/>
+                                <constraint firstItem="preview-wrap" firstAttribute="bottom" secondItem="preview" secondAttribute="bottom" id="c4338"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="see-pro" customClass="DSPrimaryButton" customModule="HomeAI" customModuleProvider="target" userLabel="seeProButton">
@@ -129,21 +135,24 @@
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" weight="semibold"/>
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="20" id="c4151"/>
-                                                <constraint firstAttribute="height" constant="20" id="c4152"/>
+                                                <constraint firstAttribute="width" constant="20" id="c4329"/>
+                                                <constraint firstAttribute="height" constant="20" id="c4330"/>
                                             </constraints>
                                         </imageView>
                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="see-pro-title" userLabel="seeProLabel" opaque="NO" text="See Pro plans" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                             <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/><nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="See Pro plans"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                     </subviews>
                                 </stackView>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="height" constant="56" id="c4147"/>
-                                <constraint firstItem="see-pro-row" firstAttribute="centerX" secondItem="see-pro" secondAttribute="centerX" id="c4148"/>
-                                <constraint firstItem="see-pro-row" firstAttribute="centerY" secondItem="see-pro" secondAttribute="centerY" id="c4149"/>
-                                <constraint firstItem="see-pro-row" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="see-pro" secondAttribute="leading" constant="16" id="c4150"/>
+                                <constraint firstAttribute="height" constant="56" id="c4325"/>
+                                <constraint firstItem="see-pro-row" firstAttribute="centerX" secondItem="see-pro" secondAttribute="centerX" id="c4326"/>
+                                <constraint firstItem="see-pro-row" firstAttribute="centerY" secondItem="see-pro" secondAttribute="centerY" id="c4327"/>
+                                <constraint firstItem="see-pro-row" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="see-pro" secondAttribute="leading" constant="16" id="c4328"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSeePro:"/>
@@ -152,8 +161,11 @@
                         <button contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="not-now" userLabel="notNowButton" opaque="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation">
                             <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="15"/><inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/><state key="normal" title="Not now"><color key="titleColor" name="dsTextPrimary"/></state>
                             <constraints>
-                                <constraint firstAttribute="height" constant="44" id="c4175"/>
+                                <constraint firstAttribute="height" constant="44" id="c4353"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Not now"/>
+                            </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="didTapNotNow:" destination="-1" eventType="touchUpInside" id="not-now-a0"/>
                             </connections>
@@ -164,9 +176,9 @@
             <color key="backgroundColor" name="dsBackground"/>
             <viewLayoutGuide key="safeArea" id="root-safeArea"/>
             <constraints>
-                <constraint firstItem="col" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c4153"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="col" secondAttribute="trailing" constant="20" id="c4154"/>
-                <constraint firstItem="col" firstAttribute="top" secondItem="root" secondAttribute="top" constant="30" id="c4155"/>
+                <constraint firstItem="col" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c4331"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="col" secondAttribute="trailing" constant="20" id="c4332"/>
+                <constraint firstItem="col" firstAttribute="top" secondItem="root" secondAttribute="top" constant="30" id="c4333"/>
             </constraints>
         </view>
         </objects>

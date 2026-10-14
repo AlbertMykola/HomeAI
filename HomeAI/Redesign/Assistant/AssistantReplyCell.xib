@@ -85,6 +85,9 @@
                                     </view>
                                     <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="answer" userLabel="answerLabel" opaque="NO" text="Three quick wins for this room:" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                         <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Three quick wins for this room:"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="caret" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="caretView">
                                         <color key="backgroundColor" red="0.5608" green="0.8588" blue="0.1098" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>

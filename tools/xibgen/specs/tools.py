@@ -153,7 +153,7 @@ def exterior_tool():
         pin(lab, edges="lrb")
         lights.append(ctrl)
     light_row = HStack(lights, id="lights", spacing=13, dist="fillEqually")
-    body.add(section("Facade style", "s-facade", "facadeTitleLabel"), grid, section("Light", "s-light", "lightTitleLabel"),
+    body.add(section("Facade style", "s-facade", "facadeTitleLabel"), grid, section("Lighting", "s-light", "lightTitleLabel"),
              light_row, toggle_row("keep", "Keep structure", "Roof, windows and doors stay in place", "keep"))
     return d
 

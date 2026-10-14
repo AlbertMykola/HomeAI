@@ -49,12 +49,14 @@
                             <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="28"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="letterSpacing"><real key="value" value="-0.14"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Pick a style"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title-sub" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="subtitleLabel" opaque="NO" text="Swipe for more. You can mix styles later." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15"/><color key="textColor" name="dsTextSecondary"/><nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="lineHeightMultiple"><real key="value" value="1.12"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Swipe for more. You can mix styles later."/>
                             </userDefinedRuntimeAttributes>
                         </label>
                     </subviews>
@@ -69,17 +71,20 @@
                                             <subviews>
                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="chip-0-label" opaque="NO" text="All" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                     <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="All"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="36" id="c3758"/>
-                                        <constraint firstItem="chip-0-row" firstAttribute="leading" secondItem="chip-0" secondAttribute="leading" id="c3759"/>
-                                        <constraint firstItem="chip-0-row" firstAttribute="top" secondItem="chip-0" secondAttribute="top" id="c3760"/>
-                                        <constraint firstItem="chip-0" firstAttribute="trailing" secondItem="chip-0-row" secondAttribute="trailing" id="c3761"/>
-                                        <constraint firstItem="chip-0" firstAttribute="bottom" secondItem="chip-0-row" secondAttribute="bottom" id="c3762"/>
+                                        <constraint firstAttribute="height" constant="36" id="c3936"/>
+                                        <constraint firstItem="chip-0-row" firstAttribute="leading" secondItem="chip-0" secondAttribute="leading" id="c3937"/>
+                                        <constraint firstItem="chip-0-row" firstAttribute="top" secondItem="chip-0" secondAttribute="top" id="c3938"/>
+                                        <constraint firstItem="chip-0" firstAttribute="trailing" secondItem="chip-0-row" secondAttribute="trailing" id="c3939"/>
+                                        <constraint firstItem="chip-0" firstAttribute="bottom" secondItem="chip-0-row" secondAttribute="bottom" id="c3940"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -93,17 +98,20 @@
                                             <subviews>
                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="chip-1-label" opaque="NO" text="Popular" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                     <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Popular"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="36" id="c3763"/>
-                                        <constraint firstItem="chip-1-row" firstAttribute="leading" secondItem="chip-1" secondAttribute="leading" id="c3764"/>
-                                        <constraint firstItem="chip-1-row" firstAttribute="top" secondItem="chip-1" secondAttribute="top" id="c3765"/>
-                                        <constraint firstItem="chip-1" firstAttribute="trailing" secondItem="chip-1-row" secondAttribute="trailing" id="c3766"/>
-                                        <constraint firstItem="chip-1" firstAttribute="bottom" secondItem="chip-1-row" secondAttribute="bottom" id="c3767"/>
+                                        <constraint firstAttribute="height" constant="36" id="c3941"/>
+                                        <constraint firstItem="chip-1-row" firstAttribute="leading" secondItem="chip-1" secondAttribute="leading" id="c3942"/>
+                                        <constraint firstItem="chip-1-row" firstAttribute="top" secondItem="chip-1" secondAttribute="top" id="c3943"/>
+                                        <constraint firstItem="chip-1" firstAttribute="trailing" secondItem="chip-1-row" secondAttribute="trailing" id="c3944"/>
+                                        <constraint firstItem="chip-1" firstAttribute="bottom" secondItem="chip-1-row" secondAttribute="bottom" id="c3945"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -117,17 +125,20 @@
                                             <subviews>
                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="chip-2-label" opaque="NO" text="Cozy" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                     <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Cozy"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="36" id="c3768"/>
-                                        <constraint firstItem="chip-2-row" firstAttribute="leading" secondItem="chip-2" secondAttribute="leading" id="c3769"/>
-                                        <constraint firstItem="chip-2-row" firstAttribute="top" secondItem="chip-2" secondAttribute="top" id="c3770"/>
-                                        <constraint firstItem="chip-2" firstAttribute="trailing" secondItem="chip-2-row" secondAttribute="trailing" id="c3771"/>
-                                        <constraint firstItem="chip-2" firstAttribute="bottom" secondItem="chip-2-row" secondAttribute="bottom" id="c3772"/>
+                                        <constraint firstAttribute="height" constant="36" id="c3946"/>
+                                        <constraint firstItem="chip-2-row" firstAttribute="leading" secondItem="chip-2" secondAttribute="leading" id="c3947"/>
+                                        <constraint firstItem="chip-2-row" firstAttribute="top" secondItem="chip-2" secondAttribute="top" id="c3948"/>
+                                        <constraint firstItem="chip-2" firstAttribute="trailing" secondItem="chip-2-row" secondAttribute="trailing" id="c3949"/>
+                                        <constraint firstItem="chip-2" firstAttribute="bottom" secondItem="chip-2-row" secondAttribute="bottom" id="c3950"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -141,17 +152,20 @@
                                             <subviews>
                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="chip-3-label" opaque="NO" text="Minimal" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                     <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Minimal"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="36" id="c3773"/>
-                                        <constraint firstItem="chip-3-row" firstAttribute="leading" secondItem="chip-3" secondAttribute="leading" id="c3774"/>
-                                        <constraint firstItem="chip-3-row" firstAttribute="top" secondItem="chip-3" secondAttribute="top" id="c3775"/>
-                                        <constraint firstItem="chip-3" firstAttribute="trailing" secondItem="chip-3-row" secondAttribute="trailing" id="c3776"/>
-                                        <constraint firstItem="chip-3" firstAttribute="bottom" secondItem="chip-3-row" secondAttribute="bottom" id="c3777"/>
+                                        <constraint firstAttribute="height" constant="36" id="c3951"/>
+                                        <constraint firstItem="chip-3-row" firstAttribute="leading" secondItem="chip-3" secondAttribute="leading" id="c3952"/>
+                                        <constraint firstItem="chip-3-row" firstAttribute="top" secondItem="chip-3" secondAttribute="top" id="c3953"/>
+                                        <constraint firstItem="chip-3" firstAttribute="trailing" secondItem="chip-3-row" secondAttribute="trailing" id="c3954"/>
+                                        <constraint firstItem="chip-3" firstAttribute="bottom" secondItem="chip-3-row" secondAttribute="bottom" id="c3955"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -165,17 +179,20 @@
                                             <subviews>
                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="chip-4-label" opaque="NO" text="Seasonal" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                     <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Seasonal"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="36" id="c3778"/>
-                                        <constraint firstItem="chip-4-row" firstAttribute="leading" secondItem="chip-4" secondAttribute="leading" id="c3779"/>
-                                        <constraint firstItem="chip-4-row" firstAttribute="top" secondItem="chip-4" secondAttribute="top" id="c3780"/>
-                                        <constraint firstItem="chip-4" firstAttribute="trailing" secondItem="chip-4-row" secondAttribute="trailing" id="c3781"/>
-                                        <constraint firstItem="chip-4" firstAttribute="bottom" secondItem="chip-4-row" secondAttribute="bottom" id="c3782"/>
+                                        <constraint firstAttribute="height" constant="36" id="c3956"/>
+                                        <constraint firstItem="chip-4-row" firstAttribute="leading" secondItem="chip-4" secondAttribute="leading" id="c3957"/>
+                                        <constraint firstItem="chip-4-row" firstAttribute="top" secondItem="chip-4" secondAttribute="top" id="c3958"/>
+                                        <constraint firstItem="chip-4" firstAttribute="trailing" secondItem="chip-4-row" secondAttribute="trailing" id="c3959"/>
+                                        <constraint firstItem="chip-4" firstAttribute="bottom" secondItem="chip-4-row" secondAttribute="bottom" id="c3960"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -189,12 +206,12 @@
                     </subviews>
                     <viewLayoutGuide key="contentLayoutGuide" id="chip-scroll-contentLayoutGuide"/><viewLayoutGuide key="frameLayoutGuide" id="chip-scroll-frameLayoutGuide"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="36" id="c3786"/>
-                        <constraint firstItem="chips" firstAttribute="leading" secondItem="chip-scroll-contentLayoutGuide" secondAttribute="leading" id="c3787"/>
-                        <constraint firstItem="chips" firstAttribute="top" secondItem="chip-scroll-contentLayoutGuide" secondAttribute="top" id="c3788"/>
-                        <constraint firstItem="chip-scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="chips" secondAttribute="trailing" id="c3789"/>
-                        <constraint firstItem="chip-scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="chips" secondAttribute="bottom" id="c3790"/>
-                        <constraint firstItem="chips" firstAttribute="height" secondItem="chip-scroll-frameLayoutGuide" secondAttribute="height" id="c3791"/>
+                        <constraint firstAttribute="height" constant="36" id="c3964"/>
+                        <constraint firstItem="chips" firstAttribute="leading" secondItem="chip-scroll-contentLayoutGuide" secondAttribute="leading" id="c3965"/>
+                        <constraint firstItem="chips" firstAttribute="top" secondItem="chip-scroll-contentLayoutGuide" secondAttribute="top" id="c3966"/>
+                        <constraint firstItem="chip-scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="chips" secondAttribute="trailing" id="c3967"/>
+                        <constraint firstItem="chip-scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="chips" secondAttribute="bottom" id="c3968"/>
+                        <constraint firstItem="chips" firstAttribute="height" secondItem="chip-scroll-frameLayoutGuide" secondAttribute="height" id="c3969"/>
                     </constraints>
                 </scrollView>
                 <collectionView contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="grid" userLabel="collectionView" multipleTouchEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none">
@@ -203,7 +220,7 @@
                 </collectionView>
                 <view contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fade" customClass="DSGradientView" customModule="HomeAI" customModuleProvider="target">
                     <constraints>
-                        <constraint firstAttribute="height" constant="90" id="c3799"/>
+                        <constraint firstAttribute="height" constant="90" id="c3977"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="startColor"><color key="value" name="dsBackgroundClear"/></userDefinedRuntimeAttribute>
@@ -215,29 +232,29 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nav" customClass="WizardNavBar" customModule="HomeAI" customModuleProvider="target" userLabel="navBar">
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="56" id="c3754"/>
+                        <constraint firstAttribute="height" constant="56" id="c3932"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" name="dsBackground"/>
             <viewLayoutGuide key="safeArea" id="root-safeArea"/>
             <constraints>
-                <constraint firstItem="nav" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3751"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="nav" secondAttribute="trailing" id="c3752"/>
-                <constraint firstItem="nav" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-4" id="c3753"/>
-                <constraint firstItem="title-group" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c3755"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="title-group" secondAttribute="trailing" constant="20" id="c3756"/>
-                <constraint firstItem="title-group" firstAttribute="top" secondItem="nav" secondAttribute="bottom" constant="8" id="c3757"/>
-                <constraint firstItem="chip-scroll" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3783"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="chip-scroll" secondAttribute="trailing" id="c3784"/>
-                <constraint firstItem="chip-scroll" firstAttribute="top" secondItem="title-group" secondAttribute="bottom" constant="22" id="c3785"/>
-                <constraint firstItem="grid" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3792"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="grid" secondAttribute="trailing" id="c3793"/>
-                <constraint firstItem="root" firstAttribute="bottom" secondItem="grid" secondAttribute="bottom" id="c3794"/>
-                <constraint firstItem="grid" firstAttribute="top" secondItem="chip-scroll" secondAttribute="bottom" constant="16" id="c3795"/>
-                <constraint firstItem="fade" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3796"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="fade" secondAttribute="trailing" id="c3797"/>
-                <constraint firstItem="root" firstAttribute="bottom" secondItem="fade" secondAttribute="bottom" id="c3798"/>
+                <constraint firstItem="nav" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3929"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="nav" secondAttribute="trailing" id="c3930"/>
+                <constraint firstItem="nav" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-4" id="c3931"/>
+                <constraint firstItem="title-group" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c3933"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="title-group" secondAttribute="trailing" constant="20" id="c3934"/>
+                <constraint firstItem="title-group" firstAttribute="top" secondItem="nav" secondAttribute="bottom" constant="8" id="c3935"/>
+                <constraint firstItem="chip-scroll" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3961"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="chip-scroll" secondAttribute="trailing" id="c3962"/>
+                <constraint firstItem="chip-scroll" firstAttribute="top" secondItem="title-group" secondAttribute="bottom" constant="22" id="c3963"/>
+                <constraint firstItem="grid" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3970"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="grid" secondAttribute="trailing" id="c3971"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="grid" secondAttribute="bottom" id="c3972"/>
+                <constraint firstItem="grid" firstAttribute="top" secondItem="chip-scroll" secondAttribute="bottom" constant="16" id="c3973"/>
+                <constraint firstItem="fade" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3974"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="fade" secondAttribute="trailing" id="c3975"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="fade" secondAttribute="bottom" id="c3976"/>
             </constraints>
         </view>
         </objects>

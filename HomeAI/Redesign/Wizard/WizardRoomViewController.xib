@@ -40,12 +40,14 @@
                             <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="28"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="letterSpacing"><real key="value" value="-0.14"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Which room is it?"/>
                             </userDefinedRuntimeAttributes>
                         </label>
                         <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title-sub" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="subtitleLabel" opaque="NO" text="We guessed from your photo. Tap to confirm." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15"/><color key="textColor" name="dsTextSecondary"/><nil key="highlightedColor"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="lineHeightMultiple"><real key="value" value="1.12"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="We guessed from your photo. Tap to confirm."/>
                             </userDefinedRuntimeAttributes>
                         </label>
                     </subviews>
@@ -56,7 +58,7 @@
                 </collectionView>
                 <view contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fade" customClass="DSGradientView" customModule="HomeAI" customModuleProvider="target">
                     <constraints>
-                        <constraint firstAttribute="height" constant="90" id="c3750"/>
+                        <constraint firstAttribute="height" constant="90" id="c3928"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="startColor"><color key="value" name="dsBackgroundClear"/></userDefinedRuntimeAttribute>
@@ -68,26 +70,26 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nav" customClass="WizardNavBar" customModule="HomeAI" customModuleProvider="target" userLabel="navBar">
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="56" id="c3739"/>
+                        <constraint firstAttribute="height" constant="56" id="c3917"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" name="dsBackground"/>
             <viewLayoutGuide key="safeArea" id="root-safeArea"/>
             <constraints>
-                <constraint firstItem="nav" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3736"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="nav" secondAttribute="trailing" id="c3737"/>
-                <constraint firstItem="nav" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-4" id="c3738"/>
-                <constraint firstItem="title-group" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c3740"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="title-group" secondAttribute="trailing" constant="20" id="c3741"/>
-                <constraint firstItem="title-group" firstAttribute="top" secondItem="nav" secondAttribute="bottom" constant="8" id="c3742"/>
-                <constraint firstItem="grid" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3743"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="grid" secondAttribute="trailing" id="c3744"/>
-                <constraint firstItem="root" firstAttribute="bottom" secondItem="grid" secondAttribute="bottom" id="c3745"/>
-                <constraint firstItem="grid" firstAttribute="top" secondItem="title-group" secondAttribute="bottom" constant="24" id="c3746"/>
-                <constraint firstItem="fade" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3747"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="fade" secondAttribute="trailing" id="c3748"/>
-                <constraint firstItem="root" firstAttribute="bottom" secondItem="fade" secondAttribute="bottom" id="c3749"/>
+                <constraint firstItem="nav" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3914"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="nav" secondAttribute="trailing" id="c3915"/>
+                <constraint firstItem="nav" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-4" id="c3916"/>
+                <constraint firstItem="title-group" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c3918"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="title-group" secondAttribute="trailing" constant="20" id="c3919"/>
+                <constraint firstItem="title-group" firstAttribute="top" secondItem="nav" secondAttribute="bottom" constant="8" id="c3920"/>
+                <constraint firstItem="grid" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3921"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="grid" secondAttribute="trailing" id="c3922"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="grid" secondAttribute="bottom" id="c3923"/>
+                <constraint firstItem="grid" firstAttribute="top" secondItem="title-group" secondAttribute="bottom" constant="24" id="c3924"/>
+                <constraint firstItem="fade" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3925"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="fade" secondAttribute="trailing" id="c3926"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="fade" secondAttribute="bottom" id="c3927"/>
             </constraints>
         </view>
         </objects>

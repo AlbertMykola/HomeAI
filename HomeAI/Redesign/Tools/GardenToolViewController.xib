@@ -67,12 +67,14 @@
                                             <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="28"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="letterSpacing"><real key="value" value="-0.14"/></userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Garden style"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title-sub" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="subtitleLabel" opaque="NO" text="Plants, paths and lighting for your yard." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15"/><color key="textColor" name="dsTextSecondary"/><nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="lineHeightMultiple"><real key="value" value="1.12"/></userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Plants, paths and lighting for your yard."/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                     </subviews>
@@ -83,8 +85,8 @@
                                             <subviews>
                                                 <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ps-thumb" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" userLabel="photoThumbView" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="56" id="c2993"/>
-                                                        <constraint firstAttribute="height" constant="56" id="c2994"/>
+                                                        <constraint firstAttribute="width" constant="56" id="c189"/>
+                                                        <constraint firstAttribute="height" constant="56" id="c190"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="14"/></userDefinedRuntimeAttribute>
@@ -94,6 +96,9 @@
                                                     <subviews>
                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ps-title" userLabel="photoTitleLabel" opaque="NO" text="Your photo" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                             <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="15"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Your photo"/>
+                                                            </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label contentMode="scaleToFill" hidden="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ps-status" userLabel="photoStatusLabel" opaque="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="13"/><color key="textColor" name="dsLink"/><nil key="highlightedColor"/>
@@ -102,6 +107,9 @@
                                                 </stackView>
                                                 <button contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ps-change" userLabel="changePhotoButton" opaque="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation">
                                                     <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/><state key="normal" title="Change"><color key="titleColor" name="dsLink"/></state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Change"/>
+                                                    </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="didTapChangePhoto:" destination="-1" eventType="touchUpInside" id="ps-change-a0"/>
                                                     </connections>
@@ -112,10 +120,10 @@
                                     </subviews>
                                     <color key="backgroundColor" name="dsSurface"/>
                                     <constraints>
-                                        <constraint firstItem="ps-row" firstAttribute="leading" secondItem="summary" secondAttribute="leading" id="c2989"/>
-                                        <constraint firstItem="ps-row" firstAttribute="top" secondItem="summary" secondAttribute="top" id="c2990"/>
-                                        <constraint firstItem="summary" firstAttribute="trailing" secondItem="ps-row" secondAttribute="trailing" id="c2991"/>
-                                        <constraint firstItem="summary" firstAttribute="bottom" secondItem="ps-row" secondAttribute="bottom" id="c2992"/>
+                                        <constraint firstItem="ps-row" firstAttribute="leading" secondItem="summary" secondAttribute="leading" id="c185"/>
+                                        <constraint firstItem="ps-row" firstAttribute="top" secondItem="summary" secondAttribute="top" id="c186"/>
+                                        <constraint firstItem="summary" firstAttribute="trailing" secondItem="ps-row" secondAttribute="trailing" id="c187"/>
+                                        <constraint firstItem="summary" firstAttribute="bottom" secondItem="ps-row" secondAttribute="bottom" id="c188"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
@@ -123,16 +131,22 @@
                                 </view>
                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s-style" userLabel="styleTitleLabel" opaque="NO" text="Garden style" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                     <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Garden style"/>
+                                    </userDefinedRuntimeAttributes>
                                 </label>
                                 <collectionView contentMode="scaleToFill" clipsSubviews="NO" translatesAutoresizingMaskIntoConstraints="NO" id="styles" userLabel="stylesCollectionView" multipleTouchEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none">
                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="12" minimumInteritemSpacing="12" id="styles-layout"><size key="itemSize" width="160" height="128"/><size key="headerReferenceSize" width="0.0" height="0.0"/><size key="footerReferenceSize" width="0.0" height="0.0"/><inset key="sectionInset" minX="0" minY="0" maxX="0" maxY="0"/></collectionViewFlowLayout>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="290" id="c2995"/>
+                                        <constraint firstAttribute="height" constant="290" id="c191"/>
                                     </constraints>
                                 </collectionView>
                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s-season" userLabel="seasonTitleLabel" opaque="NO" text="Season" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                     <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Season"/>
+                                    </userDefinedRuntimeAttributes>
                                 </label>
                                 <scrollView contentMode="scaleToFill" clipsSubviews="NO" translatesAutoresizingMaskIntoConstraints="NO" id="season-scroll" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" alwaysBounceHorizontal="YES">
                                     <subviews>
@@ -144,17 +158,20 @@
                                                             <subviews>
                                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="season0-label" opaque="NO" text="Spring" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                     <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Spring"/>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </label>
                                                             </subviews>
                                                             <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="36" id="c2996"/>
-                                                        <constraint firstItem="season0-row" firstAttribute="leading" secondItem="season0" secondAttribute="leading" id="c2997"/>
-                                                        <constraint firstItem="season0-row" firstAttribute="top" secondItem="season0" secondAttribute="top" id="c2998"/>
-                                                        <constraint firstItem="season0" firstAttribute="trailing" secondItem="season0-row" secondAttribute="trailing" id="c2999"/>
-                                                        <constraint firstItem="season0" firstAttribute="bottom" secondItem="season0-row" secondAttribute="bottom" id="c3000"/>
+                                                        <constraint firstAttribute="height" constant="36" id="c192"/>
+                                                        <constraint firstItem="season0-row" firstAttribute="leading" secondItem="season0" secondAttribute="leading" id="c193"/>
+                                                        <constraint firstItem="season0-row" firstAttribute="top" secondItem="season0" secondAttribute="top" id="c194"/>
+                                                        <constraint firstItem="season0" firstAttribute="trailing" secondItem="season0-row" secondAttribute="trailing" id="c195"/>
+                                                        <constraint firstItem="season0" firstAttribute="bottom" secondItem="season0-row" secondAttribute="bottom" id="c196"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -168,17 +185,20 @@
                                                             <subviews>
                                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="season1-label" opaque="NO" text="Summer" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                     <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Summer"/>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </label>
                                                             </subviews>
                                                             <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="36" id="c3001"/>
-                                                        <constraint firstItem="season1-row" firstAttribute="leading" secondItem="season1" secondAttribute="leading" id="c3002"/>
-                                                        <constraint firstItem="season1-row" firstAttribute="top" secondItem="season1" secondAttribute="top" id="c3003"/>
-                                                        <constraint firstItem="season1" firstAttribute="trailing" secondItem="season1-row" secondAttribute="trailing" id="c3004"/>
-                                                        <constraint firstItem="season1" firstAttribute="bottom" secondItem="season1-row" secondAttribute="bottom" id="c3005"/>
+                                                        <constraint firstAttribute="height" constant="36" id="c197"/>
+                                                        <constraint firstItem="season1-row" firstAttribute="leading" secondItem="season1" secondAttribute="leading" id="c198"/>
+                                                        <constraint firstItem="season1-row" firstAttribute="top" secondItem="season1" secondAttribute="top" id="c199"/>
+                                                        <constraint firstItem="season1" firstAttribute="trailing" secondItem="season1-row" secondAttribute="trailing" id="c200"/>
+                                                        <constraint firstItem="season1" firstAttribute="bottom" secondItem="season1-row" secondAttribute="bottom" id="c201"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -192,17 +212,20 @@
                                                             <subviews>
                                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="season2-label" opaque="NO" text="Autumn" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                     <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Autumn"/>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </label>
                                                             </subviews>
                                                             <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="36" id="c3006"/>
-                                                        <constraint firstItem="season2-row" firstAttribute="leading" secondItem="season2" secondAttribute="leading" id="c3007"/>
-                                                        <constraint firstItem="season2-row" firstAttribute="top" secondItem="season2" secondAttribute="top" id="c3008"/>
-                                                        <constraint firstItem="season2" firstAttribute="trailing" secondItem="season2-row" secondAttribute="trailing" id="c3009"/>
-                                                        <constraint firstItem="season2" firstAttribute="bottom" secondItem="season2-row" secondAttribute="bottom" id="c3010"/>
+                                                        <constraint firstAttribute="height" constant="36" id="c202"/>
+                                                        <constraint firstItem="season2-row" firstAttribute="leading" secondItem="season2" secondAttribute="leading" id="c203"/>
+                                                        <constraint firstItem="season2-row" firstAttribute="top" secondItem="season2" secondAttribute="top" id="c204"/>
+                                                        <constraint firstItem="season2" firstAttribute="trailing" secondItem="season2-row" secondAttribute="trailing" id="c205"/>
+                                                        <constraint firstItem="season2" firstAttribute="bottom" secondItem="season2-row" secondAttribute="bottom" id="c206"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -216,17 +239,20 @@
                                                             <subviews>
                                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="season3-label" opaque="NO" text="Winter" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                     <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Winter"/>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </label>
                                                             </subviews>
                                                             <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="36" id="c3011"/>
-                                                        <constraint firstItem="season3-row" firstAttribute="leading" secondItem="season3" secondAttribute="leading" id="c3012"/>
-                                                        <constraint firstItem="season3-row" firstAttribute="top" secondItem="season3" secondAttribute="top" id="c3013"/>
-                                                        <constraint firstItem="season3" firstAttribute="trailing" secondItem="season3-row" secondAttribute="trailing" id="c3014"/>
-                                                        <constraint firstItem="season3" firstAttribute="bottom" secondItem="season3-row" secondAttribute="bottom" id="c3015"/>
+                                                        <constraint firstAttribute="height" constant="36" id="c207"/>
+                                                        <constraint firstItem="season3-row" firstAttribute="leading" secondItem="season3" secondAttribute="leading" id="c208"/>
+                                                        <constraint firstItem="season3-row" firstAttribute="top" secondItem="season3" secondAttribute="top" id="c209"/>
+                                                        <constraint firstItem="season3" firstAttribute="trailing" secondItem="season3-row" secondAttribute="trailing" id="c210"/>
+                                                        <constraint firstItem="season3" firstAttribute="bottom" secondItem="season3-row" secondAttribute="bottom" id="c211"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -239,12 +265,12 @@
                                     </subviews>
                                     <viewLayoutGuide key="contentLayoutGuide" id="season-scroll-contentLayoutGuide"/><viewLayoutGuide key="frameLayoutGuide" id="season-scroll-frameLayoutGuide"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="36" id="c3016"/>
-                                        <constraint firstItem="season-stack" firstAttribute="leading" secondItem="season-scroll-contentLayoutGuide" secondAttribute="leading" id="c3017"/>
-                                        <constraint firstItem="season-stack" firstAttribute="top" secondItem="season-scroll-contentLayoutGuide" secondAttribute="top" id="c3018"/>
-                                        <constraint firstItem="season-scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="season-stack" secondAttribute="trailing" id="c3019"/>
-                                        <constraint firstItem="season-scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="season-stack" secondAttribute="bottom" id="c3020"/>
-                                        <constraint firstItem="season-stack" firstAttribute="height" secondItem="season-scroll-frameLayoutGuide" secondAttribute="height" id="c3021"/>
+                                        <constraint firstAttribute="height" constant="36" id="c212"/>
+                                        <constraint firstItem="season-stack" firstAttribute="leading" secondItem="season-scroll-contentLayoutGuide" secondAttribute="leading" id="c213"/>
+                                        <constraint firstItem="season-stack" firstAttribute="top" secondItem="season-scroll-contentLayoutGuide" secondAttribute="top" id="c214"/>
+                                        <constraint firstItem="season-scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="season-stack" secondAttribute="trailing" id="c215"/>
+                                        <constraint firstItem="season-scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="season-stack" secondAttribute="bottom" id="c216"/>
+                                        <constraint firstItem="season-stack" firstAttribute="height" secondItem="season-scroll-frameLayoutGuide" secondAttribute="height" id="c217"/>
                                     </constraints>
                                 </scrollView>
                                 <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="keep" opaque="NO" alignment="center" spacing="8">
@@ -253,9 +279,15 @@
                                             <subviews>
                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="keep-t" userLabel="keepTitleLabel" opaque="NO" text="Keep paths &amp; patio" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                     <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="15"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Keep paths &amp; patio"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="keep-s" userLabel="keepSubtitleLabel" opaque="NO" text="Hardscape stays, we redo planting" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                     <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Hardscape stays, we redo planting"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                         </stackView>
@@ -272,22 +304,22 @@
                     </subviews>
                     <viewLayoutGuide key="contentLayoutGuide" id="scroll-contentLayoutGuide"/><viewLayoutGuide key="frameLayoutGuide" id="scroll-frameLayoutGuide"/>
                     <constraints>
-                        <constraint firstItem="body" firstAttribute="leading" secondItem="scroll-contentLayoutGuide" secondAttribute="leading" constant="20" id="c2984"/>
-                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="body" secondAttribute="trailing" constant="20" id="c2985"/>
-                        <constraint firstItem="body" firstAttribute="top" secondItem="scroll-contentLayoutGuide" secondAttribute="top" constant="8" id="c2986"/>
-                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="body" secondAttribute="bottom" constant="120" id="c2987"/>
-                        <constraint firstItem="body" firstAttribute="width" secondItem="scroll-frameLayoutGuide" secondAttribute="width" constant="-40" id="c2988"/>
+                        <constraint firstItem="body" firstAttribute="leading" secondItem="scroll-contentLayoutGuide" secondAttribute="leading" constant="20" id="c180"/>
+                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="body" secondAttribute="trailing" constant="20" id="c181"/>
+                        <constraint firstItem="body" firstAttribute="top" secondItem="scroll-contentLayoutGuide" secondAttribute="top" constant="8" id="c182"/>
+                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="body" secondAttribute="bottom" constant="120" id="c183"/>
+                        <constraint firstItem="body" firstAttribute="width" secondItem="scroll-frameLayoutGuide" secondAttribute="width" constant="-40" id="c184"/>
                     </constraints>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nav" customClass="WizardNavBar" customModule="HomeAI" customModuleProvider="target" userLabel="navBar">
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="56" id="c2966"/>
+                        <constraint firstAttribute="height" constant="56" id="c162"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fade" customClass="DSGradientView" customModule="HomeAI" customModuleProvider="target">
                     <constraints>
-                        <constraint firstAttribute="height" constant="140" id="c2976"/>
+                        <constraint firstAttribute="height" constant="140" id="c172"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="startColor"><color key="value" name="dsBackgroundClear"/></userDefinedRuntimeAttribute>
@@ -304,17 +336,23 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" weight="semibold"/>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="20" id="c2971"/>
-                                        <constraint firstAttribute="height" constant="20" id="c2972"/>
+                                        <constraint firstAttribute="width" constant="20" id="c167"/>
+                                        <constraint firstAttribute="height" constant="20" id="c168"/>
                                     </constraints>
                                 </imageView>
                                 <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="generate-labels" opaque="NO" axis="vertical" alignment="center" spacing="1">
                                     <subviews>
                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="generate-title" userLabel="generateTitleLabel" opaque="NO" text="Generate" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                             <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/><nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Generate"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="generate-sub" userLabel="generateSubtitleLabel" opaque="NO" text="1 credit · about 30 s" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.700" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="1 credit · about 30 s"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                     </subviews>
                                 </stackView>
@@ -322,10 +360,10 @@
                         </stackView>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="56" id="c2967"/>
-                        <constraint firstItem="generate-row" firstAttribute="centerX" secondItem="generate" secondAttribute="centerX" id="c2968"/>
-                        <constraint firstItem="generate-row" firstAttribute="centerY" secondItem="generate" secondAttribute="centerY" id="c2969"/>
-                        <constraint firstItem="generate-row" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="generate" secondAttribute="leading" constant="16" id="c2970"/>
+                        <constraint firstAttribute="height" constant="56" id="c163"/>
+                        <constraint firstItem="generate-row" firstAttribute="centerX" secondItem="generate" secondAttribute="centerX" id="c164"/>
+                        <constraint firstItem="generate-row" firstAttribute="centerY" secondItem="generate" secondAttribute="centerY" id="c165"/>
+                        <constraint firstItem="generate-row" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="generate" secondAttribute="leading" constant="16" id="c166"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapGenerate:"/>
@@ -335,19 +373,19 @@
             <color key="backgroundColor" name="dsBackground"/>
             <viewLayoutGuide key="safeArea" id="root-safeArea"/>
             <constraints>
-                <constraint firstItem="nav" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c2963"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="nav" secondAttribute="trailing" id="c2964"/>
-                <constraint firstItem="nav" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-4" id="c2965"/>
-                <constraint firstItem="fade" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c2973"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="fade" secondAttribute="trailing" id="c2974"/>
-                <constraint firstItem="root" firstAttribute="bottom" secondItem="fade" secondAttribute="bottom" id="c2975"/>
-                <constraint firstItem="generate" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c2977"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="generate" secondAttribute="trailing" constant="20" id="c2978"/>
-                <constraint firstItem="root-safeArea" firstAttribute="bottom" secondItem="generate" secondAttribute="bottom" id="c2979"/>
-                <constraint firstItem="scroll" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c2980"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="scroll" secondAttribute="trailing" id="c2981"/>
-                <constraint firstItem="root" firstAttribute="bottom" secondItem="scroll" secondAttribute="bottom" id="c2982"/>
-                <constraint firstItem="scroll" firstAttribute="top" secondItem="nav" secondAttribute="bottom" id="c2983"/>
+                <constraint firstItem="nav" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c159"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="nav" secondAttribute="trailing" id="c160"/>
+                <constraint firstItem="nav" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-4" id="c161"/>
+                <constraint firstItem="fade" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c169"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="fade" secondAttribute="trailing" id="c170"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="fade" secondAttribute="bottom" id="c171"/>
+                <constraint firstItem="generate" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c173"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="generate" secondAttribute="trailing" constant="20" id="c174"/>
+                <constraint firstItem="root-safeArea" firstAttribute="bottom" secondItem="generate" secondAttribute="bottom" id="c175"/>
+                <constraint firstItem="scroll" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c176"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="scroll" secondAttribute="trailing" id="c177"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="scroll" secondAttribute="bottom" id="c178"/>
+                <constraint firstItem="scroll" firstAttribute="top" secondItem="nav" secondAttribute="bottom" id="c179"/>
             </constraints>
         </view>
         </objects>

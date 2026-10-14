@@ -35,8 +35,8 @@
                 <outletCollection property="segmentLabels" destination="seg1-label" collectionClass="NSMutableArray" id="seg1-label-oc"/>
                 <outletCollection property="segmentControls" destination="seg2" collectionClass="NSMutableArray" id="seg2-oc"/>
                 <outletCollection property="segmentLabels" destination="seg2-label" collectionClass="NSMutableArray" id="seg2-label-oc"/>
-                <outlet property="beforeWidthConstraint" destination="c2470" id="c2470-o"/>
-                <outlet property="segmentKnobLeading" destination="c2498" id="c2498-o"/>
+                <outlet property="beforeWidthConstraint" destination="c2648" id="c2648-o"/>
+                <outlet property="segmentKnobLeading" destination="c2676" id="c2676-o"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -55,40 +55,40 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="before" firstAttribute="leading" secondItem="before-clip" secondAttribute="leading" id="c2471"/>
-                                <constraint firstItem="before" firstAttribute="top" secondItem="before-clip" secondAttribute="top" id="c2472"/>
-                                <constraint firstItem="before-clip" firstAttribute="bottom" secondItem="before" secondAttribute="bottom" id="c2473"/>
+                                <constraint firstItem="before" firstAttribute="leading" secondItem="before-clip" secondAttribute="leading" id="c2649"/>
+                                <constraint firstItem="before" firstAttribute="top" secondItem="before-clip" secondAttribute="top" id="c2650"/>
+                                <constraint firstItem="before-clip" firstAttribute="bottom" secondItem="before" secondAttribute="bottom" id="c2651"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="divider" userLabel="dividerView">
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="2" id="c2477"/>
+                                <constraint firstAttribute="width" constant="2" id="c2655"/>
                             </constraints>
                         </view>
                         <imageView contentMode="scaleAspectFit" clipsSubviews="NO" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="handle" userLabel="handleView" image="ds_compare_handle" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                             <constraints>
-                                <constraint firstAttribute="width" constant="32" id="c2479"/>
-                                <constraint firstAttribute="height" constant="32" id="c2480"/>
+                                <constraint firstAttribute="width" constant="32" id="c2657"/>
+                                <constraint firstAttribute="height" constant="32" id="c2658"/>
                             </constraints>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="after" firstAttribute="leading" secondItem="stage" secondAttribute="leading" id="c2463"/>
-                        <constraint firstItem="after" firstAttribute="top" secondItem="stage" secondAttribute="top" id="c2464"/>
-                        <constraint firstItem="stage" firstAttribute="trailing" secondItem="after" secondAttribute="trailing" id="c2465"/>
-                        <constraint firstItem="stage" firstAttribute="bottom" secondItem="after" secondAttribute="bottom" id="c2466"/>
-                        <constraint firstItem="before-clip" firstAttribute="leading" secondItem="stage" secondAttribute="leading" id="c2467"/>
-                        <constraint firstItem="before-clip" firstAttribute="top" secondItem="stage" secondAttribute="top" id="c2468"/>
-                        <constraint firstItem="stage" firstAttribute="bottom" secondItem="before-clip" secondAttribute="bottom" id="c2469"/>
-                        <constraint firstItem="before-clip" firstAttribute="width" secondItem="stage" secondAttribute="width" multiplier="0.5" id="c2470"/>
-                        <constraint firstItem="before" firstAttribute="width" secondItem="stage" secondAttribute="width" id="c2474"/>
-                        <constraint firstItem="divider" firstAttribute="top" secondItem="stage" secondAttribute="top" id="c2475"/>
-                        <constraint firstItem="stage" firstAttribute="bottom" secondItem="divider" secondAttribute="bottom" id="c2476"/>
-                        <constraint firstItem="divider" firstAttribute="centerX" secondItem="before-clip" secondAttribute="trailing" id="c2478"/>
-                        <constraint firstItem="handle" firstAttribute="centerX" secondItem="divider" secondAttribute="centerX" id="c2481"/>
-                        <constraint firstItem="handle" firstAttribute="centerY" secondItem="divider" secondAttribute="centerY" id="c2482"/>
+                        <constraint firstItem="after" firstAttribute="leading" secondItem="stage" secondAttribute="leading" id="c2641"/>
+                        <constraint firstItem="after" firstAttribute="top" secondItem="stage" secondAttribute="top" id="c2642"/>
+                        <constraint firstItem="stage" firstAttribute="trailing" secondItem="after" secondAttribute="trailing" id="c2643"/>
+                        <constraint firstItem="stage" firstAttribute="bottom" secondItem="after" secondAttribute="bottom" id="c2644"/>
+                        <constraint firstItem="before-clip" firstAttribute="leading" secondItem="stage" secondAttribute="leading" id="c2645"/>
+                        <constraint firstItem="before-clip" firstAttribute="top" secondItem="stage" secondAttribute="top" id="c2646"/>
+                        <constraint firstItem="stage" firstAttribute="bottom" secondItem="before-clip" secondAttribute="bottom" id="c2647"/>
+                        <constraint firstItem="before-clip" firstAttribute="width" secondItem="stage" secondAttribute="width" multiplier="0.5" id="c2648"/>
+                        <constraint firstItem="before" firstAttribute="width" secondItem="stage" secondAttribute="width" id="c2652"/>
+                        <constraint firstItem="divider" firstAttribute="top" secondItem="stage" secondAttribute="top" id="c2653"/>
+                        <constraint firstItem="stage" firstAttribute="bottom" secondItem="divider" secondAttribute="bottom" id="c2654"/>
+                        <constraint firstItem="divider" firstAttribute="centerX" secondItem="before-clip" secondAttribute="trailing" id="c2656"/>
+                        <constraint firstItem="handle" firstAttribute="centerX" secondItem="divider" secondAttribute="centerX" id="c2659"/>
+                        <constraint firstItem="handle" firstAttribute="centerY" secondItem="divider" secondAttribute="centerY" id="c2660"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="close" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="closeButton">
@@ -97,17 +97,17 @@
                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17.0" weight="semibold"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="20" id="c2445"/>
-                                <constraint firstAttribute="height" constant="20" id="c2446"/>
+                                <constraint firstAttribute="width" constant="20" id="c2623"/>
+                                <constraint firstAttribute="height" constant="20" id="c2624"/>
                             </constraints>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.300" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="44" id="c2441"/>
-                        <constraint firstAttribute="height" constant="44" id="c2442"/>
-                        <constraint firstItem="close-icon" firstAttribute="centerX" secondItem="close" secondAttribute="centerX" id="c2443"/>
-                        <constraint firstItem="close-icon" firstAttribute="centerY" secondItem="close" secondAttribute="centerY" id="c2444"/>
+                        <constraint firstAttribute="width" constant="44" id="c2619"/>
+                        <constraint firstAttribute="height" constant="44" id="c2620"/>
+                        <constraint firstItem="close-icon" firstAttribute="centerX" secondItem="close" secondAttribute="centerX" id="c2621"/>
+                        <constraint firstItem="close-icon" firstAttribute="centerY" secondItem="close" secondAttribute="centerY" id="c2622"/>
                     </constraints>
                     <accessibility key="accessibilityConfiguration" label="Close"/>
                     <userDefinedRuntimeAttributes>
@@ -126,17 +126,17 @@
                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17.0" weight="semibold"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="20" id="c2451"/>
-                                <constraint firstAttribute="height" constant="20" id="c2452"/>
+                                <constraint firstAttribute="width" constant="20" id="c2629"/>
+                                <constraint firstAttribute="height" constant="20" id="c2630"/>
                             </constraints>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.300" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="44" id="c2447"/>
-                        <constraint firstAttribute="height" constant="44" id="c2448"/>
-                        <constraint firstItem="fit-icon" firstAttribute="centerX" secondItem="fit" secondAttribute="centerX" id="c2449"/>
-                        <constraint firstItem="fit-icon" firstAttribute="centerY" secondItem="fit" secondAttribute="centerY" id="c2450"/>
+                        <constraint firstAttribute="width" constant="44" id="c2625"/>
+                        <constraint firstAttribute="height" constant="44" id="c2626"/>
+                        <constraint firstItem="fit-icon" firstAttribute="centerX" secondItem="fit" secondAttribute="centerX" id="c2627"/>
+                        <constraint firstItem="fit-icon" firstAttribute="centerY" secondItem="fit" secondAttribute="centerY" id="c2628"/>
                     </constraints>
                     <accessibility key="accessibilityConfiguration" label="Reset zoom"/>
                     <userDefinedRuntimeAttributes>
@@ -163,11 +163,14 @@
                                     <subviews>
                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="seg0-label" opaque="NO" text="Original" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                             <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextSecondary"/><nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Original"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="seg0-label" firstAttribute="centerX" secondItem="seg0" secondAttribute="centerX" id="c2453"/>
-                                        <constraint firstItem="seg0-label" firstAttribute="centerY" secondItem="seg0" secondAttribute="centerY" id="c2454"/>
+                                        <constraint firstItem="seg0-label" firstAttribute="centerX" secondItem="seg0" secondAttribute="centerX" id="c2631"/>
+                                        <constraint firstItem="seg0-label" firstAttribute="centerY" secondItem="seg0" secondAttribute="centerY" id="c2632"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="hapticOnPress" value="NO"/>
@@ -179,11 +182,14 @@
                                     <subviews>
                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="seg1-label" opaque="NO" text="Split" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                             <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextSecondary"/><nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Split"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="seg1-label" firstAttribute="centerX" secondItem="seg1" secondAttribute="centerX" id="c2455"/>
-                                        <constraint firstItem="seg1-label" firstAttribute="centerY" secondItem="seg1" secondAttribute="centerY" id="c2456"/>
+                                        <constraint firstItem="seg1-label" firstAttribute="centerX" secondItem="seg1" secondAttribute="centerX" id="c2633"/>
+                                        <constraint firstItem="seg1-label" firstAttribute="centerY" secondItem="seg1" secondAttribute="centerY" id="c2634"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="hapticOnPress" value="NO"/>
@@ -195,11 +201,14 @@
                                     <subviews>
                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="seg2-label" opaque="NO" text="Result" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                             <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextSecondary"/><nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Result"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="seg2-label" firstAttribute="centerX" secondItem="seg2" secondAttribute="centerX" id="c2457"/>
-                                        <constraint firstItem="seg2-label" firstAttribute="centerY" secondItem="seg2" secondAttribute="centerY" id="c2458"/>
+                                        <constraint firstItem="seg2-label" firstAttribute="centerX" secondItem="seg2" secondAttribute="centerX" id="c2635"/>
+                                        <constraint firstItem="seg2-label" firstAttribute="centerY" secondItem="seg2" secondAttribute="centerY" id="c2636"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="hapticOnPress" value="NO"/>
@@ -212,15 +221,15 @@
                     </subviews>
                     <color key="backgroundColor" name="dsGlass"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="c2489"/>
-                        <constraint firstItem="seg-row" firstAttribute="leading" secondItem="segmented" secondAttribute="leading" constant="3" id="c2491"/>
-                        <constraint firstItem="seg-row" firstAttribute="top" secondItem="segmented" secondAttribute="top" constant="3" id="c2492"/>
-                        <constraint firstItem="segmented" firstAttribute="trailing" secondItem="seg-row" secondAttribute="trailing" constant="3" id="c2493"/>
-                        <constraint firstItem="segmented" firstAttribute="bottom" secondItem="seg-row" secondAttribute="bottom" constant="3" id="c2494"/>
-                        <constraint firstItem="seg-knob" firstAttribute="top" secondItem="segmented" secondAttribute="top" constant="3" id="c2495"/>
-                        <constraint firstItem="segmented" firstAttribute="bottom" secondItem="seg-knob" secondAttribute="bottom" constant="3" id="c2496"/>
-                        <constraint firstItem="seg-knob" firstAttribute="width" secondItem="seg0" secondAttribute="width" id="c2497"/>
-                        <constraint firstItem="seg-knob" firstAttribute="leading" secondItem="segmented" secondAttribute="leading" constant="3" id="c2498"/>
+                        <constraint firstAttribute="height" constant="40" id="c2667"/>
+                        <constraint firstItem="seg-row" firstAttribute="leading" secondItem="segmented" secondAttribute="leading" constant="3" id="c2669"/>
+                        <constraint firstItem="seg-row" firstAttribute="top" secondItem="segmented" secondAttribute="top" constant="3" id="c2670"/>
+                        <constraint firstItem="segmented" firstAttribute="trailing" secondItem="seg-row" secondAttribute="trailing" constant="3" id="c2671"/>
+                        <constraint firstItem="segmented" firstAttribute="bottom" secondItem="seg-row" secondAttribute="bottom" constant="3" id="c2672"/>
+                        <constraint firstItem="seg-knob" firstAttribute="top" secondItem="segmented" secondAttribute="top" constant="3" id="c2673"/>
+                        <constraint firstItem="segmented" firstAttribute="bottom" secondItem="seg-knob" secondAttribute="bottom" constant="3" id="c2674"/>
+                        <constraint firstItem="seg-knob" firstAttribute="width" secondItem="seg0" secondAttribute="width" id="c2675"/>
+                        <constraint firstItem="seg-knob" firstAttribute="leading" secondItem="segmented" secondAttribute="leading" constant="3" id="c2676"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -230,17 +239,17 @@
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="root-safeArea"/>
             <constraints>
-                <constraint firstItem="stage" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c2459"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="stage" secondAttribute="trailing" id="c2460"/>
-                <constraint firstItem="stage" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" id="c2461"/>
-                <constraint firstItem="segmented" firstAttribute="top" secondItem="stage" secondAttribute="bottom" constant="12" id="c2462"/>
-                <constraint firstItem="close" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="16" id="c2483"/>
-                <constraint firstItem="close" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="4" id="c2484"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="fit" secondAttribute="trailing" constant="16" id="c2485"/>
-                <constraint firstItem="fit" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="4" id="c2486"/>
-                <constraint firstItem="segmented" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="46" id="c2487"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="segmented" secondAttribute="trailing" constant="46" id="c2488"/>
-                <constraint firstItem="root-safeArea" firstAttribute="bottom" secondItem="segmented" secondAttribute="bottom" constant="8" id="c2490"/>
+                <constraint firstItem="stage" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c2637"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="stage" secondAttribute="trailing" id="c2638"/>
+                <constraint firstItem="stage" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" id="c2639"/>
+                <constraint firstItem="segmented" firstAttribute="top" secondItem="stage" secondAttribute="bottom" constant="12" id="c2640"/>
+                <constraint firstItem="close" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="16" id="c2661"/>
+                <constraint firstItem="close" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="4" id="c2662"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="fit" secondAttribute="trailing" constant="16" id="c2663"/>
+                <constraint firstItem="fit" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="4" id="c2664"/>
+                <constraint firstItem="segmented" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="46" id="c2665"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="segmented" secondAttribute="trailing" constant="46" id="c2666"/>
+                <constraint firstItem="root-safeArea" firstAttribute="bottom" secondItem="segmented" secondAttribute="bottom" constant="8" id="c2668"/>
             </constraints>
         </view>
         </objects>

@@ -31,7 +31,7 @@
                     <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="img" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" userLabel="coverImageView" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
                         <color key="backgroundColor" name="dsSurface"/>
                         <constraints>
-                            <constraint firstItem="img" firstAttribute="height" secondItem="img" secondAttribute="width" multiplier="200:170" id="c1986"/>
+                            <constraint firstItem="img" firstAttribute="height" secondItem="img" secondAttribute="width" multiplier="200:170" id="c2164"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="22"/></userDefinedRuntimeAttribute>
@@ -51,6 +51,9 @@
                                 <subviews>
                                     <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="version-label" userLabel="versionLabel" opaque="NO" text="V3" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                         <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="11"/><color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/><nil key="highlightedColor"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="V3"/>
+                                        </userDefinedRuntimeAttributes>
                                     </label>
                                 </subviews>
                                 <edgeInsets key="layoutMargins" top="0" left="9" bottom="0" right="9"/>
@@ -58,11 +61,11 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.350" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="24" id="c1978"/>
-                            <constraint firstItem="version-row" firstAttribute="leading" secondItem="version" secondAttribute="leading" id="c1979"/>
-                            <constraint firstItem="version-row" firstAttribute="top" secondItem="version" secondAttribute="top" id="c1980"/>
-                            <constraint firstItem="version" firstAttribute="trailing" secondItem="version-row" secondAttribute="trailing" id="c1981"/>
-                            <constraint firstItem="version" firstAttribute="bottom" secondItem="version-row" secondAttribute="bottom" id="c1982"/>
+                            <constraint firstAttribute="height" constant="24" id="c2156"/>
+                            <constraint firstItem="version-row" firstAttribute="leading" secondItem="version" secondAttribute="leading" id="c2157"/>
+                            <constraint firstItem="version-row" firstAttribute="top" secondItem="version" secondAttribute="top" id="c2158"/>
+                            <constraint firstItem="version" firstAttribute="trailing" secondItem="version-row" secondAttribute="trailing" id="c2159"/>
+                            <constraint firstItem="version" firstAttribute="bottom" secondItem="version-row" secondAttribute="bottom" id="c2160"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="12.0"/></userDefinedRuntimeAttribute>
@@ -74,17 +77,17 @@
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="12" weight="bold"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="15" id="c1999"/>
-                                    <constraint firstAttribute="height" constant="15" id="c2000"/>
+                                    <constraint firstAttribute="width" constant="15" id="c2177"/>
+                                    <constraint firstAttribute="height" constant="15" id="c2178"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.350" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="26" id="c1995"/>
-                            <constraint firstAttribute="height" constant="26" id="c1996"/>
-                            <constraint firstItem="check-icon" firstAttribute="centerX" secondItem="check" secondAttribute="centerX" id="c1997"/>
-                            <constraint firstItem="check-icon" firstAttribute="centerY" secondItem="check" secondAttribute="centerY" id="c1998"/>
+                            <constraint firstAttribute="width" constant="26" id="c2173"/>
+                            <constraint firstAttribute="height" constant="26" id="c2174"/>
+                            <constraint firstItem="check-icon" firstAttribute="centerX" secondItem="check" secondAttribute="centerX" id="c2175"/>
+                            <constraint firstItem="check-icon" firstAttribute="centerY" secondItem="check" secondAttribute="centerY" id="c2176"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="13"/></userDefinedRuntimeAttribute>
@@ -99,29 +102,35 @@
                         <subviews>
                             <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title" userLabel="titleLabel" opaque="NO" text="Japandi living room" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                 <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="15"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Japandi living room"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
                             <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sub" userLabel="subtitleLabel" opaque="NO" text="3 versions · Today" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                 <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="3 versions · Today"/>
+                                </userDefinedRuntimeAttributes>
                             </label>
                         </subviews>
                     </stackView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="img" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c1983"/>
-                    <constraint firstItem="img" firstAttribute="top" secondItem="cell-content" secondAttribute="top" id="c1984"/>
-                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="img" secondAttribute="trailing" id="c1985"/>
-                    <constraint firstItem="ring" firstAttribute="leading" secondItem="img" secondAttribute="leading" id="c1987"/>
-                    <constraint firstItem="ring" firstAttribute="top" secondItem="img" secondAttribute="top" id="c1988"/>
-                    <constraint firstItem="img" firstAttribute="trailing" secondItem="ring" secondAttribute="trailing" id="c1989"/>
-                    <constraint firstItem="img" firstAttribute="bottom" secondItem="ring" secondAttribute="bottom" id="c1990"/>
-                    <constraint firstItem="version" firstAttribute="leading" secondItem="img" secondAttribute="leading" constant="8" id="c1991"/>
-                    <constraint firstItem="img" firstAttribute="bottom" secondItem="version" secondAttribute="bottom" constant="8" id="c1992"/>
-                    <constraint firstItem="check" firstAttribute="top" secondItem="img" secondAttribute="top" constant="8" id="c1993"/>
-                    <constraint firstItem="img" firstAttribute="trailing" secondItem="check" secondAttribute="trailing" constant="8" id="c1994"/>
-                    <constraint firstItem="texts" firstAttribute="top" secondItem="img" secondAttribute="bottom" constant="8" id="c2001"/>
-                    <constraint firstItem="texts" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" constant="4" id="c2002"/>
-                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="texts" secondAttribute="trailing" constant="4" id="c2003"/>
+                    <constraint firstItem="img" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c2161"/>
+                    <constraint firstItem="img" firstAttribute="top" secondItem="cell-content" secondAttribute="top" id="c2162"/>
+                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="img" secondAttribute="trailing" id="c2163"/>
+                    <constraint firstItem="ring" firstAttribute="leading" secondItem="img" secondAttribute="leading" id="c2165"/>
+                    <constraint firstItem="ring" firstAttribute="top" secondItem="img" secondAttribute="top" id="c2166"/>
+                    <constraint firstItem="img" firstAttribute="trailing" secondItem="ring" secondAttribute="trailing" id="c2167"/>
+                    <constraint firstItem="img" firstAttribute="bottom" secondItem="ring" secondAttribute="bottom" id="c2168"/>
+                    <constraint firstItem="version" firstAttribute="leading" secondItem="img" secondAttribute="leading" constant="8" id="c2169"/>
+                    <constraint firstItem="img" firstAttribute="bottom" secondItem="version" secondAttribute="bottom" constant="8" id="c2170"/>
+                    <constraint firstItem="check" firstAttribute="top" secondItem="img" secondAttribute="top" constant="8" id="c2171"/>
+                    <constraint firstItem="img" firstAttribute="trailing" secondItem="check" secondAttribute="trailing" constant="8" id="c2172"/>
+                    <constraint firstItem="texts" firstAttribute="top" secondItem="img" secondAttribute="bottom" constant="8" id="c2179"/>
+                    <constraint firstItem="texts" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" constant="4" id="c2180"/>
+                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="texts" secondAttribute="trailing" constant="4" id="c2181"/>
                 </constraints>
             </view>
             <connections>

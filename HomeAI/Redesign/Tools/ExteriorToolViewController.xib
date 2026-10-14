@@ -86,12 +86,14 @@
                                             <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="28"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="letterSpacing"><real key="value" value="-0.14"/></userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Exterior style"/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title-sub" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="subtitleLabel" opaque="NO" text="The shape of your house stays. We change materials, colors and planting." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15"/><color key="textColor" name="dsTextSecondary"/><nil key="highlightedColor"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="lineHeightMultiple"><real key="value" value="1.12"/></userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="The shape of your house stays. We change materials, colors and planting."/>
                                             </userDefinedRuntimeAttributes>
                                         </label>
                                     </subviews>
@@ -102,8 +104,8 @@
                                             <subviews>
                                                 <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ps-thumb" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" userLabel="photoThumbView" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="56" id="c2835"/>
-                                                        <constraint firstAttribute="height" constant="56" id="c2836"/>
+                                                        <constraint firstAttribute="width" constant="56" id="c31"/>
+                                                        <constraint firstAttribute="height" constant="56" id="c32"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="14"/></userDefinedRuntimeAttribute>
@@ -113,6 +115,9 @@
                                                     <subviews>
                                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ps-title" userLabel="photoTitleLabel" opaque="NO" text="Your photo" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                             <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="15"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Your photo"/>
+                                                            </userDefinedRuntimeAttributes>
                                                         </label>
                                                         <label contentMode="scaleToFill" hidden="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ps-status" userLabel="photoStatusLabel" opaque="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="13"/><color key="textColor" name="dsLink"/><nil key="highlightedColor"/>
@@ -121,6 +126,9 @@
                                                 </stackView>
                                                 <button contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ps-change" userLabel="changePhotoButton" opaque="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation">
                                                     <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/><state key="normal" title="Change"><color key="titleColor" name="dsLink"/></state>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Change"/>
+                                                    </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <action selector="didTapChangePhoto:" destination="-1" eventType="touchUpInside" id="ps-change-a0"/>
                                                     </connections>
@@ -131,10 +139,10 @@
                                     </subviews>
                                     <color key="backgroundColor" name="dsSurface"/>
                                     <constraints>
-                                        <constraint firstItem="ps-row" firstAttribute="leading" secondItem="summary" secondAttribute="leading" id="c2831"/>
-                                        <constraint firstItem="ps-row" firstAttribute="top" secondItem="summary" secondAttribute="top" id="c2832"/>
-                                        <constraint firstItem="summary" firstAttribute="trailing" secondItem="ps-row" secondAttribute="trailing" id="c2833"/>
-                                        <constraint firstItem="summary" firstAttribute="bottom" secondItem="ps-row" secondAttribute="bottom" id="c2834"/>
+                                        <constraint firstItem="ps-row" firstAttribute="leading" secondItem="summary" secondAttribute="leading" id="c27"/>
+                                        <constraint firstItem="ps-row" firstAttribute="top" secondItem="summary" secondAttribute="top" id="c28"/>
+                                        <constraint firstItem="summary" firstAttribute="trailing" secondItem="ps-row" secondAttribute="trailing" id="c29"/>
+                                        <constraint firstItem="summary" firstAttribute="bottom" secondItem="ps-row" secondAttribute="bottom" id="c30"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
@@ -142,6 +150,9 @@
                                 </view>
                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s-facade" userLabel="facadeTitleLabel" opaque="NO" text="Facade style" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                     <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Facade style"/>
+                                    </userDefinedRuntimeAttributes>
                                 </label>
                                 <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="facades" opaque="NO" axis="vertical" spacing="10">
                                     <subviews>
@@ -153,14 +164,17 @@
                                                             <subviews>
                                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="fac0-l" opaque="NO" text="Modern farmhouse" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.8" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                     <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Modern farmhouse"/>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac0-dots" opaque="NO" spacing="-4">
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac0-d0" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="0.9608" green="0.9529" blue="0.9333" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="16" id="c2837"/>
-                                                                                <constraint firstAttribute="height" constant="16" id="c2838"/>
+                                                                                <constraint firstAttribute="width" constant="16" id="c33"/>
+                                                                                <constraint firstAttribute="height" constant="16" id="c34"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -171,8 +185,8 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac0-d1" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="0.1686" green="0.1686" blue="0.1686" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="16" id="c2839"/>
-                                                                                <constraint firstAttribute="height" constant="16" id="c2840"/>
+                                                                                <constraint firstAttribute="width" constant="16" id="c35"/>
+                                                                                <constraint firstAttribute="height" constant="16" id="c36"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -183,8 +197,8 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac0-d2" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="0.6431" green="0.4588" blue="0.3176" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="16" id="c2841"/>
-                                                                                <constraint firstAttribute="height" constant="16" id="c2842"/>
+                                                                                <constraint firstAttribute="width" constant="16" id="c37"/>
+                                                                                <constraint firstAttribute="height" constant="16" id="c38"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -195,8 +209,8 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac0-d3" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="0.4353" green="0.4902" blue="0.3608" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="16" id="c2843"/>
-                                                                                <constraint firstAttribute="height" constant="16" id="c2844"/>
+                                                                                <constraint firstAttribute="width" constant="16" id="c39"/>
+                                                                                <constraint firstAttribute="height" constant="16" id="c40"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -211,10 +225,10 @@
                                                     </subviews>
                                                     <color key="backgroundColor" name="dsSurface"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="64" id="c2845"/>
-                                                        <constraint firstItem="fac0-col" firstAttribute="leading" secondItem="fac0" secondAttribute="leading" constant="14" id="c2846"/>
-                                                        <constraint firstItem="fac0-col" firstAttribute="top" secondItem="fac0" secondAttribute="top" constant="12" id="c2847"/>
-                                                        <constraint firstItem="fac0" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fac0-col" secondAttribute="trailing" constant="8" id="c2848"/>
+                                                        <constraint firstAttribute="height" constant="64" id="c41"/>
+                                                        <constraint firstItem="fac0-col" firstAttribute="leading" secondItem="fac0" secondAttribute="leading" constant="14" id="c42"/>
+                                                        <constraint firstItem="fac0-col" firstAttribute="top" secondItem="fac0" secondAttribute="top" constant="12" id="c43"/>
+                                                        <constraint firstItem="fac0" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fac0-col" secondAttribute="trailing" constant="8" id="c44"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="18"/></userDefinedRuntimeAttribute>
@@ -227,14 +241,17 @@
                                                             <subviews>
                                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="fac1-l" opaque="NO" text="Scandinavian" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.8" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                     <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Scandinavian"/>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac1-dots" opaque="NO" spacing="-4">
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac1-d0" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="0.9137" green="0.8941" blue="0.8549" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="16" id="c2849"/>
-                                                                                <constraint firstAttribute="height" constant="16" id="c2850"/>
+                                                                                <constraint firstAttribute="width" constant="16" id="c45"/>
+                                                                                <constraint firstAttribute="height" constant="16" id="c46"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -245,8 +262,8 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac1-d1" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="0.2353" green="0.2353" blue="0.2353" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="16" id="c2851"/>
-                                                                                <constraint firstAttribute="height" constant="16" id="c2852"/>
+                                                                                <constraint firstAttribute="width" constant="16" id="c47"/>
+                                                                                <constraint firstAttribute="height" constant="16" id="c48"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -257,8 +274,8 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac1-d2" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="0.7882" green="0.6353" blue="0.4941" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="16" id="c2853"/>
-                                                                                <constraint firstAttribute="height" constant="16" id="c2854"/>
+                                                                                <constraint firstAttribute="width" constant="16" id="c49"/>
+                                                                                <constraint firstAttribute="height" constant="16" id="c50"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -269,8 +286,8 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac1-d3" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="0.5569" green="0.6039" blue="0.6510" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="16" id="c2855"/>
-                                                                                <constraint firstAttribute="height" constant="16" id="c2856"/>
+                                                                                <constraint firstAttribute="width" constant="16" id="c51"/>
+                                                                                <constraint firstAttribute="height" constant="16" id="c52"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -285,10 +302,10 @@
                                                     </subviews>
                                                     <color key="backgroundColor" name="dsSurface"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="64" id="c2857"/>
-                                                        <constraint firstItem="fac1-col" firstAttribute="leading" secondItem="fac1" secondAttribute="leading" constant="14" id="c2858"/>
-                                                        <constraint firstItem="fac1-col" firstAttribute="top" secondItem="fac1" secondAttribute="top" constant="12" id="c2859"/>
-                                                        <constraint firstItem="fac1" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fac1-col" secondAttribute="trailing" constant="8" id="c2860"/>
+                                                        <constraint firstAttribute="height" constant="64" id="c53"/>
+                                                        <constraint firstItem="fac1-col" firstAttribute="leading" secondItem="fac1" secondAttribute="leading" constant="14" id="c54"/>
+                                                        <constraint firstItem="fac1-col" firstAttribute="top" secondItem="fac1" secondAttribute="top" constant="12" id="c55"/>
+                                                        <constraint firstItem="fac1" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fac1-col" secondAttribute="trailing" constant="8" id="c56"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="18"/></userDefinedRuntimeAttribute>
@@ -305,14 +322,17 @@
                                                             <subviews>
                                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="fac2-l" opaque="NO" text="Mediterranean" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.8" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                     <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Mediterranean"/>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac2-dots" opaque="NO" spacing="-4">
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac2-d0" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="0.9451" green="0.8902" blue="0.7843" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="16" id="c2861"/>
-                                                                                <constraint firstAttribute="height" constant="16" id="c2862"/>
+                                                                                <constraint firstAttribute="width" constant="16" id="c57"/>
+                                                                                <constraint firstAttribute="height" constant="16" id="c58"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -323,8 +343,8 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac2-d1" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="0.7608" green="0.4157" blue="0.2392" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="16" id="c2863"/>
-                                                                                <constraint firstAttribute="height" constant="16" id="c2864"/>
+                                                                                <constraint firstAttribute="width" constant="16" id="c59"/>
+                                                                                <constraint firstAttribute="height" constant="16" id="c60"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -335,8 +355,8 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac2-d2" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="0.3608" green="0.4784" blue="0.3608" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="16" id="c2865"/>
-                                                                                <constraint firstAttribute="height" constant="16" id="c2866"/>
+                                                                                <constraint firstAttribute="width" constant="16" id="c61"/>
+                                                                                <constraint firstAttribute="height" constant="16" id="c62"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -347,8 +367,8 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac2-d3" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="0.1843" green="0.3098" blue="0.4353" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="16" id="c2867"/>
-                                                                                <constraint firstAttribute="height" constant="16" id="c2868"/>
+                                                                                <constraint firstAttribute="width" constant="16" id="c63"/>
+                                                                                <constraint firstAttribute="height" constant="16" id="c64"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -363,10 +383,10 @@
                                                     </subviews>
                                                     <color key="backgroundColor" name="dsSurface"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="64" id="c2869"/>
-                                                        <constraint firstItem="fac2-col" firstAttribute="leading" secondItem="fac2" secondAttribute="leading" constant="14" id="c2870"/>
-                                                        <constraint firstItem="fac2-col" firstAttribute="top" secondItem="fac2" secondAttribute="top" constant="12" id="c2871"/>
-                                                        <constraint firstItem="fac2" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fac2-col" secondAttribute="trailing" constant="8" id="c2872"/>
+                                                        <constraint firstAttribute="height" constant="64" id="c65"/>
+                                                        <constraint firstItem="fac2-col" firstAttribute="leading" secondItem="fac2" secondAttribute="leading" constant="14" id="c66"/>
+                                                        <constraint firstItem="fac2-col" firstAttribute="top" secondItem="fac2" secondAttribute="top" constant="12" id="c67"/>
+                                                        <constraint firstItem="fac2" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fac2-col" secondAttribute="trailing" constant="8" id="c68"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="18"/></userDefinedRuntimeAttribute>
@@ -379,14 +399,17 @@
                                                             <subviews>
                                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="fac3-l" opaque="NO" text="Contemporary" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.8" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                     <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Contemporary"/>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac3-dots" opaque="NO" spacing="-4">
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac3-d0" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="0.8471" green="0.8471" blue="0.8471" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="16" id="c2873"/>
-                                                                                <constraint firstAttribute="height" constant="16" id="c2874"/>
+                                                                                <constraint firstAttribute="width" constant="16" id="c69"/>
+                                                                                <constraint firstAttribute="height" constant="16" id="c70"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -397,8 +420,8 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac3-d1" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="0.1176" green="0.1176" blue="0.1176" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="16" id="c2875"/>
-                                                                                <constraint firstAttribute="height" constant="16" id="c2876"/>
+                                                                                <constraint firstAttribute="width" constant="16" id="c71"/>
+                                                                                <constraint firstAttribute="height" constant="16" id="c72"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -409,8 +432,8 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac3-d2" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="0.7216" green="0.5412" blue="0.3529" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="16" id="c2877"/>
-                                                                                <constraint firstAttribute="height" constant="16" id="c2878"/>
+                                                                                <constraint firstAttribute="width" constant="16" id="c73"/>
+                                                                                <constraint firstAttribute="height" constant="16" id="c74"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -421,8 +444,8 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac3-d3" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="0.4784" green="0.4784" blue="0.4784" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="16" id="c2879"/>
-                                                                                <constraint firstAttribute="height" constant="16" id="c2880"/>
+                                                                                <constraint firstAttribute="width" constant="16" id="c75"/>
+                                                                                <constraint firstAttribute="height" constant="16" id="c76"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -437,10 +460,10 @@
                                                     </subviews>
                                                     <color key="backgroundColor" name="dsSurface"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="64" id="c2881"/>
-                                                        <constraint firstItem="fac3-col" firstAttribute="leading" secondItem="fac3" secondAttribute="leading" constant="14" id="c2882"/>
-                                                        <constraint firstItem="fac3-col" firstAttribute="top" secondItem="fac3" secondAttribute="top" constant="12" id="c2883"/>
-                                                        <constraint firstItem="fac3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fac3-col" secondAttribute="trailing" constant="8" id="c2884"/>
+                                                        <constraint firstAttribute="height" constant="64" id="c77"/>
+                                                        <constraint firstItem="fac3-col" firstAttribute="leading" secondItem="fac3" secondAttribute="leading" constant="14" id="c78"/>
+                                                        <constraint firstItem="fac3-col" firstAttribute="top" secondItem="fac3" secondAttribute="top" constant="12" id="c79"/>
+                                                        <constraint firstItem="fac3" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fac3-col" secondAttribute="trailing" constant="8" id="c80"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="18"/></userDefinedRuntimeAttribute>
@@ -457,14 +480,17 @@
                                                             <subviews>
                                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="fac4-l" opaque="NO" text="Craftsman" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.8" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                     <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Craftsman"/>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac4-dots" opaque="NO" spacing="-4">
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac4-d0" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="0.4824" green="0.3686" blue="0.2314" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="16" id="c2885"/>
-                                                                                <constraint firstAttribute="height" constant="16" id="c2886"/>
+                                                                                <constraint firstAttribute="width" constant="16" id="c81"/>
+                                                                                <constraint firstAttribute="height" constant="16" id="c82"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -475,8 +501,8 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac4-d1" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="0.9098" green="0.8627" blue="0.7647" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="16" id="c2887"/>
-                                                                                <constraint firstAttribute="height" constant="16" id="c2888"/>
+                                                                                <constraint firstAttribute="width" constant="16" id="c83"/>
+                                                                                <constraint firstAttribute="height" constant="16" id="c84"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -487,8 +513,8 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac4-d2" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="0.3059" green="0.3569" blue="0.2784" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="16" id="c2889"/>
-                                                                                <constraint firstAttribute="height" constant="16" id="c2890"/>
+                                                                                <constraint firstAttribute="width" constant="16" id="c85"/>
+                                                                                <constraint firstAttribute="height" constant="16" id="c86"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -499,8 +525,8 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac4-d3" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="0.1804" green="0.1647" blue="0.1490" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="16" id="c2891"/>
-                                                                                <constraint firstAttribute="height" constant="16" id="c2892"/>
+                                                                                <constraint firstAttribute="width" constant="16" id="c87"/>
+                                                                                <constraint firstAttribute="height" constant="16" id="c88"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -515,10 +541,10 @@
                                                     </subviews>
                                                     <color key="backgroundColor" name="dsSurface"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="64" id="c2893"/>
-                                                        <constraint firstItem="fac4-col" firstAttribute="leading" secondItem="fac4" secondAttribute="leading" constant="14" id="c2894"/>
-                                                        <constraint firstItem="fac4-col" firstAttribute="top" secondItem="fac4" secondAttribute="top" constant="12" id="c2895"/>
-                                                        <constraint firstItem="fac4" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fac4-col" secondAttribute="trailing" constant="8" id="c2896"/>
+                                                        <constraint firstAttribute="height" constant="64" id="c89"/>
+                                                        <constraint firstItem="fac4-col" firstAttribute="leading" secondItem="fac4" secondAttribute="leading" constant="14" id="c90"/>
+                                                        <constraint firstItem="fac4-col" firstAttribute="top" secondItem="fac4" secondAttribute="top" constant="12" id="c91"/>
+                                                        <constraint firstItem="fac4" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fac4-col" secondAttribute="trailing" constant="8" id="c92"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="18"/></userDefinedRuntimeAttribute>
@@ -531,14 +557,17 @@
                                                             <subviews>
                                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="fac5-l" opaque="NO" text="Coastal" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.8" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                                     <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Coastal"/>
+                                                                    </userDefinedRuntimeAttributes>
                                                                 </label>
                                                                 <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac5-dots" opaque="NO" spacing="-4">
                                                                     <subviews>
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac5-d0" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="0.9686" green="0.9686" blue="0.9490" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="16" id="c2897"/>
-                                                                                <constraint firstAttribute="height" constant="16" id="c2898"/>
+                                                                                <constraint firstAttribute="width" constant="16" id="c93"/>
+                                                                                <constraint firstAttribute="height" constant="16" id="c94"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -549,8 +578,8 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac5-d1" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="0.4980" green="0.6510" blue="0.7216" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="16" id="c2899"/>
-                                                                                <constraint firstAttribute="height" constant="16" id="c2900"/>
+                                                                                <constraint firstAttribute="width" constant="16" id="c95"/>
+                                                                                <constraint firstAttribute="height" constant="16" id="c96"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -561,8 +590,8 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac5-d2" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="0.8510" green="0.7804" blue="0.6549" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="16" id="c2901"/>
-                                                                                <constraint firstAttribute="height" constant="16" id="c2902"/>
+                                                                                <constraint firstAttribute="width" constant="16" id="c97"/>
+                                                                                <constraint firstAttribute="height" constant="16" id="c98"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -573,8 +602,8 @@
                                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fac5-d3" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                                             <color key="backgroundColor" red="0.2431" green="0.3608" blue="0.4627" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="width" constant="16" id="c2903"/>
-                                                                                <constraint firstAttribute="height" constant="16" id="c2904"/>
+                                                                                <constraint firstAttribute="width" constant="16" id="c99"/>
+                                                                                <constraint firstAttribute="height" constant="16" id="c100"/>
                                                                             </constraints>
                                                                             <userDefinedRuntimeAttributes>
                                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -589,10 +618,10 @@
                                                     </subviews>
                                                     <color key="backgroundColor" name="dsSurface"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="64" id="c2905"/>
-                                                        <constraint firstItem="fac5-col" firstAttribute="leading" secondItem="fac5" secondAttribute="leading" constant="14" id="c2906"/>
-                                                        <constraint firstItem="fac5-col" firstAttribute="top" secondItem="fac5" secondAttribute="top" constant="12" id="c2907"/>
-                                                        <constraint firstItem="fac5" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fac5-col" secondAttribute="trailing" constant="8" id="c2908"/>
+                                                        <constraint firstAttribute="height" constant="64" id="c101"/>
+                                                        <constraint firstItem="fac5-col" firstAttribute="leading" secondItem="fac5" secondAttribute="leading" constant="14" id="c102"/>
+                                                        <constraint firstItem="fac5-col" firstAttribute="top" secondItem="fac5" secondAttribute="top" constant="12" id="c103"/>
+                                                        <constraint firstItem="fac5" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="fac5-col" secondAttribute="trailing" constant="8" id="c104"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="18"/></userDefinedRuntimeAttribute>
@@ -603,8 +632,11 @@
                                         </stackView>
                                     </subviews>
                                 </stackView>
-                                <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s-light" userLabel="lightTitleLabel" opaque="NO" text="Light" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s-light" userLabel="lightTitleLabel" opaque="NO" text="Lighting" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                     <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Lighting"/>
+                                    </userDefinedRuntimeAttributes>
                                 </label>
                                 <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lights" opaque="NO" distribution="fillEqually" spacing="13">
                                     <subviews>
@@ -612,7 +644,7 @@
                                             <subviews>
                                                 <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="light-day-img" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" image="tools_light_day" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="72" id="c2912"/>
+                                                        <constraint firstAttribute="height" constant="72" id="c108"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="16"/></userDefinedRuntimeAttribute>
@@ -635,10 +667,10 @@
                                                     </subviews>
                                                     <color key="backgroundColor" name="dsLime"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="22" id="c2919"/>
-                                                        <constraint firstAttribute="height" constant="22" id="c2920"/>
-                                                        <constraint firstItem="light-day-chk-i" firstAttribute="centerX" secondItem="light-day-chk" secondAttribute="centerX" id="c2921"/>
-                                                        <constraint firstItem="light-day-chk-i" firstAttribute="centerY" secondItem="light-day-chk" secondAttribute="centerY" id="c2922"/>
+                                                        <constraint firstAttribute="width" constant="22" id="c115"/>
+                                                        <constraint firstAttribute="height" constant="22" id="c116"/>
+                                                        <constraint firstItem="light-day-chk-i" firstAttribute="centerX" secondItem="light-day-chk" secondAttribute="centerX" id="c117"/>
+                                                        <constraint firstItem="light-day-chk-i" firstAttribute="centerY" secondItem="light-day-chk" secondAttribute="centerY" id="c118"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -646,22 +678,25 @@
                                                 </view>
                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="light-day-l" opaque="NO" text="Day" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                     <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="13"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Day"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="light-day-img" firstAttribute="leading" secondItem="light-day" secondAttribute="leading" id="c2909"/>
-                                                <constraint firstItem="light-day-img" firstAttribute="top" secondItem="light-day" secondAttribute="top" id="c2910"/>
-                                                <constraint firstItem="light-day" firstAttribute="trailing" secondItem="light-day-img" secondAttribute="trailing" id="c2911"/>
-                                                <constraint firstItem="light-day-ring" firstAttribute="leading" secondItem="light-day-img" secondAttribute="leading" id="c2913"/>
-                                                <constraint firstItem="light-day-ring" firstAttribute="top" secondItem="light-day-img" secondAttribute="top" id="c2914"/>
-                                                <constraint firstItem="light-day-img" firstAttribute="trailing" secondItem="light-day-ring" secondAttribute="trailing" id="c2915"/>
-                                                <constraint firstItem="light-day-img" firstAttribute="bottom" secondItem="light-day-ring" secondAttribute="bottom" id="c2916"/>
-                                                <constraint firstItem="light-day-chk" firstAttribute="top" secondItem="light-day-img" secondAttribute="top" constant="3" id="c2917"/>
-                                                <constraint firstItem="light-day-img" firstAttribute="trailing" secondItem="light-day-chk" secondAttribute="trailing" constant="3" id="c2918"/>
-                                                <constraint firstItem="light-day-l" firstAttribute="top" secondItem="light-day-img" secondAttribute="bottom" constant="6" id="c2923"/>
-                                                <constraint firstItem="light-day-l" firstAttribute="leading" secondItem="light-day" secondAttribute="leading" id="c2924"/>
-                                                <constraint firstItem="light-day" firstAttribute="trailing" secondItem="light-day-l" secondAttribute="trailing" id="c2925"/>
-                                                <constraint firstItem="light-day" firstAttribute="bottom" secondItem="light-day-l" secondAttribute="bottom" id="c2926"/>
+                                                <constraint firstItem="light-day-img" firstAttribute="leading" secondItem="light-day" secondAttribute="leading" id="c105"/>
+                                                <constraint firstItem="light-day-img" firstAttribute="top" secondItem="light-day" secondAttribute="top" id="c106"/>
+                                                <constraint firstItem="light-day" firstAttribute="trailing" secondItem="light-day-img" secondAttribute="trailing" id="c107"/>
+                                                <constraint firstItem="light-day-ring" firstAttribute="leading" secondItem="light-day-img" secondAttribute="leading" id="c109"/>
+                                                <constraint firstItem="light-day-ring" firstAttribute="top" secondItem="light-day-img" secondAttribute="top" id="c110"/>
+                                                <constraint firstItem="light-day-img" firstAttribute="trailing" secondItem="light-day-ring" secondAttribute="trailing" id="c111"/>
+                                                <constraint firstItem="light-day-img" firstAttribute="bottom" secondItem="light-day-ring" secondAttribute="bottom" id="c112"/>
+                                                <constraint firstItem="light-day-chk" firstAttribute="top" secondItem="light-day-img" secondAttribute="top" constant="3" id="c113"/>
+                                                <constraint firstItem="light-day-img" firstAttribute="trailing" secondItem="light-day-chk" secondAttribute="trailing" constant="3" id="c114"/>
+                                                <constraint firstItem="light-day-l" firstAttribute="top" secondItem="light-day-img" secondAttribute="bottom" constant="6" id="c119"/>
+                                                <constraint firstItem="light-day-l" firstAttribute="leading" secondItem="light-day" secondAttribute="leading" id="c120"/>
+                                                <constraint firstItem="light-day" firstAttribute="trailing" secondItem="light-day-l" secondAttribute="trailing" id="c121"/>
+                                                <constraint firstItem="light-day" firstAttribute="bottom" secondItem="light-day-l" secondAttribute="bottom" id="c122"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapLight:"/>
@@ -671,7 +706,7 @@
                                             <subviews>
                                                 <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="light-golden-img" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" image="tools_light_golden" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="72" id="c2930"/>
+                                                        <constraint firstAttribute="height" constant="72" id="c126"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="16"/></userDefinedRuntimeAttribute>
@@ -694,10 +729,10 @@
                                                     </subviews>
                                                     <color key="backgroundColor" name="dsLime"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="22" id="c2937"/>
-                                                        <constraint firstAttribute="height" constant="22" id="c2938"/>
-                                                        <constraint firstItem="light-golden-chk-i" firstAttribute="centerX" secondItem="light-golden-chk" secondAttribute="centerX" id="c2939"/>
-                                                        <constraint firstItem="light-golden-chk-i" firstAttribute="centerY" secondItem="light-golden-chk" secondAttribute="centerY" id="c2940"/>
+                                                        <constraint firstAttribute="width" constant="22" id="c133"/>
+                                                        <constraint firstAttribute="height" constant="22" id="c134"/>
+                                                        <constraint firstItem="light-golden-chk-i" firstAttribute="centerX" secondItem="light-golden-chk" secondAttribute="centerX" id="c135"/>
+                                                        <constraint firstItem="light-golden-chk-i" firstAttribute="centerY" secondItem="light-golden-chk" secondAttribute="centerY" id="c136"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -705,22 +740,25 @@
                                                 </view>
                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="light-golden-l" opaque="NO" text="Golden hour" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                     <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="13"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Golden hour"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="light-golden-img" firstAttribute="leading" secondItem="light-golden" secondAttribute="leading" id="c2927"/>
-                                                <constraint firstItem="light-golden-img" firstAttribute="top" secondItem="light-golden" secondAttribute="top" id="c2928"/>
-                                                <constraint firstItem="light-golden" firstAttribute="trailing" secondItem="light-golden-img" secondAttribute="trailing" id="c2929"/>
-                                                <constraint firstItem="light-golden-ring" firstAttribute="leading" secondItem="light-golden-img" secondAttribute="leading" id="c2931"/>
-                                                <constraint firstItem="light-golden-ring" firstAttribute="top" secondItem="light-golden-img" secondAttribute="top" id="c2932"/>
-                                                <constraint firstItem="light-golden-img" firstAttribute="trailing" secondItem="light-golden-ring" secondAttribute="trailing" id="c2933"/>
-                                                <constraint firstItem="light-golden-img" firstAttribute="bottom" secondItem="light-golden-ring" secondAttribute="bottom" id="c2934"/>
-                                                <constraint firstItem="light-golden-chk" firstAttribute="top" secondItem="light-golden-img" secondAttribute="top" constant="3" id="c2935"/>
-                                                <constraint firstItem="light-golden-img" firstAttribute="trailing" secondItem="light-golden-chk" secondAttribute="trailing" constant="3" id="c2936"/>
-                                                <constraint firstItem="light-golden-l" firstAttribute="top" secondItem="light-golden-img" secondAttribute="bottom" constant="6" id="c2941"/>
-                                                <constraint firstItem="light-golden-l" firstAttribute="leading" secondItem="light-golden" secondAttribute="leading" id="c2942"/>
-                                                <constraint firstItem="light-golden" firstAttribute="trailing" secondItem="light-golden-l" secondAttribute="trailing" id="c2943"/>
-                                                <constraint firstItem="light-golden" firstAttribute="bottom" secondItem="light-golden-l" secondAttribute="bottom" id="c2944"/>
+                                                <constraint firstItem="light-golden-img" firstAttribute="leading" secondItem="light-golden" secondAttribute="leading" id="c123"/>
+                                                <constraint firstItem="light-golden-img" firstAttribute="top" secondItem="light-golden" secondAttribute="top" id="c124"/>
+                                                <constraint firstItem="light-golden" firstAttribute="trailing" secondItem="light-golden-img" secondAttribute="trailing" id="c125"/>
+                                                <constraint firstItem="light-golden-ring" firstAttribute="leading" secondItem="light-golden-img" secondAttribute="leading" id="c127"/>
+                                                <constraint firstItem="light-golden-ring" firstAttribute="top" secondItem="light-golden-img" secondAttribute="top" id="c128"/>
+                                                <constraint firstItem="light-golden-img" firstAttribute="trailing" secondItem="light-golden-ring" secondAttribute="trailing" id="c129"/>
+                                                <constraint firstItem="light-golden-img" firstAttribute="bottom" secondItem="light-golden-ring" secondAttribute="bottom" id="c130"/>
+                                                <constraint firstItem="light-golden-chk" firstAttribute="top" secondItem="light-golden-img" secondAttribute="top" constant="3" id="c131"/>
+                                                <constraint firstItem="light-golden-img" firstAttribute="trailing" secondItem="light-golden-chk" secondAttribute="trailing" constant="3" id="c132"/>
+                                                <constraint firstItem="light-golden-l" firstAttribute="top" secondItem="light-golden-img" secondAttribute="bottom" constant="6" id="c137"/>
+                                                <constraint firstItem="light-golden-l" firstAttribute="leading" secondItem="light-golden" secondAttribute="leading" id="c138"/>
+                                                <constraint firstItem="light-golden" firstAttribute="trailing" secondItem="light-golden-l" secondAttribute="trailing" id="c139"/>
+                                                <constraint firstItem="light-golden" firstAttribute="bottom" secondItem="light-golden-l" secondAttribute="bottom" id="c140"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapLight:"/>
@@ -730,7 +768,7 @@
                                             <subviews>
                                                 <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="light-dusk-img" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" image="tools_light_dusk" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="72" id="c2948"/>
+                                                        <constraint firstAttribute="height" constant="72" id="c144"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="16"/></userDefinedRuntimeAttribute>
@@ -753,10 +791,10 @@
                                                     </subviews>
                                                     <color key="backgroundColor" name="dsLime"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="22" id="c2955"/>
-                                                        <constraint firstAttribute="height" constant="22" id="c2956"/>
-                                                        <constraint firstItem="light-dusk-chk-i" firstAttribute="centerX" secondItem="light-dusk-chk" secondAttribute="centerX" id="c2957"/>
-                                                        <constraint firstItem="light-dusk-chk-i" firstAttribute="centerY" secondItem="light-dusk-chk" secondAttribute="centerY" id="c2958"/>
+                                                        <constraint firstAttribute="width" constant="22" id="c151"/>
+                                                        <constraint firstAttribute="height" constant="22" id="c152"/>
+                                                        <constraint firstItem="light-dusk-chk-i" firstAttribute="centerX" secondItem="light-dusk-chk" secondAttribute="centerX" id="c153"/>
+                                                        <constraint firstItem="light-dusk-chk-i" firstAttribute="centerY" secondItem="light-dusk-chk" secondAttribute="centerY" id="c154"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -764,22 +802,25 @@
                                                 </view>
                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="light-dusk-l" opaque="NO" text="Dusk" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                     <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="13"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Dusk"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="light-dusk-img" firstAttribute="leading" secondItem="light-dusk" secondAttribute="leading" id="c2945"/>
-                                                <constraint firstItem="light-dusk-img" firstAttribute="top" secondItem="light-dusk" secondAttribute="top" id="c2946"/>
-                                                <constraint firstItem="light-dusk" firstAttribute="trailing" secondItem="light-dusk-img" secondAttribute="trailing" id="c2947"/>
-                                                <constraint firstItem="light-dusk-ring" firstAttribute="leading" secondItem="light-dusk-img" secondAttribute="leading" id="c2949"/>
-                                                <constraint firstItem="light-dusk-ring" firstAttribute="top" secondItem="light-dusk-img" secondAttribute="top" id="c2950"/>
-                                                <constraint firstItem="light-dusk-img" firstAttribute="trailing" secondItem="light-dusk-ring" secondAttribute="trailing" id="c2951"/>
-                                                <constraint firstItem="light-dusk-img" firstAttribute="bottom" secondItem="light-dusk-ring" secondAttribute="bottom" id="c2952"/>
-                                                <constraint firstItem="light-dusk-chk" firstAttribute="top" secondItem="light-dusk-img" secondAttribute="top" constant="3" id="c2953"/>
-                                                <constraint firstItem="light-dusk-img" firstAttribute="trailing" secondItem="light-dusk-chk" secondAttribute="trailing" constant="3" id="c2954"/>
-                                                <constraint firstItem="light-dusk-l" firstAttribute="top" secondItem="light-dusk-img" secondAttribute="bottom" constant="6" id="c2959"/>
-                                                <constraint firstItem="light-dusk-l" firstAttribute="leading" secondItem="light-dusk" secondAttribute="leading" id="c2960"/>
-                                                <constraint firstItem="light-dusk" firstAttribute="trailing" secondItem="light-dusk-l" secondAttribute="trailing" id="c2961"/>
-                                                <constraint firstItem="light-dusk" firstAttribute="bottom" secondItem="light-dusk-l" secondAttribute="bottom" id="c2962"/>
+                                                <constraint firstItem="light-dusk-img" firstAttribute="leading" secondItem="light-dusk" secondAttribute="leading" id="c141"/>
+                                                <constraint firstItem="light-dusk-img" firstAttribute="top" secondItem="light-dusk" secondAttribute="top" id="c142"/>
+                                                <constraint firstItem="light-dusk" firstAttribute="trailing" secondItem="light-dusk-img" secondAttribute="trailing" id="c143"/>
+                                                <constraint firstItem="light-dusk-ring" firstAttribute="leading" secondItem="light-dusk-img" secondAttribute="leading" id="c145"/>
+                                                <constraint firstItem="light-dusk-ring" firstAttribute="top" secondItem="light-dusk-img" secondAttribute="top" id="c146"/>
+                                                <constraint firstItem="light-dusk-img" firstAttribute="trailing" secondItem="light-dusk-ring" secondAttribute="trailing" id="c147"/>
+                                                <constraint firstItem="light-dusk-img" firstAttribute="bottom" secondItem="light-dusk-ring" secondAttribute="bottom" id="c148"/>
+                                                <constraint firstItem="light-dusk-chk" firstAttribute="top" secondItem="light-dusk-img" secondAttribute="top" constant="3" id="c149"/>
+                                                <constraint firstItem="light-dusk-img" firstAttribute="trailing" secondItem="light-dusk-chk" secondAttribute="trailing" constant="3" id="c150"/>
+                                                <constraint firstItem="light-dusk-l" firstAttribute="top" secondItem="light-dusk-img" secondAttribute="bottom" constant="6" id="c155"/>
+                                                <constraint firstItem="light-dusk-l" firstAttribute="leading" secondItem="light-dusk" secondAttribute="leading" id="c156"/>
+                                                <constraint firstItem="light-dusk" firstAttribute="trailing" secondItem="light-dusk-l" secondAttribute="trailing" id="c157"/>
+                                                <constraint firstItem="light-dusk" firstAttribute="bottom" secondItem="light-dusk-l" secondAttribute="bottom" id="c158"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapLight:"/>
@@ -793,9 +834,15 @@
                                             <subviews>
                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="keep-t" userLabel="keepTitleLabel" opaque="NO" text="Keep structure" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                     <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="15"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Keep structure"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="keep-s" userLabel="keepSubtitleLabel" opaque="NO" text="Roof, windows and doors stay in place" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                     <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Roof, windows and doors stay in place"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                             </subviews>
                                         </stackView>
@@ -812,22 +859,22 @@
                     </subviews>
                     <viewLayoutGuide key="contentLayoutGuide" id="scroll-contentLayoutGuide"/><viewLayoutGuide key="frameLayoutGuide" id="scroll-frameLayoutGuide"/>
                     <constraints>
-                        <constraint firstItem="body" firstAttribute="leading" secondItem="scroll-contentLayoutGuide" secondAttribute="leading" constant="20" id="c2826"/>
-                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="body" secondAttribute="trailing" constant="20" id="c2827"/>
-                        <constraint firstItem="body" firstAttribute="top" secondItem="scroll-contentLayoutGuide" secondAttribute="top" constant="8" id="c2828"/>
-                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="body" secondAttribute="bottom" constant="120" id="c2829"/>
-                        <constraint firstItem="body" firstAttribute="width" secondItem="scroll-frameLayoutGuide" secondAttribute="width" constant="-40" id="c2830"/>
+                        <constraint firstItem="body" firstAttribute="leading" secondItem="scroll-contentLayoutGuide" secondAttribute="leading" constant="20" id="c22"/>
+                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="body" secondAttribute="trailing" constant="20" id="c23"/>
+                        <constraint firstItem="body" firstAttribute="top" secondItem="scroll-contentLayoutGuide" secondAttribute="top" constant="8" id="c24"/>
+                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="body" secondAttribute="bottom" constant="120" id="c25"/>
+                        <constraint firstItem="body" firstAttribute="width" secondItem="scroll-frameLayoutGuide" secondAttribute="width" constant="-40" id="c26"/>
                     </constraints>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nav" customClass="WizardNavBar" customModule="HomeAI" customModuleProvider="target" userLabel="navBar">
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="56" id="c2808"/>
+                        <constraint firstAttribute="height" constant="56" id="c4"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fade" customClass="DSGradientView" customModule="HomeAI" customModuleProvider="target">
                     <constraints>
-                        <constraint firstAttribute="height" constant="140" id="c2818"/>
+                        <constraint firstAttribute="height" constant="140" id="c14"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="startColor"><color key="value" name="dsBackgroundClear"/></userDefinedRuntimeAttribute>
@@ -844,17 +891,23 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" weight="semibold"/>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="20" id="c2813"/>
-                                        <constraint firstAttribute="height" constant="20" id="c2814"/>
+                                        <constraint firstAttribute="width" constant="20" id="c9"/>
+                                        <constraint firstAttribute="height" constant="20" id="c10"/>
                                     </constraints>
                                 </imageView>
                                 <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="generate-labels" opaque="NO" axis="vertical" alignment="center" spacing="1">
                                     <subviews>
                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="generate-title" userLabel="generateTitleLabel" opaque="NO" text="Generate" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                             <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/><nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Generate"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="generate-sub" userLabel="generateSubtitleLabel" opaque="NO" text="1 credit · about 30 s" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.700" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="1 credit · about 30 s"/>
+                                            </userDefinedRuntimeAttributes>
                                         </label>
                                     </subviews>
                                 </stackView>
@@ -862,10 +915,10 @@
                         </stackView>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="56" id="c2809"/>
-                        <constraint firstItem="generate-row" firstAttribute="centerX" secondItem="generate" secondAttribute="centerX" id="c2810"/>
-                        <constraint firstItem="generate-row" firstAttribute="centerY" secondItem="generate" secondAttribute="centerY" id="c2811"/>
-                        <constraint firstItem="generate-row" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="generate" secondAttribute="leading" constant="16" id="c2812"/>
+                        <constraint firstAttribute="height" constant="56" id="c5"/>
+                        <constraint firstItem="generate-row" firstAttribute="centerX" secondItem="generate" secondAttribute="centerX" id="c6"/>
+                        <constraint firstItem="generate-row" firstAttribute="centerY" secondItem="generate" secondAttribute="centerY" id="c7"/>
+                        <constraint firstItem="generate-row" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="generate" secondAttribute="leading" constant="16" id="c8"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapGenerate:"/>
@@ -875,19 +928,19 @@
             <color key="backgroundColor" name="dsBackground"/>
             <viewLayoutGuide key="safeArea" id="root-safeArea"/>
             <constraints>
-                <constraint firstItem="nav" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c2805"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="nav" secondAttribute="trailing" id="c2806"/>
-                <constraint firstItem="nav" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-4" id="c2807"/>
-                <constraint firstItem="fade" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c2815"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="fade" secondAttribute="trailing" id="c2816"/>
-                <constraint firstItem="root" firstAttribute="bottom" secondItem="fade" secondAttribute="bottom" id="c2817"/>
-                <constraint firstItem="generate" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c2819"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="generate" secondAttribute="trailing" constant="20" id="c2820"/>
-                <constraint firstItem="root-safeArea" firstAttribute="bottom" secondItem="generate" secondAttribute="bottom" id="c2821"/>
-                <constraint firstItem="scroll" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c2822"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="scroll" secondAttribute="trailing" id="c2823"/>
-                <constraint firstItem="root" firstAttribute="bottom" secondItem="scroll" secondAttribute="bottom" id="c2824"/>
-                <constraint firstItem="scroll" firstAttribute="top" secondItem="nav" secondAttribute="bottom" id="c2825"/>
+                <constraint firstItem="nav" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c1"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="nav" secondAttribute="trailing" id="c2"/>
+                <constraint firstItem="nav" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-4" id="c3"/>
+                <constraint firstItem="fade" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c11"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="fade" secondAttribute="trailing" id="c12"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="fade" secondAttribute="bottom" id="c13"/>
+                <constraint firstItem="generate" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c15"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="generate" secondAttribute="trailing" constant="20" id="c16"/>
+                <constraint firstItem="root-safeArea" firstAttribute="bottom" secondItem="generate" secondAttribute="bottom" id="c17"/>
+                <constraint firstItem="scroll" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c18"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="scroll" secondAttribute="trailing" id="c19"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="scroll" secondAttribute="bottom" id="c20"/>
+                <constraint firstItem="scroll" firstAttribute="top" secondItem="nav" secondAttribute="bottom" id="c21"/>
             </constraints>
         </view>
         </objects>

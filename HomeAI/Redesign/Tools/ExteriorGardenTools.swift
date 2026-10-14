@@ -36,7 +36,7 @@ final class ExteriorToolViewController: ToolStepViewController {
         titleLabel.text = "Exterior style".localized
         subtitleLabel.text = "The shape of your house stays. We change materials, colors and planting.".localized
         facadeTitleLabel.text = "Facade style".localized
-        lightTitleLabel.text = "Light".localized
+        lightTitleLabel.text = "Lighting".localized
         keepTitleLabel.text = "Keep structure".localized
         keepSubtitleLabel.text = "Roof, windows and doors stay in place".localized
         facadeLabels.sorted { $0.tag < $1.tag }.enumerated().forEach { $1.text = Self.facades[$0].title.localized }

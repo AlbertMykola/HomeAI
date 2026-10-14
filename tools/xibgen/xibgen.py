@@ -260,6 +260,12 @@ class Control(El):
         return self
 
 
+def add_loc_key(el, text):
+    """Localize static XIB copy at load time (UILabel / UIButton `locKey`, see XibLocalization.swift)."""
+    if text and any(c.isalpha() for c in text):
+        el.runtime["locKey"] = "str:" + text
+
+
 class Label(El):
     tag = "label"
 
@@ -274,6 +280,7 @@ class Label(El):
             kw.setdefault("runtime", {})["lineHeightMultiple"] = lineHeight
         super().__init__(**kw)
         self.text, self.font, self.color, self.align, self.lines, self.minScale = text, font, color, align, lines, minScale
+        add_loc_key(self, text)
 
     def base_attrs(self):
         a = super().base_attrs()
@@ -352,6 +359,7 @@ class Button(El):
                  symbolSize=None, weight=None, **kw):
         super().__init__(**kw)
         self.title, self.font, self.color, self.image, self.system = title, font, color, image, system
+        add_loc_key(self, title)
         self.symbolSize, self.weight = symbolSize, weight
 
     def base_attrs(self):

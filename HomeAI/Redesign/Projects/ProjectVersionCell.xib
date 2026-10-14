@@ -38,8 +38,8 @@
                                     <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thumb" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" userLabel="thumbImageView" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
                                         <color key="backgroundColor" name="dsCard"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="52" id="c2103"/>
-                                            <constraint firstAttribute="height" constant="52" id="c2104"/>
+                                            <constraint firstAttribute="width" constant="52" id="c2281"/>
+                                            <constraint firstAttribute="height" constant="52" id="c2282"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="12"/></userDefinedRuntimeAttribute>
@@ -49,9 +49,15 @@
                                         <subviews>
                                             <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title" userLabel="titleLabel" opaque="NO" text="V3 · Sage walls" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.8" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                 <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="15"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="V3 · Sage walls"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                             <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sub" userLabel="subtitleLabel" opaque="NO" text="Paint · Today 14:20" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                 <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Paint · Today 14:20"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                     </stackView>
@@ -59,14 +65,17 @@
                                         <subviews>
                                             <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="slot-label" userLabel="slotLabel" opaque="NO" text="B" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                 <fontDescription key="fontDescription" name="Geologica-Bold" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="B"/>
+                                                </userDefinedRuntimeAttributes>
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="26" id="c2105"/>
-                                            <constraint firstAttribute="height" constant="26" id="c2106"/>
-                                            <constraint firstItem="slot-label" firstAttribute="centerX" secondItem="slot" secondAttribute="centerX" id="c2107"/>
-                                            <constraint firstItem="slot-label" firstAttribute="centerY" secondItem="slot" secondAttribute="centerY" id="c2108"/>
+                                            <constraint firstAttribute="width" constant="26" id="c2283"/>
+                                            <constraint firstAttribute="height" constant="26" id="c2284"/>
+                                            <constraint firstItem="slot-label" firstAttribute="centerX" secondItem="slot" secondAttribute="centerX" id="c2285"/>
+                                            <constraint firstItem="slot-label" firstAttribute="centerY" secondItem="slot" secondAttribute="centerY" id="c2286"/>
                                         </constraints>
                                         <accessibility key="accessibilityConfiguration" label="Compare"/>
                                         <userDefinedRuntimeAttributes>
@@ -82,11 +91,11 @@
                         </subviews>
                         <color key="backgroundColor" name="dsSurface"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="68" id="c2098"/>
-                            <constraint firstItem="row" firstAttribute="leading" secondItem="box" secondAttribute="leading" id="c2099"/>
-                            <constraint firstItem="row" firstAttribute="top" secondItem="box" secondAttribute="top" id="c2100"/>
-                            <constraint firstItem="box" firstAttribute="trailing" secondItem="row" secondAttribute="trailing" id="c2101"/>
-                            <constraint firstItem="box" firstAttribute="bottom" secondItem="row" secondAttribute="bottom" id="c2102"/>
+                            <constraint firstAttribute="height" constant="68" id="c2276"/>
+                            <constraint firstItem="row" firstAttribute="leading" secondItem="box" secondAttribute="leading" id="c2277"/>
+                            <constraint firstItem="row" firstAttribute="top" secondItem="box" secondAttribute="top" id="c2278"/>
+                            <constraint firstItem="box" firstAttribute="trailing" secondItem="row" secondAttribute="trailing" id="c2279"/>
+                            <constraint firstItem="box" firstAttribute="bottom" secondItem="row" secondAttribute="bottom" id="c2280"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="18"/></userDefinedRuntimeAttribute>
@@ -95,10 +104,10 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="box" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" constant="20" id="c2094"/>
-                    <constraint firstItem="box" firstAttribute="top" secondItem="cell-content" secondAttribute="top" constant="4" id="c2095"/>
-                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="box" secondAttribute="trailing" constant="20" id="c2096"/>
-                    <constraint firstItem="cell-content" firstAttribute="bottom" secondItem="box" secondAttribute="bottom" constant="4" id="c2097"/>
+                    <constraint firstItem="box" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" constant="20" id="c2272"/>
+                    <constraint firstItem="box" firstAttribute="top" secondItem="cell-content" secondAttribute="top" constant="4" id="c2273"/>
+                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="box" secondAttribute="trailing" constant="20" id="c2274"/>
+                    <constraint firstItem="cell-content" firstAttribute="bottom" secondItem="box" secondAttribute="bottom" constant="4" id="c2275"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

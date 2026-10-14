@@ -69,14 +69,18 @@ def pro_paywall():
     rail_fill = View(id="rail-fill", bg=LINK, outlet="railFillView")
     dot_today = View(id="dot-today", cls="DSView", bg=LINK, runtime={"pill": True}, outlet="dotTodayView")
     dot_charge = View(id="dot-charge", cls="DSView", bg=INK, runtime={"pill": True}, outlet="dotChargeView")
-    due_title = Label("Due today", id="due-title", font=("SemiBold", 17), color=INK, outlet="dueTodayLabel")
-    due_free = Label("3 days free", id="due-free", font=("SemiBold", 16), color=LINK, outlet="dueFreeLabel")
-    due_price = Label("$0.00", id="due-price", font=("SemiBold", 17), color=INK, outlet="dueTodayPriceLabel")
+    due_title = Label("Due today", id="due-title", font=("SemiBold", 17), color=INK, outlet="dueTodayLabel",
+                      minScale=0.75, resist=(740, 750))
+    due_free = Label("3 days free", id="due-free", font=("SemiBold", 16), color=LINK, outlet="dueFreeLabel",
+                     minScale=0.7, resist=(745, 750))
+    due_price = Label("$0.00", id="due-price", font=("SemiBold", 17), color=INK, outlet="dueTodayPriceLabel",
+                      resist=(1000, 750))
     row1 = HStack([due_title, View(id="due-sp1", bg="clear", hug=(1, 250)), due_free, due_price], id="due-row1",
                   spacing=6, align="center")
     charge_title = Label("Due Oct 16, 2026", id="charge-title", font=("Regular", 17), color=INK,
-                         outlet="chargeDateLabel")
-    charge_price = Label("$9.99", id="charge-price", font=("Regular", 17), color=INK, outlet="chargePriceLabel")
+                         outlet="chargeDateLabel", minScale=0.75)
+    charge_price = Label("$9.99", id="charge-price", font=("Regular", 17), color=INK, outlet="chargePriceLabel",
+                         resist=(1000, 750))
     row2 = HStack([charge_title, View(id="due-sp2", bg="clear", hug=(1, 250)), charge_price], id="due-row2",
                   align="center", outlet="chargeRow")
     timeline = View(id="timeline", bg="clear", outlet="timelineView",
