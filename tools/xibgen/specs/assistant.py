@@ -6,7 +6,7 @@ QUESTIONS = [("paintpalette", "What color goes with a grey sofa?"),
              ("lightbulb", "Ideas for a cozy bedroom"),
              ("sofa", "Which rug size for my living room?")]
 CARET = "#8FDB1C"
-BORDER = "#EBEBEB"
+BORDER = "dsDivider"
 ERROR = "#E5484D"
 
 
@@ -29,7 +29,7 @@ def title_block(prefix, avatar_outlet=None):
 def assistant():
     d = Doc("AssistantViewController", owner="AssistantViewController")
     root = d.root
-    root.bg = "white"
+    root.bg = "dsBackground"
     sa = d.safe_area
 
     table = Table(id="table", outlet="tableView")
@@ -61,8 +61,8 @@ def assistant():
     start = Scroll([start_col], id="start", outlet="startScrollView")
 
     fade = View(id="top-fade", cls="DSGradientView", interaction=False,
-                runtime={"startColor": "white", "midColor": "white", "midLocation": 0.75,
-                         "endColor": ("#FFFFFF", 0.0), "angle": 180})
+                runtime={"startColor": "dsBackground", "midColor": "dsBackground", "midLocation": 0.75,
+                         "endColor": "dsBackgroundClear", "angle": 180})
 
     # nav
     back = glass_button("back", "chevron.left", action="didTapBack:", accessibility="Back")
@@ -79,12 +79,12 @@ def assistant():
     attachment = View(id="attachment", bg="clear", outlet="attachmentView", hidden=True, children=[thumb, remove])
 
     # composer
-    attach_icon = Image(id="attach-icon", system="photo.on.rectangle", size=17, weight="medium", tint="black")
+    attach_icon = Image(id="attach-icon", system="photo.on.rectangle", size=17, weight="medium", tint="dsTextPrimary")
     attach = Control(id="attach", cls="DSPressableControl", bg="dsChip", runtime={"pill": True},
                      accessibility="Add a photo", children=[attach_icon]).on("didTapAttach:")
     field = TextField(placeholder="Ask about your space…", font=("Regular", 15), id="field", outlet="messageField")
-    mic_icon = Image(id="mic-icon", system="mic", size=15, weight="medium", tint="black", outlet="micIconView")
-    mic = Control(id="mic", cls="DSPressableControl", bg="white", runtime={"pill": True}, outlet="micButton",
+    mic_icon = Image(id="mic-icon", system="mic", size=15, weight="medium", tint="dsTextPrimary", outlet="micIconView")
+    mic = Control(id="mic", cls="DSPressableControl", bg="dsCard", runtime={"pill": True}, outlet="micButton",
                   accessibility="Ask by voice", children=[mic_icon]).on("didTapMic:")
     send_icon = Image(id="send-icon", system="arrow.up", size=15, weight="bold", tint="black")
     send = Control(id="send", cls="DSPrimaryButton", outlet="sendButton", hidden=True, accessibility="Send",
@@ -212,10 +212,10 @@ def assistant_idea_cell():
                 outlet="subtitleLabel", minScale=0.8)
     texts = VStack([title, sub], id="texts", spacing=2, align="fill")
     icon = Image(id="apply-icon", system="sparkles", size=15, weight="semibold", tint="black")
-    label = Label("Apply to my photo", id="apply-label", font=("SemiBold", 14), outlet="applyTitleLabel")
+    label = Label("Apply to my photo", id="apply-label", font=("SemiBold", 14), color="black", outlet="applyTitleLabel")
     apply_row = HStack([icon, label], id="apply-row", spacing=8, align="center")
     apply = Control(id="apply", cls="DSPrimaryButton", children=[apply_row]).on("didTapApply:")
-    card = View(id="card", cls="DSView", bg="white", clips=True,
+    card = View(id="card", cls="DSView", bg="dsCard", clips=True,
                 runtime={"cornerRadius": 22, "borderWidth": 1, "borderColor": BORDER},
                 children=[preview, texts, apply])
     d.cell(card)
@@ -236,7 +236,7 @@ def assistant_idea_cell():
 def assistant_attach_sheet():
     d = Doc("AssistantAttachSheetViewController", owner="AssistantAttachSheetViewController", size=(393, 380))
     root = d.root
-    root.bg = "white"
+    root.bg = "dsBackground"
     close = glass_button("close", "xmark", action="didTapClose:", size=36, icon=16, accessibility="Close")
     title = Label("Add a photo", id="title", font=("SemiBold", 24), align="center", outlet="titleLabel")
     sub = Label("Show me the room you want to change", id="sub", font=("Regular", 15), color="dsTextSecondary",
@@ -245,8 +245,8 @@ def assistant_attach_sheet():
     options = [("camera", "Take a photo", None), ("photo.on.rectangle", "Choose from library", None),
                ("folder", "From my projects", "Use a room you already redesigned")]
     for i, (symbol, text, hint) in enumerate(options):
-        ic = Image(id=f"opt{i}-icon", system=symbol, size=15, weight="medium", tint="black")
-        box = View(id=f"opt{i}-box", cls="DSView", bg="white", runtime={"cornerRadius": 9}, children=[ic])
+        ic = Image(id=f"opt{i}-icon", system=symbol, size=15, weight="medium", tint="dsTextPrimary")
+        box = View(id=f"opt{i}-box", cls="DSView", bg="dsCard", runtime={"cornerRadius": 9}, children=[ic])
         lb = Label(text, id=f"opt{i}-label", font=("Medium", 16), collection="optionLabels", tag_value=i)
         parts = [lb]
         if hint:
@@ -283,7 +283,7 @@ def assistant_attach_sheet():
 def assistant_history():
     d = Doc("AssistantHistoryViewController", owner="AssistantHistoryViewController", size=(393, 640))
     root = d.root
-    root.bg = "white"
+    root.bg = "dsBackground"
     title = Label("History", id="title", font=("SemiBold", 24), outlet="titleLabel")
     new_chat = secondary_button("new", "New chat", action="didTapNewChat:", height=36, bg="dsLimeSoft", icon="plus",
                                 font=("SemiBold", 14))
@@ -305,7 +305,7 @@ def assistant_history():
 def assistant_history_cell():
     d = Doc("AssistantHistoryCell", kind="tableCell", cls="AssistantHistoryCell", size=(393, 76),
             reuse="AssistantHistoryCell")
-    thumb = Image(id="thumb", mode="scaleAspectFill", cls="DSImageView", bg="white", outlet="thumbImageView",
+    thumb = Image(id="thumb", mode="scaleAspectFill", cls="DSImageView", bg="dsCard", outlet="thumbImageView",
                   runtime={"cornerRadius": 10})
     title = Label("How can I make this room warmer?", id="title", font=("Medium", 15), outlet="titleLabel")
     sub = Label("Today", id="sub", font=("Regular", 13), color="dsTextTertiary", outlet="subtitleLabel")
@@ -326,7 +326,7 @@ def assistant_history_cell():
 def assistant_project_picker():
     d = Doc("AssistantProjectPickerViewController", owner="AssistantProjectPickerViewController", size=(393, 700))
     root = d.root
-    root.bg = "white"
+    root.bg = "dsBackground"
     title = Label("From my projects", id="title", font=("SemiBold", 24), align="center", outlet="titleLabel")
     close = glass_button("close", "xmark", action="didTapClose:", size=36, icon=16, accessibility="Close")
     cv = Collection(id="cv", spacing=13, item=(170, 214), insets=(8, 20, 24, 20), outlet="collectionView")

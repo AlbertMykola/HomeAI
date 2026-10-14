@@ -34,23 +34,23 @@
                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17.0" weight="semibold"/>
                             <color key="tintColor" name="dsTextPrimary"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="20" id="c2309"/>
-                                <constraint firstAttribute="height" constant="20" id="c2310"/>
+                                <constraint firstAttribute="width" constant="20" id="c3515"/>
+                                <constraint firstAttribute="height" constant="20" id="c3516"/>
                             </constraints>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" name="dsGlass"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="44" id="c2305"/>
-                        <constraint firstAttribute="height" constant="44" id="c2306"/>
-                        <constraint firstItem="back-icon" firstAttribute="centerX" secondItem="back" secondAttribute="centerX" id="c2307"/>
-                        <constraint firstItem="back-icon" firstAttribute="centerY" secondItem="back" secondAttribute="centerY" id="c2308"/>
+                        <constraint firstAttribute="width" constant="44" id="c3511"/>
+                        <constraint firstAttribute="height" constant="44" id="c3512"/>
+                        <constraint firstItem="back-icon" firstAttribute="centerX" secondItem="back" secondAttribute="centerX" id="c3513"/>
+                        <constraint firstItem="back-icon" firstAttribute="centerY" secondItem="back" secondAttribute="centerY" id="c3514"/>
                     </constraints>
                     <accessibility key="accessibilityConfiguration" label="Back"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0.5"/></userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.900" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" name="dsGlassBorder"/></userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.08"/></userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="7"/></userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="4"/></userDefinedRuntimeAttribute>
@@ -63,23 +63,23 @@
                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17.0" weight="semibold"/>
                             <color key="tintColor" name="dsTextPrimary"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="20" id="c2315"/>
-                                <constraint firstAttribute="height" constant="20" id="c2316"/>
+                                <constraint firstAttribute="width" constant="20" id="c3521"/>
+                                <constraint firstAttribute="height" constant="20" id="c3522"/>
                             </constraints>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" name="dsGlass"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="44" id="c2311"/>
-                        <constraint firstAttribute="height" constant="44" id="c2312"/>
-                        <constraint firstItem="close-icon" firstAttribute="centerX" secondItem="close" secondAttribute="centerX" id="c2313"/>
-                        <constraint firstItem="close-icon" firstAttribute="centerY" secondItem="close" secondAttribute="centerY" id="c2314"/>
+                        <constraint firstAttribute="width" constant="44" id="c3517"/>
+                        <constraint firstAttribute="height" constant="44" id="c3518"/>
+                        <constraint firstItem="close-icon" firstAttribute="centerX" secondItem="close" secondAttribute="centerX" id="c3519"/>
+                        <constraint firstItem="close-icon" firstAttribute="centerY" secondItem="close" secondAttribute="centerY" id="c3520"/>
                     </constraints>
                     <accessibility key="accessibilityConfiguration" label="Close"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0.5"/></userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.900" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" name="dsGlassBorder"/></userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.08"/></userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="7"/></userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="4"/></userDefinedRuntimeAttribute>
@@ -91,8 +91,8 @@
                         <view contentMode="scaleToFill" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="step0" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                             <color key="backgroundColor" name="dsStepOff"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="6" id="c2323"/>
-                                <constraint firstAttribute="width" constant="8" id="c2324"/>
+                                <constraint firstAttribute="height" constant="6" id="c3529"/>
+                                <constraint firstAttribute="width" constant="8" id="c3530"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="3"/></userDefinedRuntimeAttribute>
@@ -101,8 +101,8 @@
                         <view contentMode="scaleToFill" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="step1" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                             <color key="backgroundColor" name="dsStepOff"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="6" id="c2325"/>
-                                <constraint firstAttribute="width" constant="8" id="c2326"/>
+                                <constraint firstAttribute="height" constant="6" id="c3531"/>
+                                <constraint firstAttribute="width" constant="8" id="c3532"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="3"/></userDefinedRuntimeAttribute>
@@ -111,8 +111,8 @@
                         <view contentMode="scaleToFill" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="step2" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                             <color key="backgroundColor" name="dsStepOff"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="6" id="c2327"/>
-                                <constraint firstAttribute="width" constant="8" id="c2328"/>
+                                <constraint firstAttribute="height" constant="6" id="c3533"/>
+                                <constraint firstAttribute="width" constant="8" id="c3534"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="3"/></userDefinedRuntimeAttribute>
@@ -121,8 +121,8 @@
                         <view contentMode="scaleToFill" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="step3" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                             <color key="backgroundColor" name="dsStepOff"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="6" id="c2329"/>
-                                <constraint firstAttribute="width" constant="8" id="c2330"/>
+                                <constraint firstAttribute="height" constant="6" id="c3535"/>
+                                <constraint firstAttribute="width" constant="8" id="c3536"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="3"/></userDefinedRuntimeAttribute>
@@ -134,12 +134,12 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="root-safeArea"/>
             <constraints>
-                <constraint firstItem="back" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="16" id="c2317"/>
-                <constraint firstItem="back" firstAttribute="centerY" secondItem="root" secondAttribute="centerY" id="c2318"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="close" secondAttribute="trailing" constant="16" id="c2319"/>
-                <constraint firstItem="close" firstAttribute="centerY" secondItem="root" secondAttribute="centerY" id="c2320"/>
-                <constraint firstItem="stepper" firstAttribute="centerX" secondItem="root" secondAttribute="centerX" id="c2321"/>
-                <constraint firstItem="stepper" firstAttribute="centerY" secondItem="root" secondAttribute="centerY" id="c2322"/>
+                <constraint firstItem="back" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="16" id="c3523"/>
+                <constraint firstItem="back" firstAttribute="centerY" secondItem="root" secondAttribute="centerY" id="c3524"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="close" secondAttribute="trailing" constant="16" id="c3525"/>
+                <constraint firstItem="close" firstAttribute="centerY" secondItem="root" secondAttribute="centerY" id="c3526"/>
+                <constraint firstItem="stepper" firstAttribute="centerX" secondItem="root" secondAttribute="centerX" id="c3527"/>
+                <constraint firstItem="stepper" firstAttribute="centerY" secondItem="root" secondAttribute="centerY" id="c3528"/>
             </constraints>
         </view>
         </objects>
@@ -148,6 +148,9 @@
         <image name="xmark" catalog="system" width="128" height="128"/>
         <namedColor name="dsGlass">
             <color red="1.0000" green="1.0000" blue="1.0000" alpha="0.750" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsGlassBorder">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="0.900" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="dsStepOff">
             <color red="0.8510" green="0.8510" blue="0.8510" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>

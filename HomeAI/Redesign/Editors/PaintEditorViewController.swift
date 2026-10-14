@@ -129,7 +129,7 @@ final class PaintEditorViewController: MaskEditorViewController {
             control.accessibilityLabel = paints[i].name
             let selected = paint?.hex == paints[i].hex
             control.layer.borderWidth = selected ? 2 : 0
-            control.layer.borderColor = UIColor.black.cgColor
+            control.layer.borderColor = DS.Color.textPrimary.resolvedColor(with: traitCollection).cgColor
             control.accessibilityTraits = selected ? [.button, .selected] : .button
         }
         paletteChips.forEach { $0.setChipSelected($0.tag == palette, animated: false) }

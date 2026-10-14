@@ -53,13 +53,13 @@ def wizard_nav_bar():
 def wizard_photo():
     d = Doc("WizardPhotoViewController", owner="WizardPhotoViewController")
     root = d.root
-    root.bg = "white"
+    root.bg = "dsBackground"
     sa = d.safe_area
 
     titles = title_group("Add a photo of your room", "One wide, well-lit photo works best.")
 
     def source(id, title, sub, symbol, dark, action, outlet):
-        box_icon = Image(id=f"{id}-icon", system=symbol, size=21, weight="medium", tint="black")
+        box_icon = Image(id=f"{id}-icon", system=symbol, size=21, weight="medium", tint="dsTextPrimary")
         box = View(id=f"{id}-box", cls="DSView", bg="dsLime" if dark else "white", runtime={"cornerRadius": 18},
                    children=[box_icon])
         t = Label(title, id=f"{id}-t", font=("SemiBold", 18), color="white" if dark else "dsTextPrimary",
@@ -94,7 +94,7 @@ def wizard_photo():
         pin(img)
         demos.append(c)
     demo_row = HStack(demos, id="demo-row", spacing=10, dist="fillEqually")
-    bulb = Image(id="tips-icon", system="lightbulb", size=15, weight="medium", tint="black", outlet="tipsIconView")
+    bulb = Image(id="tips-icon", system="lightbulb", size=15, weight="medium", tint="dsTextPrimary", outlet="tipsIconView")
     tips_label = Label("Photo tips", id="tips-label", font=("Medium", 15), outlet="tipsLabel")
     tips = Control(id="tips", cls="DSPressableControl", bg="dsLimeSoft", outlet="tipsButton",
                    runtime={"pill": True},
@@ -115,9 +115,9 @@ def wizard_photo():
                      runtime={"pill": True},
                      children=[HStack([change_icon, change_label], id="change-row", spacing=6, align="center",
                                       margins=(0, 14, 0, 14))]).on("didTapChange:")
-    check_icon = Image(id="check-icon", system="checkmark.circle", size=15, weight="semibold", tint="dsLink",
+    check_icon = Image(id="check-icon", system="checkmark.circle", size=15, weight="semibold", tint="#3E7A00",
                        outlet="checkIconView")
-    check_label = Label("Living room · good light", id="check-label", font=("Medium", 14), outlet="checkLabel")
+    check_label = Label("Living room · good light", id="check-label", font=("Medium", 14), color="black", outlet="checkLabel")
     check = View(id="check", cls="DSView", bg=("#FFFFFF", 0.85), outlet="checkBadgeView", runtime={"pill": True},
                  alpha=0,
                  children=[HStack([check_icon, check_label], id="check-row", spacing=6, align="center",
@@ -194,7 +194,7 @@ def wizard_tile_cell():
 def step_grid_screen(name, title, subtitle, cell_size, spacing, chips=None):
     d = Doc(name, owner=name)
     root = d.root
-    root.bg = "white"
+    root.bg = "dsBackground"
     sa = d.safe_area
     titles = title_group(title, subtitle)
     root.add(titles)
@@ -245,7 +245,7 @@ def wizard_style():
 def wizard_style_cell():
     d = Doc("WizardStyleCell", kind="collectionCell", cls="WizardStyleCell", size=(109, 159), reuse="WizardStyleCell")
     img = Image(id="img", mode="scaleAspectFill", outlet="previewImageView")
-    pop_label = Label("Popular", id="pop-label", font=("SemiBold", 10))
+    pop_label = Label("Popular", id="pop-label", font=("SemiBold", 10), color="black")
     pop = View(id="pop", cls="DSView", bg=("#FFFFFF", 0.85), outlet="popularBadge", hidden=True,
                runtime={"pill": True}, children=[pop_label])
     # Custom tile content
@@ -283,7 +283,7 @@ def wizard_style_cell():
 def wizard_final():
     d = Doc("WizardFinalViewController", owner="WizardFinalViewController")
     root = d.root
-    root.bg = "white"
+    root.bg = "dsBackground"
     sa = d.safe_area
     titles = title_group("Final touches", "Here's what we'll make. Tap any item to edit.")
 
@@ -302,7 +302,7 @@ def wizard_final():
                                     margins=(12, 12, 12, 12))])
 
     structure_title = Label("Structure", id="structure-title", font=("SemiBold", 17), outlet="structureTitleLabel")
-    seg_knob = View(id="seg-knob", cls="DSView", bg="white", outlet="segmentKnob",
+    seg_knob = View(id="seg-knob", cls="DSView", bg="dsCard", outlet="segmentKnob",
                     runtime={"cornerRadius": 19, "shadowOpacity": 0.12, "shadowRadius": 3, "shadowOffsetY": 2})
     seg_keep = Control(id="seg-keep", cls="DSPressableControl", tag_value=0, collection="segmentControls",
                        runtime={"pressedScale": 0.98, "hapticOnPress": False},
@@ -336,7 +336,7 @@ def wizard_final():
         swatch = View(id=f"pal-{key}-swatch", cls="DSView", clips=True, bg="dsLimeSoft" if not colors else "clear",
                       runtime={"pill": True}, children=[swatch_inner], collection="paletteSwatches", tag_value=i)
         ring = View(id=f"pal-{key}-ring", cls="DSView", bg="clear", collection="paletteRings", tag_value=i,
-                    runtime={"pill": True, "borderWidth": 2, "borderColor": "black"}, alpha=1 if i == 0 else 0,
+                    runtime={"pill": True, "borderWidth": 2, "borderColor": "dsTextPrimary"}, alpha=1 if i == 0 else 0,
                     interaction=False)
         lab = Label(title, id=f"pal-{key}-label", font=("SemiBold" if i == 0 else "Regular", 12), align="center",
                     collection="paletteLabels", tag_value=i, minScale=0.6)
@@ -419,7 +419,7 @@ def wizard_final():
 def photo_tips_sheet():
     d = Doc("PhotoTipsSheetViewController", owner="PhotoTipsSheetViewController", size=(393, 640))
     root = d.root
-    root.bg = "white"
+    root.bg = "dsBackground"
     close = glass_button("close", "xmark", outlet="closeButton", action="didTapClose:", size=36, icon=16,
                          accessibility="Close")
     title = Label("Get the best result", id="title", font=("SemiBold", 24), align="center", outlet="titleLabel")
@@ -445,7 +445,7 @@ def photo_tips_sheet():
                                         ("viewfinder", "Step back, show the whole room"),
                                         ("hand.raised", "Hold the phone level, at chest height"),
                                         ("eye", "Clutter is fine, we'll handle it")]):
-        ic = Image(id=f"tip{i}-icon", system=symbol, size=15, weight="medium", tint="black")
+        ic = Image(id=f"tip{i}-icon", system=symbol, size=15, weight="medium", tint="dsTextPrimary")
         box = View(id=f"tip{i}-box", cls="DSView", bg="dsSurface", runtime={"cornerRadius": 10}, children=[ic])
         lb = Label(text, id=f"tip{i}-label", font=("Regular", 15), lines=0, collection="tipLabels", tag_value=i)
         row = HStack([box, lb], id=f"tip{i}", spacing=12, align="center", collection="tipRows", tag_value=i)
@@ -467,7 +467,7 @@ def photo_tips_sheet():
 def custom_style_sheet():
     d = Doc("CustomStyleSheetViewController", owner="CustomStyleSheetViewController", size=(393, 520))
     root = d.root
-    root.bg = "white"
+    root.bg = "dsBackground"
     close = glass_button("close", "xmark", outlet="closeButton", action="didTapClose:", size=36, icon=16,
                          accessibility="Close")
     title = Label("Describe your style", id="title", font=("SemiBold", 24), align="center", outlet="titleLabel")
@@ -502,14 +502,14 @@ def custom_style_sheet():
 def out_of_credits_sheet():
     d = Doc("OutOfCreditsSheetViewController", owner="OutOfCreditsSheetViewController", size=(393, 480))
     root = d.root
-    root.bg = "white"
+    root.bg = "dsBackground"
     title = Label("You've used your free designs", id="title", font=("SemiBold", 24), align="center", lines=0,
                   outlet="titleLabel")
     sub = Label("Go Pro to keep redesigning. Your photo and settings are saved.", id="sub", font=("Regular", 15),
                 color="dsTextSecondary", align="center", lines=0, outlet="subtitleLabel")
     photo = Image(id="photo", mode="scaleAspectFill", cls="DSImageView", runtime={"cornerRadius": 20},
                   outlet="photoImageView")
-    arrow_icon = Image(id="arrow-icon", system="arrow.right", size=15, weight="semibold", tint="black")
+    arrow_icon = Image(id="arrow-icon", system="arrow.right", size=15, weight="semibold", tint="dsTextPrimary")
     arrow = View(id="arrow", cls="DSView", bg="dsSurface", runtime={"pill": True}, children=[arrow_icon])
     lock_icon = Image(id="lock-icon", system="lock", size=17, weight="medium", tint="black")
     lock = View(id="lock", cls="DSView", bg=("#FFFFFF", 0.85), runtime={"pill": True}, children=[lock_icon])

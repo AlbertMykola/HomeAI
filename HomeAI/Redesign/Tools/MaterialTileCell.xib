@@ -36,7 +36,7 @@
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="18"/></userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="3"/></userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" name="dsLime"/></userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" name="dsLime"/></userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
                     <view contentMode="scaleToFill" alpha="0" translatesAutoresizingMaskIntoConstraints="NO" id="check" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="checkView">
@@ -48,10 +48,10 @@
                         </subviews>
                         <color key="backgroundColor" name="dsLime"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="22" id="c2001"/>
-                            <constraint firstAttribute="height" constant="22" id="c2002"/>
-                            <constraint firstItem="check-i" firstAttribute="centerX" secondItem="check" secondAttribute="centerX" id="c2003"/>
-                            <constraint firstItem="check-i" firstAttribute="centerY" secondItem="check" secondAttribute="centerY" id="c2004"/>
+                            <constraint firstAttribute="width" constant="22" id="c3207"/>
+                            <constraint firstAttribute="height" constant="22" id="c3208"/>
+                            <constraint firstItem="check-i" firstAttribute="centerX" secondItem="check" secondAttribute="centerX" id="c3209"/>
+                            <constraint firstItem="check-i" firstAttribute="centerY" secondItem="check" secondAttribute="centerY" id="c3210"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -60,25 +60,25 @@
                     <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title" userLabel="titleLabel" opaque="NO" text="Oak" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.7" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                         <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="13"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="18" id="c2008"/>
+                            <constraint firstAttribute="height" constant="18" id="c3214"/>
                         </constraints>
                     </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="img" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c1991"/>
-                    <constraint firstItem="img" firstAttribute="top" secondItem="cell-content" secondAttribute="top" id="c1992"/>
-                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="img" secondAttribute="trailing" id="c1993"/>
-                    <constraint firstItem="img" firstAttribute="bottom" secondItem="title" secondAttribute="top" constant="-6" id="c1994"/>
-                    <constraint firstItem="ring" firstAttribute="leading" secondItem="img" secondAttribute="leading" id="c1995"/>
-                    <constraint firstItem="ring" firstAttribute="top" secondItem="img" secondAttribute="top" id="c1996"/>
-                    <constraint firstItem="img" firstAttribute="trailing" secondItem="ring" secondAttribute="trailing" id="c1997"/>
-                    <constraint firstItem="img" firstAttribute="bottom" secondItem="ring" secondAttribute="bottom" id="c1998"/>
-                    <constraint firstItem="check" firstAttribute="top" secondItem="img" secondAttribute="top" constant="4" id="c1999"/>
-                    <constraint firstItem="img" firstAttribute="trailing" secondItem="check" secondAttribute="trailing" constant="4" id="c2000"/>
-                    <constraint firstItem="title" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c2005"/>
-                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="title" secondAttribute="trailing" id="c2006"/>
-                    <constraint firstItem="cell-content" firstAttribute="bottom" secondItem="title" secondAttribute="bottom" id="c2007"/>
+                    <constraint firstItem="img" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c3197"/>
+                    <constraint firstItem="img" firstAttribute="top" secondItem="cell-content" secondAttribute="top" id="c3198"/>
+                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="img" secondAttribute="trailing" id="c3199"/>
+                    <constraint firstItem="img" firstAttribute="bottom" secondItem="title" secondAttribute="top" constant="-6" id="c3200"/>
+                    <constraint firstItem="ring" firstAttribute="leading" secondItem="img" secondAttribute="leading" id="c3201"/>
+                    <constraint firstItem="ring" firstAttribute="top" secondItem="img" secondAttribute="top" id="c3202"/>
+                    <constraint firstItem="img" firstAttribute="trailing" secondItem="ring" secondAttribute="trailing" id="c3203"/>
+                    <constraint firstItem="img" firstAttribute="bottom" secondItem="ring" secondAttribute="bottom" id="c3204"/>
+                    <constraint firstItem="check" firstAttribute="top" secondItem="img" secondAttribute="top" constant="4" id="c3205"/>
+                    <constraint firstItem="img" firstAttribute="trailing" secondItem="check" secondAttribute="trailing" constant="4" id="c3206"/>
+                    <constraint firstItem="title" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c3211"/>
+                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="title" secondAttribute="trailing" id="c3212"/>
+                    <constraint firstItem="cell-content" firstAttribute="bottom" secondItem="title" secondAttribute="bottom" id="c3213"/>
                 </constraints>
             </view>
             <connections>

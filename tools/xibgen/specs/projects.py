@@ -6,7 +6,7 @@ SLOT_BORDER = "#C7C7CC"
 
 
 def segmented(id, titles, outlet_prefix, action, height=38):
-    knob = View(id=f"{id}-knob", cls="DSView", bg="white", outlet=f"{outlet_prefix}Knob",
+    knob = View(id=f"{id}-knob", cls="DSView", bg="dsCard", outlet=f"{outlet_prefix}Knob",
                 runtime={"cornerRadius": (height - 6) / 2, "shadowOpacity": 0.12, "shadowRadius": 3, "shadowOffsetY": 2})
     segs = []
     for i, t in enumerate(titles):
@@ -41,7 +41,7 @@ def pill(id, text, bg, color, outlet=None, label_outlet=None, height=24):
 def projects():
     d = Doc("ProjectsViewController", owner="ProjectsViewController")
     root = d.root
-    root.bg = "white"
+    root.bg = "dsBackground"
     sa = d.safe_area
 
     cv = Collection(id="cv", spacing=13, item=(170, 246), insets=(0, 20, 0, 20), outlet="collectionView",
@@ -66,8 +66,8 @@ def projects():
                    outlet="emptyStateView", hidden=True)
 
     fade = View(id="fade", cls="DSGradientView", interaction=False,
-                runtime={"startColor": ("#FFFFFF", 0.0), "midColor": ("#FFFFFF", 0.92), "midLocation": 0.45,
-                         "endColor": "white", "angle": 180})
+                runtime={"startColor": "dsBackgroundClear", "midColor": "dsBackground", "midLocation": 0.45,
+                         "endColor": "dsBackground", "angle": 180})
 
     # header
     header_bg = Blur(id="header-bg", style="systemUltraThinMaterialLight", outlet="headerBackgroundView", alpha=0)
@@ -94,8 +94,8 @@ def projects():
         center(col)
         square(ic, 22)
         actions.append(ctl)
-    action_bar = View(id="action-bar", cls="DSView", bg=("#FFFFFF", 0.8), outlet="actionBarView", hidden=True,
-                      runtime={"pill": True, "borderWidth": 0.5, "borderColor": "white", "shadowOpacity": 0.1,
+    action_bar = View(id="action-bar", cls="DSView", bg="dsTabBar", outlet="actionBarView", hidden=True,
+                      runtime={"pill": True, "borderWidth": 0.5, "borderColor": "dsGlassBorder", "shadowOpacity": 0.1,
                                "shadowRadius": 15, "shadowOffsetY": 8},
                       children=[HStack(actions, id="actions", dist="fillEqually", align="fill")])
 
@@ -168,7 +168,7 @@ def project_cell():
 def project_detail():
     d = Doc("ProjectDetailViewController", owner="ProjectDetailViewController")
     root = d.root
-    root.bg = "white"
+    root.bg = "dsBackground"
     sa = d.safe_area
 
     table = Table(id="table", outlet="tableView")
@@ -191,11 +191,11 @@ def project_detail():
                    outlet="versionsHintLabel")
     v_row = HStack([v_title, View(id="v-spacer", bg="clear", hug=(1, 250)), v_hint], id="v-row", align="center",
                    spacing=8)
-    header = View(id="header", bg="white", outlet="headerContainer", children=[compare, v_row])
+    header = View(id="header", bg="dsBackground", outlet="headerContainer", children=[compare, v_row])
 
     fade = View(id="fade", cls="DSGradientView", interaction=False,
-                runtime={"startColor": ("#FFFFFF", 0.0), "midColor": "white", "midLocation": 0.35,
-                         "endColor": "white", "angle": 180})
+                runtime={"startColor": "dsBackgroundClear", "midColor": "dsBackground", "midLocation": 0.35,
+                         "endColor": "dsBackground", "angle": 180})
     cta = primary_button("cta", "Continue editing", outlet="continueButton", action="didTapContinue:", icon="pencil",
                          title_outlet="continueLabel")
 
@@ -203,7 +203,7 @@ def project_detail():
     more = glass_button("more", "ellipsis", action="didTapMore:", outlet="moreButton", accessibility="More")
     nav_title = Label("Japandi living room", id="nav-title", font=("SemiBold", 17), align="center",
                       outlet="navTitleLabel", minScale=0.7)
-    nav = View(id="nav", bg="white", outlet="navView", children=[back, nav_title, more])
+    nav = View(id="nav", bg="dsBackground", outlet="navView", children=[back, nav_title, more])
 
     root.add(table, fade, cta, nav, header)
 
@@ -255,7 +255,7 @@ def project_detail():
 def project_version_cell():
     d = Doc("ProjectVersionCell", kind="tableCell", cls="ProjectVersionCell", size=(393, 76),
             reuse="ProjectVersionCell")
-    thumb = Image(id="thumb", mode="scaleAspectFill", cls="DSImageView", bg="white", outlet="thumbImageView",
+    thumb = Image(id="thumb", mode="scaleAspectFill", cls="DSImageView", bg="dsCard", outlet="thumbImageView",
                   runtime={"cornerRadius": 12})
     title = Label("V3 · Sage walls", id="title", font=("SemiBold", 15), outlet="titleLabel", minScale=0.8)
     sub = Label("Paint · Today 14:20", id="sub", font=("Regular", 12), color="dsTextTertiary", outlet="subtitleLabel")

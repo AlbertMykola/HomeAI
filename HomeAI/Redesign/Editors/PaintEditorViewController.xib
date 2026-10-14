@@ -74,7 +74,7 @@
                 <outlet property="sizeSlider" destination="size-slider" id="size-slider-o"/>
                 <outlet property="applyButton" destination="apply" id="apply-o"/>
                 <outlet property="applyLabel" destination="apply-title" id="apply-title-o"/>
-                <outlet property="modeKnobLeading" destination="c119" id="c119-o"/>
+                <outlet property="modeKnobLeading" destination="c403" id="c403-o"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -89,7 +89,7 @@
                 </imageView>
                 <view contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scrim" customClass="DSGradientView" customModule="HomeAI" customModuleProvider="target">
                     <constraints>
-                        <constraint firstAttribute="height" constant="140" id="c83"/>
+                        <constraint firstAttribute="height" constant="140" id="c367"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="startColor"><color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.400" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
@@ -103,23 +103,23 @@
                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17.0" weight="semibold"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="20" id="c70"/>
-                                <constraint firstAttribute="height" constant="20" id="c71"/>
+                                <constraint firstAttribute="width" constant="20" id="c354"/>
+                                <constraint firstAttribute="height" constant="20" id="c355"/>
                             </constraints>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.300" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="44" id="c66"/>
-                        <constraint firstAttribute="height" constant="44" id="c67"/>
-                        <constraint firstItem="close-icon" firstAttribute="centerX" secondItem="close" secondAttribute="centerX" id="c68"/>
-                        <constraint firstItem="close-icon" firstAttribute="centerY" secondItem="close" secondAttribute="centerY" id="c69"/>
+                        <constraint firstAttribute="width" constant="44" id="c350"/>
+                        <constraint firstAttribute="height" constant="44" id="c351"/>
+                        <constraint firstItem="close-icon" firstAttribute="centerX" secondItem="close" secondAttribute="centerX" id="c352"/>
+                        <constraint firstItem="close-icon" firstAttribute="centerY" secondItem="close" secondAttribute="centerY" id="c353"/>
                     </constraints>
                     <accessibility key="accessibilityConfiguration" label="Close"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0.5"/></userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.200" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.200" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.08"/></userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="7"/></userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="4"/></userDefinedRuntimeAttribute>
@@ -137,23 +137,23 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17.0" weight="semibold"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="20" id="c64"/>
-                                        <constraint firstAttribute="height" constant="20" id="c65"/>
+                                        <constraint firstAttribute="width" constant="20" id="c348"/>
+                                        <constraint firstAttribute="height" constant="20" id="c349"/>
                                     </constraints>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.300" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="44" id="c60"/>
-                                <constraint firstAttribute="height" constant="44" id="c61"/>
-                                <constraint firstItem="compare-icon" firstAttribute="centerX" secondItem="compare" secondAttribute="centerX" id="c62"/>
-                                <constraint firstItem="compare-icon" firstAttribute="centerY" secondItem="compare" secondAttribute="centerY" id="c63"/>
+                                <constraint firstAttribute="width" constant="44" id="c344"/>
+                                <constraint firstAttribute="height" constant="44" id="c345"/>
+                                <constraint firstItem="compare-icon" firstAttribute="centerX" secondItem="compare" secondAttribute="centerX" id="c346"/>
+                                <constraint firstItem="compare-icon" firstAttribute="centerY" secondItem="compare" secondAttribute="centerY" id="c347"/>
                             </constraints>
                             <accessibility key="accessibilityConfiguration" label="Hold to see the original"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0.5"/></userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.200" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.200" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.08"/></userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="7"/></userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="4"/></userDefinedRuntimeAttribute>
@@ -169,8 +169,8 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="13" weight="medium"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="16" id="c97"/>
-                                        <constraint firstAttribute="height" constant="16" id="c98"/>
+                                        <constraint firstAttribute="width" constant="16" id="c381"/>
+                                        <constraint firstAttribute="height" constant="16" id="c382"/>
                                     </constraints>
                                 </imageView>
                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hint-label" userLabel="hintLabel" opaque="NO" text="Tap any dot to pick an object" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.8" horizontalHuggingPriority="251" verticalHuggingPriority="251">
@@ -182,11 +182,11 @@
                     </subviews>
                     <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.450" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="36" id="c92"/>
-                        <constraint firstItem="hint-row" firstAttribute="leading" secondItem="hint" secondAttribute="leading" id="c93"/>
-                        <constraint firstItem="hint-row" firstAttribute="top" secondItem="hint" secondAttribute="top" id="c94"/>
-                        <constraint firstItem="hint" firstAttribute="trailing" secondItem="hint-row" secondAttribute="trailing" id="c95"/>
-                        <constraint firstItem="hint" firstAttribute="bottom" secondItem="hint-row" secondAttribute="bottom" id="c96"/>
+                        <constraint firstAttribute="height" constant="36" id="c376"/>
+                        <constraint firstItem="hint-row" firstAttribute="leading" secondItem="hint" secondAttribute="leading" id="c377"/>
+                        <constraint firstItem="hint-row" firstAttribute="top" secondItem="hint" secondAttribute="top" id="c378"/>
+                        <constraint firstItem="hint" firstAttribute="trailing" secondItem="hint-row" secondAttribute="trailing" id="c379"/>
+                        <constraint firstItem="hint" firstAttribute="bottom" secondItem="hint-row" secondAttribute="bottom" id="c380"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -211,7 +211,7 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mode" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="modeView">
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mode-knob" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="modeKnob">
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" name="dsCard"/>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="14.0"/></userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.12"/></userDefinedRuntimeAttribute>
@@ -228,8 +228,8 @@
                                                                 </label>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="mode0-l" firstAttribute="centerX" secondItem="mode0" secondAttribute="centerX" id="c106"/>
-                                                                <constraint firstItem="mode0-l" firstAttribute="centerY" secondItem="mode0" secondAttribute="centerY" id="c107"/>
+                                                                <constraint firstItem="mode0-l" firstAttribute="centerX" secondItem="mode0" secondAttribute="centerX" id="c390"/>
+                                                                <constraint firstItem="mode0-l" firstAttribute="centerY" secondItem="mode0" secondAttribute="centerY" id="c391"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="hapticOnPress" value="NO"/>
@@ -244,8 +244,8 @@
                                                                 </label>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="mode1-l" firstAttribute="centerX" secondItem="mode1" secondAttribute="centerX" id="c108"/>
-                                                                <constraint firstItem="mode1-l" firstAttribute="centerY" secondItem="mode1" secondAttribute="centerY" id="c109"/>
+                                                                <constraint firstItem="mode1-l" firstAttribute="centerX" secondItem="mode1" secondAttribute="centerX" id="c392"/>
+                                                                <constraint firstItem="mode1-l" firstAttribute="centerY" secondItem="mode1" secondAttribute="centerY" id="c393"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="hapticOnPress" value="NO"/>
@@ -258,16 +258,16 @@
                                             </subviews>
                                             <color key="backgroundColor" name="dsSegment"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="136" id="c110"/>
-                                                <constraint firstAttribute="height" constant="34" id="c111"/>
-                                                <constraint firstItem="mode-row" firstAttribute="leading" secondItem="mode" secondAttribute="leading" constant="3" id="c112"/>
-                                                <constraint firstItem="mode-row" firstAttribute="top" secondItem="mode" secondAttribute="top" constant="3" id="c113"/>
-                                                <constraint firstItem="mode" firstAttribute="trailing" secondItem="mode-row" secondAttribute="trailing" constant="3" id="c114"/>
-                                                <constraint firstItem="mode" firstAttribute="bottom" secondItem="mode-row" secondAttribute="bottom" constant="3" id="c115"/>
-                                                <constraint firstItem="mode-knob" firstAttribute="top" secondItem="mode" secondAttribute="top" constant="3" id="c116"/>
-                                                <constraint firstItem="mode" firstAttribute="bottom" secondItem="mode-knob" secondAttribute="bottom" constant="3" id="c117"/>
-                                                <constraint firstItem="mode-knob" firstAttribute="width" secondItem="mode0" secondAttribute="width" id="c118"/>
-                                                <constraint firstItem="mode-knob" firstAttribute="leading" secondItem="mode" secondAttribute="leading" constant="3" id="c119"/>
+                                                <constraint firstAttribute="width" constant="136" id="c394"/>
+                                                <constraint firstAttribute="height" constant="34" id="c395"/>
+                                                <constraint firstItem="mode-row" firstAttribute="leading" secondItem="mode" secondAttribute="leading" constant="3" id="c396"/>
+                                                <constraint firstItem="mode-row" firstAttribute="top" secondItem="mode" secondAttribute="top" constant="3" id="c397"/>
+                                                <constraint firstItem="mode" firstAttribute="trailing" secondItem="mode-row" secondAttribute="trailing" constant="3" id="c398"/>
+                                                <constraint firstItem="mode" firstAttribute="bottom" secondItem="mode-row" secondAttribute="bottom" constant="3" id="c399"/>
+                                                <constraint firstItem="mode-knob" firstAttribute="top" secondItem="mode" secondAttribute="top" constant="3" id="c400"/>
+                                                <constraint firstItem="mode" firstAttribute="bottom" secondItem="mode-knob" secondAttribute="bottom" constant="3" id="c401"/>
+                                                <constraint firstItem="mode-knob" firstAttribute="width" secondItem="mode0" secondAttribute="width" id="c402"/>
+                                                <constraint firstItem="mode-knob" firstAttribute="leading" secondItem="mode" secondAttribute="leading" constant="3" id="c403"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="17.0"/></userDefinedRuntimeAttribute>
@@ -291,11 +291,11 @@
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="34" id="c120"/>
-                                                        <constraint firstItem="pal0-row" firstAttribute="leading" secondItem="pal0" secondAttribute="leading" id="c121"/>
-                                                        <constraint firstItem="pal0-row" firstAttribute="top" secondItem="pal0" secondAttribute="top" id="c122"/>
-                                                        <constraint firstItem="pal0" firstAttribute="trailing" secondItem="pal0-row" secondAttribute="trailing" id="c123"/>
-                                                        <constraint firstItem="pal0" firstAttribute="bottom" secondItem="pal0-row" secondAttribute="bottom" id="c124"/>
+                                                        <constraint firstAttribute="height" constant="34" id="c404"/>
+                                                        <constraint firstItem="pal0-row" firstAttribute="leading" secondItem="pal0" secondAttribute="leading" id="c405"/>
+                                                        <constraint firstItem="pal0-row" firstAttribute="top" secondItem="pal0" secondAttribute="top" id="c406"/>
+                                                        <constraint firstItem="pal0" firstAttribute="trailing" secondItem="pal0-row" secondAttribute="trailing" id="c407"/>
+                                                        <constraint firstItem="pal0" firstAttribute="bottom" secondItem="pal0-row" secondAttribute="bottom" id="c408"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -315,11 +315,11 @@
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="34" id="c125"/>
-                                                        <constraint firstItem="pal1-row" firstAttribute="leading" secondItem="pal1" secondAttribute="leading" id="c126"/>
-                                                        <constraint firstItem="pal1-row" firstAttribute="top" secondItem="pal1" secondAttribute="top" id="c127"/>
-                                                        <constraint firstItem="pal1" firstAttribute="trailing" secondItem="pal1-row" secondAttribute="trailing" id="c128"/>
-                                                        <constraint firstItem="pal1" firstAttribute="bottom" secondItem="pal1-row" secondAttribute="bottom" id="c129"/>
+                                                        <constraint firstAttribute="height" constant="34" id="c409"/>
+                                                        <constraint firstItem="pal1-row" firstAttribute="leading" secondItem="pal1" secondAttribute="leading" id="c410"/>
+                                                        <constraint firstItem="pal1-row" firstAttribute="top" secondItem="pal1" secondAttribute="top" id="c411"/>
+                                                        <constraint firstItem="pal1" firstAttribute="trailing" secondItem="pal1-row" secondAttribute="trailing" id="c412"/>
+                                                        <constraint firstItem="pal1" firstAttribute="bottom" secondItem="pal1-row" secondAttribute="bottom" id="c413"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -339,11 +339,11 @@
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="34" id="c130"/>
-                                                        <constraint firstItem="pal2-row" firstAttribute="leading" secondItem="pal2" secondAttribute="leading" id="c131"/>
-                                                        <constraint firstItem="pal2-row" firstAttribute="top" secondItem="pal2" secondAttribute="top" id="c132"/>
-                                                        <constraint firstItem="pal2" firstAttribute="trailing" secondItem="pal2-row" secondAttribute="trailing" id="c133"/>
-                                                        <constraint firstItem="pal2" firstAttribute="bottom" secondItem="pal2-row" secondAttribute="bottom" id="c134"/>
+                                                        <constraint firstAttribute="height" constant="34" id="c414"/>
+                                                        <constraint firstItem="pal2-row" firstAttribute="leading" secondItem="pal2" secondAttribute="leading" id="c415"/>
+                                                        <constraint firstItem="pal2-row" firstAttribute="top" secondItem="pal2" secondAttribute="top" id="c416"/>
+                                                        <constraint firstItem="pal2" firstAttribute="trailing" secondItem="pal2-row" secondAttribute="trailing" id="c417"/>
+                                                        <constraint firstItem="pal2" firstAttribute="bottom" secondItem="pal2-row" secondAttribute="bottom" id="c418"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -363,11 +363,11 @@
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="34" id="c135"/>
-                                                        <constraint firstItem="pal3-row" firstAttribute="leading" secondItem="pal3" secondAttribute="leading" id="c136"/>
-                                                        <constraint firstItem="pal3-row" firstAttribute="top" secondItem="pal3" secondAttribute="top" id="c137"/>
-                                                        <constraint firstItem="pal3" firstAttribute="trailing" secondItem="pal3-row" secondAttribute="trailing" id="c138"/>
-                                                        <constraint firstItem="pal3" firstAttribute="bottom" secondItem="pal3-row" secondAttribute="bottom" id="c139"/>
+                                                        <constraint firstAttribute="height" constant="34" id="c419"/>
+                                                        <constraint firstItem="pal3-row" firstAttribute="leading" secondItem="pal3" secondAttribute="leading" id="c420"/>
+                                                        <constraint firstItem="pal3-row" firstAttribute="top" secondItem="pal3" secondAttribute="top" id="c421"/>
+                                                        <constraint firstItem="pal3" firstAttribute="trailing" secondItem="pal3-row" secondAttribute="trailing" id="c422"/>
+                                                        <constraint firstItem="pal3" firstAttribute="bottom" secondItem="pal3-row" secondAttribute="bottom" id="c423"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -387,11 +387,11 @@
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="34" id="c140"/>
-                                                        <constraint firstItem="pal4-row" firstAttribute="leading" secondItem="pal4" secondAttribute="leading" id="c141"/>
-                                                        <constraint firstItem="pal4-row" firstAttribute="top" secondItem="pal4" secondAttribute="top" id="c142"/>
-                                                        <constraint firstItem="pal4" firstAttribute="trailing" secondItem="pal4-row" secondAttribute="trailing" id="c143"/>
-                                                        <constraint firstItem="pal4" firstAttribute="bottom" secondItem="pal4-row" secondAttribute="bottom" id="c144"/>
+                                                        <constraint firstAttribute="height" constant="34" id="c424"/>
+                                                        <constraint firstItem="pal4-row" firstAttribute="leading" secondItem="pal4" secondAttribute="leading" id="c425"/>
+                                                        <constraint firstItem="pal4-row" firstAttribute="top" secondItem="pal4" secondAttribute="top" id="c426"/>
+                                                        <constraint firstItem="pal4" firstAttribute="trailing" secondItem="pal4-row" secondAttribute="trailing" id="c427"/>
+                                                        <constraint firstItem="pal4" firstAttribute="bottom" secondItem="pal4-row" secondAttribute="bottom" id="c428"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -411,11 +411,11 @@
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="34" id="c145"/>
-                                                        <constraint firstItem="pal5-row" firstAttribute="leading" secondItem="pal5" secondAttribute="leading" id="c146"/>
-                                                        <constraint firstItem="pal5-row" firstAttribute="top" secondItem="pal5" secondAttribute="top" id="c147"/>
-                                                        <constraint firstItem="pal5" firstAttribute="trailing" secondItem="pal5-row" secondAttribute="trailing" id="c148"/>
-                                                        <constraint firstItem="pal5" firstAttribute="bottom" secondItem="pal5-row" secondAttribute="bottom" id="c149"/>
+                                                        <constraint firstAttribute="height" constant="34" id="c429"/>
+                                                        <constraint firstItem="pal5-row" firstAttribute="leading" secondItem="pal5" secondAttribute="leading" id="c430"/>
+                                                        <constraint firstItem="pal5-row" firstAttribute="top" secondItem="pal5" secondAttribute="top" id="c431"/>
+                                                        <constraint firstItem="pal5" firstAttribute="trailing" secondItem="pal5-row" secondAttribute="trailing" id="c432"/>
+                                                        <constraint firstItem="pal5" firstAttribute="bottom" secondItem="pal5-row" secondAttribute="bottom" id="c433"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -428,12 +428,12 @@
                                     </subviews>
                                     <viewLayoutGuide key="contentLayoutGuide" id="pal-scroll-contentLayoutGuide"/><viewLayoutGuide key="frameLayoutGuide" id="pal-scroll-frameLayoutGuide"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="34" id="c150"/>
-                                        <constraint firstItem="pal-stack" firstAttribute="leading" secondItem="pal-scroll-contentLayoutGuide" secondAttribute="leading" id="c151"/>
-                                        <constraint firstItem="pal-stack" firstAttribute="top" secondItem="pal-scroll-contentLayoutGuide" secondAttribute="top" id="c152"/>
-                                        <constraint firstItem="pal-scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="pal-stack" secondAttribute="trailing" id="c153"/>
-                                        <constraint firstItem="pal-scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="pal-stack" secondAttribute="bottom" id="c154"/>
-                                        <constraint firstItem="pal-stack" firstAttribute="height" secondItem="pal-scroll-frameLayoutGuide" secondAttribute="height" id="c155"/>
+                                        <constraint firstAttribute="height" constant="34" id="c434"/>
+                                        <constraint firstItem="pal-stack" firstAttribute="leading" secondItem="pal-scroll-contentLayoutGuide" secondAttribute="leading" id="c435"/>
+                                        <constraint firstItem="pal-stack" firstAttribute="top" secondItem="pal-scroll-contentLayoutGuide" secondAttribute="top" id="c436"/>
+                                        <constraint firstItem="pal-scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="pal-stack" secondAttribute="trailing" id="c437"/>
+                                        <constraint firstItem="pal-scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="pal-stack" secondAttribute="bottom" id="c438"/>
+                                        <constraint firstItem="pal-stack" firstAttribute="height" secondItem="pal-scroll-frameLayoutGuide" secondAttribute="height" id="c439"/>
                                     </constraints>
                                 </scrollView>
                                 <scrollView contentMode="scaleToFill" clipsSubviews="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sw-scroll" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" alwaysBounceHorizontal="YES">
@@ -445,26 +445,26 @@
                                                         <view contentMode="scaleToFill" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="sw0-c" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                             <color key="backgroundColor" red="0.6627" green="0.7098" blue="0.6039" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="42" id="c160"/>
-                                                                <constraint firstAttribute="height" constant="42" id="c161"/>
+                                                                <constraint firstAttribute="width" constant="42" id="c444"/>
+                                                                <constraint firstAttribute="height" constant="42" id="c445"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="1"/></userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.100" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.100" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="52" id="c156"/>
-                                                        <constraint firstAttribute="height" constant="52" id="c157"/>
-                                                        <constraint firstItem="sw0-c" firstAttribute="centerX" secondItem="sw0" secondAttribute="centerX" id="c158"/>
-                                                        <constraint firstItem="sw0-c" firstAttribute="centerY" secondItem="sw0" secondAttribute="centerY" id="c159"/>
+                                                        <constraint firstAttribute="width" constant="52" id="c440"/>
+                                                        <constraint firstAttribute="height" constant="52" id="c441"/>
+                                                        <constraint firstItem="sw0-c" firstAttribute="centerX" secondItem="sw0" secondAttribute="centerX" id="c442"/>
+                                                        <constraint firstItem="sw0-c" firstAttribute="centerY" secondItem="sw0" secondAttribute="centerY" id="c443"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0"/></userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSwatch:"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -473,26 +473,26 @@
                                                         <view contentMode="scaleToFill" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="sw1-c" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                             <color key="backgroundColor" red="0.6627" green="0.7098" blue="0.6039" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="42" id="c166"/>
-                                                                <constraint firstAttribute="height" constant="42" id="c167"/>
+                                                                <constraint firstAttribute="width" constant="42" id="c450"/>
+                                                                <constraint firstAttribute="height" constant="42" id="c451"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="1"/></userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.100" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.100" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="52" id="c162"/>
-                                                        <constraint firstAttribute="height" constant="52" id="c163"/>
-                                                        <constraint firstItem="sw1-c" firstAttribute="centerX" secondItem="sw1" secondAttribute="centerX" id="c164"/>
-                                                        <constraint firstItem="sw1-c" firstAttribute="centerY" secondItem="sw1" secondAttribute="centerY" id="c165"/>
+                                                        <constraint firstAttribute="width" constant="52" id="c446"/>
+                                                        <constraint firstAttribute="height" constant="52" id="c447"/>
+                                                        <constraint firstItem="sw1-c" firstAttribute="centerX" secondItem="sw1" secondAttribute="centerX" id="c448"/>
+                                                        <constraint firstItem="sw1-c" firstAttribute="centerY" secondItem="sw1" secondAttribute="centerY" id="c449"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0"/></userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSwatch:"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -501,26 +501,26 @@
                                                         <view contentMode="scaleToFill" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="sw2-c" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                             <color key="backgroundColor" red="0.6627" green="0.7098" blue="0.6039" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="42" id="c172"/>
-                                                                <constraint firstAttribute="height" constant="42" id="c173"/>
+                                                                <constraint firstAttribute="width" constant="42" id="c456"/>
+                                                                <constraint firstAttribute="height" constant="42" id="c457"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="1"/></userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.100" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.100" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="52" id="c168"/>
-                                                        <constraint firstAttribute="height" constant="52" id="c169"/>
-                                                        <constraint firstItem="sw2-c" firstAttribute="centerX" secondItem="sw2" secondAttribute="centerX" id="c170"/>
-                                                        <constraint firstItem="sw2-c" firstAttribute="centerY" secondItem="sw2" secondAttribute="centerY" id="c171"/>
+                                                        <constraint firstAttribute="width" constant="52" id="c452"/>
+                                                        <constraint firstAttribute="height" constant="52" id="c453"/>
+                                                        <constraint firstItem="sw2-c" firstAttribute="centerX" secondItem="sw2" secondAttribute="centerX" id="c454"/>
+                                                        <constraint firstItem="sw2-c" firstAttribute="centerY" secondItem="sw2" secondAttribute="centerY" id="c455"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0"/></userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSwatch:"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -529,26 +529,26 @@
                                                         <view contentMode="scaleToFill" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="sw3-c" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                             <color key="backgroundColor" red="0.6627" green="0.7098" blue="0.6039" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="42" id="c178"/>
-                                                                <constraint firstAttribute="height" constant="42" id="c179"/>
+                                                                <constraint firstAttribute="width" constant="42" id="c462"/>
+                                                                <constraint firstAttribute="height" constant="42" id="c463"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="1"/></userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.100" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.100" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="52" id="c174"/>
-                                                        <constraint firstAttribute="height" constant="52" id="c175"/>
-                                                        <constraint firstItem="sw3-c" firstAttribute="centerX" secondItem="sw3" secondAttribute="centerX" id="c176"/>
-                                                        <constraint firstItem="sw3-c" firstAttribute="centerY" secondItem="sw3" secondAttribute="centerY" id="c177"/>
+                                                        <constraint firstAttribute="width" constant="52" id="c458"/>
+                                                        <constraint firstAttribute="height" constant="52" id="c459"/>
+                                                        <constraint firstItem="sw3-c" firstAttribute="centerX" secondItem="sw3" secondAttribute="centerX" id="c460"/>
+                                                        <constraint firstItem="sw3-c" firstAttribute="centerY" secondItem="sw3" secondAttribute="centerY" id="c461"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0"/></userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSwatch:"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -557,26 +557,26 @@
                                                         <view contentMode="scaleToFill" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="sw4-c" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                             <color key="backgroundColor" red="0.6627" green="0.7098" blue="0.6039" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="42" id="c184"/>
-                                                                <constraint firstAttribute="height" constant="42" id="c185"/>
+                                                                <constraint firstAttribute="width" constant="42" id="c468"/>
+                                                                <constraint firstAttribute="height" constant="42" id="c469"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="1"/></userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.100" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.100" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="52" id="c180"/>
-                                                        <constraint firstAttribute="height" constant="52" id="c181"/>
-                                                        <constraint firstItem="sw4-c" firstAttribute="centerX" secondItem="sw4" secondAttribute="centerX" id="c182"/>
-                                                        <constraint firstItem="sw4-c" firstAttribute="centerY" secondItem="sw4" secondAttribute="centerY" id="c183"/>
+                                                        <constraint firstAttribute="width" constant="52" id="c464"/>
+                                                        <constraint firstAttribute="height" constant="52" id="c465"/>
+                                                        <constraint firstItem="sw4-c" firstAttribute="centerX" secondItem="sw4" secondAttribute="centerX" id="c466"/>
+                                                        <constraint firstItem="sw4-c" firstAttribute="centerY" secondItem="sw4" secondAttribute="centerY" id="c467"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0"/></userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSwatch:"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -585,26 +585,26 @@
                                                         <view contentMode="scaleToFill" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="sw5-c" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                             <color key="backgroundColor" red="0.6627" green="0.7098" blue="0.6039" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="42" id="c190"/>
-                                                                <constraint firstAttribute="height" constant="42" id="c191"/>
+                                                                <constraint firstAttribute="width" constant="42" id="c474"/>
+                                                                <constraint firstAttribute="height" constant="42" id="c475"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="1"/></userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.100" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.100" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="52" id="c186"/>
-                                                        <constraint firstAttribute="height" constant="52" id="c187"/>
-                                                        <constraint firstItem="sw5-c" firstAttribute="centerX" secondItem="sw5" secondAttribute="centerX" id="c188"/>
-                                                        <constraint firstItem="sw5-c" firstAttribute="centerY" secondItem="sw5" secondAttribute="centerY" id="c189"/>
+                                                        <constraint firstAttribute="width" constant="52" id="c470"/>
+                                                        <constraint firstAttribute="height" constant="52" id="c471"/>
+                                                        <constraint firstItem="sw5-c" firstAttribute="centerX" secondItem="sw5" secondAttribute="centerX" id="c472"/>
+                                                        <constraint firstItem="sw5-c" firstAttribute="centerY" secondItem="sw5" secondAttribute="centerY" id="c473"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0"/></userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSwatch:"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -613,26 +613,26 @@
                                                         <view contentMode="scaleToFill" tag="6" translatesAutoresizingMaskIntoConstraints="NO" id="sw6-c" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                             <color key="backgroundColor" red="0.6627" green="0.7098" blue="0.6039" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="42" id="c196"/>
-                                                                <constraint firstAttribute="height" constant="42" id="c197"/>
+                                                                <constraint firstAttribute="width" constant="42" id="c480"/>
+                                                                <constraint firstAttribute="height" constant="42" id="c481"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="1"/></userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.100" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.100" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="52" id="c192"/>
-                                                        <constraint firstAttribute="height" constant="52" id="c193"/>
-                                                        <constraint firstItem="sw6-c" firstAttribute="centerX" secondItem="sw6" secondAttribute="centerX" id="c194"/>
-                                                        <constraint firstItem="sw6-c" firstAttribute="centerY" secondItem="sw6" secondAttribute="centerY" id="c195"/>
+                                                        <constraint firstAttribute="width" constant="52" id="c476"/>
+                                                        <constraint firstAttribute="height" constant="52" id="c477"/>
+                                                        <constraint firstItem="sw6-c" firstAttribute="centerX" secondItem="sw6" secondAttribute="centerX" id="c478"/>
+                                                        <constraint firstItem="sw6-c" firstAttribute="centerY" secondItem="sw6" secondAttribute="centerY" id="c479"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0"/></userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSwatch:"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -641,26 +641,26 @@
                                                         <view contentMode="scaleToFill" tag="7" translatesAutoresizingMaskIntoConstraints="NO" id="sw7-c" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                             <color key="backgroundColor" red="0.6627" green="0.7098" blue="0.6039" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="42" id="c202"/>
-                                                                <constraint firstAttribute="height" constant="42" id="c203"/>
+                                                                <constraint firstAttribute="width" constant="42" id="c486"/>
+                                                                <constraint firstAttribute="height" constant="42" id="c487"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="1"/></userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.100" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.100" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="52" id="c198"/>
-                                                        <constraint firstAttribute="height" constant="52" id="c199"/>
-                                                        <constraint firstItem="sw7-c" firstAttribute="centerX" secondItem="sw7" secondAttribute="centerX" id="c200"/>
-                                                        <constraint firstItem="sw7-c" firstAttribute="centerY" secondItem="sw7" secondAttribute="centerY" id="c201"/>
+                                                        <constraint firstAttribute="width" constant="52" id="c482"/>
+                                                        <constraint firstAttribute="height" constant="52" id="c483"/>
+                                                        <constraint firstItem="sw7-c" firstAttribute="centerX" secondItem="sw7" secondAttribute="centerX" id="c484"/>
+                                                        <constraint firstItem="sw7-c" firstAttribute="centerY" secondItem="sw7" secondAttribute="centerY" id="c485"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0"/></userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSwatch:"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -669,26 +669,26 @@
                                                         <view contentMode="scaleToFill" tag="8" translatesAutoresizingMaskIntoConstraints="NO" id="sw8-c" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                             <color key="backgroundColor" red="0.6627" green="0.7098" blue="0.6039" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="42" id="c208"/>
-                                                                <constraint firstAttribute="height" constant="42" id="c209"/>
+                                                                <constraint firstAttribute="width" constant="42" id="c492"/>
+                                                                <constraint firstAttribute="height" constant="42" id="c493"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="1"/></userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.100" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.100" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="52" id="c204"/>
-                                                        <constraint firstAttribute="height" constant="52" id="c205"/>
-                                                        <constraint firstItem="sw8-c" firstAttribute="centerX" secondItem="sw8" secondAttribute="centerX" id="c206"/>
-                                                        <constraint firstItem="sw8-c" firstAttribute="centerY" secondItem="sw8" secondAttribute="centerY" id="c207"/>
+                                                        <constraint firstAttribute="width" constant="52" id="c488"/>
+                                                        <constraint firstAttribute="height" constant="52" id="c489"/>
+                                                        <constraint firstItem="sw8-c" firstAttribute="centerX" secondItem="sw8" secondAttribute="centerX" id="c490"/>
+                                                        <constraint firstItem="sw8-c" firstAttribute="centerY" secondItem="sw8" secondAttribute="centerY" id="c491"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0"/></userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSwatch:"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -697,26 +697,26 @@
                                                         <view contentMode="scaleToFill" tag="9" translatesAutoresizingMaskIntoConstraints="NO" id="sw9-c" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                             <color key="backgroundColor" red="0.6627" green="0.7098" blue="0.6039" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="42" id="c214"/>
-                                                                <constraint firstAttribute="height" constant="42" id="c215"/>
+                                                                <constraint firstAttribute="width" constant="42" id="c498"/>
+                                                                <constraint firstAttribute="height" constant="42" id="c499"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="1"/></userDefinedRuntimeAttribute>
-                                                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.100" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.100" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="52" id="c210"/>
-                                                        <constraint firstAttribute="height" constant="52" id="c211"/>
-                                                        <constraint firstItem="sw9-c" firstAttribute="centerX" secondItem="sw9" secondAttribute="centerX" id="c212"/>
-                                                        <constraint firstItem="sw9-c" firstAttribute="centerY" secondItem="sw9" secondAttribute="centerY" id="c213"/>
+                                                        <constraint firstAttribute="width" constant="52" id="c494"/>
+                                                        <constraint firstAttribute="height" constant="52" id="c495"/>
+                                                        <constraint firstItem="sw9-c" firstAttribute="centerX" secondItem="sw9" secondAttribute="centerX" id="c496"/>
+                                                        <constraint firstItem="sw9-c" firstAttribute="centerY" secondItem="sw9" secondAttribute="centerY" id="c497"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0"/></userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
                                                         <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSwatch:"/>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
@@ -725,12 +725,12 @@
                                     </subviews>
                                     <viewLayoutGuide key="contentLayoutGuide" id="sw-scroll-contentLayoutGuide"/><viewLayoutGuide key="frameLayoutGuide" id="sw-scroll-frameLayoutGuide"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="52" id="c216"/>
-                                        <constraint firstItem="sw-stack" firstAttribute="leading" secondItem="sw-scroll-contentLayoutGuide" secondAttribute="leading" id="c217"/>
-                                        <constraint firstItem="sw-stack" firstAttribute="top" secondItem="sw-scroll-contentLayoutGuide" secondAttribute="top" id="c218"/>
-                                        <constraint firstItem="sw-scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="sw-stack" secondAttribute="trailing" id="c219"/>
-                                        <constraint firstItem="sw-scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="sw-stack" secondAttribute="bottom" id="c220"/>
-                                        <constraint firstItem="sw-stack" firstAttribute="height" secondItem="sw-scroll-frameLayoutGuide" secondAttribute="height" id="c221"/>
+                                        <constraint firstAttribute="height" constant="52" id="c500"/>
+                                        <constraint firstItem="sw-stack" firstAttribute="leading" secondItem="sw-scroll-contentLayoutGuide" secondAttribute="leading" id="c501"/>
+                                        <constraint firstItem="sw-stack" firstAttribute="top" secondItem="sw-scroll-contentLayoutGuide" secondAttribute="top" id="c502"/>
+                                        <constraint firstItem="sw-scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="sw-stack" secondAttribute="trailing" id="c503"/>
+                                        <constraint firstItem="sw-scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="sw-stack" secondAttribute="bottom" id="c504"/>
+                                        <constraint firstItem="sw-stack" firstAttribute="height" secondItem="sw-scroll-frameLayoutGuide" secondAttribute="height" id="c505"/>
                                     </constraints>
                                 </scrollView>
                                 <stackView contentMode="scaleToFill" hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="size-row" opaque="NO" alignment="center" spacing="12">
@@ -741,8 +741,8 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="size-small" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                             <color key="backgroundColor" name="dsTextTertiary"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="8" id="c222"/>
-                                                <constraint firstAttribute="height" constant="8" id="c223"/>
+                                                <constraint firstAttribute="width" constant="8" id="c506"/>
+                                                <constraint firstAttribute="height" constant="8" id="c507"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -757,8 +757,8 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="size-big" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                             <color key="backgroundColor" name="dsTextTertiary"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="20" id="c224"/>
-                                                <constraint firstAttribute="height" constant="20" id="c225"/>
+                                                <constraint firstAttribute="width" constant="20" id="c508"/>
+                                                <constraint firstAttribute="height" constant="20" id="c509"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -774,21 +774,21 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" weight="semibold"/>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="20" id="c230"/>
-                                                        <constraint firstAttribute="height" constant="20" id="c231"/>
+                                                        <constraint firstAttribute="width" constant="20" id="c514"/>
+                                                        <constraint firstAttribute="height" constant="20" id="c515"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apply-title" userLabel="applyLabel" opaque="NO" text="Apply · 1 credit" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
-                                                    <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                    <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/><nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="56" id="c226"/>
-                                        <constraint firstItem="apply-row" firstAttribute="centerX" secondItem="apply" secondAttribute="centerX" id="c227"/>
-                                        <constraint firstItem="apply-row" firstAttribute="centerY" secondItem="apply" secondAttribute="centerY" id="c228"/>
-                                        <constraint firstItem="apply-row" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="apply" secondAttribute="leading" constant="16" id="c229"/>
+                                        <constraint firstAttribute="height" constant="56" id="c510"/>
+                                        <constraint firstItem="apply-row" firstAttribute="centerX" secondItem="apply" secondAttribute="centerX" id="c511"/>
+                                        <constraint firstItem="apply-row" firstAttribute="centerY" secondItem="apply" secondAttribute="centerY" id="c512"/>
+                                        <constraint firstItem="apply-row" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="apply" secondAttribute="leading" constant="16" id="c513"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapApply:"/>
@@ -797,11 +797,11 @@
                             </subviews>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" name="dsBackground"/>
                     <constraints>
-                        <constraint firstItem="panel-stack" firstAttribute="leading" secondItem="panel" secondAttribute="leading" constant="20" id="c102"/>
-                        <constraint firstItem="panel" firstAttribute="trailing" secondItem="panel-stack" secondAttribute="trailing" constant="20" id="c103"/>
-                        <constraint firstItem="panel-stack" firstAttribute="top" secondItem="panel" secondAttribute="top" constant="18" id="c104"/>
+                        <constraint firstItem="panel-stack" firstAttribute="leading" secondItem="panel" secondAttribute="leading" constant="20" id="c386"/>
+                        <constraint firstItem="panel" firstAttribute="trailing" secondItem="panel-stack" secondAttribute="trailing" constant="20" id="c387"/>
+                        <constraint firstItem="panel-stack" firstAttribute="top" secondItem="panel" secondAttribute="top" constant="18" id="c388"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="34"/></userDefinedRuntimeAttribute>
@@ -815,29 +815,29 @@
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="root-safeArea"/>
             <constraints>
-                <constraint firstItem="canvas" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c72"/>
-                <constraint firstItem="canvas" firstAttribute="top" secondItem="root" secondAttribute="top" id="c73"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="canvas" secondAttribute="trailing" id="c74"/>
-                <constraint firstItem="canvas" firstAttribute="bottom" secondItem="panel" secondAttribute="top" constant="34" id="c75"/>
-                <constraint firstItem="original" firstAttribute="leading" secondItem="canvas" secondAttribute="leading" id="c76"/>
-                <constraint firstItem="original" firstAttribute="top" secondItem="canvas" secondAttribute="top" id="c77"/>
-                <constraint firstItem="canvas" firstAttribute="trailing" secondItem="original" secondAttribute="trailing" id="c78"/>
-                <constraint firstItem="canvas" firstAttribute="bottom" secondItem="original" secondAttribute="bottom" id="c79"/>
-                <constraint firstItem="scrim" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c80"/>
-                <constraint firstItem="scrim" firstAttribute="top" secondItem="root" secondAttribute="top" id="c81"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="scrim" secondAttribute="trailing" id="c82"/>
-                <constraint firstItem="close" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="16" id="c84"/>
-                <constraint firstItem="close" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-2" id="c85"/>
-                <constraint firstItem="nav-title" firstAttribute="centerY" secondItem="close" secondAttribute="centerY" id="c86"/>
-                <constraint firstItem="nav-title" firstAttribute="centerX" secondItem="root" secondAttribute="centerX" id="c87"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="nav-right" secondAttribute="trailing" constant="16" id="c88"/>
-                <constraint firstItem="nav-right" firstAttribute="centerY" secondItem="close" secondAttribute="centerY" id="c89"/>
-                <constraint firstItem="hint" firstAttribute="centerX" secondItem="root" secondAttribute="centerX" id="c90"/>
-                <constraint firstItem="panel" firstAttribute="top" secondItem="hint" secondAttribute="bottom" constant="14" id="c91"/>
-                <constraint firstItem="panel" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c99"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="panel" secondAttribute="trailing" id="c100"/>
-                <constraint firstItem="root" firstAttribute="bottom" secondItem="panel" secondAttribute="bottom" id="c101"/>
-                <constraint firstItem="root-safeArea" firstAttribute="bottom" secondItem="panel-stack" secondAttribute="bottom" constant="6" id="c105"/>
+                <constraint firstItem="canvas" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c356"/>
+                <constraint firstItem="canvas" firstAttribute="top" secondItem="root" secondAttribute="top" id="c357"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="canvas" secondAttribute="trailing" id="c358"/>
+                <constraint firstItem="canvas" firstAttribute="bottom" secondItem="panel" secondAttribute="top" constant="34" id="c359"/>
+                <constraint firstItem="original" firstAttribute="leading" secondItem="canvas" secondAttribute="leading" id="c360"/>
+                <constraint firstItem="original" firstAttribute="top" secondItem="canvas" secondAttribute="top" id="c361"/>
+                <constraint firstItem="canvas" firstAttribute="trailing" secondItem="original" secondAttribute="trailing" id="c362"/>
+                <constraint firstItem="canvas" firstAttribute="bottom" secondItem="original" secondAttribute="bottom" id="c363"/>
+                <constraint firstItem="scrim" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c364"/>
+                <constraint firstItem="scrim" firstAttribute="top" secondItem="root" secondAttribute="top" id="c365"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="scrim" secondAttribute="trailing" id="c366"/>
+                <constraint firstItem="close" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="16" id="c368"/>
+                <constraint firstItem="close" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-2" id="c369"/>
+                <constraint firstItem="nav-title" firstAttribute="centerY" secondItem="close" secondAttribute="centerY" id="c370"/>
+                <constraint firstItem="nav-title" firstAttribute="centerX" secondItem="root" secondAttribute="centerX" id="c371"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="nav-right" secondAttribute="trailing" constant="16" id="c372"/>
+                <constraint firstItem="nav-right" firstAttribute="centerY" secondItem="close" secondAttribute="centerY" id="c373"/>
+                <constraint firstItem="hint" firstAttribute="centerX" secondItem="root" secondAttribute="centerX" id="c374"/>
+                <constraint firstItem="panel" firstAttribute="top" secondItem="hint" secondAttribute="bottom" constant="14" id="c375"/>
+                <constraint firstItem="panel" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c383"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="panel" secondAttribute="trailing" id="c384"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="panel" secondAttribute="bottom" id="c385"/>
+                <constraint firstItem="root-safeArea" firstAttribute="bottom" secondItem="panel-stack" secondAttribute="bottom" constant="6" id="c389"/>
             </constraints>
         </view>
         </objects>
@@ -846,6 +846,12 @@
         <image name="hand.raised" catalog="system" width="128" height="128"/>
         <image name="rectangle.split.2x1" catalog="system" width="128" height="128"/>
         <image name="xmark" catalog="system" width="128" height="128"/>
+        <namedColor name="dsBackground">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsCard">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="dsLime">
             <color red="0.6471" green="0.9333" blue="0.1843" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

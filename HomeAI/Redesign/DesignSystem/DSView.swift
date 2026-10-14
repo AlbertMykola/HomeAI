@@ -10,10 +10,18 @@ class DSView: UIView {
     @IBInspectable var shadowOpacity: Float = 0 { didSet { applyShadow() } }
     @IBInspectable var shadowRadius: CGFloat = 0 { didSet { applyShadow() } }
     @IBInspectable var shadowOffsetY: CGFloat = 0 { didSet { applyShadow() } }
+    /// Border colour that follows light / dark (layer.borderColor is a fixed CGColor).
+    @IBInspectable var dsBorderColor: UIColor? { didSet { layer.borderColor = dsBorderColor?.resolvedColor(with: traitCollection).cgColor } }
 
     override func awakeFromNib() {
         super.awakeFromNib()
         layer.cornerCurve = .continuous
+    }
+
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if let dsBorderColor { layer.borderColor = dsBorderColor.resolvedColor(with: traitCollection).cgColor }
+        applyShadow()
     }
 
     override func layoutSubviews() {
@@ -26,7 +34,7 @@ class DSView: UIView {
 
 
     private func applyShadow() {
-        layer.shadowColor = shadowColor.cgColor
+        layer.shadowColor = shadowColor.resolvedColor(with: traitCollection).cgColor
         layer.shadowOpacity = shadowOpacity
         layer.shadowRadius = shadowRadius
         layer.shadowOffset = CGSize(width: 0, height: shadowOffsetY)

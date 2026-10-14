@@ -200,6 +200,24 @@ public class AdaptyService: NSObject {
         }
     }
 
+    /// A/11 Profile: renewal date / cancelled-but-active / billing retry, from the cached profile.
+    struct ProStatus {
+        let expiresAt: Date?
+        let willRenew: Bool
+        let billingIssue: Bool
+    }
+
+    var proStatus: ProStatus? {
+        guard let level = cachedProfile?.accessLevels[Constants.Keys.adaptyAccessLevel], level.isActive else { return nil }
+        return ProStatus(expiresAt: level.expiresAt, willRenew: level.willRenew,
+                         billingIssue: level.billingIssueDetectedAt != nil || level.isInGracePeriod)
+    }
+
+    /// Localized yearly price if the paywall products were already loaded ("$9.99").
+    var cachedYearlyPrice: String? {
+        products.first { $0.subscriptionPeriod?.unit == .year }?.localizedPrice
+    }
+
     public func restore() async throws -> String {
         let profile = try await Adapty.restorePurchases()
         await MainActor.run { apply(profile) }

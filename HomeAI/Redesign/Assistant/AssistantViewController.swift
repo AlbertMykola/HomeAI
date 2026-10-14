@@ -305,7 +305,7 @@ final class AssistantViewController: UIViewController {
         isListening = false
         micButton.layer.removeAnimation(forKey: "pulse")
         micIconView.image = UIImage(systemName: "mic")
-        micButton.backgroundColor = .white
+        micButton.backgroundColor = DS.Color.card
         fieldBox.layer.borderWidth = 0
         messageField.placeholder = "Ask about your space…".localized
         updateComposer()

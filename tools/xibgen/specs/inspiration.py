@@ -20,7 +20,7 @@ def chip_row(id, titles, collection, action, label_collection=None):
 def inspiration():
     d = Doc("InspirationFeedViewController", owner="InspirationFeedViewController")
     root = d.root
-    root.bg = "white"
+    root.bg = "dsBackground"
     sa = d.safe_area
 
     cv = Collection(id="feed-cv", spacing=12, item=(170, 230), outlet="collectionView", indicators=True)
@@ -49,7 +49,7 @@ def inspiration():
             blocks.append(b)
         sk_cols.append(VStack(blocks, id=f"sk-col-{c}", spacing=12, align="fill"))
     sk_grid = HStack(sk_cols, id="sk-grid", spacing=13, dist="fillEqually", align="top")
-    skeleton = View(id="skeleton", bg="white", outlet="skeletonView", clips=True, children=[sk_chip_row, sk_grid])
+    skeleton = View(id="skeleton", bg="dsBackground", outlet="skeletonView", clips=True, children=[sk_chip_row, sk_grid])
 
     # header
     header_bg = Blur(id="header-bg", style="systemUltraThinMaterialLight", outlet="headerBackgroundView", alpha=0)
@@ -162,7 +162,7 @@ def inspiration_card_cell():
 def inspiration_detail():
     d = Doc("IdeaDetailViewController", owner="IdeaDetailViewController")
     root = d.root
-    root.bg = "white"
+    root.bg = "dsBackground"
     sa = d.safe_area
 
     hero = Image(id="hero", mode="scaleAspectFill", bg=SKELETON, outlet="heroImageView", clips=True)
@@ -216,7 +216,7 @@ def inspiration_detail():
 
     panel_stack = VStack([title_group, tags_wrap, palette, cta], id="panel-stack", spacing=30, align="fill",
                          outlet="panelStack")
-    panel = View(id="panel", cls="DSView", bg="white", outlet="panelView",
+    panel = View(id="panel", cls="DSView", bg="dsBackground", outlet="panelView",
                  runtime={"cornerRadius": 34, "layer.maskedCorners": 3}, children=[panel_stack])
 
     root.add(hero, scrim, nav, ai_tag, panel)

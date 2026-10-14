@@ -23,7 +23,7 @@ final class ResultVersionCell: UICollectionViewCell {
         titleLabel.font = DS.Font.geologica(current ? .semiBold : .regular, 11)
         titleLabel.textColor = current ? DS.Color.textPrimary : DS.Color.textTertiary
         ringView.isHidden = !current
-        ringView.layer.borderColor = UIColor.black.cgColor
+        ringView.layer.borderColor = DS.Color.textPrimary.resolvedColor(with: traitCollection).cgColor
         ringView.layer.borderWidth = 2.5
         againIconView.isHidden = true
         thumbImageView.backgroundColor = DS.Color.surface
@@ -42,7 +42,7 @@ final class ResultVersionCell: UICollectionViewCell {
         titleLabel.font = DS.Font.geologica(.regular, 11)
         titleLabel.textColor = DS.Color.textTertiary
         thumbImageView.image = nil
-        thumbImageView.backgroundColor = .white
+        thumbImageView.backgroundColor = DS.Color.card
         ringView.isHidden = false
         ringView.layer.borderColor = UIColor(red: 0.82, green: 0.82, blue: 0.84, alpha: 1).cgColor
         ringView.layer.borderWidth = 1.5

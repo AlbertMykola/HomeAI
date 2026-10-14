@@ -64,7 +64,7 @@ def result():
     texts = VStack([title, subtitle], id="texts", spacing=2, hug=(249, 251))
 
     def round_button(id, symbol, action, outlet, label):
-        ic = Image(id=f"{id}-icon", system=symbol, size=16, weight="medium", tint="black")
+        ic = Image(id=f"{id}-icon", system=symbol, size=16, weight="medium", tint="dsTextPrimary")
         b = Control(id=id, cls="DSPressableControl", bg="dsSurface", outlet=outlet, accessibility=label,
                     runtime={"pill": True}, children=[ic]).on(action)
         square(b, 40)
@@ -80,7 +80,7 @@ def result():
 
     tool_views = []
     for i, (key, t, symbol) in enumerate(TOOLS):
-        ic = Image(id=f"tool-{key}-icon", system=symbol, size=18, weight="medium", tint="black")
+        ic = Image(id=f"tool-{key}-icon", system=symbol, size=18, weight="medium", tint="dsTextPrimary")
         circle = View(id=f"tool-{key}-circle", cls="DSView", bg="dsSurface", runtime={"pill": True}, children=[ic])
         lb = Label(t, id=f"tool-{key}-label", font=("Medium", 11), align="center", minScale=0.7,
                    collection="toolLabels", tag_value=i)
@@ -103,8 +103,8 @@ def result():
     ask_tap = Control(id="ask-tap", cls="DSPressableControl", bg="clear", outlet="askControl",
                       runtime={"pressedScale": 0.98, "hapticOnPress": False},
                       children=[HStack([ask_icon, ask_label], id="ask-row", spacing=10, align="center")]).on("didTapAsk:")
-    mic_icon = Image(id="mic-icon", system="mic", size=15, weight="medium", tint="black")
-    mic = Control(id="mic", cls="DSPressableControl", bg="white", outlet="micButton", accessibility="Speak a change",
+    mic_icon = Image(id="mic-icon", system="mic", size=15, weight="medium", tint="dsTextPrimary")
+    mic = Control(id="mic", cls="DSPressableControl", bg="dsCard", outlet="micButton", accessibility="Speak a change",
                   runtime={"pill": True}, children=[mic_icon]).on("didTapMic:")
     ask_bar = View(id="ask-bar", cls="DSView", bg="dsSurface", outlet="askBarView", runtime={"pill": True},
                    children=[ask_tap, mic])
@@ -116,7 +116,7 @@ def result():
 
     panel_stack = VStack([inset(header, "w-header"), versions, tools, inset(ask_bar, "w-ask")], id="panel-stack",
                          spacing=14, outlet="panelStack")
-    panel = View(id="panel", cls="DSView", bg="white", outlet="panelView",
+    panel = View(id="panel", cls="DSView", bg="dsBackground", outlet="panelView",
                  runtime={"cornerRadius": 34, "layer.maskedCorners": 3}, children=[panel_stack])
 
     # ---------------- R6 · ask (typing) ----------------
@@ -140,7 +140,7 @@ def result():
     send = Control(id="send", cls="DSPrimaryButton", outlet="sendButton", accessibility="Send",
                    children=[send_icon]).on("didTapSend:")
     ask_row = HStack([ask_field, send], id="ask-row2", spacing=10, align="bottom")
-    ask_panel = View(id="ask-panel", cls="DSView", bg="white", outlet="askPanelView", hidden=True,
+    ask_panel = View(id="ask-panel", cls="DSView", bg="dsBackground", outlet="askPanelView", hidden=True,
                      runtime={"cornerRadius": 28, "layer.maskedCorners": 3, "shadowOpacity": 0.1, "shadowRadius": 20},
                      children=[VStack([inset(ask_head, "w-ask-head"), sug_scroll, inset(ask_row, "w-ask-row")],
                                       id="ask-stack", spacing=12)])
@@ -167,7 +167,7 @@ def result():
     v_text.bg = "dsSurface"
     v_controls = HStack([v_cancel, v_done_wrap, v_text], id="v-controls", dist="equalSpacing", align="center",
                         margins=(0, 20, 0, 20))
-    voice_panel = View(id="voice-panel", cls="DSView", bg="white", outlet="voicePanelView", hidden=True,
+    voice_panel = View(id="voice-panel", cls="DSView", bg="dsBackground", outlet="voicePanelView", hidden=True,
                        runtime={"cornerRadius": 34, "layer.maskedCorners": 3},
                        children=[VStack([listen_row, wave, transcript, v_controls], id="voice-stack", spacing=16,
                                         align="center")])
@@ -273,8 +273,8 @@ def version_cell():
     thumb = Image(id="thumb", mode="scaleAspectFill", cls="DSImageView", bg="dsSurface", runtime={"cornerRadius": 16},
                   outlet="thumbImageView")
     ring = View(id="ring", cls="DSView", bg="clear", interaction=False, outlet="ringView",
-                runtime={"cornerRadius": 16, "borderWidth": 2.5, "borderColor": "black"})
-    again_icon = Image(id="again-icon", system="arrow.clockwise", size=17, weight="medium", tint="black",
+                runtime={"cornerRadius": 16, "borderWidth": 2.5, "borderColor": "dsTextPrimary"})
+    again_icon = Image(id="again-icon", system="arrow.clockwise", size=17, weight="medium", tint="dsTextPrimary",
                        outlet="againIconView", hidden=True)
     label = Label("V1", id="label", font=("Regular", 11), color="dsTextTertiary", align="center", outlet="titleLabel")
     d.cell(thumb, ring, again_icon, label)
@@ -303,7 +303,7 @@ def compare():
     close = glass_button("close", "xmark", outlet="closeButton", action="didTapClose:", dark=True, accessibility="Close")
     fit = glass_button("fit", "viewfinder", outlet="fitButton", action="didTapFit:", dark=True,
                        accessibility="Reset zoom")
-    seg_knob = View(id="seg-knob", cls="DSView", bg="white", outlet="segmentKnob", runtime={"pill": True})
+    seg_knob = View(id="seg-knob", cls="DSView", bg="dsCard", outlet="segmentKnob", runtime={"pill": True})
     segs = []
     for i, t in enumerate(["Original", "Split", "Result"]):
         c = Control(id=f"seg{i}", cls="DSPressableControl", tag_value=i, collection="segmentControls",
@@ -313,7 +313,7 @@ def compare():
         center(c.children[0])
         segs.append(c)
     seg_row = HStack(segs, id="seg-row", dist="fillEqually")
-    segmented = View(id="segmented", cls="DSView", bg=("#FFFFFF", 0.9), runtime={"pill": True}, outlet="segmentedView",
+    segmented = View(id="segmented", cls="DSView", bg="dsGlass", runtime={"pill": True}, outlet="segmentedView",
                      children=[seg_knob, seg_row])
     root.add(stage, close, fit, segmented)
     pin(stage, edges="lr")
@@ -356,13 +356,13 @@ def sheet_sub(text, id="sub", outlet="subtitleLabel"):
 def change_style_sheet():
     d = Doc("ChangeStyleSheetViewController", owner="ChangeStyleSheetViewController", size=(393, 640))
     root = d.root
-    root.bg = "white"
+    root.bg = "dsBackground"
     close = glass_button("close", "xmark", outlet="closeButton", action="didTapClose:", size=36, icon=16,
                          accessibility="Close")
     grid = Collection(id="grid", spacing=12, item=(104, 128), outlet="collectionView")
     see_all = Button("See all styles", id="see-all", font=("Medium", 14), color="dsLink", outlet="seeAllButton").on(
         "didTapSeeAll:")
-    seg_knob = View(id="seg-knob", cls="DSView", bg="white", outlet="strengthKnob",
+    seg_knob = View(id="seg-knob", cls="DSView", bg="dsCard", outlet="strengthKnob",
                     runtime={"cornerRadius": 16, "shadowOpacity": 0.12, "shadowRadius": 3, "shadowOffsetY": 2})
     segs = []
     for i, t in enumerate(["Subtle", "Balanced", "Bold"]):
@@ -434,7 +434,7 @@ def change_style_cell():
 def share_sheet():
     d = Doc("ShareSheetViewController", owner="ShareSheetViewController", size=(393, 700))
     root = d.root
-    root.bg = "white"
+    root.bg = "dsBackground"
     close = glass_button("close", "xmark", outlet="closeButton", action="didTapClose:", size=36, icon=16,
                          accessibility="Close")
     before = Image(id="before", mode="scaleAspectFill", outlet="beforeImageView")
@@ -443,7 +443,7 @@ def share_sheet():
     preview = View(id="preview", cls="DSView", bg="black", clips=True, runtime={"cornerRadius": 22},
                    outlet="previewView",
                    children=[HStack([before, after], id="ba", spacing=2, dist="fillEqually"), single])
-    seg_knob = View(id="seg-knob", cls="DSView", bg="white", outlet="formatKnob",
+    seg_knob = View(id="seg-knob", cls="DSView", bg="dsCard", outlet="formatKnob",
                     runtime={"cornerRadius": 16, "shadowOpacity": 0.12, "shadowRadius": 3, "shadowOffsetY": 2})
     segs = []
     for i, t in enumerate(["Before / After", "Result", "Story 9:16"]):
@@ -459,8 +459,8 @@ def share_sheet():
                    children=[seg_knob, seg_row])
 
     def option_row(id, icon, title, sub, accessory):
-        ic = Image(id=f"{id}-icon", system=icon, size=15, weight="medium", tint="black")
-        box = View(id=f"{id}-box", cls="DSView", bg="white", runtime={"cornerRadius": 9}, children=[ic])
+        ic = Image(id=f"{id}-icon", system=icon, size=15, weight="medium", tint="dsTextPrimary")
+        box = View(id=f"{id}-box", cls="DSView", bg="dsCard", runtime={"cornerRadius": 9}, children=[ic])
         t = Label(title, id=f"{id}-t", font=("Medium", 16))
         s = Label(sub, id=f"{id}-s", font=("Regular", 13), color="dsTextTertiary")
         row = HStack([box, VStack([t, s], id=f"{id}-texts", spacing=2), View(id=f"{id}-sp", bg="clear", hug=(1, 250)),
@@ -474,19 +474,19 @@ def share_sheet():
     mark_switch = Switch(id="mark-switch", on=True, onTint="#34C759", outlet="watermarkSwitch")
     crown = Image(id="pro-crown", system="crown.fill", size=12, weight="semibold", tint="black")
     pro_badge = View(id="pro-badge", cls="DSView", bg="dsLime", runtime={"pill": True}, outlet="hdProBadge",
-                     children=[HStack([crown, Label("PRO", id="pro-l", font=("Bold", 13))], id="pro-row", spacing=4,
+                     children=[HStack([crown, Label("PRO", id="pro-l", font=("Bold", 13), color="black")], id="pro-row", spacing=4,
                                       align="center", margins=(0, 10, 0, 12))])
     hd_switch = Switch(id="hd-switch", on=False, onTint="#34C759", outlet="hdSwitch", hidden=True)
     hd_access = HStack([pro_badge, hd_switch], id="hd-access", spacing=0, align="center")
     row1 = option_row("mark", "sparkles", "Made with Rehomely", "Small mark in the corner", mark_switch)
     row2 = option_row("hd", "photo.on.rectangle", "HD export · 4K", "Free: 1080 px", hd_access)
-    divider = View(id="divider", bg="#EBEBEB")
+    divider = View(id="divider", bg="dsDivider")
     options = View(id="options", cls="DSView", bg="dsSurface", runtime={"cornerRadius": 18},
                    children=[VStack([row1, divider, row2], id="opt-stack")])
     actions = []
     for i, (key, t, symbol) in enumerate([("save", "Save", "arrow.down.to.line"), ("copy", "Copy", "doc.on.doc"),
                                           ("messages", "Messages", "message"), ("more", "More", "ellipsis")]):
-        ic = Image(id=f"act-{key}-icon", system=symbol, size=18, weight="medium", tint="black")
+        ic = Image(id=f"act-{key}-icon", system=symbol, size=18, weight="medium", tint="dsTextPrimary")
         circle = View(id=f"act-{key}-circle", cls="DSView", bg="dsChip", runtime={"pill": True}, children=[ic])
         lb = Label(t, id=f"act-{key}-l", font=("Regular", 12), color="dsTextSecondary", align="center",
                    collection="actionLabels", tag_value=i)
@@ -530,7 +530,7 @@ def share_sheet():
 def dislike_sheet():
     d = Doc("DislikeSheetViewController", owner="DislikeSheetViewController", size=(393, 560))
     root = d.root
-    root.bg = "white"
+    root.bg = "dsBackground"
     close = glass_button("close", "xmark", outlet="closeButton", action="didTapClose:", size=36, icon=16,
                          accessibility="Close")
     reasons = ["Changed my room layout", "Doesn't look realistic", "Wrong style", "Weird objects or artifacts",

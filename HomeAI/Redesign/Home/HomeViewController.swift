@@ -121,7 +121,7 @@ final class HomeViewController: UIViewController {
         microTimers.removeAll()
     }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle { .darkContent }
+    override var preferredStatusBarStyle: UIStatusBarStyle { .default }
 
     deinit {
         [historyObserver, networkObserver, projectsObserver].compactMap { $0 }.forEach(NotificationCenter.default.removeObserver)

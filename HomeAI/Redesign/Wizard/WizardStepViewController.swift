@@ -42,7 +42,7 @@ class WizardStepViewController: UIViewController {
         }
     }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle { .darkContent }
+    override var preferredStatusBarStyle: UIStatusBarStyle { .default }
 
     // MARK: Nav bar (responder-chain actions from WizardNavBar.xib)
 

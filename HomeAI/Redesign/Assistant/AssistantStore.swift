@@ -152,7 +152,7 @@ final class AssistantStore {
             let heading = i == 0 && line.hasSuffix(":") && paragraphs.count > 1
             let base: [NSAttributedString.Key: Any] = [
                 .font: DS.Font.geologica(heading ? .semiBold : .regular, 15),
-                .foregroundColor: UIColor.black,
+                .foregroundColor: DS.Color.textPrimary,
                 .paragraphStyle: style
             ]
             let piece = NSMutableAttributedString()

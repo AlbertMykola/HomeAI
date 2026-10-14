@@ -59,7 +59,7 @@
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="32"/></userDefinedRuntimeAttribute>
                                 <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0.5"/></userDefinedRuntimeAttribute>
-                                <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" name="dsGlassBorder"/></userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
                         </view>
                         <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="row" opaque="NO" distribution="fillEqually" spacing="0">
@@ -78,8 +78,8 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" weight="medium"/>
                                                     <color key="tintColor" name="dsTextSecondary"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="24" id="c23"/>
-                                                        <constraint firstAttribute="height" constant="24" id="c24"/>
+                                                        <constraint firstAttribute="width" constant="24" id="c307"/>
+                                                        <constraint firstAttribute="height" constant="24" id="c308"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="create-label" opaque="NO" text="Create" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
@@ -89,12 +89,12 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="create-hl" firstAttribute="leading" secondItem="create-item" secondAttribute="leading" id="c17"/>
-                                        <constraint firstItem="create-hl" firstAttribute="top" secondItem="create-item" secondAttribute="top" id="c18"/>
-                                        <constraint firstItem="create-item" firstAttribute="trailing" secondItem="create-hl" secondAttribute="trailing" id="c19"/>
-                                        <constraint firstItem="create-item" firstAttribute="bottom" secondItem="create-hl" secondAttribute="bottom" id="c20"/>
-                                        <constraint firstItem="create-stack" firstAttribute="centerX" secondItem="create-item" secondAttribute="centerX" id="c21"/>
-                                        <constraint firstItem="create-stack" firstAttribute="centerY" secondItem="create-item" secondAttribute="centerY" id="c22"/>
+                                        <constraint firstItem="create-hl" firstAttribute="leading" secondItem="create-item" secondAttribute="leading" id="c301"/>
+                                        <constraint firstItem="create-hl" firstAttribute="top" secondItem="create-item" secondAttribute="top" id="c302"/>
+                                        <constraint firstItem="create-item" firstAttribute="trailing" secondItem="create-hl" secondAttribute="trailing" id="c303"/>
+                                        <constraint firstItem="create-item" firstAttribute="bottom" secondItem="create-hl" secondAttribute="bottom" id="c304"/>
+                                        <constraint firstItem="create-stack" firstAttribute="centerX" secondItem="create-item" secondAttribute="centerX" id="c305"/>
+                                        <constraint firstItem="create-stack" firstAttribute="centerY" secondItem="create-item" secondAttribute="centerY" id="c306"/>
                                     </constraints>
                                     <accessibility key="accessibilityConfiguration" label="Create"/>
                                     <userDefinedRuntimeAttributes>
@@ -117,8 +117,8 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" weight="medium"/>
                                                     <color key="tintColor" name="dsTextSecondary"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="24" id="c31"/>
-                                                        <constraint firstAttribute="height" constant="24" id="c32"/>
+                                                        <constraint firstAttribute="width" constant="24" id="c315"/>
+                                                        <constraint firstAttribute="height" constant="24" id="c316"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="inspiration-label" opaque="NO" text="Inspiration" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
@@ -128,12 +128,12 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="inspiration-hl" firstAttribute="leading" secondItem="inspiration-item" secondAttribute="leading" id="c25"/>
-                                        <constraint firstItem="inspiration-hl" firstAttribute="top" secondItem="inspiration-item" secondAttribute="top" id="c26"/>
-                                        <constraint firstItem="inspiration-item" firstAttribute="trailing" secondItem="inspiration-hl" secondAttribute="trailing" id="c27"/>
-                                        <constraint firstItem="inspiration-item" firstAttribute="bottom" secondItem="inspiration-hl" secondAttribute="bottom" id="c28"/>
-                                        <constraint firstItem="inspiration-stack" firstAttribute="centerX" secondItem="inspiration-item" secondAttribute="centerX" id="c29"/>
-                                        <constraint firstItem="inspiration-stack" firstAttribute="centerY" secondItem="inspiration-item" secondAttribute="centerY" id="c30"/>
+                                        <constraint firstItem="inspiration-hl" firstAttribute="leading" secondItem="inspiration-item" secondAttribute="leading" id="c309"/>
+                                        <constraint firstItem="inspiration-hl" firstAttribute="top" secondItem="inspiration-item" secondAttribute="top" id="c310"/>
+                                        <constraint firstItem="inspiration-item" firstAttribute="trailing" secondItem="inspiration-hl" secondAttribute="trailing" id="c311"/>
+                                        <constraint firstItem="inspiration-item" firstAttribute="bottom" secondItem="inspiration-hl" secondAttribute="bottom" id="c312"/>
+                                        <constraint firstItem="inspiration-stack" firstAttribute="centerX" secondItem="inspiration-item" secondAttribute="centerX" id="c313"/>
+                                        <constraint firstItem="inspiration-stack" firstAttribute="centerY" secondItem="inspiration-item" secondAttribute="centerY" id="c314"/>
                                     </constraints>
                                     <accessibility key="accessibilityConfiguration" label="Inspiration"/>
                                     <userDefinedRuntimeAttributes>
@@ -156,8 +156,8 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" weight="medium"/>
                                                     <color key="tintColor" name="dsTextSecondary"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="24" id="c39"/>
-                                                        <constraint firstAttribute="height" constant="24" id="c40"/>
+                                                        <constraint firstAttribute="width" constant="24" id="c323"/>
+                                                        <constraint firstAttribute="height" constant="24" id="c324"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="projects-label" opaque="NO" text="Projects" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
@@ -167,12 +167,12 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="projects-hl" firstAttribute="leading" secondItem="projects-item" secondAttribute="leading" id="c33"/>
-                                        <constraint firstItem="projects-hl" firstAttribute="top" secondItem="projects-item" secondAttribute="top" id="c34"/>
-                                        <constraint firstItem="projects-item" firstAttribute="trailing" secondItem="projects-hl" secondAttribute="trailing" id="c35"/>
-                                        <constraint firstItem="projects-item" firstAttribute="bottom" secondItem="projects-hl" secondAttribute="bottom" id="c36"/>
-                                        <constraint firstItem="projects-stack" firstAttribute="centerX" secondItem="projects-item" secondAttribute="centerX" id="c37"/>
-                                        <constraint firstItem="projects-stack" firstAttribute="centerY" secondItem="projects-item" secondAttribute="centerY" id="c38"/>
+                                        <constraint firstItem="projects-hl" firstAttribute="leading" secondItem="projects-item" secondAttribute="leading" id="c317"/>
+                                        <constraint firstItem="projects-hl" firstAttribute="top" secondItem="projects-item" secondAttribute="top" id="c318"/>
+                                        <constraint firstItem="projects-item" firstAttribute="trailing" secondItem="projects-hl" secondAttribute="trailing" id="c319"/>
+                                        <constraint firstItem="projects-item" firstAttribute="bottom" secondItem="projects-hl" secondAttribute="bottom" id="c320"/>
+                                        <constraint firstItem="projects-stack" firstAttribute="centerX" secondItem="projects-item" secondAttribute="centerX" id="c321"/>
+                                        <constraint firstItem="projects-stack" firstAttribute="centerY" secondItem="projects-item" secondAttribute="centerY" id="c322"/>
                                     </constraints>
                                     <accessibility key="accessibilityConfiguration" label="Projects"/>
                                     <userDefinedRuntimeAttributes>
@@ -195,8 +195,8 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" weight="medium"/>
                                                     <color key="tintColor" name="dsTextSecondary"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="24" id="c47"/>
-                                                        <constraint firstAttribute="height" constant="24" id="c48"/>
+                                                        <constraint firstAttribute="width" constant="24" id="c331"/>
+                                                        <constraint firstAttribute="height" constant="24" id="c332"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="profile-label" opaque="NO" text="Profile" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
@@ -206,12 +206,12 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="profile-hl" firstAttribute="leading" secondItem="profile-item" secondAttribute="leading" id="c41"/>
-                                        <constraint firstItem="profile-hl" firstAttribute="top" secondItem="profile-item" secondAttribute="top" id="c42"/>
-                                        <constraint firstItem="profile-item" firstAttribute="trailing" secondItem="profile-hl" secondAttribute="trailing" id="c43"/>
-                                        <constraint firstItem="profile-item" firstAttribute="bottom" secondItem="profile-hl" secondAttribute="bottom" id="c44"/>
-                                        <constraint firstItem="profile-stack" firstAttribute="centerX" secondItem="profile-item" secondAttribute="centerX" id="c45"/>
-                                        <constraint firstItem="profile-stack" firstAttribute="centerY" secondItem="profile-item" secondAttribute="centerY" id="c46"/>
+                                        <constraint firstItem="profile-hl" firstAttribute="leading" secondItem="profile-item" secondAttribute="leading" id="c325"/>
+                                        <constraint firstItem="profile-hl" firstAttribute="top" secondItem="profile-item" secondAttribute="top" id="c326"/>
+                                        <constraint firstItem="profile-item" firstAttribute="trailing" secondItem="profile-hl" secondAttribute="trailing" id="c327"/>
+                                        <constraint firstItem="profile-item" firstAttribute="bottom" secondItem="profile-hl" secondAttribute="bottom" id="c328"/>
+                                        <constraint firstItem="profile-stack" firstAttribute="centerX" secondItem="profile-item" secondAttribute="centerX" id="c329"/>
+                                        <constraint firstItem="profile-stack" firstAttribute="centerY" secondItem="profile-item" secondAttribute="centerY" id="c330"/>
                                     </constraints>
                                     <accessibility key="accessibilityConfiguration" label="Profile"/>
                                     <userDefinedRuntimeAttributes>
@@ -225,18 +225,18 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="blur" firstAttribute="leading" secondItem="card" secondAttribute="leading" id="c5"/>
-                        <constraint firstItem="blur" firstAttribute="top" secondItem="card" secondAttribute="top" id="c6"/>
-                        <constraint firstItem="card" firstAttribute="trailing" secondItem="blur" secondAttribute="trailing" id="c7"/>
-                        <constraint firstItem="card" firstAttribute="bottom" secondItem="blur" secondAttribute="bottom" id="c8"/>
-                        <constraint firstItem="tint" firstAttribute="leading" secondItem="card" secondAttribute="leading" id="c9"/>
-                        <constraint firstItem="tint" firstAttribute="top" secondItem="card" secondAttribute="top" id="c10"/>
-                        <constraint firstItem="card" firstAttribute="trailing" secondItem="tint" secondAttribute="trailing" id="c11"/>
-                        <constraint firstItem="card" firstAttribute="bottom" secondItem="tint" secondAttribute="bottom" id="c12"/>
-                        <constraint firstItem="row" firstAttribute="leading" secondItem="card" secondAttribute="leading" constant="5" id="c13"/>
-                        <constraint firstItem="row" firstAttribute="top" secondItem="card" secondAttribute="top" constant="5" id="c14"/>
-                        <constraint firstItem="card" firstAttribute="trailing" secondItem="row" secondAttribute="trailing" constant="5" id="c15"/>
-                        <constraint firstItem="card" firstAttribute="bottom" secondItem="row" secondAttribute="bottom" constant="5" id="c16"/>
+                        <constraint firstItem="blur" firstAttribute="leading" secondItem="card" secondAttribute="leading" id="c289"/>
+                        <constraint firstItem="blur" firstAttribute="top" secondItem="card" secondAttribute="top" id="c290"/>
+                        <constraint firstItem="card" firstAttribute="trailing" secondItem="blur" secondAttribute="trailing" id="c291"/>
+                        <constraint firstItem="card" firstAttribute="bottom" secondItem="blur" secondAttribute="bottom" id="c292"/>
+                        <constraint firstItem="tint" firstAttribute="leading" secondItem="card" secondAttribute="leading" id="c293"/>
+                        <constraint firstItem="tint" firstAttribute="top" secondItem="card" secondAttribute="top" id="c294"/>
+                        <constraint firstItem="card" firstAttribute="trailing" secondItem="tint" secondAttribute="trailing" id="c295"/>
+                        <constraint firstItem="card" firstAttribute="bottom" secondItem="tint" secondAttribute="bottom" id="c296"/>
+                        <constraint firstItem="row" firstAttribute="leading" secondItem="card" secondAttribute="leading" constant="5" id="c297"/>
+                        <constraint firstItem="row" firstAttribute="top" secondItem="card" secondAttribute="top" constant="5" id="c298"/>
+                        <constraint firstItem="card" firstAttribute="trailing" secondItem="row" secondAttribute="trailing" constant="5" id="c299"/>
+                        <constraint firstItem="card" firstAttribute="bottom" secondItem="row" secondAttribute="bottom" constant="5" id="c300"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="32"/></userDefinedRuntimeAttribute>
@@ -249,10 +249,10 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="root-safeArea"/>
             <constraints>
-                <constraint firstItem="card" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c1"/>
-                <constraint firstItem="card" firstAttribute="top" secondItem="root" secondAttribute="top" id="c2"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="card" secondAttribute="trailing" id="c3"/>
-                <constraint firstItem="root" firstAttribute="bottom" secondItem="card" secondAttribute="bottom" id="c4"/>
+                <constraint firstItem="card" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c285"/>
+                <constraint firstItem="card" firstAttribute="top" secondItem="root" secondAttribute="top" id="c286"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="card" secondAttribute="trailing" id="c287"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="card" secondAttribute="bottom" id="c288"/>
             </constraints>
         </view>
         </objects>
@@ -261,6 +261,9 @@
         <image name="person" catalog="system" width="128" height="128"/>
         <image name="plus.square" catalog="system" width="128" height="128"/>
         <image name="square.grid.2x2" catalog="system" width="128" height="128"/>
+        <namedColor name="dsGlassBorder">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="0.900" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="dsLimeTint">
             <color red="0.6471" green="0.9333" blue="0.1843" alpha="0.300" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

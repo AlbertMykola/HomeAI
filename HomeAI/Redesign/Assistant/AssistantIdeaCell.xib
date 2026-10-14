@@ -59,7 +59,7 @@
                                                 </constraints>
                                             </imageView>
                                             <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="apply-label" userLabel="applyTitleLabel" opaque="NO" text="Apply to my photo" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
-                                                <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="14"/><color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/><nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
@@ -74,7 +74,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" name="dsCard"/>
                         <constraints>
                             <constraint firstItem="preview" firstAttribute="leading" secondItem="card" secondAttribute="leading" id="c169"/>
                             <constraint firstItem="preview" firstAttribute="top" secondItem="card" secondAttribute="top" id="c170"/>
@@ -89,7 +89,7 @@
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="22"/></userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="1"/></userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="0.9216" green="0.9216" blue="0.9216" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" name="dsDivider"/></userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
@@ -111,6 +111,12 @@
         </objects>
     <resources>
         <image name="sparkles" catalog="system" width="128" height="128"/>
+        <namedColor name="dsCard">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsDivider">
+            <color red="0.9216" green="0.9216" blue="0.9216" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="dsSurface">
             <color red="0.9686" green="0.9686" blue="0.9686" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

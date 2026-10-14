@@ -11,6 +11,10 @@ enum DS {
         static let limeText = UIColor(named: "dsLimeText")!
         static let link = UIColor(named: "dsLink")!
         static let surface = UIColor(named: "dsSurface")!
+        /// Screen background: white / #0E0E0F.
+        static let background = UIColor(named: "dsBackground")!
+        /// Raised surface on grey groups (icon boxes, knobs): white / #2C2C2E.
+        static let card = UIColor(named: "dsCard")!
         static let textPrimary = UIColor(named: "dsTextPrimary")!
         static let textSecondary = UIColor(named: "dsTextSecondary")!
         static let textTertiary = UIColor(named: "dsTextTertiary")!

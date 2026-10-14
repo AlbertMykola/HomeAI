@@ -10,6 +10,8 @@ class DSPressableControl: UIControl {
     @IBInspectable var shadowOffsetY: CGFloat = 0 { didSet { applyShadow() } }
     @IBInspectable var shadowColor: UIColor = .black { didSet { applyShadow() } }
     @IBInspectable var pressedScale: CGFloat = 0.96
+    /// Border colour that follows light / dark.
+    @IBInspectable var dsBorderColor: UIColor? { didSet { layer.borderColor = dsBorderColor?.resolvedColor(with: traitCollection).cgColor } }
     @IBInspectable var hapticOnPress: Bool = true
     /// Dimmed look used e.g. offline (opacity 0.45) while still receiving taps.
     @IBInspectable var dimmed: Bool = false { didSet { alpha = dimmed ? 0.45 : 1 } }
@@ -51,6 +53,12 @@ class DSPressableControl: UIControl {
         #endif
     }
 
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        super.traitCollectionDidChange(previousTraitCollection)
+        if let dsBorderColor { layer.borderColor = dsBorderColor.resolvedColor(with: traitCollection).cgColor }
+        applyShadow()
+    }
+
     override func layoutSubviews() {
         super.layoutSubviews()
         if pill { layer.cornerRadius = bounds.height / 2 }
@@ -81,7 +89,7 @@ class DSPressableControl: UIControl {
     }
 
     private func applyShadow() {
-        layer.shadowColor = shadowColor.cgColor
+        layer.shadowColor = shadowColor.resolvedColor(with: traitCollection).cgColor
         layer.shadowOpacity = shadowOpacity
         layer.shadowRadius = shadowRadius
         layer.shadowOffset = CGSize(width: 0, height: shadowOffsetY)

@@ -6,7 +6,7 @@ def tool_screen(name, title, subtitle, photo_status=False, cta_title="Generate",
     """W1 → T<n> (step 2/2): nav, title, photo summary, then sections added by the caller to `body`."""
     d = Doc(name, owner=name)
     root = d.root
-    root.bg = "white"
+    root.bg = "dsBackground"
     sa = d.safe_area
     titles = title_group(title, subtitle)
     thumb = Image(id="ps-thumb", mode="scaleAspectFill", cls="DSImageView", runtime={"cornerRadius": 14},
@@ -71,7 +71,7 @@ def chip_scroll(id, titles, collection, action, first_selected=True, outlet=None
 
 
 def segmented(id, titles, outlet_prefix, action, height=40):
-    knob = View(id=f"{id}-knob", cls="DSView", bg="white", outlet=f"{outlet_prefix}Knob",
+    knob = View(id=f"{id}-knob", cls="DSView", bg="dsCard", outlet=f"{outlet_prefix}Knob",
                 runtime={"cornerRadius": (height - 6) / 2, "shadowOpacity": 0.12, "shadowRadius": 3, "shadowOffsetY": 2})
     segs = []
     for i, t in enumerate(titles):
@@ -339,17 +339,17 @@ def floor_plan_tool():
     tip = Label("Clear 2D plans with labelled rooms work best. Hand sketches are fine too.", id="plan-tip",
                 font=("Regular", 13), color="dsTextSecondary", lines=0, outlet="planTipLabel")
     replace = secondary_button("plan-replace", "Replace", outlet="replacePlanButton", action="didTapChangePhoto:",
-                               height=36, bg="white", icon="arrow.clockwise", font=("Medium", 14))
+                               height=36, bg="dsCard", icon="arrow.clockwise", font=("Medium", 14))
     replace.runtime["borderWidth"] = 1
     replace.runtime["borderColor"] = "#E5E5EA"
     right = VStack([badge, tip, replace], id="plan-right", spacing=10, align="leading")
-    plan_card = View(id="plan-card", cls="DSView", bg="white", runtime={"cornerRadius": 22, "borderWidth": 1,
+    plan_card = View(id="plan-card", cls="DSView", bg="dsCard", runtime={"cornerRadius": 22, "borderWidth": 1,
                                                                         "borderColor": "#EDEDED"},
                      children=[HStack([plan_img, right], id="plan-row", spacing=14, align="center",
                                       margins=(10, 10, 10, 14))])
 
     def view_card(i, symbol, title, sub):
-        ic = Image(id=f"view{i}-i", system=symbol, size=20, weight="medium", tint="black")
+        ic = Image(id=f"view{i}-i", system=symbol, size=20, weight="medium", tint="dsTextPrimary")
         t = Label(title, id=f"view{i}-t", font=("SemiBold", 15), collection="viewTitleLabels", tag_value=i)
         s = Label(sub, id=f"view{i}-s", font=("Regular", 12), color="dsTextTertiary", collection="viewSubtitleLabels",
                   tag_value=i)
@@ -388,14 +388,14 @@ def rearrange_tool():
                ("desktopcomputer", "Work zone", "Desk by the window, reading corner"),
                ("person.2", "Conversation", "Sofas facing each other")]
     for i, (symbol, t, s) in enumerate(options):
-        ic = Image(id=f"opt{i}-i", system=symbol, size=20, weight="medium", tint="black")
-        box = View(id=f"opt{i}-box", cls="DSView", bg="white", runtime={"cornerRadius": 12}, children=[ic])
+        ic = Image(id=f"opt{i}-i", system=symbol, size=20, weight="medium", tint="dsTextPrimary")
+        box = View(id=f"opt{i}-box", cls="DSView", bg="dsCard", runtime={"cornerRadius": 12}, children=[ic])
         tl = Label(t, id=f"opt{i}-t", font=("SemiBold", 15), collection="optionTitleLabels", tag_value=i)
         sl = Label(s, id=f"opt{i}-s", font=("Regular", 12), color="dsTextTertiary", collection="optionSubtitleLabels",
                    tag_value=i, minScale=0.8)
         radio_dot = View(id=f"opt{i}-dot", cls="DSView", bg="black", runtime={"pill": True}, alpha=0,
                          collection="optionRadioDots", tag_value=i)
-        radio = View(id=f"opt{i}-radio", cls="DSView", bg="white", runtime={"pill": True, "borderWidth": 1.5,
+        radio = View(id=f"opt{i}-radio", cls="DSView", bg="dsCard", runtime={"pill": True, "borderWidth": 1.5,
                                                                             "borderColor": "#C7C7CC"},
                      collection="optionRadios", tag_value=i, children=[radio_dot])
         card = Control(id=f"opt{i}", cls="DSPressableControl", bg="dsSurface", tag_value=i, collection="optionCards",

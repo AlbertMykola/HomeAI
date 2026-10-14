@@ -36,10 +36,10 @@
                             <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="row" opaque="NO" alignment="center" spacing="12" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
                                 <subviews>
                                     <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thumb" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" userLabel="thumbImageView" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" name="dsCard"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="52" id="c206"/>
-                                            <constraint firstAttribute="height" constant="52" id="c207"/>
+                                            <constraint firstAttribute="width" constant="52" id="c2103"/>
+                                            <constraint firstAttribute="height" constant="52" id="c2104"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="12"/></userDefinedRuntimeAttribute>
@@ -63,16 +63,16 @@
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="26" id="c208"/>
-                                            <constraint firstAttribute="height" constant="26" id="c209"/>
-                                            <constraint firstItem="slot-label" firstAttribute="centerX" secondItem="slot" secondAttribute="centerX" id="c210"/>
-                                            <constraint firstItem="slot-label" firstAttribute="centerY" secondItem="slot" secondAttribute="centerY" id="c211"/>
+                                            <constraint firstAttribute="width" constant="26" id="c2105"/>
+                                            <constraint firstAttribute="height" constant="26" id="c2106"/>
+                                            <constraint firstItem="slot-label" firstAttribute="centerX" secondItem="slot" secondAttribute="centerX" id="c2107"/>
+                                            <constraint firstItem="slot-label" firstAttribute="centerY" secondItem="slot" secondAttribute="centerY" id="c2108"/>
                                         </constraints>
                                         <accessibility key="accessibilityConfiguration" label="Compare"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="13"/></userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="1.5"/></userDefinedRuntimeAttribute>
-                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="0.7804" green="0.7804" blue="0.8000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" red="0.7804" green="0.7804" blue="0.8000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
                                             <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSlot:"/>
                                         </userDefinedRuntimeAttributes>
                                     </view>
@@ -82,11 +82,11 @@
                         </subviews>
                         <color key="backgroundColor" name="dsSurface"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="68" id="c201"/>
-                            <constraint firstItem="row" firstAttribute="leading" secondItem="box" secondAttribute="leading" id="c202"/>
-                            <constraint firstItem="row" firstAttribute="top" secondItem="box" secondAttribute="top" id="c203"/>
-                            <constraint firstItem="box" firstAttribute="trailing" secondItem="row" secondAttribute="trailing" id="c204"/>
-                            <constraint firstItem="box" firstAttribute="bottom" secondItem="row" secondAttribute="bottom" id="c205"/>
+                            <constraint firstAttribute="height" constant="68" id="c2098"/>
+                            <constraint firstItem="row" firstAttribute="leading" secondItem="box" secondAttribute="leading" id="c2099"/>
+                            <constraint firstItem="row" firstAttribute="top" secondItem="box" secondAttribute="top" id="c2100"/>
+                            <constraint firstItem="box" firstAttribute="trailing" secondItem="row" secondAttribute="trailing" id="c2101"/>
+                            <constraint firstItem="box" firstAttribute="bottom" secondItem="row" secondAttribute="bottom" id="c2102"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="18"/></userDefinedRuntimeAttribute>
@@ -95,10 +95,10 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="box" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" constant="20" id="c197"/>
-                    <constraint firstItem="box" firstAttribute="top" secondItem="cell-content" secondAttribute="top" constant="4" id="c198"/>
-                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="box" secondAttribute="trailing" constant="20" id="c199"/>
-                    <constraint firstItem="cell-content" firstAttribute="bottom" secondItem="box" secondAttribute="bottom" constant="4" id="c200"/>
+                    <constraint firstItem="box" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" constant="20" id="c2094"/>
+                    <constraint firstItem="box" firstAttribute="top" secondItem="cell-content" secondAttribute="top" constant="4" id="c2095"/>
+                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="box" secondAttribute="trailing" constant="20" id="c2096"/>
+                    <constraint firstItem="cell-content" firstAttribute="bottom" secondItem="box" secondAttribute="bottom" constant="4" id="c2097"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
@@ -112,6 +112,9 @@
         </tableViewCell>
         </objects>
     <resources>
+        <namedColor name="dsCard">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="dsSurface">
             <color red="0.9686" green="0.9686" blue="0.9686" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -14,7 +14,7 @@ def tab_bar():
     blur = Blur(id="blur", style="systemUltraThinMaterialLight",
                 runtime={"layer.cornerRadius": 32})
     tint = View(id="tint", cls="DSView", bg="dsTabBar",
-                runtime={"cornerRadius": 32, "borderWidth": 0.5, "borderColor": "white"})
+                runtime={"cornerRadius": 32, "borderWidth": 0.5, "borderColor": "dsGlassBorder"})
     items = []
     for index, (key, title, symbol) in enumerate(TABS):
         hl = View(id=f"{key}-hl", cls="DSView", bg="dsLimeTint", collection="highlightViews", tag_value=index,

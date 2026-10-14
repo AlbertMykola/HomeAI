@@ -23,7 +23,7 @@ def editor_shell(name, title, make_right_buttons):
                 interaction=False,
                 children=[HStack([hint_icon, hint_label], id="hint-row", spacing=8, align="center", margins=(0, 14, 0, 14))])
     panel_stack = VStack([], id="panel-stack", spacing=16, outlet="panelStack")
-    panel = View(id="panel", cls="DSView", bg="white", outlet="panelView",
+    panel = View(id="panel", cls="DSView", bg="dsBackground", outlet="panelView",
                  runtime={"cornerRadius": 34, "layer.maskedCorners": 3, "shadowOpacity": 0.12, "shadowRadius": 15,
                           "shadowOffsetY": -6},
                  children=[panel_stack])
@@ -59,7 +59,7 @@ def panel_header(title, sub, extra=None):
 
 
 def segmented(id, titles, outlet_prefix, action, height=34, width=None):
-    knob = View(id=f"{id}-knob", cls="DSView", bg="white", outlet=f"{outlet_prefix}Knob",
+    knob = View(id=f"{id}-knob", cls="DSView", bg="dsCard", outlet=f"{outlet_prefix}Knob",
                 runtime={"cornerRadius": (height - 6) / 2, "shadowOpacity": 0.12, "shadowRadius": 3, "shadowOffsetY": 2})
     segs = []
     for i, t in enumerate(titles):
@@ -148,8 +148,8 @@ def replace_editor():
     spark = Image(id="prompt-icon", system="sparkles", size=15, weight="medium", tint="#5DAA12")
     field = TextField(placeholder="Describe the new object", font=("Regular", 15), id="prompt-field",
                       outlet="promptField")
-    mic_icon = Image(id="p-mic-icon", system="mic", size=15, weight="medium", tint="black")
-    mic = Control(id="p-mic", cls="DSPressableControl", bg="white", outlet="micButton", accessibility="Speak",
+    mic_icon = Image(id="p-mic-icon", system="mic", size=15, weight="medium", tint="dsTextPrimary")
+    mic = Control(id="p-mic", cls="DSPressableControl", bg="dsCard", outlet="micButton", accessibility="Speak",
                   runtime={"pill": True, "shadowOpacity": 0.08, "shadowRadius": 2, "shadowOffsetY": 1},
                   children=[mic_icon]).on("didTapMic:")
     prompt = View(id="prompt", cls="DSView", bg="dsSurface", runtime={"pill": True}, outlet="promptView",

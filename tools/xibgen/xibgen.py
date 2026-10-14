@@ -207,6 +207,9 @@ class El:
         if self.runtime:
             out.append(pad + "    <userDefinedRuntimeAttributes>")
             for k, v in self.runtime.items():
+                # DS views keep border colours dynamic (light / dark) through `dsBorderColor`.
+                if k == "borderColor" and (self.cls or "").startswith("DS"):
+                    k = "dsBorderColor"
                 out.append(pad + "        " + _runtime_attr(k, v))
             out.append(pad + "    </userDefinedRuntimeAttributes>")
         conns = self.connections_xml()
@@ -594,6 +597,9 @@ class Blur(El):
         if self.runtime:
             out.append(pad + "    <userDefinedRuntimeAttributes>")
             for k, v in self.runtime.items():
+                # DS views keep border colours dynamic (light / dark) through `dsBorderColor`.
+                if k == "borderColor" and (self.cls or "").startswith("DS"):
+                    k = "dsBorderColor"
                 out.append(pad + "        " + _runtime_attr(k, v))
             out.append(pad + "    </userDefinedRuntimeAttributes>")
         out.append(pad + "</visualEffectView>")

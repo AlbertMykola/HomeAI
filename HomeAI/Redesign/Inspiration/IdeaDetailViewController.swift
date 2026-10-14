@@ -127,9 +127,10 @@ final class IdeaDetailViewController: UIViewController {
         let saved = IdeasStore.shared.isSaved(idea.id)
         let navIcon = navSaveControl.subviews.compactMap { $0 as? UIImageView }.first
         navIcon?.image = UIImage(systemName: saved ? "bookmark.fill" : "bookmark")
+        navIcon?.tintColor = saved ? .black : DS.Color.textPrimary
         navSaveControl.backgroundColor = saved ? DS.Color.lime : UIColor(named: "dsGlass")
         saveIconView.image = UIImage(systemName: saved ? "bookmark.fill" : "bookmark")
-        saveControl.backgroundColor = saved ? .white : UIColor(named: "dsChip")
+        saveControl.backgroundColor = saved ? DS.Color.background : UIColor(named: "dsChip")
         saveControl.layer.borderWidth = saved ? 1.5 : 0
         saveControl.layer.borderColor = DS.Color.lime.cgColor
         let label = saved ? "Remove from Ideas".localized : "Save idea".localized
@@ -259,7 +260,7 @@ final class InspirationHeroTransition: NSObject, UIViewControllerTransitioningDe
         }
         detail.presentedWithZoom = true
         let backdrop = UIView(frame: container.bounds)
-        backdrop.backgroundColor = .white
+        backdrop.backgroundColor = DS.Color.background
         backdrop.alpha = 0
         container.insertSubview(backdrop, belowSubview: toView)
 
@@ -286,7 +287,7 @@ final class InspirationHeroTransition: NSObject, UIViewControllerTransitioningDe
         }
         zoom.addCompletion { _ in
             detail.heroImageView.alpha = 1
-            toView.backgroundColor = .white
+            toView.backgroundColor = DS.Color.background
             snapshot.removeFromSuperview()
             backdrop.removeFromSuperview()
             source.alpha = 1

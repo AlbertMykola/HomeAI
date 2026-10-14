@@ -31,7 +31,7 @@
                     <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thumb" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" userLabel="thumbImageView" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
                         <color key="backgroundColor" name="dsSurface"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="160" id="c899"/>
+                            <constraint firstAttribute="height" constant="160" id="c1183"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="22"/></userDefinedRuntimeAttribute>
@@ -50,12 +50,12 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="thumb" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c896"/>
-                    <constraint firstItem="thumb" firstAttribute="top" secondItem="cell-content" secondAttribute="top" id="c897"/>
-                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="thumb" secondAttribute="trailing" id="c898"/>
-                    <constraint firstItem="texts" firstAttribute="top" secondItem="thumb" secondAttribute="bottom" constant="8" id="c900"/>
-                    <constraint firstItem="texts" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c901"/>
-                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="texts" secondAttribute="trailing" id="c902"/>
+                    <constraint firstItem="thumb" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c1180"/>
+                    <constraint firstItem="thumb" firstAttribute="top" secondItem="cell-content" secondAttribute="top" id="c1181"/>
+                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="thumb" secondAttribute="trailing" id="c1182"/>
+                    <constraint firstItem="texts" firstAttribute="top" secondItem="thumb" secondAttribute="bottom" constant="8" id="c1184"/>
+                    <constraint firstItem="texts" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c1185"/>
+                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="texts" secondAttribute="trailing" id="c1186"/>
                 </constraints>
             </view>
             <connections>

@@ -11,6 +11,9 @@ final class FreeGenerationManager {
 
     private init() {}
 
+    /// Lifetime free designs (remote config).
+    var limit: Int { maxCount }
+
     // Зберігати у Keychain
     private func saveCount(_ count: Int) {
         guard let data = "\(count)".data(using: .utf8) else { return }

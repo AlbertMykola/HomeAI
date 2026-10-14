@@ -31,7 +31,7 @@
                     <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="img" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" userLabel="coverImageView" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
                         <color key="backgroundColor" name="dsSurface"/>
                         <constraints>
-                            <constraint firstItem="img" firstAttribute="height" secondItem="img" secondAttribute="width" multiplier="200:170" id="c89"/>
+                            <constraint firstItem="img" firstAttribute="height" secondItem="img" secondAttribute="width" multiplier="200:170" id="c1986"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="22"/></userDefinedRuntimeAttribute>
@@ -42,7 +42,7 @@
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="22"/></userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="3"/></userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" name="dsLime"/></userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" name="dsLime"/></userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="version" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
@@ -58,11 +58,11 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.350" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="24" id="c81"/>
-                            <constraint firstItem="version-row" firstAttribute="leading" secondItem="version" secondAttribute="leading" id="c82"/>
-                            <constraint firstItem="version-row" firstAttribute="top" secondItem="version" secondAttribute="top" id="c83"/>
-                            <constraint firstItem="version" firstAttribute="trailing" secondItem="version-row" secondAttribute="trailing" id="c84"/>
-                            <constraint firstItem="version" firstAttribute="bottom" secondItem="version-row" secondAttribute="bottom" id="c85"/>
+                            <constraint firstAttribute="height" constant="24" id="c1978"/>
+                            <constraint firstItem="version-row" firstAttribute="leading" secondItem="version" secondAttribute="leading" id="c1979"/>
+                            <constraint firstItem="version-row" firstAttribute="top" secondItem="version" secondAttribute="top" id="c1980"/>
+                            <constraint firstItem="version" firstAttribute="trailing" secondItem="version-row" secondAttribute="trailing" id="c1981"/>
+                            <constraint firstItem="version" firstAttribute="bottom" secondItem="version-row" secondAttribute="bottom" id="c1982"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="12.0"/></userDefinedRuntimeAttribute>
@@ -74,22 +74,22 @@
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="12" weight="bold"/>
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="15" id="c102"/>
-                                    <constraint firstAttribute="height" constant="15" id="c103"/>
+                                    <constraint firstAttribute="width" constant="15" id="c1999"/>
+                                    <constraint firstAttribute="height" constant="15" id="c2000"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.350" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="26" id="c98"/>
-                            <constraint firstAttribute="height" constant="26" id="c99"/>
-                            <constraint firstItem="check-icon" firstAttribute="centerX" secondItem="check" secondAttribute="centerX" id="c100"/>
-                            <constraint firstItem="check-icon" firstAttribute="centerY" secondItem="check" secondAttribute="centerY" id="c101"/>
+                            <constraint firstAttribute="width" constant="26" id="c1995"/>
+                            <constraint firstAttribute="height" constant="26" id="c1996"/>
+                            <constraint firstItem="check-icon" firstAttribute="centerX" secondItem="check" secondAttribute="centerX" id="c1997"/>
+                            <constraint firstItem="check-icon" firstAttribute="centerY" secondItem="check" secondAttribute="centerY" id="c1998"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="13"/></userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="2"/></userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.2"/></userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="6"/></userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="2"/></userDefinedRuntimeAttribute>
@@ -108,20 +108,20 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="img" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c86"/>
-                    <constraint firstItem="img" firstAttribute="top" secondItem="cell-content" secondAttribute="top" id="c87"/>
-                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="img" secondAttribute="trailing" id="c88"/>
-                    <constraint firstItem="ring" firstAttribute="leading" secondItem="img" secondAttribute="leading" id="c90"/>
-                    <constraint firstItem="ring" firstAttribute="top" secondItem="img" secondAttribute="top" id="c91"/>
-                    <constraint firstItem="img" firstAttribute="trailing" secondItem="ring" secondAttribute="trailing" id="c92"/>
-                    <constraint firstItem="img" firstAttribute="bottom" secondItem="ring" secondAttribute="bottom" id="c93"/>
-                    <constraint firstItem="version" firstAttribute="leading" secondItem="img" secondAttribute="leading" constant="8" id="c94"/>
-                    <constraint firstItem="img" firstAttribute="bottom" secondItem="version" secondAttribute="bottom" constant="8" id="c95"/>
-                    <constraint firstItem="check" firstAttribute="top" secondItem="img" secondAttribute="top" constant="8" id="c96"/>
-                    <constraint firstItem="img" firstAttribute="trailing" secondItem="check" secondAttribute="trailing" constant="8" id="c97"/>
-                    <constraint firstItem="texts" firstAttribute="top" secondItem="img" secondAttribute="bottom" constant="8" id="c104"/>
-                    <constraint firstItem="texts" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" constant="4" id="c105"/>
-                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="texts" secondAttribute="trailing" constant="4" id="c106"/>
+                    <constraint firstItem="img" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c1983"/>
+                    <constraint firstItem="img" firstAttribute="top" secondItem="cell-content" secondAttribute="top" id="c1984"/>
+                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="img" secondAttribute="trailing" id="c1985"/>
+                    <constraint firstItem="ring" firstAttribute="leading" secondItem="img" secondAttribute="leading" id="c1987"/>
+                    <constraint firstItem="ring" firstAttribute="top" secondItem="img" secondAttribute="top" id="c1988"/>
+                    <constraint firstItem="img" firstAttribute="trailing" secondItem="ring" secondAttribute="trailing" id="c1989"/>
+                    <constraint firstItem="img" firstAttribute="bottom" secondItem="ring" secondAttribute="bottom" id="c1990"/>
+                    <constraint firstItem="version" firstAttribute="leading" secondItem="img" secondAttribute="leading" constant="8" id="c1991"/>
+                    <constraint firstItem="img" firstAttribute="bottom" secondItem="version" secondAttribute="bottom" constant="8" id="c1992"/>
+                    <constraint firstItem="check" firstAttribute="top" secondItem="img" secondAttribute="top" constant="8" id="c1993"/>
+                    <constraint firstItem="img" firstAttribute="trailing" secondItem="check" secondAttribute="trailing" constant="8" id="c1994"/>
+                    <constraint firstItem="texts" firstAttribute="top" secondItem="img" secondAttribute="bottom" constant="8" id="c2001"/>
+                    <constraint firstItem="texts" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" constant="4" id="c2002"/>
+                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="texts" secondAttribute="trailing" constant="4" id="c2003"/>
                 </constraints>
             </view>
             <connections>

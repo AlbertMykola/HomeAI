@@ -6,7 +6,7 @@ from dslib import *
 def generation():
     d = Doc("GenerationViewController", owner="GenerationViewController")
     root = d.root
-    root.bg = "white"
+    root.bg = "dsBackground"
     sa = d.safe_area
 
     # ---------------- nav ----------------
@@ -67,7 +67,7 @@ def generation():
     steps = VStack(rows, id="steps", spacing=10, outlet="stepsStack")
 
     # ---------------- notify ----------------
-    bell = Image(id="bell", system="bell", size=16, weight="medium", tint="black", outlet="notifyIconView")
+    bell = Image(id="bell", system="bell", size=16, weight="medium", tint="dsTextPrimary", outlet="notifyIconView")
     notify_label = Label("Notify me when it's ready", id="notify-label", font=("Medium", 15), outlet="notifyLabel",
                          hug=(249, 251))
     chev = Image(id="notify-chev", system="chevron.right", size=13, weight="semibold", tint="dsTextTertiary",
@@ -102,7 +102,7 @@ def generation():
         "didTapFailureSecondary:")
     texts = VStack([f_title, f_body], id="f-texts", spacing=10, align="fill", outlet="failureTextStack")
     actions = VStack([f_primary, f_secondary], id="f-actions", spacing=10, align="fill", outlet="failureActionsStack")
-    failure = View(id="failure", bg="white", outlet="failureView", hidden=True,
+    failure = View(id="failure", bg="dsBackground", outlet="failureView", hidden=True,
                    children=[f_back, f_photo, f_tint, f_icon, texts, f_code, actions])
 
     root.add(collapse, nav_title, card, progress, steps, notify, failure)
@@ -171,7 +171,7 @@ def generation():
 def notify_sheet():
     d = Doc("NotifySheetViewController", owner="NotifySheetViewController", size=(393, 400))
     root = d.root
-    root.bg = "white"
+    root.bg = "dsBackground"
     title = Label("Get one ping when it's ready?", id="title", font=("SemiBold", 24), align="center", lines=0,
                   outlet="titleLabel")
     sub = Label("We'll send a single notification for this design. No spam, ever.", id="sub", font=("Regular", 15),

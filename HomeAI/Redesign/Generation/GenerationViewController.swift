@@ -65,7 +65,7 @@ final class GenerationViewController: UIViewController {
 
     private var expectedDuration: TimeInterval { 30 }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle { .darkContent }
+    override var preferredStatusBarStyle: UIStatusBarStyle { .default }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -207,7 +207,7 @@ final class GenerationViewController: UIViewController {
             let arc = CAShapeLayer()
             arc.path = UIBezierPath(arcCenter: CGPoint(x: 11, y: 11), radius: 8, startAngle: 0, endAngle: .pi * 1.5,
                                     clockwise: true).cgPath
-            arc.strokeColor = UIColor.black.cgColor
+            arc.strokeColor = DS.Color.textPrimary.resolvedColor(with: traitCollection).cgColor
             arc.fillColor = UIColor.clear.cgColor
             arc.lineWidth = 2
             arc.lineCap = .round

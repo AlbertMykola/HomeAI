@@ -93,8 +93,8 @@
                                             <subviews>
                                                 <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ps-thumb" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" userLabel="photoThumbView" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="56" id="c2235"/>
-                                                        <constraint firstAttribute="height" constant="56" id="c2236"/>
+                                                        <constraint firstAttribute="width" constant="56" id="c3441"/>
+                                                        <constraint firstAttribute="height" constant="56" id="c3442"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="14"/></userDefinedRuntimeAttribute>
@@ -122,10 +122,10 @@
                                     </subviews>
                                     <color key="backgroundColor" name="dsSurface"/>
                                     <constraints>
-                                        <constraint firstItem="ps-row" firstAttribute="leading" secondItem="summary" secondAttribute="leading" id="c2231"/>
-                                        <constraint firstItem="ps-row" firstAttribute="top" secondItem="summary" secondAttribute="top" id="c2232"/>
-                                        <constraint firstItem="summary" firstAttribute="trailing" secondItem="ps-row" secondAttribute="trailing" id="c2233"/>
-                                        <constraint firstItem="summary" firstAttribute="bottom" secondItem="ps-row" secondAttribute="bottom" id="c2234"/>
+                                        <constraint firstItem="ps-row" firstAttribute="leading" secondItem="summary" secondAttribute="leading" id="c3437"/>
+                                        <constraint firstItem="ps-row" firstAttribute="top" secondItem="summary" secondAttribute="top" id="c3438"/>
+                                        <constraint firstItem="summary" firstAttribute="trailing" secondItem="ps-row" secondAttribute="trailing" id="c3439"/>
+                                        <constraint firstItem="summary" firstAttribute="bottom" secondItem="ps-row" secondAttribute="bottom" id="c3440"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
@@ -139,19 +139,19 @@
                                                     <subviews>
                                                         <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opt0-i" image="square.dashed" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" weight="medium"/>
-                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="tintColor" name="dsTextPrimary"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="26" id="c2246"/>
-                                                                <constraint firstAttribute="height" constant="26" id="c2247"/>
+                                                                <constraint firstAttribute="width" constant="26" id="c3452"/>
+                                                                <constraint firstAttribute="height" constant="26" id="c3453"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" name="dsCard"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="48" id="c2242"/>
-                                                        <constraint firstAttribute="height" constant="48" id="c2243"/>
-                                                        <constraint firstItem="opt0-i" firstAttribute="centerX" secondItem="opt0-box" secondAttribute="centerX" id="c2244"/>
-                                                        <constraint firstItem="opt0-i" firstAttribute="centerY" secondItem="opt0-box" secondAttribute="centerY" id="c2245"/>
+                                                        <constraint firstAttribute="width" constant="48" id="c3448"/>
+                                                        <constraint firstAttribute="height" constant="48" id="c3449"/>
+                                                        <constraint firstItem="opt0-i" firstAttribute="centerX" secondItem="opt0-box" secondAttribute="centerX" id="c3450"/>
+                                                        <constraint firstItem="opt0-i" firstAttribute="centerY" secondItem="opt0-box" secondAttribute="centerY" id="c3451"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="12"/></userDefinedRuntimeAttribute>
@@ -172,25 +172,25 @@
                                                         <view contentMode="scaleToFill" alpha="0" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="opt0-dot" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="10" id="c2252"/>
-                                                                <constraint firstAttribute="height" constant="10" id="c2253"/>
+                                                                <constraint firstAttribute="width" constant="10" id="c3458"/>
+                                                                <constraint firstAttribute="height" constant="10" id="c3459"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" name="dsCard"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="22" id="c2248"/>
-                                                        <constraint firstAttribute="height" constant="22" id="c2249"/>
-                                                        <constraint firstItem="opt0-dot" firstAttribute="centerX" secondItem="opt0-radio" secondAttribute="centerX" id="c2250"/>
-                                                        <constraint firstItem="opt0-dot" firstAttribute="centerY" secondItem="opt0-radio" secondAttribute="centerY" id="c2251"/>
+                                                        <constraint firstAttribute="width" constant="22" id="c3454"/>
+                                                        <constraint firstAttribute="height" constant="22" id="c3455"/>
+                                                        <constraint firstItem="opt0-dot" firstAttribute="centerX" secondItem="opt0-radio" secondAttribute="centerX" id="c3456"/>
+                                                        <constraint firstItem="opt0-dot" firstAttribute="centerY" secondItem="opt0-radio" secondAttribute="centerY" id="c3457"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="1.5"/></userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="0.7804" green="0.7804" blue="0.8000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" red="0.7804" green="0.7804" blue="0.8000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
@@ -199,11 +199,11 @@
                                     </subviews>
                                     <color key="backgroundColor" name="dsSurface"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="72" id="c2237"/>
-                                        <constraint firstItem="opt0-row" firstAttribute="leading" secondItem="opt0" secondAttribute="leading" id="c2238"/>
-                                        <constraint firstItem="opt0-row" firstAttribute="top" secondItem="opt0" secondAttribute="top" id="c2239"/>
-                                        <constraint firstItem="opt0" firstAttribute="trailing" secondItem="opt0-row" secondAttribute="trailing" id="c2240"/>
-                                        <constraint firstItem="opt0" firstAttribute="bottom" secondItem="opt0-row" secondAttribute="bottom" id="c2241"/>
+                                        <constraint firstAttribute="height" constant="72" id="c3443"/>
+                                        <constraint firstItem="opt0-row" firstAttribute="leading" secondItem="opt0" secondAttribute="leading" id="c3444"/>
+                                        <constraint firstItem="opt0-row" firstAttribute="top" secondItem="opt0" secondAttribute="top" id="c3445"/>
+                                        <constraint firstItem="opt0" firstAttribute="trailing" secondItem="opt0-row" secondAttribute="trailing" id="c3446"/>
+                                        <constraint firstItem="opt0" firstAttribute="bottom" secondItem="opt0-row" secondAttribute="bottom" id="c3447"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
@@ -218,19 +218,19 @@
                                                     <subviews>
                                                         <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opt1-i" image="sofa" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" weight="medium"/>
-                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="tintColor" name="dsTextPrimary"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="26" id="c2263"/>
-                                                                <constraint firstAttribute="height" constant="26" id="c2264"/>
+                                                                <constraint firstAttribute="width" constant="26" id="c3469"/>
+                                                                <constraint firstAttribute="height" constant="26" id="c3470"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" name="dsCard"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="48" id="c2259"/>
-                                                        <constraint firstAttribute="height" constant="48" id="c2260"/>
-                                                        <constraint firstItem="opt1-i" firstAttribute="centerX" secondItem="opt1-box" secondAttribute="centerX" id="c2261"/>
-                                                        <constraint firstItem="opt1-i" firstAttribute="centerY" secondItem="opt1-box" secondAttribute="centerY" id="c2262"/>
+                                                        <constraint firstAttribute="width" constant="48" id="c3465"/>
+                                                        <constraint firstAttribute="height" constant="48" id="c3466"/>
+                                                        <constraint firstItem="opt1-i" firstAttribute="centerX" secondItem="opt1-box" secondAttribute="centerX" id="c3467"/>
+                                                        <constraint firstItem="opt1-i" firstAttribute="centerY" secondItem="opt1-box" secondAttribute="centerY" id="c3468"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="12"/></userDefinedRuntimeAttribute>
@@ -251,25 +251,25 @@
                                                         <view contentMode="scaleToFill" alpha="0" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="opt1-dot" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="10" id="c2269"/>
-                                                                <constraint firstAttribute="height" constant="10" id="c2270"/>
+                                                                <constraint firstAttribute="width" constant="10" id="c3475"/>
+                                                                <constraint firstAttribute="height" constant="10" id="c3476"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" name="dsCard"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="22" id="c2265"/>
-                                                        <constraint firstAttribute="height" constant="22" id="c2266"/>
-                                                        <constraint firstItem="opt1-dot" firstAttribute="centerX" secondItem="opt1-radio" secondAttribute="centerX" id="c2267"/>
-                                                        <constraint firstItem="opt1-dot" firstAttribute="centerY" secondItem="opt1-radio" secondAttribute="centerY" id="c2268"/>
+                                                        <constraint firstAttribute="width" constant="22" id="c3471"/>
+                                                        <constraint firstAttribute="height" constant="22" id="c3472"/>
+                                                        <constraint firstItem="opt1-dot" firstAttribute="centerX" secondItem="opt1-radio" secondAttribute="centerX" id="c3473"/>
+                                                        <constraint firstItem="opt1-dot" firstAttribute="centerY" secondItem="opt1-radio" secondAttribute="centerY" id="c3474"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="1.5"/></userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="0.7804" green="0.7804" blue="0.8000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" red="0.7804" green="0.7804" blue="0.8000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
@@ -278,11 +278,11 @@
                                     </subviews>
                                     <color key="backgroundColor" name="dsSurface"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="72" id="c2254"/>
-                                        <constraint firstItem="opt1-row" firstAttribute="leading" secondItem="opt1" secondAttribute="leading" id="c2255"/>
-                                        <constraint firstItem="opt1-row" firstAttribute="top" secondItem="opt1" secondAttribute="top" id="c2256"/>
-                                        <constraint firstItem="opt1" firstAttribute="trailing" secondItem="opt1-row" secondAttribute="trailing" id="c2257"/>
-                                        <constraint firstItem="opt1" firstAttribute="bottom" secondItem="opt1-row" secondAttribute="bottom" id="c2258"/>
+                                        <constraint firstAttribute="height" constant="72" id="c3460"/>
+                                        <constraint firstItem="opt1-row" firstAttribute="leading" secondItem="opt1" secondAttribute="leading" id="c3461"/>
+                                        <constraint firstItem="opt1-row" firstAttribute="top" secondItem="opt1" secondAttribute="top" id="c3462"/>
+                                        <constraint firstItem="opt1" firstAttribute="trailing" secondItem="opt1-row" secondAttribute="trailing" id="c3463"/>
+                                        <constraint firstItem="opt1" firstAttribute="bottom" secondItem="opt1-row" secondAttribute="bottom" id="c3464"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
@@ -297,19 +297,19 @@
                                                     <subviews>
                                                         <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opt2-i" image="desktopcomputer" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" weight="medium"/>
-                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="tintColor" name="dsTextPrimary"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="26" id="c2280"/>
-                                                                <constraint firstAttribute="height" constant="26" id="c2281"/>
+                                                                <constraint firstAttribute="width" constant="26" id="c3486"/>
+                                                                <constraint firstAttribute="height" constant="26" id="c3487"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" name="dsCard"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="48" id="c2276"/>
-                                                        <constraint firstAttribute="height" constant="48" id="c2277"/>
-                                                        <constraint firstItem="opt2-i" firstAttribute="centerX" secondItem="opt2-box" secondAttribute="centerX" id="c2278"/>
-                                                        <constraint firstItem="opt2-i" firstAttribute="centerY" secondItem="opt2-box" secondAttribute="centerY" id="c2279"/>
+                                                        <constraint firstAttribute="width" constant="48" id="c3482"/>
+                                                        <constraint firstAttribute="height" constant="48" id="c3483"/>
+                                                        <constraint firstItem="opt2-i" firstAttribute="centerX" secondItem="opt2-box" secondAttribute="centerX" id="c3484"/>
+                                                        <constraint firstItem="opt2-i" firstAttribute="centerY" secondItem="opt2-box" secondAttribute="centerY" id="c3485"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="12"/></userDefinedRuntimeAttribute>
@@ -330,25 +330,25 @@
                                                         <view contentMode="scaleToFill" alpha="0" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="opt2-dot" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="10" id="c2286"/>
-                                                                <constraint firstAttribute="height" constant="10" id="c2287"/>
+                                                                <constraint firstAttribute="width" constant="10" id="c3492"/>
+                                                                <constraint firstAttribute="height" constant="10" id="c3493"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" name="dsCard"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="22" id="c2282"/>
-                                                        <constraint firstAttribute="height" constant="22" id="c2283"/>
-                                                        <constraint firstItem="opt2-dot" firstAttribute="centerX" secondItem="opt2-radio" secondAttribute="centerX" id="c2284"/>
-                                                        <constraint firstItem="opt2-dot" firstAttribute="centerY" secondItem="opt2-radio" secondAttribute="centerY" id="c2285"/>
+                                                        <constraint firstAttribute="width" constant="22" id="c3488"/>
+                                                        <constraint firstAttribute="height" constant="22" id="c3489"/>
+                                                        <constraint firstItem="opt2-dot" firstAttribute="centerX" secondItem="opt2-radio" secondAttribute="centerX" id="c3490"/>
+                                                        <constraint firstItem="opt2-dot" firstAttribute="centerY" secondItem="opt2-radio" secondAttribute="centerY" id="c3491"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="1.5"/></userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="0.7804" green="0.7804" blue="0.8000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" red="0.7804" green="0.7804" blue="0.8000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
@@ -357,11 +357,11 @@
                                     </subviews>
                                     <color key="backgroundColor" name="dsSurface"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="72" id="c2271"/>
-                                        <constraint firstItem="opt2-row" firstAttribute="leading" secondItem="opt2" secondAttribute="leading" id="c2272"/>
-                                        <constraint firstItem="opt2-row" firstAttribute="top" secondItem="opt2" secondAttribute="top" id="c2273"/>
-                                        <constraint firstItem="opt2" firstAttribute="trailing" secondItem="opt2-row" secondAttribute="trailing" id="c2274"/>
-                                        <constraint firstItem="opt2" firstAttribute="bottom" secondItem="opt2-row" secondAttribute="bottom" id="c2275"/>
+                                        <constraint firstAttribute="height" constant="72" id="c3477"/>
+                                        <constraint firstItem="opt2-row" firstAttribute="leading" secondItem="opt2" secondAttribute="leading" id="c3478"/>
+                                        <constraint firstItem="opt2-row" firstAttribute="top" secondItem="opt2" secondAttribute="top" id="c3479"/>
+                                        <constraint firstItem="opt2" firstAttribute="trailing" secondItem="opt2-row" secondAttribute="trailing" id="c3480"/>
+                                        <constraint firstItem="opt2" firstAttribute="bottom" secondItem="opt2-row" secondAttribute="bottom" id="c3481"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
@@ -376,19 +376,19 @@
                                                     <subviews>
                                                         <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="opt3-i" image="person.2" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="20" weight="medium"/>
-                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="tintColor" name="dsTextPrimary"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="26" id="c2297"/>
-                                                                <constraint firstAttribute="height" constant="26" id="c2298"/>
+                                                                <constraint firstAttribute="width" constant="26" id="c3503"/>
+                                                                <constraint firstAttribute="height" constant="26" id="c3504"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" name="dsCard"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="48" id="c2293"/>
-                                                        <constraint firstAttribute="height" constant="48" id="c2294"/>
-                                                        <constraint firstItem="opt3-i" firstAttribute="centerX" secondItem="opt3-box" secondAttribute="centerX" id="c2295"/>
-                                                        <constraint firstItem="opt3-i" firstAttribute="centerY" secondItem="opt3-box" secondAttribute="centerY" id="c2296"/>
+                                                        <constraint firstAttribute="width" constant="48" id="c3499"/>
+                                                        <constraint firstAttribute="height" constant="48" id="c3500"/>
+                                                        <constraint firstItem="opt3-i" firstAttribute="centerX" secondItem="opt3-box" secondAttribute="centerX" id="c3501"/>
+                                                        <constraint firstItem="opt3-i" firstAttribute="centerY" secondItem="opt3-box" secondAttribute="centerY" id="c3502"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="12"/></userDefinedRuntimeAttribute>
@@ -409,25 +409,25 @@
                                                         <view contentMode="scaleToFill" alpha="0" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="opt3-dot" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="10" id="c2303"/>
-                                                                <constraint firstAttribute="height" constant="10" id="c2304"/>
+                                                                <constraint firstAttribute="width" constant="10" id="c3509"/>
+                                                                <constraint firstAttribute="height" constant="10" id="c3510"/>
                                                             </constraints>
                                                             <userDefinedRuntimeAttributes>
                                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <color key="backgroundColor" name="dsCard"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="22" id="c2299"/>
-                                                        <constraint firstAttribute="height" constant="22" id="c2300"/>
-                                                        <constraint firstItem="opt3-dot" firstAttribute="centerX" secondItem="opt3-radio" secondAttribute="centerX" id="c2301"/>
-                                                        <constraint firstItem="opt3-dot" firstAttribute="centerY" secondItem="opt3-radio" secondAttribute="centerY" id="c2302"/>
+                                                        <constraint firstAttribute="width" constant="22" id="c3505"/>
+                                                        <constraint firstAttribute="height" constant="22" id="c3506"/>
+                                                        <constraint firstItem="opt3-dot" firstAttribute="centerX" secondItem="opt3-radio" secondAttribute="centerX" id="c3507"/>
+                                                        <constraint firstItem="opt3-dot" firstAttribute="centerY" secondItem="opt3-radio" secondAttribute="centerY" id="c3508"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="1.5"/></userDefinedRuntimeAttribute>
-                                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="0.7804" green="0.7804" blue="0.8000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" red="0.7804" green="0.7804" blue="0.8000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
                                                     </userDefinedRuntimeAttributes>
                                                 </view>
                                             </subviews>
@@ -436,11 +436,11 @@
                                     </subviews>
                                     <color key="backgroundColor" name="dsSurface"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="72" id="c2288"/>
-                                        <constraint firstItem="opt3-row" firstAttribute="leading" secondItem="opt3" secondAttribute="leading" id="c2289"/>
-                                        <constraint firstItem="opt3-row" firstAttribute="top" secondItem="opt3" secondAttribute="top" id="c2290"/>
-                                        <constraint firstItem="opt3" firstAttribute="trailing" secondItem="opt3-row" secondAttribute="trailing" id="c2291"/>
-                                        <constraint firstItem="opt3" firstAttribute="bottom" secondItem="opt3-row" secondAttribute="bottom" id="c2292"/>
+                                        <constraint firstAttribute="height" constant="72" id="c3494"/>
+                                        <constraint firstItem="opt3-row" firstAttribute="leading" secondItem="opt3" secondAttribute="leading" id="c3495"/>
+                                        <constraint firstItem="opt3-row" firstAttribute="top" secondItem="opt3" secondAttribute="top" id="c3496"/>
+                                        <constraint firstItem="opt3" firstAttribute="trailing" secondItem="opt3-row" secondAttribute="trailing" id="c3497"/>
+                                        <constraint firstItem="opt3" firstAttribute="bottom" secondItem="opt3-row" secondAttribute="bottom" id="c3498"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
@@ -452,22 +452,22 @@
                     </subviews>
                     <viewLayoutGuide key="contentLayoutGuide" id="scroll-contentLayoutGuide"/><viewLayoutGuide key="frameLayoutGuide" id="scroll-frameLayoutGuide"/>
                     <constraints>
-                        <constraint firstItem="body" firstAttribute="leading" secondItem="scroll-contentLayoutGuide" secondAttribute="leading" constant="20" id="c2226"/>
-                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="body" secondAttribute="trailing" constant="20" id="c2227"/>
-                        <constraint firstItem="body" firstAttribute="top" secondItem="scroll-contentLayoutGuide" secondAttribute="top" constant="8" id="c2228"/>
-                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="body" secondAttribute="bottom" constant="120" id="c2229"/>
-                        <constraint firstItem="body" firstAttribute="width" secondItem="scroll-frameLayoutGuide" secondAttribute="width" constant="-40" id="c2230"/>
+                        <constraint firstItem="body" firstAttribute="leading" secondItem="scroll-contentLayoutGuide" secondAttribute="leading" constant="20" id="c3432"/>
+                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="body" secondAttribute="trailing" constant="20" id="c3433"/>
+                        <constraint firstItem="body" firstAttribute="top" secondItem="scroll-contentLayoutGuide" secondAttribute="top" constant="8" id="c3434"/>
+                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="body" secondAttribute="bottom" constant="120" id="c3435"/>
+                        <constraint firstItem="body" firstAttribute="width" secondItem="scroll-frameLayoutGuide" secondAttribute="width" constant="-40" id="c3436"/>
                     </constraints>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nav" customClass="WizardNavBar" customModule="HomeAI" customModuleProvider="target" userLabel="navBar">
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="56" id="c2208"/>
+                        <constraint firstAttribute="height" constant="56" id="c3414"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fade" customClass="DSGradientView" customModule="HomeAI" customModuleProvider="target">
                     <constraints>
-                        <constraint firstAttribute="height" constant="140" id="c2218"/>
+                        <constraint firstAttribute="height" constant="140" id="c3424"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="startColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.000" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
@@ -484,14 +484,14 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" weight="semibold"/>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="20" id="c2213"/>
-                                        <constraint firstAttribute="height" constant="20" id="c2214"/>
+                                        <constraint firstAttribute="width" constant="20" id="c3419"/>
+                                        <constraint firstAttribute="height" constant="20" id="c3420"/>
                                     </constraints>
                                 </imageView>
                                 <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="generate-labels" opaque="NO" axis="vertical" alignment="center" spacing="1">
                                     <subviews>
                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="generate-title" userLabel="generateTitleLabel" opaque="NO" text="Generate" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
-                                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/><nil key="highlightedColor"/>
                                         </label>
                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="generate-sub" userLabel="generateSubtitleLabel" opaque="NO" text="1 credit · about 30 s" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.700" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/>
@@ -502,32 +502,32 @@
                         </stackView>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="56" id="c2209"/>
-                        <constraint firstItem="generate-row" firstAttribute="centerX" secondItem="generate" secondAttribute="centerX" id="c2210"/>
-                        <constraint firstItem="generate-row" firstAttribute="centerY" secondItem="generate" secondAttribute="centerY" id="c2211"/>
-                        <constraint firstItem="generate-row" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="generate" secondAttribute="leading" constant="16" id="c2212"/>
+                        <constraint firstAttribute="height" constant="56" id="c3415"/>
+                        <constraint firstItem="generate-row" firstAttribute="centerX" secondItem="generate" secondAttribute="centerX" id="c3416"/>
+                        <constraint firstItem="generate-row" firstAttribute="centerY" secondItem="generate" secondAttribute="centerY" id="c3417"/>
+                        <constraint firstItem="generate-row" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="generate" secondAttribute="leading" constant="16" id="c3418"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapGenerate:"/>
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" name="dsBackground"/>
             <viewLayoutGuide key="safeArea" id="root-safeArea"/>
             <constraints>
-                <constraint firstItem="nav" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c2205"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="nav" secondAttribute="trailing" id="c2206"/>
-                <constraint firstItem="nav" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-4" id="c2207"/>
-                <constraint firstItem="fade" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c2215"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="fade" secondAttribute="trailing" id="c2216"/>
-                <constraint firstItem="root" firstAttribute="bottom" secondItem="fade" secondAttribute="bottom" id="c2217"/>
-                <constraint firstItem="generate" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c2219"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="generate" secondAttribute="trailing" constant="20" id="c2220"/>
-                <constraint firstItem="root-safeArea" firstAttribute="bottom" secondItem="generate" secondAttribute="bottom" id="c2221"/>
-                <constraint firstItem="scroll" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c2222"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="scroll" secondAttribute="trailing" id="c2223"/>
-                <constraint firstItem="root" firstAttribute="bottom" secondItem="scroll" secondAttribute="bottom" id="c2224"/>
-                <constraint firstItem="scroll" firstAttribute="top" secondItem="nav" secondAttribute="bottom" id="c2225"/>
+                <constraint firstItem="nav" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3411"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="nav" secondAttribute="trailing" id="c3412"/>
+                <constraint firstItem="nav" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-4" id="c3413"/>
+                <constraint firstItem="fade" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3421"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="fade" secondAttribute="trailing" id="c3422"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="fade" secondAttribute="bottom" id="c3423"/>
+                <constraint firstItem="generate" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c3425"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="generate" secondAttribute="trailing" constant="20" id="c3426"/>
+                <constraint firstItem="root-safeArea" firstAttribute="bottom" secondItem="generate" secondAttribute="bottom" id="c3427"/>
+                <constraint firstItem="scroll" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3428"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="scroll" secondAttribute="trailing" id="c3429"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="scroll" secondAttribute="bottom" id="c3430"/>
+                <constraint firstItem="scroll" firstAttribute="top" secondItem="nav" secondAttribute="bottom" id="c3431"/>
             </constraints>
         </view>
         </objects>
@@ -537,6 +537,12 @@
         <image name="sofa" catalog="system" width="128" height="128"/>
         <image name="sparkles" catalog="system" width="128" height="128"/>
         <image name="square.dashed" catalog="system" width="128" height="128"/>
+        <namedColor name="dsBackground">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsCard">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="dsLink">
             <color red="0.2431" green="0.4784" blue="0.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

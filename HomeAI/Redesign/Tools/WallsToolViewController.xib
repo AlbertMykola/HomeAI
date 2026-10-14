@@ -47,7 +47,7 @@
                 <outlet property="generateIconView" destination="generate-icon" id="generate-icon-o"/>
                 <outlet property="generateTitleLabel" destination="generate-title" id="generate-title-o"/>
                 <outlet property="generateSubtitleLabel" destination="generate-sub" id="generate-sub-o"/>
-                <outlet property="materialsHeightConstraint" destination="c1911" id="c1911-o"/>
+                <outlet property="materialsHeightConstraint" destination="c3117" id="c3117-o"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -81,8 +81,8 @@
                                             <subviews>
                                                 <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ps-thumb" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" userLabel="photoThumbView" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="56" id="c1873"/>
-                                                        <constraint firstAttribute="height" constant="56" id="c1874"/>
+                                                        <constraint firstAttribute="width" constant="56" id="c3079"/>
+                                                        <constraint firstAttribute="height" constant="56" id="c3080"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="14"/></userDefinedRuntimeAttribute>
@@ -110,10 +110,10 @@
                                     </subviews>
                                     <color key="backgroundColor" name="dsSurface"/>
                                     <constraints>
-                                        <constraint firstItem="ps-row" firstAttribute="leading" secondItem="summary" secondAttribute="leading" id="c1869"/>
-                                        <constraint firstItem="ps-row" firstAttribute="top" secondItem="summary" secondAttribute="top" id="c1870"/>
-                                        <constraint firstItem="summary" firstAttribute="trailing" secondItem="ps-row" secondAttribute="trailing" id="c1871"/>
-                                        <constraint firstItem="summary" firstAttribute="bottom" secondItem="ps-row" secondAttribute="bottom" id="c1872"/>
+                                        <constraint firstItem="ps-row" firstAttribute="leading" secondItem="summary" secondAttribute="leading" id="c3075"/>
+                                        <constraint firstItem="ps-row" firstAttribute="top" secondItem="summary" secondAttribute="top" id="c3076"/>
+                                        <constraint firstItem="summary" firstAttribute="trailing" secondItem="ps-row" secondAttribute="trailing" id="c3077"/>
+                                        <constraint firstItem="summary" firstAttribute="bottom" secondItem="ps-row" secondAttribute="bottom" id="c3078"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
@@ -135,11 +135,11 @@
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="36" id="c1875"/>
-                                                        <constraint firstItem="filter0-row" firstAttribute="leading" secondItem="filter0" secondAttribute="leading" id="c1876"/>
-                                                        <constraint firstItem="filter0-row" firstAttribute="top" secondItem="filter0" secondAttribute="top" id="c1877"/>
-                                                        <constraint firstItem="filter0" firstAttribute="trailing" secondItem="filter0-row" secondAttribute="trailing" id="c1878"/>
-                                                        <constraint firstItem="filter0" firstAttribute="bottom" secondItem="filter0-row" secondAttribute="bottom" id="c1879"/>
+                                                        <constraint firstAttribute="height" constant="36" id="c3081"/>
+                                                        <constraint firstItem="filter0-row" firstAttribute="leading" secondItem="filter0" secondAttribute="leading" id="c3082"/>
+                                                        <constraint firstItem="filter0-row" firstAttribute="top" secondItem="filter0" secondAttribute="top" id="c3083"/>
+                                                        <constraint firstItem="filter0" firstAttribute="trailing" secondItem="filter0-row" secondAttribute="trailing" id="c3084"/>
+                                                        <constraint firstItem="filter0" firstAttribute="bottom" secondItem="filter0-row" secondAttribute="bottom" id="c3085"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -159,11 +159,11 @@
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="36" id="c1880"/>
-                                                        <constraint firstItem="filter1-row" firstAttribute="leading" secondItem="filter1" secondAttribute="leading" id="c1881"/>
-                                                        <constraint firstItem="filter1-row" firstAttribute="top" secondItem="filter1" secondAttribute="top" id="c1882"/>
-                                                        <constraint firstItem="filter1" firstAttribute="trailing" secondItem="filter1-row" secondAttribute="trailing" id="c1883"/>
-                                                        <constraint firstItem="filter1" firstAttribute="bottom" secondItem="filter1-row" secondAttribute="bottom" id="c1884"/>
+                                                        <constraint firstAttribute="height" constant="36" id="c3086"/>
+                                                        <constraint firstItem="filter1-row" firstAttribute="leading" secondItem="filter1" secondAttribute="leading" id="c3087"/>
+                                                        <constraint firstItem="filter1-row" firstAttribute="top" secondItem="filter1" secondAttribute="top" id="c3088"/>
+                                                        <constraint firstItem="filter1" firstAttribute="trailing" secondItem="filter1-row" secondAttribute="trailing" id="c3089"/>
+                                                        <constraint firstItem="filter1" firstAttribute="bottom" secondItem="filter1-row" secondAttribute="bottom" id="c3090"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -183,11 +183,11 @@
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="36" id="c1885"/>
-                                                        <constraint firstItem="filter2-row" firstAttribute="leading" secondItem="filter2" secondAttribute="leading" id="c1886"/>
-                                                        <constraint firstItem="filter2-row" firstAttribute="top" secondItem="filter2" secondAttribute="top" id="c1887"/>
-                                                        <constraint firstItem="filter2" firstAttribute="trailing" secondItem="filter2-row" secondAttribute="trailing" id="c1888"/>
-                                                        <constraint firstItem="filter2" firstAttribute="bottom" secondItem="filter2-row" secondAttribute="bottom" id="c1889"/>
+                                                        <constraint firstAttribute="height" constant="36" id="c3091"/>
+                                                        <constraint firstItem="filter2-row" firstAttribute="leading" secondItem="filter2" secondAttribute="leading" id="c3092"/>
+                                                        <constraint firstItem="filter2-row" firstAttribute="top" secondItem="filter2" secondAttribute="top" id="c3093"/>
+                                                        <constraint firstItem="filter2" firstAttribute="trailing" secondItem="filter2-row" secondAttribute="trailing" id="c3094"/>
+                                                        <constraint firstItem="filter2" firstAttribute="bottom" secondItem="filter2-row" secondAttribute="bottom" id="c3095"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -207,11 +207,11 @@
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="36" id="c1890"/>
-                                                        <constraint firstItem="filter3-row" firstAttribute="leading" secondItem="filter3" secondAttribute="leading" id="c1891"/>
-                                                        <constraint firstItem="filter3-row" firstAttribute="top" secondItem="filter3" secondAttribute="top" id="c1892"/>
-                                                        <constraint firstItem="filter3" firstAttribute="trailing" secondItem="filter3-row" secondAttribute="trailing" id="c1893"/>
-                                                        <constraint firstItem="filter3" firstAttribute="bottom" secondItem="filter3-row" secondAttribute="bottom" id="c1894"/>
+                                                        <constraint firstAttribute="height" constant="36" id="c3096"/>
+                                                        <constraint firstItem="filter3-row" firstAttribute="leading" secondItem="filter3" secondAttribute="leading" id="c3097"/>
+                                                        <constraint firstItem="filter3-row" firstAttribute="top" secondItem="filter3" secondAttribute="top" id="c3098"/>
+                                                        <constraint firstItem="filter3" firstAttribute="trailing" secondItem="filter3-row" secondAttribute="trailing" id="c3099"/>
+                                                        <constraint firstItem="filter3" firstAttribute="bottom" secondItem="filter3-row" secondAttribute="bottom" id="c3100"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -231,11 +231,11 @@
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="36" id="c1895"/>
-                                                        <constraint firstItem="filter4-row" firstAttribute="leading" secondItem="filter4" secondAttribute="leading" id="c1896"/>
-                                                        <constraint firstItem="filter4-row" firstAttribute="top" secondItem="filter4" secondAttribute="top" id="c1897"/>
-                                                        <constraint firstItem="filter4" firstAttribute="trailing" secondItem="filter4-row" secondAttribute="trailing" id="c1898"/>
-                                                        <constraint firstItem="filter4" firstAttribute="bottom" secondItem="filter4-row" secondAttribute="bottom" id="c1899"/>
+                                                        <constraint firstAttribute="height" constant="36" id="c3101"/>
+                                                        <constraint firstItem="filter4-row" firstAttribute="leading" secondItem="filter4" secondAttribute="leading" id="c3102"/>
+                                                        <constraint firstItem="filter4-row" firstAttribute="top" secondItem="filter4" secondAttribute="top" id="c3103"/>
+                                                        <constraint firstItem="filter4" firstAttribute="trailing" secondItem="filter4-row" secondAttribute="trailing" id="c3104"/>
+                                                        <constraint firstItem="filter4" firstAttribute="bottom" secondItem="filter4-row" secondAttribute="bottom" id="c3105"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -255,11 +255,11 @@
                                                         </stackView>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="36" id="c1900"/>
-                                                        <constraint firstItem="filter5-row" firstAttribute="leading" secondItem="filter5" secondAttribute="leading" id="c1901"/>
-                                                        <constraint firstItem="filter5-row" firstAttribute="top" secondItem="filter5" secondAttribute="top" id="c1902"/>
-                                                        <constraint firstItem="filter5" firstAttribute="trailing" secondItem="filter5-row" secondAttribute="trailing" id="c1903"/>
-                                                        <constraint firstItem="filter5" firstAttribute="bottom" secondItem="filter5-row" secondAttribute="bottom" id="c1904"/>
+                                                        <constraint firstAttribute="height" constant="36" id="c3106"/>
+                                                        <constraint firstItem="filter5-row" firstAttribute="leading" secondItem="filter5" secondAttribute="leading" id="c3107"/>
+                                                        <constraint firstItem="filter5-row" firstAttribute="top" secondItem="filter5" secondAttribute="top" id="c3108"/>
+                                                        <constraint firstItem="filter5" firstAttribute="trailing" secondItem="filter5-row" secondAttribute="trailing" id="c3109"/>
+                                                        <constraint firstItem="filter5" firstAttribute="bottom" secondItem="filter5-row" secondAttribute="bottom" id="c3110"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -272,19 +272,19 @@
                                     </subviews>
                                     <viewLayoutGuide key="contentLayoutGuide" id="filter-scroll-contentLayoutGuide"/><viewLayoutGuide key="frameLayoutGuide" id="filter-scroll-frameLayoutGuide"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="36" id="c1905"/>
-                                        <constraint firstItem="filter-stack" firstAttribute="leading" secondItem="filter-scroll-contentLayoutGuide" secondAttribute="leading" id="c1906"/>
-                                        <constraint firstItem="filter-stack" firstAttribute="top" secondItem="filter-scroll-contentLayoutGuide" secondAttribute="top" id="c1907"/>
-                                        <constraint firstItem="filter-scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="filter-stack" secondAttribute="trailing" id="c1908"/>
-                                        <constraint firstItem="filter-scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="filter-stack" secondAttribute="bottom" id="c1909"/>
-                                        <constraint firstItem="filter-stack" firstAttribute="height" secondItem="filter-scroll-frameLayoutGuide" secondAttribute="height" id="c1910"/>
+                                        <constraint firstAttribute="height" constant="36" id="c3111"/>
+                                        <constraint firstItem="filter-stack" firstAttribute="leading" secondItem="filter-scroll-contentLayoutGuide" secondAttribute="leading" id="c3112"/>
+                                        <constraint firstItem="filter-stack" firstAttribute="top" secondItem="filter-scroll-contentLayoutGuide" secondAttribute="top" id="c3113"/>
+                                        <constraint firstItem="filter-scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="filter-stack" secondAttribute="trailing" id="c3114"/>
+                                        <constraint firstItem="filter-scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="filter-stack" secondAttribute="bottom" id="c3115"/>
+                                        <constraint firstItem="filter-stack" firstAttribute="height" secondItem="filter-scroll-frameLayoutGuide" secondAttribute="height" id="c3116"/>
                                     </constraints>
                                 </scrollView>
                                 <collectionView contentMode="scaleToFill" clipsSubviews="NO" translatesAutoresizingMaskIntoConstraints="NO" id="materials" userLabel="materialsCollectionView" scrollEnabled="NO" multipleTouchEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none">
                                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="12" minimumInteritemSpacing="12" id="materials-layout"><size key="itemSize" width="109" height="130"/><size key="headerReferenceSize" width="0.0" height="0.0"/><size key="footerReferenceSize" width="0.0" height="0.0"/><inset key="sectionInset" minX="0" minY="0" maxX="0" maxY="0"/></collectionViewFlowLayout>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="280" id="c1911"/>
+                                        <constraint firstAttribute="height" constant="280" id="c3117"/>
                                     </constraints>
                                 </collectionView>
                             </subviews>
@@ -292,22 +292,22 @@
                     </subviews>
                     <viewLayoutGuide key="contentLayoutGuide" id="scroll-contentLayoutGuide"/><viewLayoutGuide key="frameLayoutGuide" id="scroll-frameLayoutGuide"/>
                     <constraints>
-                        <constraint firstItem="body" firstAttribute="leading" secondItem="scroll-contentLayoutGuide" secondAttribute="leading" constant="20" id="c1864"/>
-                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="body" secondAttribute="trailing" constant="20" id="c1865"/>
-                        <constraint firstItem="body" firstAttribute="top" secondItem="scroll-contentLayoutGuide" secondAttribute="top" constant="8" id="c1866"/>
-                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="body" secondAttribute="bottom" constant="120" id="c1867"/>
-                        <constraint firstItem="body" firstAttribute="width" secondItem="scroll-frameLayoutGuide" secondAttribute="width" constant="-40" id="c1868"/>
+                        <constraint firstItem="body" firstAttribute="leading" secondItem="scroll-contentLayoutGuide" secondAttribute="leading" constant="20" id="c3070"/>
+                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="body" secondAttribute="trailing" constant="20" id="c3071"/>
+                        <constraint firstItem="body" firstAttribute="top" secondItem="scroll-contentLayoutGuide" secondAttribute="top" constant="8" id="c3072"/>
+                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="body" secondAttribute="bottom" constant="120" id="c3073"/>
+                        <constraint firstItem="body" firstAttribute="width" secondItem="scroll-frameLayoutGuide" secondAttribute="width" constant="-40" id="c3074"/>
                     </constraints>
                 </scrollView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nav" customClass="WizardNavBar" customModule="HomeAI" customModuleProvider="target" userLabel="navBar">
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="56" id="c1846"/>
+                        <constraint firstAttribute="height" constant="56" id="c3052"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fade" customClass="DSGradientView" customModule="HomeAI" customModuleProvider="target">
                     <constraints>
-                        <constraint firstAttribute="height" constant="140" id="c1856"/>
+                        <constraint firstAttribute="height" constant="140" id="c3062"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="color" keyPath="startColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.000" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
@@ -324,14 +324,14 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" weight="semibold"/>
                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="20" id="c1851"/>
-                                        <constraint firstAttribute="height" constant="20" id="c1852"/>
+                                        <constraint firstAttribute="width" constant="20" id="c3057"/>
+                                        <constraint firstAttribute="height" constant="20" id="c3058"/>
                                     </constraints>
                                 </imageView>
                                 <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="generate-labels" opaque="NO" axis="vertical" alignment="center" spacing="1">
                                     <subviews>
                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="generate-title" userLabel="generateTitleLabel" opaque="NO" text="Generate" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
-                                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/><nil key="highlightedColor"/>
                                         </label>
                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="generate-sub" userLabel="generateSubtitleLabel" opaque="NO" text="1 credit · about 30 s" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                             <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.700" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/>
@@ -342,37 +342,40 @@
                         </stackView>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="56" id="c1847"/>
-                        <constraint firstItem="generate-row" firstAttribute="centerX" secondItem="generate" secondAttribute="centerX" id="c1848"/>
-                        <constraint firstItem="generate-row" firstAttribute="centerY" secondItem="generate" secondAttribute="centerY" id="c1849"/>
-                        <constraint firstItem="generate-row" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="generate" secondAttribute="leading" constant="16" id="c1850"/>
+                        <constraint firstAttribute="height" constant="56" id="c3053"/>
+                        <constraint firstItem="generate-row" firstAttribute="centerX" secondItem="generate" secondAttribute="centerX" id="c3054"/>
+                        <constraint firstItem="generate-row" firstAttribute="centerY" secondItem="generate" secondAttribute="centerY" id="c3055"/>
+                        <constraint firstItem="generate-row" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="generate" secondAttribute="leading" constant="16" id="c3056"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapGenerate:"/>
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" name="dsBackground"/>
             <viewLayoutGuide key="safeArea" id="root-safeArea"/>
             <constraints>
-                <constraint firstItem="nav" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c1843"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="nav" secondAttribute="trailing" id="c1844"/>
-                <constraint firstItem="nav" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-4" id="c1845"/>
-                <constraint firstItem="fade" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c1853"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="fade" secondAttribute="trailing" id="c1854"/>
-                <constraint firstItem="root" firstAttribute="bottom" secondItem="fade" secondAttribute="bottom" id="c1855"/>
-                <constraint firstItem="generate" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c1857"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="generate" secondAttribute="trailing" constant="20" id="c1858"/>
-                <constraint firstItem="root-safeArea" firstAttribute="bottom" secondItem="generate" secondAttribute="bottom" id="c1859"/>
-                <constraint firstItem="scroll" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c1860"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="scroll" secondAttribute="trailing" id="c1861"/>
-                <constraint firstItem="root" firstAttribute="bottom" secondItem="scroll" secondAttribute="bottom" id="c1862"/>
-                <constraint firstItem="scroll" firstAttribute="top" secondItem="nav" secondAttribute="bottom" id="c1863"/>
+                <constraint firstItem="nav" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3049"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="nav" secondAttribute="trailing" id="c3050"/>
+                <constraint firstItem="nav" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-4" id="c3051"/>
+                <constraint firstItem="fade" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3059"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="fade" secondAttribute="trailing" id="c3060"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="fade" secondAttribute="bottom" id="c3061"/>
+                <constraint firstItem="generate" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c3063"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="generate" secondAttribute="trailing" constant="20" id="c3064"/>
+                <constraint firstItem="root-safeArea" firstAttribute="bottom" secondItem="generate" secondAttribute="bottom" id="c3065"/>
+                <constraint firstItem="scroll" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c3066"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="scroll" secondAttribute="trailing" id="c3067"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="scroll" secondAttribute="bottom" id="c3068"/>
+                <constraint firstItem="scroll" firstAttribute="top" secondItem="nav" secondAttribute="bottom" id="c3069"/>
             </constraints>
         </view>
         </objects>
     <resources>
         <image name="sparkles" catalog="system" width="128" height="128"/>
+        <namedColor name="dsBackground">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="dsLink">
             <color red="0.2431" green="0.4784" blue="0.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

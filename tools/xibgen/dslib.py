@@ -10,7 +10,7 @@ def glass_button(id, symbol, outlet=None, action=None, size=44, icon=20, dark=Fa
     b = Control(id=id, cls="DSPressableControl", bg=("#000000", 0.3) if dark else "dsGlass", outlet=outlet,
                 collection=collection, accessibility=accessibility, hidden=hidden,
                 runtime={"pill": True, "borderWidth": 0.5,
-                         "borderColor": ("#FFFFFF", 0.2) if dark else ("#FFFFFF", 0.9),
+                         "borderColor": ("#FFFFFF", 0.2) if dark else "dsGlassBorder",
                          "shadowOpacity": 0.08, "shadowRadius": 7, "shadowOffsetY": 4},
                 children=[ic])
     if action:
@@ -28,7 +28,7 @@ def primary_button(id, title, outlet=None, action=None, icon=None, subtitle=None
     if icon:
         parts.append(Image(id=f"{id}-icon", system=icon, size=17, weight="semibold", tint="black",
                            outlet=icon_outlet))
-    t = Label(title, id=f"{id}-title", font=("SemiBold", 17), align="center", outlet=title_outlet)
+    t = Label(title, id=f"{id}-title", font=("SemiBold", 17), color="black", align="center", outlet=title_outlet)
     if subtitle is not None:
         s = Label(subtitle, id=f"{id}-sub", font=("Regular", 12), color=("#000000", 0.7), align="center",
                   outlet=subtitle_outlet)

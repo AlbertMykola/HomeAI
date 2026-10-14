@@ -164,7 +164,7 @@ final class ReplaceEditorViewController: MaskEditorViewController {
             }
             self.speech.onSilenceTimeout = { [weak self] in
                 self?.speech.stop()
-                self?.micButton.backgroundColor = .white
+                self?.micButton.backgroundColor = DS.Color.card
             }
             self.micButton.backgroundColor = DS.Color.limeSoft
             try? self.speech.start()

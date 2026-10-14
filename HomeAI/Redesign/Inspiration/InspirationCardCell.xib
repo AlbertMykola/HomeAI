@@ -44,11 +44,11 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.350" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="26" id="c206"/>
-                            <constraint firstItem="tag-row" firstAttribute="leading" secondItem="tag" secondAttribute="leading" id="c207"/>
-                            <constraint firstItem="tag-row" firstAttribute="top" secondItem="tag" secondAttribute="top" id="c208"/>
-                            <constraint firstItem="tag" firstAttribute="trailing" secondItem="tag-row" secondAttribute="trailing" id="c209"/>
-                            <constraint firstItem="tag" firstAttribute="bottom" secondItem="tag-row" secondAttribute="bottom" id="c210"/>
+                            <constraint firstAttribute="height" constant="26" id="c1392"/>
+                            <constraint firstItem="tag-row" firstAttribute="leading" secondItem="tag" secondAttribute="leading" id="c1393"/>
+                            <constraint firstItem="tag-row" firstAttribute="top" secondItem="tag" secondAttribute="top" id="c1394"/>
+                            <constraint firstItem="tag" firstAttribute="trailing" secondItem="tag-row" secondAttribute="trailing" id="c1395"/>
+                            <constraint firstItem="tag" firstAttribute="bottom" secondItem="tag-row" secondAttribute="bottom" id="c1396"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -60,23 +60,23 @@
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="12.75" weight="semibold"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="15" id="c198"/>
-                                    <constraint firstAttribute="height" constant="15" id="c199"/>
+                                    <constraint firstAttribute="width" constant="15" id="c1384"/>
+                                    <constraint firstAttribute="height" constant="15" id="c1385"/>
                                 </constraints>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.300" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="30" id="c194"/>
-                            <constraint firstAttribute="height" constant="30" id="c195"/>
-                            <constraint firstItem="bookmark-icon" firstAttribute="centerX" secondItem="bookmark" secondAttribute="centerX" id="c196"/>
-                            <constraint firstItem="bookmark-icon" firstAttribute="centerY" secondItem="bookmark" secondAttribute="centerY" id="c197"/>
+                            <constraint firstAttribute="width" constant="30" id="c1380"/>
+                            <constraint firstAttribute="height" constant="30" id="c1381"/>
+                            <constraint firstItem="bookmark-icon" firstAttribute="centerX" secondItem="bookmark" secondAttribute="centerX" id="c1382"/>
+                            <constraint firstItem="bookmark-icon" firstAttribute="centerY" secondItem="bookmark" secondAttribute="centerY" id="c1383"/>
                         </constraints>
                         <accessibility key="accessibilityConfiguration" label="Save idea"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                             <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0.5"/></userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.200" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.200" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.08"/></userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="7"/></userDefinedRuntimeAttribute>
                             <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="4"/></userDefinedRuntimeAttribute>
@@ -86,15 +86,15 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="photo" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c200"/>
-                    <constraint firstItem="photo" firstAttribute="top" secondItem="cell-content" secondAttribute="top" id="c201"/>
-                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="photo" secondAttribute="trailing" id="c202"/>
-                    <constraint firstItem="cell-content" firstAttribute="bottom" secondItem="photo" secondAttribute="bottom" id="c203"/>
-                    <constraint firstItem="tag" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" constant="8" id="c204"/>
-                    <constraint firstItem="cell-content" firstAttribute="bottom" secondItem="tag" secondAttribute="bottom" constant="8" id="c205"/>
-                    <constraint firstItem="tag" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="photo" secondAttribute="trailing" constant="-8" id="c211"/>
-                    <constraint firstItem="bookmark" firstAttribute="top" secondItem="cell-content" secondAttribute="top" constant="8" id="c212"/>
-                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="bookmark" secondAttribute="trailing" constant="8" id="c213"/>
+                    <constraint firstItem="photo" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c1386"/>
+                    <constraint firstItem="photo" firstAttribute="top" secondItem="cell-content" secondAttribute="top" id="c1387"/>
+                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="photo" secondAttribute="trailing" id="c1388"/>
+                    <constraint firstItem="cell-content" firstAttribute="bottom" secondItem="photo" secondAttribute="bottom" id="c1389"/>
+                    <constraint firstItem="tag" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" constant="8" id="c1390"/>
+                    <constraint firstItem="cell-content" firstAttribute="bottom" secondItem="tag" secondAttribute="bottom" constant="8" id="c1391"/>
+                    <constraint firstItem="tag" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="photo" secondAttribute="trailing" constant="-8" id="c1397"/>
+                    <constraint firstItem="bookmark" firstAttribute="top" secondItem="cell-content" secondAttribute="top" constant="8" id="c1398"/>
+                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="bookmark" secondAttribute="trailing" constant="8" id="c1399"/>
                 </constraints>
             </view>
             <connections>

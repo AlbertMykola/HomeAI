@@ -378,8 +378,8 @@ final class ProjectVersionCell: UITableViewCell {
             self.boxView.layer.borderWidth = slot == nil ? 0 : 1.5
             self.boxView.layer.borderColor = DS.Color.lime.cgColor
             self.slotLabel.text = slot
-            self.slotLabel.textColor = slot == "A" ? .white : .black
-            self.slotControl.backgroundColor = slot == "A" ? .black : (slot == "B" ? DS.Color.lime : .clear)
+            self.slotLabel.textColor = slot == "A" ? DS.Color.background : .black
+            self.slotControl.backgroundColor = slot == "A" ? DS.Color.textPrimary : (slot == "B" ? DS.Color.lime : .clear)
             self.slotControl.layer.borderWidth = slot == nil ? 1.5 : 0
             self.slotControl.layer.borderColor = UIColor(hex: "C7C7CC").cgColor
         }

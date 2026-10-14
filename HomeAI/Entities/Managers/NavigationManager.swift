@@ -56,7 +56,7 @@ final class NavigationManager {
     func setupWindow(with windowScene: UIWindowScene) {
         window = UIWindow(windowScene: windowScene)
         // Redesign A is light-only.
-        window?.overrideUserInterfaceStyle = .light
+        AppearanceMode.apply(to: window, animated: false)
         NetworkMonitor.shared.start()
         configureNavigationBarAppearance()
         
@@ -138,8 +138,7 @@ final class NavigationManager {
         let home = HomeViewController(nibName: "HomeViewController", bundle: .main)
         let inspiration = InspirationFeedViewController(nibName: "InspirationFeedViewController", bundle: .main)
         let projects = ProjectsViewController(nibName: "ProjectsViewController", bundle: .main)
-        // TODO(redesign): replace with the new Profile screen (A/11).
-        let profile = mainStoryboard.instantiateViewController(withIdentifier: "SettingsViewController")
+        let profile = ProfileTabViewController(nibName: "ProfileTabViewController", bundle: .main)
         return [home, inspiration, projects, profile].map { PortraitNavigationController(rootViewController: $0) }
     }
 

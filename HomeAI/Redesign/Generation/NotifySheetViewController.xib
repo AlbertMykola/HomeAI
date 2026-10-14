@@ -57,16 +57,16 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="16" weight="semibold"/>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="20" id="c621"/>
-                                                        <constraint firstAttribute="height" constant="20" id="c622"/>
+                                                        <constraint firstAttribute="width" constant="20" id="c905"/>
+                                                        <constraint firstAttribute="height" constant="20" id="c906"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="38" id="c617"/>
-                                                <constraint firstAttribute="height" constant="38" id="c618"/>
-                                                <constraint firstItem="app-icon-img" firstAttribute="centerX" secondItem="app-icon" secondAttribute="centerX" id="c619"/>
-                                                <constraint firstItem="app-icon-img" firstAttribute="centerY" secondItem="app-icon" secondAttribute="centerY" id="c620"/>
+                                                <constraint firstAttribute="width" constant="38" id="c901"/>
+                                                <constraint firstAttribute="height" constant="38" id="c902"/>
+                                                <constraint firstItem="app-icon-img" firstAttribute="centerX" secondItem="app-icon" secondAttribute="centerX" id="c903"/>
+                                                <constraint firstItem="app-icon-img" firstAttribute="centerY" secondItem="app-icon" secondAttribute="centerY" id="c904"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="9"/></userDefinedRuntimeAttribute>
@@ -94,8 +94,8 @@
                                         </stackView>
                                         <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="thumb" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" userLabel="thumbImageView" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="38" id="c623"/>
-                                                <constraint firstAttribute="height" constant="38" id="c624"/>
+                                                <constraint firstAttribute="width" constant="38" id="c907"/>
+                                                <constraint firstAttribute="height" constant="38" id="c908"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="8"/></userDefinedRuntimeAttribute>
@@ -107,10 +107,10 @@
                             </subviews>
                             <color key="backgroundColor" name="dsChip"/>
                             <constraints>
-                                <constraint firstItem="preview-row" firstAttribute="leading" secondItem="preview" secondAttribute="leading" id="c613"/>
-                                <constraint firstItem="preview-row" firstAttribute="top" secondItem="preview" secondAttribute="top" id="c614"/>
-                                <constraint firstItem="preview" firstAttribute="trailing" secondItem="preview-row" secondAttribute="trailing" id="c615"/>
-                                <constraint firstItem="preview" firstAttribute="bottom" secondItem="preview-row" secondAttribute="bottom" id="c616"/>
+                                <constraint firstItem="preview-row" firstAttribute="leading" secondItem="preview" secondAttribute="leading" id="c897"/>
+                                <constraint firstItem="preview-row" firstAttribute="top" secondItem="preview" secondAttribute="top" id="c898"/>
+                                <constraint firstItem="preview" firstAttribute="trailing" secondItem="preview-row" secondAttribute="trailing" id="c899"/>
+                                <constraint firstItem="preview" firstAttribute="bottom" secondItem="preview-row" secondAttribute="bottom" id="c900"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="22"/></userDefinedRuntimeAttribute>
@@ -124,21 +124,21 @@
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" weight="semibold"/>
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="20" id="c608"/>
-                                                <constraint firstAttribute="height" constant="20" id="c609"/>
+                                                <constraint firstAttribute="width" constant="20" id="c892"/>
+                                                <constraint firstAttribute="height" constant="20" id="c893"/>
                                             </constraints>
                                         </imageView>
                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="turn-on-title" userLabel="turnOnLabel" opaque="NO" text="Turn on notifications" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
-                                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/><nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </stackView>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="height" constant="56" id="c604"/>
-                                <constraint firstItem="turn-on-row" firstAttribute="centerX" secondItem="turn-on" secondAttribute="centerX" id="c605"/>
-                                <constraint firstItem="turn-on-row" firstAttribute="centerY" secondItem="turn-on" secondAttribute="centerY" id="c606"/>
-                                <constraint firstItem="turn-on-row" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="turn-on" secondAttribute="leading" constant="16" id="c607"/>
+                                <constraint firstAttribute="height" constant="56" id="c888"/>
+                                <constraint firstItem="turn-on-row" firstAttribute="centerX" secondItem="turn-on" secondAttribute="centerX" id="c889"/>
+                                <constraint firstItem="turn-on-row" firstAttribute="centerY" secondItem="turn-on" secondAttribute="centerY" id="c890"/>
+                                <constraint firstItem="turn-on-row" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="turn-on" secondAttribute="leading" constant="16" id="c891"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapTurnOn:"/>
@@ -147,7 +147,7 @@
                         <button contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="not-now" userLabel="notNowButton" opaque="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation">
                             <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="15"/><inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/><state key="normal" title="Not now"><color key="titleColor" name="dsTextPrimary"/></state>
                             <constraints>
-                                <constraint firstAttribute="height" constant="44" id="c625"/>
+                                <constraint firstAttribute="height" constant="44" id="c909"/>
                             </constraints>
                             <connections>
                                 <action selector="didTapNotNow:" destination="-1" eventType="touchUpInside" id="not-now-a0"/>
@@ -156,18 +156,21 @@
                     </subviews>
                 </stackView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" name="dsBackground"/>
             <viewLayoutGuide key="safeArea" id="root-safeArea"/>
             <constraints>
-                <constraint firstItem="col" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c610"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="col" secondAttribute="trailing" constant="20" id="c611"/>
-                <constraint firstItem="col" firstAttribute="top" secondItem="root" secondAttribute="top" constant="30" id="c612"/>
+                <constraint firstItem="col" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c894"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="col" secondAttribute="trailing" constant="20" id="c895"/>
+                <constraint firstItem="col" firstAttribute="top" secondItem="root" secondAttribute="top" constant="30" id="c896"/>
             </constraints>
         </view>
         </objects>
     <resources>
         <image name="bell" catalog="system" width="128" height="128"/>
         <image name="house.lodge" catalog="system" width="128" height="128"/>
+        <namedColor name="dsBackground">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="dsChip">
             <color red="0.9490" green="0.9490" blue="0.9490" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

@@ -43,7 +43,7 @@
                 <outlet property="restyleButton" destination="restyle" id="restyle-o"/>
                 <outlet property="restyleLabel" destination="restyle-title" id="restyle-title-o"/>
                 <outlet property="closeButton" destination="close" id="close-o"/>
-                <outlet property="strengthKnobLeading" destination="c424" id="c424-o"/>
+                <outlet property="strengthKnobLeading" destination="c2532" id="c2532-o"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -63,13 +63,13 @@
                             <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="12" minimumInteritemSpacing="12" id="grid-layout"><size key="itemSize" width="104" height="128"/><size key="headerReferenceSize" width="0.0" height="0.0"/><size key="footerReferenceSize" width="0.0" height="0.0"/><inset key="sectionInset" minX="0" minY="0" maxX="0" maxY="0"/></collectionViewFlowLayout>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="270" id="c414"/>
+                                <constraint firstAttribute="height" constant="270" id="c2522"/>
                             </constraints>
                         </collectionView>
                         <button contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="see-all" userLabel="seeAllButton" opaque="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation">
                             <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/><state key="normal" title="See all styles"><color key="titleColor" name="dsLink"/></state>
                             <constraints>
-                                <constraint firstAttribute="height" constant="24" id="c415"/>
+                                <constraint firstAttribute="height" constant="24" id="c2523"/>
                             </constraints>
                             <connections>
                                 <action selector="didTapSeeAll:" destination="-1" eventType="touchUpInside" id="see-all-a0"/>
@@ -78,7 +78,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="strength" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="strengthView">
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="seg-knob" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="strengthKnob">
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="backgroundColor" name="dsCard"/>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="16"/></userDefinedRuntimeAttribute>
                                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.12"/></userDefinedRuntimeAttribute>
@@ -95,8 +95,8 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="str0-label" firstAttribute="centerX" secondItem="str0" secondAttribute="centerX" id="c397"/>
-                                                <constraint firstItem="str0-label" firstAttribute="centerY" secondItem="str0" secondAttribute="centerY" id="c398"/>
+                                                <constraint firstItem="str0-label" firstAttribute="centerX" secondItem="str0" secondAttribute="centerX" id="c2505"/>
+                                                <constraint firstItem="str0-label" firstAttribute="centerY" secondItem="str0" secondAttribute="centerY" id="c2506"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="hapticOnPress" value="NO"/>
@@ -111,8 +111,8 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="str1-label" firstAttribute="centerX" secondItem="str1" secondAttribute="centerX" id="c399"/>
-                                                <constraint firstItem="str1-label" firstAttribute="centerY" secondItem="str1" secondAttribute="centerY" id="c400"/>
+                                                <constraint firstItem="str1-label" firstAttribute="centerX" secondItem="str1" secondAttribute="centerX" id="c2507"/>
+                                                <constraint firstItem="str1-label" firstAttribute="centerY" secondItem="str1" secondAttribute="centerY" id="c2508"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="hapticOnPress" value="NO"/>
@@ -127,8 +127,8 @@
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="str2-label" firstAttribute="centerX" secondItem="str2" secondAttribute="centerX" id="c401"/>
-                                                <constraint firstItem="str2-label" firstAttribute="centerY" secondItem="str2" secondAttribute="centerY" id="c402"/>
+                                                <constraint firstItem="str2-label" firstAttribute="centerX" secondItem="str2" secondAttribute="centerX" id="c2509"/>
+                                                <constraint firstItem="str2-label" firstAttribute="centerY" secondItem="str2" secondAttribute="centerY" id="c2510"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="hapticOnPress" value="NO"/>
@@ -141,15 +141,15 @@
                             </subviews>
                             <color key="backgroundColor" name="dsSegment"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="38" id="c416"/>
-                                <constraint firstItem="str-row" firstAttribute="leading" secondItem="strength" secondAttribute="leading" constant="3" id="c417"/>
-                                <constraint firstItem="str-row" firstAttribute="top" secondItem="strength" secondAttribute="top" constant="3" id="c418"/>
-                                <constraint firstItem="strength" firstAttribute="trailing" secondItem="str-row" secondAttribute="trailing" constant="3" id="c419"/>
-                                <constraint firstItem="strength" firstAttribute="bottom" secondItem="str-row" secondAttribute="bottom" constant="3" id="c420"/>
-                                <constraint firstItem="seg-knob" firstAttribute="top" secondItem="strength" secondAttribute="top" constant="3" id="c421"/>
-                                <constraint firstItem="strength" firstAttribute="bottom" secondItem="seg-knob" secondAttribute="bottom" constant="3" id="c422"/>
-                                <constraint firstItem="seg-knob" firstAttribute="width" secondItem="str0" secondAttribute="width" id="c423"/>
-                                <constraint firstItem="seg-knob" firstAttribute="leading" secondItem="strength" secondAttribute="leading" constant="3" id="c424"/>
+                                <constraint firstAttribute="height" constant="38" id="c2524"/>
+                                <constraint firstItem="str-row" firstAttribute="leading" secondItem="strength" secondAttribute="leading" constant="3" id="c2525"/>
+                                <constraint firstItem="str-row" firstAttribute="top" secondItem="strength" secondAttribute="top" constant="3" id="c2526"/>
+                                <constraint firstItem="strength" firstAttribute="trailing" secondItem="str-row" secondAttribute="trailing" constant="3" id="c2527"/>
+                                <constraint firstItem="strength" firstAttribute="bottom" secondItem="str-row" secondAttribute="bottom" constant="3" id="c2528"/>
+                                <constraint firstItem="seg-knob" firstAttribute="top" secondItem="strength" secondAttribute="top" constant="3" id="c2529"/>
+                                <constraint firstItem="strength" firstAttribute="bottom" secondItem="seg-knob" secondAttribute="bottom" constant="3" id="c2530"/>
+                                <constraint firstItem="seg-knob" firstAttribute="width" secondItem="str0" secondAttribute="width" id="c2531"/>
+                                <constraint firstItem="seg-knob" firstAttribute="leading" secondItem="strength" secondAttribute="leading" constant="3" id="c2532"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="19"/></userDefinedRuntimeAttribute>
@@ -183,21 +183,21 @@
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" weight="semibold"/>
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="20" id="c407"/>
-                                                <constraint firstAttribute="height" constant="20" id="c408"/>
+                                                <constraint firstAttribute="width" constant="20" id="c2515"/>
+                                                <constraint firstAttribute="height" constant="20" id="c2516"/>
                                             </constraints>
                                         </imageView>
                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="restyle-title" userLabel="restyleLabel" opaque="NO" text="Restyle · 1 credit" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
-                                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/><nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                 </stackView>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="height" constant="56" id="c403"/>
-                                <constraint firstItem="restyle-row" firstAttribute="centerX" secondItem="restyle" secondAttribute="centerX" id="c404"/>
-                                <constraint firstItem="restyle-row" firstAttribute="centerY" secondItem="restyle" secondAttribute="centerY" id="c405"/>
-                                <constraint firstItem="restyle-row" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="restyle" secondAttribute="leading" constant="16" id="c406"/>
+                                <constraint firstAttribute="height" constant="56" id="c2511"/>
+                                <constraint firstItem="restyle-row" firstAttribute="centerX" secondItem="restyle" secondAttribute="centerX" id="c2512"/>
+                                <constraint firstItem="restyle-row" firstAttribute="centerY" secondItem="restyle" secondAttribute="centerY" id="c2513"/>
+                                <constraint firstItem="restyle-row" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="restyle" secondAttribute="leading" constant="16" id="c2514"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapRestyle:"/>
@@ -211,23 +211,23 @@
                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="13.6" weight="semibold"/>
                             <color key="tintColor" name="dsTextPrimary"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="16" id="c395"/>
-                                <constraint firstAttribute="height" constant="16" id="c396"/>
+                                <constraint firstAttribute="width" constant="16" id="c2503"/>
+                                <constraint firstAttribute="height" constant="16" id="c2504"/>
                             </constraints>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" name="dsGlass"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="36" id="c391"/>
-                        <constraint firstAttribute="height" constant="36" id="c392"/>
-                        <constraint firstItem="close-icon" firstAttribute="centerX" secondItem="close" secondAttribute="centerX" id="c393"/>
-                        <constraint firstItem="close-icon" firstAttribute="centerY" secondItem="close" secondAttribute="centerY" id="c394"/>
+                        <constraint firstAttribute="width" constant="36" id="c2499"/>
+                        <constraint firstAttribute="height" constant="36" id="c2500"/>
+                        <constraint firstItem="close-icon" firstAttribute="centerX" secondItem="close" secondAttribute="centerX" id="c2501"/>
+                        <constraint firstItem="close-icon" firstAttribute="centerY" secondItem="close" secondAttribute="centerY" id="c2502"/>
                     </constraints>
                     <accessibility key="accessibilityConfiguration" label="Close"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
                         <userDefinedRuntimeAttribute type="number" keyPath="borderWidth"><real key="value" value="0.5"/></userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.900" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor"><color key="value" name="dsGlassBorder"/></userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.08"/></userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="7"/></userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="4"/></userDefinedRuntimeAttribute>
@@ -235,22 +235,31 @@
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" name="dsBackground"/>
             <viewLayoutGuide key="safeArea" id="root-safeArea"/>
             <constraints>
-                <constraint firstItem="col" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c409"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="col" secondAttribute="trailing" constant="20" id="c410"/>
-                <constraint firstItem="col" firstAttribute="top" secondItem="root" secondAttribute="top" constant="30" id="c411"/>
-                <constraint firstItem="close" firstAttribute="top" secondItem="root" secondAttribute="top" constant="16" id="c412"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="close" secondAttribute="trailing" constant="16" id="c413"/>
+                <constraint firstItem="col" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c2517"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="col" secondAttribute="trailing" constant="20" id="c2518"/>
+                <constraint firstItem="col" firstAttribute="top" secondItem="root" secondAttribute="top" constant="30" id="c2519"/>
+                <constraint firstItem="close" firstAttribute="top" secondItem="root" secondAttribute="top" constant="16" id="c2520"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="close" secondAttribute="trailing" constant="16" id="c2521"/>
             </constraints>
         </view>
         </objects>
     <resources>
         <image name="wand.and.stars" catalog="system" width="128" height="128"/>
         <image name="xmark" catalog="system" width="128" height="128"/>
+        <namedColor name="dsBackground">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsCard">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="dsGlass">
             <color red="1.0000" green="1.0000" blue="1.0000" alpha="0.750" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsGlassBorder">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="0.900" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="dsLink">
             <color red="0.2431" green="0.4784" blue="0.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>

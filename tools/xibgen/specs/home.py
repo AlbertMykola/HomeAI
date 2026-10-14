@@ -27,10 +27,10 @@ def wrap(child, id, inset=(0, 20, 0, 20), **kw):
 def home():
     d = Doc("HomeViewController", owner="HomeViewController")
     root = d.root
-    root.bg = "white"
+    root.bg = "dsBackground"
 
     glow = View(id="glow", cls="DSGradientView", outlet="topGlowView",
-                runtime={"startColor": "dsLimeSoft", "endColor": "white", "angle": 180})
+                runtime={"startColor": "dsLimeSoft", "endColor": "dsBackground", "angle": 180})
 
     # ---------------- scroll content ----------------
     # 1 free design left banner
@@ -45,7 +45,7 @@ def home():
                           accessibility="Hide").on("didTapCloseFreeBanner:")
     banner_row = HStack([banner_icon, banner_text, banner_pro, banner_close], id="banner-row", spacing=10,
                         align="center", margins=(0, 16, 0, 10))
-    banner = Control(id="banner", cls="DSPressableControl", bg="#F4FFE8", outlet="freeBannerControl",
+    banner = Control(id="banner", cls="DSPressableControl", bg="dsLimeSoft", outlet="freeBannerControl",
                      runtime={"cornerRadius": 18, "borderWidth": 1, "borderColor": "dsLime"},
                      children=[banner_row]).on("didTapFreeBanner:")
     banner_wrap = wrap(banner, "banner-wrap", inset=(0, 20, 12, 20), outlet="freeBannerContainer", hidden=True)
@@ -65,7 +65,7 @@ def home():
                      outlet="heroSubtitleLabel", minScale=0.8)
     hero_t = VStack([hero_title, hero_sub], id="hero-t", spacing=4, align="leading", outlet="heroTextStack")
     upload_icon = Image(id="upload-icon", system="camera", size=17, weight="medium", tint="black")
-    upload_label = Label("Upload a photo", id="upload-label", font=("SemiBold", 16), outlet="uploadTitleLabel")
+    upload_label = Label("Upload a photo", id="upload-label", font=("SemiBold", 16), color="black", outlet="uploadTitleLabel")
     upload_row = HStack([upload_icon, upload_label], id="upload-row", spacing=8, align="center")
     upload = Control(id="upload", cls="DSPrimaryButton", children=[upload_row], outlet="uploadButton").on("didTapUpload:")
     cost_icon = Image(id="cost-icon", system="sparkles", size=12, weight="semibold", tint="white")
@@ -76,7 +76,7 @@ def home():
     action_row = HStack([upload, cost], id="action-row", spacing=10, align="fill")
     hero_text = VStack([hero_t, action_row], id="hero-text", spacing=12, align="fill")
     tag_icon = Image(id="tag-icon", system="sofa", size=11, weight="semibold", tint="black", outlet="heroTagIcon")
-    tag_label = Label("Interior", id="tag-label", font=("SemiBold", 12), outlet="heroTagLabel")
+    tag_label = Label("Interior", id="tag-label", font=("SemiBold", 12), color="black", outlet="heroTagLabel")
     tag = View(id="tag", cls="DSView", bg=("#FFFFFF", 0.8), outlet="heroTagView", runtime={"pill": True},
                children=[pill_row([tag_icon, tag_label], (10, 10), 6)])
     hero_clip = View(id="hero-clip", cls="DSView", bg="dsSurface", clips=True, outlet="heroClipView",
@@ -164,7 +164,7 @@ def home():
     header_bg = Blur(id="header-bg", style="systemUltraThinMaterialLight", outlet="headerBackgroundView", alpha=0)
     header_line = View(id="header-line", bg=("#000000", 0.06), outlet="headerHairline", alpha=0)
     logo = Label("Rehomely", id="logo", font=("SemiBold", 26), kern=-0.52, outlet="logoLabel", hug=(251, 251))
-    spark = Image(id="credits-icon", system="sparkles", size=13, weight="semibold", tint="black",
+    spark = Image(id="credits-icon", system="sparkles", size=13, weight="semibold", tint="dsTextPrimary",
                   outlet="creditsIconView")
     credits_label = Label("2 free", id="credits-label", font=("SemiBold", 14), outlet="creditsLabel")
     credits = Control(id="credits", cls="DSPressableControl", bg="dsLimeSoft", outlet="creditsControl",

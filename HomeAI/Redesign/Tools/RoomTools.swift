@@ -231,7 +231,7 @@ final class RearrangeToolViewController: ToolStepViewController {
         selectCards(optionCards, tag: option, animated: animated)
         let changes = {
             self.optionRadioDots.forEach { $0.alpha = $0.tag == self.option ? 1 : 0 }
-            self.optionRadios.forEach { $0.layer.borderColor = ($0.tag == self.option ? UIColor.black : UIColor(white: 0.78, alpha: 1)).cgColor }
+            self.optionRadios.forEach { $0.layer.borderColor = ($0.tag == self.option ? DS.Color.textPrimary : UIColor(white: 0.6, alpha: 1)).resolvedColor(with: self.traitCollection).cgColor }
         }
         animated ? UIView.animate(withDuration: 0.2, animations: changes) : changes()
     }
