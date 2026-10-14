@@ -57,7 +57,7 @@
                                     <subviews>
                                         <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="good-img" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" image="tips_good" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="112" id="c1989"/>
+                                                <constraint firstAttribute="height" constant="112" id="c2771"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="16"/></userDefinedRuntimeAttribute>
@@ -69,8 +69,8 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="13" weight="semibold"/>
                                                     <color key="tintColor" name="dsLink"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="16" id="c1991"/>
-                                                        <constraint firstAttribute="height" constant="16" id="c1992"/>
+                                                        <constraint firstAttribute="width" constant="16" id="c2773"/>
+                                                        <constraint firstAttribute="height" constant="16" id="c2774"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="good-label" opaque="NO" text="Wide &amp; bright" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
@@ -80,14 +80,14 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="good-img" firstAttribute="width" secondItem="good-col" secondAttribute="width" id="c1990"/>
+                                        <constraint firstItem="good-img" firstAttribute="width" secondItem="good-col" secondAttribute="width" id="c2772"/>
                                     </constraints>
                                 </stackView>
                                 <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bad-col" opaque="NO" axis="vertical" alignment="leading" spacing="6">
                                     <subviews>
                                         <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bad-img" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" image="tips_bad" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="112" id="c1993"/>
+                                                <constraint firstAttribute="height" constant="112" id="c2775"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="16"/></userDefinedRuntimeAttribute>
@@ -99,8 +99,8 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="13" weight="semibold"/>
                                                     <color key="tintColor" red="0.8980" green="0.2824" blue="0.3020" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="16" id="c1995"/>
-                                                        <constraint firstAttribute="height" constant="16" id="c1996"/>
+                                                        <constraint firstAttribute="width" constant="16" id="c2777"/>
+                                                        <constraint firstAttribute="height" constant="16" id="c2778"/>
                                                     </constraints>
                                                 </imageView>
                                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="bad-label" opaque="NO" text="Too close / dark" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
@@ -110,7 +110,7 @@
                                         </stackView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="bad-img" firstAttribute="width" secondItem="bad-col" secondAttribute="width" id="c1994"/>
+                                        <constraint firstItem="bad-img" firstAttribute="width" secondItem="bad-col" secondAttribute="width" id="c2776"/>
                                     </constraints>
                                 </stackView>
                             </subviews>
@@ -125,17 +125,17 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="medium"/>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="18" id="c2001"/>
-                                                        <constraint firstAttribute="height" constant="18" id="c2002"/>
+                                                        <constraint firstAttribute="width" constant="18" id="c2783"/>
+                                                        <constraint firstAttribute="height" constant="18" id="c2784"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" name="dsSurface"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="32" id="c1997"/>
-                                                <constraint firstAttribute="height" constant="32" id="c1998"/>
-                                                <constraint firstItem="tip0-icon" firstAttribute="centerX" secondItem="tip0-box" secondAttribute="centerX" id="c1999"/>
-                                                <constraint firstItem="tip0-icon" firstAttribute="centerY" secondItem="tip0-box" secondAttribute="centerY" id="c2000"/>
+                                                <constraint firstAttribute="width" constant="32" id="c2779"/>
+                                                <constraint firstAttribute="height" constant="32" id="c2780"/>
+                                                <constraint firstItem="tip0-icon" firstAttribute="centerX" secondItem="tip0-box" secondAttribute="centerX" id="c2781"/>
+                                                <constraint firstItem="tip0-icon" firstAttribute="centerY" secondItem="tip0-box" secondAttribute="centerY" id="c2782"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="10"/></userDefinedRuntimeAttribute>
@@ -154,17 +154,17 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="medium"/>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="18" id="c2007"/>
-                                                        <constraint firstAttribute="height" constant="18" id="c2008"/>
+                                                        <constraint firstAttribute="width" constant="18" id="c2789"/>
+                                                        <constraint firstAttribute="height" constant="18" id="c2790"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" name="dsSurface"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="32" id="c2003"/>
-                                                <constraint firstAttribute="height" constant="32" id="c2004"/>
-                                                <constraint firstItem="tip1-icon" firstAttribute="centerX" secondItem="tip1-box" secondAttribute="centerX" id="c2005"/>
-                                                <constraint firstItem="tip1-icon" firstAttribute="centerY" secondItem="tip1-box" secondAttribute="centerY" id="c2006"/>
+                                                <constraint firstAttribute="width" constant="32" id="c2785"/>
+                                                <constraint firstAttribute="height" constant="32" id="c2786"/>
+                                                <constraint firstItem="tip1-icon" firstAttribute="centerX" secondItem="tip1-box" secondAttribute="centerX" id="c2787"/>
+                                                <constraint firstItem="tip1-icon" firstAttribute="centerY" secondItem="tip1-box" secondAttribute="centerY" id="c2788"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="10"/></userDefinedRuntimeAttribute>
@@ -183,17 +183,17 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="medium"/>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="18" id="c2013"/>
-                                                        <constraint firstAttribute="height" constant="18" id="c2014"/>
+                                                        <constraint firstAttribute="width" constant="18" id="c2795"/>
+                                                        <constraint firstAttribute="height" constant="18" id="c2796"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" name="dsSurface"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="32" id="c2009"/>
-                                                <constraint firstAttribute="height" constant="32" id="c2010"/>
-                                                <constraint firstItem="tip2-icon" firstAttribute="centerX" secondItem="tip2-box" secondAttribute="centerX" id="c2011"/>
-                                                <constraint firstItem="tip2-icon" firstAttribute="centerY" secondItem="tip2-box" secondAttribute="centerY" id="c2012"/>
+                                                <constraint firstAttribute="width" constant="32" id="c2791"/>
+                                                <constraint firstAttribute="height" constant="32" id="c2792"/>
+                                                <constraint firstItem="tip2-icon" firstAttribute="centerX" secondItem="tip2-box" secondAttribute="centerX" id="c2793"/>
+                                                <constraint firstItem="tip2-icon" firstAttribute="centerY" secondItem="tip2-box" secondAttribute="centerY" id="c2794"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="10"/></userDefinedRuntimeAttribute>
@@ -212,17 +212,17 @@
                                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="medium"/>
                                                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="18" id="c2019"/>
-                                                        <constraint firstAttribute="height" constant="18" id="c2020"/>
+                                                        <constraint firstAttribute="width" constant="18" id="c2801"/>
+                                                        <constraint firstAttribute="height" constant="18" id="c2802"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" name="dsSurface"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="32" id="c2015"/>
-                                                <constraint firstAttribute="height" constant="32" id="c2016"/>
-                                                <constraint firstItem="tip3-icon" firstAttribute="centerX" secondItem="tip3-box" secondAttribute="centerX" id="c2017"/>
-                                                <constraint firstItem="tip3-icon" firstAttribute="centerY" secondItem="tip3-box" secondAttribute="centerY" id="c2018"/>
+                                                <constraint firstAttribute="width" constant="32" id="c2797"/>
+                                                <constraint firstAttribute="height" constant="32" id="c2798"/>
+                                                <constraint firstItem="tip3-icon" firstAttribute="centerX" secondItem="tip3-box" secondAttribute="centerX" id="c2799"/>
+                                                <constraint firstItem="tip3-icon" firstAttribute="centerY" secondItem="tip3-box" secondAttribute="centerY" id="c2800"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="10"/></userDefinedRuntimeAttribute>
@@ -247,10 +247,10 @@
                                 </stackView>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="height" constant="56" id="c2021"/>
-                                <constraint firstItem="got-it-row" firstAttribute="centerX" secondItem="got-it" secondAttribute="centerX" id="c2022"/>
-                                <constraint firstItem="got-it-row" firstAttribute="centerY" secondItem="got-it" secondAttribute="centerY" id="c2023"/>
-                                <constraint firstItem="got-it-row" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="got-it" secondAttribute="leading" constant="16" id="c2024"/>
+                                <constraint firstAttribute="height" constant="56" id="c2803"/>
+                                <constraint firstItem="got-it-row" firstAttribute="centerX" secondItem="got-it" secondAttribute="centerX" id="c2804"/>
+                                <constraint firstItem="got-it-row" firstAttribute="centerY" secondItem="got-it" secondAttribute="centerY" id="c2805"/>
+                                <constraint firstItem="got-it-row" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="got-it" secondAttribute="leading" constant="16" id="c2806"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapClose:"/>
@@ -264,17 +264,17 @@
                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="13.6" weight="semibold"/>
                             <color key="tintColor" name="dsTextPrimary"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="16" id="c1987"/>
-                                <constraint firstAttribute="height" constant="16" id="c1988"/>
+                                <constraint firstAttribute="width" constant="16" id="c2769"/>
+                                <constraint firstAttribute="height" constant="16" id="c2770"/>
                             </constraints>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" name="dsGlass"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="36" id="c1983"/>
-                        <constraint firstAttribute="height" constant="36" id="c1984"/>
-                        <constraint firstItem="close-icon" firstAttribute="centerX" secondItem="close" secondAttribute="centerX" id="c1985"/>
-                        <constraint firstItem="close-icon" firstAttribute="centerY" secondItem="close" secondAttribute="centerY" id="c1986"/>
+                        <constraint firstAttribute="width" constant="36" id="c2765"/>
+                        <constraint firstAttribute="height" constant="36" id="c2766"/>
+                        <constraint firstItem="close-icon" firstAttribute="centerX" secondItem="close" secondAttribute="centerX" id="c2767"/>
+                        <constraint firstItem="close-icon" firstAttribute="centerY" secondItem="close" secondAttribute="centerY" id="c2768"/>
                     </constraints>
                     <accessibility key="accessibilityConfiguration" label="Close"/>
                     <userDefinedRuntimeAttributes>
@@ -291,11 +291,11 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="root-safeArea"/>
             <constraints>
-                <constraint firstItem="col" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c2025"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="col" secondAttribute="trailing" constant="20" id="c2026"/>
-                <constraint firstItem="col" firstAttribute="top" secondItem="root" secondAttribute="top" constant="30" id="c2027"/>
-                <constraint firstItem="close" firstAttribute="top" secondItem="root" secondAttribute="top" constant="16" id="c2028"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="close" secondAttribute="trailing" constant="16" id="c2029"/>
+                <constraint firstItem="col" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c2807"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="col" secondAttribute="trailing" constant="20" id="c2808"/>
+                <constraint firstItem="col" firstAttribute="top" secondItem="root" secondAttribute="top" constant="30" id="c2809"/>
+                <constraint firstItem="close" firstAttribute="top" secondItem="root" secondAttribute="top" constant="16" id="c2810"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="close" secondAttribute="trailing" constant="16" id="c2811"/>
             </constraints>
         </view>
         </objects>

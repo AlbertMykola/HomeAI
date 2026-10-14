@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geologica-Medium.ttf">
+            <string>Geologica-Medium</string>
+        </array>
+        <array key="Geologica-Regular.ttf">
+            <string>Geologica-Regular</string>
+        </array>
+        <array key="Geologica-SemiBold.ttf">
+            <string>Geologica-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FloorToolViewController" customModule="HomeAI" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="root" id="root-view-o"/>
+                <outlet property="scrollView" destination="scroll" id="scroll-o"/>
+                <outlet property="contentStack" destination="body" id="body-o"/>
+                <outlet property="titleStack" destination="title-group" id="title-group-o"/>
+                <outlet property="titleLabel" destination="title-title" id="title-title-o"/>
+                <outlet property="subtitleLabel" destination="title-sub" id="title-sub-o"/>
+                <outlet property="photoSummaryView" destination="summary" id="summary-o"/>
+                <outlet property="photoThumbView" destination="ps-thumb" id="ps-thumb-o"/>
+                <outlet property="photoTitleLabel" destination="ps-title" id="ps-title-o"/>
+                <outlet property="photoStatusLabel" destination="ps-status" id="ps-status-o"/>
+                <outlet property="changePhotoButton" destination="ps-change" id="ps-change-o"/>
+                <outletCollection property="filterChips" destination="filter0" collectionClass="NSMutableArray" id="filter0-oc"/>
+                <outletCollection property="filterChips" destination="filter1" collectionClass="NSMutableArray" id="filter1-oc"/>
+                <outletCollection property="filterChips" destination="filter2" collectionClass="NSMutableArray" id="filter2-oc"/>
+                <outletCollection property="filterChips" destination="filter3" collectionClass="NSMutableArray" id="filter3-oc"/>
+                <outletCollection property="filterChips" destination="filter4" collectionClass="NSMutableArray" id="filter4-oc"/>
+                <outlet property="materialsCollectionView" destination="materials" id="materials-o"/>
+                <outlet property="patternTitleLabel" destination="s-pattern" id="s-pattern-o"/>
+                <outlet property="patternView" destination="pattern" id="pattern-o"/>
+                <outlet property="patternKnob" destination="pattern-knob" id="pattern-knob-o"/>
+                <outletCollection property="patternControls" destination="pattern0" collectionClass="NSMutableArray" id="pattern0-oc"/>
+                <outletCollection property="patternLabels" destination="pattern0-l" collectionClass="NSMutableArray" id="pattern0-l-oc"/>
+                <outletCollection property="patternControls" destination="pattern1" collectionClass="NSMutableArray" id="pattern1-oc"/>
+                <outletCollection property="patternLabels" destination="pattern1-l" collectionClass="NSMutableArray" id="pattern1-l-oc"/>
+                <outletCollection property="patternControls" destination="pattern2" collectionClass="NSMutableArray" id="pattern2-oc"/>
+                <outletCollection property="patternLabels" destination="pattern2-l" collectionClass="NSMutableArray" id="pattern2-l-oc"/>
+                <outlet property="rugsTitleLabel" destination="rugs-t" id="rugs-t-o"/>
+                <outlet property="rugsSubtitleLabel" destination="rugs-s" id="rugs-s-o"/>
+                <outlet property="rugsSwitch" destination="rugs-sw" id="rugs-sw-o"/>
+                <outlet property="navBar" destination="nav" id="nav-o"/>
+                <outlet property="generateButton" destination="generate" id="generate-o"/>
+                <outlet property="generateIconView" destination="generate-icon" id="generate-icon-o"/>
+                <outlet property="generateTitleLabel" destination="generate-title" id="generate-title-o"/>
+                <outlet property="generateSubtitleLabel" destination="generate-sub" id="generate-sub-o"/>
+                <outlet property="materialsHeightConstraint" destination="c1975" id="c1975-o"/>
+                <outlet property="patternKnobLeading" destination="c1990" id="c1990-o"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="root" userLabel="Root">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <scrollView contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="scroll" userLabel="scrollView" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" alwaysBounceVertical="YES">
+                    <subviews>
+                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="body" userLabel="contentStack" opaque="NO" axis="vertical" spacing="14">
+                            <subviews>
+                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="title-group" userLabel="titleStack" opaque="NO" axis="vertical" spacing="6">
+                                    <subviews>
+                                        <label contentMode="scaleToFill" horizontalCompressionResistancePriority="750" verticalCompressionResistancePriority="751" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title-title" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="titleLabel" opaque="NO" text="New flooring" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="28"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="letterSpacing"><real key="value" value="-0.14"/></userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title-sub" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="subtitleLabel" opaque="NO" text="Furniture and rugs stay. Only the floor changes." textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15"/><color key="textColor" name="dsTextSecondary"/><nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="lineHeightMultiple"><real key="value" value="1.12"/></userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="summary" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="photoSummaryView">
+                                    <subviews>
+                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ps-row" opaque="NO" alignment="center" spacing="12" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                            <subviews>
+                                                <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ps-thumb" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" userLabel="photoThumbView" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="56" id="c1942"/>
+                                                        <constraint firstAttribute="height" constant="56" id="c1943"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="14"/></userDefinedRuntimeAttribute>
+                                                    </userDefinedRuntimeAttributes>
+                                                </imageView>
+                                                <stackView contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ps-texts" opaque="NO" axis="vertical" spacing="2">
+                                                    <subviews>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ps-title" userLabel="photoTitleLabel" opaque="NO" text="Your photo" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="15"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                        <label contentMode="scaleToFill" hidden="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ps-status" userLabel="photoStatusLabel" opaque="NO" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="13"/><color key="textColor" name="dsLink"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                </stackView>
+                                                <button contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ps-change" userLabel="changePhotoButton" opaque="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation">
+                                                    <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/><state key="normal" title="Change"><color key="titleColor" name="dsLink"/></state>
+                                                    <connections>
+                                                        <action selector="didTapChangePhoto:" destination="-1" eventType="touchUpInside" id="ps-change-a0"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="14"/>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" name="dsSurface"/>
+                                    <constraints>
+                                        <constraint firstItem="ps-row" firstAttribute="leading" secondItem="summary" secondAttribute="leading" id="c1938"/>
+                                        <constraint firstItem="ps-row" firstAttribute="top" secondItem="summary" secondAttribute="top" id="c1939"/>
+                                        <constraint firstItem="summary" firstAttribute="trailing" secondItem="ps-row" secondAttribute="trailing" id="c1940"/>
+                                        <constraint firstItem="summary" firstAttribute="bottom" secondItem="ps-row" secondAttribute="bottom" id="c1941"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <scrollView contentMode="scaleToFill" clipsSubviews="NO" translatesAutoresizingMaskIntoConstraints="NO" id="filter-scroll" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" alwaysBounceHorizontal="YES">
+                                    <subviews>
+                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="filter-stack" opaque="NO" spacing="8">
+                                            <subviews>
+                                                <view contentMode="scaleToFill" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="filter0" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                                    <subviews>
+                                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="filter0-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                            <subviews>
+                                                                <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="filter0-label" opaque="NO" text="All" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                    <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="c1944"/>
+                                                        <constraint firstItem="filter0-row" firstAttribute="leading" secondItem="filter0" secondAttribute="leading" id="c1945"/>
+                                                        <constraint firstItem="filter0-row" firstAttribute="top" secondItem="filter0" secondAttribute="top" id="c1946"/>
+                                                        <constraint firstItem="filter0" firstAttribute="trailing" secondItem="filter0-row" secondAttribute="trailing" id="c1947"/>
+                                                        <constraint firstItem="filter0" firstAttribute="bottom" secondItem="filter0-row" secondAttribute="bottom" id="c1948"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapFilter:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="filter1" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                                    <subviews>
+                                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="filter1-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                            <subviews>
+                                                                <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="filter1-label" opaque="NO" text="Wood" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                    <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="c1949"/>
+                                                        <constraint firstItem="filter1-row" firstAttribute="leading" secondItem="filter1" secondAttribute="leading" id="c1950"/>
+                                                        <constraint firstItem="filter1-row" firstAttribute="top" secondItem="filter1" secondAttribute="top" id="c1951"/>
+                                                        <constraint firstItem="filter1" firstAttribute="trailing" secondItem="filter1-row" secondAttribute="trailing" id="c1952"/>
+                                                        <constraint firstItem="filter1" firstAttribute="bottom" secondItem="filter1-row" secondAttribute="bottom" id="c1953"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapFilter:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="filter2" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                                    <subviews>
+                                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="filter2-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                            <subviews>
+                                                                <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="filter2-label" opaque="NO" text="Tile" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                    <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="c1954"/>
+                                                        <constraint firstItem="filter2-row" firstAttribute="leading" secondItem="filter2" secondAttribute="leading" id="c1955"/>
+                                                        <constraint firstItem="filter2-row" firstAttribute="top" secondItem="filter2" secondAttribute="top" id="c1956"/>
+                                                        <constraint firstItem="filter2" firstAttribute="trailing" secondItem="filter2-row" secondAttribute="trailing" id="c1957"/>
+                                                        <constraint firstItem="filter2" firstAttribute="bottom" secondItem="filter2-row" secondAttribute="bottom" id="c1958"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapFilter:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="filter3" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                                    <subviews>
+                                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="filter3-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                            <subviews>
+                                                                <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="filter3-label" opaque="NO" text="Stone" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                    <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="c1959"/>
+                                                        <constraint firstItem="filter3-row" firstAttribute="leading" secondItem="filter3" secondAttribute="leading" id="c1960"/>
+                                                        <constraint firstItem="filter3-row" firstAttribute="top" secondItem="filter3" secondAttribute="top" id="c1961"/>
+                                                        <constraint firstItem="filter3" firstAttribute="trailing" secondItem="filter3-row" secondAttribute="trailing" id="c1962"/>
+                                                        <constraint firstItem="filter3" firstAttribute="bottom" secondItem="filter3-row" secondAttribute="bottom" id="c1963"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapFilter:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="filter4" customClass="DSChipControl" customModule="HomeAI" customModuleProvider="target">
+                                                    <subviews>
+                                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="filter4-row" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                            <subviews>
+                                                                <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="filter4-label" opaque="NO" text="Carpet" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                    <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                                </label>
+                                                            </subviews>
+                                                            <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14"/>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="c1964"/>
+                                                        <constraint firstItem="filter4-row" firstAttribute="leading" secondItem="filter4" secondAttribute="leading" id="c1965"/>
+                                                        <constraint firstItem="filter4-row" firstAttribute="top" secondItem="filter4" secondAttribute="top" id="c1966"/>
+                                                        <constraint firstItem="filter4" firstAttribute="trailing" secondItem="filter4-row" secondAttribute="trailing" id="c1967"/>
+                                                        <constraint firstItem="filter4" firstAttribute="bottom" secondItem="filter4-row" secondAttribute="bottom" id="c1968"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isChipSelected" value="NO"/>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapFilter:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <viewLayoutGuide key="contentLayoutGuide" id="filter-scroll-contentLayoutGuide"/><viewLayoutGuide key="frameLayoutGuide" id="filter-scroll-frameLayoutGuide"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="36" id="c1969"/>
+                                        <constraint firstItem="filter-stack" firstAttribute="leading" secondItem="filter-scroll-contentLayoutGuide" secondAttribute="leading" id="c1970"/>
+                                        <constraint firstItem="filter-stack" firstAttribute="top" secondItem="filter-scroll-contentLayoutGuide" secondAttribute="top" id="c1971"/>
+                                        <constraint firstItem="filter-scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="filter-stack" secondAttribute="trailing" id="c1972"/>
+                                        <constraint firstItem="filter-scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="filter-stack" secondAttribute="bottom" id="c1973"/>
+                                        <constraint firstItem="filter-stack" firstAttribute="height" secondItem="filter-scroll-frameLayoutGuide" secondAttribute="height" id="c1974"/>
+                                    </constraints>
+                                </scrollView>
+                                <collectionView contentMode="scaleToFill" clipsSubviews="NO" translatesAutoresizingMaskIntoConstraints="NO" id="materials" userLabel="materialsCollectionView" scrollEnabled="NO" multipleTouchEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none">
+                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="12" minimumInteritemSpacing="12" id="materials-layout"><size key="itemSize" width="109" height="130"/><size key="headerReferenceSize" width="0.0" height="0.0"/><size key="footerReferenceSize" width="0.0" height="0.0"/><inset key="sectionInset" minX="0" minY="0" maxX="0" maxY="0"/></collectionViewFlowLayout>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="280" id="c1975"/>
+                                    </constraints>
+                                </collectionView>
+                                <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s-pattern" userLabel="patternTitleLabel" opaque="NO" text="Pattern" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                    <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pattern" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="patternView">
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pattern-knob" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="patternKnob">
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="17.0"/></userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.12"/></userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="3"/></userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="2"/></userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pattern-row" opaque="NO" distribution="fillEqually" spacing="0">
+                                            <subviews>
+                                                <view contentMode="scaleToFill" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="pattern0" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
+                                                    <subviews>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="pattern0-l" opaque="NO" text="Straight" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.7" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextSecondary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="pattern0-l" firstAttribute="centerX" secondItem="pattern0" secondAttribute="centerX" id="c1976"/>
+                                                        <constraint firstItem="pattern0-l" firstAttribute="centerY" secondItem="pattern0" secondAttribute="centerY" id="c1977"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="hapticOnPress" value="NO"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="pressedScale"><real key="value" value="0.98"/></userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapPattern:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="pattern1" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
+                                                    <subviews>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="pattern1-l" opaque="NO" text="Herringbone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.7" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextSecondary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="pattern1-l" firstAttribute="centerX" secondItem="pattern1" secondAttribute="centerX" id="c1978"/>
+                                                        <constraint firstItem="pattern1-l" firstAttribute="centerY" secondItem="pattern1" secondAttribute="centerY" id="c1979"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="hapticOnPress" value="NO"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="pressedScale"><real key="value" value="0.98"/></userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapPattern:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                                <view contentMode="scaleToFill" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="pattern2" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
+                                                    <subviews>
+                                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="pattern2-l" opaque="NO" text="Chevron" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.7" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                            <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><color key="textColor" name="dsTextSecondary"/><nil key="highlightedColor"/>
+                                                        </label>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="pattern2-l" firstAttribute="centerX" secondItem="pattern2" secondAttribute="centerX" id="c1980"/>
+                                                        <constraint firstItem="pattern2-l" firstAttribute="centerY" secondItem="pattern2" secondAttribute="centerY" id="c1981"/>
+                                                    </constraints>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="hapticOnPress" value="NO"/>
+                                                        <userDefinedRuntimeAttribute type="number" keyPath="pressedScale"><real key="value" value="0.98"/></userDefinedRuntimeAttribute>
+                                                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapPattern:"/>
+                                                    </userDefinedRuntimeAttributes>
+                                                </view>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" name="dsSegment"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="40" id="c1982"/>
+                                        <constraint firstItem="pattern-row" firstAttribute="leading" secondItem="pattern" secondAttribute="leading" constant="3" id="c1983"/>
+                                        <constraint firstItem="pattern-row" firstAttribute="top" secondItem="pattern" secondAttribute="top" constant="3" id="c1984"/>
+                                        <constraint firstItem="pattern" firstAttribute="trailing" secondItem="pattern-row" secondAttribute="trailing" constant="3" id="c1985"/>
+                                        <constraint firstItem="pattern" firstAttribute="bottom" secondItem="pattern-row" secondAttribute="bottom" constant="3" id="c1986"/>
+                                        <constraint firstItem="pattern-knob" firstAttribute="top" secondItem="pattern" secondAttribute="top" constant="3" id="c1987"/>
+                                        <constraint firstItem="pattern" firstAttribute="bottom" secondItem="pattern-knob" secondAttribute="bottom" constant="3" id="c1988"/>
+                                        <constraint firstItem="pattern-knob" firstAttribute="width" secondItem="pattern0" secondAttribute="width" id="c1989"/>
+                                        <constraint firstItem="pattern-knob" firstAttribute="leading" secondItem="pattern" secondAttribute="leading" constant="3" id="c1990"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20.0"/></userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rugs" opaque="NO" alignment="center" spacing="8">
+                                    <subviews>
+                                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rugs-texts" opaque="NO" axis="vertical" spacing="2">
+                                            <subviews>
+                                                <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rugs-t" userLabel="rugsTitleLabel" opaque="NO" text="Keep rugs" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                    <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="15"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                </label>
+                                                <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rugs-s" userLabel="rugsSubtitleLabel" opaque="NO" text="Rugs stay on top of the new floor" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                    <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" name="dsTextTertiary"/><nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
+                                        <view contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="rugs-sp">
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </view>
+                                        <switch contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rugs-sw" userLabel="rugsSwitch" opaque="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES">
+                                            <color key="onTintColor" red="0.2039" green="0.7804" blue="0.3490" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </switch>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <viewLayoutGuide key="contentLayoutGuide" id="scroll-contentLayoutGuide"/><viewLayoutGuide key="frameLayoutGuide" id="scroll-frameLayoutGuide"/>
+                    <constraints>
+                        <constraint firstItem="body" firstAttribute="leading" secondItem="scroll-contentLayoutGuide" secondAttribute="leading" constant="20" id="c1933"/>
+                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="trailing" secondItem="body" secondAttribute="trailing" constant="20" id="c1934"/>
+                        <constraint firstItem="body" firstAttribute="top" secondItem="scroll-contentLayoutGuide" secondAttribute="top" constant="8" id="c1935"/>
+                        <constraint firstItem="scroll-contentLayoutGuide" firstAttribute="bottom" secondItem="body" secondAttribute="bottom" constant="120" id="c1936"/>
+                        <constraint firstItem="body" firstAttribute="width" secondItem="scroll-frameLayoutGuide" secondAttribute="width" constant="-40" id="c1937"/>
+                    </constraints>
+                </scrollView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nav" customClass="WizardNavBar" customModule="HomeAI" customModuleProvider="target" userLabel="navBar">
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="c1915"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fade" customClass="DSGradientView" customModule="HomeAI" customModuleProvider="target">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="140" id="c1925"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="startColor"><color key="value" red="1.0000" green="1.0000" blue="1.0000" alpha="0.000" colorSpace="custom" customColorSpace="sRGB"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="midColor"><color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="endColor"><color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="angle"><real key="value" value="180"/></userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="generate" customClass="DSPrimaryButton" customModule="HomeAI" customModuleProvider="target" userLabel="generateButton">
+                    <subviews>
+                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="generate-row" opaque="NO" alignment="center" spacing="8">
+                            <subviews>
+                                <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="generate-icon" userLabel="generateIconView" image="sparkles" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" weight="semibold"/>
+                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="20" id="c1920"/>
+                                        <constraint firstAttribute="height" constant="20" id="c1921"/>
+                                    </constraints>
+                                </imageView>
+                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="generate-labels" opaque="NO" axis="vertical" alignment="center" spacing="1">
+                                    <subviews>
+                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="generate-title" userLabel="generateTitleLabel" opaque="NO" text="Generate" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                        </label>
+                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="generate-sub" userLabel="generateSubtitleLabel" opaque="NO" text="1 credit · about 30 s" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12"/><color key="textColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.700" colorSpace="custom" customColorSpace="sRGB"/><nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="56" id="c1916"/>
+                        <constraint firstItem="generate-row" firstAttribute="centerX" secondItem="generate" secondAttribute="centerX" id="c1917"/>
+                        <constraint firstItem="generate-row" firstAttribute="centerY" secondItem="generate" secondAttribute="centerY" id="c1918"/>
+                        <constraint firstItem="generate-row" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="generate" secondAttribute="leading" constant="16" id="c1919"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapGenerate:"/>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="root-safeArea"/>
+            <constraints>
+                <constraint firstItem="nav" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c1912"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="nav" secondAttribute="trailing" id="c1913"/>
+                <constraint firstItem="nav" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-4" id="c1914"/>
+                <constraint firstItem="fade" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c1922"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="fade" secondAttribute="trailing" id="c1923"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="fade" secondAttribute="bottom" id="c1924"/>
+                <constraint firstItem="generate" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c1926"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="generate" secondAttribute="trailing" constant="20" id="c1927"/>
+                <constraint firstItem="root-safeArea" firstAttribute="bottom" secondItem="generate" secondAttribute="bottom" id="c1928"/>
+                <constraint firstItem="scroll" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c1929"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="scroll" secondAttribute="trailing" id="c1930"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="scroll" secondAttribute="bottom" id="c1931"/>
+                <constraint firstItem="scroll" firstAttribute="top" secondItem="nav" secondAttribute="bottom" id="c1932"/>
+            </constraints>
+        </view>
+        </objects>
+    <resources>
+        <image name="sparkles" catalog="system" width="128" height="128"/>
+        <namedColor name="dsLink">
+            <color red="0.2431" green="0.4784" blue="0.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsSegment">
+            <color red="0.9412" green="0.9412" blue="0.9412" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsSurface">
+            <color red="0.9686" green="0.9686" blue="0.9686" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsTextPrimary">
+            <color red="0.0000" green="0.0000" blue="0.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsTextSecondary">
+            <color red="0.2510" green="0.2510" blue="0.2510" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsTextTertiary">
+            <color red="0.5569" green="0.5569" blue="0.5765" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

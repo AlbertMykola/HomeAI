@@ -99,8 +99,59 @@ class WizardStepViewController: UIViewController {
         case .room: vc = WizardRoomViewController.make(session: session)
         case .style: vc = WizardStyleViewController.make(session: session)
         case .final: vc = WizardFinalViewController.make(session: session)
+        case .tool: vc = ToolStepFactory.make(session: session)
         }
         navigationController?.pushViewController(vc, animated: true)
+    }
+
+    // MARK: Generation (W4 and every A/07 tool)
+
+    /// Offline / credits checks, then G1. `configure` fills the prompt manager right before starting.
+    func generate(styleTitle: String?, configure: @escaping (GemeniPromptManager) -> Void) {
+        view.endEditing(true)
+        guard NetworkMonitor.shared.isOnline else {
+            DS.Haptic.warning()
+            DSToastView.show("You're offline".localized, style: .warning)
+            return
+        }
+        let start = { [weak self] in
+            guard let self else { return }
+            configure(self.session.promptManager)
+            self.launchGeneration(styleTitle: styleTitle)
+        }
+        switch GenerationAccess.evaluate() {
+        case .allowed:
+            DS.Haptic.medium()
+            start()
+        case .requiresSubscription:
+            OutOfCreditsSheetViewController.present(from: self, photo: session.photo, onUnlocked: start)
+        case .dailyLimitExceeded:
+            GenerationAccess.requestProcessingIfAllowed(presentingFrom: self)
+        }
+    }
+
+    private func launchGeneration(styleTitle: String?) {
+        let session = self.session!
+        NavigationManager.shared.showGeneration(manager: session.promptManager, sourcePhoto: session.photo,
+                                                styleTitle: styleTitle) {
+            // "Change photo" from G3/G4 → W1 again; the rest of the settings is kept.
+            session.photo = nil
+            NavigationManager.shared.pushWizardStep(WizardPhotoViewController.make(session: session))
+        }
+        // Drop the wizard behind the generation screen so collapsing (⌄) lands where the user started.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) { [weak self] in
+            guard let nav = self?.navigationController,
+                  let first = nav.viewControllers.firstIndex(where: { $0 is WizardStepViewController }), first > 0 else { return }
+            nav.setViewControllers(Array(nav.viewControllers[..<first]), animated: false)
+        }
+    }
+
+    /// "Uses 1 of your 2 free designs" / "Unlimited with Pro" / "1 credit · about 30 s".
+    func costLine(seconds: Int = 30) -> String {
+        if AdaptyService.shared.hasActiveSubscription {
+            return String(format: "Unlimited with Pro · about %d s".localized, seconds)
+        }
+        return String(format: "1 credit · about %d s".localized, seconds)
     }
 
     /// Fade + offset entrance helper (stagger in ms from the dev notes).

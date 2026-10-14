@@ -50,8 +50,8 @@
                                     <subviews>
                                         <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="photo" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" userLabel="photoImageView" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="120" id="c2097"/>
-                                                <constraint firstAttribute="height" constant="150" id="c2098"/>
+                                                <constraint firstAttribute="width" constant="120" id="c2879"/>
+                                                <constraint firstAttribute="height" constant="150" id="c2880"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
@@ -66,10 +66,10 @@
                                             </subviews>
                                             <color key="backgroundColor" name="dsSurface"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="36" id="c2101"/>
-                                                <constraint firstAttribute="height" constant="36" id="c2102"/>
-                                                <constraint firstItem="arrow-icon" firstAttribute="centerX" secondItem="arrow" secondAttribute="centerX" id="c2103"/>
-                                                <constraint firstItem="arrow-icon" firstAttribute="centerY" secondItem="arrow" secondAttribute="centerY" id="c2104"/>
+                                                <constraint firstAttribute="width" constant="36" id="c2883"/>
+                                                <constraint firstAttribute="height" constant="36" id="c2884"/>
+                                                <constraint firstItem="arrow-icon" firstAttribute="centerX" secondItem="arrow" secondAttribute="centerX" id="c2885"/>
+                                                <constraint firstItem="arrow-icon" firstAttribute="centerY" secondItem="arrow" secondAttribute="centerY" id="c2886"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -86,10 +86,10 @@
                                                     </subviews>
                                                     <color key="backgroundColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.850" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="44" id="c2105"/>
-                                                        <constraint firstAttribute="height" constant="44" id="c2106"/>
-                                                        <constraint firstItem="lock-icon" firstAttribute="centerX" secondItem="lock" secondAttribute="centerX" id="c2109"/>
-                                                        <constraint firstItem="lock-icon" firstAttribute="centerY" secondItem="lock" secondAttribute="centerY" id="c2110"/>
+                                                        <constraint firstAttribute="width" constant="44" id="c2887"/>
+                                                        <constraint firstAttribute="height" constant="44" id="c2888"/>
+                                                        <constraint firstItem="lock-icon" firstAttribute="centerX" secondItem="lock" secondAttribute="centerX" id="c2891"/>
+                                                        <constraint firstItem="lock-icon" firstAttribute="centerY" secondItem="lock" secondAttribute="centerY" id="c2892"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -97,10 +97,10 @@
                                                 </view>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="120" id="c2099"/>
-                                                <constraint firstAttribute="height" constant="150" id="c2100"/>
-                                                <constraint firstItem="lock" firstAttribute="centerX" secondItem="locked" secondAttribute="centerX" id="c2107"/>
-                                                <constraint firstItem="lock" firstAttribute="centerY" secondItem="locked" secondAttribute="centerY" id="c2108"/>
+                                                <constraint firstAttribute="width" constant="120" id="c2881"/>
+                                                <constraint firstAttribute="height" constant="150" id="c2882"/>
+                                                <constraint firstItem="lock" firstAttribute="centerX" secondItem="locked" secondAttribute="centerX" id="c2889"/>
+                                                <constraint firstItem="lock" firstAttribute="centerY" secondItem="locked" secondAttribute="centerY" id="c2890"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
@@ -114,11 +114,11 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="150" id="c2092"/>
-                                <constraint firstItem="preview" firstAttribute="centerX" secondItem="preview-wrap" secondAttribute="centerX" id="c2093"/>
-                                <constraint firstItem="preview" firstAttribute="centerY" secondItem="preview-wrap" secondAttribute="centerY" id="c2094"/>
-                                <constraint firstItem="preview" firstAttribute="top" secondItem="preview-wrap" secondAttribute="top" id="c2095"/>
-                                <constraint firstItem="preview-wrap" firstAttribute="bottom" secondItem="preview" secondAttribute="bottom" id="c2096"/>
+                                <constraint firstAttribute="height" constant="150" id="c2874"/>
+                                <constraint firstItem="preview" firstAttribute="centerX" secondItem="preview-wrap" secondAttribute="centerX" id="c2875"/>
+                                <constraint firstItem="preview" firstAttribute="centerY" secondItem="preview-wrap" secondAttribute="centerY" id="c2876"/>
+                                <constraint firstItem="preview" firstAttribute="top" secondItem="preview-wrap" secondAttribute="top" id="c2877"/>
+                                <constraint firstItem="preview-wrap" firstAttribute="bottom" secondItem="preview" secondAttribute="bottom" id="c2878"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="see-pro" customClass="DSPrimaryButton" customModule="HomeAI" customModuleProvider="target" userLabel="seeProButton">
@@ -129,8 +129,8 @@
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" weight="semibold"/>
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="20" id="c2087"/>
-                                                <constraint firstAttribute="height" constant="20" id="c2088"/>
+                                                <constraint firstAttribute="width" constant="20" id="c2869"/>
+                                                <constraint firstAttribute="height" constant="20" id="c2870"/>
                                             </constraints>
                                         </imageView>
                                         <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="see-pro-title" userLabel="seeProLabel" opaque="NO" text="See Pro plans" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
@@ -140,10 +140,10 @@
                                 </stackView>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="height" constant="56" id="c2083"/>
-                                <constraint firstItem="see-pro-row" firstAttribute="centerX" secondItem="see-pro" secondAttribute="centerX" id="c2084"/>
-                                <constraint firstItem="see-pro-row" firstAttribute="centerY" secondItem="see-pro" secondAttribute="centerY" id="c2085"/>
-                                <constraint firstItem="see-pro-row" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="see-pro" secondAttribute="leading" constant="16" id="c2086"/>
+                                <constraint firstAttribute="height" constant="56" id="c2865"/>
+                                <constraint firstItem="see-pro-row" firstAttribute="centerX" secondItem="see-pro" secondAttribute="centerX" id="c2866"/>
+                                <constraint firstItem="see-pro-row" firstAttribute="centerY" secondItem="see-pro" secondAttribute="centerY" id="c2867"/>
+                                <constraint firstItem="see-pro-row" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="see-pro" secondAttribute="leading" constant="16" id="c2868"/>
                             </constraints>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSeePro:"/>
@@ -152,7 +152,7 @@
                         <button contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="not-now" userLabel="notNowButton" opaque="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation">
                             <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="15"/><inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/><state key="normal" title="Not now"><color key="titleColor" name="dsTextPrimary"/></state>
                             <constraints>
-                                <constraint firstAttribute="height" constant="44" id="c2111"/>
+                                <constraint firstAttribute="height" constant="44" id="c2893"/>
                             </constraints>
                             <connections>
                                 <action selector="didTapNotNow:" destination="-1" eventType="touchUpInside" id="not-now-a0"/>
@@ -164,9 +164,9 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="root-safeArea"/>
             <constraints>
-                <constraint firstItem="col" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c2089"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="col" secondAttribute="trailing" constant="20" id="c2090"/>
-                <constraint firstItem="col" firstAttribute="top" secondItem="root" secondAttribute="top" constant="30" id="c2091"/>
+                <constraint firstItem="col" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="20" id="c2871"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="col" secondAttribute="trailing" constant="20" id="c2872"/>
+                <constraint firstItem="col" firstAttribute="top" secondItem="root" secondAttribute="top" constant="30" id="c2873"/>
             </constraints>
         </view>
         </objects>

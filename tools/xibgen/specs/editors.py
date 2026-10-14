@@ -159,8 +159,8 @@ def replace_editor():
     keep_s = Label("Matches perspective, light and shadows", id="keep-s", font=("Regular", 12), color="dsTextTertiary",
                    outlet="keepSubtitleLabel")
     keep = Switch(id="keep", on=True, onTint="#34C759", outlet="keepSwitch")
-    keep_row = HStack([VStack([keep_t, keep_s], id="keep-texts", spacing=2), keep], id="keep-row", align="center",
-                      spacing=8)
+    keep_row = HStack([VStack([keep_t, keep_s], id="keep-texts", spacing=2), View(id="keep-sp", bg="clear", hug=(1, 250)),
+                       keep], id="keep-row", align="center", spacing=8)
     brush_link = Button("Can't find it? Paint over the object", id="brush-link", font=("Medium", 13), color="dsLink",
                         outlet="brushFallbackButton", hidden=True).on("didTapBrushFallback:")
     apply_btn = primary_button("apply", "Replace · 1 credit", outlet="applyButton", action="didTapApply:",

@@ -40,10 +40,10 @@
                                 </subviews>
                                 <color key="backgroundColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.850" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="c1749"/>
-                                    <constraint firstItem="pop-label" firstAttribute="leading" secondItem="pop" secondAttribute="leading" constant="7" id="c1750"/>
-                                    <constraint firstItem="pop" firstAttribute="trailing" secondItem="pop-label" secondAttribute="trailing" constant="7" id="c1751"/>
-                                    <constraint firstItem="pop-label" firstAttribute="centerY" secondItem="pop" secondAttribute="centerY" id="c1752"/>
+                                    <constraint firstAttribute="height" constant="20" id="c2531"/>
+                                    <constraint firstItem="pop-label" firstAttribute="leading" secondItem="pop" secondAttribute="leading" constant="7" id="c2532"/>
+                                    <constraint firstItem="pop" firstAttribute="trailing" secondItem="pop-label" secondAttribute="trailing" constant="7" id="c2533"/>
+                                    <constraint firstItem="pop-label" firstAttribute="centerY" secondItem="pop" secondAttribute="centerY" id="c2534"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -60,10 +60,10 @@
                                         </subviews>
                                         <color key="backgroundColor" name="dsLime"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="44" id="c1755"/>
-                                            <constraint firstAttribute="height" constant="44" id="c1756"/>
-                                            <constraint firstItem="pen" firstAttribute="centerX" secondItem="pen-box" secondAttribute="centerX" id="c1757"/>
-                                            <constraint firstItem="pen" firstAttribute="centerY" secondItem="pen-box" secondAttribute="centerY" id="c1758"/>
+                                            <constraint firstAttribute="width" constant="44" id="c2537"/>
+                                            <constraint firstAttribute="height" constant="44" id="c2538"/>
+                                            <constraint firstItem="pen" firstAttribute="centerX" secondItem="pen-box" secondAttribute="centerX" id="c2539"/>
+                                            <constraint firstItem="pen" firstAttribute="centerY" secondItem="pen-box" secondAttribute="centerY" id="c2540"/>
                                         </constraints>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -83,10 +83,10 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="26" id="c1761"/>
-                                    <constraint firstAttribute="height" constant="26" id="c1762"/>
-                                    <constraint firstItem="check-icon" firstAttribute="centerX" secondItem="check" secondAttribute="centerX" id="c1763"/>
-                                    <constraint firstItem="check-icon" firstAttribute="centerY" secondItem="check" secondAttribute="centerY" id="c1764"/>
+                                    <constraint firstAttribute="width" constant="26" id="c2543"/>
+                                    <constraint firstAttribute="height" constant="26" id="c2544"/>
+                                    <constraint firstItem="check-icon" firstAttribute="centerX" secondItem="check" secondAttribute="centerX" id="c2545"/>
+                                    <constraint firstItem="check-icon" firstAttribute="centerY" secondItem="check" secondAttribute="centerY" id="c2546"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -95,17 +95,17 @@
                         </subviews>
                         <color key="backgroundColor" name="dsSurface"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="136" id="c1739"/>
-                            <constraint firstItem="img" firstAttribute="leading" secondItem="tile" secondAttribute="leading" id="c1743"/>
-                            <constraint firstItem="img" firstAttribute="top" secondItem="tile" secondAttribute="top" id="c1744"/>
-                            <constraint firstItem="tile" firstAttribute="trailing" secondItem="img" secondAttribute="trailing" id="c1745"/>
-                            <constraint firstItem="tile" firstAttribute="bottom" secondItem="img" secondAttribute="bottom" id="c1746"/>
-                            <constraint firstItem="pop" firstAttribute="leading" secondItem="tile" secondAttribute="leading" constant="8" id="c1747"/>
-                            <constraint firstItem="pop" firstAttribute="top" secondItem="tile" secondAttribute="top" constant="8" id="c1748"/>
-                            <constraint firstItem="custom" firstAttribute="centerX" secondItem="tile" secondAttribute="centerX" id="c1753"/>
-                            <constraint firstItem="custom" firstAttribute="centerY" secondItem="tile" secondAttribute="centerY" id="c1754"/>
-                            <constraint firstItem="check" firstAttribute="top" secondItem="tile" secondAttribute="top" constant="5" id="c1759"/>
-                            <constraint firstItem="tile" firstAttribute="trailing" secondItem="check" secondAttribute="trailing" constant="5" id="c1760"/>
+                            <constraint firstAttribute="height" constant="136" id="c2521"/>
+                            <constraint firstItem="img" firstAttribute="leading" secondItem="tile" secondAttribute="leading" id="c2525"/>
+                            <constraint firstItem="img" firstAttribute="top" secondItem="tile" secondAttribute="top" id="c2526"/>
+                            <constraint firstItem="tile" firstAttribute="trailing" secondItem="img" secondAttribute="trailing" id="c2527"/>
+                            <constraint firstItem="tile" firstAttribute="bottom" secondItem="img" secondAttribute="bottom" id="c2528"/>
+                            <constraint firstItem="pop" firstAttribute="leading" secondItem="tile" secondAttribute="leading" constant="8" id="c2529"/>
+                            <constraint firstItem="pop" firstAttribute="top" secondItem="tile" secondAttribute="top" constant="8" id="c2530"/>
+                            <constraint firstItem="custom" firstAttribute="centerX" secondItem="tile" secondAttribute="centerX" id="c2535"/>
+                            <constraint firstItem="custom" firstAttribute="centerY" secondItem="tile" secondAttribute="centerY" id="c2536"/>
+                            <constraint firstItem="check" firstAttribute="top" secondItem="tile" secondAttribute="top" constant="5" id="c2541"/>
+                            <constraint firstItem="tile" firstAttribute="trailing" secondItem="check" secondAttribute="trailing" constant="5" id="c2542"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="22"/></userDefinedRuntimeAttribute>
@@ -117,12 +117,12 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="tile" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c1736"/>
-                    <constraint firstItem="tile" firstAttribute="top" secondItem="cell-content" secondAttribute="top" id="c1737"/>
-                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="tile" secondAttribute="trailing" id="c1738"/>
-                    <constraint firstItem="title" firstAttribute="top" secondItem="tile" secondAttribute="bottom" constant="6" id="c1740"/>
-                    <constraint firstItem="title" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c1741"/>
-                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="title" secondAttribute="trailing" id="c1742"/>
+                    <constraint firstItem="tile" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c2518"/>
+                    <constraint firstItem="tile" firstAttribute="top" secondItem="cell-content" secondAttribute="top" id="c2519"/>
+                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="tile" secondAttribute="trailing" id="c2520"/>
+                    <constraint firstItem="title" firstAttribute="top" secondItem="tile" secondAttribute="bottom" constant="6" id="c2522"/>
+                    <constraint firstItem="title" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c2523"/>
+                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="title" secondAttribute="trailing" id="c2524"/>
                 </constraints>
             </view>
             <connections>

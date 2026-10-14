@@ -379,8 +379,8 @@ def change_style_sheet():
     keep_s = Label("Walls, windows and layout stay", id="keep-s", font=("Regular", 12), color="dsTextTertiary",
                    outlet="keepSubtitleLabel")
     keep_switch = Switch(id="keep-switch", on=True, onTint="#34C759", outlet="keepSwitch")
-    keep_row = HStack([VStack([keep_t, keep_s], id="keep-texts", spacing=2), keep_switch], id="keep-row",
-                      align="center", spacing=8)
+    keep_row = HStack([VStack([keep_t, keep_s], id="keep-texts", spacing=2), View(id="keep-sp", bg="clear", hug=(1, 250)),
+                       keep_switch], id="keep-row", align="center", spacing=8)
     restyle = primary_button("restyle", "Restyle · 1 credit", outlet="restyleButton", action="didTapRestyle:",
                              icon="wand.and.stars", title_outlet="restyleLabel")
     col = VStack([sheet_title("Change style"), sheet_sub("Same room, new look"), grid, see_all, strength, keep_row,
@@ -463,8 +463,8 @@ def share_sheet():
         box = View(id=f"{id}-box", cls="DSView", bg="white", runtime={"cornerRadius": 9}, children=[ic])
         t = Label(title, id=f"{id}-t", font=("Medium", 16))
         s = Label(sub, id=f"{id}-s", font=("Regular", 13), color="dsTextTertiary")
-        row = HStack([box, VStack([t, s], id=f"{id}-texts", spacing=2, hug=(249, 251)), accessory], id=id,
-                     spacing=14, align="center", margins=(0, 16, 0, 16))
+        row = HStack([box, VStack([t, s], id=f"{id}-texts", spacing=2), View(id=f"{id}-sp", bg="clear", hug=(1, 250)),
+                      accessory], id=id, spacing=14, align="center", margins=(0, 16, 0, 16))
         square(box, 32)
         center(ic)
         square(ic, 18)

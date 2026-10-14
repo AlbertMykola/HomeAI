@@ -181,41 +181,9 @@ final class WizardFinalViewController: WizardStepViewController {
     // MARK: Generate
 
     @IBAction private func didTapGenerate(_ sender: Any) {
-        view.endEditing(true)
         session.details = detailsField.text ?? ""
-        guard NetworkMonitor.shared.isOnline else {
-            DS.Haptic.warning()
-            DSToastView.show("You're offline".localized, style: .warning)
-            return
-        }
-        switch GenerationAccess.evaluate() {
-        case .allowed:
-            DS.Haptic.medium()
-            startGeneration()
-        case .requiresSubscription:
-            OutOfCreditsSheetViewController.present(from: self, photo: session.photo) { [weak self] in
-                self?.startGeneration()
-            }
-        case .dailyLimitExceeded:
-            GenerationAccess.requestProcessingIfAllowed(presentingFrom: self)
-        }
-    }
-
-    private func startGeneration() {
-        session.applyToPromptManager()
         let session = self.session!
-        NavigationManager.shared.showGeneration(manager: session.promptManager, sourcePhoto: session.photo,
-                                                styleTitle: session.style?.title) {
-            // "Change photo" from G3/G4 → W1 again; room, style and the rest are kept.
-            session.photo = nil
-            NavigationManager.shared.pushWizardStep(WizardPhotoViewController.make(session: session))
-        }
-        // Drop the wizard behind the generation screen so collapsing (⌄) lands where the user started.
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) { [weak self] in
-            guard let nav = self?.navigationController,
-                  let first = nav.viewControllers.firstIndex(where: { $0 is WizardStepViewController }), first > 0 else { return }
-            nav.setViewControllers(Array(nav.viewControllers[..<first]), animated: false)
-        }
+        generate(styleTitle: session.style?.title) { _ in session.applyToPromptManager() }
     }
 
     // MARK: Keyboard

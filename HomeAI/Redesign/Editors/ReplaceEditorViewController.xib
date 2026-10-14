@@ -434,6 +434,9 @@
                                                 </label>
                                             </subviews>
                                         </stackView>
+                                        <view contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="keep-sp">
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </view>
                                         <switch contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="keep" userLabel="keepSwitch" opaque="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES">
                                             <color key="onTintColor" red="0.2039" green="0.7804" blue="0.3490" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
                                         </switch>

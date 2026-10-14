@@ -46,6 +46,13 @@ final class WizardPhotoViewController: WizardStepViewController {
         super.viewDidLoad()
         localize()
         nextButton.inactive = true
+        if session.option == .floolPlan {
+            demoTitleLabel.isHidden = true
+            demoControls.first?.superview?.isHidden = true
+        }
+        for control in demoControls {
+            (control.subviews.first as? UIImageView)?.image = UIImage(named: demoImages[min(control.tag, 2)].0)
+        }
         if session.photo != nil { showSelected(animated: false) }
         [titleStack, takePhotoCard, libraryCard, demoTitleLabel, tipsButton, nextButton].forEach { $0?.alpha = 0 }
         demoControls.forEach { $0.alpha = 0 }
@@ -78,11 +85,17 @@ final class WizardPhotoViewController: WizardStepViewController {
             titleLabel.text = hasPhoto ? "Looks great!".localized : "Add a photo of your home".localized
         case .garden:
             titleLabel.text = hasPhoto ? "Looks great!".localized : "Add a photo of your garden".localized
+        case .floolPlan:
+            titleLabel.text = hasPhoto ? "Plan added".localized : "Add your floor plan".localized
+        case .reference:
+            titleLabel.text = hasPhoto ? "Looks great!".localized : "Add a photo of your room".localized
         default:
             titleLabel.text = hasPhoto ? "Looks great!".localized : "Add a photo of your room".localized
         }
         if !hasPhoto {
-            subtitleLabel.text = "One wide, well-lit photo works best.".localized
+            subtitleLabel.text = session.option == .floolPlan
+                ? "A photo or scan of the plan, straight from above.".localized
+                : "One wide, well-lit photo works best.".localized
         } else if let place = session.detectedPlace {
             subtitleLabel.text = String(format: "We found a %@. Not right? You can change it next.".localized,
                                         place.title.lowercased())
@@ -120,8 +133,17 @@ final class WizardPhotoViewController: WizardStepViewController {
         present(sheet, animated: true)
     }
 
+    /// Demo photos per tool (bundled): rooms for interior tools, facades / gardens otherwise.
+    private var demoImages: [(String, InteriorType?)] {
+        switch session.option {
+        case .exterior: return [("ob_2_before_image", nil), ("home_card_exterior", nil), ("ob_2_after_image", nil)]
+        case .garden: return [("ob_3_before_image", nil), ("home_card_garden", nil), ("ob_3_after_image", nil)]
+        default: return Self.demoRooms.map { ($0.0, $0.1) }
+        }
+    }
+
     @IBAction private func didTapDemo(_ sender: UIControl) {
-        let demo = Self.demoRooms[min(sender.tag, Self.demoRooms.count - 1)]
+        let demo = demoImages[min(sender.tag, 2)]
         guard let image = UIImage(named: demo.0) else { return }
         didPick(image, isDemo: true, knownRoom: demo.1)
     }
@@ -131,8 +153,26 @@ final class WizardPhotoViewController: WizardStepViewController {
     }
 
     @IBAction private func didTapNext(_ sender: Any) {
-        guard session.photo != nil, !isChecking else {
+        guard let photo = session.photo, !isChecking else {
             DS.Haptic.warning()
+            return
+        }
+        // Home quick edits Replace / Remove: W1 → editor (R4 / R5) → generation of a new project.
+        if session.option == .replace || session.option == .delete {
+            let start: (GemeniPromptManager, String) -> Void = { [weak self] manager, _ in
+                guard let self else { return }
+                self.generate(styleTitle: nil) { target in
+                    target.updateOption(manager.designOption)
+                    if let base = manager.baseImage { target.updateBaseImage(base) }
+                    target.updateReplaceMode(manager.replaceMode)
+                    if let object = manager.objectToReplace { target.updateObjectToReplace(object) }
+                    if let mask = manager.maskImage { target.updateMask(mask) }
+                }
+            }
+            let editor: MaskEditorViewController = session.option == .replace
+                ? ReplaceEditorViewController.make(image: photo, original: nil, onApply: start)
+                : RemoveEditorViewController.make(image: photo, original: nil, onApply: start)
+            present(editor, animated: true)
             return
         }
         goToNextStep()
@@ -163,7 +203,7 @@ final class WizardPhotoViewController: WizardStepViewController {
         PhotoQualityChecker.check(image) { [weak self] result in
             guard let self else { return }
             let room = knownRoom ?? result.room
-            if session.option == .interior || session.option == .floolPlan, let room {
+            if [.interior, .furnish, .rearrange, .newWalls, .newFlooring, .reference].contains(session.option), let room {
                 session.detectedPlace = .room(room)
             }
             // Keep the scan visible for at least one pass (dev notes: 0.35–1.35 s).

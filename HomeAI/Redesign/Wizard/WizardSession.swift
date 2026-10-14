@@ -3,7 +3,7 @@ import UIKit
 /// State shared by the A/04 wizard steps (W1 photo → W2 room → W3 style → W4 final touches).
 final class WizardSession {
 
-    enum Step: Int { case photo, room, style, final }
+    enum Step: Int { case photo, room, style, final, tool }
 
     enum Palette: Int, CaseIterable {
         case auto, warm, sage, cool, earthy, bold
@@ -78,9 +78,13 @@ final class WizardSession {
         promptManager.updateOption(option)
     }
 
-    /// Garden has no W2 (room/building) step.
+    /// Interior: W1–W4. Every other tool: W1 + its own settings screen (A/07, step 2/2).
     var steps: [Step] {
-        option == .garden ? [.photo, .style, .final] : [.photo, .room, .style, .final]
+        switch option {
+        case .interior: return [.photo, .room, .style, .final]
+        case .replace, .delete: return [.photo]
+        default: return [.photo, .tool]
+        }
     }
 
     func index(of step: Step) -> Int { steps.firstIndex(of: step) ?? 0 }
@@ -89,6 +93,7 @@ final class WizardSession {
         switch option {
         case .exterior: return "Exterior redesign".localized
         case .garden: return "Garden redesign".localized
+        case .floolPlan: return "Floor plan to 3D".localized
         default: return "Interior redesign".localized
         }
     }

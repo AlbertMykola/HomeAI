@@ -152,21 +152,4 @@ class MaskEditorViewController: UIViewController {
         }
         return UIImage(cgImage: cg, scale: 1, orientation: .up)
     }
-
-    // MARK: Segmented helper
-
-    func applySegment(index: Int, labels: [UILabel], knobLeading: NSLayoutConstraint, container: UIView,
-                      count: Int, animated: Bool) {
-        let width = (container.bounds.width - 6) / CGFloat(count)
-        let changes = {
-            knobLeading.constant = 3 + width * CGFloat(index)
-            for (i, l) in labels.sorted(by: { $0.tag < $1.tag }).enumerated() {
-                l.font = DS.Font.geologica(i == index ? .semiBold : .medium, 14)
-                l.textColor = i == index ? DS.Color.textPrimary : DS.Color.textSecondary
-            }
-            container.layoutIfNeeded()
-        }
-        animated ? UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.85, initialSpringVelocity: 0,
-                                  animations: changes) : changes()
-    }
 }

@@ -371,7 +371,7 @@ class GemeniPromptManager {
 
     /// Wizard W4 note, only for the redesign modes.
     private var extraDetailsInstruction: String {
-        guard [.interior, .exterior, .garden].contains(designOption), let extraDetails else { return "" }
+        guard designOption != .replace, designOption != .delete, let extraDetails else { return "" }
         let limited = String(extraDetails.prefix(Constants.Generation.maximumCustomPromptLength))
         return """
          USER DETAILS:

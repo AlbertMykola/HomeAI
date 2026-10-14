@@ -346,19 +346,7 @@ final class NavigationManager {
 
     /// Starts a design flow for an option (Home, Projects, etc.).
     func startDesign(option: DesignOption) {
-        switch option {
-        case .interior, .exterior, .garden:
-            let session = WizardSession(option: option)
-            push(WizardPhotoViewController.make(session: session))
-        case .replace:
-            showReplaceObjectPage()
-        case .delete:
-            let manager = GemeniPromptManager()
-            manager.updateOption(.delete)
-            showReplaceObjectPage(promptManager: manager, flowMode: .delete)
-        default:
-            showPageViewController(option: option)
-        }
+        push(WizardPhotoViewController.make(session: WizardSession(option: option)))
     }
 
     func pushWizardStep(_ vc: UIViewController) {
