@@ -37,52 +37,52 @@
                     <subviews>
                         <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="row" opaque="NO" alignment="center" spacing="10" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
                             <subviews>
-                                <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icon" userLabel="iconView" image="checkmark.circle.fill" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="icon" userLabel="iconView" image="checkmark.circle" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="16" weight="semibold"/>
                                     <color key="tintColor" name="dsLime"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="20" id="c341"/>
-                                        <constraint firstAttribute="height" constant="20" id="c342"/>
+                                        <constraint firstAttribute="width" constant="20" id="c57"/>
+                                        <constraint firstAttribute="height" constant="20" id="c58"/>
                                     </constraints>
                                 </imageView>
                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="label" userLabel="messageLabel" opaque="NO" text="Saved to Photos" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
-                                    <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14"/><color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/><nil key="highlightedColor"/>
+                                    <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="15"/><color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/><nil key="highlightedColor"/>
                                 </label>
                                 <label contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="750" hidden="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="action" userLabel="actionLabel" opaque="NO" text="Open" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO">
-                                    <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="14"/><color key="textColor" name="dsLime"/><nil key="highlightedColor"/>
+                                    <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="15"/><color key="textColor" name="dsLime"/><nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <edgeInsets key="layoutMargins" top="10" left="16" bottom="10" right="18"/>
+                            <edgeInsets key="layoutMargins" top="12" left="18" bottom="12" right="20"/>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" red="0.1098" green="0.1098" blue="0.1176" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" red="0.1373" green="0.1373" blue="0.1451" alpha="0.960" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="row" firstAttribute="leading" secondItem="card" secondAttribute="leading" id="c337"/>
-                        <constraint firstItem="row" firstAttribute="top" secondItem="card" secondAttribute="top" id="c338"/>
-                        <constraint firstItem="card" firstAttribute="trailing" secondItem="row" secondAttribute="trailing" id="c339"/>
-                        <constraint firstItem="card" firstAttribute="bottom" secondItem="row" secondAttribute="bottom" id="c340"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="c343"/>
+                        <constraint firstItem="row" firstAttribute="leading" secondItem="card" secondAttribute="leading" id="c53"/>
+                        <constraint firstItem="row" firstAttribute="top" secondItem="card" secondAttribute="top" id="c54"/>
+                        <constraint firstItem="card" firstAttribute="trailing" secondItem="row" secondAttribute="trailing" id="c55"/>
+                        <constraint firstItem="card" firstAttribute="bottom" secondItem="row" secondAttribute="bottom" id="c56"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="c59"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="20"/></userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.18"/></userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="14"/></userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="6"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="24"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.22"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="16"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="8"/></userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="root-safeArea"/>
             <constraints>
-                <constraint firstItem="card" firstAttribute="top" secondItem="root" secondAttribute="top" id="c333"/>
-                <constraint firstItem="root" firstAttribute="bottom" secondItem="card" secondAttribute="bottom" id="c334"/>
-                <constraint firstItem="card" firstAttribute="centerX" secondItem="root" secondAttribute="centerX" id="c335"/>
-                <constraint firstItem="card" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="root" secondAttribute="leading" id="c336"/>
+                <constraint firstItem="card" firstAttribute="top" secondItem="root" secondAttribute="top" id="c49"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="card" secondAttribute="bottom" id="c50"/>
+                <constraint firstItem="card" firstAttribute="centerX" secondItem="root" secondAttribute="centerX" id="c51"/>
+                <constraint firstItem="card" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="root" secondAttribute="leading" id="c52"/>
             </constraints>
         </view>
         </objects>
     <resources>
-        <image name="checkmark.circle.fill" catalog="system" width="128" height="128"/>
+        <image name="checkmark.circle" catalog="system" width="128" height="128"/>
         <namedColor name="dsLime">
             <color red="0.6471" green="0.9333" blue="0.1843" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

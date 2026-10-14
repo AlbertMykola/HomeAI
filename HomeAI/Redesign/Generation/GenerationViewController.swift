@@ -55,6 +55,8 @@ final class GenerationViewController: UIViewController {
     var styleTitle: String?
     /// "Change photo" / "Choose another photo" — back to W1 with the same settings.
     var onChangePhoto: (() -> Void)?
+    /// A/12 Content blocked → "Edit request" goes back to the step with the prompt / settings.
+    var onEditRequest: (() -> Void)?
 
     private var progress: CGFloat = 0
     private var displayLink: CADisplayLink?
@@ -307,6 +309,19 @@ final class GenerationViewController: UIViewController {
     // MARK: Failure (G3 / G4)
 
     private func showFailure(_ failure: GenerationRunner.Failure) {
+        if case .contentBlocked = failure {
+            // A/12 Content blocked: full-screen state over G1; Edit request → back to the step with the prompt.
+            DS.Haptic.error()
+            let policy = String(runner.attemptID.prefix(4)).uppercased()
+            let onEdit = onEditRequest ?? onChangePhoto
+            let state = StateScreenViewController.make(.contentBlocked(photo: sourcePhoto, policyID: policy)) { [weak self] in
+                guard let self else { return }
+                GenerationCenter.shared.finished(runner: self.runner)
+                self.dismiss(animated: false) { onEdit?() }
+            }
+            present(state, animated: true)
+            return
+        }
         failureView.isHidden = false
         failureView.alpha = 0
         UIView.animate(withDuration: 0.25) { self.failureView.alpha = 1 }
@@ -321,6 +336,8 @@ final class GenerationViewController: UIViewController {
             failurePrimaryLabel.text = "Choose another photo".localized
             failurePrimaryIcon.image = UIImage(systemName: "photo")
             failureSecondaryButton.setTitle("See photo tips".localized, for: .normal)
+        case .contentBlocked:
+            return
         case .failed(let code, _):
             isShowingNotPhotoSuitable = false
             DS.Haptic.error()

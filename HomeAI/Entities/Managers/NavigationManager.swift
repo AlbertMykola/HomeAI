@@ -115,12 +115,28 @@ final class NavigationManager {
         }
         window.makeKeyAndVisible()
         LocalNotificationService.shared.sync(requestPermissionIfNeeded: false)
+        Task { @MainActor [weak tabBarController] in
+            let config = await WorkerConfigService.shared.refreshIfNeeded()
+            ForceUpdate.presentIfNeeded(config, over: tabBarController)
+        }
         #if DEBUG
         // Simulator QA: -openLatestResult jumps straight to the newest project's result screen.
         if ProcessInfo.processInfo.arguments.contains("-openLatestResult"),
            let doc = ProjectStore.shared.allProjects().first?.versions.last {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
                 self?.showResult(docID: doc.id, image: nil, reveal: false)
+            }
+        }
+        if let i = ProcessInfo.processInfo.arguments.firstIndex(of: "-showState"),
+           ProcessInfo.processInfo.arguments.indices.contains(i + 1) {
+            let kind: StateScreenViewController.Kind
+            switch ProcessInfo.processInfo.arguments[i + 1] {
+            case "blocked": kind = .contentBlocked(photo: UIImage(named: "home_hero_before"), policyID: "2C91")
+            case "camera": kind = .cameraOff
+            default: kind = .offline
+            }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                tabBarController.present(StateScreenViewController.make(kind), animated: true)
             }
         }
         if ProcessInfo.processInfo.arguments.contains("-openAssistant") {
@@ -144,6 +160,8 @@ final class NavigationManager {
 
     private func setOnboardingAsRoot(in window: UIWindow, animated: Bool) {
         let ob = OBPageViewController()
+        // Not redesigned yet → keep it light even when the app follows a dark system appearance.
+        ob.overrideUserInterfaceStyle = .light
         let applyRoot = { window.rootViewController = ob }
         if animated {
             UIView.transition(with: window, duration: 0.35, options: .transitionCrossDissolve, animations: applyRoot)
@@ -230,6 +248,8 @@ final class NavigationManager {
         }
         vc.placement = placement
         vc.origin = origin
+        // Old paywall isn't redesigned yet → always light.
+        vc.overrideUserInterfaceStyle = .light
         let mode: ModalMode = (origin == .onboarding) ? .full : .overFull
         present(vc, mode: mode)
     }
@@ -377,13 +397,14 @@ final class NavigationManager {
 
     /// A/05 Generation (full screen, can be collapsed while it keeps running).
     func showGeneration(manager: GemeniPromptManager, sourcePhoto: UIImage?, styleTitle: String? = nil,
-                        onChangePhoto: (() -> Void)? = nil) {
+                        onChangePhoto: (() -> Void)? = nil, onEditRequest: (() -> Void)? = nil) {
         let runner = GenerationRunner(promptManager: manager)
         let vc = GenerationViewController(nibName: "GenerationViewController", bundle: .main)
         vc.runner = runner
         vc.sourcePhoto = sourcePhoto ?? manager.baseImage
         vc.styleTitle = styleTitle
         vc.onChangePhoto = onChangePhoto
+        vc.onEditRequest = onEditRequest
         present(vc, mode: .full) { runner.start() }
     }
 

@@ -9,6 +9,8 @@ final class GenerationRunner {
     enum Failure {
         /// Model returned no image / refused — show G4 "We couldn't find a room here".
         case photoNotSuitable
+        /// Moderation refused the prompt or photo — A/12 "We can't create this one". No credit is spent.
+        case contentBlocked
         /// Everything else — G3 "Something went wrong" with a short error code.
         case failed(code: String, message: String)
     }
@@ -100,7 +102,9 @@ final class GenerationRunner {
                 self?.setStage(.generating)
                 try? await Task.sleep(nanoseconds: 6_000_000_000)
                 guard let self, !Task.isCancelled else { return }
-                if args.contains("-fakeGenerationFail") {
+                if args.contains("-fakeGenerationBlocked") {
+                    self.state = .failed(.contentBlocked)
+                } else if args.contains("-fakeGenerationFail") {
                     self.state = .failed(.failed(code: "502", message: "Fake failure"))
                 } else if args.contains("-fakeGenerationNoImage") {
                     self.state = .failed(.photoNotSuitable)
@@ -162,9 +166,13 @@ final class GenerationRunner {
                 await fail("prompt_validation", status: nil,
                            failure: .failed(code: "PV", message: error.localizedDescription))
             } catch let error as any ImageGenerationFailure {
-                let failure: Failure = error.category == "no_image"
-                    ? .photoNotSuitable
-                    : .failed(code: error.statusCode.map(String.init) ?? error.category, message: error.localizedDescription)
+                let failure: Failure
+                switch error.category {
+                case "no_image": failure = .photoNotSuitable
+                case "content_blocked": failure = .contentBlocked
+                default: failure = .failed(code: error.statusCode.map(String.init) ?? error.category,
+                                           message: error.localizedDescription)
+                }
                 await fail(error.category, status: error.statusCode, failure: failure)
             } catch {
                 await fail("unknown", status: nil, failure: .failed(code: "UNK", message: error.localizedDescription))

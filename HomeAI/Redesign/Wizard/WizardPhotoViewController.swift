@@ -107,7 +107,7 @@ final class WizardPhotoViewController: WizardStepViewController {
     // MARK: Sources
 
     @IBAction private func didTapTakePhoto(_ sender: Any) {
-        CameraViewController.requestAccess(from: self) { [weak self] granted in
+        CameraViewController.requestAccess(from: self, onLibrary: { [weak self] in self?.presentLibraryPicker() }) { [weak self] granted in
             guard let self, granted else { return }
             let camera = CameraViewController(nibName: "CameraViewController", bundle: .main)
             camera.onCapture = { [weak self] image in self?.didPick(image, isDemo: false) }

@@ -481,7 +481,7 @@ final class ResultViewController: UIViewController {
 
     private func runEdit(manager: GemeniPromptManager, note: String?, free: Bool = false) {
         guard NetworkMonitor.shared.isOnline else {
-            DSToastView.show("You're offline".localized, style: .warning)
+            OfflineGate.run(from: self) { [weak self] in self?.runEdit(manager: manager, note: note, free: free) }
             return
         }
         if !free, GenerationAccess.evaluate() == .requiresSubscription {
@@ -507,7 +507,7 @@ final class ResultViewController: UIViewController {
                     DSToastView.show("That change didn't work on this photo".localized, style: .warning,
                                      symbol: "exclamationmark.triangle")
                 } else {
-                    DSToastView.show("Something went wrong. Your credit is back.".localized, style: .warning,
+                    DSToastView.show("Something went wrong. Your credit is back.".localized, style: .error,
                                      symbol: "exclamationmark.triangle", action: "Retry".localized) { [weak self] in
                         self?.runEdit(manager: manager, note: note, free: free)
                     }
@@ -639,8 +639,8 @@ final class ResultViewController: UIViewController {
         speech.requestAccess { [weak self] granted in
             guard let self else { return }
             guard granted else {
-                DSToastView.show("Allow microphone & speech access to talk".localized, style: .warning, symbol: "mic.slash",
-                                 action: "Settings".localized) {
+                DSToastView.show("Microphone is off".localized, style: .warning, symbol: "mic.slash",
+                                 action: "Settings".localized, light: true) {
                     if let url = URL(string: UIApplication.openSettingsURLString) { UIApplication.shared.open(url) }
                 }
                 self.showAskPanel()

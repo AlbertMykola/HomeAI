@@ -154,7 +154,11 @@ final class ReplaceEditorViewController: MaskEditorViewController {
     @IBAction private func didTapMic(_ sender: Any) {
         speech.requestAccess { [weak self] granted in
             guard let self, granted else {
-                DSToastView.show("Allow microphone & speech access to talk".localized, style: .warning, symbol: "mic.slash")
+                DSToastView.show("Microphone is off".localized, style: .warning, symbol: "mic.slash",
+                                 action: "Settings".localized, light: true) {
+                    if let url = URL(string: UIApplication.openSettingsURLString) { UIApplication.shared.open(url) }
+                }
+                self?.promptField.becomeFirstResponder()
                 return
             }
             DS.Haptic.medium()

@@ -44,22 +44,19 @@ final class CameraViewController: UIViewController {
     override var supportedInterfaceOrientations: UIInterfaceOrientationMask { .portrait }
 
     /// System camera permission (NSCameraUsageDescription), then calls back on main.
-    static func requestAccess(from presenter: UIViewController, completion: @escaping (Bool) -> Void) {
+    /// Denied / restricted → A/12 "Camera access is off" (dark, full screen). Coming back from Settings with access
+    /// opens the camera (completion(true)); "Choose from library" runs `onLibrary`.
+    static func requestAccess(from presenter: UIViewController, onLibrary: (() -> Void)? = nil,
+                              completion: @escaping (Bool) -> Void) {
         switch AVCaptureDevice.authorizationStatus(for: .video) {
         case .authorized:
             completion(true)
         case .notDetermined:
             AVCaptureDevice.requestAccess(for: .video) { granted in DispatchQueue.main.async { completion(granted) } }
         default:
-            let alert = UIAlertController(title: "Camera access is off".localized,
-                                          message: "Allow camera access in Settings, or choose a photo from your library.".localized,
-                                          preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Not now".localized, style: .cancel))
-            alert.addAction(UIAlertAction(title: "Open Settings".localized, style: .default) { _ in
-                if let url = URL(string: UIApplication.openSettingsURLString) { UIApplication.shared.open(url) }
-            })
-            presenter.present(alert, animated: true)
-            completion(false)
+            let state = StateScreenViewController.make(.cameraOff, onPrimary: { completion(true) },
+                                                       onSecondary: onLibrary)
+            presenter.present(state, animated: true)
         }
     }
 

@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geologica-Regular.ttf">
+            <string>Geologica-Regular</string>
+        </array>
+        <array key="Geologica-SemiBold.ttf">
+            <string>Geologica-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DSAlertViewController" customModule="HomeAI" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="root" id="root-view-o"/>
+                <outlet property="dimView" destination="dim" id="dim-o"/>
+                <outlet property="cardView" destination="card" id="card-o"/>
+                <outlet property="titleLabel" destination="title" id="title-o"/>
+                <outlet property="messageLabel" destination="message" id="message-o"/>
+                <outletCollection property="buttons" destination="btn0" collectionClass="NSMutableArray" id="btn0-oc"/>
+                <outletCollection property="buttonLabels" destination="btn0-label" collectionClass="NSMutableArray" id="btn0-label-oc"/>
+                <outletCollection property="buttons" destination="btn1" collectionClass="NSMutableArray" id="btn1-oc"/>
+                <outletCollection property="buttonLabels" destination="btn1-label" collectionClass="NSMutableArray" id="btn1-label-oc"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="root" userLabel="Root">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dim" userLabel="dimView">
+                    <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.300" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="card" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="cardView">
+                    <subviews>
+                        <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="col" opaque="NO" axis="vertical" spacing="18">
+                            <subviews>
+                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="texts" opaque="NO" axis="vertical" spacing="6">
+                                    <subviews>
+                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="title" userLabel="titleLabel" opaque="NO" text="Something went wrong" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                            <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                        </label>
+                                        <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="message" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="messageLabel" opaque="NO" text="We couldn't load this. Check your connection and try again." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                            <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15"/><color key="textColor" name="dsTextSecondary"/><nil key="highlightedColor"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="lineHeightMultiple"><real key="value" value="1.12"/></userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </label>
+                                    </subviews>
+                                </stackView>
+                                <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="buttons" opaque="NO" distribution="fillEqually" spacing="10">
+                                    <subviews>
+                                        <view contentMode="scaleToFill" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="btn0" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="btn0-label" opaque="NO" text="Cancel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                    <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="16"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" name="dsChip"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="48" id="c1"/>
+                                                <constraint firstItem="btn0-label" firstAttribute="centerX" secondItem="btn0" secondAttribute="centerX" id="c2"/>
+                                                <constraint firstItem="btn0-label" firstAttribute="centerY" secondItem="btn0" secondAttribute="centerY" id="c3"/>
+                                                <constraint firstItem="btn0-label" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="btn0" secondAttribute="leading" constant="10" id="c4"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapButton:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                        <view contentMode="scaleToFill" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="btn1" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
+                                            <subviews>
+                                                <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="btn1-label" opaque="NO" text="Cancel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                    <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="16"/><color key="textColor" name="dsTextPrimary"/><nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" name="dsChip"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="48" id="c5"/>
+                                                <constraint firstItem="btn1-label" firstAttribute="centerX" secondItem="btn1" secondAttribute="centerX" id="c6"/>
+                                                <constraint firstItem="btn1-label" firstAttribute="centerY" secondItem="btn1" secondAttribute="centerY" id="c7"/>
+                                                <constraint firstItem="btn1-label" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="btn1" secondAttribute="leading" constant="10" id="c8"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapButton:"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </view>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" name="dsBackground"/>
+                    <constraints>
+                        <constraint firstItem="col" firstAttribute="leading" secondItem="card" secondAttribute="leading" constant="18" id="c17"/>
+                        <constraint firstItem="col" firstAttribute="top" secondItem="card" secondAttribute="top" constant="22" id="c18"/>
+                        <constraint firstItem="card" firstAttribute="trailing" secondItem="col" secondAttribute="trailing" constant="18" id="c19"/>
+                        <constraint firstItem="card" firstAttribute="bottom" secondItem="col" secondAttribute="bottom" constant="18" id="c20"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="28"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity"><real key="value" value="0.18"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius"><real key="value" value="24"/></userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY"><real key="value" value="10"/></userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="root-safeArea"/>
+            <constraints>
+                <constraint firstItem="dim" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c9"/>
+                <constraint firstItem="dim" firstAttribute="top" secondItem="root" secondAttribute="top" id="c10"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="dim" secondAttribute="trailing" id="c11"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="dim" secondAttribute="bottom" id="c12"/>
+                <constraint firstItem="card" firstAttribute="centerX" secondItem="root" secondAttribute="centerX" id="c13"/>
+                <constraint firstItem="card" firstAttribute="centerY" secondItem="root" secondAttribute="centerY" id="c14"/>
+                <constraint firstItem="card" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="46" id="c15"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="card" secondAttribute="trailing" constant="46" id="c16"/>
+            </constraints>
+        </view>
+        </objects>
+    <resources>
+        <namedColor name="dsBackground">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsChip">
+            <color red="0.9490" green="0.9490" blue="0.9490" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsTextPrimary">
+            <color red="0.0000" green="0.0000" blue="0.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="dsTextSecondary">
+            <color red="0.2510" green="0.2510" blue="0.2510" alpha="1.000" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

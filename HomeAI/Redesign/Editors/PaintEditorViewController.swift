@@ -5,6 +5,8 @@ import CoreImage
 /// on-device preview (colour × photo, multiply) before applying. Layout: PaintEditorViewController.xib.
 final class PaintEditorViewController: MaskEditorViewController {
 
+    override var discardMessage: String { "Your paint preview will be lost. This doesn't use a credit.".localized }
+
     @IBOutlet private weak var modeView: UIView!
     @IBOutlet private weak var modeKnob: UIView!
     @IBOutlet private weak var modeKnobLeading: NSLayoutConstraint!

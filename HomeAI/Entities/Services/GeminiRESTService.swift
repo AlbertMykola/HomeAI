@@ -10,6 +10,8 @@ enum GeminiServiceError: ImageGenerationFailure {
     case responseDecodingFailed
     case imageDecodingFailed
     case partConversionFailed
+    /// Safety / moderation refused the request (A/12 Content blocked). `reason` is Gemini's finish / block reason.
+    case contentBlocked(reason: String)
 
     var category: String {
         switch self {
@@ -27,6 +29,7 @@ enum GeminiServiceError: ImageGenerationFailure {
         case .noImageInResponse: "no_image"
         case .responseDecodingFailed, .imageDecodingFailed: "decoding"
         case .partConversionFailed: "request_encoding"
+        case .contentBlocked: "content_blocked"
         }
     }
 
@@ -70,6 +73,8 @@ enum GeminiServiceError: ImageGenerationFailure {
             return "No image was generated. Please adjust your request and try again.".localized
         case .responseDecodingFailed, .imageDecodingFailed:
             return "The generated image could not be opened. Please try again.".localized
+        case .contentBlocked:
+            return "This request goes against our content rules.".localized
         }
     }
 }
@@ -183,13 +188,25 @@ final class GeminiRESTService: ImageGenerationService {
         if let finishReason = decodedResponse.candidates?.first?.finishReason {
             print("[Gemini] finishReason=\(finishReason)")
         }
-        if let textPart = decodedResponse.candidates?.first?.content.parts.first(where: { $0.text != nil })?.text,
+        if let textPart = decodedResponse.candidates?.first?.content?.parts.first(where: { $0.text != nil })?.text,
            !textPart.isEmpty {
             print("[Gemini] model text (first 200): \(textPart.prefix(200))")
         }
 
+        // Moderation: blocked prompt or a safety finish without an image → A/12 Content blocked (credit not spent).
+        let safetyReasons: Set<String> = ["SAFETY", "IMAGE_SAFETY", "PROHIBITED_CONTENT", "BLOCKLIST", "SPII",
+                                          "IMAGE_PROHIBITED_CONTENT", "OTHER_SAFETY"]
+        let finish = decodedResponse.candidates?.first?.finishReason ?? ""
+        let hasImage = decodedResponse.candidates?.first?.content?.parts.contains { $0.inlineData != nil } ?? false
+        if let block = decodedResponse.promptFeedback?.blockReason {
+            throw GeminiServiceError.contentBlocked(reason: block)
+        }
+        if !hasImage, safetyReasons.contains(finish) {
+            throw GeminiServiceError.contentBlocked(reason: finish)
+        }
+
         guard let base64String = decodedResponse.candidates?
-            .first?.content.parts
+            .first?.content?.parts
             .first(where: { $0.inlineData != nil })?
             .inlineData?.data else {
 
@@ -422,7 +439,7 @@ final class GeminiRESTService: ImageGenerationService {
         let decodedResponse = try JSONDecoder().decode(GeminiRESTResponse.self, from: data)
         
         guard let textResponse = decodedResponse.candidates?
-            .first?.content.parts
+            .first?.content?.parts
             .first(where: { $0.text != nil })?
             .text else {
             throw GeminiServiceError.noImageInResponse // Використовуємо існуючу помилку
@@ -520,12 +537,18 @@ private struct GeminiRESTInlineData: Encodable {
 
 private struct GeminiRESTResponse: Decodable {
     let candidates: [GeminiRESTCandidate]?
+    let promptFeedback: GeminiRESTPromptFeedback?
     let error: GeminiRESTError? // Ловимо помилки API
 }
 
 private struct GeminiRESTCandidate: Decodable {
-    let content: GeminiRESTContentResponse
+    /// Missing when the candidate was blocked by safety filters.
+    let content: GeminiRESTContentResponse?
     let finishReason: String?
+}
+
+private struct GeminiRESTPromptFeedback: Decodable {
+    let blockReason: String?
 }
 
 private struct GeminiRESTContentResponse: Decodable {

@@ -106,14 +106,14 @@ class MaskEditorViewController: UIViewController {
             dismiss(animated: true)
             return
         }
-        let alert = UIAlertController(title: "Discard changes?".localized, message: "Your edits won't be saved.".localized,
-                                      preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Keep editing".localized, style: .cancel))
-        alert.addAction(UIAlertAction(title: "Discard".localized, style: .destructive) { [weak self] _ in
-            self?.dismiss(animated: true)
-        })
-        present(alert, animated: true)
+        DSAlertViewController.show(from: self, title: "Discard changes?".localized, message: discardMessage, actions: [
+            .init(title: "Keep editing".localized, style: .cancel),
+            .init(title: "Discard".localized, style: .destructive) { [weak self] in self?.dismiss(animated: true) }
+        ])
     }
+
+    /// A/12 Discard edits alert body; Paint says what exactly is lost.
+    var discardMessage: String { "Your edits will be lost. This doesn't use a credit.".localized }
 
     /// Builds the prompt; subclasses override.
     func makePromptManager() -> (GemeniPromptManager, String)? { nil }

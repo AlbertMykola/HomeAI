@@ -110,8 +110,8 @@ class WizardStepViewController: UIViewController {
     func generate(styleTitle: String?, configure: @escaping (GemeniPromptManager) -> Void) {
         view.endEditing(true)
         guard NetworkMonitor.shared.isOnline else {
-            DS.Haptic.warning()
-            DSToastView.show("You're offline".localized, style: .warning)
+            // A/12 Offline · full screen: comes back here by itself when the network returns.
+            OfflineGate.run(from: self) { [weak self] in self?.generate(styleTitle: styleTitle, configure: configure) }
             return
         }
         let start = { [weak self] in
@@ -133,11 +133,16 @@ class WizardStepViewController: UIViewController {
     private func launchGeneration(styleTitle: String?) {
         let session = self.session!
         NavigationManager.shared.showGeneration(manager: session.promptManager, sourcePhoto: session.photo,
-                                                styleTitle: styleTitle) {
+                                                styleTitle: styleTitle, onChangePhoto: {
             // "Change photo" from G3/G4 → W1 again; the rest of the settings is kept.
             session.photo = nil
             NavigationManager.shared.pushWizardStep(WizardPhotoViewController.make(session: session))
-        }
+        }, onEditRequest: {
+            // A/12 Content blocked → back to the last settings step (W4 / tool) with everything kept.
+            let last: WizardStepViewController = session.steps.last == .tool
+                ? ToolStepFactory.make(session: session) : WizardFinalViewController.make(session: session)
+            NavigationManager.shared.pushWizardStep(last)
+        })
         // Drop the wizard behind the generation screen so collapsing (⌄) lands where the user started.
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) { [weak self] in
             guard let nav = self?.navigationController,

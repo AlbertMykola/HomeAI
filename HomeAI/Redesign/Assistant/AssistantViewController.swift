@@ -240,7 +240,7 @@ final class AssistantViewController: UIViewController {
     }
 
     private func openCamera() {
-        CameraViewController.requestAccess(from: self) { [weak self] granted in
+        CameraViewController.requestAccess(from: self, onLibrary: { [weak self] in self?.openLibrary() }) { [weak self] granted in
             guard let self, granted else { return }
             let camera = CameraViewController(nibName: "CameraViewController", bundle: .main)
             camera.onCapture = { [weak self] image in self?.attach(image) }
@@ -265,10 +265,12 @@ final class AssistantViewController: UIViewController {
         speech.requestAccess { [weak self] granted in
             guard let self else { return }
             guard granted else {
-                DSToastView.show("Allow microphone & speech access to talk".localized, style: .warning, symbol: "mic.slash",
+                // A/12: "Microphone is off · Settings" and focus on the text field.
+                DSToastView.show("Microphone is off".localized, style: .warning, symbol: "mic.slash",
                                  action: "Settings".localized) {
                     if let url = URL(string: UIApplication.openSettingsURLString) { UIApplication.shared.open(url) }
                 }
+                self.messageField.becomeFirstResponder()
                 return
             }
             self.startListening()
@@ -322,8 +324,7 @@ final class AssistantViewController: UIViewController {
             return
         }
         guard NetworkMonitor.shared.isOnline else {
-            DS.Haptic.warning()
-            DSToastView.show("You're offline".localized, style: .warning)
+            OfflineGate.run(from: self) { [weak self] in self?.send(text: raw, source: source) }
             return
         }
         AmplitudeService.shared.logRedesignEvent("assistant_message", properties: [
@@ -412,7 +413,7 @@ final class AssistantViewController: UIViewController {
             return
         }
         guard NetworkMonitor.shared.isOnline else {
-            DSToastView.show("You're offline".localized, style: .warning)
+            OfflineGate.run(from: self) { [weak self] in self?.apply(idea, from: replyID) }
             return
         }
         let start = {

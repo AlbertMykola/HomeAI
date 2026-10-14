@@ -46,22 +46,23 @@ def tab_bar():
 
 @xib("HomeAI/Redesign/Components/DSToastView.xib")
 def toast():
+    """A/12 Toasts & banners: dark glass 48 pt, radius 24 (light variant on photo screens is set in code)."""
     d = Doc("DSToastView", owner="DSToastView", size=(353, 48))
     root = d.root
     root.bg = "clear"
-    icon = Image(id="icon", system="checkmark.circle.fill", size=16, weight="semibold", tint="dsLime",
+    icon = Image(id="icon", system="checkmark.circle", size=16, weight="semibold", tint="dsLime",
                  outlet="iconView")
-    label = Label("Saved to Photos", id="label", font=("Medium", 14), color="white", lines=2, outlet="messageLabel")
-    action = Label("Open", id="action", font=("SemiBold", 14), color="dsLime", outlet="actionLabel", hidden=True,
+    label = Label("Saved to Photos", id="label", font=("Medium", 15), color="white", lines=2, outlet="messageLabel")
+    action = Label("Open", id="action", font=("SemiBold", 15), color="dsLime", outlet="actionLabel", hidden=True,
                    hug=(751, 251), resist=(751, 750))
-    row = HStack([icon, label, action], id="row", spacing=10, align="center", margins=(10, 16, 10, 18))
-    card = View(id="card", cls="DSView", bg="#1C1C1E", outlet="cardView", children=[row],
-                runtime={"cornerRadius": 20, "shadowOpacity": 0.18, "shadowRadius": 14, "shadowOffsetY": 6})
+    row = HStack([icon, label, action], id="row", spacing=10, align="center", margins=(12, 18, 12, 20))
+    card = View(id="card", cls="DSView", bg=("#232325", 0.96), outlet="cardView", children=[row],
+                runtime={"cornerRadius": 24, "shadowOpacity": 0.22, "shadowRadius": 16, "shadowOffsetY": 8})
     root.add(card)
     pin(card, edges="tb")
     center(card, y=False)
     C(card, "leading", root, "leading", 0, rel="greaterThanOrEqual")
     pin(row)
     square(icon, 20)
-    C(card, "height", const=40, rel="greaterThanOrEqual")
+    C(card, "height", const=48, rel="greaterThanOrEqual")
     return d
