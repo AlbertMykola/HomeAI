@@ -27,10 +27,11 @@ final class DSToastView: DSNibView {
     }
 
     private static weak var current: DSToastView?
+    private var onTap: (() -> Void)?
 
     /// Slides in from the top (−40 pt, spring), stays `duration`, slides out.
     static func show(_ message: String, style: Style = .info, symbol: String? = nil,
-                     in host: UIView? = nil, duration: TimeInterval = 2.5) {
+                     in host: UIView? = nil, duration: TimeInterval = 2.5, onTap: (() -> Void)? = nil) {
         guard let host = host ?? UIApplication.getKeyWindow() else { return }
         current?.removeFromSuperview()
         let toast = DSToastView()
@@ -45,6 +46,11 @@ final class DSToastView: DSNibView {
             toast.trailingAnchor.constraint(equalTo: host.trailingAnchor, constant: -20)
         ])
         current = toast
+        if let onTap {
+            toast.onTap = onTap
+            toast.addGestureRecognizer(UITapGestureRecognizer(target: toast, action: #selector(didTapToast)))
+            toast.accessibilityTraits = .button
+        }
         UIAccessibility.post(notification: .announcement, argument: message)
         host.layoutIfNeeded()
         toast.alpha = 0
@@ -60,5 +66,12 @@ final class DSToastView: DSNibView {
         } completion: { _ in
             toast.removeFromSuperview()
         }
+    }
+
+    @objc private func didTapToast() {
+        let action = onTap
+        onTap = nil
+        UIView.animate(withDuration: 0.2, animations: { self.alpha = 0 }) { _ in self.removeFromSuperview() }
+        action?()
     }
 }

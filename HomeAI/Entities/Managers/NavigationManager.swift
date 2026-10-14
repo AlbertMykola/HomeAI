@@ -352,10 +352,25 @@ final class NavigationManager {
         }
     }
 
-    /// Starts generation for a prepared prompt (wizard W4, regenerate, …).
-    /// TODO(redesign): A/05 Generation screen replaces ProcessingViewController here.
-    func showGeneration(manager: GemeniPromptManager, sourcePhoto: UIImage?) {
-        showProcessing(manager: manager)
+    func pushWizardStep(_ vc: UIViewController) {
+        push(vc)
+    }
+
+    /// A/05 Generation (full screen, can be collapsed while it keeps running).
+    func showGeneration(manager: GemeniPromptManager, sourcePhoto: UIImage?, styleTitle: String? = nil,
+                        onChangePhoto: (() -> Void)? = nil) {
+        let runner = GenerationRunner(promptManager: manager)
+        let vc = GenerationViewController(nibName: "GenerationViewController", bundle: .main)
+        vc.runner = runner
+        vc.sourcePhoto = sourcePhoto ?? manager.baseImage
+        vc.styleTitle = styleTitle
+        vc.onChangePhoto = onChangePhoto
+        present(vc, mode: .full) { runner.start() }
+    }
+
+    /// A/06 Result. TODO(redesign): R1 screen replaces InspirationDetailViewController here.
+    func showResult(model: ImageDetailModel, promptManager: GemeniPromptManager?, reveal: Bool) {
+        _ = showInspirationDetail(model: model, promptManager: promptManager)
     }
 
     func showFeaturesViewController() {

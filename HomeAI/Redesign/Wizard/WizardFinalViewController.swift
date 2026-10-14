@@ -203,7 +203,19 @@ final class WizardFinalViewController: WizardStepViewController {
 
     private func startGeneration() {
         session.applyToPromptManager()
-        NavigationManager.shared.showGeneration(manager: session.promptManager, sourcePhoto: session.photo)
+        let session = self.session!
+        NavigationManager.shared.showGeneration(manager: session.promptManager, sourcePhoto: session.photo,
+                                                styleTitle: session.style?.title) {
+            // "Change photo" from G3/G4 → W1 again; room, style and the rest are kept.
+            session.photo = nil
+            NavigationManager.shared.pushWizardStep(WizardPhotoViewController.make(session: session))
+        }
+        // Drop the wizard behind the generation screen so collapsing (⌄) lands where the user started.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) { [weak self] in
+            guard let nav = self?.navigationController,
+                  let first = nav.viewControllers.firstIndex(where: { $0 is WizardStepViewController }), first > 0 else { return }
+            nav.setViewControllers(Array(nav.viewControllers[..<first]), animated: false)
+        }
     }
 
     // MARK: Keyboard

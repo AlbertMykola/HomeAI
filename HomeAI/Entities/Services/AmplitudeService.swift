@@ -31,6 +31,14 @@ final class AmplitudeService {
         }
     }
 
+    /// Snake_case events of the redesign (push_preprompt_view, share_complete, …).
+    func logRedesignEvent(_ name: String, properties: [String: Any] = [:]) {
+        amplitude.track(eventType: name, eventProperties: properties.isEmpty ? nil : properties)
+        if !Self.isTestingBuild {
+            Analytics.logEvent(name, parameters: properties.isEmpty ? nil : firebaseParameters(from: properties))
+        }
+    }
+
     /// Stable snake_case events for the purchase funnel. Keep the legacy events above
     /// until dashboards have migrated; those events do not distinguish trials.
     func logPaywallEvent(_ name: String, properties: [String: Any]) {

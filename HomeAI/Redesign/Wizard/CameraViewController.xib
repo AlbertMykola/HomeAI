@@ -51,49 +51,49 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grid-v1">
                             <color key="backgroundColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.350" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="1" id="c618"/>
+                                <constraint firstAttribute="width" constant="1" id="c1161"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grid-v2">
                             <color key="backgroundColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.350" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="1" id="c622"/>
+                                <constraint firstAttribute="width" constant="1" id="c1165"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grid-h1">
                             <color key="backgroundColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.350" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="1" id="c626"/>
+                                <constraint firstAttribute="height" constant="1" id="c1169"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="grid-h2">
                             <color key="backgroundColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.350" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="1" id="c630"/>
+                                <constraint firstAttribute="height" constant="1" id="c1173"/>
                             </constraints>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="grid-v1" firstAttribute="top" secondItem="grid" secondAttribute="top" id="c616"/>
-                        <constraint firstItem="grid" firstAttribute="bottom" secondItem="grid-v1" secondAttribute="bottom" id="c617"/>
-                        <constraint firstItem="grid-v1" firstAttribute="centerX" secondItem="grid" secondAttribute="trailing" multiplier="0.3333" id="c619"/>
-                        <constraint firstItem="grid-v2" firstAttribute="top" secondItem="grid" secondAttribute="top" id="c620"/>
-                        <constraint firstItem="grid" firstAttribute="bottom" secondItem="grid-v2" secondAttribute="bottom" id="c621"/>
-                        <constraint firstItem="grid-v2" firstAttribute="centerX" secondItem="grid" secondAttribute="trailing" multiplier="0.6667" id="c623"/>
-                        <constraint firstItem="grid-h1" firstAttribute="leading" secondItem="grid" secondAttribute="leading" id="c624"/>
-                        <constraint firstItem="grid" firstAttribute="trailing" secondItem="grid-h1" secondAttribute="trailing" id="c625"/>
-                        <constraint firstItem="grid-h1" firstAttribute="centerY" secondItem="grid" secondAttribute="bottom" multiplier="0.3333" id="c627"/>
-                        <constraint firstItem="grid-h2" firstAttribute="leading" secondItem="grid" secondAttribute="leading" id="c628"/>
-                        <constraint firstItem="grid" firstAttribute="trailing" secondItem="grid-h2" secondAttribute="trailing" id="c629"/>
-                        <constraint firstItem="grid-h2" firstAttribute="centerY" secondItem="grid" secondAttribute="bottom" multiplier="0.6667" id="c631"/>
+                        <constraint firstItem="grid-v1" firstAttribute="top" secondItem="grid" secondAttribute="top" id="c1159"/>
+                        <constraint firstItem="grid" firstAttribute="bottom" secondItem="grid-v1" secondAttribute="bottom" id="c1160"/>
+                        <constraint firstItem="grid-v1" firstAttribute="centerX" secondItem="grid" secondAttribute="trailing" multiplier="0.3333" id="c1162"/>
+                        <constraint firstItem="grid-v2" firstAttribute="top" secondItem="grid" secondAttribute="top" id="c1163"/>
+                        <constraint firstItem="grid" firstAttribute="bottom" secondItem="grid-v2" secondAttribute="bottom" id="c1164"/>
+                        <constraint firstItem="grid-v2" firstAttribute="centerX" secondItem="grid" secondAttribute="trailing" multiplier="0.6667" id="c1166"/>
+                        <constraint firstItem="grid-h1" firstAttribute="leading" secondItem="grid" secondAttribute="leading" id="c1167"/>
+                        <constraint firstItem="grid" firstAttribute="trailing" secondItem="grid-h1" secondAttribute="trailing" id="c1168"/>
+                        <constraint firstItem="grid-h1" firstAttribute="centerY" secondItem="grid" secondAttribute="bottom" multiplier="0.3333" id="c1170"/>
+                        <constraint firstItem="grid-h2" firstAttribute="leading" secondItem="grid" secondAttribute="leading" id="c1171"/>
+                        <constraint firstItem="grid" firstAttribute="trailing" secondItem="grid-h2" secondAttribute="trailing" id="c1172"/>
+                        <constraint firstItem="grid-h2" firstAttribute="centerY" secondItem="grid" secondAttribute="bottom" multiplier="0.6667" id="c1174"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="level" userLabel="levelView">
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="120" id="c632"/>
-                        <constraint firstAttribute="height" constant="2" id="c633"/>
+                        <constraint firstAttribute="width" constant="120" id="c1175"/>
+                        <constraint firstAttribute="height" constant="2" id="c1176"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius"><real key="value" value="1"/></userDefinedRuntimeAttribute>
@@ -107,8 +107,8 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="15" weight="medium"/>
                                     <color key="tintColor" name="dsLime"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="18" id="c643"/>
-                                        <constraint firstAttribute="height" constant="18" id="c644"/>
+                                        <constraint firstAttribute="width" constant="18" id="c1186"/>
+                                        <constraint firstAttribute="height" constant="18" id="c1187"/>
                                     </constraints>
                                 </imageView>
                                 <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hint-label" userLabel="hintLabel" opaque="NO" text="Step back to fit the whole room" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
@@ -120,11 +120,11 @@
                     </subviews>
                     <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.450" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="c638"/>
-                        <constraint firstItem="hint-row" firstAttribute="leading" secondItem="hint" secondAttribute="leading" id="c639"/>
-                        <constraint firstItem="hint-row" firstAttribute="top" secondItem="hint" secondAttribute="top" id="c640"/>
-                        <constraint firstItem="hint" firstAttribute="trailing" secondItem="hint-row" secondAttribute="trailing" id="c641"/>
-                        <constraint firstItem="hint" firstAttribute="bottom" secondItem="hint-row" secondAttribute="bottom" id="c642"/>
+                        <constraint firstAttribute="height" constant="40" id="c1181"/>
+                        <constraint firstItem="hint-row" firstAttribute="leading" secondItem="hint" secondAttribute="leading" id="c1182"/>
+                        <constraint firstItem="hint-row" firstAttribute="top" secondItem="hint" secondAttribute="top" id="c1183"/>
+                        <constraint firstItem="hint" firstAttribute="trailing" secondItem="hint-row" secondAttribute="trailing" id="c1184"/>
+                        <constraint firstItem="hint" firstAttribute="bottom" secondItem="hint-row" secondAttribute="bottom" id="c1185"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -136,17 +136,17 @@
                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17.0" weight="semibold"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="20" id="c594"/>
-                                <constraint firstAttribute="height" constant="20" id="c595"/>
+                                <constraint firstAttribute="width" constant="20" id="c1137"/>
+                                <constraint firstAttribute="height" constant="20" id="c1138"/>
                             </constraints>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.300" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="44" id="c590"/>
-                        <constraint firstAttribute="height" constant="44" id="c591"/>
-                        <constraint firstItem="close-icon" firstAttribute="centerX" secondItem="close" secondAttribute="centerX" id="c592"/>
-                        <constraint firstItem="close-icon" firstAttribute="centerY" secondItem="close" secondAttribute="centerY" id="c593"/>
+                        <constraint firstAttribute="width" constant="44" id="c1133"/>
+                        <constraint firstAttribute="height" constant="44" id="c1134"/>
+                        <constraint firstItem="close-icon" firstAttribute="centerX" secondItem="close" secondAttribute="centerX" id="c1135"/>
+                        <constraint firstItem="close-icon" firstAttribute="centerY" secondItem="close" secondAttribute="centerY" id="c1136"/>
                     </constraints>
                     <accessibility key="accessibilityConfiguration" label="Close"/>
                     <userDefinedRuntimeAttributes>
@@ -165,17 +165,17 @@
                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17.0" weight="semibold"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="20" id="c600"/>
-                                <constraint firstAttribute="height" constant="20" id="c601"/>
+                                <constraint firstAttribute="width" constant="20" id="c1143"/>
+                                <constraint firstAttribute="height" constant="20" id="c1144"/>
                             </constraints>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.300" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="44" id="c596"/>
-                        <constraint firstAttribute="height" constant="44" id="c597"/>
-                        <constraint firstItem="flash-icon" firstAttribute="centerX" secondItem="flash" secondAttribute="centerX" id="c598"/>
-                        <constraint firstItem="flash-icon" firstAttribute="centerY" secondItem="flash" secondAttribute="centerY" id="c599"/>
+                        <constraint firstAttribute="width" constant="44" id="c1139"/>
+                        <constraint firstAttribute="height" constant="44" id="c1140"/>
+                        <constraint firstItem="flash-icon" firstAttribute="centerX" secondItem="flash" secondAttribute="centerX" id="c1141"/>
+                        <constraint firstItem="flash-icon" firstAttribute="centerY" secondItem="flash" secondAttribute="centerY" id="c1142"/>
                     </constraints>
                     <accessibility key="accessibilityConfiguration" label="Flash"/>
                     <userDefinedRuntimeAttributes>
@@ -196,10 +196,10 @@
                     </subviews>
                     <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.450" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="52" id="c651"/>
-                        <constraint firstAttribute="height" constant="32" id="c652"/>
-                        <constraint firstItem="zoom-label" firstAttribute="centerX" secondItem="zoom" secondAttribute="centerX" id="c653"/>
-                        <constraint firstItem="zoom-label" firstAttribute="centerY" secondItem="zoom" secondAttribute="centerY" id="c654"/>
+                        <constraint firstAttribute="width" constant="52" id="c1194"/>
+                        <constraint firstAttribute="height" constant="32" id="c1195"/>
+                        <constraint firstItem="zoom-label" firstAttribute="centerX" secondItem="zoom" secondAttribute="centerX" id="c1196"/>
+                        <constraint firstItem="zoom-label" firstAttribute="centerY" secondItem="zoom" secondAttribute="centerY" id="c1197"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -214,17 +214,17 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="18"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="48" id="c663"/>
-                                        <constraint firstAttribute="height" constant="48" id="c664"/>
+                                        <constraint firstAttribute="width" constant="48" id="c1206"/>
+                                        <constraint firstAttribute="height" constant="48" id="c1207"/>
                                     </constraints>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.150" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="48" id="c659"/>
-                                <constraint firstAttribute="height" constant="48" id="c660"/>
-                                <constraint firstItem="last-img" firstAttribute="centerX" secondItem="last" secondAttribute="centerX" id="c661"/>
-                                <constraint firstItem="last-img" firstAttribute="centerY" secondItem="last" secondAttribute="centerY" id="c662"/>
+                                <constraint firstAttribute="width" constant="48" id="c1202"/>
+                                <constraint firstAttribute="height" constant="48" id="c1203"/>
+                                <constraint firstItem="last-img" firstAttribute="centerX" secondItem="last" secondAttribute="centerX" id="c1204"/>
+                                <constraint firstItem="last-img" firstAttribute="centerY" secondItem="last" secondAttribute="centerY" id="c1205"/>
                             </constraints>
                             <accessibility key="accessibilityConfiguration" label="Photo library"/>
                             <userDefinedRuntimeAttributes>
@@ -239,8 +239,8 @@
                                 <view contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="shutter-inner" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="64" id="c667"/>
-                                        <constraint firstAttribute="height" constant="64" id="c668"/>
+                                        <constraint firstAttribute="width" constant="64" id="c1210"/>
+                                        <constraint firstAttribute="height" constant="64" id="c1211"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -249,10 +249,10 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="78" id="c665"/>
-                                <constraint firstAttribute="height" constant="78" id="c666"/>
-                                <constraint firstItem="shutter-inner" firstAttribute="centerX" secondItem="shutter" secondAttribute="centerX" id="c669"/>
-                                <constraint firstItem="shutter-inner" firstAttribute="centerY" secondItem="shutter" secondAttribute="centerY" id="c670"/>
+                                <constraint firstAttribute="width" constant="78" id="c1208"/>
+                                <constraint firstAttribute="height" constant="78" id="c1209"/>
+                                <constraint firstItem="shutter-inner" firstAttribute="centerX" secondItem="shutter" secondAttribute="centerX" id="c1212"/>
+                                <constraint firstItem="shutter-inner" firstAttribute="centerY" secondItem="shutter" secondAttribute="centerY" id="c1213"/>
                             </constraints>
                             <accessibility key="accessibilityConfiguration" label="Take photo"/>
                             <userDefinedRuntimeAttributes>
@@ -269,17 +269,17 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17.0" weight="semibold"/>
                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="20" id="c606"/>
-                                        <constraint firstAttribute="height" constant="20" id="c607"/>
+                                        <constraint firstAttribute="width" constant="20" id="c1149"/>
+                                        <constraint firstAttribute="height" constant="20" id="c1150"/>
                                     </constraints>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.300" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="48" id="c602"/>
-                                <constraint firstAttribute="height" constant="48" id="c603"/>
-                                <constraint firstItem="flip-icon" firstAttribute="centerX" secondItem="flip" secondAttribute="centerX" id="c604"/>
-                                <constraint firstItem="flip-icon" firstAttribute="centerY" secondItem="flip" secondAttribute="centerY" id="c605"/>
+                                <constraint firstAttribute="width" constant="48" id="c1145"/>
+                                <constraint firstAttribute="height" constant="48" id="c1146"/>
+                                <constraint firstItem="flip-icon" firstAttribute="centerX" secondItem="flip" secondAttribute="centerX" id="c1147"/>
+                                <constraint firstItem="flip-icon" firstAttribute="centerY" secondItem="flip" secondAttribute="centerY" id="c1148"/>
                             </constraints>
                             <accessibility key="accessibilityConfiguration" label="Switch camera"/>
                             <userDefinedRuntimeAttributes>
@@ -295,7 +295,7 @@
                     </subviews>
                     <edgeInsets key="layoutMargins" top="0" left="40" bottom="0" right="40"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="108" id="c658"/>
+                        <constraint firstAttribute="height" constant="108" id="c1201"/>
                     </constraints>
                 </stackView>
                 <view contentMode="scaleToFill" alpha="0" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="flash-overlay" userLabel="flashOverlay">
@@ -305,31 +305,31 @@
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="root-safeArea"/>
             <constraints>
-                <constraint firstItem="preview" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c608"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="preview" secondAttribute="trailing" id="c609"/>
-                <constraint firstItem="preview" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="51" id="c610"/>
-                <constraint firstItem="controls" firstAttribute="top" secondItem="preview" secondAttribute="bottom" id="c611"/>
-                <constraint firstItem="grid" firstAttribute="leading" secondItem="preview" secondAttribute="leading" id="c612"/>
-                <constraint firstItem="grid" firstAttribute="top" secondItem="preview" secondAttribute="top" id="c613"/>
-                <constraint firstItem="preview" firstAttribute="trailing" secondItem="grid" secondAttribute="trailing" id="c614"/>
-                <constraint firstItem="preview" firstAttribute="bottom" secondItem="grid" secondAttribute="bottom" id="c615"/>
-                <constraint firstItem="level" firstAttribute="centerX" secondItem="preview" secondAttribute="centerX" id="c634"/>
-                <constraint firstItem="level" firstAttribute="centerY" secondItem="preview" secondAttribute="centerY" id="c635"/>
-                <constraint firstItem="hint" firstAttribute="top" secondItem="preview" secondAttribute="top" constant="20" id="c636"/>
-                <constraint firstItem="hint" firstAttribute="centerX" secondItem="preview" secondAttribute="centerX" id="c637"/>
-                <constraint firstItem="close" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="16" id="c645"/>
-                <constraint firstItem="close" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-1" id="c646"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="flash" secondAttribute="trailing" constant="16" id="c647"/>
-                <constraint firstItem="flash" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-1" id="c648"/>
-                <constraint firstItem="zoom" firstAttribute="centerX" secondItem="preview" secondAttribute="centerX" id="c649"/>
-                <constraint firstItem="preview" firstAttribute="bottom" secondItem="zoom" secondAttribute="bottom" constant="16" id="c650"/>
-                <constraint firstItem="controls" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c655"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="controls" secondAttribute="trailing" id="c656"/>
-                <constraint firstItem="root-safeArea" firstAttribute="bottom" secondItem="controls" secondAttribute="bottom" id="c657"/>
-                <constraint firstItem="flash-overlay" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c671"/>
-                <constraint firstItem="flash-overlay" firstAttribute="top" secondItem="root" secondAttribute="top" id="c672"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="flash-overlay" secondAttribute="trailing" id="c673"/>
-                <constraint firstItem="root" firstAttribute="bottom" secondItem="flash-overlay" secondAttribute="bottom" id="c674"/>
+                <constraint firstItem="preview" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c1151"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="preview" secondAttribute="trailing" id="c1152"/>
+                <constraint firstItem="preview" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="51" id="c1153"/>
+                <constraint firstItem="controls" firstAttribute="top" secondItem="preview" secondAttribute="bottom" id="c1154"/>
+                <constraint firstItem="grid" firstAttribute="leading" secondItem="preview" secondAttribute="leading" id="c1155"/>
+                <constraint firstItem="grid" firstAttribute="top" secondItem="preview" secondAttribute="top" id="c1156"/>
+                <constraint firstItem="preview" firstAttribute="trailing" secondItem="grid" secondAttribute="trailing" id="c1157"/>
+                <constraint firstItem="preview" firstAttribute="bottom" secondItem="grid" secondAttribute="bottom" id="c1158"/>
+                <constraint firstItem="level" firstAttribute="centerX" secondItem="preview" secondAttribute="centerX" id="c1177"/>
+                <constraint firstItem="level" firstAttribute="centerY" secondItem="preview" secondAttribute="centerY" id="c1178"/>
+                <constraint firstItem="hint" firstAttribute="top" secondItem="preview" secondAttribute="top" constant="20" id="c1179"/>
+                <constraint firstItem="hint" firstAttribute="centerX" secondItem="preview" secondAttribute="centerX" id="c1180"/>
+                <constraint firstItem="close" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="16" id="c1188"/>
+                <constraint firstItem="close" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-1" id="c1189"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="flash" secondAttribute="trailing" constant="16" id="c1190"/>
+                <constraint firstItem="flash" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="-1" id="c1191"/>
+                <constraint firstItem="zoom" firstAttribute="centerX" secondItem="preview" secondAttribute="centerX" id="c1192"/>
+                <constraint firstItem="preview" firstAttribute="bottom" secondItem="zoom" secondAttribute="bottom" constant="16" id="c1193"/>
+                <constraint firstItem="controls" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c1198"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="controls" secondAttribute="trailing" id="c1199"/>
+                <constraint firstItem="root-safeArea" firstAttribute="bottom" secondItem="controls" secondAttribute="bottom" id="c1200"/>
+                <constraint firstItem="flash-overlay" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c1214"/>
+                <constraint firstItem="flash-overlay" firstAttribute="top" secondItem="root" secondAttribute="top" id="c1215"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="flash-overlay" secondAttribute="trailing" id="c1216"/>
+                <constraint firstItem="root" firstAttribute="bottom" secondItem="flash-overlay" secondAttribute="bottom" id="c1217"/>
             </constraints>
         </view>
         </objects>
