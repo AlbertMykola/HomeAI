@@ -315,7 +315,7 @@ final class HomeViewController: UIViewController {
 
     @IBAction private func didTapAssistant(_ sender: Any) {
         amplitude.logEvent(.selectOption(name: Constants.Keys.amplitudeChatAssistantOption))
-        NavigationManager.shared.showAssistantList()
+        NavigationManager.shared.showAssistant()
     }
 
     @IBAction private func didTapSeeAll(_ sender: Any) {

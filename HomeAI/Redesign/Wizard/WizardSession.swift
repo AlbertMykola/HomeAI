@@ -102,6 +102,12 @@ final class WizardSession {
         }
     }
 
+    /// Style picked elsewhere (Assistant idea) → interior skips W3.
+    func presetStyle(_ preset: Style) {
+        style = preset
+        if option == .interior { isStylePreset = true }
+    }
+
     /// A/08 · I2 "Try on my room": style + palette of the idea.
     func applyInspiration(_ idea: InspirationIdea) {
         switch option {

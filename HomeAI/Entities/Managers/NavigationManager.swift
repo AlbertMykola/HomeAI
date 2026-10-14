@@ -123,6 +123,9 @@ final class NavigationManager {
                 self?.showResult(docID: doc.id, image: nil, reveal: false)
             }
         }
+        if ProcessInfo.processInfo.arguments.contains("-openAssistant") {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in self?.showAssistant() }
+        }
         #endif
         if showsLaunchPaywall {
             scheduleLaunchPaywallIfNeeded()
@@ -349,6 +352,11 @@ final class NavigationManager {
         let session = WizardSession(option: option)
         configure?(session)
         push(WizardPhotoViewController.make(session: session))
+    }
+
+    /// A/09 AI designer (Home → "Ask AI designer").
+    func showAssistant() {
+        push(AssistantViewController.make())
     }
 
     /// Switches the root tab (e.g. "View" in the Saved to Ideas toast).
