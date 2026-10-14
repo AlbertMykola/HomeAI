@@ -33,6 +33,12 @@ class ToolStepViewController: WizardStepViewController {
         photoTitleLabel.text = "Your photo".localized
         changePhotoButton.setTitle("Change".localized, for: .normal)
         generateSubtitleLabel.text = costLine(seconds: expectedSeconds)
+        if session.isResultEdit {
+            // The photo is the version on screen; it can't be swapped from here.
+            photoTitleLabel.text = "Current version".localized
+            changePhotoButton.isHidden = true
+            generateTitleLabel.text = "Apply".localized
+        }
         contentStack.arrangedSubviews.forEach { $0.alpha = 0 }
         generateButton.alpha = 0
     }
@@ -65,6 +71,15 @@ class ToolStepViewController: WizardStepViewController {
 
     @IBAction func didTapGenerate(_ sender: Any) {
         guard isReady else { return }
+        if let onResultEdit = session.onResultEdit {
+            // Credits / offline / progress are handled by Result (new version in the same project).
+            DS.Haptic.medium()
+            let manager = GemeniPromptManager()
+            configure(manager)
+            navigationController?.popViewController(animated: true)
+            onResultEdit(manager)
+            return
+        }
         generate(styleTitle: styleTitleForGeneration) { [weak self] manager in self?.configure(manager) }
     }
 

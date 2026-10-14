@@ -438,18 +438,18 @@ final class ResultViewController: UIViewController {
             }
             present(editor, animated: true)
         case .floor, .furnish, .layout:
-            // TODO(redesign): A/07 T5 Floor, T6 Furnish and T8 Layout screens replace these legacy flows.
-            let manager = GemeniPromptManager()
-            manager.updateBaseImage(image)
-            switch tool {
-            case .floor:
-                manager.updateOption(.newFlooring)
-                NavigationManager.shared.showSurfaceMaterialPicker(promptManager: manager)
-            case .furnish:
-                NavigationManager.shared.startDesign(option: .furnish)
-            default:
-                NavigationManager.shared.startDesign(option: .rearrange)
+            // A/07 T5 Floor, T6 Furnish, T8 Layout in edit mode: the current version is the photo, Apply → new version.
+            let session = WizardSession(option: tool == .floor ? .newFlooring : tool == .furnish ? .furnish : .rearrange)
+            session.photo = image
+            if let room = currentDoc?.savedInteriorRoomType { session.detectedPlace = .room(room) }
+            session.onResultEdit = { [weak self] manager in
+                guard let self else { return }
+                if let doc = self.currentDoc, let room = doc.savedInteriorRoomType, tool != .furnish {
+                    manager.updateRoom(room)
+                }
+                self.runEdit(manager: manager, note: nil)
             }
+            NavigationManager.shared.pushWizardStep(ToolStepFactory.make(session: session))
         }
     }
 

@@ -67,6 +67,10 @@ final class WizardSession {
     var photo: UIImage?
     var isDemoPhoto = false
     var detectedPlace: Place?
+    /// Result → T5 / T6 / T8: the tool edits the current version; Apply hands the prompt back for a new version
+    /// in the same project instead of starting a new design.
+    var onResultEdit: ((GemeniPromptManager) -> Void)?
+    var isResultEdit: Bool { onResultEdit != nil }
     var place: Place?
     var style: Style?
     var palette: Palette = .auto

@@ -38,7 +38,9 @@ class WizardStepViewController: UIViewController {
         navigationController?.interactivePopGestureRecognizer?.isEnabled = true
         if !didConfigureStepper {
             didConfigureStepper = true
-            navBar.configure(step: session.index(of: step), total: session.steps.count, animated: animated)
+            // Edit from Result is a single screen: no stepper.
+            navBar.configure(step: session.index(of: step), total: session.isResultEdit ? 0 : session.steps.count,
+                             animated: animated)
         }
     }
 
@@ -52,7 +54,7 @@ class WizardStepViewController: UIViewController {
 
     /// ✕ — W1 leaves right away, later steps confirm first (A/04 · Discard design?).
     @IBAction func didTapWizardClose(_ sender: Any) {
-        guard step != .photo || session.photo != nil else {
+        guard !session.isResultEdit, step != .photo || session.photo != nil else {
             exitWizard()
             return
         }
