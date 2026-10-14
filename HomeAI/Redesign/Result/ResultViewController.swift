@@ -426,31 +426,29 @@ final class ResultViewController: UIViewController {
                                                    current: doc.style) { [weak self] style, keep, strength in
                 self?.restyle(style: style, keepStructure: keep, strength: strength)
             }
-        default:
-            // TODO(redesign): R3 Paint, R4 Replace, R5 Remove and T5/T6/T8 tools replace these legacy editors.
+        case .paint, .replace, .remove:
+            let onApply: (GemeniPromptManager, String) -> Void = { [weak self] manager, note in
+                self?.runEdit(manager: manager, note: note)
+            }
+            let editor: MaskEditorViewController
+            switch tool {
+            case .paint: editor = PaintEditorViewController.make(image: image, original: originalImage, onApply: onApply)
+            case .replace: editor = ReplaceEditorViewController.make(image: image, original: originalImage, onApply: onApply)
+            default: editor = RemoveEditorViewController.make(image: image, original: originalImage, onApply: onApply)
+            }
+            present(editor, animated: true)
+        case .floor, .furnish, .layout:
+            // TODO(redesign): A/07 T5 Floor, T6 Furnish and T8 Layout screens replace these legacy flows.
             let manager = GemeniPromptManager()
             manager.updateBaseImage(image)
             switch tool {
-            case .paint:
-                manager.updateOption(.newWalls)
-                NavigationManager.shared.showSurfaceMaterialPicker(promptManager: manager)
             case .floor:
                 manager.updateOption(.newFlooring)
                 NavigationManager.shared.showSurfaceMaterialPicker(promptManager: manager)
-            case .replace:
-                manager.updateOption(.replace)
-                NavigationManager.shared.showObjectSelection(promptManager: manager)
-            case .remove:
-                manager.updateOption(.replace)
-                NavigationManager.shared.showObjectSelection(
-                    promptManager: manager, requiresPromptInput: false,
-                    replacementDescription: "remove the selected object and fill the area with realistic background matching the surroundings")
             case .furnish:
                 NavigationManager.shared.startDesign(option: .furnish)
-            case .layout:
+            default:
                 NavigationManager.shared.startDesign(option: .rearrange)
-            case .style:
-                break
             }
         }
     }
@@ -531,7 +529,7 @@ final class ResultViewController: UIViewController {
         UIView.animate(withDuration: 0.25) {
             self.editDimView.alpha = editing ? 1 : 0
             self.editLoaderView.alpha = editing ? 1 : 0
-            self.panelView.alpha = editing ? 0.6 : 1
+            self.panelStack.alpha = editing ? 0.5 : 1
         }
     }
 

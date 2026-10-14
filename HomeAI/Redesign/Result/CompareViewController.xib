@@ -35,8 +35,8 @@
                 <outletCollection property="segmentLabels" destination="seg1-label" collectionClass="NSMutableArray" id="seg1-label-oc"/>
                 <outletCollection property="segmentControls" destination="seg2" collectionClass="NSMutableArray" id="seg2-oc"/>
                 <outletCollection property="segmentLabels" destination="seg2-label" collectionClass="NSMutableArray" id="seg2-label-oc"/>
-                <outlet property="beforeWidthConstraint" destination="c905" id="c905-o"/>
-                <outlet property="segmentKnobLeading" destination="c933" id="c933-o"/>
+                <outlet property="beforeWidthConstraint" destination="c1264" id="c1264-o"/>
+                <outlet property="segmentKnobLeading" destination="c1292" id="c1292-o"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -55,40 +55,40 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstItem="before" firstAttribute="leading" secondItem="before-clip" secondAttribute="leading" id="c906"/>
-                                <constraint firstItem="before" firstAttribute="top" secondItem="before-clip" secondAttribute="top" id="c907"/>
-                                <constraint firstItem="before-clip" firstAttribute="bottom" secondItem="before" secondAttribute="bottom" id="c908"/>
+                                <constraint firstItem="before" firstAttribute="leading" secondItem="before-clip" secondAttribute="leading" id="c1265"/>
+                                <constraint firstItem="before" firstAttribute="top" secondItem="before-clip" secondAttribute="top" id="c1266"/>
+                                <constraint firstItem="before-clip" firstAttribute="bottom" secondItem="before" secondAttribute="bottom" id="c1267"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="divider" userLabel="dividerView">
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="2" id="c912"/>
+                                <constraint firstAttribute="width" constant="2" id="c1271"/>
                             </constraints>
                         </view>
                         <imageView contentMode="scaleAspectFit" clipsSubviews="NO" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="handle" userLabel="handleView" image="ds_compare_handle" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                             <constraints>
-                                <constraint firstAttribute="width" constant="32" id="c914"/>
-                                <constraint firstAttribute="height" constant="32" id="c915"/>
+                                <constraint firstAttribute="width" constant="32" id="c1273"/>
+                                <constraint firstAttribute="height" constant="32" id="c1274"/>
                             </constraints>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="after" firstAttribute="leading" secondItem="stage" secondAttribute="leading" id="c898"/>
-                        <constraint firstItem="after" firstAttribute="top" secondItem="stage" secondAttribute="top" id="c899"/>
-                        <constraint firstItem="stage" firstAttribute="trailing" secondItem="after" secondAttribute="trailing" id="c900"/>
-                        <constraint firstItem="stage" firstAttribute="bottom" secondItem="after" secondAttribute="bottom" id="c901"/>
-                        <constraint firstItem="before-clip" firstAttribute="leading" secondItem="stage" secondAttribute="leading" id="c902"/>
-                        <constraint firstItem="before-clip" firstAttribute="top" secondItem="stage" secondAttribute="top" id="c903"/>
-                        <constraint firstItem="stage" firstAttribute="bottom" secondItem="before-clip" secondAttribute="bottom" id="c904"/>
-                        <constraint firstItem="before-clip" firstAttribute="width" secondItem="stage" secondAttribute="width" multiplier="0.5" id="c905"/>
-                        <constraint firstItem="before" firstAttribute="width" secondItem="stage" secondAttribute="width" id="c909"/>
-                        <constraint firstItem="divider" firstAttribute="top" secondItem="stage" secondAttribute="top" id="c910"/>
-                        <constraint firstItem="stage" firstAttribute="bottom" secondItem="divider" secondAttribute="bottom" id="c911"/>
-                        <constraint firstItem="divider" firstAttribute="centerX" secondItem="before-clip" secondAttribute="trailing" id="c913"/>
-                        <constraint firstItem="handle" firstAttribute="centerX" secondItem="divider" secondAttribute="centerX" id="c916"/>
-                        <constraint firstItem="handle" firstAttribute="centerY" secondItem="divider" secondAttribute="centerY" id="c917"/>
+                        <constraint firstItem="after" firstAttribute="leading" secondItem="stage" secondAttribute="leading" id="c1257"/>
+                        <constraint firstItem="after" firstAttribute="top" secondItem="stage" secondAttribute="top" id="c1258"/>
+                        <constraint firstItem="stage" firstAttribute="trailing" secondItem="after" secondAttribute="trailing" id="c1259"/>
+                        <constraint firstItem="stage" firstAttribute="bottom" secondItem="after" secondAttribute="bottom" id="c1260"/>
+                        <constraint firstItem="before-clip" firstAttribute="leading" secondItem="stage" secondAttribute="leading" id="c1261"/>
+                        <constraint firstItem="before-clip" firstAttribute="top" secondItem="stage" secondAttribute="top" id="c1262"/>
+                        <constraint firstItem="stage" firstAttribute="bottom" secondItem="before-clip" secondAttribute="bottom" id="c1263"/>
+                        <constraint firstItem="before-clip" firstAttribute="width" secondItem="stage" secondAttribute="width" multiplier="0.5" id="c1264"/>
+                        <constraint firstItem="before" firstAttribute="width" secondItem="stage" secondAttribute="width" id="c1268"/>
+                        <constraint firstItem="divider" firstAttribute="top" secondItem="stage" secondAttribute="top" id="c1269"/>
+                        <constraint firstItem="stage" firstAttribute="bottom" secondItem="divider" secondAttribute="bottom" id="c1270"/>
+                        <constraint firstItem="divider" firstAttribute="centerX" secondItem="before-clip" secondAttribute="trailing" id="c1272"/>
+                        <constraint firstItem="handle" firstAttribute="centerX" secondItem="divider" secondAttribute="centerX" id="c1275"/>
+                        <constraint firstItem="handle" firstAttribute="centerY" secondItem="divider" secondAttribute="centerY" id="c1276"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="close" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="closeButton">
@@ -97,17 +97,17 @@
                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17.0" weight="semibold"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="20" id="c880"/>
-                                <constraint firstAttribute="height" constant="20" id="c881"/>
+                                <constraint firstAttribute="width" constant="20" id="c1239"/>
+                                <constraint firstAttribute="height" constant="20" id="c1240"/>
                             </constraints>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.300" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="44" id="c876"/>
-                        <constraint firstAttribute="height" constant="44" id="c877"/>
-                        <constraint firstItem="close-icon" firstAttribute="centerX" secondItem="close" secondAttribute="centerX" id="c878"/>
-                        <constraint firstItem="close-icon" firstAttribute="centerY" secondItem="close" secondAttribute="centerY" id="c879"/>
+                        <constraint firstAttribute="width" constant="44" id="c1235"/>
+                        <constraint firstAttribute="height" constant="44" id="c1236"/>
+                        <constraint firstItem="close-icon" firstAttribute="centerX" secondItem="close" secondAttribute="centerX" id="c1237"/>
+                        <constraint firstItem="close-icon" firstAttribute="centerY" secondItem="close" secondAttribute="centerY" id="c1238"/>
                     </constraints>
                     <accessibility key="accessibilityConfiguration" label="Close"/>
                     <userDefinedRuntimeAttributes>
@@ -126,17 +126,17 @@
                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17.0" weight="semibold"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="20" id="c886"/>
-                                <constraint firstAttribute="height" constant="20" id="c887"/>
+                                <constraint firstAttribute="width" constant="20" id="c1245"/>
+                                <constraint firstAttribute="height" constant="20" id="c1246"/>
                             </constraints>
                         </imageView>
                     </subviews>
                     <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.300" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="44" id="c882"/>
-                        <constraint firstAttribute="height" constant="44" id="c883"/>
-                        <constraint firstItem="fit-icon" firstAttribute="centerX" secondItem="fit" secondAttribute="centerX" id="c884"/>
-                        <constraint firstItem="fit-icon" firstAttribute="centerY" secondItem="fit" secondAttribute="centerY" id="c885"/>
+                        <constraint firstAttribute="width" constant="44" id="c1241"/>
+                        <constraint firstAttribute="height" constant="44" id="c1242"/>
+                        <constraint firstItem="fit-icon" firstAttribute="centerX" secondItem="fit" secondAttribute="centerX" id="c1243"/>
+                        <constraint firstItem="fit-icon" firstAttribute="centerY" secondItem="fit" secondAttribute="centerY" id="c1244"/>
                     </constraints>
                     <accessibility key="accessibilityConfiguration" label="Reset zoom"/>
                     <userDefinedRuntimeAttributes>
@@ -166,8 +166,8 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="seg0-label" firstAttribute="centerX" secondItem="seg0" secondAttribute="centerX" id="c888"/>
-                                        <constraint firstItem="seg0-label" firstAttribute="centerY" secondItem="seg0" secondAttribute="centerY" id="c889"/>
+                                        <constraint firstItem="seg0-label" firstAttribute="centerX" secondItem="seg0" secondAttribute="centerX" id="c1247"/>
+                                        <constraint firstItem="seg0-label" firstAttribute="centerY" secondItem="seg0" secondAttribute="centerY" id="c1248"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="hapticOnPress" value="NO"/>
@@ -182,8 +182,8 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="seg1-label" firstAttribute="centerX" secondItem="seg1" secondAttribute="centerX" id="c890"/>
-                                        <constraint firstItem="seg1-label" firstAttribute="centerY" secondItem="seg1" secondAttribute="centerY" id="c891"/>
+                                        <constraint firstItem="seg1-label" firstAttribute="centerX" secondItem="seg1" secondAttribute="centerX" id="c1249"/>
+                                        <constraint firstItem="seg1-label" firstAttribute="centerY" secondItem="seg1" secondAttribute="centerY" id="c1250"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="hapticOnPress" value="NO"/>
@@ -198,8 +198,8 @@
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="seg2-label" firstAttribute="centerX" secondItem="seg2" secondAttribute="centerX" id="c892"/>
-                                        <constraint firstItem="seg2-label" firstAttribute="centerY" secondItem="seg2" secondAttribute="centerY" id="c893"/>
+                                        <constraint firstItem="seg2-label" firstAttribute="centerX" secondItem="seg2" secondAttribute="centerX" id="c1251"/>
+                                        <constraint firstItem="seg2-label" firstAttribute="centerY" secondItem="seg2" secondAttribute="centerY" id="c1252"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="boolean" keyPath="hapticOnPress" value="NO"/>
@@ -212,15 +212,15 @@
                     </subviews>
                     <color key="backgroundColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.900" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="40" id="c924"/>
-                        <constraint firstItem="seg-row" firstAttribute="leading" secondItem="segmented" secondAttribute="leading" constant="3" id="c926"/>
-                        <constraint firstItem="seg-row" firstAttribute="top" secondItem="segmented" secondAttribute="top" constant="3" id="c927"/>
-                        <constraint firstItem="segmented" firstAttribute="trailing" secondItem="seg-row" secondAttribute="trailing" constant="3" id="c928"/>
-                        <constraint firstItem="segmented" firstAttribute="bottom" secondItem="seg-row" secondAttribute="bottom" constant="3" id="c929"/>
-                        <constraint firstItem="seg-knob" firstAttribute="top" secondItem="segmented" secondAttribute="top" constant="3" id="c930"/>
-                        <constraint firstItem="segmented" firstAttribute="bottom" secondItem="seg-knob" secondAttribute="bottom" constant="3" id="c931"/>
-                        <constraint firstItem="seg-knob" firstAttribute="width" secondItem="seg0" secondAttribute="width" id="c932"/>
-                        <constraint firstItem="seg-knob" firstAttribute="leading" secondItem="segmented" secondAttribute="leading" constant="3" id="c933"/>
+                        <constraint firstAttribute="height" constant="40" id="c1283"/>
+                        <constraint firstItem="seg-row" firstAttribute="leading" secondItem="segmented" secondAttribute="leading" constant="3" id="c1285"/>
+                        <constraint firstItem="seg-row" firstAttribute="top" secondItem="segmented" secondAttribute="top" constant="3" id="c1286"/>
+                        <constraint firstItem="segmented" firstAttribute="trailing" secondItem="seg-row" secondAttribute="trailing" constant="3" id="c1287"/>
+                        <constraint firstItem="segmented" firstAttribute="bottom" secondItem="seg-row" secondAttribute="bottom" constant="3" id="c1288"/>
+                        <constraint firstItem="seg-knob" firstAttribute="top" secondItem="segmented" secondAttribute="top" constant="3" id="c1289"/>
+                        <constraint firstItem="segmented" firstAttribute="bottom" secondItem="seg-knob" secondAttribute="bottom" constant="3" id="c1290"/>
+                        <constraint firstItem="seg-knob" firstAttribute="width" secondItem="seg0" secondAttribute="width" id="c1291"/>
+                        <constraint firstItem="seg-knob" firstAttribute="leading" secondItem="segmented" secondAttribute="leading" constant="3" id="c1292"/>
                     </constraints>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -230,17 +230,17 @@
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="root-safeArea"/>
             <constraints>
-                <constraint firstItem="stage" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c894"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="stage" secondAttribute="trailing" id="c895"/>
-                <constraint firstItem="stage" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" id="c896"/>
-                <constraint firstItem="segmented" firstAttribute="top" secondItem="stage" secondAttribute="bottom" constant="12" id="c897"/>
-                <constraint firstItem="close" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="16" id="c918"/>
-                <constraint firstItem="close" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="4" id="c919"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="fit" secondAttribute="trailing" constant="16" id="c920"/>
-                <constraint firstItem="fit" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="4" id="c921"/>
-                <constraint firstItem="segmented" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="46" id="c922"/>
-                <constraint firstItem="root" firstAttribute="trailing" secondItem="segmented" secondAttribute="trailing" constant="46" id="c923"/>
-                <constraint firstItem="root-safeArea" firstAttribute="bottom" secondItem="segmented" secondAttribute="bottom" constant="8" id="c925"/>
+                <constraint firstItem="stage" firstAttribute="leading" secondItem="root" secondAttribute="leading" id="c1253"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="stage" secondAttribute="trailing" id="c1254"/>
+                <constraint firstItem="stage" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" id="c1255"/>
+                <constraint firstItem="segmented" firstAttribute="top" secondItem="stage" secondAttribute="bottom" constant="12" id="c1256"/>
+                <constraint firstItem="close" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="16" id="c1277"/>
+                <constraint firstItem="close" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="4" id="c1278"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="fit" secondAttribute="trailing" constant="16" id="c1279"/>
+                <constraint firstItem="fit" firstAttribute="top" secondItem="root-safeArea" secondAttribute="top" constant="4" id="c1280"/>
+                <constraint firstItem="segmented" firstAttribute="leading" secondItem="root" secondAttribute="leading" constant="46" id="c1281"/>
+                <constraint firstItem="root" firstAttribute="trailing" secondItem="segmented" secondAttribute="trailing" constant="46" id="c1282"/>
+                <constraint firstItem="root-safeArea" firstAttribute="bottom" secondItem="segmented" secondAttribute="bottom" constant="8" id="c1284"/>
             </constraints>
         </view>
         </objects>

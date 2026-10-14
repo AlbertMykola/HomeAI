@@ -64,10 +64,10 @@ final class HomeViewController: UIViewController {
 
     // MARK: State
     private let amplitude = AmplitudeService.shared
-    private let historyService = ImageHistoryService()
-    private var recentDocs: [ImageDoc] = []
+    private var recentProjects: [(project: DesignProject, versions: [ImageDoc])] = []
     private var historyObserver: NSObjectProtocol?
     private var networkObserver: NSObjectProtocol?
+    private var projectsObserver: NSObjectProtocol?
     private var didRunEntrance = false
     private var heroAutoCycleStopped = false
     private var heroCycleAnimators: [UIViewPropertyAnimator] = []
@@ -124,7 +124,7 @@ final class HomeViewController: UIViewController {
     override var preferredStatusBarStyle: UIStatusBarStyle { .darkContent }
 
     deinit {
-        [historyObserver, networkObserver].compactMap { $0 }.forEach(NotificationCenter.default.removeObserver)
+        [historyObserver, networkObserver, projectsObserver].compactMap { $0 }.forEach(NotificationCenter.default.removeObserver)
     }
 
     // MARK: Setup
@@ -197,6 +197,10 @@ final class HomeViewController: UIViewController {
                                                                  queue: .main) { [weak self] _ in
             self?.reloadRecent()
             self?.updateCredits()
+        }
+        projectsObserver = NotificationCenter.default.addObserver(forName: .projectsDidChange, object: nil,
+                                                                  queue: .main) { [weak self] _ in
+            self?.reloadRecent()
         }
         networkObserver = NotificationCenter.default.addObserver(forName: .networkStatusDidChange, object: nil,
                                                                  queue: .main) { [weak self] _ in
@@ -348,14 +352,9 @@ final class HomeViewController: UIViewController {
     // MARK: Recent projects
 
     private func reloadRecent() {
-        Task { @MainActor [weak self] in
-            guard let self else { return }
-            self.historyService.resetHistoryPaging()
-            let docs = (try? await self.historyService.fetchNextHistoryPage(pageSize: 10)) ?? []
-            self.recentDocs = docs
-            self.recentSectionView.isHidden = docs.isEmpty
-            self.recentCollectionView.reloadData()
-        }
+        recentProjects = Array(ProjectStore.shared.allProjects().prefix(10))
+        recentSectionView.isHidden = recentProjects.isEmpty
+        recentCollectionView.reloadData()
     }
 
     // MARK: Hero before/after
@@ -526,22 +525,21 @@ extension HomeViewController: UIGestureRecognizerDelegate {
 
 extension HomeViewController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        recentDocs.count
+        recentProjects.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: HomeProjectCell.reuseID, for: indexPath)
-        if let cell = cell as? HomeProjectCell, let doc = recentDocs[safe: indexPath.item] {
-            cell.configure(with: doc)
+        if let cell = cell as? HomeProjectCell, let item = recentProjects[safe: indexPath.item] {
+            cell.configure(project: item.project, versions: item.versions)
         }
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let doc = recentDocs[safe: indexPath.item],
-              let image = (collectionView.cellForItem(at: indexPath) as? HomeProjectCell)?.thumbImage else { return }
+        guard let doc = recentProjects[safe: indexPath.item]?.versions.last else { return }
         DS.Haptic.light()
-        HistoryDocOpener.open(doc: doc, image: image)
+        NavigationManager.shared.showResult(docID: doc.id, image: nil, reveal: false)
     }
 
     func collectionView(_ collectionView: UICollectionView, didHighlightItemAt indexPath: IndexPath) {

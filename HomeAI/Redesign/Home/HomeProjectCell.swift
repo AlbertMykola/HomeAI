@@ -19,11 +19,13 @@ final class HomeProjectCell: UICollectionViewCell {
         transform = .identity
     }
 
-    func configure(with doc: ImageDoc) {
-        titleLabel.text = doc.projectTitle
-        subtitleLabel.text = String(format: "%d version · %@".localized, 1, doc.createdAt.projectRelativeString)
+    func configure(project: DesignProject, versions: [ImageDoc]) {
+        guard let doc = versions.last else { return }
+        let title = ProjectStore.shared.displayTitle(for: project, versions: versions)
+        titleLabel.text = title
+        subtitleLabel.text = DesignProject.versionsLine(count: versions.count, date: project.updatedAt)
         isAccessibilityElement = true
-        accessibilityLabel = "\(doc.projectTitle), \(subtitleLabel.text ?? "")"
+        accessibilityLabel = "\(title), \(subtitleLabel.text ?? "")"
         accessibilityTraits = .button
 
         let path = HistoryDocOpener.thumbnailPath(for: doc)

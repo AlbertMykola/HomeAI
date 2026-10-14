@@ -28,10 +28,10 @@
                 <rect key="frame" x="0.0" y="0.0" width="104" height="128"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
-                    <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="img" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" userLabel="thumbImageView" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                    <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="img" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" userLabel="thumbImageView" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
                         <color key="backgroundColor" name="dsSurface"/>
                         <constraints>
-                            <constraint firstItem="img" firstAttribute="height" secondItem="img" secondAttribute="width" id="c971"/>
+                            <constraint firstItem="img" firstAttribute="height" secondItem="img" secondAttribute="width" id="c1330"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius"><real key="value" value="18"/></userDefinedRuntimeAttribute>
@@ -54,10 +54,10 @@
                         </subviews>
                         <color key="backgroundColor" name="dsLime"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="24" id="c978"/>
-                            <constraint firstAttribute="height" constant="24" id="c979"/>
-                            <constraint firstItem="check-icon" firstAttribute="centerX" secondItem="check" secondAttribute="centerX" id="c980"/>
-                            <constraint firstItem="check-icon" firstAttribute="centerY" secondItem="check" secondAttribute="centerY" id="c981"/>
+                            <constraint firstAttribute="width" constant="24" id="c1337"/>
+                            <constraint firstAttribute="height" constant="24" id="c1338"/>
+                            <constraint firstItem="check-icon" firstAttribute="centerX" secondItem="check" secondAttribute="centerX" id="c1339"/>
+                            <constraint firstItem="check-icon" firstAttribute="centerY" secondItem="check" secondAttribute="centerY" id="c1340"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -71,10 +71,10 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.550" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="22" id="c984"/>
-                            <constraint firstItem="cur-label" firstAttribute="leading" secondItem="current" secondAttribute="leading" constant="8" id="c985"/>
-                            <constraint firstItem="current" firstAttribute="trailing" secondItem="cur-label" secondAttribute="trailing" constant="8" id="c986"/>
-                            <constraint firstItem="cur-label" firstAttribute="centerY" secondItem="current" secondAttribute="centerY" id="c987"/>
+                            <constraint firstAttribute="height" constant="22" id="c1343"/>
+                            <constraint firstItem="cur-label" firstAttribute="leading" secondItem="current" secondAttribute="leading" constant="8" id="c1344"/>
+                            <constraint firstItem="current" firstAttribute="trailing" secondItem="cur-label" secondAttribute="trailing" constant="8" id="c1345"/>
+                            <constraint firstItem="cur-label" firstAttribute="centerY" secondItem="current" secondAttribute="centerY" id="c1346"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES"/>
@@ -86,20 +86,20 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="img" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c968"/>
-                    <constraint firstItem="img" firstAttribute="top" secondItem="cell-content" secondAttribute="top" id="c969"/>
-                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="img" secondAttribute="trailing" id="c970"/>
-                    <constraint firstItem="ring" firstAttribute="leading" secondItem="img" secondAttribute="leading" id="c972"/>
-                    <constraint firstItem="ring" firstAttribute="top" secondItem="img" secondAttribute="top" id="c973"/>
-                    <constraint firstItem="img" firstAttribute="trailing" secondItem="ring" secondAttribute="trailing" id="c974"/>
-                    <constraint firstItem="img" firstAttribute="bottom" secondItem="ring" secondAttribute="bottom" id="c975"/>
-                    <constraint firstItem="check" firstAttribute="top" secondItem="img" secondAttribute="top" constant="3" id="c976"/>
-                    <constraint firstItem="img" firstAttribute="trailing" secondItem="check" secondAttribute="trailing" constant="3" id="c977"/>
-                    <constraint firstItem="current" firstAttribute="leading" secondItem="img" secondAttribute="leading" constant="6" id="c982"/>
-                    <constraint firstItem="img" firstAttribute="bottom" secondItem="current" secondAttribute="bottom" constant="6" id="c983"/>
-                    <constraint firstItem="title" firstAttribute="top" secondItem="img" secondAttribute="bottom" constant="6" id="c988"/>
-                    <constraint firstItem="title" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c989"/>
-                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="title" secondAttribute="trailing" id="c990"/>
+                    <constraint firstItem="img" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c1327"/>
+                    <constraint firstItem="img" firstAttribute="top" secondItem="cell-content" secondAttribute="top" id="c1328"/>
+                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="img" secondAttribute="trailing" id="c1329"/>
+                    <constraint firstItem="ring" firstAttribute="leading" secondItem="img" secondAttribute="leading" id="c1331"/>
+                    <constraint firstItem="ring" firstAttribute="top" secondItem="img" secondAttribute="top" id="c1332"/>
+                    <constraint firstItem="img" firstAttribute="trailing" secondItem="ring" secondAttribute="trailing" id="c1333"/>
+                    <constraint firstItem="img" firstAttribute="bottom" secondItem="ring" secondAttribute="bottom" id="c1334"/>
+                    <constraint firstItem="check" firstAttribute="top" secondItem="img" secondAttribute="top" constant="3" id="c1335"/>
+                    <constraint firstItem="img" firstAttribute="trailing" secondItem="check" secondAttribute="trailing" constant="3" id="c1336"/>
+                    <constraint firstItem="current" firstAttribute="leading" secondItem="img" secondAttribute="leading" constant="6" id="c1341"/>
+                    <constraint firstItem="img" firstAttribute="bottom" secondItem="current" secondAttribute="bottom" constant="6" id="c1342"/>
+                    <constraint firstItem="title" firstAttribute="top" secondItem="img" secondAttribute="bottom" constant="6" id="c1347"/>
+                    <constraint firstItem="title" firstAttribute="leading" secondItem="cell-content" secondAttribute="leading" id="c1348"/>
+                    <constraint firstItem="cell-content" firstAttribute="trailing" secondItem="title" secondAttribute="trailing" id="c1349"/>
                 </constraints>
             </view>
             <connections>

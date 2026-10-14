@@ -13,6 +13,14 @@ struct DesignProject: Codable, Equatable {
     var notes: [String: String]? = nil
 }
 
+extension DesignProject {
+    /// "3 versions · Today".
+    static func versionsLine(count: Int, date: Date) -> String {
+        let versions = count == 1 ? "1 version".localized : String(format: "%d versions".localized, count)
+        return "\(versions) · \(date.projectRelativeString)"
+    }
+}
+
 extension Notification.Name {
     static let projectsDidChange = Notification.Name("projectsDidChange")
 }

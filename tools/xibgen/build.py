@@ -68,6 +68,7 @@ def main(only):
         spec.loader.exec_module(mod)
     failed = False
     for path, fn in REGISTRY:
+        xibgen.Doc.current = None
         doc = fn()
         full = os.path.join(REPO, path)
         doc.write(full)

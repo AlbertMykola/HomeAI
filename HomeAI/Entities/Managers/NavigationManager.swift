@@ -115,6 +115,15 @@ final class NavigationManager {
         }
         window.makeKeyAndVisible()
         LocalNotificationService.shared.sync(requestPermissionIfNeeded: false)
+        #if DEBUG
+        // Simulator QA: -openLatestResult jumps straight to the newest project's result screen.
+        if ProcessInfo.processInfo.arguments.contains("-openLatestResult"),
+           let doc = ProjectStore.shared.allProjects().first?.versions.last {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in
+                self?.showResult(docID: doc.id, image: nil, reveal: false)
+            }
+        }
+        #endif
         if showsLaunchPaywall {
             scheduleLaunchPaywallIfNeeded()
         }

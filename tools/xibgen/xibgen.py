@@ -321,7 +321,13 @@ class Image(El):
             a["image"] = self.system
             a["catalog"] = "system"
             Doc.current.symbols.add(self.system)
-        if not self.hug:
+        if self.mode == "scaleAspectFill" and not self.hug and not self.resist:
+            # Photos must never push layout around with their intrinsic (pixel) size.
+            a["horizontalHuggingPriority"] = "1"
+            a["verticalHuggingPriority"] = "1"
+            a["horizontalCompressionResistancePriority"] = "1"
+            a["verticalCompressionResistancePriority"] = "1"
+        elif not self.hug:
             a.setdefault("horizontalHuggingPriority", "251")
             a.setdefault("verticalHuggingPriority", "251")
         return a
