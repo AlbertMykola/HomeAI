@@ -157,3 +157,34 @@ function makeImage(role, mimeType) {
 		data: btoa(`${role}-image`),
 	}
 }
+
+test("routes through AI Gateway with logging off when AI_GATEWAY_ID is set", async () => {
+	const originalFetch = globalThis.fetch
+	let capturedURL
+	let capturedHeaders
+	globalThis.fetch = async (url, init) => {
+		capturedURL = String(url)
+		capturedHeaders = init.headers
+		return new Response(JSON.stringify({ data: [{ b64_json: "img" }] }), {
+			status: 200, headers: { "content-type": "application/json" },
+		})
+	}
+	try {
+		const response = await worker.fetch(makeRequest(), {
+			OPENAI_API_KEY: "secret",
+			ATTEST_MODE: "off",
+			AI_GATEWAY_ID: "rehomely",
+			AI_GATEWAY_ACCOUNT_ID: "8da2a8ef7d6734a145d217f8663da27d",
+		})
+		assert.equal(response.status, 200)
+		assert.equal(
+			capturedURL,
+			"https://gateway.ai.cloudflare.com/v1/8da2a8ef7d6734a145d217f8663da27d/rehomely/openai/images/edits",
+		)
+		assert.equal(capturedHeaders.authorization, "Bearer secret")
+		assert.equal(capturedHeaders["cf-aig-collect-log"], "false")
+		assert.equal(capturedHeaders["cf-aig-collect-log-payload"], "false")
+	} finally {
+		globalThis.fetch = originalFetch
+	}
+})

@@ -11,7 +11,7 @@ import {
 
 export { DeviceGuard } from "./guard.js"
 
-const OPENAI_UPSTREAM = "https://api.openai.com/v1/images/edits"
+const OPENAI_DIRECT_BASE = "https://api.openai.com/v1"
 const DEFAULT_FLARE_MODEL = "gpt-image-2.5-flare"
 const DEFAULT_SUNBURST_MODEL = "gpt-image-2.5-sunburst"
 const MAX_BODY_BYTES = 15 * 1024 * 1024
@@ -225,6 +225,23 @@ function appID(env) {
 
 // MARK: Generation
 
+/**
+ * `AI_GATEWAY_ID` set → via Cloudflare AI Gateway (`gateway.ai.cloudflare.com/v1/<account>/<gateway>/openai`),
+ * empty → straight to api.openai.com. Gateway logs are turned off per request (no photos / prompts stored).
+ */
+function openAIUpstream(env) {
+	const gateway = String(env.AI_GATEWAY_ID ?? "").trim()
+	const account = String(env.AI_GATEWAY_ACCOUNT_ID ?? "").trim()
+	if (gateway && account && /^[A-Za-z0-9_-]{1,64}$/.test(gateway) && /^[0-9a-f]{32}$/.test(account)) {
+		return {
+			url: `https://gateway.ai.cloudflare.com/v1/${account}/${gateway}/openai/images/edits`,
+			headers: { "cf-aig-collect-log": "false", "cf-aig-collect-log-payload": "false", "cf-aig-skip-cache": "true" },
+			via: "ai_gateway",
+		}
+	}
+	return { url: `${OPENAI_DIRECT_BASE}/images/edits`, headers: {}, via: "direct" }
+}
+
 async function generateImage(request, env) {
 	const requestId = crypto.randomUUID()
 	if (!env.OPENAI_API_KEY) {
@@ -303,12 +320,14 @@ async function generateImage(request, env) {
 		}
 	}
 
+	const route = openAIUpstream(env)
 	let upstream
 	try {
-		upstream = await fetch(OPENAI_UPSTREAM, {
+		upstream = await fetch(route.url, {
 			method: "POST",
 			headers: {
 				authorization: `Bearer ${env.OPENAI_API_KEY}`,
+				...route.headers,
 			},
 			body: form,
 		})
@@ -350,7 +369,7 @@ async function generateImage(request, env) {
 			project: upstream.headers.get("openai-project"),
 		}
 		console.error(JSON.stringify({
-			event: "openai_error", model, operation: input.operation,
+			event: "openai_error", via: route.via, model, operation: input.operation,
 			...upstreamError, openaiRequestId: upstreamError.requestId, requestId,
 		}))
 		return apiError(

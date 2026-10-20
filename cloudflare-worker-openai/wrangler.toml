@@ -17,6 +17,9 @@ ATTEST_MODE = "enforce"
 ATTEST_APP_ID = "5998UF2M9Y.com.albert.apps.design.ai"
 # Development-signed builds (Xcode installs) attest in Apple's development environment.
 ATTEST_ALLOW_DEVELOPMENT = "true"
+# Cloudflare AI Gateway in front of OpenAI. Empty AI_GATEWAY_ID = straight to api.openai.com.
+AI_GATEWAY_ID = ""
+AI_GATEWAY_ACCOUNT_ID = "8da2a8ef7d6734a145d217f8663da27d"
 LIMIT_DEVICE_PER_MINUTE = "6"
 LIMIT_DEVICE_PER_DAY = "100"
 LIMIT_IP_PER_MINUTE = "20"
