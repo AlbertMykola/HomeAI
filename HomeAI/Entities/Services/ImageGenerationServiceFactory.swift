@@ -5,12 +5,29 @@ enum ImageGenerationServiceFactory {
         environment: [String: String] = ProcessInfo.processInfo.environment
     ) -> any ImageGenerationService {
         #if DEBUG
+        let directDebugKey = OpenAIDirectDebugKey.value
+        #else
+        let directDebugKey: String? = nil
+        #endif
+        return make(environment: environment,
+                    provider: SupabaseAppConfigService.shared.imageGenerationProvider,
+                    directDebugKey: directDebugKey)
+    }
+
+    /// `provider` = Supabase `App_Config.image_generation_provider` (OpenAI unless set to "gemini").
+    /// `directDebugKey` is honoured only in Debug builds.
+    static func make(
+        environment: [String: String],
+        provider: ImageGenerationProvider,
+        directDebugKey: String?
+    ) -> any ImageGenerationService {
+        #if DEBUG
         if AppQA.enabled && (environment["REHOMELY_FULL_QA"] == "1" || ProcessInfo.processInfo.arguments.contains("--app-qa")) {
             return AppQA.generationService
         }
-        // Debug test without Cloudflare: key typed on the device (Profile → long-press the version).
-        if let key = OpenAIDirectDebugKey.value {
-            return OpenAIDirectDebugService(apiKey: key)
+        // Debug test without Cloudflare: key typed on the device (Profile → long-press the title).
+        if let directDebugKey, !directDebugKey.isEmpty {
+            return OpenAIDirectDebugService(apiKey: directDebugKey)
         }
         if environment["HOMEAI_IMAGE_PROVIDER"]?.lowercased() == "openai",
            let endpoint = generationEndpoint(
@@ -22,8 +39,7 @@ enum ImageGenerationServiceFactory {
         }
         #endif
 
-        let config = SupabaseAppConfigService.shared.current
-        if config.imageGenerationProvider == .openAI,
+        if provider == .openAI,
            let endpoint = generationEndpoint(
                from: Constants.Generation.OpenAI.productionWorkerURL,
                requireHTTPS: true

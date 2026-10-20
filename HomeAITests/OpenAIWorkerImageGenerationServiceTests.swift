@@ -81,13 +81,45 @@ final class OpenAIWorkerImageGenerationServiceTests: XCTestCase {
         XCTAssertLessThan(alpha[1], 5)
     }
 
-    func testDebugFactoryRequiresExplicitOpenAIOptIn() {
-        XCTAssertTrue(ImageGenerationServiceFactory.make(environment: [:]) is GeminiRESTService)
+    func testFactoryUsesOpenAIByDefaultAndGeminiOnlyWhenConfigSaysSo() {
+        XCTAssertEqual(ImageGenerationProvider.defaultProvider, .openAI)
+        XCTAssertEqual(SupabaseAppConfig.fallback.imageGenerationProvider, .openAI)
         XCTAssertTrue(
-            ImageGenerationServiceFactory.make(
-                environment: ["HOMEAI_IMAGE_PROVIDER": "openai"]
-            ) is OpenAIWorkerImageGenerationService
+            ImageGenerationServiceFactory.make(environment: [:], provider: .openAI, directDebugKey: nil)
+                is OpenAIWorkerImageGenerationService
         )
+        XCTAssertTrue(
+            ImageGenerationServiceFactory.make(environment: [:], provider: .gemini, directDebugKey: nil)
+                is GeminiRESTService
+        )
+    }
+
+    func testRemoteConfigWithoutProviderFallsBackToOpenAIAndGeminiValueIsHonoured() throws {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+        let missing = try decoder.decode(SupabaseAppConfig.self, from: Data(#"{"id":1}"#.utf8))
+        XCTAssertEqual(missing.imageGenerationProvider, .openAI)
+        let gemini = try decoder.decode(
+            SupabaseAppConfig.self, from: Data(#"{"id":1,"image_generation_provider":"gemini"}"#.utf8))
+        XCTAssertEqual(gemini.imageGenerationProvider, .gemini)
+    }
+
+    func testDirectOpenAIModeIsDebugOnlyAndNeedsASavedKey() {
+        #if DEBUG
+        XCTAssertTrue(
+            ImageGenerationServiceFactory.make(environment: [:], provider: .gemini, directDebugKey: "test-key")
+                is OpenAIDirectDebugService
+        )
+        XCTAssertTrue(
+            ImageGenerationServiceFactory.make(environment: [:], provider: .gemini, directDebugKey: "")
+                is GeminiRESTService
+        )
+        #else
+        XCTAssertTrue(
+            ImageGenerationServiceFactory.make(environment: [:], provider: .gemini, directDebugKey: "test-key")
+                is GeminiRESTService
+        )
+        #endif
     }
 
     private func makeService() -> OpenAIWorkerImageGenerationService {
