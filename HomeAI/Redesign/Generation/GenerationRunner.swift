@@ -129,8 +129,14 @@ final class GenerationRunner {
 
         task = Task { [weak self] in
             guard let self else { return }
-            func fail(_ category: String, status: Int?, failure: Failure) async {
+            func fail(_ category: String, status: Int?, failure: Failure, error: Error) async {
                 await MainActor.run {
+                    // Edits (Result: paint / replace / remove / text / tools) add a version to an existing project.
+                    ErrorReporter.report(error, operation: self.baseDocID == nil ? "generation" : "edit",
+                                         details: .init(provider: provider, model: model, httpStatus: status,
+                                                        workerError: category, durationMS: self.latency(since: started),
+                                                        retryCount: self.retryNumber,
+                                                        extra: ["design_option": option.rawValue]))
                     self.lastFailureReason = category
                     self.amplitude.logEvent(.generationFailed(attemptID: attemptID, option: option.rawValue,
                                                               promptVersion: promptVersion, provider: provider,
@@ -173,7 +179,7 @@ final class GenerationRunner {
                 }
             } catch let error as PromptError {
                 await fail("prompt_validation", status: nil,
-                           failure: .failed(code: "PV", message: error.localizedDescription))
+                           failure: .failed(code: "PV", message: error.localizedDescription), error: error)
             } catch let error as any ImageGenerationFailure {
                 let failure: Failure
                 switch error.category {
@@ -182,9 +188,10 @@ final class GenerationRunner {
                 default: failure = .failed(code: error.statusCode.map(String.init) ?? error.category,
                                            message: error.localizedDescription)
                 }
-                await fail(error.category, status: error.statusCode, failure: failure)
+                await fail(error.category, status: error.statusCode, failure: failure, error: error)
             } catch {
-                await fail("unknown", status: nil, failure: .failed(code: "UNK", message: error.localizedDescription))
+                await fail("unknown", status: nil, failure: .failed(code: "UNK", message: error.localizedDescription),
+                           error: error)
             }
         }
     }

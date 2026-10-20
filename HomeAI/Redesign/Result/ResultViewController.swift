@@ -332,6 +332,7 @@ final class ResultViewController: UIViewController {
                     if let url = URL(string: UIApplication.openSettingsURLString) { UIApplication.shared.open(url) }
                 }
             case .failed:
+                ErrorReporter.report(message: "save to Photos failed", operation: "image_save")
                 DS.Haptic.error()
                 DSToastView.show("Couldn't save the image".localized, style: .warning, symbol: "exclamationmark.triangle")
             }
@@ -405,6 +406,7 @@ final class ResultViewController: UIViewController {
             do {
                 try await ProjectStore.shared.deleteVersion(docID: doc.id)
             } catch {
+                ErrorReporter.report(error, operation: "project_delete_version")
                 DSToastView.show("Couldn't delete the version".localized, style: .warning, symbol: "exclamationmark.triangle")
                 return
             }
@@ -737,6 +739,7 @@ final class ResultViewController: UIViewController {
         do {
             try speech.start()
         } catch {
+            ErrorReporter.report(error, operation: "speech_start", details: .init(extra: ["screen": "result"]))
             hideVoice()
             DSToastView.show("Couldn't start listening".localized, style: .warning, symbol: "mic.slash")
         }

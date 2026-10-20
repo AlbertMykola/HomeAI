@@ -192,14 +192,22 @@ final class ProjectStore {
         guard let data = try? Data(contentsOf: fileURL) else { return }
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
-        projects = (try? decoder.decode([DesignProject].self, from: data)) ?? []
+        do {
+            projects = try decoder.decode([DesignProject].self, from: data)
+        } catch {
+            // Corrupted / incompatible projects file: the user would see an empty Projects tab.
+            ErrorReporter.report(error, operation: "project_load")
+            projects = []
+        }
     }
 
     private func save() {
         let encoder = JSONEncoder()
         encoder.dateEncodingStrategy = .iso8601
-        if let data = try? encoder.encode(projects) {
-            try? data.write(to: fileURL, options: .atomic)
+        do {
+            try encoder.encode(projects).write(to: fileURL, options: .atomic)
+        } catch {
+            ErrorReporter.report(error, operation: "project_save")
         }
         NotificationCenter.default.post(name: .projectsDidChange, object: nil)
     }

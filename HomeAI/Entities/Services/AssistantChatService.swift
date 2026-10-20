@@ -173,3 +173,19 @@ private extension UIImage {
         return UIGraphicsImageRenderer(size: target, format: format).image { _ in draw(in: CGRect(origin: .zero, size: target)) }
     }
 }
+
+extension AssistantChatServiceError: ErrorReporter.Reportable {
+    var reportDetails: ErrorReporter.Details {
+        switch self {
+        case .httpError(let status, let body):
+            // Body is the provider's error JSON (no user text): status + message for diagnosis.
+            return .init(httpStatus: status, workerError: "http", upstreamStatus: status, upstreamMessage: body)
+        case .requestFailed(let error):
+            let ns = error as NSError
+            return .init(workerError: "network", extra: ["url_error": "\(ns.domain):\(ns.code)"])
+        case .invalidURL: return .init(workerError: "invalid_url")
+        case .emptyResponse: return .init(workerError: "empty_response")
+        case .decodingFailed: return .init(workerError: "decoding")
+        }
+    }
+}

@@ -574,3 +574,26 @@ private struct GeminiRESTError: Decodable {
     let message: String
     let status: String
 }
+
+extension GeminiServiceError: ErrorReporter.Reportable {
+    var reportDetails: ErrorReporter.Details {
+        var d = ErrorReporter.Details(provider: ImageGenerationProvider.gemini.rawValue, workerError: category)
+        switch self {
+        case .httpError(let status, let message):
+            d.httpStatus = status
+            d.upstreamStatus = status
+            d.upstreamMessage = message  // Google's "Error <code>: <message> (Status: <STATUS>)", passed by the proxy.
+            if let range = message.range(of: #"Status: ([A-Z_]+)"#, options: .regularExpression) {
+                d.upstreamCode = String(message[range].dropFirst("Status: ".count))
+            }
+        case .contentBlocked(let reason):
+            d.upstreamCode = reason
+        case .requestFailed(let error):
+            let ns = error as NSError
+            d.extra["url_error"] = "\(ns.domain):\(ns.code)"
+        default:
+            break
+        }
+        return d
+    }
+}

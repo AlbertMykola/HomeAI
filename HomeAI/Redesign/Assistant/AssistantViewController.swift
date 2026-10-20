@@ -295,6 +295,7 @@ final class AssistantViewController: UIViewController {
         do {
             try speech.start()
         } catch {
+            ErrorReporter.report(error, operation: "speech_start", details: .init(extra: ["screen": "assistant"]))
             DSToastView.show("Couldn't start listening".localized, style: .warning, symbol: "mic.slash")
             return
         }
@@ -370,7 +371,12 @@ final class AssistantViewController: UIViewController {
                 let parsed = AssistantStore.parse(reply)
                 await MainActor.run { self.finish(typingID: typing.id, text: parsed.text, ideas: parsed.ideas) }
             } catch {
-                await MainActor.run { self.fail(userID: user.id, typingID: typing.id) }
+                await MainActor.run {
+                    ErrorReporter.report(error, operation: "assistant_chat",
+                                         details: .init(provider: "gemini", model: "gemini-2.5-flash",
+                                                        extra: ["has_photo": image == nil ? "false" : "true"]))
+                    self.fail(userID: user.id, typingID: typing.id)
+                }
             }
         }
     }

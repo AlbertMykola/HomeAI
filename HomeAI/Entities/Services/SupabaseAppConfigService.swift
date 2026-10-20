@@ -53,12 +53,15 @@ final class SupabaseAppConfigService {
             let (data, response) = try await session.data(for: request)
             guard let http = response as? HTTPURLResponse else {
                 log("refresh failed: invalid HTTP response, using \(Self.describe(current))")
+                ErrorReporter.report(message: "invalid HTTP response", operation: "config_supabase")
                 return current
             }
 
             let rawBody = String(data: data, encoding: .utf8) ?? "<non-utf8 body>"
             guard (200 ..< 300).contains(http.statusCode) else {
                 log("refresh failed: HTTP \(http.statusCode), body: \(rawBody), using \(Self.describe(current))")
+                ErrorReporter.report(message: "HTTP \(http.statusCode)", operation: "config_supabase",
+                                     details: .init(httpStatus: http.statusCode, upstreamMessage: rawBody))
                 return current
             }
 
@@ -68,6 +71,7 @@ final class SupabaseAppConfigService {
             let rows = try decoder.decode([SupabaseAppConfig].self, from: data)
             guard let row = rows.first else {
                 log("refresh failed: empty rows (no data or RLS blocks SELECT), using \(Self.describe(current))")
+                ErrorReporter.report(message: "empty rows (no data or RLS blocks SELECT)", operation: "config_supabase")
                 return current
             }
 
@@ -76,6 +80,10 @@ final class SupabaseAppConfigService {
             return row
         } catch {
             log("refresh failed: \(error.localizedDescription), using \(Self.describe(current))")
+            // Offline at launch is normal; parse errors and other failures are worth knowing about.
+            if (error as? URLError)?.code != .notConnectedToInternet {
+                ErrorReporter.report(error, operation: "config_supabase")
+            }
             return current
         }
     }

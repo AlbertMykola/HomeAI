@@ -5,7 +5,8 @@ enum OpenAIWorkerImageError: ImageGenerationFailure {
     case invalidURL
     case requestEncoding
     case requestFailed(Error)
-    case server(statusCode: Int, code: String, message: String, retryable: Bool)
+    case server(statusCode: Int, code: String, message: String, retryable: Bool,
+                requestID: String? = nil, upstream: OpenAIWorkerUpstreamError? = nil)
     case invalidResponse
     case invalidImage
     case invalidMask
@@ -16,7 +17,7 @@ enum OpenAIWorkerImageError: ImageGenerationFailure {
             return "configuration"
         case .requestFailed(let error):
             return (error as? URLError)?.code == .timedOut ? "timeout" : "network"
-        case .server(_, let code, _, _):
+        case .server(_, let code, _, _, _, _):
             return code
         case .invalidResponse, .invalidImage:
             return "decoding"
@@ -26,7 +27,7 @@ enum OpenAIWorkerImageError: ImageGenerationFailure {
     }
 
     var statusCode: Int? {
-        if case .server(let statusCode, _, _, _) = self { return statusCode }
+        if case .server(let statusCode, _, _, _, _, _) = self { return statusCode }
         return nil
     }
 
@@ -39,7 +40,7 @@ enum OpenAIWorkerImageError: ImageGenerationFailure {
                 return "Generation is taking longer than expected. Please try again.".localized
             }
             return "Please check your internet connection and try again.".localized
-        case .server(_, let code, let message, _):
+        case .server(_, let code, let message, _, _, _):
             if code == "content_policy" {
                 return "The image request could not be processed. Please adjust it and try again.".localized
             }
@@ -116,7 +117,9 @@ final class OpenAIWorkerImageGenerationService: ImageGenerationService {
                 statusCode: http.statusCode,
                 code: payload?.error.code ?? "http",
                 message: payload?.error.message ?? "HTTP \(http.statusCode)",
-                retryable: payload?.error.retryable ?? false
+                retryable: payload?.error.retryable ?? false,
+                requestID: payload?.requestId,
+                upstream: payload?.error.upstream
             )
         }
 
@@ -278,7 +281,37 @@ private struct OpenAIWorkerErrorResponse: Decodable {
         let code: String
         let message: String
         let retryable: Bool
+        /// Present once the worker passes the provider's own error through (status / code / type / message).
+        let upstream: OpenAIWorkerUpstreamError?
     }
 
+    let requestId: String?
     let error: Payload
+}
+
+/// What OpenAI itself answered (no secrets: the worker never echoes the key).
+struct OpenAIWorkerUpstreamError: Decodable {
+    let status: Int?
+    let code: String?
+    let type: String?
+    let message: String?
+}
+
+extension OpenAIWorkerImageError: ErrorReporter.Reportable {
+    var reportDetails: ErrorReporter.Details {
+        switch self {
+        case .server(let status, let code, let message, _, let requestID, let upstream):
+            return .init(provider: ImageGenerationProvider.openAI.rawValue, httpStatus: status, workerError: code,
+                         upstreamStatus: upstream?.status,
+                         upstreamCode: upstream?.code ?? upstream?.type,
+                         upstreamMessage: upstream?.message ?? message,
+                         requestID: requestID)
+        case .requestFailed(let error):
+            let ns = error as NSError
+            return .init(provider: ImageGenerationProvider.openAI.rawValue,
+                         workerError: category, extra: ["url_error": "\(ns.domain):\(ns.code)"])
+        default:
+            return .init(provider: ImageGenerationProvider.openAI.rawValue, workerError: category)
+        }
+    }
 }

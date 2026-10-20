@@ -58,6 +58,7 @@ public class AdaptyService: NSObject {
             #if DEBUG
             print("[Adapty] activate failed: \(error.localizedDescription)")
             #endif
+            ErrorReporter.report(error, operation: "adapty_activate", details: .init(provider: "adapty"))
         }
         fetchASAAttribution()
         markInitialUserLoadCompleted()
@@ -123,6 +124,8 @@ public class AdaptyService: NSObject {
                 let fetchedProducts = try await Adapty.getPaywallProducts(flow: flow)
                 let products = WeeklyPaywallProducts.onlyWeekly(from: fetchedProducts)
                 guard let presentation = PaywallProductsPresentation.make(from: products) else {
+                    ErrorReporter.report(AdaptyServiceError.insufficientProducts, operation: "paywall_load",
+                                         details: .init(provider: "adapty", extra: ["placement": placementID]))
                     completion(.failure(AdaptyServiceError.insufficientProducts))
                     return
                 }
@@ -130,6 +133,8 @@ public class AdaptyService: NSObject {
                 self.products = products
                 completion(.success(PaywallProductsLoadResult(products: products, presentation: presentation)))
             } catch {
+                ErrorReporter.report(error, operation: "paywall_load",
+                                     details: .init(provider: "adapty", extra: ["placement": placementID]))
                 completion(.failure(error))
             }
         }
@@ -201,6 +206,8 @@ public class AdaptyService: NSObject {
                             transactionVerified: transactionVerified
                         )))
                     } else {
+                        ErrorReporter.report(AdaptyServiceError.purchaseFailed, operation: "purchase",
+                                             details: .init(provider: "adapty"))
                         completion(.failure(AdaptyServiceError.purchaseFailed))
                     }
                 }
@@ -208,6 +215,7 @@ public class AdaptyService: NSObject {
                 if Self.isPurchaseCancelled(error) {
                     completion(.failure(AdaptyServiceError.purchaseCancelled))
                 } else {
+                    ErrorReporter.report(error, operation: "purchase", details: .init(provider: "adapty"))
                     completion(.failure(error))
                 }
             }
@@ -234,7 +242,13 @@ public class AdaptyService: NSObject {
     }
 
     public func restore() async throws -> String {
-        let profile = try await Adapty.restorePurchases()
+        let profile: AdaptyProfile
+        do {
+            profile = try await Adapty.restorePurchases()
+        } catch {
+            ErrorReporter.report(error, operation: "restore", details: .init(provider: "adapty"))
+            throw error
+        }
         await MainActor.run { apply(profile) }
         return "Purchases restored successfully"
     }
@@ -273,6 +287,8 @@ public class AdaptyService: NSObject {
             #if DEBUG
             print("[Adapty] Amplitude device ID binding failed: \(error.localizedDescription)")
             #endif
+            ErrorReporter.report(error, operation: "adapty_identifier", details: .init(provider: "adapty",
+                                 extra: ["integration": "amplitude"]))
         }
     }
 
@@ -286,6 +302,8 @@ public class AdaptyService: NSObject {
             #if DEBUG
             print("[Adapty] AppsFlyer ID binding failed: \(error.localizedDescription)")
             #endif
+            ErrorReporter.report(error, operation: "adapty_identifier", details: .init(provider: "adapty",
+                                 extra: ["integration": "appsflyer"]))
         }
     }
 

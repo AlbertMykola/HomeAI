@@ -26,6 +26,11 @@ final class SharedImageLoader {
             guard let self = self else { return }
             if let img = image {
                 self.imageCache.setObject(img, forKey: path as NSString)
+            } else if NetworkMonitor.shared.isOnline {
+                // Catalog / inspiration image (not user content), so the file name is safe to send.
+                ErrorReporter.report(message: "image download failed", operation: "image_download",
+                                     details: .init(provider: "firebase_storage",
+                                                    extra: ["file": (path as NSString).lastPathComponent]))
             }
             
             if let completions = self.ongoingRequests[path] {

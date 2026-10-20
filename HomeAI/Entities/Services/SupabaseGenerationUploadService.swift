@@ -60,6 +60,7 @@ final class SupabaseGenerationUploadService {
             }
         } catch {
             log("upload failed for \(userFolder)/\(fileId): \(error)")
+            ErrorReporter.report(error, operation: "image_upload", details: .init(provider: "supabase"))
         }
     }
 
