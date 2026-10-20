@@ -44,6 +44,15 @@ enum OpenAIWorkerImageError: ImageGenerationFailure {
             if code == "content_policy" {
                 return "The image request could not be processed. Please adjust it and try again.".localized
             }
+            if code == "rate_limited_minute" {
+                return "Too many requests. Please wait a minute and try again.".localized
+            }
+            if code == "rate_limited_daily" {
+                return "You've reached today's generation limit. Please try again tomorrow.".localized
+            }
+            if code.hasPrefix("attest_") {
+                return "We couldn't verify this device. Please make sure the app is up to date and try again.".localized
+            }
             #if DEBUG
             return message
             #else
@@ -61,16 +70,19 @@ final class OpenAIWorkerImageGenerationService: ImageGenerationService {
     private let endpoint: URL
     private let session: URLSession
     private let mobileGateKey: String?
+    private let attestClient: AppAttestClient?
 
     var provider: ImageGenerationProvider { .openAI }
 
     init(
         endpoint: URL,
         session: URLSession? = nil,
-        mobileGateKey: String? = nil
+        mobileGateKey: String? = nil,
+        attestClient: AppAttestClient? = .shared
     ) {
         self.endpoint = endpoint
         self.mobileGateKey = mobileGateKey
+        self.attestClient = attestClient
         if let session {
             self.session = session
         } else {
@@ -95,22 +107,14 @@ final class OpenAIWorkerImageGenerationService: ImageGenerationService {
 
     func generateImage(from input: ImageGenerationInput) async throws -> ImageGenerationResult {
         let request = try makeURLRequest(from: input)
-        let data: Data
-        let response: URLResponse
-
-        do {
-            (data, response) = try await session.data(for: request)
-        } catch is CancellationError {
-            throw CancellationError()
-        } catch let error as URLError where error.code == .cancelled || Task.isCancelled {
-            throw CancellationError()
-        } catch {
-            throw OpenAIWorkerImageError.requestFailed(error)
+        var (data, http) = try await send(request)
+        if http.statusCode == 401, let attestClient,
+           let code = Self.errorCode(in: data), Self.reattestCodes.contains(code) {
+            // Worker lost / distrusts our key, or two assertions crossed: attest again (if needed) and retry once.
+            if code != "attest_replay" { await attestClient.resetKey() }
+            (data, http) = try await send(request)
         }
 
-        guard let http = response as? HTTPURLResponse else {
-            throw OpenAIWorkerImageError.invalidResponse
-        }
         guard (200...299).contains(http.statusCode) else {
             let payload = try? JSONDecoder().decode(OpenAIWorkerErrorResponse.self, from: data)
             throw OpenAIWorkerImageError.server(
@@ -148,6 +152,38 @@ final class OpenAIWorkerImageGenerationService: ImageGenerationService {
             provider: .openAI,
             model: payload.model
         )
+    }
+
+    private static let reattestCodes: Set<String> = ["attest_unknown_key", "attest_invalid", "attest_revoked",
+                                                     "attest_replay"]
+
+    /// Adds fresh App Attest headers (signed over this exact body) and sends.
+    private func send(_ request: URLRequest) async throws -> (Data, HTTPURLResponse) {
+        var request = request
+        if let attestClient, let body = request.httpBody {
+            for (field, value) in try await attestClient.headers(for: body) {
+                request.setValue(value, forHTTPHeaderField: field)
+            }
+        }
+        let data: Data
+        let response: URLResponse
+        do {
+            (data, response) = try await session.data(for: request)
+        } catch is CancellationError {
+            throw CancellationError()
+        } catch let error as URLError where error.code == .cancelled || Task.isCancelled {
+            throw CancellationError()
+        } catch {
+            throw OpenAIWorkerImageError.requestFailed(error)
+        }
+        guard let http = response as? HTTPURLResponse else {
+            throw OpenAIWorkerImageError.invalidResponse
+        }
+        return (data, http)
+    }
+
+    private static func errorCode(in data: Data) -> String? {
+        (try? JSONDecoder().decode(OpenAIWorkerErrorResponse.self, from: data))?.error.code
     }
 
     private func makeURLRequest(from input: ImageGenerationInput) throws -> URLRequest {

@@ -1191,3 +1191,8 @@
 "Your photo is sent to %@" = "Votre photo est envoyée à %@";
 "To create your design, Rehomely sends your photo and request text to %@, a third-party AI service. They are used only to generate the image. Details are in our Privacy Policy." = "Pour créer votre design, Rehomely envoie votre photo et le texte de votre demande à %@, un service d’IA tiers. Ils servent uniquement à générer l’image. Plus de détails dans notre Politique de confidentialité.";
 "I agree" = "J’accepte";
+
+/* OpenAI worker: rate limits and App Attest */
+"Too many requests. Please wait a minute and try again." = "Trop de demandes. Veuillez patienter une minute et réessayer.";
+"You've reached today's generation limit. Please try again tomorrow." = "Vous avez atteint la limite de générations du jour. Veuillez réessayer demain.";
+"We couldn't verify this device. Please make sure the app is up to date and try again." = "Impossible de vérifier cet appareil. Assurez-vous que l’app est à jour, puis réessayez.";

@@ -95,7 +95,8 @@ final class OpenAIWorkerImageGenerationServiceTests: XCTestCase {
         configuration.protocolClasses = [OpenAIWorkerURLProtocolStub.self]
         return OpenAIWorkerImageGenerationService(
             endpoint: URL(string: "https://worker.test/v1/images/generate")!,
-            session: URLSession(configuration: configuration)
+            session: URLSession(configuration: configuration),
+            attestClient: nil
         )
     }
 

@@ -5,7 +5,7 @@ import worker from "../worker.js"
 test("reports health without exposing secrets", async () => {
 	const response = await worker.fetch(
 		new Request("https://worker.test/health"),
-		{ OPENAI_API_KEY: "secret" },
+		{ OPENAI_API_KEY: "secret", ATTEST_MODE: "off" },
 	)
 	const body = await response.json()
 
@@ -17,7 +17,7 @@ test("reports health without exposing secrets", async () => {
 test("rejects unsupported API versions", async () => {
 	const response = await worker.fetch(
 		makeRequest({ version: 2 }),
-		{ OPENAI_API_KEY: "secret" },
+		{ OPENAI_API_KEY: "secret", ATTEST_MODE: "off" },
 	)
 	const body = await response.json()
 
@@ -29,7 +29,7 @@ test("rejects unsupported API versions", async () => {
 test("requires the configured mobile gate", async () => {
 	const response = await worker.fetch(
 		makeRequest(),
-		{ OPENAI_API_KEY: "secret", MOBILE_GATE_KEY: "expected" },
+		{ OPENAI_API_KEY: "secret", MOBILE_GATE_KEY: "expected", ATTEST_MODE: "off" },
 	)
 	const body = await response.json()
 
@@ -59,7 +59,7 @@ test("uses Flare for standard generation and normalizes response", async () => {
 	try {
 		const response = await worker.fetch(
 			makeRequest(),
-			{ OPENAI_API_KEY: "server-secret" },
+			{ OPENAI_API_KEY: "server-secret", ATTEST_MODE: "off" },
 		)
 		const body = await response.json()
 
@@ -97,7 +97,7 @@ test("uses Sunburst and sends an alpha mask as mask", async () => {
 					makeImage("mask", "image/png"),
 				],
 			}),
-			{ OPENAI_API_KEY: "secret" },
+			{ OPENAI_API_KEY: "secret", ATTEST_MODE: "off" },
 		)
 
 		assert.equal(response.status, 200)
@@ -119,7 +119,7 @@ test("returns stable error codes plus the upstream error, never the key", async 
 	try {
 		const response = await worker.fetch(
 			makeRequest(),
-			{ OPENAI_API_KEY: "secret" },
+			{ OPENAI_API_KEY: "secret", ATTEST_MODE: "off" },
 		)
 		const body = await response.json()
 

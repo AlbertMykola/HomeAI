@@ -2,16 +2,34 @@ name = "homeai-openai-images"
 main = "worker.js"
 compatibility_date = "2026-09-17"
 
-# Required:
-#   npx wrangler secret put OPENAI_API_KEY
+# Deployed as `fragrant-fog-a5e3` (npx wrangler deploy --name fragrant-fog-a5e3).
 #
-# Optional:
-#   npx wrangler secret put MOBILE_GATE_KEY
-#   npx wrangler secret put OPENAI_IMAGE_MODEL
-#   npx wrangler secret put OPENAI_IMAGE_QUALITY
+# Secrets (never in git):
+#   OPENAI_API_KEY            required
+#   MOBILE_GATE_KEY           shared header gate (X-HomeAI-Mobile-Key)
+#   ATTEST_CHALLENGE_SECRET   HMAC key for App Attest challenges
+#   DEV_BYPASS_TOKEN          optional: Debug simulator builds only (App Attest has no simulator support)
+#   OPENAI_IMAGE_MODEL / OPENAI_IMAGE_QUALITY  optional overrides
+
+[vars]
+# "enforce": every generation needs an App Attest assertion. "off": emergency switch (still rate-limited by IP).
+ATTEST_MODE = "enforce"
+ATTEST_APP_ID = "5998UF2M9Y.com.albert.apps.design.ai"
+# Development-signed builds (Xcode installs) attest in Apple's development environment.
+ATTEST_ALLOW_DEVELOPMENT = "true"
+LIMIT_DEVICE_PER_MINUTE = "6"
+LIMIT_DEVICE_PER_DAY = "100"
+LIMIT_IP_PER_MINUTE = "20"
+LIMIT_IP_PER_DAY = "400"
+LIMIT_ATTEST_IP_PER_MINUTE = "10"
+LIMIT_ATTEST_IP_PER_DAY = "50"
+
+[[durable_objects.bindings]]
+name = "DEVICE_GUARD"
+class_name = "DeviceGuard"
 
 # Durable Object experiment (2026-10-20, US relay for OpenAI) did not help and was removed.
-# Cloudflare keeps migration history, so both steps stay here.
+# Cloudflare keeps migration history, so all steps stay here.
 [[migrations]]
 tag = "v1"
 new_sqlite_classes = ["OpenAIRelay"]
@@ -19,3 +37,8 @@ new_sqlite_classes = ["OpenAIRelay"]
 [[migrations]]
 tag = "v2"
 deleted_classes = ["OpenAIRelay"]
+
+# App Attest keys + per-device / per-IP rate counters.
+[[migrations]]
+tag = "v3"
+new_sqlite_classes = ["DeviceGuard"]

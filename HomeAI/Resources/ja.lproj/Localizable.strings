@@ -1191,3 +1191,8 @@
 "Your photo is sent to %@" = "写真は%@に送信されます";
 "To create your design, Rehomely sends your photo and request text to %@, a third-party AI service. They are used only to generate the image. Details are in our Privacy Policy." = "デザインを作成するため、Rehomelyは写真とリクエストのテキストを外部のAIサービスである%@に送信します。画像の生成にのみ使用されます。詳しくはプライバシーポリシーをご覧ください。";
 "I agree" = "同意する";
+
+/* OpenAI worker: rate limits and App Attest */
+"Too many requests. Please wait a minute and try again." = "リクエストが多すぎます。1分ほど待ってからもう一度お試しください。";
+"You've reached today's generation limit. Please try again tomorrow." = "本日の生成上限に達しました。明日もう一度お試しください。";
+"We couldn't verify this device. Please make sure the app is up to date and try again." = "このデバイスを確認できませんでした。アプリが最新であることを確認して、もう一度お試しください。";
