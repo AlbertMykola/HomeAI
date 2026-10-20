@@ -31,6 +31,10 @@ LIMIT_ATTEST_IP_PER_DAY = "50"
 name = "DEVICE_GUARD"
 class_name = "DeviceGuard"
 
+[[durable_objects.bindings]]
+name = "OPENAI_EGRESS"
+class_name = "OpenAIEgress"
+
 # Durable Object experiment (2026-10-20, US relay for OpenAI) did not help and was removed.
 # Cloudflare keeps migration history, so all steps stay here.
 [[migrations]]
@@ -45,3 +49,8 @@ deleted_classes = ["OpenAIRelay"]
 [[migrations]]
 tag = "v3"
 new_sqlite_classes = ["DeviceGuard"]
+
+# Regional egress for OpenAI calls (locationHint).
+[[migrations]]
+tag = "v4"
+new_sqlite_classes = ["OpenAIEgress"]

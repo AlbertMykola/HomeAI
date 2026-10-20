@@ -10,6 +10,7 @@ import {
 } from "./attest.js"
 
 export { DeviceGuard } from "./guard.js"
+export { OpenAIEgress } from "./egress.js"
 
 const OPENAI_DIRECT_BASE = "https://api.openai.com/v1"
 const DEFAULT_FLARE_MODEL = "gpt-image-2.5-flare"
