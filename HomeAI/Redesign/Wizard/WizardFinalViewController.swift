@@ -1,6 +1,6 @@
 import UIKit
 
-/// A/04 · W4 Final touches. Layout: WizardFinalViewController.xib.
+/// A/04 · W4 Final touches. Layout: Wizard.storyboard.
 final class WizardFinalViewController: WizardStepViewController {
 
     @IBOutlet private weak var scrollView: UIScrollView!
@@ -39,6 +39,11 @@ final class WizardFinalViewController: WizardStepViewController {
 
     private var didRunEntrance = false
     private var microTimers: [Timer] = []
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        (roomChip.superview as? DSAdaptiveChipRow)?.fit(in: view.dsLayoutSize.width - OnboardingLayout(size: view.dsAdaptiveReferenceSize).value(140))
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -92,16 +97,9 @@ final class WizardFinalViewController: WizardStepViewController {
         styleChip.accessibilityLabel = String(format: "Style: %@. Double tap to change.".localized, session.style?.title ?? "")
     }
 
-    /// "Uses 1 of your 2 free designs" / "Unlimited with Pro".
+    /// Duration only; generate() still checks availability and entitlement.
     private func updateCost() {
-        if AdaptyService.shared.hasActiveSubscription {
-            generateSubtitleLabel.text = "Unlimited with Pro".localized
-        } else {
-            let left = FreeGenerationManager.shared.remainingFreeGenerations
-            generateSubtitleLabel.text = left > 0
-                ? String(format: "Uses 1 of your %d free designs".localized, left)
-                : "Pro required".localized
-        }
+        generateSubtitleLabel.text = costLine()
     }
 
     // MARK: Structure
@@ -117,11 +115,12 @@ final class WizardFinalViewController: WizardStepViewController {
     private func applyMode(animated: Bool) {
         let keep = session.keepStructure
         let labels = sortedLabels(segmentLabels)
-        let width = (segmentedView.bounds.width - 6) / 2
+        let inset = OnboardingLayout(size: view.dsAdaptiveReferenceSize).value(3)
+        let width = (segmentedView.bounds.width - 2 * inset) / 2
         let move = {
-            self.segmentKnobLeading.constant = keep ? 3 : 3 + width
-            labels[0].font = DS.Font.geologica(keep ? .semiBold : .medium, 14)
-            labels[1].font = DS.Font.geologica(keep ? .medium : .semiBold, 14)
+            self.segmentKnobLeading.constant = keep ? inset : inset + width
+            labels[0].font = DS.Font.geologica(keep ? .semiBold : .medium, labels[0].font.pointSize)
+            labels[1].font = DS.Font.geologica(keep ? .medium : .semiBold, labels[1].font.pointSize)
             labels[0].textColor = keep ? DS.Color.textPrimary : DS.Color.textSecondary
             labels[1].textColor = keep ? DS.Color.textSecondary : DS.Color.textPrimary
             self.segmentedView.layoutIfNeeded()
@@ -144,8 +143,9 @@ final class WizardFinalViewController: WizardStepViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let width = (segmentedView.bounds.width - 6) / 2
-        segmentKnobLeading.constant = session.keepStructure ? 3 : 3 + width
+        let inset = OnboardingLayout(size: view.dsAdaptiveReferenceSize).value(3)
+        let width = (segmentedView.bounds.width - 2 * inset) / 2
+        segmentKnobLeading.constant = session.keepStructure ? inset : inset + width
     }
 
     // MARK: Palette
@@ -166,7 +166,7 @@ final class WizardFinalViewController: WizardStepViewController {
             for (i, ring) in rings.enumerated() {
                 ring.alpha = i == selected ? 1 : 0
                 ring.transform = i == selected ? .identity : CGAffineTransform(scaleX: 1.15, y: 1.15)
-                labels[i].font = DS.Font.geologica(i == selected ? .semiBold : .regular, 12)
+                labels[i].font = DS.Font.geologica(i == selected ? .semiBold : .regular, labels[i].font.pointSize)
             }
         }
         paletteControls.forEach { $0.accessibilityTraits = $0.tag == selected ? [.button, .selected] : .button }

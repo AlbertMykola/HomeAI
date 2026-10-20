@@ -2,11 +2,16 @@ import UIKit
 import MessageUI
 
 /// A/06 · R8 Share & export (sheet): Before/After · Result · Story 9:16, "Made with Rehomely" mark, HD for Pro.
-/// Layout: ShareSheetViewController.xib.
+/// Layout: Result.storyboard.
 final class ShareSheetViewController: UIViewController {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var closeButton: DSPressableControl!
+    @IBOutlet private weak var contentScrollView: UIScrollView!
+    @IBOutlet private weak var beforeLabel: UILabel!
+    @IBOutlet private weak var afterLabel: UILabel!
+    @IBOutlet private weak var previewWatermarkView: UIView!
+    @IBOutlet private weak var previewWatermarkLabel: UILabel!
     @IBOutlet private weak var previewView: UIView!
     @IBOutlet private weak var beforeImageView: UIImageView!
     @IBOutlet private weak var afterImageView: UIImageView!
@@ -28,19 +33,25 @@ final class ShareSheetViewController: UIViewController {
     private var format: Format = .beforeAfter
     private var before: UIImage?
     private var after: UIImage!
+    private lazy var storyImage: UIImage = Self.story(before: before, after: after)
     private let isPro = AdaptyService.shared.hasActiveSubscription
+    private var referenceLayout: DSReferenceLayout!
+    private var sheetTransition: UIViewControllerTransitioningDelegate?
 
     static func present(from presenter: UIViewController, before: UIImage?, after: UIImage) {
-        let vc = ShareSheetViewController(nibName: "ShareSheetViewController", bundle: .main)
+        let vc = AppStoryboard.instantiate(ShareSheetViewController.self)
         vc.before = before
         vc.after = after
-        DSSheet.present(vc, from: presenter, height: 700)
+        vc.sheetTransition = DSSheet.presentFloating(vc, from: presenter, height: 659)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = "Share your redesign".localized
         shareLabel.text = "Share".localized
+        beforeLabel.text = "Before".localized
+        afterLabel.text = "After".localized
+        previewWatermarkLabel.text = "Made with Rehomely".localized
         let formats = ["Before / After", "Result", "Story 9:16"]
         formatLabels.sorted { $0.tag < $1.tag }.enumerated().forEach { $1.text = formats[$0].localized }
         let actions = ["Save", "Copy", "Messages", "More"]
@@ -53,13 +64,17 @@ final class ShareSheetViewController: UIViewController {
         hdProBadge.isUserInteractionEnabled = true
         hdProBadge.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapPro)))
         watermarkSwitch.isOn = !isPro
+        watermarkSwitch.addTarget(self, action: #selector(updatePreviewWatermark), for: .valueChanged)
         if before == nil { format = .result }
         applyFormat(animated: false)
+        referenceLayout = DSReferenceLayout(root: view, prefix: "share.")
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        formatKnobLeading.constant = 3 + (formatView.bounds.width - 6) / 3 * CGFloat(format.rawValue)
+        referenceLayout?.apply(size: view.window?.dsLayoutSize ?? presentingViewController?.view.dsLayoutSize ?? UIScreen.main.bounds.size)
+        let inset = 3 * max(0.1, referenceLayout?.scale ?? 1)
+        formatKnobLeading.constant = inset + (formatView.bounds.width - 2 * inset) / 3 * CGFloat(format.rawValue)
     }
 
     @IBAction private func didTapFormat(_ sender: UIControl) {
@@ -72,15 +87,27 @@ final class ShareSheetViewController: UIViewController {
     private func applyFormat(animated: Bool) {
         let labels = formatLabels.sorted { $0.tag < $1.tag }
         let changes = {
-            self.formatKnobLeading.constant = 3 + (self.formatView.bounds.width - 6) / 3 * CGFloat(self.format.rawValue)
+            let scale = max(0.1, self.referenceLayout?.scale ?? 1)
+            let inset = 3 * scale
+            self.formatKnobLeading.constant = inset + (self.formatView.bounds.width - 2 * inset) / 3 * CGFloat(self.format.rawValue)
             labels.enumerated().forEach { i, l in
-                l.font = DS.Font.geologica(i == self.format.rawValue ? .semiBold : .medium, 14)
+                l.font = DS.Font.geologica(i == self.format.rawValue ? .semiBold : .medium, 14 * scale)
                 l.textColor = i == self.format.rawValue ? DS.Color.textPrimary : DS.Color.textSecondary
             }
             self.singleImageView.isHidden = self.format == .beforeAfter
+            self.beforeImageView.superview?.isHidden = self.format != .beforeAfter
+            self.singleImageView.image = self.format == .story ? self.storyImage : self.after
+            self.singleImageView.contentMode = self.format == .story ? .scaleAspectFit : .scaleAspectFill
+            self.beforeLabel.superview?.isHidden = self.format != .beforeAfter
+            self.afterLabel.superview?.isHidden = self.format != .beforeAfter
+            self.updatePreviewWatermark()
             self.formatView.layoutIfNeeded()
         }
         animated ? UIView.animate(withDuration: 0.3, animations: changes) : changes()
+    }
+
+    @objc private func updatePreviewWatermark() {
+        previewWatermarkView.isHidden = !watermarkSwitch.isOn
     }
 
     @objc private func didTapPro() {
@@ -103,9 +130,9 @@ final class ShareSheetViewController: UIViewController {
         case .beforeAfter:
             base = Self.sideBySide(before ?? after, after)
         case .story:
-            base = Self.story(before: before, after: after)
+            base = storyImage
         }
-        return PhotoSaver.exportImage(base, pro: pro || isPro, watermark: watermarkSwitch.isOn)
+        return PhotoSaver.exportImage(base, pro: pro, watermark: watermarkSwitch.isOn)
     }
 
     private static func sideBySide(_ a: UIImage, _ b: UIImage) -> UIImage {

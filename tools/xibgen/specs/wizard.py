@@ -63,16 +63,16 @@ def wizard_photo():
         box = View(id=f"{id}-box", cls="DSView", bg="dsLime" if dark else "dsCard", runtime={"cornerRadius": 18},
                    children=[box_icon])
         t = Label(title, id=f"{id}-t", font=("SemiBold", 18), color="white" if dark else "dsTextPrimary",
-                  minScale=0.8, collection="sourceTitleLabels", tag_value=0 if dark else 1)
+                  minScale=0.8, lines=0, resist=(750, 1000), collection="sourceTitleLabels", tag_value=0 if dark else 1)
         s = Label(sub, id=f"{id}-s", font=("Regular", 13), color=("#FFFFFF", 0.7) if dark else "dsTextTertiary",
-                  minScale=0.8, collection="sourceSubtitleLabels", tag_value=0 if dark else 1)
+                  minScale=0.8, lines=0, resist=(750, 1000), collection="sourceSubtitleLabels", tag_value=0 if dark else 1)
         texts = VStack([t, s], id=f"{id}-texts", spacing=3, align="fill")
         chev = Image(id=f"{id}-chev", system="chevron.right", size=15, weight="semibold",
                      tint="white" if dark else "dsTextTertiary")
-        row = HStack([box, texts, chev], id=f"{id}-row", spacing=16, align="center", margins=(0, 20, 0, 20))
+        row = HStack([box, texts, chev], id=f"{id}-row", spacing=16, align="center", margins=(12, 20, 12, 20))
         card = Control(id=id, cls="DSPressableControl", bg="dsInk" if dark else "dsSurface", outlet=outlet,
                        runtime={"cornerRadius": 28}, children=[row]).on(action)
-        size(card, h=120)
+        C(card, "height", const=120, rel="greaterThanOrEqual")
         pin(row)
         square(box, 56)
         center(box_icon)
@@ -85,7 +85,7 @@ def wizard_photo():
     library = source("library", "Choose from library", "Only the photo you pick is shared", "photo.on.rectangle",
                      False, "didTapLibrary:", "libraryCard")
     demo_title = Label("No photo handy? Try one of ours", id="demo-title", font=("SemiBold", 15),
-                       outlet="demoTitleLabel")
+                       outlet="demoTitleLabel", lines=0)
     demos = []
     for i, n in enumerate(["living", "study", "kitchen"]):
         img = Image(id=f"demo-{n}-img", image=f"wizard_demo_{n}", mode="scaleAspectFill")
@@ -293,8 +293,10 @@ def wizard_final():
                      height=32, label_collection="summaryChipLabels", tag=0)
     style_chip = chip("style-chip", "Japandi", icon="paintpalette", outlet="styleChip", action="didTapStyleChip:",
                       height=32, label_collection="summaryChipLabels", tag=1)
+    for summary_chip in (room_chip, style_chip):
+        summary_chip.children[0].children[-1].minScale = 0.8
     chip_row = HStack([room_chip, style_chip, View(id="chip-spacer", bg="clear", hug=(1, 250))], id="chip-row",
-                      spacing=8, align="center")
+                      spacing=8, align="center", cls="DSAdaptiveChipRow")
     kind = Label("Interior redesign", id="kind", font=("Regular", 13), color="dsTextTertiary", outlet="kindLabel")
     chips_col = VStack([chip_row, kind], id="chips-col", spacing=8, align="fill")
     summary = View(id="summary", cls="DSView", bg="dsSurface", runtime={"cornerRadius": 24}, outlet="summaryView",
@@ -371,7 +373,7 @@ def wizard_final():
     root.add(scroll)
     nav = nav_bar_slot(root, sa)
     gen = primary_button("generate", "Generate design", outlet="generateButton", action="didTapGenerate:",
-                         icon="sparkles", subtitle="Uses 1 of your 2 free designs", title_outlet="generateTitleLabel",
+                         icon="sparkles", subtitle="About %d s", title_outlet="generateTitleLabel",
                          subtitle_outlet="generateSubtitleLabel", icon_outlet="generateIconView")
     cta_area(root, sa, gen)
 
@@ -422,16 +424,19 @@ def photo_tips_sheet():
     root.bg = "dsBackground"
     close = glass_button("close", "xmark", outlet="closeButton", action="didTapClose:", size=36, icon=16,
                          accessibility="Close")
-    title = Label("Get the best result", id="title", font=("SemiBold", 24), align="center", outlet="titleLabel")
+    title = Label("Get the best result", id="title", font=("SemiBold", 24), lines=0, outlet="titleLabel")
+    header = HStack([title, close], id="header", spacing=12, align="top")
 
     def example(id, image, text, symbol, tint):
         img = Image(id=f"{id}-img", image=image, mode="scaleAspectFill", cls="DSImageView",
                     runtime={"cornerRadius": 16})
         ic = Image(id=f"{id}-icon", system=symbol, size=13, weight="semibold", tint=tint)
         lb = Label(text, id=f"{id}-label", font=("Medium", 13), collection="exampleLabels",
-                   tag_value=0 if id == "good" else 1)
+                   tag_value=0 if id == "good" else 1, lines=0)
+        # Keep a stable two-line caption area when a translation is just over one line.
+        C(lb, "height", const=34, rel="greaterThanOrEqual")
         row = HStack([ic, lb], id=f"{id}-row", spacing=6, align="center")
-        col = VStack([img, row], id=f"{id}-col", spacing=6, align="leading")
+        col = VStack([img, row], id=f"{id}-col", spacing=6, align="fill")
         size(img, h=112)
         equal(img, col, "width")
         square(ic, 16)
@@ -455,11 +460,16 @@ def photo_tips_sheet():
         tips.append(row)
     tips_stack = VStack(tips, id="tips", spacing=12, margins=(4, 4, 4, 4))
     got = primary_button("got-it", "Got it", outlet="gotItButton", action="didTapClose:", title_outlet="gotItLabel")
-    col = VStack([title, examples, tips_stack, got], id="col", spacing=14, align="fill")
-    root.add(col, close)
-    pin(col, edges="lr", inset=20)
-    C(col, "top", root, "top", 30)
-    pin(close, edges="tr", inset=(16, 0, 0, 16))
+    col = VStack([examples, tips_stack, got], id="col", spacing=14, align="fill")
+    scroll = Scroll([col], id="scroll", indicators=True)
+    root.add(header, scroll)
+    pin(header, edges="lr", inset=20)
+    C(header, "top", root, "top", 30)
+    pin(scroll, edges="lr", inset=20)
+    C(scroll, "top", header, "bottom", 14)
+    C(d.safe_area, "bottom", scroll, "bottom", 16)
+    pin(col, to=scroll.content, inset=(0, 0, 16, 0))
+    equal(col, scroll.frame, "width")
     return d
 
 
@@ -470,7 +480,7 @@ def custom_style_sheet():
     root.bg = "dsBackground"
     close = glass_button("close", "xmark", outlet="closeButton", action="didTapClose:", size=36, icon=16,
                          accessibility="Close")
-    title = Label("Describe your style", id="title", font=("SemiBold", 24), align="center", outlet="titleLabel")
+    title = Label("Describe your style", id="title", font=("SemiBold", 24), align="center", lines=0, outlet="titleLabel")
     sub = Label("Materials, colors, mood — in your own words.", id="sub", font=("Regular", 15),
                 color="dsTextSecondary", align="center", lines=0, outlet="subtitleLabel")
     text = TextView(id="text", font=("Regular", 16), outlet="textView")
@@ -483,13 +493,20 @@ def custom_style_sheet():
                  children=[text, placeholder, counter])
     examples = [chip(f"ex{i}", t, icon="sparkles", collection="exampleChips", tag=i, action="didTapExample:")
                 for i, t in enumerate(["Cozy cabin", "Parisian flat", "Hotel lobby", "Bright coastal"])]
-    ex_rows = VStack([HStack(examples[:2], id="ex-row1", spacing=8),
-                      HStack(examples[2:], id="ex-row2", spacing=8)], id="examples", spacing=8, align="leading")
+    for example in examples:
+        example.children[0].children[-1].minScale = 0.9
+    ex_rows = VStack([HStack(examples[i:i+2] + [View(id=f"ex{i}-spacer", bg="clear", hug=(1, 250))],
+                                 id=f"ex-row{i}", spacing=8, align="center", cls="DSAdaptiveChipRow")
+                      for i in (0, 2)], id="examples", spacing=8, align="fill")
     use = primary_button("use", "Use this style", outlet="useButton", action="didTapUse:", title_outlet="useLabel")
-    col = VStack([title, sub, field, ex_rows, use], id="col", spacing=14, align="fill")
-    root.add(col, close)
-    pin(col, edges="lr", inset=20)
-    C(col, "top", root, "top", 30)
+    heading = View(id="heading", bg="clear", children=[title])
+    pin(title, inset=(0, 40, 0, 40))
+    col = VStack([heading, sub, field, ex_rows, use], id="col", spacing=14, align="fill")
+    scroll = Scroll([col], id="scroll", outlet="contentScrollView", indicators=True)
+    root.add(scroll, close)
+    pin(scroll, edges="ltr", inset=(30, 20, 0, 20))
+    pin(col, to=scroll.content, inset=(0, 0, 20, 0))
+    equal(col, scroll.frame, "width")
     pin(close, edges="tr", inset=(16, 0, 0, 16))
     size(field, h=110)
     pin(text, inset=(8, 12, 8, 12))

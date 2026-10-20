@@ -108,19 +108,19 @@ extension SKProductSubscriptionPeriod {
 }
 
 enum PaywallProductCopy {
-    static let yearlyAccessTitle = "Yearly Access".localized
-    static let monthlyAccessTitle = "Monthly Access".localized
-    static let weeklyAccessTitle = "Weekly Access".localized
-    static let perYear = "/year".localized
-    static let perMonth = "/month".localized
-    static let perWeek = "/week".localized
-    static let annualBillingPeriod = "annually".localized
-    static let monthlyBillingPeriod = "monthly".localized
-    static let weeklyBillingPeriod = "weekly".localized
-    static let bestValue = "Best Value".localized
-    static let threeDaysTrial = "3 days trial".localized
-    static let tryFreeTrial = "Try Free trial".localized
-    static let `continue` = "Continue".localized
+    static var yearlyAccessTitle: String { "Yearly Access".localized }
+    static var monthlyAccessTitle: String { "Monthly Access".localized }
+    static var weeklyAccessTitle: String { "Weekly Access".localized }
+    static var perYear: String { "/year".localized }
+    static var perMonth: String { "/month".localized }
+    static var perWeek: String { "/week".localized }
+    static var annualBillingPeriod: String { "annually".localized }
+    static var monthlyBillingPeriod: String { "monthly".localized }
+    static var weeklyBillingPeriod: String { "weekly".localized }
+    static var bestValue: String { "Best Value".localized }
+    static var threeDaysTrial: String { "3 days trial".localized }
+    static var tryFreeTrial: String { "Try Free trial".localized }
+    static var `continue`: String { "Continue".localized }
 
     static func trialBadgeTitle(days: Int) -> String {
         days == 3 ? threeDaysTrial : String(format: "%d days trial".localized, days)

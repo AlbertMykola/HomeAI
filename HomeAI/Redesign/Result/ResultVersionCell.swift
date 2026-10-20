@@ -1,6 +1,6 @@
 import UIKit
 
-/// Versions strip item (Original / V1… / Again), 56 pt thumb r16. Layout: ResultVersionCell.xib.
+/// Versions strip item (Original / V1… / Again), 56 pt thumb r16. Layout: Result.storyboard prototype.
 final class ResultVersionCell: UICollectionViewCell {
 
     static let reuseID = "ResultVersionCell"
@@ -11,6 +11,19 @@ final class ResultVersionCell: UICollectionViewCell {
     @IBOutlet private weak var titleLabel: UILabel!
 
     private var path: String?
+    private var referenceLayout: DSReferenceLayout!
+    private var referenceScale: CGFloat { OnboardingLayout(size: window?.bounds.size ?? UIScreen.main.bounds.size).scale }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        referenceLayout = DSReferenceLayout(root: contentView, prefix: "resultVersion.")
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        referenceLayout?.apply(size: window?.bounds.size ?? UIScreen.main.bounds.size)
+        againIconView.transform = CGAffineTransform(scaleX: referenceScale, y: referenceScale)
+    }
 
     override func prepareForReuse() {
         super.prepareForReuse()
@@ -20,7 +33,7 @@ final class ResultVersionCell: UICollectionViewCell {
 
     func configure(title: String, path: String, current: Bool) {
         titleLabel.text = title
-        titleLabel.font = DS.Font.geologica(current ? .semiBold : .regular, 11)
+        titleLabel.font = DS.Font.geologica(current ? .semiBold : .regular, 11 * referenceScale)
         titleLabel.textColor = current ? DS.Color.textPrimary : DS.Color.textTertiary
         ringView.isHidden = !current
         ringView.layer.borderColor = DS.Color.textPrimary.resolvedColor(with: traitCollection).cgColor
@@ -28,7 +41,7 @@ final class ResultVersionCell: UICollectionViewCell {
         againIconView.isHidden = true
         thumbImageView.backgroundColor = DS.Color.surface
         self.path = path
-        ThumbnailLoader.load(path: path, pointSize: CGSize(width: 56, height: 56)) { [weak self] image in
+        ThumbnailLoader.load(path: path, pointSize: CGSize(width: 56 * referenceScale, height: 56 * referenceScale)) { [weak self] image in
             guard let self, self.path == path else { return }
             self.thumbImageView.image = image
         }
@@ -39,7 +52,7 @@ final class ResultVersionCell: UICollectionViewCell {
 
     func configureAgain(title: String) {
         titleLabel.text = title
-        titleLabel.font = DS.Font.geologica(.regular, 11)
+        titleLabel.font = DS.Font.geologica(.regular, 11 * referenceScale)
         titleLabel.textColor = DS.Color.textTertiary
         thumbImageView.image = nil
         thumbImageView.backgroundColor = DS.Color.card

@@ -1,17 +1,14 @@
 import Adapty
 import Foundation
 
-extension AdaptyPaywallProduct {
+extension AdaptyPaywallProduct: PaywallSubscriptionProduct {
 
     var paywallHasFreeTrial: Bool {
         subscriptionOffer?.paymentMode == .freeTrial
     }
 
     var paywallIsWeeklySubscription: Bool {
-        guard let period = subscriptionPeriod else { return false }
-        if period.unit == .week, period.numberOfUnits == 1 { return true }
-        if period.unit == .day, period.numberOfUnits == 7 { return true }
-        return false
+        subscriptionPeriod?.paywallIsWeeklySubscription ?? false
     }
 
     var paywallIsYearlySubscription: Bool {
@@ -98,6 +95,10 @@ extension AdaptyPaywallProduct {
 }
 
 extension AdaptySubscriptionPeriod {
+
+    var paywallIsWeeklySubscription: Bool {
+        (unit == .week && numberOfUnits == 1) || (unit == .day && numberOfUnits == 7)
+    }
 
     var paywallApproximateDays: Int {
         switch unit {

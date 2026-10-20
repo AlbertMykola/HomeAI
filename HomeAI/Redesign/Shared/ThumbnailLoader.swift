@@ -52,6 +52,7 @@ extension Date {
         if calendar.isDateInToday(self) { return "Today".localized }
         if calendar.isDateInYesterday(self) { return "Yesterday".localized }
         let f = DateFormatter()
+        f.locale = AppLocalization.locale
         f.setLocalizedDateFormatFromTemplate("d MMM")
         return f.string(from: self)
     }
@@ -60,6 +61,9 @@ extension Date {
 /// Bundled asset first (names in enums carry a ".png" suffix), remote/shared loader as fallback.
 enum CatalogImage {
     static func load(_ path: String, completion: @escaping (UIImage?) -> Void) {
+        #if DEBUG
+        if AppQA.enabled { completion(AppQA.photo); return }
+        #endif
         let base = ((path as NSString).lastPathComponent as NSString).deletingPathExtension
         if let local = UIImage(named: base) ?? UIImage(named: path) {
             completion(local)

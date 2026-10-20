@@ -29,17 +29,13 @@ class MaskEditorViewController: UIViewController {
     var hasChanges: Bool { canvasView.hasMask }
 
     static func make(image: UIImage, original: UIImage?, onApply: @escaping (GemeniPromptManager, String) -> Void) -> Self {
-        let vc = Self(nibName: String(describing: self), bundle: .main)
+        let vc = AppStoryboard.instantiate(Self.self)
         vc.image = image
         vc.originalImage = original
         vc.onApply = onApply
         vc.modalPresentationStyle = .fullScreen
         vc.modalTransitionStyle = .crossDissolve
         return vc
-    }
-
-    required override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
 
     required init?(coder: NSCoder) {
@@ -50,6 +46,14 @@ class MaskEditorViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Long translations must wrap inside the window. An unbounded, self-sizing hint with
+        // safe-area-relative stack margins can otherwise enter a layout feedback loop on Duo.
+        hintLabel.numberOfLines = 0
+        hintLabel.adjustsFontSizeToFitWidth = false
+        hintView.insetsLayoutMarginsFromSafeArea = false
+        hintView.subviews.compactMap { $0 as? UIStackView }.forEach { $0.insetsLayoutMarginsFromSafeArea = false }
+        hintLabel.setContentCompressionResistancePriority(.required, for: .vertical)
+        hintView.constraints.first { $0.firstAttribute == .height && $0.secondItem == nil }?.priority = UILayoutPriority(740)
         canvasView.image = image
         originalOverlayView.image = originalImage
         canvasView.onChange = { [weak self] in self?.updateApplyState() }
@@ -58,25 +62,27 @@ class MaskEditorViewController: UIViewController {
             hold.minimumPressDuration = 0
             compareButton.addGestureRecognizer(hold)
         }
-        updateCostLabel()
-        panelView.transform = CGAffineTransform(translationX: 0, y: 320)
+        updateDurationLabel()
+        panelView.transform = DS.Motion.reduceMotion ? .identity : CGAffineTransform(translationX: 0, y: 320)
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let spring = DS.Motion.gentleSpring(duration: 0.5)
-        spring.addAnimations { self.panelView.transform = .identity }
-        spring.startAnimation()
+        if DS.Motion.reduceMotion {
+            panelView.transform = .identity
+        } else {
+            let spring = DS.Motion.gentleSpring(duration: 0.5)
+            spring.addAnimations { self.panelView.transform = .identity }
+            spring.startAnimation()
+        }
         DS.Motion.enter(hintView, delay: 0.9, dy: 8)
     }
 
-    /// Title for the apply button, e.g. "Remove" → "Remove · 1 credit" (Pro: no price).
+    /// Localized action; the button shows its estimated duration in every plan.
     var applyTitle: String { "Apply".localized }
 
-    func updateCostLabel() {
-        applyLabel.text = AdaptyService.shared.hasActiveSubscription
-            ? applyTitle
-            : String(format: "%@ · 1 credit".localized, applyTitle)
+    private func updateDurationLabel() {
+        applyLabel.text = applyTitle + " · " + String(format: "About %d s".localized, 30)
     }
 
     func updateApplyState() {

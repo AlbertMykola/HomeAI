@@ -1,0 +1,1510 @@
+<?xml version='1.0' encoding='utf-8'?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="85e8-2873-db13" orientation="portrait" appearance="light" />
+    <dependencies>
+        <deployment identifier="iOS" />
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063" />
+        <capability name="Image references" minToolsVersion="12.0" />
+        <capability name="Named colors" minToolsVersion="9.0" />
+        <capability name="Safe area layout guides" minToolsVersion="9.0" />
+        <capability name="System colors in document resources" minToolsVersion="11.0" />
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0" />
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geologica-Regular.ttf">
+            <string>Geologica-Regular</string>
+        </array>
+        <array key="Geologica-SemiBold.ttf">
+            <string>Geologica-SemiBold</string>
+        </array>
+        <array key="Geologica-Medium.ttf">
+            <string>Geologica-Medium</string>
+        </array>
+        <array key="Geologica-Bold.ttf">
+            <string>Geologica-Bold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <scene sceneID="498f-18dc-887d">
+            <objects>
+                <viewController storyboardIdentifier="GenerationViewController" id="451f-7c55-98df" customClass="GenerationViewController" customModule="HomeAI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view contentMode="scaleToFill" id="d9da-b0dd-059f" userLabel="Root" key="view" customClass="DSAdaptiveRootView" customModule="HomeAI" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852" />
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="94af-bfcd-18a0" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="collapseButton">
+                                <subviews>
+                                    <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9db8-a64d-b007" image="chevron.down" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17.0" weight="semibold" />
+                                        <color key="tintColor" name="dsTextPrimary" />
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="20" id="8be6-1392-718e" identifier="ds.reference.8be6-1392-718e" />
+                                            <constraint firstAttribute="height" constant="20" id="3b95-4d65-5582" identifier="ds.reference.3b95-4d65-5582" />
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" name="dsGlass" />
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="44" id="1dd5-0ca4-bf92" identifier="ds.reference.1dd5-0ca4-bf92" />
+                                    <constraint firstAttribute="height" constant="44" id="9916-6ddc-fb39" identifier="ds.reference.9916-6ddc-fb39" />
+                                    <constraint firstItem="9db8-a64d-b007" firstAttribute="centerX" secondItem="94af-bfcd-18a0" secondAttribute="centerX" id="6cc9-1e9f-29b1" identifier="ds.reference.6cc9-1e9f-29b1" />
+                                    <constraint firstItem="9db8-a64d-b007" firstAttribute="centerY" secondItem="94af-bfcd-18a0" secondAttribute="centerY" id="c623-4fb6-0e81" identifier="ds.reference.c623-4fb6-0e81" />
+                                </constraints>
+                                <accessibility key="accessibilityConfiguration" label="Minimize" />
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
+                                    <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                        <real key="value" value="0.5" />
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
+                                        <color key="value" name="dsGlassBorder" />
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="0.08" />
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="7" />
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY">
+                                        <real key="value" value="4" />
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapCollapse:" />
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0b2d-5b3e-5b2f" userLabel="navTitleLabel" opaque="NO" text="Creating your design" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17" />
+                                <color key="textColor" name="dsTextPrimary" />
+                                <nil key="highlightedColor" />
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Creating your design" />
+                                </userDefinedRuntimeAttributes>
+                                <nil key="backgroundColor" />
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c501-d555-0596" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="photoCardView">
+                                <subviews>
+                                    <view contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cb1e-e48a-c52d" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="photoClipView">
+                                        <subviews>
+                                            <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8881-7493-c22b" userLabel="photoImageView" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
+                                </imageView>
+                                            <view contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cbe6-1294-b58c">
+                                                <color key="backgroundColor" red="0.0000" green="0.0000" blue="0.0000" alpha="0.180" colorSpace="custom" customColorSpace="sRGB" />
+                                            </view>
+                                            <view contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e1b8-4499-d6b0" userLabel="scannedAreaView">
+                                                <color key="backgroundColor" red="0.6471" green="0.9333" blue="0.1843" alpha="0.100" colorSpace="custom" customColorSpace="sRGB" />
+                                                <constraints>
+                                                    <constraint firstAttribute="height" id="9bf7-4a88-c55f" identifier="ds.dynamic" />
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a799-365f-88ce" customClass="DSGradientView" customModule="HomeAI" customModuleProvider="target" userLabel="scanLineView">
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="70" id="aeb6-3a1d-6952" identifier="ds.reference.aeb6-3a1d-6952" />
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                                        <color key="value" red="0.6471" green="0.9333" blue="0.1843" alpha="0.000" colorSpace="custom" customColorSpace="sRGB" />
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="midColor">
+                                                        <color key="value" red="0.6471" green="0.9333" blue="0.1843" alpha="0.550" colorSpace="custom" customColorSpace="sRGB" />
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                                        <color key="value" red="0.9137" green="1.0000" blue="0.7882" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="midLocation">
+                                                        <real key="value" value="0.85" />
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="angle">
+                                                        <real key="value" value="180" />
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" clipsSubviews="NO" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0429-3da7-b21c" userLabel="scanEdgeView">
+                                                <color key="backgroundColor" red="0.9137" green="1.0000" blue="0.7882" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="2" id="f04e-f8e1-94cf" identifier="ds.reference.f04e-f8e1-94cf" />
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                                        <real key="value" value="0.9" />
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                                                        <real key="value" value="6" />
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                                        <size key="value" width="0" height="0" />
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <view contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2eb-d3f1-c2e8" userLabel="pointsView">
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                <subviews>
+                                                    <view id="62dd-80e7-30a2" translatesAutoresizingMaskIntoConstraints="NO" contentMode="scaleToFill" customClass="DSView" customModule="HomeAI" customModuleProvider="target" tag="0" alpha="0">
+                                                        <rect key="frame" x="0" y="0" width="100" height="100" />
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                    </view>
+                                                    <view id="9bf9-168e-405a" translatesAutoresizingMaskIntoConstraints="NO" contentMode="scaleToFill" customClass="DSView" customModule="HomeAI" customModuleProvider="target" tag="1" alpha="0">
+                                                        <rect key="frame" x="0" y="0" width="100" height="100" />
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                    </view>
+                                                    <view id="3428-6da5-b4d6" translatesAutoresizingMaskIntoConstraints="NO" contentMode="scaleToFill" customClass="DSView" customModule="HomeAI" customModuleProvider="target" tag="2" alpha="0">
+                                                        <rect key="frame" x="0" y="0" width="100" height="100" />
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                    </view>
+                                                    <view id="27cc-7dcf-372a" translatesAutoresizingMaskIntoConstraints="NO" contentMode="scaleToFill" customClass="DSView" customModule="HomeAI" customModuleProvider="target" tag="3" alpha="0">
+                                                        <rect key="frame" x="0" y="0" width="100" height="100" />
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                    </view>
+                                                    <view id="b6dd-e8f0-885c" translatesAutoresizingMaskIntoConstraints="NO" contentMode="scaleToFill" customClass="DSView" customModule="HomeAI" customModuleProvider="target" tag="4" alpha="0">
+                                                        <rect key="frame" x="0" y="0" width="100" height="100" />
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                    </view>
+                                                    <view id="b3bb-fa06-0da2" translatesAutoresizingMaskIntoConstraints="NO" contentMode="scaleToFill" customClass="DSView" customModule="HomeAI" customModuleProvider="target" tag="5" alpha="0">
+                                                        <rect key="frame" x="0" y="0" width="100" height="100" />
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                    </view>
+                                                    <view id="f5c4-2232-aa0b" translatesAutoresizingMaskIntoConstraints="NO" contentMode="scaleToFill" customClass="DSView" customModule="HomeAI" customModuleProvider="target" tag="6" alpha="0">
+                                                        <rect key="frame" x="0" y="0" width="100" height="100" />
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                    </view>
+                                                    <view id="b3ac-6fea-20c7" translatesAutoresizingMaskIntoConstraints="NO" contentMode="scaleToFill" customClass="DSView" customModule="HomeAI" customModuleProvider="target" tag="7" alpha="0">
+                                                        <rect key="frame" x="0" y="0" width="100" height="100" />
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                    </view>
+                                                    <view id="1ad7-f0d9-b413" translatesAutoresizingMaskIntoConstraints="NO" contentMode="scaleToFill" customClass="DSView" customModule="HomeAI" customModuleProvider="target" tag="8" alpha="0">
+                                                        <rect key="frame" x="0" y="0" width="100" height="100" />
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                    </view>
+                                                    <view id="3ea6-a106-7b00" translatesAutoresizingMaskIntoConstraints="NO" contentMode="scaleToFill" customClass="DSView" customModule="HomeAI" customModuleProvider="target" tag="9" alpha="0">
+                                                        <rect key="frame" x="0" y="0" width="100" height="100" />
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                    </view>
+                                                    <view id="b76c-ec8f-a965" translatesAutoresizingMaskIntoConstraints="NO" contentMode="scaleToFill" customClass="DSView" customModule="HomeAI" customModuleProvider="target" tag="10" alpha="0">
+                                                        <rect key="frame" x="0" y="0" width="100" height="100" />
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                    </view>
+                                                    <view id="3dd4-548b-b257" translatesAutoresizingMaskIntoConstraints="NO" contentMode="scaleToFill" customClass="DSView" customModule="HomeAI" customModuleProvider="target" tag="11" alpha="0">
+                                                        <rect key="frame" x="0" y="0" width="100" height="100" />
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                    </view>
+                                                    <view id="dda6-5c05-7672" translatesAutoresizingMaskIntoConstraints="NO" contentMode="scaleToFill" customClass="DSView" customModule="HomeAI" customModuleProvider="target" tag="12" alpha="0">
+                                                        <rect key="frame" x="0" y="0" width="100" height="100" />
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                    </view>
+                                                    <view id="5806-493a-6bc9" translatesAutoresizingMaskIntoConstraints="NO" contentMode="scaleToFill" customClass="DSView" customModule="HomeAI" customModuleProvider="target" tag="13" alpha="0">
+                                                        <rect key="frame" x="0" y="0" width="100" height="100" />
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                    </view>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstItem="62dd-80e7-30a2" firstAttribute="leading" constant="20" id="0d9c-b97d-a135" identifier="storyboardGeometry.x" secondItem="b2eb-d3f1-c2e8" secondAttribute="leading" />
+                                                    <constraint firstItem="62dd-80e7-30a2" firstAttribute="top" constant="20" id="9c08-514a-1926" identifier="storyboardGeometry.y" secondItem="b2eb-d3f1-c2e8" secondAttribute="top" />
+                                                    <constraint firstItem="62dd-80e7-30a2" firstAttribute="width" constant="6" id="fe1e-f528-4a6e" identifier="storyboardGeometry.w" />
+                                                    <constraint firstItem="62dd-80e7-30a2" firstAttribute="height" constant="6" id="630f-de79-91d2" identifier="storyboardGeometry.h" />
+                                                    <constraint firstItem="9bf9-168e-405a" firstAttribute="leading" constant="32" id="959c-1866-41c3" identifier="storyboardGeometry.x" secondItem="b2eb-d3f1-c2e8" secondAttribute="leading" />
+                                                    <constraint firstItem="9bf9-168e-405a" firstAttribute="top" constant="27" id="9cf0-84e5-6c35" identifier="storyboardGeometry.y" secondItem="b2eb-d3f1-c2e8" secondAttribute="top" />
+                                                    <constraint firstItem="9bf9-168e-405a" firstAttribute="width" constant="6" id="a153-500a-e669" identifier="storyboardGeometry.w" />
+                                                    <constraint firstItem="9bf9-168e-405a" firstAttribute="height" constant="6" id="68df-6b5e-1805" identifier="storyboardGeometry.h" />
+                                                    <constraint firstItem="3428-6da5-b4d6" firstAttribute="leading" constant="44" id="42d7-590d-f37e" identifier="storyboardGeometry.x" secondItem="b2eb-d3f1-c2e8" secondAttribute="leading" />
+                                                    <constraint firstItem="3428-6da5-b4d6" firstAttribute="top" constant="34" id="daa9-0129-4ae9" identifier="storyboardGeometry.y" secondItem="b2eb-d3f1-c2e8" secondAttribute="top" />
+                                                    <constraint firstItem="3428-6da5-b4d6" firstAttribute="width" constant="6" id="3393-0c88-9bb8" identifier="storyboardGeometry.w" />
+                                                    <constraint firstItem="3428-6da5-b4d6" firstAttribute="height" constant="6" id="7864-d098-4e6f" identifier="storyboardGeometry.h" />
+                                                    <constraint firstItem="27cc-7dcf-372a" firstAttribute="leading" constant="56" id="2ffb-f114-5718" identifier="storyboardGeometry.x" secondItem="b2eb-d3f1-c2e8" secondAttribute="leading" />
+                                                    <constraint firstItem="27cc-7dcf-372a" firstAttribute="top" constant="41" id="d517-c974-512c" identifier="storyboardGeometry.y" secondItem="b2eb-d3f1-c2e8" secondAttribute="top" />
+                                                    <constraint firstItem="27cc-7dcf-372a" firstAttribute="width" constant="6" id="5a7d-b8bd-cbe4" identifier="storyboardGeometry.w" />
+                                                    <constraint firstItem="27cc-7dcf-372a" firstAttribute="height" constant="6" id="4747-48aa-b406" identifier="storyboardGeometry.h" />
+                                                    <constraint firstItem="b6dd-e8f0-885c" firstAttribute="leading" constant="68" id="a649-9056-ab2c" identifier="storyboardGeometry.x" secondItem="b2eb-d3f1-c2e8" secondAttribute="leading" />
+                                                    <constraint firstItem="b6dd-e8f0-885c" firstAttribute="top" constant="48" id="b92c-af8c-9a83" identifier="storyboardGeometry.y" secondItem="b2eb-d3f1-c2e8" secondAttribute="top" />
+                                                    <constraint firstItem="b6dd-e8f0-885c" firstAttribute="width" constant="6" id="cc04-dbf7-dc68" identifier="storyboardGeometry.w" />
+                                                    <constraint firstItem="b6dd-e8f0-885c" firstAttribute="height" constant="6" id="57ff-58e0-9819" identifier="storyboardGeometry.h" />
+                                                    <constraint firstItem="b3bb-fa06-0da2" firstAttribute="leading" constant="80" id="4bc9-9f3f-e7c4" identifier="storyboardGeometry.x" secondItem="b2eb-d3f1-c2e8" secondAttribute="leading" />
+                                                    <constraint firstItem="b3bb-fa06-0da2" firstAttribute="top" constant="55" id="3d5e-63cf-435b" identifier="storyboardGeometry.y" secondItem="b2eb-d3f1-c2e8" secondAttribute="top" />
+                                                    <constraint firstItem="b3bb-fa06-0da2" firstAttribute="width" constant="6" id="52bd-f065-92fb" identifier="storyboardGeometry.w" />
+                                                    <constraint firstItem="b3bb-fa06-0da2" firstAttribute="height" constant="6" id="62d3-d261-7f2f" identifier="storyboardGeometry.h" />
+                                                    <constraint firstItem="f5c4-2232-aa0b" firstAttribute="leading" constant="92" id="7200-1658-a36a" identifier="storyboardGeometry.x" secondItem="b2eb-d3f1-c2e8" secondAttribute="leading" />
+                                                    <constraint firstItem="f5c4-2232-aa0b" firstAttribute="top" constant="62" id="d2b5-35ec-269e" identifier="storyboardGeometry.y" secondItem="b2eb-d3f1-c2e8" secondAttribute="top" />
+                                                    <constraint firstItem="f5c4-2232-aa0b" firstAttribute="width" constant="6" id="615c-f683-c23a" identifier="storyboardGeometry.w" />
+                                                    <constraint firstItem="f5c4-2232-aa0b" firstAttribute="height" constant="6" id="279b-ad8a-1522" identifier="storyboardGeometry.h" />
+                                                    <constraint firstItem="b3ac-6fea-20c7" firstAttribute="leading" constant="104" id="da2b-078e-3e94" identifier="storyboardGeometry.x" secondItem="b2eb-d3f1-c2e8" secondAttribute="leading" />
+                                                    <constraint firstItem="b3ac-6fea-20c7" firstAttribute="top" constant="69" id="a0af-9346-af26" identifier="storyboardGeometry.y" secondItem="b2eb-d3f1-c2e8" secondAttribute="top" />
+                                                    <constraint firstItem="b3ac-6fea-20c7" firstAttribute="width" constant="6" id="df5f-8fd0-c2fa" identifier="storyboardGeometry.w" />
+                                                    <constraint firstItem="b3ac-6fea-20c7" firstAttribute="height" constant="6" id="076d-60b9-7e43" identifier="storyboardGeometry.h" />
+                                                    <constraint firstItem="1ad7-f0d9-b413" firstAttribute="leading" constant="116" id="eb52-b171-bce1" identifier="storyboardGeometry.x" secondItem="b2eb-d3f1-c2e8" secondAttribute="leading" />
+                                                    <constraint firstItem="1ad7-f0d9-b413" firstAttribute="top" constant="76" id="d127-9b51-037e" identifier="storyboardGeometry.y" secondItem="b2eb-d3f1-c2e8" secondAttribute="top" />
+                                                    <constraint firstItem="1ad7-f0d9-b413" firstAttribute="width" constant="6" id="2943-f969-e220" identifier="storyboardGeometry.w" />
+                                                    <constraint firstItem="1ad7-f0d9-b413" firstAttribute="height" constant="6" id="05fe-8852-0708" identifier="storyboardGeometry.h" />
+                                                    <constraint firstItem="3ea6-a106-7b00" firstAttribute="leading" constant="128" id="e464-1645-9b23" identifier="storyboardGeometry.x" secondItem="b2eb-d3f1-c2e8" secondAttribute="leading" />
+                                                    <constraint firstItem="3ea6-a106-7b00" firstAttribute="top" constant="83" id="f4f0-0347-7998" identifier="storyboardGeometry.y" secondItem="b2eb-d3f1-c2e8" secondAttribute="top" />
+                                                    <constraint firstItem="3ea6-a106-7b00" firstAttribute="width" constant="6" id="285d-6b3a-cb63" identifier="storyboardGeometry.w" />
+                                                    <constraint firstItem="3ea6-a106-7b00" firstAttribute="height" constant="6" id="e512-a50c-43d0" identifier="storyboardGeometry.h" />
+                                                    <constraint firstItem="b76c-ec8f-a965" firstAttribute="leading" constant="140" id="d278-d099-a58c" identifier="storyboardGeometry.x" secondItem="b2eb-d3f1-c2e8" secondAttribute="leading" />
+                                                    <constraint firstItem="b76c-ec8f-a965" firstAttribute="top" constant="90" id="f036-9aa1-0fef" identifier="storyboardGeometry.y" secondItem="b2eb-d3f1-c2e8" secondAttribute="top" />
+                                                    <constraint firstItem="b76c-ec8f-a965" firstAttribute="width" constant="6" id="96cf-4425-e6fa" identifier="storyboardGeometry.w" />
+                                                    <constraint firstItem="b76c-ec8f-a965" firstAttribute="height" constant="6" id="4ad7-d7f2-8eec" identifier="storyboardGeometry.h" />
+                                                    <constraint firstItem="3dd4-548b-b257" firstAttribute="leading" constant="152" id="acdf-9b7c-6ed6" identifier="storyboardGeometry.x" secondItem="b2eb-d3f1-c2e8" secondAttribute="leading" />
+                                                    <constraint firstItem="3dd4-548b-b257" firstAttribute="top" constant="97" id="761b-7965-d177" identifier="storyboardGeometry.y" secondItem="b2eb-d3f1-c2e8" secondAttribute="top" />
+                                                    <constraint firstItem="3dd4-548b-b257" firstAttribute="width" constant="6" id="a7d9-268d-0d7e" identifier="storyboardGeometry.w" />
+                                                    <constraint firstItem="3dd4-548b-b257" firstAttribute="height" constant="6" id="2f75-04b6-a1b0" identifier="storyboardGeometry.h" />
+                                                    <constraint firstItem="dda6-5c05-7672" firstAttribute="leading" constant="164" id="8baf-2ccb-d2cf" identifier="storyboardGeometry.x" secondItem="b2eb-d3f1-c2e8" secondAttribute="leading" />
+                                                    <constraint firstItem="dda6-5c05-7672" firstAttribute="top" constant="104" id="b381-ba06-f9ee" identifier="storyboardGeometry.y" secondItem="b2eb-d3f1-c2e8" secondAttribute="top" />
+                                                    <constraint firstItem="dda6-5c05-7672" firstAttribute="width" constant="6" id="2970-6789-aa09" identifier="storyboardGeometry.w" />
+                                                    <constraint firstItem="dda6-5c05-7672" firstAttribute="height" constant="6" id="eb82-f338-fbae" identifier="storyboardGeometry.h" />
+                                                    <constraint firstItem="5806-493a-6bc9" firstAttribute="leading" constant="176" id="282f-bf7c-9a35" identifier="storyboardGeometry.x" secondItem="b2eb-d3f1-c2e8" secondAttribute="leading" />
+                                                    <constraint firstItem="5806-493a-6bc9" firstAttribute="top" constant="111" id="0ce3-b688-8c18" identifier="storyboardGeometry.y" secondItem="b2eb-d3f1-c2e8" secondAttribute="top" />
+                                                    <constraint firstItem="5806-493a-6bc9" firstAttribute="width" constant="6" id="448e-0e25-1bf5" identifier="storyboardGeometry.w" />
+                                                    <constraint firstItem="5806-493a-6bc9" firstAttribute="height" constant="6" id="2b65-e165-ad7a" identifier="storyboardGeometry.h" />
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" name="dsSurface" />
+                                        <constraints>
+                                            <constraint firstItem="8881-7493-c22b" firstAttribute="leading" secondItem="cb1e-e48a-c52d" secondAttribute="leading" id="b10f-260c-8636" identifier="ds.reference.b10f-260c-8636" />
+                                            <constraint firstItem="8881-7493-c22b" firstAttribute="top" secondItem="cb1e-e48a-c52d" secondAttribute="top" id="368a-76f6-3bd1" identifier="ds.reference.368a-76f6-3bd1" />
+                                            <constraint firstItem="cb1e-e48a-c52d" firstAttribute="trailing" secondItem="8881-7493-c22b" secondAttribute="trailing" id="0b57-1d2e-29a1" identifier="ds.reference.0b57-1d2e-29a1" />
+                                            <constraint firstItem="cb1e-e48a-c52d" firstAttribute="bottom" secondItem="8881-7493-c22b" secondAttribute="bottom" id="14ee-64c8-8307" identifier="ds.reference.14ee-64c8-8307" />
+                                            <constraint firstItem="cbe6-1294-b58c" firstAttribute="leading" secondItem="cb1e-e48a-c52d" secondAttribute="leading" id="9fd3-1efa-f0d1" identifier="ds.reference.9fd3-1efa-f0d1" />
+                                            <constraint firstItem="cbe6-1294-b58c" firstAttribute="top" secondItem="cb1e-e48a-c52d" secondAttribute="top" id="7e56-be0c-9c42" identifier="ds.reference.7e56-be0c-9c42" />
+                                            <constraint firstItem="cb1e-e48a-c52d" firstAttribute="trailing" secondItem="cbe6-1294-b58c" secondAttribute="trailing" id="cc91-ece6-3b1e" identifier="ds.reference.cc91-ece6-3b1e" />
+                                            <constraint firstItem="cb1e-e48a-c52d" firstAttribute="bottom" secondItem="cbe6-1294-b58c" secondAttribute="bottom" id="764f-3b34-51a3" identifier="ds.reference.764f-3b34-51a3" />
+                                            <constraint firstItem="e1b8-4499-d6b0" firstAttribute="leading" secondItem="cb1e-e48a-c52d" secondAttribute="leading" id="8e1f-1d7b-1db2" identifier="ds.reference.8e1f-1d7b-1db2" />
+                                            <constraint firstItem="e1b8-4499-d6b0" firstAttribute="top" secondItem="cb1e-e48a-c52d" secondAttribute="top" id="3dfa-0531-c499" identifier="ds.reference.3dfa-0531-c499" />
+                                            <constraint firstItem="cb1e-e48a-c52d" firstAttribute="trailing" secondItem="e1b8-4499-d6b0" secondAttribute="trailing" id="3359-13cb-51ee" identifier="ds.reference.3359-13cb-51ee" />
+                                            <constraint firstItem="a799-365f-88ce" firstAttribute="leading" secondItem="cb1e-e48a-c52d" secondAttribute="leading" id="9b58-73ae-cd9f" identifier="ds.reference.9b58-73ae-cd9f" />
+                                            <constraint firstItem="cb1e-e48a-c52d" firstAttribute="trailing" secondItem="a799-365f-88ce" secondAttribute="trailing" id="e2fc-90d7-eefe" identifier="ds.reference.e2fc-90d7-eefe" />
+                                            <constraint firstItem="a799-365f-88ce" firstAttribute="bottom" secondItem="e1b8-4499-d6b0" secondAttribute="bottom" id="d1f0-9b94-58e3" identifier="ds.reference.d1f0-9b94-58e3" />
+                                            <constraint firstItem="0429-3da7-b21c" firstAttribute="leading" secondItem="cb1e-e48a-c52d" secondAttribute="leading" id="5a47-2cba-57b7" identifier="ds.reference.5a47-2cba-57b7" />
+                                            <constraint firstItem="cb1e-e48a-c52d" firstAttribute="trailing" secondItem="0429-3da7-b21c" secondAttribute="trailing" id="9301-0b93-afd3" identifier="ds.reference.9301-0b93-afd3" />
+                                            <constraint firstItem="0429-3da7-b21c" firstAttribute="bottom" secondItem="e1b8-4499-d6b0" secondAttribute="bottom" id="4070-be92-812e" identifier="ds.reference.4070-be92-812e" />
+                                            <constraint firstItem="b2eb-d3f1-c2e8" firstAttribute="leading" secondItem="cb1e-e48a-c52d" secondAttribute="leading" id="aa4d-a399-3419" identifier="ds.reference.aa4d-a399-3419" />
+                                            <constraint firstItem="b2eb-d3f1-c2e8" firstAttribute="top" secondItem="cb1e-e48a-c52d" secondAttribute="top" id="d112-b09a-c1b4" identifier="ds.reference.d112-b09a-c1b4" />
+                                            <constraint firstItem="cb1e-e48a-c52d" firstAttribute="trailing" secondItem="b2eb-d3f1-c2e8" secondAttribute="trailing" id="3560-2c74-f061" identifier="ds.reference.3560-2c74-f061" />
+                                            <constraint firstItem="cb1e-e48a-c52d" firstAttribute="bottom" secondItem="b2eb-d3f1-c2e8" secondAttribute="bottom" id="5998-f6bc-3f20" identifier="ds.reference.5998-f6bc-3f20" />
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="34" />
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="420" priority="750" id="eb6a-6221-7707" identifier="ds.reference.eb6a-6221-7707" />
+                                    <constraint firstItem="cb1e-e48a-c52d" firstAttribute="leading" secondItem="c501-d555-0596" secondAttribute="leading" id="7917-1d29-5e0a" identifier="ds.reference.7917-1d29-5e0a" />
+                                    <constraint firstItem="cb1e-e48a-c52d" firstAttribute="top" secondItem="c501-d555-0596" secondAttribute="top" id="9ae9-0fc8-3811" identifier="ds.reference.9ae9-0fc8-3811" />
+                                    <constraint firstItem="c501-d555-0596" firstAttribute="trailing" secondItem="cb1e-e48a-c52d" secondAttribute="trailing" id="7d1a-0e05-efcd" identifier="ds.reference.7d1a-0e05-efcd" />
+                                    <constraint firstItem="c501-d555-0596" firstAttribute="bottom" secondItem="cb1e-e48a-c52d" secondAttribute="bottom" id="930b-6705-42cc" identifier="ds.reference.930b-6705-42cc" />
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="34" />
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                        <real key="value" value="0.12" />
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                        <real key="value" value="15" />
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY">
+                                        <real key="value" value="10" />
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="55c6-0e3f-1d9c" userLabel="progressStack" opaque="NO" axis="vertical" spacing="10">
+                                <subviews>
+                                    <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="21c5-ed19-071d" opaque="NO" alignment="lastBaseline" spacing="8">
+                                        <subviews>
+                                            <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1d13-af35-a4bd" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="percentLabel" opaque="NO" text="12%" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="40" />
+                                                <color key="textColor" name="dsTextPrimary" />
+                                                <nil key="highlightedColor" />
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="letterSpacing">
+                                                        <real key="value" value="-0.8" />
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                                <nil key="backgroundColor" />
+                                            </label>
+                                            <view contentMode="scaleToFill" horizontalHuggingPriority="1" verticalHuggingPriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="7287-b577-0c2f">
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                            </view>
+                                            <label contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="251" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e238-692e-2530" userLabel="etaLabel" opaque="NO" text="~30 s left" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO">
+                                                <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15" />
+                                                <color key="textColor" name="dsTextSecondary" />
+                                                <nil key="highlightedColor" />
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="~30 s left" />
+                                                </userDefinedRuntimeAttributes>
+                                                <nil key="backgroundColor" />
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="f164-f902-1ac6" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="trackView">
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a5d1-da3f-7238" customClass="DSGradientView" customModule="HomeAI" customModuleProvider="target" userLabel="fillView">
+                                                <constraints>
+                                                    <constraint firstAttribute="width" id="8ef0-a120-a5ee" identifier="ds.dynamic" />
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <real key="value" value="4" />
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                                        <color key="value" red="0.7216" green="0.9647" blue="0.3333" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                                        <color key="value" red="0.5608" green="0.8588" blue="0.1098" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+                                                    </userDefinedRuntimeAttribute>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="angle">
+                                                        <real key="value" value="90" />
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" name="dsChip" />
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="8" id="e2eb-1018-2af9" identifier="ds.reference.e2eb-1018-2af9" />
+                                            <constraint firstItem="a5d1-da3f-7238" firstAttribute="leading" secondItem="f164-f902-1ac6" secondAttribute="leading" id="f0df-2b97-4012" identifier="ds.reference.f0df-2b97-4012" />
+                                            <constraint firstItem="a5d1-da3f-7238" firstAttribute="top" secondItem="f164-f902-1ac6" secondAttribute="top" id="8450-9bc5-0c3f" identifier="ds.reference.8450-9bc5-0c3f" />
+                                            <constraint firstItem="f164-f902-1ac6" firstAttribute="bottom" secondItem="a5d1-da3f-7238" secondAttribute="bottom" id="623c-619c-6167" identifier="ds.reference.623c-619c-6167" />
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="4" />
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                            </stackView>
+                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ee18-d0ca-1cd8" userLabel="stepsStack" opaque="NO" axis="vertical" spacing="10">
+                                <subviews>
+                                    <stackView contentMode="scaleToFill" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="3224-5eb3-24fa" opaque="NO" alignment="center" spacing="10">
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ab3-689c-b17b">
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="8688-47b7-6d64" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="2" />
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
+                                                                <color key="value" red="0.8196" green="0.8196" blue="0.8392" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" alpha="0" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="e4db-e7ff-1536" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                                        <subviews>
+                                                            <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="529f-557e-b6eb" image="checkmark" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="10" weight="bold" />
+                                                                <color key="tintColor" name="dsLime" />
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="13" id="1220-f893-5094" identifier="ds.reference.1220-f893-5094" />
+                                                                    <constraint firstAttribute="height" constant="13" id="5fdb-bf50-dbc6" identifier="ds.reference.5fdb-bf50-dbc6" />
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" name="dsInk" />
+                                                        <constraints>
+                                                            <constraint firstItem="529f-557e-b6eb" firstAttribute="centerX" secondItem="e4db-e7ff-1536" secondAttribute="centerX" id="690a-5174-66cc" identifier="ds.reference.690a-5174-66cc" />
+                                                            <constraint firstItem="529f-557e-b6eb" firstAttribute="centerY" secondItem="e4db-e7ff-1536" secondAttribute="centerY" id="95ae-06f3-8995" identifier="ds.reference.95ae-06f3-8995" />
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" alpha="0" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="6d4a-6224-4dd3">
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="22" id="0dc5-9d2e-e098" identifier="ds.reference.0dc5-9d2e-e098" />
+                                                    <constraint firstAttribute="height" constant="22" id="1741-c0db-69a7" identifier="ds.reference.1741-c0db-69a7" />
+                                                    <constraint firstItem="8688-47b7-6d64" firstAttribute="leading" secondItem="7ab3-689c-b17b" secondAttribute="leading" constant="1" id="210b-26af-8acf" identifier="ds.reference.210b-26af-8acf" />
+                                                    <constraint firstItem="8688-47b7-6d64" firstAttribute="top" secondItem="7ab3-689c-b17b" secondAttribute="top" constant="1" id="b459-f329-f6af" identifier="ds.reference.b459-f329-f6af" />
+                                                    <constraint firstItem="7ab3-689c-b17b" firstAttribute="trailing" secondItem="8688-47b7-6d64" secondAttribute="trailing" constant="1" id="5a5e-237b-eb2f" identifier="ds.reference.5a5e-237b-eb2f" />
+                                                    <constraint firstItem="7ab3-689c-b17b" firstAttribute="bottom" secondItem="8688-47b7-6d64" secondAttribute="bottom" constant="1" id="b983-63fd-60d2" identifier="ds.reference.b983-63fd-60d2" />
+                                                    <constraint firstItem="e4db-e7ff-1536" firstAttribute="leading" secondItem="7ab3-689c-b17b" secondAttribute="leading" id="4b5c-4197-7d3a" identifier="ds.reference.4b5c-4197-7d3a" />
+                                                    <constraint firstItem="e4db-e7ff-1536" firstAttribute="top" secondItem="7ab3-689c-b17b" secondAttribute="top" id="6b04-b73b-9538" identifier="ds.reference.6b04-b73b-9538" />
+                                                    <constraint firstItem="7ab3-689c-b17b" firstAttribute="trailing" secondItem="e4db-e7ff-1536" secondAttribute="trailing" id="da23-175b-5967" identifier="ds.reference.da23-175b-5967" />
+                                                    <constraint firstItem="7ab3-689c-b17b" firstAttribute="bottom" secondItem="e4db-e7ff-1536" secondAttribute="bottom" id="cb8f-915b-d7e4" identifier="ds.reference.cb8f-915b-d7e4" />
+                                                    <constraint firstItem="6d4a-6224-4dd3" firstAttribute="leading" secondItem="7ab3-689c-b17b" secondAttribute="leading" id="db6e-12ee-cec2" identifier="ds.reference.db6e-12ee-cec2" />
+                                                    <constraint firstItem="6d4a-6224-4dd3" firstAttribute="top" secondItem="7ab3-689c-b17b" secondAttribute="top" id="bf6a-3502-bae2" identifier="ds.reference.bf6a-3502-bae2" />
+                                                    <constraint firstItem="7ab3-689c-b17b" firstAttribute="trailing" secondItem="6d4a-6224-4dd3" secondAttribute="trailing" id="6720-15c2-8802" identifier="ds.reference.6720-15c2-8802" />
+                                                    <constraint firstItem="7ab3-689c-b17b" firstAttribute="bottom" secondItem="6d4a-6224-4dd3" secondAttribute="bottom" id="1d02-3573-88a6" identifier="ds.reference.1d02-3573-88a6" />
+                                                </constraints>
+                                            </view>
+                                            <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="dbd2-f4d5-67ef" opaque="NO" text="Analyzing your room" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15" />
+                                                <color key="textColor" name="dsTextTertiary" />
+                                                <nil key="highlightedColor" />
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Analyzing your room" />
+                                                </userDefinedRuntimeAttributes>
+                                                <nil key="backgroundColor" />
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView contentMode="scaleToFill" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="3d16-d032-20d8" opaque="NO" alignment="center" spacing="10">
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="29e2-24d0-f78a">
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="5556-09c5-826e" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="2" />
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
+                                                                <color key="value" red="0.8196" green="0.8196" blue="0.8392" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" alpha="0" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="f03d-aed1-c55c" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                                        <subviews>
+                                                            <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fa39-690d-eec5" image="checkmark" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="10" weight="bold" />
+                                                                <color key="tintColor" name="dsLime" />
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="13" id="13f4-f0a1-c11d" identifier="ds.reference.13f4-f0a1-c11d" />
+                                                                    <constraint firstAttribute="height" constant="13" id="f4d5-5fd1-4c3f" identifier="ds.reference.f4d5-5fd1-4c3f" />
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" name="dsInk" />
+                                                        <constraints>
+                                                            <constraint firstItem="fa39-690d-eec5" firstAttribute="centerX" secondItem="f03d-aed1-c55c" secondAttribute="centerX" id="a7be-f576-0744" identifier="ds.reference.a7be-f576-0744" />
+                                                            <constraint firstItem="fa39-690d-eec5" firstAttribute="centerY" secondItem="f03d-aed1-c55c" secondAttribute="centerY" id="1bf5-e508-c0b5" identifier="ds.reference.1bf5-e508-c0b5" />
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" alpha="0" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="1b83-5aa5-c275">
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="22" id="a9e2-720f-400b" identifier="ds.reference.a9e2-720f-400b" />
+                                                    <constraint firstAttribute="height" constant="22" id="23cd-35ff-9ff8" identifier="ds.reference.23cd-35ff-9ff8" />
+                                                    <constraint firstItem="5556-09c5-826e" firstAttribute="leading" secondItem="29e2-24d0-f78a" secondAttribute="leading" constant="1" id="a794-e99e-1cdb" identifier="ds.reference.a794-e99e-1cdb" />
+                                                    <constraint firstItem="5556-09c5-826e" firstAttribute="top" secondItem="29e2-24d0-f78a" secondAttribute="top" constant="1" id="5bc1-3372-778b" identifier="ds.reference.5bc1-3372-778b" />
+                                                    <constraint firstItem="29e2-24d0-f78a" firstAttribute="trailing" secondItem="5556-09c5-826e" secondAttribute="trailing" constant="1" id="e46b-5c17-b855" identifier="ds.reference.e46b-5c17-b855" />
+                                                    <constraint firstItem="29e2-24d0-f78a" firstAttribute="bottom" secondItem="5556-09c5-826e" secondAttribute="bottom" constant="1" id="1637-cf7a-9e1b" identifier="ds.reference.1637-cf7a-9e1b" />
+                                                    <constraint firstItem="f03d-aed1-c55c" firstAttribute="leading" secondItem="29e2-24d0-f78a" secondAttribute="leading" id="78d7-8d44-cb36" identifier="ds.reference.78d7-8d44-cb36" />
+                                                    <constraint firstItem="f03d-aed1-c55c" firstAttribute="top" secondItem="29e2-24d0-f78a" secondAttribute="top" id="fd70-ff60-af64" identifier="ds.reference.fd70-ff60-af64" />
+                                                    <constraint firstItem="29e2-24d0-f78a" firstAttribute="trailing" secondItem="f03d-aed1-c55c" secondAttribute="trailing" id="84e3-5a11-bd19" identifier="ds.reference.84e3-5a11-bd19" />
+                                                    <constraint firstItem="29e2-24d0-f78a" firstAttribute="bottom" secondItem="f03d-aed1-c55c" secondAttribute="bottom" id="5d92-27aa-7b6c" identifier="ds.reference.5d92-27aa-7b6c" />
+                                                    <constraint firstItem="1b83-5aa5-c275" firstAttribute="leading" secondItem="29e2-24d0-f78a" secondAttribute="leading" id="3104-3b47-9459" identifier="ds.reference.3104-3b47-9459" />
+                                                    <constraint firstItem="1b83-5aa5-c275" firstAttribute="top" secondItem="29e2-24d0-f78a" secondAttribute="top" id="691f-dbf8-3590" identifier="ds.reference.691f-dbf8-3590" />
+                                                    <constraint firstItem="29e2-24d0-f78a" firstAttribute="trailing" secondItem="1b83-5aa5-c275" secondAttribute="trailing" id="4d6b-56ed-e7da" identifier="ds.reference.4d6b-56ed-e7da" />
+                                                    <constraint firstItem="29e2-24d0-f78a" firstAttribute="bottom" secondItem="1b83-5aa5-c275" secondAttribute="bottom" id="dafe-f61f-ceb4" identifier="ds.reference.dafe-f61f-ceb4" />
+                                                </constraints>
+                                            </view>
+                                            <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="ce1c-8d00-baee" opaque="NO" text="Keeping walls &amp; windows" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15" />
+                                                <color key="textColor" name="dsTextTertiary" />
+                                                <nil key="highlightedColor" />
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Keeping walls &amp; windows" />
+                                                </userDefinedRuntimeAttributes>
+                                                <nil key="backgroundColor" />
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView contentMode="scaleToFill" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="8f94-21da-2c08" opaque="NO" alignment="center" spacing="10">
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1360-72b9-d071">
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="9774-82b1-8b31" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="2" />
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
+                                                                <color key="value" red="0.8196" green="0.8196" blue="0.8392" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" alpha="0" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="753e-516a-7b8d" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                                        <subviews>
+                                                            <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2984-1313-98ad" image="checkmark" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="10" weight="bold" />
+                                                                <color key="tintColor" name="dsLime" />
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="13" id="72b9-a5f4-1df1" identifier="ds.reference.72b9-a5f4-1df1" />
+                                                                    <constraint firstAttribute="height" constant="13" id="acd6-1583-0d50" identifier="ds.reference.acd6-1583-0d50" />
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" name="dsInk" />
+                                                        <constraints>
+                                                            <constraint firstItem="2984-1313-98ad" firstAttribute="centerX" secondItem="753e-516a-7b8d" secondAttribute="centerX" id="0443-236a-e71e" identifier="ds.reference.0443-236a-e71e" />
+                                                            <constraint firstItem="2984-1313-98ad" firstAttribute="centerY" secondItem="753e-516a-7b8d" secondAttribute="centerY" id="57b2-24a1-f158" identifier="ds.reference.57b2-24a1-f158" />
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" alpha="0" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="b66a-c173-0671">
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="22" id="f3b3-172f-d67e" identifier="ds.reference.f3b3-172f-d67e" />
+                                                    <constraint firstAttribute="height" constant="22" id="a31c-c27e-8038" identifier="ds.reference.a31c-c27e-8038" />
+                                                    <constraint firstItem="9774-82b1-8b31" firstAttribute="leading" secondItem="1360-72b9-d071" secondAttribute="leading" constant="1" id="b2c5-4397-26e4" identifier="ds.reference.b2c5-4397-26e4" />
+                                                    <constraint firstItem="9774-82b1-8b31" firstAttribute="top" secondItem="1360-72b9-d071" secondAttribute="top" constant="1" id="40f6-2b19-6a8e" identifier="ds.reference.40f6-2b19-6a8e" />
+                                                    <constraint firstItem="1360-72b9-d071" firstAttribute="trailing" secondItem="9774-82b1-8b31" secondAttribute="trailing" constant="1" id="19ec-e05d-4bc6" identifier="ds.reference.19ec-e05d-4bc6" />
+                                                    <constraint firstItem="1360-72b9-d071" firstAttribute="bottom" secondItem="9774-82b1-8b31" secondAttribute="bottom" constant="1" id="6c2c-8676-cae6" identifier="ds.reference.6c2c-8676-cae6" />
+                                                    <constraint firstItem="753e-516a-7b8d" firstAttribute="leading" secondItem="1360-72b9-d071" secondAttribute="leading" id="d0c1-ce9e-051e" identifier="ds.reference.d0c1-ce9e-051e" />
+                                                    <constraint firstItem="753e-516a-7b8d" firstAttribute="top" secondItem="1360-72b9-d071" secondAttribute="top" id="c25f-2794-d796" identifier="ds.reference.c25f-2794-d796" />
+                                                    <constraint firstItem="1360-72b9-d071" firstAttribute="trailing" secondItem="753e-516a-7b8d" secondAttribute="trailing" id="dbe1-654e-2993" identifier="ds.reference.dbe1-654e-2993" />
+                                                    <constraint firstItem="1360-72b9-d071" firstAttribute="bottom" secondItem="753e-516a-7b8d" secondAttribute="bottom" id="0eea-1282-e88b" identifier="ds.reference.0eea-1282-e88b" />
+                                                    <constraint firstItem="b66a-c173-0671" firstAttribute="leading" secondItem="1360-72b9-d071" secondAttribute="leading" id="0892-1ed4-2442" identifier="ds.reference.0892-1ed4-2442" />
+                                                    <constraint firstItem="b66a-c173-0671" firstAttribute="top" secondItem="1360-72b9-d071" secondAttribute="top" id="3992-42cb-3286" identifier="ds.reference.3992-42cb-3286" />
+                                                    <constraint firstItem="1360-72b9-d071" firstAttribute="trailing" secondItem="b66a-c173-0671" secondAttribute="trailing" id="4d11-06e9-1aa8" identifier="ds.reference.4d11-06e9-1aa8" />
+                                                    <constraint firstItem="1360-72b9-d071" firstAttribute="bottom" secondItem="b66a-c173-0671" secondAttribute="bottom" id="3f51-138f-df2c" identifier="ds.reference.3f51-138f-df2c" />
+                                                </constraints>
+                                            </view>
+                                            <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="1067-e649-e7f2" opaque="NO" text="Applying style" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15" />
+                                                <color key="textColor" name="dsTextTertiary" />
+                                                <nil key="highlightedColor" />
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Applying style" />
+                                                </userDefinedRuntimeAttributes>
+                                                <nil key="backgroundColor" />
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView contentMode="scaleToFill" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="66b2-f406-ec21" opaque="NO" alignment="center" spacing="10">
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="52cb-ce96-57a0">
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="abba-5797-6b75" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                <real key="value" value="2" />
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
+                                                                <color key="value" red="0.8196" green="0.8196" blue="0.8392" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" alpha="0" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="d30a-356f-62f7" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                                        <subviews>
+                                                            <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7a8a-5cc7-5492" image="checkmark" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="10" weight="bold" />
+                                                                <color key="tintColor" name="dsLime" />
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="13" id="f68c-1c83-915d" identifier="ds.reference.f68c-1c83-915d" />
+                                                                    <constraint firstAttribute="height" constant="13" id="aee2-46cf-9fbd" identifier="ds.reference.aee2-46cf-9fbd" />
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" name="dsInk" />
+                                                        <constraints>
+                                                            <constraint firstItem="7a8a-5cc7-5492" firstAttribute="centerX" secondItem="d30a-356f-62f7" secondAttribute="centerX" id="8888-6052-26dd" identifier="ds.reference.8888-6052-26dd" />
+                                                            <constraint firstItem="7a8a-5cc7-5492" firstAttribute="centerY" secondItem="d30a-356f-62f7" secondAttribute="centerY" id="9f2f-db79-d834" identifier="ds.reference.9f2f-db79-d834" />
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" alpha="0" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="510b-52c7-13e6">
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="22" id="2517-2e74-dece" identifier="ds.reference.2517-2e74-dece" />
+                                                    <constraint firstAttribute="height" constant="22" id="07ff-6fcb-54ba" identifier="ds.reference.07ff-6fcb-54ba" />
+                                                    <constraint firstItem="abba-5797-6b75" firstAttribute="leading" secondItem="52cb-ce96-57a0" secondAttribute="leading" constant="1" id="7cd9-3e88-22b4" identifier="ds.reference.7cd9-3e88-22b4" />
+                                                    <constraint firstItem="abba-5797-6b75" firstAttribute="top" secondItem="52cb-ce96-57a0" secondAttribute="top" constant="1" id="b3cf-9da5-be67" identifier="ds.reference.b3cf-9da5-be67" />
+                                                    <constraint firstItem="52cb-ce96-57a0" firstAttribute="trailing" secondItem="abba-5797-6b75" secondAttribute="trailing" constant="1" id="0a89-a2d5-1544" identifier="ds.reference.0a89-a2d5-1544" />
+                                                    <constraint firstItem="52cb-ce96-57a0" firstAttribute="bottom" secondItem="abba-5797-6b75" secondAttribute="bottom" constant="1" id="cab6-69e8-afb9" identifier="ds.reference.cab6-69e8-afb9" />
+                                                    <constraint firstItem="d30a-356f-62f7" firstAttribute="leading" secondItem="52cb-ce96-57a0" secondAttribute="leading" id="df21-f9f7-5f51" identifier="ds.reference.df21-f9f7-5f51" />
+                                                    <constraint firstItem="d30a-356f-62f7" firstAttribute="top" secondItem="52cb-ce96-57a0" secondAttribute="top" id="964c-1f23-d80f" identifier="ds.reference.964c-1f23-d80f" />
+                                                    <constraint firstItem="52cb-ce96-57a0" firstAttribute="trailing" secondItem="d30a-356f-62f7" secondAttribute="trailing" id="ae50-6617-9535" identifier="ds.reference.ae50-6617-9535" />
+                                                    <constraint firstItem="52cb-ce96-57a0" firstAttribute="bottom" secondItem="d30a-356f-62f7" secondAttribute="bottom" id="500d-aeb7-615f" identifier="ds.reference.500d-aeb7-615f" />
+                                                    <constraint firstItem="510b-52c7-13e6" firstAttribute="leading" secondItem="52cb-ce96-57a0" secondAttribute="leading" id="5333-818a-60ce" identifier="ds.reference.5333-818a-60ce" />
+                                                    <constraint firstItem="510b-52c7-13e6" firstAttribute="top" secondItem="52cb-ce96-57a0" secondAttribute="top" id="0a3c-2f9a-2fc6" identifier="ds.reference.0a3c-2f9a-2fc6" />
+                                                    <constraint firstItem="52cb-ce96-57a0" firstAttribute="trailing" secondItem="510b-52c7-13e6" secondAttribute="trailing" id="b42e-311e-1899" identifier="ds.reference.b42e-311e-1899" />
+                                                    <constraint firstItem="52cb-ce96-57a0" firstAttribute="bottom" secondItem="510b-52c7-13e6" secondAttribute="bottom" id="2bed-fdd4-aea1" identifier="ds.reference.2bed-fdd4-aea1" />
+                                                </constraints>
+                                            </view>
+                                            <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="bb3f-76f8-d93c" opaque="NO" text="Final touches" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15" />
+                                                <color key="textColor" name="dsTextTertiary" />
+                                                <nil key="highlightedColor" />
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Final touches" />
+                                                </userDefinedRuntimeAttributes>
+                                                <nil key="backgroundColor" />
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b8fa-1e10-e143" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="notifyControl">
+                                <subviews>
+                                    <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="932f-ecc1-1037" opaque="NO" alignment="center" spacing="10" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                        <subviews>
+                                            <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a094-8a41-ba9e" userLabel="notifyIconView" image="bell" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="16" weight="medium" />
+                                                <color key="tintColor" name="dsTextPrimary" />
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="177b-a032-35b3" identifier="ds.reference.177b-a032-35b3" />
+                                                    <constraint firstAttribute="height" constant="20" id="1504-a06c-8daf" identifier="ds.reference.1504-a06c-8daf" />
+                                                </constraints>
+                                            </imageView>
+                                            <label contentMode="scaleToFill" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="750" verticalCompressionResistancePriority="1000" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="79e7-a472-9c48" userLabel="notifyLabel" opaque="NO" text="Notify me when it's ready" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO">
+                                                <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="15" />
+                                                <color key="textColor" name="dsTextPrimary" />
+                                                <nil key="highlightedColor" />
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Notify me when it's ready" />
+                                                </userDefinedRuntimeAttributes>
+                                                <nil key="backgroundColor" />
+                                            </label>
+                                            <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5324-4488-6b07" userLabel="notifyAccessoryView" image="chevron.right" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="13" weight="semibold" />
+                                                <color key="tintColor" name="dsTextTertiary" />
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="18" id="7ade-6b36-5ef8" identifier="ds.reference.7ade-6b36-5ef8" />
+                                                    <constraint firstAttribute="height" constant="18" id="1406-39fd-24ee" identifier="ds.reference.1406-39fd-24ee" />
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <edgeInsets key="layoutMargins" top="0" left="16" bottom="0" right="16" />
+                                    </stackView>
+                                </subviews>
+                                <color key="backgroundColor" name="dsSurface" />
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="56" id="cb0e-e430-29fb" identifier="ds.reference.cb0e-e430-29fb" />
+                                    <constraint firstItem="932f-ecc1-1037" firstAttribute="leading" secondItem="b8fa-1e10-e143" secondAttribute="leading" id="54f6-ea56-ffc5" identifier="ds.reference.54f6-ea56-ffc5" />
+                                    <constraint firstItem="932f-ecc1-1037" firstAttribute="top" secondItem="b8fa-1e10-e143" secondAttribute="top" id="f072-5034-ad71" identifier="ds.reference.f072-5034-ad71" />
+                                    <constraint firstItem="b8fa-1e10-e143" firstAttribute="trailing" secondItem="932f-ecc1-1037" secondAttribute="trailing" id="a795-c3ae-bb45" identifier="ds.reference.a795-c3ae-bb45" />
+                                    <constraint firstItem="b8fa-1e10-e143" firstAttribute="bottom" secondItem="932f-ecc1-1037" secondAttribute="bottom" id="64b4-eb9f-bfb3" identifier="ds.reference.64b4-eb9f-bfb3" />
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="20" />
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapNotify:" />
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="0e9f-c5c8-e621" userLabel="failureView">
+                                <subviews>
+                                    <scrollView contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8434-d0ec-1194" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="YES" alwaysBounceVertical="YES">
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dcb8-4e6e-66da">
+                                                <subviews>
+                                                    <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9900-1438-e2f6" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" userLabel="failurePhotoView" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="200" id="2edf-3629-4a01" identifier="ds.reference.2edf-3629-4a01" />
+                                                            <constraint firstAttribute="height" constant="250" id="7ec6-a6fb-cab2" identifier="ds.reference.7ec6-a6fb-cab2" />
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="28" />
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </imageView>
+                                                    <view contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bbc2-b07a-6cb4" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
+                                                        <color key="backgroundColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.550" colorSpace="custom" customColorSpace="sRGB" />
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="28" />
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d54c-33d9-851c" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="failureIconView">
+                                                        <subviews>
+                                                            <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e89b-27df-c9d6" userLabel="failureIconImageView" image="arrow.clockwise" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24" weight="semibold" />
+                                                                <color key="tintColor" name="dsLime" />
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="30" id="16bb-84a7-30c3" identifier="ds.reference.16bb-84a7-30c3" />
+                                                                    <constraint firstAttribute="height" constant="30" id="9a2c-da8c-ab7c" identifier="ds.reference.9a2c-da8c-ab7c" />
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <color key="backgroundColor" name="dsInk" />
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="64" id="21cd-bbdf-4838" identifier="ds.reference.21cd-bbdf-4838" />
+                                                            <constraint firstAttribute="height" constant="64" id="46aa-5119-e7f1" identifier="ds.reference.46aa-5119-e7f1" />
+                                                            <constraint firstItem="e89b-27df-c9d6" firstAttribute="centerX" secondItem="d54c-33d9-851c" secondAttribute="centerX" id="1455-6e99-30a9" identifier="ds.reference.1455-6e99-30a9" />
+                                                            <constraint firstItem="e89b-27df-c9d6" firstAttribute="centerY" secondItem="d54c-33d9-851c" secondAttribute="centerY" id="8929-ed40-a5c2" identifier="ds.reference.8929-ed40-a5c2" />
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                <real key="value" value="0.2" />
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                <real key="value" value="10" />
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY">
+                                                                <real key="value" value="8" />
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a05e-b5ee-64c6" userLabel="failureTextStack" opaque="NO" axis="vertical" spacing="10">
+                                                        <subviews>
+                                                            <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ea54-3def-eb66" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="failureTitleLabel" opaque="NO" text="Something went wrong" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="26" />
+                                                                <color key="textColor" name="dsTextPrimary" />
+                                                                <nil key="highlightedColor" />
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="letterSpacing">
+                                                                        <real key="value" value="-0.13" />
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Something went wrong" />
+                                                                </userDefinedRuntimeAttributes>
+                                                                <nil key="backgroundColor" />
+                                                            </label>
+                                                            <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a84c-2b4f-65ad" customClass="DSMeasuredLabel" customModule="HomeAI" customModuleProvider="target" userLabel="failureBodyLabel" opaque="NO" text="Our servers hiccuped. Your credit is back — try again, it usually works." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000">
+                                                                <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15" />
+                                                                <color key="textColor" name="dsTextSecondary" />
+                                                                <nil key="highlightedColor" />
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="lineHeightMultiple">
+                                                                        <real key="value" value="1.2" />
+                                                                    </userDefinedRuntimeAttribute>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Our servers hiccuped. Your credit is back — try again, it usually works." />
+                                                                </userDefinedRuntimeAttributes>
+                                                                <nil key="backgroundColor" />
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="0" priority="999" identifier="ds.textHeight" id="TXT-a84c-2b4f-65ad" />
+                                                                </constraints>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="151a-906d-af35" userLabel="failureCodeLabel" opaque="NO" text="Error 502 · ID 7F3A" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                        <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12" />
+                                                        <color key="textColor" name="dsTextTertiary" />
+                                                        <nil key="highlightedColor" />
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Error 502 · ID 7F3A" />
+                                                        </userDefinedRuntimeAttributes>
+                                                        <nil key="backgroundColor" />
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                <constraints>
+                                                    <constraint firstItem="9900-1438-e2f6" firstAttribute="centerX" secondItem="dcb8-4e6e-66da" secondAttribute="centerX" id="3f75-c4ce-51e2" identifier="ds.reference.3f75-c4ce-51e2" />
+                                                    <constraint firstItem="9900-1438-e2f6" firstAttribute="top" secondItem="dcb8-4e6e-66da" secondAttribute="top" constant="81" id="75a7-a012-39df" identifier="ds.reference.75a7-a012-39df" />
+                                                    <constraint firstItem="bbc2-b07a-6cb4" firstAttribute="leading" secondItem="9900-1438-e2f6" secondAttribute="leading" id="ff8c-93a7-c539" identifier="ds.reference.ff8c-93a7-c539" />
+                                                    <constraint firstItem="bbc2-b07a-6cb4" firstAttribute="top" secondItem="9900-1438-e2f6" secondAttribute="top" id="c3b7-2dc5-8b31" identifier="ds.reference.c3b7-2dc5-8b31" />
+                                                    <constraint firstItem="9900-1438-e2f6" firstAttribute="trailing" secondItem="bbc2-b07a-6cb4" secondAttribute="trailing" id="e8b9-fd0a-61d5" identifier="ds.reference.e8b9-fd0a-61d5" />
+                                                    <constraint firstItem="9900-1438-e2f6" firstAttribute="bottom" secondItem="bbc2-b07a-6cb4" secondAttribute="bottom" id="d1b2-2c3c-70a6" identifier="ds.reference.d1b2-2c3c-70a6" />
+                                                    <constraint firstItem="d54c-33d9-851c" firstAttribute="centerX" secondItem="dcb8-4e6e-66da" secondAttribute="centerX" id="ea39-6187-6ab0" identifier="ds.reference.ea39-6187-6ab0" />
+                                                    <constraint firstItem="d54c-33d9-851c" firstAttribute="centerY" secondItem="9900-1438-e2f6" secondAttribute="bottom" id="7789-1d4c-c64c" identifier="ds.reference.7789-1d4c-c64c" />
+                                                    <constraint firstItem="a05e-b5ee-64c6" firstAttribute="leading" secondItem="dcb8-4e6e-66da" secondAttribute="leading" constant="20" id="76dc-dcbe-4743" identifier="ds.reference.76dc-dcbe-4743" />
+                                                    <constraint firstItem="dcb8-4e6e-66da" firstAttribute="trailing" secondItem="a05e-b5ee-64c6" secondAttribute="trailing" constant="20" id="87db-a9f2-252e" identifier="ds.reference.87db-a9f2-252e" />
+                                                    <constraint firstItem="a05e-b5ee-64c6" firstAttribute="top" secondItem="d54c-33d9-851c" secondAttribute="bottom" constant="28" id="384c-4a7d-f283" identifier="ds.reference.384c-4a7d-f283" />
+                                                    <constraint firstItem="151a-906d-af35" firstAttribute="leading" secondItem="dcb8-4e6e-66da" secondAttribute="leading" constant="20" id="a784-fec8-daeb" identifier="ds.reference.a784-fec8-daeb" />
+                                                    <constraint firstItem="dcb8-4e6e-66da" firstAttribute="trailing" secondItem="151a-906d-af35" secondAttribute="trailing" constant="20" id="7589-5ff9-9db2" identifier="ds.reference.7589-5ff9-9db2" />
+                                                    <constraint firstItem="dcb8-4e6e-66da" firstAttribute="bottom" secondItem="151a-906d-af35" secondAttribute="bottom" id="ab9c-260f-9b61" identifier="ds.reference.ab9c-260f-9b61" />
+                                                    <constraint firstItem="151a-906d-af35" firstAttribute="top" secondItem="a05e-b5ee-64c6" secondAttribute="bottom" constant="16" id="7bb1-bc8c-5209" identifier="ds.reference.7bb1-bc8c-5209" />
+                                                </constraints>
+                                            </view>
+                                        </subviews>
+                                        <viewLayoutGuide key="contentLayoutGuide" id="3045-34e4-83e8" />
+                                        <viewLayoutGuide key="frameLayoutGuide" id="2d6b-33d2-2ec7" />
+                                        <constraints>
+                                            <constraint firstItem="dcb8-4e6e-66da" firstAttribute="leading" secondItem="3045-34e4-83e8" secondAttribute="leading" id="68e9-da6f-5e2c" identifier="ds.reference.68e9-da6f-5e2c" />
+                                            <constraint firstItem="dcb8-4e6e-66da" firstAttribute="top" secondItem="3045-34e4-83e8" secondAttribute="top" id="20d1-afd0-d94a" identifier="ds.reference.20d1-afd0-d94a" />
+                                            <constraint firstItem="3045-34e4-83e8" firstAttribute="trailing" secondItem="dcb8-4e6e-66da" secondAttribute="trailing" id="e9dd-5576-e257" identifier="ds.reference.e9dd-5576-e257" />
+                                            <constraint firstItem="3045-34e4-83e8" firstAttribute="bottom" secondItem="dcb8-4e6e-66da" secondAttribute="bottom" id="0408-b49f-0349" identifier="ds.reference.0408-b49f-0349" />
+                                            <constraint firstItem="dcb8-4e6e-66da" firstAttribute="width" secondItem="2d6b-33d2-2ec7" secondAttribute="width" id="2221-1046-f5b5" identifier="ds.reference.2221-1046-f5b5" />
+                                        </constraints>
+                                    </scrollView>
+                                    <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5c11-b41f-f507" userLabel="failureActionsStack" opaque="NO" axis="vertical" spacing="10">
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6b26-a31a-8c3d" customClass="DSPrimaryButton" customModule="HomeAI" customModuleProvider="target" userLabel="failurePrimaryButton">
+                                                <subviews>
+                                                    <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="506c-1b8e-825b" opaque="NO" alignment="center" spacing="8">
+                                                        <subviews>
+                                                            <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13cf-4819-67f8" userLabel="failurePrimaryIcon" image="arrow.clockwise" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" weight="semibold" />
+                                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="20" id="6cdd-8d82-5f09" identifier="ds.reference.6cdd-8d82-5f09" />
+                                                                    <constraint firstAttribute="height" constant="20" id="a020-40bb-b383" identifier="ds.reference.a020-40bb-b383" />
+                                                                </constraints>
+                                                            </imageView>
+                                                            <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ad6-f9fc-d9b8" userLabel="failurePrimaryLabel" opaque="NO" text="Try again" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17" />
+                                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                                <nil key="highlightedColor" />
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Try again" />
+                                                                </userDefinedRuntimeAttributes>
+                                                                <nil key="backgroundColor" />
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="56" id="2b17-0253-253a" identifier="ds.reference.2b17-0253-253a" />
+                                                    <constraint firstItem="506c-1b8e-825b" firstAttribute="centerX" secondItem="6b26-a31a-8c3d" secondAttribute="centerX" id="db1a-caa5-56e0" identifier="ds.reference.db1a-caa5-56e0" />
+                                                    <constraint firstItem="506c-1b8e-825b" firstAttribute="centerY" secondItem="6b26-a31a-8c3d" secondAttribute="centerY" id="7fd4-9e79-d53e" identifier="ds.reference.7fd4-9e79-d53e" />
+                                                    <constraint firstItem="506c-1b8e-825b" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6b26-a31a-8c3d" secondAttribute="leading" constant="16" id="386b-4b3a-4a2d" identifier="ds.reference.386b-4b3a-4a2d" />
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapFailurePrimary:" />
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <button contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c76b-530d-4364" userLabel="failureSecondaryButton" opaque="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation">
+                                                <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="15" />
+                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0" />
+                                                <state key="normal" title="Change photo">
+                                                    <color key="titleColor" name="dsTextPrimary" />
+                                                </state>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="29a9-711d-256a" identifier="ds.reference.29a9-711d-256a" />
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Change photo" />
+                                                </userDefinedRuntimeAttributes>
+                                                <connections>
+                                                    <action selector="didTapFailureSecondary:" destination="451f-7c55-98df" eventType="touchUpInside" id="731c-cd43-60f0" />
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                    </stackView>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aba5-a5a4-497b" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target" userLabel="failureBackButton">
+                                        <subviews>
+                                            <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fcd3-32d0-c97e" image="chevron.left" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17.0" weight="semibold" />
+                                                <color key="tintColor" name="dsTextPrimary" />
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="20" id="3857-d1e4-4232" identifier="ds.reference.3857-d1e4-4232" />
+                                                    <constraint firstAttribute="height" constant="20" id="fdd6-101a-329c" identifier="ds.reference.fdd6-101a-329c" />
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" name="dsGlass" />
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="ea7f-574d-1a23" identifier="ds.reference.ea7f-574d-1a23" />
+                                            <constraint firstAttribute="height" constant="44" id="6339-e3e4-f560" identifier="ds.reference.6339-e3e4-f560" />
+                                            <constraint firstItem="fcd3-32d0-c97e" firstAttribute="centerX" secondItem="aba5-a5a4-497b" secondAttribute="centerX" id="bb09-dd7e-a2aa" identifier="ds.reference.bb09-dd7e-a2aa" />
+                                            <constraint firstItem="fcd3-32d0-c97e" firstAttribute="centerY" secondItem="aba5-a5a4-497b" secondAttribute="centerY" id="15b7-f76a-3075" identifier="ds.reference.15b7-f76a-3075" />
+                                        </constraints>
+                                        <accessibility key="accessibilityConfiguration" label="Back" />
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
+                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                <real key="value" value="0.5" />
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
+                                                <color key="value" name="dsGlassBorder" />
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                <real key="value" value="0.08" />
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                <real key="value" value="7" />
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY">
+                                                <real key="value" value="4" />
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapFailureBack:" />
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" name="dsBackground" />
+                                <constraints>
+                                    <constraint firstItem="aba5-a5a4-497b" firstAttribute="leading" secondItem="0e9f-c5c8-e621" secondAttribute="leading" constant="16" id="4f50-0724-3dfb" identifier="ds.reference.4f50-0724-3dfb" />
+                                    <constraint firstItem="8434-d0ec-1194" firstAttribute="leading" secondItem="0e9f-c5c8-e621" secondAttribute="leading" id="8925-bfd2-edfc" identifier="ds.reference.8925-bfd2-edfc" />
+                                    <constraint firstItem="0e9f-c5c8-e621" firstAttribute="trailing" secondItem="8434-d0ec-1194" secondAttribute="trailing" id="7220-c309-5bc8" identifier="ds.reference.7220-c309-5bc8" />
+                                    <constraint firstItem="5c11-b41f-f507" firstAttribute="top" secondItem="8434-d0ec-1194" secondAttribute="bottom" constant="24" id="47e8-004f-749f" identifier="ds.reference.47e8-004f-749f" />
+                                    <constraint firstItem="5c11-b41f-f507" firstAttribute="leading" secondItem="0e9f-c5c8-e621" secondAttribute="leading" constant="20" id="6d58-eb0b-9c4e" identifier="ds.reference.6d58-eb0b-9c4e" />
+                                    <constraint firstItem="0e9f-c5c8-e621" firstAttribute="trailing" secondItem="5c11-b41f-f507" secondAttribute="trailing" constant="20" id="2a3b-8720-e873" identifier="ds.reference.2a3b-8720-e873" />
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" name="dsBackground" />
+                        <viewLayoutGuide key="safeArea" id="e57e-0730-282d" />
+                        <constraints>
+                            <constraint firstItem="94af-bfcd-18a0" firstAttribute="leading" secondItem="e57e-0730-282d" secondAttribute="leading" constant="16" id="1762-9124-c7b5" identifier="ds.reference.1762-9124-c7b5" />
+                            <constraint firstItem="94af-bfcd-18a0" firstAttribute="top" secondItem="e57e-0730-282d" secondAttribute="top" constant="2" id="1f58-73fd-8ed9" identifier="ds.reference.1f58-73fd-8ed9" />
+                            <constraint firstItem="0b2d-5b3e-5b2f" firstAttribute="centerY" secondItem="94af-bfcd-18a0" secondAttribute="centerY" id="7310-ff19-6284" identifier="ds.reference.7310-ff19-6284" />
+                            <constraint firstItem="0b2d-5b3e-5b2f" firstAttribute="centerX" secondItem="e57e-0730-282d" secondAttribute="centerX" id="e8c8-b952-c94b" identifier="ds.reference.e8c8-b952-c94b" />
+                            <constraint firstItem="c501-d555-0596" firstAttribute="leading" secondItem="e57e-0730-282d" secondAttribute="leading" constant="20" id="12bf-c64c-a75c" identifier="ds.reference.12bf-c64c-a75c" />
+                            <constraint firstItem="e57e-0730-282d" firstAttribute="trailing" secondItem="c501-d555-0596" secondAttribute="trailing" constant="20" id="3a1c-39d0-3779" identifier="ds.reference.3a1c-39d0-3779" />
+                            <constraint firstItem="c501-d555-0596" firstAttribute="top" secondItem="94af-bfcd-18a0" secondAttribute="bottom" constant="6" id="2dce-c63e-8106" identifier="ds.reference.2dce-c63e-8106" />
+                            <constraint firstItem="c501-d555-0596" firstAttribute="height" relation="lessThanOrEqual" secondItem="d9da-b0dd-059f" secondAttribute="height" multiplier="0.49" id="8bba-f661-e63d" identifier="ds.reference.8bba-f661-e63d" />
+                            <constraint firstItem="55c6-0e3f-1d9c" firstAttribute="leading" secondItem="e57e-0730-282d" secondAttribute="leading" constant="20" id="3993-403f-890e" identifier="ds.reference.3993-403f-890e" />
+                            <constraint firstItem="e57e-0730-282d" firstAttribute="trailing" secondItem="55c6-0e3f-1d9c" secondAttribute="trailing" constant="20" id="8143-efec-ffb6" identifier="ds.reference.8143-efec-ffb6" />
+                            <constraint firstItem="55c6-0e3f-1d9c" firstAttribute="top" secondItem="c501-d555-0596" secondAttribute="bottom" constant="20" id="df2b-cb64-87c2" identifier="ds.reference.df2b-cb64-87c2" />
+                            <constraint firstItem="ee18-d0ca-1cd8" firstAttribute="leading" secondItem="e57e-0730-282d" secondAttribute="leading" constant="20" id="cd96-b61e-b804" identifier="ds.reference.cd96-b61e-b804" />
+                            <constraint firstItem="e57e-0730-282d" firstAttribute="trailing" secondItem="ee18-d0ca-1cd8" secondAttribute="trailing" constant="20" id="fadd-b1b2-78da" identifier="ds.reference.fadd-b1b2-78da" />
+                            <constraint firstItem="ee18-d0ca-1cd8" firstAttribute="top" secondItem="55c6-0e3f-1d9c" secondAttribute="bottom" constant="16" id="812e-d193-fde6" identifier="ds.reference.812e-d193-fde6" />
+                            <constraint firstItem="b8fa-1e10-e143" firstAttribute="leading" secondItem="e57e-0730-282d" secondAttribute="leading" constant="20" id="3a89-419b-054b" identifier="ds.reference.3a89-419b-054b" />
+                            <constraint firstItem="e57e-0730-282d" firstAttribute="trailing" secondItem="b8fa-1e10-e143" secondAttribute="trailing" constant="20" id="be77-734b-c47b" identifier="ds.reference.be77-734b-c47b" />
+                            <constraint firstItem="e57e-0730-282d" firstAttribute="bottom" secondItem="b8fa-1e10-e143" secondAttribute="bottom" id="fec1-a5d9-5bcd" identifier="ds.reference.fec1-a5d9-5bcd" />
+                            <constraint firstItem="b8fa-1e10-e143" firstAttribute="top" relation="greaterThanOrEqual" secondItem="ee18-d0ca-1cd8" secondAttribute="bottom" constant="12" id="e28f-c5da-40ab" identifier="ds.reference.e28f-c5da-40ab" />
+                            <constraint firstItem="0e9f-c5c8-e621" firstAttribute="leading" secondItem="e57e-0730-282d" secondAttribute="leading" id="6202-7e6e-46ca" identifier="ds.reference.6202-7e6e-46ca" />
+                            <constraint firstItem="0e9f-c5c8-e621" firstAttribute="top" secondItem="d9da-b0dd-059f" secondAttribute="top" id="18be-4dbb-f3c5" identifier="ds.reference.18be-4dbb-f3c5" />
+                            <constraint firstItem="e57e-0730-282d" firstAttribute="trailing" secondItem="0e9f-c5c8-e621" secondAttribute="trailing" id="658e-92e6-74ce" identifier="ds.reference.658e-92e6-74ce" />
+                            <constraint firstItem="d9da-b0dd-059f" firstAttribute="bottom" secondItem="0e9f-c5c8-e621" secondAttribute="bottom" id="9885-df69-a03d" identifier="ds.reference.9885-df69-a03d" />
+                            <constraint firstItem="aba5-a5a4-497b" firstAttribute="top" secondItem="e57e-0730-282d" secondAttribute="top" constant="2" id="4bb7-2902-7890" identifier="ds.reference.4bb7-2902-7890" />
+                            <constraint firstItem="8434-d0ec-1194" firstAttribute="top" secondItem="e57e-0730-282d" secondAttribute="top" id="6af8-22f5-f7bc" identifier="ds.reference.6af8-22f5-f7bc" />
+                            <constraint firstItem="e57e-0730-282d" firstAttribute="bottom" secondItem="5c11-b41f-f507" secondAttribute="bottom" id="0f4f-dbeb-ab99" identifier="ds.reference.0f4f-dbeb-ab99" />
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="collapseButton" destination="94af-bfcd-18a0" id="a105-417b-1977" />
+                        <outlet property="navTitleLabel" destination="0b2d-5b3e-5b2f" id="8547-ad5b-92db" />
+                        <outlet property="photoCardView" destination="c501-d555-0596" id="1afb-e1ce-766a" />
+                        <outlet property="photoClipView" destination="cb1e-e48a-c52d" id="8fc5-cbc4-39d3" />
+                        <outlet property="photoImageView" destination="8881-7493-c22b" id="df18-a20f-556f" />
+                        <outlet property="scannedAreaView" destination="e1b8-4499-d6b0" id="f204-dbaf-6418" />
+                        <outlet property="scanLineView" destination="a799-365f-88ce" id="b5b4-c602-569f" />
+                        <outlet property="scanEdgeView" destination="0429-3da7-b21c" id="aa7e-ab66-15d7" />
+                        <outlet property="pointsView" destination="b2eb-d3f1-c2e8" id="ebd2-362e-2dd8" />
+                        <outlet property="progressStack" destination="55c6-0e3f-1d9c" id="7459-4c31-d91c" />
+                        <outlet property="percentLabel" destination="1d13-af35-a4bd" id="2bd5-fe79-fff5" />
+                        <outlet property="etaLabel" destination="e238-692e-2530" id="58bc-4cb0-2f27" />
+                        <outlet property="trackView" destination="f164-f902-1ac6" id="26bc-2ff3-76e6" />
+                        <outlet property="fillView" destination="a5d1-da3f-7238" id="5812-8d57-9e92" />
+                        <outlet property="stepsStack" destination="ee18-d0ca-1cd8" id="4eb6-d7e7-6c56" />
+                        <outletCollection property="stepRows" destination="3224-5eb3-24fa" collectionClass="NSMutableArray" id="fd98-eed3-a780" />
+                        <outletCollection property="stepRings" destination="8688-47b7-6d64" collectionClass="NSMutableArray" id="f93f-c567-9334" />
+                        <outletCollection property="stepDoneViews" destination="e4db-e7ff-1536" collectionClass="NSMutableArray" id="fb56-5279-94b9" />
+                        <outletCollection property="stepSpinnerViews" destination="6d4a-6224-4dd3" collectionClass="NSMutableArray" id="eed6-4d46-9516" />
+                        <outletCollection property="stepLabels" destination="dbd2-f4d5-67ef" collectionClass="NSMutableArray" id="820a-08ab-e1e5" />
+                        <outletCollection property="stepRows" destination="3d16-d032-20d8" collectionClass="NSMutableArray" id="43d3-f06f-1aa0" />
+                        <outletCollection property="stepRings" destination="5556-09c5-826e" collectionClass="NSMutableArray" id="0d3a-16a8-9937" />
+                        <outletCollection property="stepDoneViews" destination="f03d-aed1-c55c" collectionClass="NSMutableArray" id="2298-2e7b-5d5c" />
+                        <outletCollection property="stepSpinnerViews" destination="1b83-5aa5-c275" collectionClass="NSMutableArray" id="cb4a-0f31-be35" />
+                        <outletCollection property="stepLabels" destination="ce1c-8d00-baee" collectionClass="NSMutableArray" id="4968-ff5d-fdb7" />
+                        <outletCollection property="stepRows" destination="8f94-21da-2c08" collectionClass="NSMutableArray" id="d896-bec7-82f7" />
+                        <outletCollection property="stepRings" destination="9774-82b1-8b31" collectionClass="NSMutableArray" id="3f74-89ea-0f6a" />
+                        <outletCollection property="stepDoneViews" destination="753e-516a-7b8d" collectionClass="NSMutableArray" id="9c09-396b-a5eb" />
+                        <outletCollection property="stepSpinnerViews" destination="b66a-c173-0671" collectionClass="NSMutableArray" id="6853-ac5d-22b2" />
+                        <outletCollection property="stepLabels" destination="1067-e649-e7f2" collectionClass="NSMutableArray" id="5751-4375-f770" />
+                        <outletCollection property="stepRows" destination="66b2-f406-ec21" collectionClass="NSMutableArray" id="c650-8a34-5613" />
+                        <outletCollection property="stepRings" destination="abba-5797-6b75" collectionClass="NSMutableArray" id="0200-1b5c-da25" />
+                        <outletCollection property="stepDoneViews" destination="d30a-356f-62f7" collectionClass="NSMutableArray" id="24a7-f02b-aa54" />
+                        <outletCollection property="stepSpinnerViews" destination="510b-52c7-13e6" collectionClass="NSMutableArray" id="dfbe-ca24-e26e" />
+                        <outletCollection property="stepLabels" destination="bb3f-76f8-d93c" collectionClass="NSMutableArray" id="28bf-3a62-a044" />
+                        <outlet property="notifyControl" destination="b8fa-1e10-e143" id="4f99-314f-909b" />
+                        <outlet property="notifyIconView" destination="a094-8a41-ba9e" id="c59f-83bc-98bc" />
+                        <outlet property="notifyLabel" destination="79e7-a472-9c48" id="2e37-e3e3-3b81" />
+                        <outlet property="notifyAccessoryView" destination="5324-4488-6b07" id="82f7-fa2d-b07d" />
+                        <outlet property="failureView" destination="0e9f-c5c8-e621" id="7651-4a7d-eb0d" />
+                        <outlet property="failurePhotoView" destination="9900-1438-e2f6" id="d913-71fd-72c1" />
+                        <outlet property="failureIconView" destination="d54c-33d9-851c" id="07f1-fb18-f709" />
+                        <outlet property="failureIconImageView" destination="e89b-27df-c9d6" id="8be5-7df4-8f12" />
+                        <outlet property="failureTextStack" destination="a05e-b5ee-64c6" id="3a83-c26e-f23a" />
+                        <outlet property="failureTitleLabel" destination="ea54-3def-eb66" id="0f67-775c-d12d" />
+                        <outlet property="failureBodyLabel" destination="a84c-2b4f-65ad" id="c535-64a4-0cb4" />
+                        <outlet property="failureCodeLabel" destination="151a-906d-af35" id="2b03-5512-7f96" />
+                        <outlet property="failureActionsStack" destination="5c11-b41f-f507" id="5ab4-ef57-26d4" />
+                        <outlet property="failurePrimaryButton" destination="6b26-a31a-8c3d" id="3d44-510e-d7a4" />
+                        <outlet property="failurePrimaryIcon" destination="13cf-4819-67f8" id="70bd-ed79-b1fc" />
+                        <outlet property="failurePrimaryLabel" destination="3ad6-f9fc-d9b8" id="f8dc-35df-e026" />
+                        <outlet property="failureSecondaryButton" destination="c76b-530d-4364" id="d7d6-9360-c01c" />
+                        <outlet property="failureBackButton" destination="aba5-a5a4-497b" id="b8d4-c25b-1568" />
+                        <outlet property="scannedHeightConstraint" destination="9bf7-4a88-c55f" id="abdb-c873-7fef" />
+                        <outlet property="fillWidthConstraint" destination="8ef0-a120-a5ee" id="7b52-4eda-9765" />
+                        <outletCollection property="animatedLayoutConstraints" destination="0d9c-b97d-a135" id="f3e5-6b3b-d4fb" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="9c08-514a-1926" id="6fe6-a0e7-2800" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="fe1e-f528-4a6e" id="ba05-a457-550f" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="630f-de79-91d2" id="3eee-d348-c447" collectionClass="NSMutableArray" />
+                        <outletCollection property="scanParticles" destination="62dd-80e7-30a2" id="5ebb-31f3-7154" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="959c-1866-41c3" id="cfd1-18fc-7591" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="9cf0-84e5-6c35" id="4525-2c2b-c355" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="a153-500a-e669" id="9f08-deba-c38d" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="68df-6b5e-1805" id="44b3-78eb-987d" collectionClass="NSMutableArray" />
+                        <outletCollection property="scanParticles" destination="9bf9-168e-405a" id="c275-320c-1b40" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="42d7-590d-f37e" id="3a82-47bf-5b3a" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="daa9-0129-4ae9" id="5656-2f5d-8f6c" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="3393-0c88-9bb8" id="21da-49e3-cc26" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="7864-d098-4e6f" id="796d-ec7c-62da" collectionClass="NSMutableArray" />
+                        <outletCollection property="scanParticles" destination="3428-6da5-b4d6" id="17f7-49f5-1487" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="2ffb-f114-5718" id="ae01-a2ce-9e56" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="d517-c974-512c" id="3511-ba80-13fb" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="5a7d-b8bd-cbe4" id="5f4e-d956-b779" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="4747-48aa-b406" id="97f8-346e-e194" collectionClass="NSMutableArray" />
+                        <outletCollection property="scanParticles" destination="27cc-7dcf-372a" id="aa9e-c706-0eb1" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="a649-9056-ab2c" id="0e62-09bc-76a3" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="b92c-af8c-9a83" id="b62e-d78b-c7b2" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="cc04-dbf7-dc68" id="9468-ed89-ffcf" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="57ff-58e0-9819" id="047a-6033-6647" collectionClass="NSMutableArray" />
+                        <outletCollection property="scanParticles" destination="b6dd-e8f0-885c" id="7c2d-6052-7ba0" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="4bc9-9f3f-e7c4" id="b021-abbb-ef75" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="3d5e-63cf-435b" id="d65c-cf7e-5bf4" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="52bd-f065-92fb" id="724f-5571-9e3c" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="62d3-d261-7f2f" id="8149-99d6-341d" collectionClass="NSMutableArray" />
+                        <outletCollection property="scanParticles" destination="b3bb-fa06-0da2" id="1a73-825c-0a59" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="7200-1658-a36a" id="eb24-caeb-843b" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="d2b5-35ec-269e" id="fa47-eb46-3ee2" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="615c-f683-c23a" id="71ae-703b-1cbe" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="279b-ad8a-1522" id="0462-6502-04ae" collectionClass="NSMutableArray" />
+                        <outletCollection property="scanParticles" destination="f5c4-2232-aa0b" id="4d39-3eb1-82ac" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="da2b-078e-3e94" id="d1b0-6148-c5d9" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="a0af-9346-af26" id="92cb-4288-c399" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="df5f-8fd0-c2fa" id="d059-247a-8e29" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="076d-60b9-7e43" id="695d-c916-2b20" collectionClass="NSMutableArray" />
+                        <outletCollection property="scanParticles" destination="b3ac-6fea-20c7" id="8c5b-5180-6da5" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="eb52-b171-bce1" id="273d-c60b-fa12" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="d127-9b51-037e" id="84cf-5916-4bb6" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="2943-f969-e220" id="c57f-bec3-1196" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="05fe-8852-0708" id="1cfa-6ac6-0e85" collectionClass="NSMutableArray" />
+                        <outletCollection property="scanParticles" destination="1ad7-f0d9-b413" id="7c75-20d8-d3ab" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="e464-1645-9b23" id="7140-dfa0-cb78" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="f4f0-0347-7998" id="8340-17bb-efb5" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="285d-6b3a-cb63" id="77a1-7b64-9812" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="e512-a50c-43d0" id="3d40-5e64-cb31" collectionClass="NSMutableArray" />
+                        <outletCollection property="scanParticles" destination="3ea6-a106-7b00" id="460b-b485-7c6a" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="d278-d099-a58c" id="6fb1-7457-2a9e" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="f036-9aa1-0fef" id="0791-cd95-0325" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="96cf-4425-e6fa" id="4883-94c3-c0b1" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="4ad7-d7f2-8eec" id="7b70-6af4-0ba1" collectionClass="NSMutableArray" />
+                        <outletCollection property="scanParticles" destination="b76c-ec8f-a965" id="0eca-b1a5-3e7d" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="acdf-9b7c-6ed6" id="12fc-f166-2a09" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="761b-7965-d177" id="c152-bddd-3a5e" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="a7d9-268d-0d7e" id="eef7-69e6-07aa" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="2f75-04b6-a1b0" id="0827-843f-26a2" collectionClass="NSMutableArray" />
+                        <outletCollection property="scanParticles" destination="3dd4-548b-b257" id="bb4a-98dc-088d" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="8baf-2ccb-d2cf" id="6871-8a5c-02ed" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="b381-ba06-f9ee" id="7cec-feef-dd3a" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="2970-6789-aa09" id="fa3b-ef87-d1c2" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="eb82-f338-fbae" id="e04a-62db-43da" collectionClass="NSMutableArray" />
+                        <outletCollection property="scanParticles" destination="dda6-5c05-7672" id="b1b0-6c27-a731" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="282f-bf7c-9a35" id="3c4b-2b24-05f9" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="0ce3-b688-8c18" id="4363-07e9-7391" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="448e-0e25-1bf5" id="763d-dd19-28d8" collectionClass="NSMutableArray" />
+                        <outletCollection property="animatedLayoutConstraints" destination="2b65-e165-ad7a" id="aa17-71d2-6c71" collectionClass="NSMutableArray" />
+                        <outletCollection property="scanParticles" destination="5806-493a-6bc9" id="dcb0-123a-ef3a" collectionClass="NSMutableArray" />
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ccb7-b14e-4adf" customClass="UIResponder" sceneMemberID="firstResponder" />
+            </objects>
+            <point key="canvasLocation" x="0" y="0" />
+        </scene>
+        <scene sceneID="27d1-a19f-f314">
+            <objects>
+                <viewController storyboardIdentifier="NotifySheetViewController" id="be8f-5d74-5bb7" customClass="NotifySheetViewController" customModule="HomeAI" customModuleProvider="target" sceneMemberID="viewController">
+                    <view contentMode="scaleToFill" id="4ceb-b6c0-8022" userLabel="Root" key="view" customClass="DSAdaptiveRootView" customModule="HomeAI" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="400" />
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
+                        <subviews>
+                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d3af-1011-35ce" opaque="NO" axis="vertical" spacing="14">
+                                <subviews>
+                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ea32-3e16-0072" userLabel="titleLabel" opaque="NO" text="Get one ping when it's ready?" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                        <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="24" />
+                                        <color key="textColor" name="dsTextPrimary" />
+                                        <nil key="highlightedColor" />
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Get one ping when it's ready?" />
+                                        </userDefinedRuntimeAttributes>
+                                        <nil key="backgroundColor" />
+                                    </label>
+                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f352-8b80-555c" userLabel="subtitleLabel" opaque="NO" text="We'll send a single notification for this design. No spam, ever." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                        <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15" />
+                                        <color key="textColor" name="dsTextSecondary" />
+                                        <nil key="highlightedColor" />
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="We'll send a single notification for this design. No spam, ever." />
+                                        </userDefinedRuntimeAttributes>
+                                        <nil key="backgroundColor" />
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b938-570a-a7d7" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="previewView">
+                                        <subviews>
+                                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eaf8-47ad-29fd" opaque="NO" alignment="center" spacing="10" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                <subviews>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2888-0da2-974b" customClass="DSGradientView" customModule="HomeAI" customModuleProvider="target">
+                                                        <subviews>
+                                                            <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c680-7bbc-16ff" image="house.lodge" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="16" weight="semibold" />
+                                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                                <constraints>
+                                                                    <constraint firstAttribute="width" constant="20" id="6006-f999-5dab" identifier="ds.reference.6006-f999-5dab" />
+                                                                    <constraint firstAttribute="height" constant="20" id="e77b-31be-c922" identifier="ds.reference.e77b-31be-c922" />
+                                                                </constraints>
+                                                            </imageView>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="38" id="6365-0e31-4443" identifier="ds.reference.6365-0e31-4443" />
+                                                            <constraint firstAttribute="height" constant="38" id="8f5e-b982-1514" identifier="ds.reference.8f5e-b982-1514" />
+                                                            <constraint firstItem="c680-7bbc-16ff" firstAttribute="centerX" secondItem="2888-0da2-974b" secondAttribute="centerX" id="cea2-1473-6922" identifier="ds.reference.cea2-1473-6922" />
+                                                            <constraint firstItem="c680-7bbc-16ff" firstAttribute="centerY" secondItem="2888-0da2-974b" secondAttribute="centerY" id="feab-428d-6b0d" identifier="ds.reference.feab-428d-6b0d" />
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="9" />
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                                                <color key="value" red="0.7216" green="0.9647" blue="0.3333" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                                                <color key="value" red="0.5608" green="0.8588" blue="0.1098" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="angle">
+                                                                <real key="value" value="180" />
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
+                                                    <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eeda-3aeb-0207" opaque="NO" axis="vertical" spacing="2">
+                                                        <subviews>
+                                                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="64dd-a6e0-d3c8" opaque="NO" spacing="6">
+                                                                <subviews>
+                                                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1849-5c27-86a5" opaque="NO" text="Rehomely" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14" />
+                                                                        <color key="textColor" name="dsTextPrimary" />
+                                                                        <nil key="highlightedColor" />
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Rehomely" />
+                                                                        </userDefinedRuntimeAttributes>
+                                                                        <nil key="backgroundColor" />
+                                                                    </label>
+                                                                    <label contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="251" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3c62-7fac-a268" userLabel="nowLabel" opaque="NO" text="now" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO">
+                                                                        <fontDescription key="fontDescription" type="system" weight="regular" pointSize="13" />
+                                                                        <color key="textColor" name="dsTextTertiary" />
+                                                                        <nil key="highlightedColor" />
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="now" />
+                                                                        </userDefinedRuntimeAttributes>
+                                                                        <nil key="backgroundColor" />
+                                                                    </label>
+                                                                </subviews>
+                                                            </stackView>
+                                                            <label contentMode="scaleToFill" horizontalCompressionResistancePriority="750" verticalCompressionResistancePriority="1000" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="03c4-3526-4268" userLabel="messageLabel" opaque="NO" text="Your living room is ready ✨" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251" customClass="DSMeasuredLabel" customModule="HomeAI" customModuleProvider="target">
+                                                                <fontDescription key="fontDescription" type="system" weight="regular" pointSize="14" />
+                                                                <color key="textColor" name="dsTextPrimary" />
+                                                                <nil key="highlightedColor" />
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Your living room is ready ✨" />
+                                                                </userDefinedRuntimeAttributes>
+                                                                <nil key="backgroundColor" />
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="0" priority="999" identifier="ds.textHeight" id="TXT-03c4-3526-4268" />
+                                                                </constraints>
+                                                            </label>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cc90-f686-aa23" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" userLabel="thumbImageView" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="38" id="4630-47c2-bf92" identifier="ds.reference.4630-47c2-bf92" />
+                                                            <constraint firstAttribute="height" constant="38" id="f269-45ef-2803" identifier="ds.reference.f269-45ef-2803" />
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="8" />
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </imageView>
+                                                </subviews>
+                                                <edgeInsets key="layoutMargins" top="12" left="12" bottom="12" right="12" />
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" name="dsChip" />
+                                        <constraints>
+                                            <constraint firstItem="eaf8-47ad-29fd" firstAttribute="leading" secondItem="b938-570a-a7d7" secondAttribute="leading" id="8f72-29aa-c12b" identifier="ds.reference.8f72-29aa-c12b" />
+                                            <constraint firstItem="eaf8-47ad-29fd" firstAttribute="top" secondItem="b938-570a-a7d7" secondAttribute="top" id="0862-0ace-e84c" identifier="ds.reference.0862-0ace-e84c" />
+                                            <constraint firstItem="b938-570a-a7d7" firstAttribute="trailing" secondItem="eaf8-47ad-29fd" secondAttribute="trailing" id="a25f-9a2a-cbae" identifier="ds.reference.a25f-9a2a-cbae" />
+                                            <constraint firstItem="b938-570a-a7d7" firstAttribute="bottom" secondItem="eaf8-47ad-29fd" secondAttribute="bottom" id="696d-cdc3-08b1" identifier="ds.reference.696d-cdc3-08b1" />
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="22" />
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fe60-6bac-dfe6" customClass="DSPrimaryButton" customModule="HomeAI" customModuleProvider="target" userLabel="turnOnButton">
+                                        <subviews>
+                                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3060-7733-1acd" opaque="NO" alignment="center" spacing="8">
+                                                <subviews>
+                                                    <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a30a-4df7-e7fa" userLabel="bellIconView" image="bell" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" weight="semibold" />
+                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="20" id="30c2-2ec7-3c76" identifier="ds.reference.30c2-2ec7-3c76" />
+                                                            <constraint firstAttribute="height" constant="20" id="4131-881f-09ec" identifier="ds.reference.4131-881f-09ec" />
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="93f7-64b3-6521" userLabel="turnOnLabel" opaque="NO" text="Turn on notifications" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                        <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17" />
+                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                        <nil key="highlightedColor" />
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Turn on notifications" />
+                                                        </userDefinedRuntimeAttributes>
+                                                        <nil key="backgroundColor" />
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="fe0b-07d9-702c" identifier="ds.reference.fe0b-07d9-702c" />
+                                            <constraint firstItem="3060-7733-1acd" firstAttribute="centerX" secondItem="fe60-6bac-dfe6" secondAttribute="centerX" id="5f37-8fa0-92aa" identifier="ds.reference.5f37-8fa0-92aa" />
+                                            <constraint firstItem="3060-7733-1acd" firstAttribute="centerY" secondItem="fe60-6bac-dfe6" secondAttribute="centerY" id="6f3a-2218-90f7" identifier="ds.reference.6f3a-2218-90f7" />
+                                            <constraint firstItem="3060-7733-1acd" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="fe60-6bac-dfe6" secondAttribute="leading" constant="16" id="2e1d-6220-effb" identifier="ds.reference.2e1d-6220-effb" />
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapTurnOn:" />
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <button contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="96fa-775f-77e5" userLabel="notNowButton" opaque="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation">
+                                        <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="15" />
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0" />
+                                        <state key="normal" title="Not now">
+                                            <color key="titleColor" name="dsTextPrimary" />
+                                        </state>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="04f0-296b-2902" identifier="ds.reference.04f0-296b-2902" />
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Not now" />
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <action selector="didTapNotNow:" destination="be8f-5d74-5bb7" eventType="touchUpInside" id="4451-adb6-2247" />
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" name="dsBackground" />
+                        <viewLayoutGuide key="safeArea" id="1a7e-ab56-713f" />
+                        <constraints>
+                            <constraint firstItem="d3af-1011-35ce" firstAttribute="leading" secondItem="1a7e-ab56-713f" secondAttribute="leading" constant="20" id="4826-4977-bebd" identifier="ds.reference.4826-4977-bebd" />
+                            <constraint firstItem="1a7e-ab56-713f" firstAttribute="trailing" secondItem="d3af-1011-35ce" secondAttribute="trailing" constant="20" id="85ca-3bf2-6729" identifier="ds.reference.85ca-3bf2-6729" />
+                            <constraint firstItem="d3af-1011-35ce" firstAttribute="top" secondItem="4ceb-b6c0-8022" secondAttribute="top" constant="30" id="92c5-7f07-b89f" identifier="ds.reference.92c5-7f07-b89f" />
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="titleLabel" destination="ea32-3e16-0072" id="6e56-b20a-0ec6" />
+                        <outlet property="subtitleLabel" destination="f352-8b80-555c" id="92d4-0c5c-cac4" />
+                        <outlet property="previewView" destination="b938-570a-a7d7" id="8029-2371-7315" />
+                        <outlet property="nowLabel" destination="3c62-7fac-a268" id="9ff8-ebd8-7f54" />
+                        <outlet property="messageLabel" destination="03c4-3526-4268" id="bcf6-f0d4-a835" />
+                        <outlet property="thumbImageView" destination="cc90-f686-aa23" id="b5c2-2ad2-c518" />
+                        <outlet property="turnOnButton" destination="fe60-6bac-dfe6" id="f0ae-4540-ce9e" />
+                        <outlet property="bellIconView" destination="a30a-4df7-e7fa" id="b3f5-b6b6-a1c7" />
+                        <outlet property="turnOnLabel" destination="93f7-64b3-6521" id="67c3-9ada-4593" />
+                        <outlet property="notNowButton" destination="96fa-775f-77e5" id="93fa-7eb2-a974" />
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cec1-b057-35c6" customClass="UIResponder" sceneMemberID="firstResponder" />
+            </objects>
+            <point key="canvasLocation" x="600" y="0" />
+        </scene>
+    </scenes>
+    <resources>
+        <image name="sparkles" catalog="system" width="128" height="128" />
+        <namedColor name="dsCard">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <namedColor name="dsDivider">
+            <color red="0.9216" green="0.9216" blue="0.9216" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <namedColor name="dsSurface">
+            <color red="0.9686" green="0.9686" blue="0.9686" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <namedColor name="dsTextPrimary">
+            <color red="0.0000" green="0.0000" blue="0.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <namedColor name="dsTextTertiary">
+            <color red="0.5569" green="0.5569" blue="0.5765" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="plus" catalog="system" width="128" height="128" />
+        <namedColor name="dsBackground">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <namedColor name="dsLimeSoft">
+            <color red="0.9333" green="1.0000" blue="0.8392" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="clay_assistant" width="64" height="64" />
+        <namedColor name="dsChip">
+            <color red="0.9490" green="0.9490" blue="0.9490" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="xmark" catalog="system" width="128" height="128" />
+        <namedColor name="dsGlass">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="0.750" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <namedColor name="dsGlassBorder">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="0.900" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="exclamationmark.circle.fill" catalog="system" width="128" height="128" />
+        <namedColor name="dsLimeBottom">
+            <color red="0.6078" green="0.8902" blue="0.1490" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <namedColor name="dsLimeTop">
+            <color red="0.7216" green="0.9647" blue="0.3333" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="camera" catalog="system" width="128" height="128" />
+        <image name="chevron.right" catalog="system" width="128" height="128" />
+        <image name="folder" catalog="system" width="128" height="128" />
+        <image name="photo.on.rectangle" catalog="system" width="128" height="128" />
+        <namedColor name="dsTextSecondary">
+            <color red="0.2510" green="0.2510" blue="0.2510" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="arrow.right" catalog="system" width="128" height="128" />
+        <image name="arrow.up" catalog="system" width="128" height="128" />
+        <image name="chevron.left" catalog="system" width="128" height="128" />
+        <image name="clock.arrow.circlepath" catalog="system" width="128" height="128" />
+        <image name="lightbulb" catalog="system" width="128" height="128" />
+        <image name="mic" catalog="system" width="128" height="128" />
+        <image name="paintpalette" catalog="system" width="128" height="128" />
+        <image name="ruler" catalog="system" width="128" height="128" />
+        <image name="sofa" catalog="system" width="128" height="128" />
+        <namedColor name="dsBackgroundClear">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="0.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <namedColor name="dsLink">
+            <color red="0.2431" green="0.4784" blue="0.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="clay_flooring" width="64" height="64" />
+        <image name="clay_floorplan" width="64" height="64" />
+        <image name="clay_furnish" width="64" height="64" />
+        <image name="clay_paint" width="64" height="64" />
+        <image name="clay_rearrange" width="64" height="64" />
+        <image name="clay_remove" width="64" height="64" />
+        <image name="clay_replace" width="64" height="64" />
+        <image name="ds_compare_handle" width="64" height="64" />
+        <image name="home_card_exterior" width="64" height="64" />
+        <image name="home_card_garden" width="64" height="64" />
+        <image name="home_card_reference" width="64" height="64" />
+        <image name="home_hero_after" width="64" height="64" />
+        <image name="home_hero_before" width="64" height="64" />
+        <image name="crown.fill" catalog="system" width="128" height="128" />
+        <image name="house" catalog="system" width="128" height="128" />
+        <image name="tree" catalog="system" width="128" height="128" />
+        <image name="wifi.slash" catalog="system" width="128" height="128" />
+        <namedColor name="dsCardGreenEnd">
+            <color red="0.9137" green="0.9843" blue="0.8275" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <namedColor name="dsCardGreenStart">
+            <color red="0.9569" green="1.0000" blue="0.9098" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <namedColor name="dsInk">
+            <color red="0.0000" green="0.0000" blue="0.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <namedColor name="dsLime">
+            <color red="0.6471" green="0.9333" blue="0.1843" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="tools_light_day" width="64" height="64" />
+        <image name="tools_light_dusk" width="64" height="64" />
+        <image name="tools_light_golden" width="64" height="64" />
+        <image name="checkmark" catalog="system" width="128" height="128" />
+        <image name="desktopcomputer" catalog="system" width="128" height="128" />
+        <image name="person.2" catalog="system" width="128" height="128" />
+        <image name="square.dashed" catalog="system" width="128" height="128" />
+        <image name="arrow.clockwise" catalog="system" width="128" height="128" />
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="128" />
+        <image name="cube" catalog="system" width="128" height="128" />
+        <image name="square.grid.2x2" catalog="system" width="128" height="128" />
+        <namedColor name="dsKnob">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <namedColor name="dsSegment">
+            <color red="0.9412" green="0.9412" blue="0.9412" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="gift" catalog="system" width="128" height="128" />
+        <image name="figma_again" width="64" height="64" />
+        <image name="figma_close20" width="64" height="64" />
+        <image name="figma_compare_left" width="64" height="64" />
+        <image name="figma_compare_right" width="64" height="64" />
+        <image name="figma_fit" width="64" height="64" />
+        <image name="figma_ask" width="64" height="64" />
+        <image name="figma_back" width="64" height="64" />
+        <image name="figma_compare" width="64" height="64" />
+        <image name="figma_dislike" width="64" height="64" />
+        <image name="figma_download20" width="64" height="64" />
+        <image name="figma_floor" width="64" height="64" />
+        <image name="figma_furnish" width="64" height="64" />
+        <image name="figma_layout" width="64" height="64" />
+        <image name="figma_like" width="64" height="64" />
+        <image name="figma_mic" width="64" height="64" />
+        <image name="figma_more20" width="64" height="64" />
+        <image name="figma_paint" width="64" height="64" />
+        <image name="figma_remove" width="64" height="64" />
+        <image name="figma_replace" width="64" height="64" />
+        <image name="figma_share20" width="64" height="64" />
+        <image name="figma_style" width="64" height="64" />
+        <image name="textformat" catalog="system" width="128" height="128" />
+        <image name="wand.and.stars" catalog="system" width="128" height="128" />
+        <image name="figma_close16" width="64" height="64" />
+        <image name="figma_copy" width="64" height="64" />
+        <image name="figma_crown" width="64" height="64" />
+        <image name="figma_download22" width="64" height="64" />
+        <image name="figma_export" width="64" height="64" />
+        <image name="figma_hd" width="64" height="64" />
+        <image name="figma_mark" width="64" height="64" />
+        <image name="figma_message" width="64" height="64" />
+        <image name="figma_more22" width="64" height="64" />
+        <image name="figma_watermark" width="64" height="64" />
+        <image name="ellipsis" catalog="system" width="128" height="128" />
+        <image name="pencil" catalog="system" width="128" height="128" />
+        <image name="rectangle.split.2x1" catalog="system" width="128" height="128" />
+        <image name="clay_interior" width="64" height="64" />
+        <image name="square.3.layers.3d" catalog="system" width="128" height="128" />
+        <image name="square.and.arrow.up" catalog="system" width="128" height="128" />
+        <image name="trash" catalog="system" width="128" height="128" />
+        <namedColor name="dsTabBar">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="0.780" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="hand.raised" catalog="system" width="128" height="128" />
+        <image name="arrow.triangle.2.circlepath" catalog="system" width="128" height="128" />
+        <image name="arrow.uturn.backward" catalog="system" width="128" height="128" />
+        <image name="arrow.uturn.forward" catalog="system" width="128" height="128" />
+        <image name="eraser" catalog="system" width="128" height="128" />
+        <image name="bolt.slash" catalog="system" width="128" height="128" />
+        <image name="viewfinder" catalog="system" width="128" height="128" />
+        <image name="checkmark.shield" catalog="system" width="128" height="128" />
+        <image name="wizard_demo_kitchen" width="64" height="64" />
+        <image name="wizard_demo_living" width="64" height="64" />
+        <image name="wizard_demo_study" width="64" height="64" />
+        <image name="checkmark.circle" catalog="system" width="128" height="128" />
+        <image name="crown" catalog="system" width="128" height="128" />
+        <image name="lock" catalog="system" width="128" height="128" />
+        <namedColor name="dsStepOff">
+            <color red="0.8510" green="0.8510" blue="0.8510" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="tips_bad" width="64" height="64" />
+        <image name="tips_good" width="64" height="64" />
+        <image name="eye" catalog="system" width="128" height="128" />
+        <image name="sun.max" catalog="system" width="128" height="128" />
+        <image name="xmark.circle" catalog="system" width="128" height="128" />
+        <image name="person" catalog="system" width="128" height="128" />
+        <image name="plus.square" catalog="system" width="128" height="128" />
+        <namedColor name="dsLimeTint">
+            <color red="0.6471" green="0.9333" blue="0.1843" alpha="0.300" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="bell" catalog="system" width="128" height="128" />
+        <image name="doc.text" catalog="system" width="128" height="128" />
+        <image name="exclamationmark.triangle.fill" catalog="system" width="128" height="128" />
+        <image name="globe" catalog="system" width="128" height="128" />
+        <image name="questionmark.circle" catalog="system" width="128" height="128" />
+        <image name="star" catalog="system" width="128" height="128" />
+        <namedColor name="dsWarningSoft">
+            <color red="1.0000" green="0.9569" blue="0.8392" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="magnifyingglass" catalog="system" width="128" height="128" />
+        <image name="bookmark" catalog="system" width="128" height="128" />
+        <image name="paywall_diorama" width="64" height="64" />
+        <image name="paywall_sparkle_1" width="64" height="64" />
+        <image name="paywall_sparkle_2" width="64" height="64" />
+        <image name="paywall_sparkle_3" width="64" height="64" />
+        <image name="paywall_sparkle_4" width="64" height="64" />
+        <image name="checkmark.seal.fill" catalog="system" width="128" height="128" />
+        <image name="checkmark.shield.fill" catalog="system" width="128" height="128" />
+        <image name="chevron.down" catalog="system" width="128" height="128" />
+        <image name="house.lodge" catalog="system" width="128" height="128" />
+        <image name="ob_logo" width="96" height="96" />
+    </resources>
+</document>

@@ -140,6 +140,9 @@ final class GeminiRESTService: ImageGenerationService {
             self.session = session
         } else {
             let configuration = URLSessionConfiguration.default
+            #if DEBUG
+            QANetworkBlocker.protect(configuration)
+            #endif
             configuration.timeoutIntervalForRequest = Constants.Generation.requestTimeout
             configuration.timeoutIntervalForResource = Constants.Generation.resourceTimeout
             self.session = URLSession(configuration: configuration)

@@ -2,8 +2,8 @@ import UIKit
 
 extension CGFloat {
     
-    func scaledByHeight(baseHeight: CGFloat = 852) -> CGFloat {
-        let screenHeight = UIScreen.main.bounds.height
+    func scaledByHeight(baseHeight: CGFloat = 852, height: CGFloat? = nil) -> CGFloat {
+        let screenHeight = height ?? UIScreen.main.bounds.height
         let scaleFactor = screenHeight / baseHeight
         return self * scaleFactor
     }

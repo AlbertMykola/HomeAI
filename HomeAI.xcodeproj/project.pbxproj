@@ -44,12 +44,20 @@
 			remoteGlobalIDString = 84206B4D2E6EBA0100119340;
 			remoteInfo = HomeAI;
 		};
+		AB0000073000000000000002 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 84206B462E6EBA0100119340 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 84206B4D2E6EBA0100119340;
+			remoteInfo = HomeAI;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		84206B4E2E6EBA0100119340 /* HomeAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HomeAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		846000C92E91369900546BC9 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
 		AA0000013000000000000001 /* HomeAITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeAITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		AB0000013000000000000002 /* HomeAIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HomeAIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
@@ -74,6 +82,11 @@
 		AA0000023000000000000001 /* HomeAITests */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = HomeAITests;
+			sourceTree = "<group>";
+		};
+		AB0000023000000000000002 /* HomeAIUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = HomeAIUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -120,6 +133,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AB0000043000000000000002 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -127,6 +147,7 @@
 			isa = PBXGroup;
 			children = (
 				84206B502E6EBA0100119340 /* HomeAI */,
+				AB0000023000000000000002 /* HomeAIUITests */,
 				AA0000023000000000000001 /* HomeAITests */,
 				846000C82E91369900546BC9 /* Frameworks */,
 				84206B4F2E6EBA0100119340 /* Products */,
@@ -137,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				84206B4E2E6EBA0100119340 /* HomeAI.app */,
+				AB0000013000000000000002 /* HomeAIUITests.xctest */,
 				AA0000013000000000000001 /* HomeAITests.xctest */,
 			);
 			name = Products;
@@ -225,6 +247,27 @@
 			productReference = AA0000013000000000000001 /* HomeAITests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		AB0000063000000000000002 /* HomeAIUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AB00000B3000000000000002 /* Build configuration list for PBXNativeTarget "HomeAIUITests" */;
+			buildPhases = (
+				AB0000033000000000000002 /* Sources */,
+				AB0000043000000000000002 /* Frameworks */,
+				AB0000053000000000000002 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				AB0000083000000000000002 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				AB0000023000000000000002 /* HomeAIUITests */,
+			);
+			name = HomeAIUITests;
+			productName = HomeAIUITests;
+			productReference = AB0000013000000000000002 /* HomeAIUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -285,6 +328,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				AB0000063000000000000002 /* HomeAIUITests */,
 				84206B4D2E6EBA0100119340 /* HomeAI */,
 				AA0000063000000000000001 /* HomeAITests */,
 			);
@@ -300,6 +344,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		AA0000043000000000000001 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB0000053000000000000002 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -352,6 +403,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		AB0000033000000000000002 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -359,6 +417,11 @@
 			isa = PBXTargetDependency;
 			target = 84206B4D2E6EBA0100119340 /* HomeAI */;
 			targetProxy = AA0000073000000000000001 /* PBXContainerItemProxy */;
+		};
+		AB0000083000000000000002 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 84206B4D2E6EBA0100119340 /* HomeAI */;
+			targetProxy = AB0000073000000000000002 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -380,8 +443,10 @@
 				INFOPLIST_KEY_CFBundleDisplayName = ReHomely;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
 				INFOPLIST_KEY_NSCameraUsageDescription = "We use the camera to take a photo of the room for design.";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "To save the home design you just created to your Photos, \"My Home AI\" needs permission to add it to your library";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Speak your edits instead of typing.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Rehomely saves the designs you create to your Photos.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We access your photo library to select a room image.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Your voice is turned into text to edit your design, on your iPhone when it supports it.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Your data will be used to track you across other apps and websites to deliver personalized ads";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -427,8 +492,10 @@
 				INFOPLIST_KEY_CFBundleDisplayName = ReHomely;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.graphics-design";
 				INFOPLIST_KEY_NSCameraUsageDescription = "We use the camera to take a photo of the room for design.";
-				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "To save the home design you just created to your Photos, \"My Home AI\" needs permission to add it to your library";
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Speak your edits instead of typing.";
+				INFOPLIST_KEY_NSPhotoLibraryAddUsageDescription = "Rehomely saves the designs you create to your Photos.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We access your photo library to select a room image.";
+				INFOPLIST_KEY_NSSpeechRecognitionUsageDescription = "Your voice is turned into text to edit your design, on your iPhone when it supports it.";
 				INFOPLIST_KEY_NSUserTrackingUsageDescription = "Your data will be used to track you across other apps and websites to deliver personalized ads";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
@@ -620,6 +687,34 @@
 			};
 			name = Release;
 		};
+		AB0000093000000000000002 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.albert.apps.design.ai.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HomeAI;
+			};
+			name = Debug;
+		};
+		AB00000A3000000000000002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.6;
+				PRODUCT_BUNDLE_IDENTIFIER = com.albert.apps.design.ai.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = HomeAI;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -646,6 +741,15 @@
 			buildConfigurations = (
 				AA0000093000000000000001 /* Debug */,
 				AA00000A3000000000000001 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AB00000B3000000000000002 /* Build configuration list for PBXNativeTarget "HomeAIUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AB0000093000000000000002 /* Debug */,
+				AB00000A3000000000000002 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

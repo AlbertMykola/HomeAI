@@ -5,6 +5,9 @@ enum ImageGenerationServiceFactory {
         environment: [String: String] = ProcessInfo.processInfo.environment
     ) -> any ImageGenerationService {
         #if DEBUG
+        if AppQA.enabled && (environment["REHOMELY_FULL_QA"] == "1" || ProcessInfo.processInfo.arguments.contains("--app-qa")) {
+            return AppQA.generationService
+        }
         if environment["HOMEAI_IMAGE_PROVIDER"]?.lowercased() == "openai",
            let endpoint = generationEndpoint(
                from: Constants.Generation.OpenAI.productionWorkerURL,

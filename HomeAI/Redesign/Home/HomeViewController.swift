@@ -1,6 +1,6 @@
 import UIKit
 
-/// A/03 · Home (tab Create). Layout: HomeViewController.xib.
+/// A/03 · Home (tab Create). Layout: Home.storyboard.
 final class HomeViewController: UIViewController {
 
     // MARK: Outlets — header
@@ -48,15 +48,19 @@ final class HomeViewController: UIViewController {
 
     @IBOutlet private var moreCards: [DSPressableControl]!
     @IBOutlet private var moreCardLabels: [UILabel]!
+    @IBOutlet private var moreCardImages: [UIImageView]!
+    @IBOutlet private var moreCardIcons: [UIImageView]!
     @IBOutlet private weak var quickHeaderView: UIView!
     @IBOutlet private weak var quickTitleLabel: UILabel!
     @IBOutlet private var toolTiles: [DSPressableControl]!
     @IBOutlet private var toolLabels: [UILabel]!
+    @IBOutlet private var toolLabelHeights: [NSLayoutConstraint]!
     @IBOutlet private weak var planHeaderView: UIView!
     @IBOutlet private weak var planTitleLabel: UILabel!
     @IBOutlet private var planCards: [DSPressableControl]!
     @IBOutlet private var planTitleLabels: [UILabel]!
     @IBOutlet private var planSubtitleLabels: [UILabel]!
+    @IBOutlet private var planLabelMinimumHeights: [NSLayoutConstraint]!
     @IBOutlet private weak var recentSectionView: UIView!
     @IBOutlet private weak var recentTitleLabel: UILabel!
     @IBOutlet private weak var recentLinkButton: UIButton!
@@ -70,6 +74,7 @@ final class HomeViewController: UIViewController {
     private var projectsObserver: NSObjectProtocol?
     private var didRunEntrance = false
     private var heroAutoCycleStopped = false
+    private var lastHeroWidth: CGFloat = 0
     private var heroCycleAnimators: [UIViewPropertyAnimator] = []
     private var heroCycleWorkItem: DispatchWorkItem?
     private var microTimers: [Timer] = []
@@ -79,8 +84,53 @@ final class HomeViewController: UIViewController {
         case paint, floor, replace, remove, furnish, rearrange
     }
 
-    private enum More: Int {
-        case exterior, garden, reference
+    enum More {
+        case interior, exterior, garden, reference
+
+        static func options(for focus: HomeFocus) -> [More] {
+            switch focus {
+            case .interior: return [.exterior, .garden, .reference]
+            case .surfaces: return [.interior, .exterior, .garden, .reference]
+            case .exterior: return [.interior, .garden, .reference]
+            case .garden: return [.interior, .exterior, .reference]
+            }
+        }
+
+        var title: String {
+            switch self {
+            case .interior: return "Interior".localized
+            case .exterior: return "Exterior".localized
+            case .garden: return "Garden".localized
+            case .reference: return "By reference".localized
+            }
+        }
+
+        var symbol: String {
+            switch self {
+            case .interior: return "sofa"
+            case .exterior: return "house"
+            case .garden: return "tree"
+            case .reference: return "photo.on.rectangle"
+            }
+        }
+
+        var imageName: String {
+            switch self {
+            case .interior: return "home_hero_after"
+            case .exterior: return "home_card_exterior"
+            case .garden: return "home_card_garden"
+            case .reference: return "home_card_reference"
+            }
+        }
+
+        var option: DesignOption {
+            switch self {
+            case .interior: return .interior
+            case .exterior: return .exterior
+            case .garden: return .garden
+            case .reference: return .reference
+            }
+        }
     }
 
     // MARK: Lifecycle
@@ -101,6 +151,50 @@ final class HomeViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
         updateCredits()
         updateOfflineState(animated: false)
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        updatePlanLabelMinimumHeights()
+
+    }
+
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+        updatePlanLabelMinimumHeights()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updateCompactHeader()
+        updatePlanLabelMinimumHeights()
+        if abs(heroWidth - lastHeroWidth) > 0.5 {
+            let fraction = lastHeroWidth > 0 ? min(1, max(0, heroBeforeWidthConstraint.constant / lastHeroWidth)) : 110 / 353
+            lastHeroWidth = heroWidth
+            if heroAutoCycleStopped {
+                heroBeforeWidthConstraint.constant = heroWidth * fraction
+            } else {
+                stopHeroCycle()
+                heroBeforeWidthConstraint.constant = heroRestingWidth
+                if didRunEntrance { startHeroCycle(after: 1) }
+            }
+        }
+    }
+
+    private func updatePlanLabelMinimumHeights() {
+        guard isViewLoaded, let titles = planTitleLabels, let subtitles = planSubtitleLabels,
+              planLabelMinimumHeights.count == titles.count + subtitles.count else { return }
+        // Match the storyboard's two cards: 20 pt screen insets, 13 pt gap and 16 pt card padding.
+        // A whole-point measure reserves the last line at fractional pixel boundaries,
+        // without freezing UILabel's intrinsic wrapping to a previous viewport width.
+        let layout = OnboardingLayout(size: view.dsLayoutSize)
+        let width = floor((view.dsLayoutSize.width - layout.value(40 + 13)) / 2 - layout.value(32))
+        guard width > 0 else { return }
+        for constraint in planLabelMinimumHeights {
+            guard let label = constraint.firstItem as? UILabel else { continue }
+            let height = ceil(label.sizeThatFits(CGSize(width: width, height: .greatestFiniteMagnitude)).height)
+            if abs(constraint.constant - height) > 0.1 { constraint.constant = height }
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -130,10 +224,22 @@ final class HomeViewController: UIViewController {
     // MARK: Setup
 
     private func localize() {
-        heroTitleLabel.text = "Redesign a room".localized
-        heroSubtitleLabel.text = "New style in ~30 s. Your layout stays.".localized
+        heroTitleLabel.text = HomeFocus.current.heroTitle
+        heroSubtitleLabel.text = HomeFocus.current.heroSubtitle
+        heroTitleLabel.accessibilityIdentifier = "home.hero.title"
+        heroSubtitleLabel.accessibilityIdentifier = "home.hero.subtitle"
+        heroTagLabel.accessibilityIdentifier = "home.hero.tag"
         uploadTitleLabel.text = "Upload a photo".localized
         getProLabel.text = "Get Pro".localized
+        getProControl.accessibilityLabel = "Get Pro".localized
+        creditsLabel.accessibilityIdentifier = "home.credits.label"
+        getProLabel.accessibilityIdentifier = "home.pro.label"
+        [logoLabel, creditsLabel, getProLabel].forEach {
+            $0?.adjustsFontSizeToFitWidth = true
+            $0?.minimumScaleFactor = 0.75
+        }
+        logoLabel.setContentCompressionResistancePriority(UILayoutPriority(749), for: .horizontal)
+        getProLabel.setContentCompressionResistancePriority(UILayoutPriority(751), for: .horizontal)
         freeBannerLabel.text = "1 free design left".localized
         freeBannerProLabel.text = "Get Pro".localized
         offlineLabel.text = "No internet. Designs need a connection.".localized
@@ -142,14 +248,36 @@ final class HomeViewController: UIViewController {
         recentTitleLabel.text = "Recent projects".localized
         recentLinkButton.setTitle("See all".localized, for: .normal)
 
-        let moreTitles = ["Exterior", "Garden", "By reference"]
-        sortedByTag(moreCardLabels).enumerated().forEach { $1.text = moreTitles[$0].localized }
+        let alternatives = More.options(for: HomeFocus.current)
+        sortedByTag(moreCardLabels).enumerated().forEach { $1.text = alternatives[safe: $0]?.title }
+        sortedByTag(moreCardImages).enumerated().forEach {
+            $1.image = alternatives[safe: $0].flatMap { UIImage(named: $0.imageName) }
+        }
+        sortedByTag(moreCardIcons).enumerated().forEach {
+            $1.image = alternatives[safe: $0].flatMap { UIImage(systemName: $0.symbol) }
+        }
+        sortedByTag(moreCards).enumerated().forEach {
+            let alternative = alternatives[safe: $0]
+            $1.isHidden = alternative == nil
+            $1.accessibilityIdentifier = alternative.map { "home.more.\($0.option.rawValue)" }
+        }
         let toolTitles = ["Paint walls", "New floor", "Replace", "Remove", "Furnish", "Rearrange"]
-        sortedByTag(toolLabels).enumerated().forEach { $1.text = toolTitles[$0].localized }
+        sortedByTag(toolLabels).enumerated().forEach { index, label in
+            label.text = toolTitles[index].localized
+            label.accessibilityIdentifier = "home.tool.\(index).title"
+            // Reserve two lines with the existing storyboard constraint.
+            toolLabelHeights.first { ($0.firstItem as? UILabel) === label }?.constant = ceil(label.font.lineHeight * 2)
+        }
         let planTitles = ["Floor plan → 3D", "Ask AI designer"]
         let planSubtitles = ["Turn a sketch into a room", "Ideas, colors, budget"]
-        sortedByTag(planTitleLabels).enumerated().forEach { $1.text = planTitles[$0].localized }
-        sortedByTag(planSubtitleLabels).enumerated().forEach { $1.text = planSubtitles[$0].localized }
+        sortedByTag(planTitleLabels).enumerated().forEach {
+            $1.text = planTitles[$0].localized
+            $1.accessibilityIdentifier = "home.plan.\($0).title"
+        }
+        sortedByTag(planSubtitleLabels).enumerated().forEach {
+            $1.text = planSubtitles[$0].localized
+            $1.accessibilityIdentifier = "home.plan.\($0).subtitle"
+        }
         for control in moreCards + toolTiles + planCards {
             control.accessibilityLabel = control.subviewsLabels.joined(separator: ", ")
         }
@@ -184,8 +312,7 @@ final class HomeViewController: UIViewController {
     }
 
     private func configureRecent() {
-        recentCollectionView.register(UINib(nibName: "HomeProjectCell", bundle: nil),
-                                      forCellWithReuseIdentifier: HomeProjectCell.reuseID)
+
         recentCollectionView.dataSource = self
         recentCollectionView.delegate = self
         recentSectionView.isHidden = true
@@ -217,6 +344,7 @@ final class HomeViewController: UIViewController {
         proBadgeView.isHidden = !isPro
         let remaining = FreeGenerationManager.shared.remainingFreeGenerations
         creditsLabel.text = String(format: "%d free".localized, remaining)
+        updateCompactHeader()
         creditsControl.accessibilityLabel = String(format: "%d free designs left".localized, remaining)
         costPillView.isHidden = isPro
 
@@ -224,9 +352,20 @@ final class HomeViewController: UIViewController {
         if showBanner != !freeBannerContainer.isHidden {
             freeBannerContainer.isHidden = !showBanner
             if showBanner, didRunEntrance {
-                DS.Motion.enter(freeBannerControl, delay: 0.1, dy: -16, spring: true)
+                DS.Motion.enter(freeBannerContainer, delay: 0.1, dy: -16, spring: true)
             }
         }
+    }
+
+    /// Keep the count and purchase action readable when their translations are longer than English.
+    private func updateCompactHeader() {
+        let full = "Get Pro".localized
+        let logoWidth = logoLabel.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: 44)).width
+        let creditWidth = (creditsLabel.text ?? "").size(withAttributes: [.font: creditsLabel.font!]).width
+        let proWidth = full.size(withAttributes: [.font: getProLabel.font!]).width
+        let required = logoWidth + creditWidth + proWidth + 46 + 41 + 24
+        let text = required > view.dsLayoutSize.width - 40 ? "Pro" : full
+        if getProLabel.text != text { getProLabel.text = text }
     }
 
     private func updateOfflineState(animated: Bool) {
@@ -288,12 +427,8 @@ final class HomeViewController: UIViewController {
     }
 
     @IBAction private func didTapMoreCard(_ sender: UIControl) {
-        guard guardOnline(), let more = More(rawValue: sender.tag) else { return }
-        switch more {
-        case .exterior: open(option: .exterior, source: "home_more")
-        case .garden: open(option: .garden, source: "home_more")
-        case .reference: open(option: .reference, source: "home_more")
-        }
+        guard guardOnline(), let more = More.options(for: HomeFocus.current)[safe: sender.tag] else { return }
+        open(option: more.option, source: "home_more")
     }
 
     @IBAction private func didTapTool(_ sender: UIControl) {
@@ -389,7 +524,8 @@ final class HomeViewController: UIViewController {
     private func runHeroCycle() {
         guard !heroAutoCycleStopped, view.window != nil else { return }
         let rest = heroRestingWidth
-        let steps: [(CGFloat, TimeInterval)] = [(rest + 180, 1.2), (rest - 60, 1.3), (rest, 1.2)]
+        let steps: [(CGFloat, TimeInterval)] = [(rest + heroWidth * 180 / 353, 1.2),
+                                              (rest - heroWidth * 60 / 353, 1.3), (rest, 1.2)]
         func step(_ index: Int) {
             guard index < steps.count else {
                 startHeroCycle(after: 2.3)
@@ -459,7 +595,7 @@ final class HomeViewController: UIViewController {
         sortedByTag(planCards).enumerated().forEach { m.enter($1, delay: 1.11 + Double($0) * 0.06, dy: 10) }
         m.enter(recentSectionView, delay: 1.17, dy: 10)
         if !freeBannerContainer.isHidden {
-            m.enter(freeBannerControl, delay: 0.95, dy: -16, spring: true)
+            m.enter(freeBannerContainer, delay: 0.95, dy: -16, spring: true)
         }
         startHeroCycle(after: 1.1)
         scheduleMicroAnimations()
@@ -567,12 +703,15 @@ private extension UIView {
 // MARK: - Home focus (tag in the hero corner; chosen on onboarding O4)
 
 enum HomeFocus: String {
-    case interior, exterior, garden
+    case interior, exterior, garden, surfaces
 
     static let defaultsKey = "redesign_home_focus"
 
     static var current: HomeFocus {
-        UserDefaults.standard.string(forKey: defaultsKey).flatMap(HomeFocus.init(rawValue:)) ?? .interior
+        #if DEBUG
+        if AppQA.enabled, let focus = AppQA.homeFocus { return focus }
+        #endif
+        return UserDefaults.standard.string(forKey: defaultsKey).flatMap(HomeFocus.init(rawValue:)) ?? .interior
     }
 
     var option: DesignOption {
@@ -580,6 +719,7 @@ enum HomeFocus: String {
         case .interior: return .interior
         case .exterior: return .exterior
         case .garden: return .garden
+        case .surfaces: return .newWalls
         }
     }
 
@@ -588,6 +728,25 @@ enum HomeFocus: String {
         case .interior: return "Interior".localized
         case .exterior: return "Exterior".localized
         case .garden: return "Garden".localized
+        case .surfaces: return "onboarding_goal_surfaces".localized
+        }
+    }
+
+    var heroTitle: String {
+        switch self {
+        case .interior: return "Redesign a room".localized
+        case .exterior: return "home_hero_exterior_title".localized
+        case .garden: return "home_hero_garden_title".localized
+        case .surfaces: return "home_hero_surfaces_title".localized
+        }
+    }
+
+    var heroSubtitle: String {
+        switch self {
+        case .interior: return "New style in ~30 s. Your layout stays.".localized
+        case .exterior: return "home_hero_exterior_subtitle".localized
+        case .garden: return "home_hero_garden_subtitle".localized
+        case .surfaces: return "home_hero_surfaces_subtitle".localized
         }
     }
 
@@ -596,6 +755,7 @@ enum HomeFocus: String {
         case .interior: return "sofa"
         case .exterior: return "house"
         case .garden: return "tree"
+        case .surfaces: return "paintroller"
         }
     }
 
@@ -604,6 +764,7 @@ enum HomeFocus: String {
         case .interior: return UIImage(named: "home_hero_before")
         case .exterior: return UIImage(named: "ob_2_before_image")
         case .garden: return UIImage(named: "ob_3_before_image")
+        case .surfaces: return UIImage(named: "ob_tool_walls_before")
         }
     }
 
@@ -612,6 +773,7 @@ enum HomeFocus: String {
         case .interior: return UIImage(named: "home_hero_after")
         case .exterior: return UIImage(named: "ob_2_after_image")
         case .garden: return UIImage(named: "ob_3_after_image")
+        case .surfaces: return UIImage(named: "ob_tool_walls_after")
         }
     }
 }

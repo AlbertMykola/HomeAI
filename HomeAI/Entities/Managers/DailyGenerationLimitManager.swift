@@ -19,12 +19,18 @@ final class DailyGenerationLimitManager {
 
     /// Чи залишилась квота на сьогодні для преміуму. Для не-підписників не використовується для блокування.
     var hasRemainingToday: Bool {
-        countForToday() < maxPerDay
+        #if DEBUG
+        if AppQA.enabled { return AppQA.dailyCount < maxPerDay }
+        #endif
+        return countForToday() < maxPerDay
     }
 
     /// Лише для підписників: після успішної генерації збільшити денний лічильник.
     func recordSuccessfulGeneration() {
         guard AdaptyService.shared.hasActiveSubscription else { return }
+        #if DEBUG
+        if AppQA.enabled { AppQA.dailyCount += 1; return }
+        #endif
         incrementTodayCount()
     }
 

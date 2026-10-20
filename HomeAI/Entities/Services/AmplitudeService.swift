@@ -15,6 +15,9 @@ final class AmplitudeService {
     var deviceID: String? { amplitude.getDeviceId() }
 
     func logEvent(_ event: AmpitudeEvent) {
+        #if DEBUG
+        AppQA.record(event.event, properties: event.properties ?? [:])
+        #endif
         // Відправка івенту до Amplitude
         if let properties = event.properties {
             amplitude.track(eventType: event.event, eventProperties: properties)
@@ -33,6 +36,9 @@ final class AmplitudeService {
 
     /// Snake_case events of the redesign (push_preprompt_view, share_complete, …).
     func logRedesignEvent(_ name: String, properties: [String: Any] = [:]) {
+        #if DEBUG
+        AppQA.record(name, properties: properties)
+        #endif
         amplitude.track(eventType: name, eventProperties: properties.isEmpty ? nil : properties)
         if !Self.isTestingBuild {
             Analytics.logEvent(name, parameters: properties.isEmpty ? nil : firebaseParameters(from: properties))
@@ -46,6 +52,9 @@ final class AmplitudeService {
         payload["event_schema_version"] = 2
         payload["app_version"] = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "unknown"
         payload["build_number"] = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? "unknown"
+        #if DEBUG
+        AppQA.record(name, properties: payload)
+        #endif
         amplitude.track(eventType: name, eventProperties: payload)
         if !Self.isTestingBuild {
             Analytics.logEvent(name, parameters: firebaseParameters(from: payload))
@@ -267,13 +276,13 @@ enum AmpitudeEvent {
         case .assistantChatMessage(assistant: let assistant, message: let message, status: let status):
             return [
                 "assistant": assistant,
-                "message": message,
+                "message_length": message.count,
                 "status": status
             ]
         case .chooseColor(color: let color): return ["color": color]
         case .chooseRoom(room: let room): return ["room": room]
         case .chooseType(type: let type): return ["type": type]
-        case .prompt(p: let prompt): return ["prompt": prompt]
+        case .prompt(p: let prompt): return ["prompt_length": prompt.count]
         case let .generationStarted(attemptID, option, promptVersion, provider, model):
             return [
                 "attempt_id": attemptID,
@@ -331,7 +340,7 @@ enum AmpitudeEvent {
             return ["previous_attempt_id": previousAttemptID, "reason": reason, "retry_number": retryNumber]
         case .chooseSetting(type: let type): return ["type": type]
         case .trackingPermission(let granted): return ["granted": granted]
-        case .showSurfaceMaterialPicker(type: let type): return ["type": type]
+        case .showSurfaceMaterialPicker(type: let type): return ["type": type == .floor ? "floor" : "wall"]
         case .selectingEdit(type: let type): return ["edit": type]
         case .detailDislikeMailResult(result: let result): return ["result": result]
         case .alert(message: let message): return ["message": message]

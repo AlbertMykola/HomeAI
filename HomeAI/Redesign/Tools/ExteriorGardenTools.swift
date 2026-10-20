@@ -1,6 +1,6 @@
 import UIKit
 
-/// A/07 · T1 Exterior: facade style (palette cards), light, keep structure. Layout: ExteriorToolViewController.xib.
+/// A/07 · T1 Exterior: facade style (palette cards), light, keep structure. Layout: Tools.storyboard.
 final class ExteriorToolViewController: ToolStepViewController {
 
     @IBOutlet private weak var facadeTitleLabel: UILabel!
@@ -62,7 +62,7 @@ final class ExteriorToolViewController: ToolStepViewController {
 
     private func applyFacade(animated: Bool) {
         selectCards(facadeCards, tag: facade, animated: animated)
-        facadeLabels.forEach { $0.font = DS.Font.geologica($0.tag == facade ? .semiBold : .medium, 14) }
+        facadeLabels.forEach { $0.font = DS.Font.geologica($0.tag == facade ? .semiBold : .medium, $0.font.pointSize) }
     }
 
     private func applyLight(animated: Bool) {
@@ -70,7 +70,7 @@ final class ExteriorToolViewController: ToolStepViewController {
             self.lightRings.forEach { $0.alpha = $0.tag == self.light ? 1 : 0 }
             self.lightChecks.forEach { $0.alpha = $0.tag == self.light ? 1 : 0 }
         }
-        lightLabels.forEach { $0.font = DS.Font.geologica($0.tag == light ? .semiBold : .regular, 13) }
+        lightLabels.forEach { $0.font = DS.Font.geologica($0.tag == light ? .semiBold : .regular, $0.font.pointSize) }
         animated ? UIView.animate(withDuration: 0.25, animations: changes) : changes()
     }
 
@@ -88,7 +88,7 @@ final class ExteriorToolViewController: ToolStepViewController {
     }
 }
 
-/// A/07 · T2 Garden: styles, season, keep paths & patio. Layout: GardenToolViewController.xib.
+/// A/07 · T2 Garden: styles, season, keep paths & patio. Layout: Tools.storyboard.
 final class GardenToolViewController: ToolStepViewController {
 
     @IBOutlet private weak var styleTitleLabel: UILabel!
@@ -116,8 +116,7 @@ final class GardenToolViewController: ToolStepViewController {
         setChipTitles(seasonChips, ["Spring", "Summer", "Autumn", "Winter"].map(\.localized))
         if case .garden(let preset)? = session.style, let i = styles.firstIndex(of: preset) { selected = i }
         selectChip(seasonChips, tag: season)
-        stylesCollectionView.register(UINib(nibName: "MaterialTileCell", bundle: nil),
-                                      forCellWithReuseIdentifier: MaterialTileCell.reuseID)
+
         if let layout = stylesCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.itemSize = CGSize(width: 160, height: 136)
             layout.minimumLineSpacing = 12
@@ -162,7 +161,7 @@ extension GardenToolViewController: UICollectionViewDataSource, UICollectionView
 }
 
 /// Tile with image (r18), lime ring + check when chosen, title below. Layout: MaterialTileCell.xib.
-final class MaterialTileCell: UICollectionViewCell {
+final class MaterialTileCell: DSAdaptiveCollectionViewCell {
     static let reuseID = "MaterialTileCell"
 
     @IBOutlet private weak var thumbImageView: UIImageView!
@@ -197,7 +196,7 @@ final class MaterialTileCell: UICollectionViewCell {
             self.checkView.alpha = chosen ? 1 : 0
             self.checkView.transform = chosen ? .identity : CGAffineTransform(scaleX: 0.4, y: 0.4)
         }
-        titleLabel.font = DS.Font.geologica(chosen ? .semiBold : .regular, 13)
+        titleLabel.font = DS.Font.geologica(chosen ? .semiBold : .regular, titleLabel.font.pointSize)
         accessibilityTraits = chosen ? [.button, .selected] : .button
         animated ? UIView.animate(withDuration: 0.35, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0,
                                   animations: changes) : changes()

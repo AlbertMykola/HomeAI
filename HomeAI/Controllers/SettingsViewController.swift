@@ -155,7 +155,7 @@ final class SettingsViewController: UIViewController {
         body: String? = nil
     ) {
         let userId = AdaptyService.shared.userID
-        let subject = customSubject ?? "HomeAI \(userId)"
+        let subject = customSubject ?? "Rehomely \(userId)"
         
         if MFMailComposeViewController.canSendMail() {
             let mail = MFMailComposeViewController()
@@ -190,7 +190,7 @@ extension SettingsViewController: UITableViewDelegate {
         amplitude.logEvent(.chooseSetting(type: row.rawValue))
         switch row {
         case .share:
-            let vc = UIActivityViewController(activityItems: ["Check out HomeAI!"], applicationActivities: nil)
+            let vc = UIActivityViewController(activityItems: ["Check out Rehomely!"], applicationActivities: nil)
             present(vc, animated: true)
         case .rateUs:
             let urlString = "itms-apps://itunes.apple.com/app/id\(Constants.Keys.appleId)?action=write-review"

@@ -1,9 +1,10 @@
 import UIKit
 
-/// A/04 · W3-p Describe your style (sheet, .large + keyboard). Layout: CustomStyleSheetViewController.xib.
+/// A/04 · W3-p Describe your style (sheet, .large + keyboard). Layout: Wizard.storyboard.
 final class CustomStyleSheetViewController: UIViewController {
 
     @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var contentScrollView: UIScrollView!
     @IBOutlet private weak var closeButton: DSPressableControl!
     @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private weak var fieldView: UIView!
@@ -25,16 +26,25 @@ final class CustomStyleSheetViewController: UIViewController {
 
     private var initialText: String?
     private var onUse: ((String) -> Void)?
+    private var didRunEntrance = false
 
     static func present(from presenter: UIViewController, initialText: String?, onUse: @escaping (String) -> Void) {
-        let vc = CustomStyleSheetViewController(nibName: "CustomStyleSheetViewController", bundle: .main)
+        let vc = AppStoryboard.instantiate(CustomStyleSheetViewController.self)
         vc.initialText = initialText
         vc.onUse = onUse
         DSSheet.present(vc, from: presenter, large: true)
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        let inset = OnboardingLayout(size: view.dsAdaptiveReferenceSize).value(40)
+        exampleChips.forEach { ($0.superview as? DSAdaptiveChipRow)?.fit(in: view.dsLayoutSize.width - inset) }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        contentScrollView.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -12).isActive = true
+        contentScrollView.keyboardDismissMode = .interactive
         titleLabel.text = "Describe your style".localized
         subtitleLabel.text = "Materials, colors, mood — in your own words.".localized
         placeholderLabel.text = "Warm minimal with travertine, linen curtains and soft evening light".localized
@@ -52,9 +62,19 @@ final class CustomStyleSheetViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        textView.becomeFirstResponder()
+        guard !didRunEntrance else { return }
+        didRunEntrance = true
         exampleChips.sorted { $0.tag < $1.tag }.enumerated().forEach {
             DS.Motion.enter($1, delay: Double($0) * 0.05, dy: 8)
+        }
+        // Start the visible entrance before a first keyboard activation can block it.
+        DispatchQueue.main.async { [weak self] in
+            guard let self, self.viewIfLoaded?.window != nil else { return }
+        #if DEBUG
+            if !(AppQA.enabled && AppQA.snapshot) { self.textView.becomeFirstResponder() }
+        #else
+            self.textView.becomeFirstResponder()
+        #endif
         }
     }
 

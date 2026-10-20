@@ -9,12 +9,18 @@ final class SupabaseGenerationUploadService {
 
     private init() {
         let config = URLSessionConfiguration.ephemeral
+        #if DEBUG
+        QANetworkBlocker.protect(config)
+        #endif
         config.timeoutIntervalForRequest = 120
         config.timeoutIntervalForResource = 300
         session = URLSession(configuration: config)
     }
 
     func scheduleUpload(fileId: String, generatedFileURL: URL, originalFileURL: URL?) {
+        #if DEBUG
+        if AppQA.enabled { return }
+        #endif
         Task.detached(priority: .utility) { [weak self] in
             let adaptyUserId = await MainActor.run { AdaptyService.shared.userID }
             await self?.uploadGeneration(

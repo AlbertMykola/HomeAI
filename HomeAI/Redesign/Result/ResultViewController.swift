@@ -1,12 +1,13 @@
 import UIKit
 import StoreKit
 
-/// A/06 · R1 Result + editor panel (versions, tools, ask for a change). Layout: ResultViewController.xib.
+/// A/06 · R1 Result + editor panel (versions, tools, ask for a change). Layout: Result.storyboard.
 final class ResultViewController: UIViewController {
 
     // photo
     @IBOutlet private weak var photoView: UIView!
     @IBOutlet private weak var resultImageView: UIImageView!
+    @IBOutlet private weak var likeIconView: UIImageView!
     @IBOutlet private weak var originalImageView: UIImageView!
     @IBOutlet private weak var revealBlurView: UIVisualEffectView!
     @IBOutlet private weak var revealBandView: UIView!
@@ -21,7 +22,7 @@ final class ResultViewController: UIViewController {
     @IBOutlet private weak var downloadButton: DSPressableControl!
     @IBOutlet private weak var shareButton: DSPressableControl!
     @IBOutlet private weak var moreButton: UIButton!
-    @IBOutlet private weak var compareView: UIView!
+    @IBOutlet private weak var compareView: DSPressableControl!
     @IBOutlet private weak var compareLabel: UILabel!
     @IBOutlet private weak var versionBadgeView: UIView!
     @IBOutlet private weak var versionBadgeLabel: UILabel!
@@ -57,6 +58,9 @@ final class ResultViewController: UIViewController {
     @IBOutlet private weak var voicePanelView: UIView!
     @IBOutlet private weak var listeningLabel: UILabel!
     @IBOutlet private weak var waveView: UIView!
+    @IBOutlet private var waveBars: [UIView]!
+    @IBOutlet private var waveLayoutConstraints: [NSLayoutConstraint]!
+    private lazy var waveGeometry = StoryboardGeometry(constraints: waveLayoutConstraints)
     @IBOutlet private weak var transcriptLabel: UILabel!
     @IBOutlet private weak var voiceCancelButton: DSPressableControl!
     @IBOutlet private weak var voiceDoneButton: DSPrimaryButton!
@@ -85,8 +89,9 @@ final class ResultViewController: UIViewController {
     private var editRunner: GenerationRunner?
     private var didRunEntrance = false
     private var liked = false
+    private var referenceLayout: DSReferenceLayout!
+    private var askKeyboardEndFrame: CGRect?
     private let speech = SpeechInput()
-    private var waveBars: [UIView] = []
     private let amplitude = AmplitudeService.shared
 
     private enum Tool: Int { case style, paint, replace, remove, floor, furnish, layout }
@@ -105,6 +110,7 @@ final class ResultViewController: UIViewController {
         configureAskPanel()
         reloadProject()
         if reveal { prepareReveal() }
+        referenceLayout = DSReferenceLayout(root: view, prefix: "result.")
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(_:)),
                                                name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
@@ -114,15 +120,35 @@ final class ResultViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        guard let referenceLayout else { return }
+        referenceLayout.apply(size: view.dsLayoutSize)
+        fitAskPanelToKeyboard()
+        textViewDidChange(askTextView)
+        let scale = referenceLayout.scale
+        if let layout = versionsCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.minimumLineSpacing = 12 * scale
+            layout.sectionInset = UIEdgeInsets(top: 0, left: 20 * scale, bottom: 0, right: 20 * scale)
+        }
+        moreButton.imageView?.transform = CGAffineTransform(scaleX: scale, y: scale)
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        // Let navigation commit its final window geometry before StoreKit creates a window.
+        DispatchQueue.main.async { [weak self] in
+            guard let self else { return }
+            RatePrompt.requestAfterFirstGeneration(docID: self.docID, in: self.viewIfLoaded?.window?.windowScene)
+        }
         guard !didRunEntrance else { return }
         didRunEntrance = true
         reveal ? runReveal() : runHints()
     }
 
     private func localize() {
-        compareLabel.text = "Hold to compare".localized
+        compareLabel.text = "Compare".localized
+        compareView.accessibilityLabel = compareLabel.text
         askPlaceholderLabel.text = "Ask for a change…".localized
         editLoaderLabel.text = "Applying your change…".localized
         askTitleLabel.text = "Ask for a change".localized
@@ -214,8 +240,7 @@ final class ResultViewController: UIViewController {
     // MARK: Versions strip
 
     private func configureVersions() {
-        versionsCollectionView.register(UINib(nibName: "ResultVersionCell", bundle: nil),
-                                        forCellWithReuseIdentifier: ResultVersionCell.reuseID)
+
         versionsCollectionView.dataSource = self
         versionsCollectionView.delegate = self
     }
@@ -231,21 +256,17 @@ final class ResultViewController: UIViewController {
         updateLikeState()
     }
 
-    // MARK: Compare (hold) + fullscreen (tap)
+    // MARK: Original preview (hold photo) + comparison screen (tap)
 
     private func configureCompareGestures() {
         let hold = UILongPressGestureRecognizer(target: self, action: #selector(handleHold(_:)))
         hold.minimumPressDuration = 0.12
+        hold.delegate = self
         photoView.addGestureRecognizer(hold)
-        let holdPill = UILongPressGestureRecognizer(target: self, action: #selector(handleHold(_:)))
-        holdPill.minimumPressDuration = 0
-        compareView.addGestureRecognizer(holdPill)
         let tap = UITapGestureRecognizer(target: self, action: #selector(didTapPhoto))
         tap.require(toFail: hold)
+        tap.delegate = self
         photoView.addGestureRecognizer(tap)
-        compareView.isAccessibilityElement = true
-        compareView.accessibilityTraits = .button
-        compareView.accessibilityLabel = "Show the original photo".localized
     }
 
     @objc private func handleHold(_ gesture: UILongPressGestureRecognizer) {
@@ -266,8 +287,18 @@ final class ResultViewController: UIViewController {
             askTextView.resignFirstResponder()
             return
         }
+        showComparison()
+    }
+
+    @IBAction private func didTapCompare(_ sender: Any) {
+        if !askPanelView.isHidden { dismissAsk() }
+        showComparison()
+    }
+
+    private func showComparison() {
+        guard presentedViewController == nil else { return }
         guard let after = resultImageView.image else { return }
-        let compare = CompareViewController(nibName: "CompareViewController", bundle: .main)
+        let compare = AppStoryboard.instantiate(CompareViewController.self)
         compare.beforeImage = originalImageView.image ?? after
         compare.afterImage = after
         compare.modalPresentationStyle = .fullScreen
@@ -395,11 +426,10 @@ final class ResultViewController: UIViewController {
         DS.Haptic.light()
         updateLikeState()
         amplitude.logRedesignEvent("result_like", properties: ["liked": liked])
-        if liked { RatePrompt.registerPositiveMoment(in: view.window?.windowScene) }
     }
 
     private func updateLikeState() {
-        (likeButton.subviews.first as? UIImageView)?.image = UIImage(systemName: liked ? "hand.thumbsup.fill" : "hand.thumbsup")
+        likeIconView.image = liked ? UIImage(systemName: "hand.thumbsup.fill") : UIImage(named: "figma_like")
         likeButton.backgroundColor = liked ? DS.Color.limeSoft : DS.Color.surface
     }
 
@@ -562,26 +592,53 @@ final class ResultViewController: UIViewController {
         askTextView.textContainerInset = UIEdgeInsets(top: 8, left: 0, bottom: 8, right: 0)
         askTextView.isScrollEnabled = false
         updateSendState()
-        let swipe = UISwipeGestureRecognizer(target: self, action: #selector(dismissAsk))
-        swipe.direction = .down
-        askPanelView.addGestureRecognizer(swipe)
+        let drag = UIPanGestureRecognizer(target: self, action: #selector(handleAskDismissDrag(_:)))
+        drag.maximumNumberOfTouches = 1
+        drag.delegate = self
+        askPanelView.addGestureRecognizer(drag)
     }
 
     @IBAction private func didTapAsk(_ sender: Any) {
         showAskPanel()
     }
 
-    private func showAskPanel() {
+    private func showAskPanel(focusKeyboard: Bool = true) {
         updateAskCost()
         askPanelView.isHidden = false
         askPanelView.alpha = 0
+        fitAskPanelToKeyboard()
+        view.layoutIfNeeded()
         UIView.animate(withDuration: 0.2) { self.askPanelView.alpha = 1 }
-        askTextView.becomeFirstResponder()
+        if focusKeyboard { askTextView.becomeFirstResponder() }
         suggestionChips.sorted { $0.tag < $1.tag }.enumerated().forEach { DS.Motion.enter($1, delay: Double($0) * 0.05, dx: 24) }
     }
 
+    #if DEBUG
+    func previewAskForQA() {
+        loadViewIfNeeded()
+        showAskPanel(focusKeyboard: false)
+    }
+    #endif
+
     @objc private func dismissAsk() {
         askTextView.resignFirstResponder()
+        // A hardware keyboard can resign without a keyboard-frame notification.
+        hideAskPanel()
+    }
+
+    @objc private func handleAskDismissDrag(_ gesture: UIPanGestureRecognizer) {
+        guard gesture.state == .ended else { return }
+        let translation = gesture.translation(in: askPanelView)
+        let velocity = gesture.velocity(in: askPanelView)
+        let distance = 80 * OnboardingLayout(size: view.dsLayoutSize).scale
+        // A deliberate slow downward drag should dismiss just as reliably as a quick swipe.
+        if translation.y > distance || velocity.y > 650 { dismissAsk() }
+    }
+
+    private func hideAskPanel() {
+        UIView.animate(withDuration: 0.2) { self.askPanelView.alpha = 0 } completion: { _ in
+            if !self.askTextView.isFirstResponder { self.askPanelView.isHidden = true }
+        }
     }
 
     private func updateAskCost() {
@@ -605,6 +662,7 @@ final class ResultViewController: UIViewController {
         guard !text.isEmpty, let image = resultImageView.image, let doc = currentDoc else { return }
         DS.Haptic.medium()
         askTextView.resignFirstResponder()
+        hideAskPanel()
         askTextView.text = ""
         textViewDidChange(askTextView)
         let manager = HistoryDocOpener.restoredManager(for: doc, baseImage: image)
@@ -619,17 +677,27 @@ final class ResultViewController: UIViewController {
         askTextPlaceholder.isHidden = !askTextView.text.isEmpty
     }
 
+    @discardableResult private func fitAskPanelToKeyboard() -> CGFloat {
+        let keyboard = askKeyboardEndFrame.map { view.convert($0, from: nil) }
+        let overlap = keyboard.map { $0.height > 0 ? max(0, view.bounds.maxY - $0.minY) : 0 } ?? 0
+        // The background reaches the window bottom; the storyboard keeps its
+        // content inside the panel's safe area. Lift the whole panel above the keyboard.
+        let offset = -overlap
+        if abs(askPanelBottomConstraint.constant - offset) > 0.1 { askPanelBottomConstraint.constant = offset }
+        return overlap
+    }
+
     @objc private func keyboardWillChange(_ note: Notification) {
         guard let frame = note.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect,
               let duration = note.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double else { return }
-        let overlap = max(0, view.bounds.maxY - view.convert(frame, from: nil).minY)
-        let hiding = overlap == 0
-        askPanelBottomConstraint.constant = -overlap
+        askKeyboardEndFrame = frame
+        let overlap = fitAskPanelToKeyboard()
+        let hiding = overlap == 0 && !askTextView.isFirstResponder
         UIView.animate(withDuration: max(duration, 0.25), delay: 0, options: [.curveEaseOut]) {
             self.view.layoutIfNeeded()
             if hiding { self.askPanelView.alpha = 0 }
         } completion: { _ in
-            if hiding { self.askPanelView.isHidden = true }
+            if hiding && !self.askTextView.isFirstResponder { self.askPanelView.isHidden = true }
         }
     }
 
@@ -714,13 +782,10 @@ final class ResultViewController: UIViewController {
     }
 
     private func buildWave() {
-        waveBars.forEach { $0.removeFromSuperview() }
-        waveBars = (0..<24).map { i in
-            let bar = UIView(frame: CGRect(x: CGFloat(i) * 8.3, y: 18, width: 4, height: 8))
+        waveBars.sort { $0.tag < $1.tag }
+        for (i, bar) in waveBars.enumerated() {
             bar.backgroundColor = i < 14 ? DS.Color.limeBottom : UIColor(white: 0.85, alpha: 1)
             bar.layer.cornerRadius = 2
-            waveView.addSubview(bar)
-            return bar
         }
     }
 
@@ -729,7 +794,8 @@ final class ResultViewController: UIViewController {
             let jitter = CGFloat.random(in: 0.5...1)
             let h = max(6, min(44, 6 + level * 38 * jitter * (i % 3 == 0 ? 1 : 0.8)))
             UIView.animate(withDuration: 0.1) {
-                bar.frame = CGRect(x: bar.frame.minX, y: (44 - h) / 2, width: 4, height: h)
+                self.waveGeometry.setFrame(bar, CGRect(x: CGFloat(i) * 8.3, y: (44 - h) / 2, width: 4, height: h))
+                self.waveView.layoutIfNeeded()
             }
         }
     }
@@ -785,7 +851,7 @@ final class ResultViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) { [weak self] in self?.runHints() }
     }
 
-    /// "Hold to compare" pulse (first open only) and the sparkle in "Ask for a change".
+    /// Compare action pulse (first open only) and the sparkle in "Ask for a change".
     private func runHints() {
         guard !DS.Motion.reduceMotion else { return }
         let key = "redesign_compare_hint_shown"
@@ -815,7 +881,18 @@ final class ResultViewController: UIViewController {
 
 // MARK: - Versions collection
 
-extension ResultViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+extension ResultViewController: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        // Flow layout measures before the controller's didLayout callback. Cap to
+        // its current viewport on that same pass, including the first resize.
+        let scale = OnboardingLayout(size: view.dsLayoutSize).scale
+        let section = (collectionViewLayout as? UICollectionViewFlowLayout)?.sectionInset ?? .zero
+        let inset = collectionView.adjustedContentInset
+        let availableHeight = max(1, collectionView.bounds.height - inset.top - inset.bottom - section.top - section.bottom)
+        return CGSize(width: 56 * scale, height: min(74 * scale, availableHeight))
+    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         items.count
     }
@@ -854,9 +931,11 @@ extension ResultViewController: UICollectionViewDataSource, UICollectionViewDele
 extension ResultViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         updateSendState()
-        let fitting = textView.sizeThatFits(CGSize(width: textView.bounds.width, height: .greatestFiniteMagnitude)).height + 12
-        askFieldHeightConstraint.constant = min(max(52, fitting), 112)
-        textView.isScrollEnabled = fitting > 112
+        let scale = max(0.1, referenceLayout?.scale ?? 1)
+        let fitting = textView.sizeThatFits(CGSize(width: textView.bounds.width, height: .greatestFiniteMagnitude)).height + 12 * scale
+        let height = min(max(52 * scale, fitting), 112 * scale)
+        if abs(askFieldHeightConstraint.constant - height) > 0.1 { askFieldHeightConstraint.constant = height }
+        textView.isScrollEnabled = fitting > 112 * scale
     }
 
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -868,16 +947,66 @@ extension ResultViewController: UITextViewDelegate {
     }
 }
 
-/// System rating prompt after a positive moment (👍 or the second saved design), never after a failure.
+/// Request the system rating once, when the first successfully generated image is shown.
+@MainActor
 enum RatePrompt {
-    private static let key = "redesign_rate_prompt_last"
+    private static let pendingKey = "redesign_first_generation_review_doc"
+    private static let requestedKey = "redesign_first_generation_review_requested"
+    static var storage: UserDefaults {
+        #if DEBUG
+        if AppQA.enabled { return UserDefaults(suiteName: "com.albert.apps.design.ai.qa.review")! }
+        #endif
+        return .standard
+    }
 
-    static func registerPositiveMoment(in scene: UIWindowScene?) {
-        let last = UserDefaults.standard.object(forKey: key) as? Date ?? .distantPast
-        guard Date().timeIntervalSince(last) > 60 * 60 * 24 * 30, let scene else { return }
-        UserDefaults.standard.set(Date(), forKey: key)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+    static func recordSuccessfulGeneration(docID: String, defaults: UserDefaults? = nil) {
+        let defaults = defaults ?? storage
+        guard !defaults.bool(forKey: requestedKey), defaults.string(forKey: pendingKey) == nil else { return }
+        defaults.set(docID, forKey: pendingKey)
+    }
+
+    static func consumeRequest(for docID: String, defaults: UserDefaults? = nil) -> Bool {
+        let defaults = defaults ?? storage
+        guard !defaults.bool(forKey: requestedKey), defaults.string(forKey: pendingKey) == docID else { return false }
+        defaults.set(true, forKey: requestedKey)
+        defaults.removeObject(forKey: pendingKey)
+        return true
+    }
+
+    static func requestAfterFirstGeneration(docID: String, in scene: UIWindowScene?) {
+        guard let scene, scene.activationState == .foregroundActive,
+              consumeRequest(for: docID) else { return }
+        #if DEBUG
+        if AppQA.enabled {
+            AppQA.record("rating_prompt_requested", properties: [
+                "doc_id": docID, "scene_bounds": "\(scene.coordinateSpace.bounds)",
+                "screen_bounds": "\(scene.screen.bounds)", "scene_role": scene.session.role.rawValue
+            ])
+            guard ProcessInfo.processInfo.arguments.contains("--qa-system-review") else { return }
+        }
+        #endif
+        if #available(iOS 18.0, *) {
+            AppStore.requestReview(in: scene)
+        } else {
             SKStoreReviewController.requestReview(in: scene)
         }
+    }
+}
+
+extension ResultViewController: UIGestureRecognizerDelegate {
+    func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+        guard let drag = gestureRecognizer as? UIPanGestureRecognizer else { return true }
+        let velocity = drag.velocity(in: askPanelView)
+        let movement = abs(velocity.x) + abs(velocity.y) > 10 ? velocity : drag.translation(in: askPanelView)
+        return movement.y > abs(movement.x)
+    }
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
+        var current = touch.view
+        while let view = current, view !== askPanelView {
+            if view is UITextView || view is UIControl { return false }
+            current = view.superview
+        }
+        return true
     }
 }

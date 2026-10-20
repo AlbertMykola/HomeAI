@@ -52,7 +52,6 @@
 "Garden Design" = "ガーデンデザイン";
 "Reference Style" = "参考スタイル";
 "Replace Objects" = "オブジェクトを置き換える";
-"Replace Object" = "オブジェクトを置き換える";
 "New Flooring" = "新しい床";
 "New Walls" = "新しい壁";
 "Change your indoor space" = "室内空間を変える";
@@ -86,14 +85,12 @@
 "Select an object and let AI remove it instantly." = "オブジェクトを選ぶだけで、AIがすぐに削除します。";
 // Photo
 "Add a photo" = "写真を追加";
-"Upload a photo of your current room." = "現在の部屋の写真をアップロードしてください。";
 "Upload a photo of your current facade." = "現在の外観の写真をアップロードしてください。";
 "Upload a photo of your current outdoor space." = "現在の屋外スペースの写真をアップロードしてください。";
 "Upload a photo of your current design." = "現在のデザインの写真をアップロードしてください。";
 "Upload a photo of your current room." = "現在の部屋の写真をアップロードしてください。";
 "Upload a photo to redesign your floor" = "床をリデザインする写真をアップロードしてください";
 "Upload a photo of your current walls." = "現在の壁の写真をアップロードしてください。";
-"" = "";
 
 "Get your dream design" = "理想のデザインを手に入れよう";
 "Take a photo" = "写真を撮る";
@@ -129,7 +126,6 @@
 "Follow the current room" = "現在の部屋に合わせる";
 "Redesign without restrictions" = "制限なくリデザイン";
 "Color Palette" = "カラーパレット";
-"" = "";
 
 // Room
 "Choose Room" = "部屋を選択";
@@ -141,7 +137,6 @@
 "Bathroom" = "バスルーム";
 "Living room" = "リビング";
 "Dinning room" = "ダイニング";
-"Office" = "オフィス";
 "Study room" = "書斎";
 "Gaming room" = "ゲームルーム";
 "Kids room" = "子ども部屋";
@@ -154,7 +149,6 @@
 // Style
 "Choose Style" = "スタイルを選択";
 "Modern" = "モダン";
-"Contemporary" = "コンテンポラリー";
 "Minimalist" = "ミニマリスト";
 "High-tech" = "ハイテク";
 "Scandinavian" = "スカンジナビアン";
@@ -178,7 +172,6 @@
 "Wabi-sabi" = "わびさび";
 "Vintage" = "ヴィンテージ";
 "Rustic" = "ラスティック";
-"Farmhouse" = "ファームハウス";
 "Tropical" = "トロピカル";
 "Flat" = "フラット";
 "House" = "一戸建て";
@@ -212,7 +205,6 @@
 "Wood" = "ウッド";
 "Creepy" = "不気味";
 "Chocolate" = "チョコレート";
-"Cyberpunk" = "サイバーパンク";
 //Inspiration Detail
 "Done" = "完了";
 "Save" = "保存";
@@ -251,7 +243,6 @@
 "New Floor" = "新しい床";
 "New Style" = "新しいスタイル";
 "New Color" = "新しい色";
-"" = "";
 
 //Paywall
 "Go Premium Design Without Limits" = "Premiumへ\n制限なしでデザイン";
@@ -306,8 +297,6 @@
 "Privacy Policy" = "プライバシーポリシー";
 "Terms & Conditions" = "利用規約";
 "Contact Us" = "お問い合わせ";
-"" = "";
-"" = "";
 
 // Photo Tips
 "Use natural light whenever possible, or switch on all lights in the room.\nShoot at eye level to keep the perspective natural and realistic.\nPTake photos from a corner or doorway to capture more of the space.\nClear away clutter and tidy up to achieve a clean, polished look." = "できるだけ自然光を使うか、部屋の照明をすべて点けてください。\n自然でリアルな遠近感を保つため、目の高さで撮影してください。\n部屋全体をより広く写せるよう、部屋の角や出入口から撮影してください。\n散らかった物を片づけて整えると、すっきりした仕上がりになります。";
@@ -320,7 +309,6 @@
 "Too Close" = "近すぎる";
 "Too Dark" = "暗すぎる";
 "Too Mess" = "散らかりすぎ";
-"View at eye level" = "目の高さで撮影";
 "Good light" = "明るさが十分";
 "Clean Room" = "片づいた部屋";
 "Too Far" = "遠すぎる";
@@ -338,7 +326,6 @@
 "Good Example:" = "良い例:";
 // Custom Prompt
 "Enter Custom Promt" = "カスタムプロンプトを入力";
-"Describe your design style idea..." = "デザインスタイルのアイデアを入力してください...";
 "Clear" = "クリア";
 "Example Promt" = "プロンプト例";
 "A calm interior with soft daylight, light walls, natural textures, simple furniture forms, cozy seating, subtle shadows, balanced composition, realistic materials, high detail, photorealistic render" = "やわらかな自然光、明るい壁、自然な質感、シンプルな家具のフォルム、心地よい座席、繊細な影、バランスの取れた構図、リアルな素材感、高精細、フォトリアルなレンダリングの落ち着いたインテリア";
@@ -386,8 +373,6 @@
 "Outlined object" = "オブジェクトを囲っている";
 "Correct Selection " = "正しい選択";
 "Clear highlight" = "明確なハイライト";
-"" = "";
-"" = "";
 
 //SurfaceMaterialPickerViewController
 "Describe your design style idea..." = "デザインスタイルのアイデアを入力してください...";
@@ -397,16 +382,6 @@
 "Daily limit reached" = "1日の上限に達しました";
 "daily_limit_reached_message" = "本日の画像生成（%d回）をすべて使用しました。明日もう一度お試しください。";
 "You've used all 15 image generations for today. Please try again tomorrow." = "本日分の画像生成15回をすべて使いました。明日もう一度お試しください。";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
 "" = "";
 "Meet Your AI Experts:" = "AIエキスパートをご紹介：";
 "AI Renovation Assistant" = "AIリノベーションアシスタント";
@@ -798,6 +773,7 @@
 "No free designs left" = "無料デザインはありません";
 "%d of %d free designs left" = "無料デザイン残り%d/%d";
 "Get Pro · %@ / year" = "Proにする · %@/年";
+"Get Pro · %@ / week" = "Proにする · %@/週";
 "Help & feedback" = "ヘルプとフィードバック";
 "Appearance" = "外観モード";
 "Notifications are off" = "通知がオフです";
@@ -878,6 +854,8 @@
 "Unlock every style" = "すべてのスタイルを解放";
 "This is a Pro feature. Pro also unlocks:" = "Pro限定の機能です。Proではほかにも：";
 "%@ / year · cancel anytime" = "%@/年 · いつでも解約可能";
+"Weekly subscription is unavailable. Please try again." = "週額サブスクリプションは利用できません。もう一度お試しください。";
+"%@ / week · cancel anytime" = "%@/週 · いつでも解約可能";
 "Welcome to Pro" = "Proへようこそ";
 "Everything is unlocked. Go make every room yours." = "すべての機能が使えます。どの部屋も思いのままに。";
 "Start designing" = "デザインを始める";
@@ -1133,3 +1111,78 @@
 "Living Wall" = "グリーンウォール";
 "Cork Wall" = "コルク壁";
 "Wood Shiplap" = "木製羽目板";
+
+/* Figma A · onboarding (English fallback until translated). */
+"onboarding_skip" = "スキップ";
+"onboarding_before" = "変更前";
+"onboarding_after" = "変更後";
+"onboarding_room_title" = "どんな部屋も数秒でリデザイン";
+"onboarding_room_subtitle" = "写真を撮るだけで新しいデザインに。壁や窓、間取りはそのままです。";
+"onboarding_tools_title" = "1つのアプリに11のAIツール";
+"onboarding_tools_subtitle" = "壁の塗り替え、床の変更、不要な物の削除、空室への家具配置など、さまざまな編集ができます。";
+"onboarding_words_title" = "自分の言葉で編集";
+"onboarding_words_subtitle" = "変えたいことを文字や音声で伝えてください。それ以外はすべてそのままです。";
+"onboarding_demo_placeholder" = "変更したいことを入力…";
+"onboarding_demo_prompt" = "暖かい照明のある夕方にして";
+"onboarding_tool_walls" = "壁を塗り替え";
+"onboarding_tool_floor" = "新しい床";
+"onboarding_tool_remove" = "物を削除";
+"onboarding_tool_replace" = "家具を交換";
+"onboarding_tool_style" = "新しいスタイル";
+"onboarding_goal_title" = "何をリデザインしますか？";
+"onboarding_goal_subtitle" = "目的に合ったツールを最初に表示します。いつでも変更できます。";
+"onboarding_goal_skip" = "まだ決まっていない場合はスキップ";
+"onboarding_goal_interior" = "室内";
+"onboarding_goal_interior_detail" = "家の中の部屋";
+"onboarding_goal_exterior" = "外観";
+"onboarding_goal_exterior_detail" = "家のファサード";
+"onboarding_goal_garden" = "庭";
+"onboarding_goal_garden_detail" = "庭やテラス";
+"onboarding_goal_surfaces" = "壁と床";
+"onboarding_goal_surfaces_detail" = "表面だけを変更";
+"onboarding_splash_tagline" = "すべての部屋にAIデザインを";
+
+/* Shared and legacy UI: complete localization coverage. */
+"Chat" = "チャット";
+"Choose Type" = "種類を選択";
+"Cyberpunk" = "サイバーパンク";
+"Detecting..." = "検出中…";
+"Edit" = "編集";
+"Not completed" = "未完了";
+"Perform the necessary action to continue." = "続けるには必要な操作を完了してください。";
+"Please select a material option." = "素材を選択してください。";
+"Something went wrong. Please try again." = "問題が発生しました。もう一度お試しください。";
+"A refined interior with contrast between light and dark surfaces, elegant furniture, subtle metallic accents, controlled lighting, depth and shadows, realistic textures" = "明暗のある表面のコントラスト、上品な家具、さりげない金属のアクセント、計算された照明、奥行きと影、リアルな質感を備えた洗練されたインテリア";
+
+/* VoiceOver controls */
+"Ask by voice" = "音声で質問";
+"Back" = "戻る";
+"Close" = "閉じる";
+"Compare" = "比較";
+"Dislike" = "よくない";
+"Flash" = "フラッシュ";
+"Hide" = "非表示";
+"Hold to see the original" = "長押しで元の写真を表示";
+"Like" = "よい";
+"Minimize" = "最小化";
+"Photo library" = "写真ライブラリ";
+"Redo" = "やり直す";
+"Remove photo" = "写真を削除";
+"Remove reference" = "参考画像を削除";
+"Reset zoom" = "ズームをリセット";
+"Save to Photos" = "写真に保存";
+"Search" = "検索";
+"Send" = "送信";
+"Speak" = "話す";
+"Speak a change" = "変更内容を音声入力";
+"Switch camera" = "カメラを切り替え";
+"Take photo" = "写真を撮る";
+"Type instead" = "テキストを入力";
+/* Personalized Home hero */
+"home_hero_exterior_title" = "外観をリデザイン";
+"home_hero_exterior_subtitle" = "約30秒で新しい外観に。建物の形はそのまま。";
+"home_hero_garden_title" = "庭をリデザイン";
+"home_hero_garden_subtitle" = "約30秒で新しい庭に。広さはそのまま。";
+"home_hero_surfaces_title" = "壁と床をリニューアル";
+"home_hero_surfaces_subtitle" = "約30秒で新しい壁と床を試せます。";
+"About %d s" = "約%d秒";

@@ -14,9 +14,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         UIDevice.lockToPortraitIfNeeded(in: windowScene)
         #if DEBUG
+        if AppQA.enabled {
+            NavigationManager.shared.setupWindow(with: windowScene)
+            return
+        }
+        if OnboardingPreview.enabled {
+            let previewWindow = UIWindow(windowScene: windowScene)
+            previewWindow.overrideUserInterfaceStyle = .light
+            previewWindow.rootViewController = ProcessInfo.processInfo.arguments.contains("--onboarding-splash")
+                ? AppStoryboard.instantiate(LaunchViewController.self) : AppStoryboard.instantiate(OBPageViewController.self)
+            previewWindow.makeKeyAndVisible()
+            window = previewWindow
+            return
+        }
         if ProcessInfo.processInfo.arguments.contains("--paywall-layout-preview") {
             let previewWindow = UIWindow(windowScene: windowScene)
-            let preview = PaywallViewController(nibName: "PaywallViewController", bundle: .main)
+            let preview = AppStoryboard.instantiate(PaywallViewController.self)
             let previewArguments = ProcessInfo.processInfo.arguments
             if previewArguments.contains("--paywall-placement-save") {
                 preview.placement = Constants.Keys.saveImagePlacement
@@ -58,16 +71,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard shortcutItem.type == ShortcutType.exclusiveOffer else { return false }
 
         let userId = AdaptyService.shared.userID
-        let subject = "Get an Exclusive Offer - HomeAI \(userId)"
+        let subject = "Get an Exclusive Offer - Rehomely \(userId)"
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? ""
         let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String ?? ""
         let systemVersion = UIDevice.current.systemVersion
         let deviceModel = UIDevice.current.model
 
         let body = """
-        Hi HomeAI team,
+        Hi Rehomely team,
 
-        I'd love to get an exclusive offer for HomeAI.
+        I'd love to get an exclusive offer for Rehomely.
 
         My details:
         - Adapty profile ID: \(userId)
@@ -96,7 +109,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneDidBecomeActive(_ scene: UIScene) {
         #if DEBUG
-        if ProcessInfo.processInfo.arguments.contains("--paywall-layout-preview") { return }
+        if AppQA.enabled || ProcessInfo.processInfo.arguments.contains("--paywall-layout-preview") || OnboardingPreview.enabled { return }
         #endif
         AppEvents.shared.activateApp()
         Task { @MainActor in
@@ -112,6 +125,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             if UserDefaults.standard.bool(forKey: Constants.Keys.didLogTrackingPermission) {
                 return
             }
+            // First launch asks after O4; returning users retain the existing launch behavior.
+            guard NavigationManager.shared.isShowingMainApp else { return }
             print("[SceneDelegate] Виклик TrackingManager.requestPermission...")
             
             TrackingManager.requestPermission { status in
@@ -120,6 +135,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 
                 AmplitudeService.shared.logEvent(.trackingPermission(granted: granted))
                 UserDefaults.standard.set(true, forKey: Constants.Keys.didLogTrackingPermission)
+                AppsFlyerService.shared.startReadySessionIfTrackingResolved()
                 
                 if !granted {
                     print("[SceneDelegate] Дозвіл на відстеження НЕ надано.")

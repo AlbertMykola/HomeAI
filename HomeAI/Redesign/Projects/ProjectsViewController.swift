@@ -1,7 +1,7 @@
 import UIKit
 
 /// A/10 · PR1 Projects tab: Designs (projects grid, select mode, delete confirm) · Ideas (saved from Inspiration),
-/// PR3 empty states. Layout: ProjectsViewController.xib.
+/// PR3 empty states. Layout: Projects.storyboard.
 final class ProjectsViewController: UIViewController {
 
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -25,7 +25,6 @@ final class ProjectsViewController: UIViewController {
     @IBOutlet private weak var actionBarView: UIView!
     @IBOutlet private var actionControls: [DSPressableControl]!
     @IBOutlet private var actionLabels: [UILabel]!
-    @IBOutlet private weak var actionBarBottomConstraint: NSLayoutConstraint!
 
     private enum Segment: Int { case designs, ideas }
 
@@ -48,9 +47,7 @@ final class ProjectsViewController: UIViewController {
         actionLabels.sorted { $0.tag < $1.tag }.enumerated().forEach { $1.text = actions[$0].localized }
         emptyGhostButton.setTitle("Browse inspiration".localized, for: .normal)
 
-        collectionView.register(UINib(nibName: "ProjectCell", bundle: nil), forCellWithReuseIdentifier: ProjectCell.reuseID)
-        collectionView.register(UINib(nibName: "InspirationCardCell", bundle: nil),
-                                forCellWithReuseIdentifier: InspirationCardCell.reuseID)
+
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.contentInsetAdjustmentBehavior = .never
@@ -65,6 +62,12 @@ final class ProjectsViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
         if needsReload { reloadData() }
+        if !didRunEntrance {
+            [largeTitleLabel, selectButton, segmentKnob, emptyIconView, emptyTitleLabel,
+             emptySubtitleLabel, emptyPrimaryButton, emptyGhostButton].forEach { $0?.alpha = 0 }
+            segmentControls.forEach { $0.alpha = 0 }
+            collectionView.alpha = 0
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -76,15 +79,15 @@ final class ProjectsViewController: UIViewController {
         super.viewDidLayoutSubviews()
         applySegment(index: segment.rawValue, labels: segmentLabels, knobLeading: segmentKnobLeading,
                      container: segmentView, count: 2, animated: false)
-        let top = headerView.frame.maxY + 4
-        let bottom = view.safeAreaInsets.bottom + 24
-        if collectionView.contentInset.top != top {
+        let metrics = OnboardingLayout(size: view.dsAdaptiveReferenceSize)
+        let top = headerView.frame.maxY + metrics.value(4)
+        let bottom = view.safeAreaInsets.bottom + metrics.value(24)
+        if collectionView.contentInset.top != top || collectionView.contentInset.bottom != bottom {
+            let atTop = collectionView.contentOffset.y <= -collectionView.contentInset.top + 1
             collectionView.contentInset = UIEdgeInsets(top: top, left: 0, bottom: bottom, right: 0)
             collectionView.verticalScrollIndicatorInsets = collectionView.contentInset
-            collectionView.contentOffset.y = -top
+            if atTop { collectionView.contentOffset.y = -top }
         }
-        // The action bar takes the floating tab bar's place (root VCs get the bar as extra safe area).
-        actionBarBottomConstraint.constant = -additionalSafeAreaInsets.bottom
         updateItemSize()
     }
 
@@ -101,19 +104,21 @@ final class ProjectsViewController: UIViewController {
         }
         DS.Motion.enter(segmentKnob, delay: 0.06, dx: 16)
         animateCards(from: 0.14)
+        collectionView.alpha = 1
         animateEmptyState()
     }
 
     private func updateItemSize() {
         guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-        let w = floor((collectionView.bounds.width - 40 - 13) / 2)
-        let h = segment == .designs ? round(w * 200 / 170) + 46 : round(w * 230 / 170)
+        let metrics = OnboardingLayout(size: view.dsLayoutSize)
+        let w = floor((collectionView.bounds.width - metrics.value(40 + 13)) / 2)
+        let h = segment == .designs ? round(w * 200 / 170) + metrics.value(46) : round(w * 230 / 170)
         let size = CGSize(width: w, height: h)
         guard layout.itemSize != size else { return }
         layout.itemSize = size
-        layout.minimumLineSpacing = segment == .designs ? 18 : 13
-        layout.minimumInteritemSpacing = 13
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
+        layout.minimumLineSpacing = metrics.value(segment == .designs ? 18 : 13)
+        layout.minimumInteritemSpacing = metrics.value(13)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: metrics.value(20), bottom: 0, right: metrics.value(20))
         layout.invalidateLayout()
     }
 
@@ -223,7 +228,7 @@ final class ProjectsViewController: UIViewController {
         }
         let tabs = tabBarController as? TabBarController
         if on {
-            tabs?.setFloatingBarHidden(true, animated: true)
+            tabs?.setTabBarHiddenForSelection(true, animated: true)
             actionBarView.isHidden = false
             actionBarView.alpha = 0
             actionBarView.transform = CGAffineTransform(translationX: 0, y: 30)
@@ -235,7 +240,7 @@ final class ProjectsViewController: UIViewController {
                 self.actionBarView.alpha = 0
                 self.actionBarView.transform = CGAffineTransform(translationX: 0, y: 30)
             }, completion: { _ in self.actionBarView.isHidden = true })
-            tabs?.setFloatingBarHidden(false, animated: true)
+            tabs?.setTabBarHiddenForSelection(false, animated: true)
         }
         UIView.transition(with: largeTitleLabel, duration: 0.2, options: .transitionCrossDissolve) { self.updateHeader() }
     }

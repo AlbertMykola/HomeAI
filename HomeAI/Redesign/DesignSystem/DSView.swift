@@ -1,6 +1,6 @@
 import UIKit
 
-/// Base view for redesign XIBs. Corner radius / border come from the shared UIView inspectables
+/// Base view for redesign storyboards. Corner radius / border come from the shared UIView inspectables
 /// (`cornerRadius`, `borderWidth`, `borderColor`); this adds continuous corners, pills and shadow.
 class DSView: UIView {
 

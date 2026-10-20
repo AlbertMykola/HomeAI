@@ -5,8 +5,8 @@ import StoreKit
 
 /// A/02 · P1 Paywall (+ trial off, P4 processing, Purchase failed / Restore alerts). Honest: ✕ and Restore are
 /// visible from the first frame. Prices and the trial come from the Adapty paywall products (StoreKit);
-/// trial on = the product with a free-trial intro offer, trial off = the yearly product (or the other one).
-/// Layout: ProPaywallViewController.xib. Light only.
+/// Both trial states use weekly products. The toggle is available only when both offers exist.
+/// Layout: Paywall.storyboard. Light only.
 final class ProPaywallViewController: UIViewController {
 
     @IBOutlet private weak var closeButton: DSPressableControl!
@@ -35,6 +35,7 @@ final class ProPaywallViewController: UIViewController {
     @IBOutlet private weak var dueTodayLabel: UILabel!
     @IBOutlet private weak var dueFreeLabel: UILabel!
     @IBOutlet private weak var dueTodayPriceLabel: UILabel!
+    @IBOutlet private weak var todayRow: UIStackView!
     @IBOutlet private weak var chargeRow: UIStackView!
     @IBOutlet private weak var chargeDateLabel: UILabel!
     @IBOutlet private weak var chargePriceLabel: UILabel!
@@ -52,17 +53,21 @@ final class ProPaywallViewController: UIViewController {
     var onPurchase: (() -> Void)?
 
     private var products: [AdaptyPaywallProduct] = []
-    private var trialIndex: Int?
-    private var plainIndex: Int?
     private var trialOn = true
     private var isPurchasing = false
     private var purchaseTimeout: DispatchWorkItem?
     private var didRunEntrance = false
     private let amplitude = AmplitudeService.shared
     private let sessionID = UUID().uuidString
+    private var layoutSize = CGSize.zero
+    private var baseFonts: [(UILabel, UIFont)] = []
+    @IBOutlet private weak var contentScrollView: UIScrollView!
+    private var baseConstraints: [(NSLayoutConstraint, CGFloat)] = []
+    private var baseSpacings: [(UIStackView, CGFloat)] = []
+    @IBOutlet private weak var footerHeight: NSLayoutConstraint!
 
     static func make(placement: String, source: String, onPurchase: (() -> Void)?) -> ProPaywallViewController {
-        let vc = ProPaywallViewController(nibName: "ProPaywallViewController", bundle: .main)
+        let vc = AppStoryboard.instantiate(ProPaywallViewController.self)
         vc.placement = placement
         vc.source = source
         vc.onPurchase = onPurchase
@@ -75,14 +80,22 @@ final class ProPaywallViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        contentScrollView.contentInsetAdjustmentBehavior = .never
         restoreLabel.text = "Restore".localized
+        restoreButton.accessibilityLabel = restoreLabel.text
+        closeButton.accessibilityLabel = "Close".localized
         titleLabel.text = "Ready to go PRO?".localized
         subtitleLabel.text = "Unlimited designs. Cancel anytime.".localized
         cardTitleLabel.text = "Rehomely PRO".localized
+        cardPriceLabel.accessibilityIdentifier = "paywall.price"
         cardBodyLabel.text = "Unlimited AI redesigns for any room, real paint colors and HD export.".localized
         dueTodayLabel.text = "Due today".localized
         termsButton.setTitle("Terms of Use".localized, for: .normal)
         privacyButton.setTitle("Privacy Policy".localized, for: .normal)
+        [chargeDateLabel, cardPriceLabel, trialLabel, noteLabel].forEach {
+            $0?.numberOfLines = 0
+            $0?.lineBreakMode = .byWordWrapping
+        }
         [termsButton, privacyButton].forEach { button in
             guard let button, let title = button.title(for: .normal) else { return }
             button.setAttributedTitle(NSAttributedString(string: title, attributes: [
@@ -91,16 +104,95 @@ final class ProPaywallViewController: UIViewController {
                 .font: DS.Font.geologica(.regular, 14)
             ]), for: .normal)
         }
-        // Small phones: shrink the illustration first.
-        if UIScreen.main.bounds.height < 750 { stageHeightConstraint.constant = 150 }
+        captureLayoutMetrics(in: view)
         setLoading(true)
         loadProducts()
         if !DS.Motion.reduceMotion {
             [titleLabel, subtitleLabel, stageView, cardView, trialToggle, timelineView, noteRow, ctaButton]
                 .forEach { $0?.alpha = 0 }
         }
+        cardTitleLabel.setContentCompressionResistancePriority(.required, for: .vertical)
+        cardBodyLabel.setContentCompressionResistancePriority(.required, for: .vertical)
         amplitude.logPaywallEvent("paywall_view", properties: properties())
         amplitude.logEvent(.showPaywall(id: placement))
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        defer { fitTimeline() }
+        guard view.dsLayoutSize != layoutSize else { return }
+        layoutSize = view.dsLayoutSize
+        let layout = OnboardingLayout(size: layoutSize)
+        let scale = layout.scale
+        baseFonts.forEach { label, font in label.font = font.withSize(font.pointSize * scale) }
+        baseSpacings.forEach { stack, spacing in stack.spacing = spacing * scale }
+        baseConstraints.forEach { constraint, value in
+            let tapTarget = constraint.firstItem as? DSPressableControl
+            let isTapSize = constraint.secondItem == nil && (constraint.firstAttribute == .height || constraint.firstAttribute == .width) && value >= 40
+            constraint.constant = isTapSize && tapTarget != nil ? max(44, value * scale) : value * scale
+        }
+        // Exact reference rhythm (the title/subtitle gap is smaller than the other gaps).
+        [(titleLabel as UIView, 3.0), (subtitleLabel as UIView, 11.0), (stageView!, 6.0),
+         (cardView!, 11.0), (trialToggle!, 20.0), (timelineView!, 10.0)].forEach {
+            contentStack.setCustomSpacing(CGFloat($0.1) * scale, after: $0.0)
+        }
+        let legalWidth = view.dsLayoutSize.width - 2 * layout.value(20)
+        let baseLegalFont = DS.Font.geologica(.regular, max(11, 14 * scale))
+        let textWidth = [termsButton, privacyButton].compactMap { $0?.title(for: .normal) }.reduce(CGFloat.zero) {
+            $0 + ($1 as NSString).size(withAttributes: [.font: baseLegalFont]).width
+        }
+        // Reserve a few points for each button's pixel-rounded intrinsic width.
+        let legalSize = max(11, baseLegalFont.pointSize * min(1, max(0, legalWidth - layout.value(30) - 4) / max(1, textWidth)))
+        let legalFont = baseLegalFont.withSize(legalSize)
+        [termsButton, privacyButton].forEach { button in
+            guard let button, let title = button.title(for: .normal) else { return }
+            button.contentEdgeInsets = .zero
+            button.titleLabel?.font = legalFont
+            button.setAttributedTitle(NSAttributedString(string: title, attributes: [
+                .underlineStyle: NSUnderlineStyle.single.rawValue,
+                .foregroundColor: UIColor(hex: "3E7A00"), .font: legalFont
+            ]), for: .normal)
+        }
+        if let footer = termsButton.superview as? UIStackView {
+            let availableWidth = legalWidth
+            let naturalWidth = [termsButton, privacyButton].compactMap { $0 }.reduce(CGFloat.zero) {
+                $0 + $1.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude, height: CGFloat.greatestFiniteMagnitude)).width
+            } + layout.value(30)
+            let vertical = naturalWidth > availableWidth
+            footer.axis = vertical ? .vertical : .horizontal
+            footer.spacing = layout.value(vertical ? 4 : 12)
+            footer.arrangedSubviews.compactMap { $0 as? UILabel }.forEach {
+                $0.isHidden = vertical
+                $0.font = legalFont
+            }
+            let height = ceil(legalFont.lineHeight) * (vertical ? 2 : 1) + (vertical ? footer.spacing : 0)
+            footerHeight.constant = height
+        }
+    }
+
+    private func fitTimeline() {
+        let layout = OnboardingLayout(size: view.dsLayoutSize)
+        let width = view.dsLayoutSize.width - layout.value(62)
+        let natural = [dueTodayLabel, dueFreeLabel, dueTodayPriceLabel].reduce(CGFloat.zero) { total, label in
+            total + (label?.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude,
+                                               height: CGFloat.greatestFiniteMagnitude)).width ?? 0)
+        } + layout.value(18)
+        let axis: NSLayoutConstraint.Axis = natural > width ? .vertical : .horizontal
+        if todayRow.axis != axis {
+            todayRow.axis = axis
+            todayRow.alignment = axis == .vertical ? .fill : .center
+        }
+    }
+
+    private func captureLayoutMetrics(in view: UIView) {
+        if let label = view as? UILabel, let font = label.font { baseFonts.append((label, font)) }
+        if let stack = view as? UIStackView {
+            stack.insetsLayoutMarginsFromSafeArea = false
+            baseSpacings.append((stack, stack.spacing))
+        }
+        // UIKit's safe-area and stack internals remain managed by UIKit.
+        baseConstraints += view.constraints.filter { $0.identifier?.hasPrefix("paywall.") == true }.map { ($0, $0.constant) }
+        view.subviews.forEach(captureLayoutMetrics)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -114,16 +206,20 @@ final class ProPaywallViewController: UIViewController {
     // MARK: Products
 
     private func loadProducts() {
+        #if DEBUG
+        if AppQA.enabled { setLoading(false); render(animated: false); return }
+        #endif
+        products = []
+        trialOn = false
+        trialToggle.isHidden = true
         AdaptyService.shared.fetchPaywallPresentation(placementID: placement) { [weak self] result in
             guard let self else { return }
             switch result {
             case .success(let loaded):
                 self.products = loaded.products
-                self.trialIndex = loaded.products.firstIndex { $0.paywallHasFreeTrial }
-                self.plainIndex = loaded.products.firstIndex { $0.paywallIsYearlySubscription && !$0.paywallHasFreeTrial }
-                    ?? loaded.products.indices.first { $0 != self.trialIndex }
+                let selection = WeeklyPaywallProducts.selection(from: loaded.products)
                 // No eligible trial → straight to "trial off".
-                self.trialOn = self.trialIndex != nil
+                self.trialOn = selection.trialIndex != nil
                 self.setLoading(false)
                 self.render(animated: false)
             case .failure:
@@ -134,31 +230,24 @@ final class ProPaywallViewController: UIViewController {
         }
     }
 
-    private var selectedIndex: Int? { trialOn ? (trialIndex ?? plainIndex) : (plainIndex ?? trialIndex) }
+    private var selectedIndex: Int? {
+        WeeklyPaywallProducts.selection(from: products).selectedIndex(trialEnabled: trialOn)
+    }
     private var selectedProduct: AdaptyPaywallProduct? { selectedIndex.flatMap { products.indices.contains($0) ? products[$0] : nil } }
-
-    private func periodWord(_ product: AdaptyPaywallProduct) -> String {
-        if product.paywallIsWeeklySubscription { return "week".localized }
-        if product.paywallIsMonthlySubscription { return "month".localized }
-        return "year".localized
-    }
-
-    private func billedWord(_ product: AdaptyPaywallProduct) -> String {
-        if product.paywallIsWeeklySubscription { return "Billed weekly".localized }
-        if product.paywallIsMonthlySubscription { return "Billed monthly".localized }
-        return "Billed yearly".localized
-    }
 
     /// Text + visibility for trial on / off ("Smart Animate" → cross-fade + spring).
     private func render(animated: Bool) {
+        #if DEBUG
+        if AppQA.enabled { renderQAFixture(); return }
+        #endif
         guard let product = selectedProduct else { return }
         let price = product.localizedPrice ?? product.paywallFormattedCurrencyAmount(product.paywallPriceDecimal)
-        let period = periodWord(product)
+        let period = "week".localized
         let days = product.paywallTrialDays ?? 3
         let hasTrial = trialOn && product.paywallHasFreeTrial
         let apply = {
-            self.subtitleLabel.text = self.trialIndex != nil
-                ? String(format: "Enjoy %d days free — cancel anytime.".localized, (self.trialIndex.map { self.products[$0].paywallTrialDays ?? 3 }) ?? days)
+            self.subtitleLabel.text = hasTrial
+                ? String(format: "Enjoy %d days free — cancel anytime.".localized, days)
                 : "Unlimited designs. Cancel anytime.".localized
             if hasTrial {
                 self.cardPriceLabel.text = String(format: "%d-day free trial, then %@/%@".localized, days, price, period)
@@ -175,7 +264,7 @@ final class ProPaywallViewController: UIViewController {
                 self.cardPriceLabel.text = String(format: "%@/%@, billed today".localized, price, period)
                 self.trialLabel.text = "Enable Free Trial".localized
                 self.dueTodayPriceLabel.text = price
-                self.noteLabel.text = String(format: "%@ · Cancel anytime".localized, self.billedWord(product))
+                self.noteLabel.text = String(format: "%@ · Cancel anytime".localized, "Billed weekly".localized)
                 self.ctaLabel.text = "Continue".localized
             }
             self.dueFreeLabel.isHidden = !hasTrial
@@ -187,8 +276,10 @@ final class ProPaywallViewController: UIViewController {
             self.trialToggle.layer.borderWidth = hasTrial ? 1.5 : 0
             self.trialBadgeView.image = UIImage(systemName: hasTrial ? "checkmark.seal.fill" : "seal")
             self.trialBadgeView.tintColor = hasTrial ? UIColor(hex: "7BC41A") : UIColor(hex: "C7CBC2")
+            self.trialToggle.accessibilityLabel = self.trialLabel.text
+            self.ctaButton.accessibilityLabel = self.ctaLabel.text
         }
-        trialToggle.isHidden = trialIndex == nil
+        trialToggle.isHidden = !WeeklyPaywallProducts.selection(from: products).canToggleTrial
         trialToggle.accessibilityTraits = hasTrial ? [.button, .selected] : .button
         if animated {
             UIView.animate(withDuration: 0.45, delay: 0, usingSpringWithDamping: 0.85, initialSpringVelocity: 0,
@@ -200,6 +291,42 @@ final class ProPaywallViewController: UIViewController {
     }
 
     /// "$0.00" in the same format as StoreKit's localized price ("$7.99" → "$0.00", "7,99 €" → "0,00 €").
+    #if DEBUG
+    private func renderQAFixture() {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = Locale(identifier: AppQA.language ?? "en_US")
+        formatter.currencyCode = "USD"
+        let price = formatter.string(from: 7.99) ?? "$7.99"
+        subtitleLabel.text = trialOn
+            ? String(format: "Enjoy %d days free — cancel anytime.".localized, 3)
+            : "Unlimited designs. Cancel anytime.".localized
+        cardPriceLabel.text = trialOn
+            ? String(format: "%d-day free trial, then %@/%@".localized, 3, price, "week".localized)
+            : String(format: "%@/%@, billed today".localized, price, "week".localized)
+        trialLabel.text = (trialOn ? "Free Trial Enabled" : "Enable Free Trial").localized
+        dueFreeLabel.text = String(format: "%d days free".localized, 3)
+        dueFreeLabel.isHidden = !trialOn
+        dueTodayPriceLabel.text = trialOn ? (formatter.string(from: 0) ?? "$0.00") : price
+        let date = DateFormatter()
+        date.locale = formatter.locale
+        date.dateStyle = .medium
+        chargeDateLabel.text = String(format: "Due %@".localized, date.string(from: Date().addingTimeInterval(3 * 86_400)))
+        chargePriceLabel.text = price
+        noteLabel.text = trialOn ? "No payment now".localized : String(format: "%@ · Cancel anytime".localized, "Billed weekly".localized)
+        ctaLabel.text = (trialOn ? "Start Free Trial" : "Continue").localized
+        ctaButton.accessibilityLabel = ctaLabel.text
+        trialToggle.accessibilityLabel = trialLabel.text
+        trialToggle.accessibilityTraits = trialOn ? [.button, .selected] : .button
+        trialToggle.isHidden = false
+        [chargeRow, dotChargeView, railView, railFillView].forEach { $0?.alpha = trialOn ? 1 : 0 }
+        trialToggle.backgroundColor = trialOn ? DS.Color.limeSoft : UIColor(hex: "F4F4F4")
+        trialToggle.layer.borderWidth = trialOn ? 1.5 : 0
+        trialBadgeView.image = UIImage(systemName: trialOn ? "checkmark.seal.fill" : "seal")
+        trialBadgeView.tintColor = trialOn ? UIColor(hex: "7BC41A") : UIColor(hex: "C7CBC2")
+    }
+    #endif
+
     static func zeroPrice(like price: String) -> String {
         guard let range = price.range(of: "\\d[\\d.,\\s\u{00A0}\u{202F}]*\\d|\\d", options: .regularExpression) else { return price }
         let reversed = Array(price[range].reversed())
@@ -240,7 +367,7 @@ final class ProPaywallViewController: UIViewController {
         railFillHeightConstraint.constant = 1
         view.layoutIfNeeded()
         m.animate(0.6, delay: 0.95, timing: UICubicTimingParameters(animationCurve: .easeInOut)) {
-            self.railFillHeightConstraint.constant = 34
+            self.railFillHeightConstraint.constant = self.railView.bounds.height
             self.view.layoutIfNeeded()
         }
         m.enter(noteRow, delay: 1.0, dy: 8)
@@ -305,7 +432,11 @@ final class ProPaywallViewController: UIViewController {
     }
 
     @IBAction private func didTapTrial(_ sender: Any) {
-        guard trialIndex != nil, !isPurchasing else { return }
+        var canToggle = WeeklyPaywallProducts.selection(from: products).canToggleTrial
+        #if DEBUG
+        canToggle = canToggle || AppQA.enabled
+        #endif
+        guard canToggle, !isPurchasing else { return }
         trialOn.toggle()
         DS.Haptic.selection()
         amplitude.logPaywallEvent("trial_toggle", properties: properties().merging(["on": trialOn]) { _, n in n })
@@ -323,6 +454,11 @@ final class ProPaywallViewController: UIViewController {
     }
 
     private func purchase(index: Int) {
+        guard products.indices.contains(index), products[index].paywallIsWeeklySubscription else {
+            setLoading(true)
+            loadProducts()
+            return
+        }
         isPurchasing = true
         setProcessing(true)
         DS.Haptic.medium()

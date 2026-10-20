@@ -29,8 +29,7 @@ class SurfaceToolViewController: ToolStepViewController {
         super.viewDidLoad()
         setChipTitles(filterChips, filters.map(\.localized))
         selectChip(filterChips, tag: 0)
-        materialsCollectionView.register(UINib(nibName: "MaterialTileCell", bundle: nil),
-                                         forCellWithReuseIdentifier: MaterialTileCell.reuseID)
+
         materialsCollectionView.dataSource = self
         materialsCollectionView.delegate = self
         reload()
@@ -39,16 +38,18 @@ class SurfaceToolViewController: ToolStepViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         guard let layout = materialsCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-        let w = floor((materialsCollectionView.bounds.width - 26) / 3)
-        if layout.itemSize.width != w {
-            layout.itemSize = CGSize(width: w, height: w * 90 / 109 + 26)
-            layout.minimumInteritemSpacing = 13
-            layout.minimumLineSpacing = 14
+        let metrics = OnboardingLayout(size: view.dsLayoutSize)
+        let w = floor((materialsCollectionView.bounds.width - metrics.value(26)) / 3)
+        let size = CGSize(width: w, height: w * 90 / 109 + metrics.value(26))
+        if layout.itemSize != size {
+            layout.itemSize = size
+            layout.minimumInteritemSpacing = metrics.value(13)
+            layout.minimumLineSpacing = metrics.value(14)
             layout.sectionInset = .zero
             layout.invalidateLayout()
         }
         let rows = ceil(CGFloat(visible.count) / 3)
-        materialsHeightConstraint.constant = max(0, rows * layout.itemSize.height + max(0, rows - 1) * 14)
+        materialsHeightConstraint.constant = max(0, rows * layout.itemSize.height + max(0, rows - 1) * metrics.value(14))
     }
 
     @IBAction func didTapFilter(_ sender: UIControl) {
@@ -89,7 +90,7 @@ extension SurfaceToolViewController: UICollectionViewDataSource, UICollectionVie
     }
 }
 
-/// A/07 · T4 New walls. Layout: WallsToolViewController.xib.
+/// A/07 · T4 New walls. Layout: Tools.storyboard.
 final class WallsToolViewController: SurfaceToolViewController {
 
     override var filters: [String] { ["All", "Paint", "Wood", "Stone", "Tile", "Wallpaper"] }
@@ -120,7 +121,7 @@ final class WallsToolViewController: SurfaceToolViewController {
     }
 }
 
-/// A/07 · T5 New flooring: material, pattern (wood only), keep rugs. Layout: FloorToolViewController.xib.
+/// A/07 · T5 New flooring: material, pattern (wood only), keep rugs. Layout: Tools.storyboard.
 final class FloorToolViewController: SurfaceToolViewController {
 
     @IBOutlet private weak var patternTitleLabel: UILabel!

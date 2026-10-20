@@ -1,7 +1,7 @@
 import UIKit
 
 /// A/09 · A1 Attach: Take a photo / Choose from library / From my projects (sheet, rows stagger 50 ms).
-/// Layout: AssistantAttachSheetViewController.xib.
+/// Layout: Assistant.storyboard.
 final class AssistantAttachSheetViewController: UIViewController {
 
     enum Source: Int { case camera, library, projects }
@@ -15,7 +15,7 @@ final class AssistantAttachSheetViewController: UIViewController {
     private var onPick: ((Source) -> Void)?
 
     static func present(from presenter: UIViewController, onPick: @escaping (Source) -> Void) {
-        let vc = AssistantAttachSheetViewController(nibName: "AssistantAttachSheetViewController", bundle: .main)
+        let vc = AppStoryboard.instantiate(AssistantAttachSheetViewController.self)
         vc.onPick = onPick
         DSSheet.present(vc, from: presenter, height: 330)
     }
@@ -48,7 +48,7 @@ final class AssistantAttachSheetViewController: UIViewController {
     }
 }
 
-/// A/09 History: previous conversations, newest first; swipe to delete. Layout: AssistantHistoryViewController.xib.
+/// A/09 History: previous conversations, newest first; swipe to delete. Layout: Assistant.storyboard.
 final class AssistantHistoryViewController: UIViewController {
 
     @IBOutlet private weak var titleLabel: UILabel!
@@ -60,7 +60,7 @@ final class AssistantHistoryViewController: UIViewController {
 
     /// `nil` → new chat.
     static func present(from presenter: UIViewController, onSelect: @escaping (AssistantConversation?) -> Void) {
-        let vc = AssistantHistoryViewController(nibName: "AssistantHistoryViewController", bundle: .main)
+        let vc = AppStoryboard.instantiate(AssistantHistoryViewController.self)
         vc.onSelect = onSelect
         DSSheet.present(vc, from: presenter)
     }
@@ -71,8 +71,7 @@ final class AssistantHistoryViewController: UIViewController {
         items = AssistantStore.shared.conversations()
         emptyLabel.text = "No conversations yet".localized
         emptyLabel.isHidden = !items.isEmpty
-        tableView.register(UINib(nibName: "AssistantHistoryCell", bundle: nil),
-                           forCellReuseIdentifier: AssistantHistoryCell.reuseID)
+
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = 72
@@ -115,7 +114,7 @@ extension AssistantHistoryViewController: UITableViewDataSource, UITableViewDele
 }
 
 /// History row. Layout: AssistantHistoryCell.xib.
-final class AssistantHistoryCell: UITableViewCell {
+final class AssistantHistoryCell: DSAdaptiveTableViewCell {
     static let reuseID = "AssistantHistoryCell"
 
     @IBOutlet private weak var thumbImageView: UIImageView!
@@ -138,7 +137,7 @@ final class AssistantHistoryCell: UITableViewCell {
 }
 
 /// "From my projects": latest version of each project (PR1 grid in selection mode).
-/// Layout: AssistantProjectPickerViewController.xib.
+/// Layout: Assistant.storyboard.
 final class AssistantProjectPickerViewController: UIViewController {
 
     @IBOutlet private weak var titleLabel: UILabel!
@@ -149,7 +148,7 @@ final class AssistantProjectPickerViewController: UIViewController {
     private var onPick: ((UIImage) -> Void)?
 
     static func present(from presenter: UIViewController, onPick: @escaping (UIImage) -> Void) {
-        let vc = AssistantProjectPickerViewController(nibName: "AssistantProjectPickerViewController", bundle: .main)
+        let vc = AppStoryboard.instantiate(AssistantProjectPickerViewController.self)
         vc.onPick = onPick
         DSSheet.present(vc, from: presenter, large: true)
     }
@@ -160,7 +159,7 @@ final class AssistantProjectPickerViewController: UIViewController {
         emptyLabel.text = "No projects yet".localized
         projects = ProjectStore.shared.allProjects()
         emptyLabel.isHidden = !projects.isEmpty
-        collectionView.register(UINib(nibName: "HomeProjectCell", bundle: nil), forCellWithReuseIdentifier: "HomeProjectCell")
+
         collectionView.dataSource = self
         collectionView.delegate = self
     }
@@ -168,9 +167,11 @@ final class AssistantProjectPickerViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-        let w = floor((collectionView.bounds.width - 40 - 13) / 2)
-        if layout.itemSize.width != w {
-            layout.itemSize = CGSize(width: w, height: w + 54)
+        let metrics = OnboardingLayout(size: view.dsLayoutSize)
+        let w = floor((collectionView.bounds.width - metrics.value(40 + 13)) / 2)
+        let size = CGSize(width: w, height: w + metrics.value(54))
+        if layout.itemSize != size {
+            layout.itemSize = size
             layout.invalidateLayout()
         }
     }

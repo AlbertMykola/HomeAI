@@ -2,7 +2,7 @@ import UIKit
 
 /// A/10 · PR2 Project: A/B compare of any two versions (default Original vs current), versions timeline
 /// (newest first, swipe to delete), Continue editing → R1, More (Rename, Duplicate, Share, Delete).
-/// Layout: ProjectDetailViewController.xib (+ ProjectVersionCell.xib).
+/// Layout: Projects.storyboard (+ ProjectVersionCell.xib).
 final class ProjectDetailViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
@@ -64,7 +64,7 @@ final class ProjectDetailViewController: UIViewController {
     private var didRunEntrance = false
 
     static func make(projectID: String, lastDocID: String?) -> ProjectDetailViewController {
-        let vc = ProjectDetailViewController(nibName: "ProjectDetailViewController", bundle: .main)
+        let vc = AppStoryboard.instantiate(ProjectDetailViewController.self)
         vc.projectID = projectID
         vc.lastDocID = lastDocID
         return vc
@@ -77,8 +77,7 @@ final class ProjectDetailViewController: UIViewController {
         continueLabel.text = "Continue editing".localized
         headerContainer.removeFromSuperview()
         headerContainer.translatesAutoresizingMaskIntoConstraints = true
-        tableView.register(UINib(nibName: "ProjectVersionCell", bundle: nil),
-                           forCellReuseIdentifier: ProjectVersionCell.reuseID)
+
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = 76
@@ -95,11 +94,17 @@ final class ProjectDetailViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        if !didRunEntrance {
+            tableView.alpha = 0
+            continueButton.alpha = 0
+        }
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let width = tableView.bounds.width
+        // A table header is measured before UIKit lays out its detached hierarchy.
+        (headerContainer as? DSAdaptiveRootView)?.applyMetrics(size: view.dsLayoutSize)
         let size = headerContainer.systemLayoutSizeFitting(CGSize(width: width, height: 0),
                                                            withHorizontalFittingPriority: .required,
                                                            verticalFittingPriority: .fittingSizeLevel)
@@ -114,6 +119,7 @@ final class ProjectDetailViewController: UIViewController {
         super.viewDidAppear(animated)
         guard !didRunEntrance else { return }
         didRunEntrance = true
+        tableView.alpha = 1
         // Figma A/10 PR2: compare, then the timeline 60 ms later (y 12, 450 ms); CTA from below, shimmer at 1.6 s.
         DS.Motion.enter(compareView, delay: 0, dy: 12)
         DS.Motion.enter(versionsTitleLabel.superview, delay: 0.06, dy: 12)
@@ -181,7 +187,7 @@ final class ProjectDetailViewController: UIViewController {
 
     @objc private func handleCompare(_ pan: UIPanGestureRecognizer) {
         let x = pan.location(in: compareView).x
-        split = min(max(x / max(view.bounds.width - 40, 1), 0.04), 0.96)
+        split = min(max(x / max(view.dsLayoutSize.width - 40, 1), 0.04), 0.96)
         if pan.state == .ended { UIAccessibility.post(notification: .layoutChanged, argument: nil) }
         applySplit()
         if pan.state == .began { DS.Haptic.selection() }
@@ -189,7 +195,7 @@ final class ProjectDetailViewController: UIViewController {
 
     private func applySplit() {
         // The header lives in tableHeaderView, so use the known width (screen − 2 × 20) rather than bounds.
-        let width = view.bounds.width - 40
+        let width = view.dsLayoutSize.width - 40
         bClipWidthConstraint.constant = width * (1 - split)
         compareView.accessibilityLabel = String(format: "Compare %@ and %@".localized, aLabel.text ?? "", bLabel.text ?? "")
     }
@@ -275,6 +281,7 @@ final class ProjectDetailViewController: UIViewController {
 
     private func subtitle(for item: Item) -> String {
         let formatter = DateFormatter()
+        formatter.locale = AppLocalization.locale
         formatter.timeStyle = .short
         formatter.dateStyle = .none
         switch item {
@@ -341,7 +348,7 @@ extension ProjectDetailViewController: UITableViewDataSource, UITableViewDelegat
 
 /// PR2 version row: thumb 52, "V3 · Sage walls", "Paint · Today 14:20", compare slot (empty / A black / B lime).
 /// Layout: ProjectVersionCell.xib.
-final class ProjectVersionCell: UITableViewCell {
+final class ProjectVersionCell: DSAdaptiveTableViewCell {
     static let reuseID = "ProjectVersionCell"
 
     @IBOutlet private weak var boxView: UIView!
@@ -365,7 +372,8 @@ final class ProjectVersionCell: UITableViewCell {
         subtitleLabel.text = subtitle
         path = thumbPath
         thumbImageView.image = nil
-        ThumbnailLoader.load(path: thumbPath, pointSize: CGSize(width: 52, height: 52)) { [weak self] image in
+        let side = OnboardingLayout(size: dsAdaptiveReferenceSize).value(52)
+        ThumbnailLoader.load(path: thumbPath, pointSize: CGSize(width: side, height: side)) { [weak self] image in
             guard self?.path == thumbPath else { return }
             self?.thumbImageView.image = image
         }
@@ -392,4 +400,3 @@ final class ProjectVersionCell: UITableViewCell {
         onSlot?()
     }
 }
-

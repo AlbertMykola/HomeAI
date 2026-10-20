@@ -1,7 +1,7 @@
 import UIKit
 
 /// A/06 · R2 Compare fullscreen: drag the divider, Original / Split / Result, pinch zoom on both.
-/// Layout: CompareViewController.xib.
+/// Layout: Result.storyboard.
 final class CompareViewController: UIViewController {
 
     @IBOutlet private weak var stageView: UIView!
@@ -10,7 +10,7 @@ final class CompareViewController: UIViewController {
     @IBOutlet private weak var beforeClipView: UIView!
     @IBOutlet private weak var beforeWidthConstraint: NSLayoutConstraint!
     @IBOutlet private weak var dividerView: UIView!
-    @IBOutlet private weak var handleView: UIImageView!
+    @IBOutlet private weak var handleView: UIView!
     @IBOutlet private weak var closeButton: DSPressableControl!
     @IBOutlet private weak var fitButton: DSPressableControl!
     @IBOutlet private weak var segmentedView: UIView!
@@ -27,6 +27,7 @@ final class CompareViewController: UIViewController {
     private var splitFraction: CGFloat = 0.5
     private var zoom: CGFloat = 1
     private var pan: CGPoint = .zero
+    private var referenceLayout: DSReferenceLayout!
 
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
 
@@ -39,6 +40,7 @@ final class CompareViewController: UIViewController {
         stageView.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(handleDrag(_:))))
         stageView.addGestureRecognizer(UIPinchGestureRecognizer(target: self, action: #selector(handlePinch(_:))))
         apply(mode: .split, animated: false)
+        referenceLayout = DSReferenceLayout(root: view, prefix: "compare.")
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -48,16 +50,19 @@ final class CompareViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        referenceLayout?.apply(size: view.dsLayoutSize)
         layoutDivider()
-        let width = (segmentedView.bounds.width - 6) / 3
-        segmentKnobLeading.constant = 3 + width * CGFloat(mode.rawValue)
+        let inset = 3 * max(0.1, referenceLayout?.scale ?? 1)
+        let width = (segmentedView.bounds.width - 2 * inset) / 3
+        segmentKnobLeading.constant = inset + width * CGFloat(mode.rawValue)
     }
 
     private func layoutDivider() {
         let fraction: CGFloat = mode == .original ? 1 : (mode == .result ? 0 : splitFraction)
-        beforeWidthConstraint.isActive = false
-        beforeWidthConstraint = beforeClipView.widthAnchor.constraint(equalToConstant: stageView.bounds.width * fraction)
-        beforeWidthConstraint.isActive = true
+        let width = stageView.bounds.width * fraction
+        if abs(beforeWidthConstraint.constant - width) > 0.01 {
+            beforeWidthConstraint.constant = width
+        }
         dividerView.alpha = mode == .split ? 1 : 0
         handleView.alpha = mode == .split ? 1 : 0
     }
@@ -109,10 +114,11 @@ final class CompareViewController: UIViewController {
         let labels = segmentLabels.sorted { $0.tag < $1.tag }
         let changes = {
             self.layoutDivider()
-            let width = (self.segmentedView.bounds.width - 6) / 3
-            self.segmentKnobLeading.constant = 3 + width * CGFloat(mode.rawValue)
+            let inset = 3 * max(0.1, self.referenceLayout?.scale ?? 1)
+            let width = (self.segmentedView.bounds.width - 2 * inset) / 3
+            self.segmentKnobLeading.constant = inset + width * CGFloat(mode.rawValue)
             for (i, l) in labels.enumerated() {
-                l.font = DS.Font.geologica(i == mode.rawValue ? .semiBold : .medium, 14)
+                l.font = DS.Font.geologica(i == mode.rawValue ? .semiBold : .medium, 14 * max(0.1, self.referenceLayout?.scale ?? 1))
                 l.textColor = i == mode.rawValue ? DS.Color.textPrimary : DS.Color.textSecondary
             }
             self.view.layoutIfNeeded()

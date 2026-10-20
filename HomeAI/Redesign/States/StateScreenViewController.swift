@@ -2,7 +2,7 @@ import UIKit
 import AVFoundation
 import SafariServices
 
-/// A/12 full-screen states. Layout: StateScreenViewController.xib.
+/// A/12 full-screen states. Layout: States.storyboard.
 /// Motion (all four): icon pops 0.3 → 1 (ease-out-back, 0.25 s) and wiggles ±12° (0.75 s);
 /// text and buttons 60 ms apart; the primary button shimmers at 1.6 s.
 final class StateScreenViewController: UIViewController {
@@ -48,7 +48,7 @@ final class StateScreenViewController: UIViewController {
     private var didRunEntrance = false
 
     static func make(_ kind: Kind, onPrimary: (() -> Void)? = nil, onSecondary: (() -> Void)? = nil) -> StateScreenViewController {
-        let vc = StateScreenViewController(nibName: "StateScreenViewController", bundle: .main)
+        let vc = AppStoryboard.instantiate(StateScreenViewController.self)
         vc.kind = kind
         vc.onPrimary = onPrimary
         vc.onSecondary = onSecondary

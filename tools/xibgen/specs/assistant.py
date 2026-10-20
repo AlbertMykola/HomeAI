@@ -60,7 +60,7 @@ def assistant():
     start_col = VStack([greeting, questions], id="start-col", spacing=64, align="fill")
     start = Scroll([start_col], id="start", outlet="startScrollView")
 
-    fade = View(id="top-fade", cls="DSGradientView", interaction=False,
+    fade = View(id="top-fade", cls="DSGradientView", interaction=False, outlet="headerFadeView",
                 runtime={"startColor": "dsBackground", "midColor": "dsBackground", "midLocation": 0.75,
                          "endColor": "dsBackgroundClear", "angle": 180})
 
@@ -106,7 +106,8 @@ def assistant():
     center(title)
 
     pin(fade, edges="ltr")
-    size(fade, h=140)
+    # End over the first bubble's padding, before its text, on every safe-area height.
+    C(fade, "bottom", nav, "bottom", 14 + 12)
 
     pin(table, edges="lr")
     pin(table, edges="t")
@@ -148,7 +149,7 @@ def assistant_user_cell():
     d = Doc("AssistantUserCell", kind="tableCell", cls="AssistantUserCell", size=(393, 220), reuse="AssistantUserCell")
     photo = Image(id="photo", mode="scaleAspectFill", cls="DSImageView", bg="dsSurface", outlet="photoImageView",
                   runtime={"cornerRadius": 20})
-    text = Label("How can I make this living room feel warmer?", id="text", font=("Regular", 15), lines=0,
+    text = Label("How can I make this living room feel warmer?", id="text", font=("Regular", 15), color="black", lines=0,
                  lineHeight=1.15, outlet="messageLabel")
     bubble = View(id="bubble", cls="DSGradientView", outlet="bubbleView",
                   runtime={"startColor": "dsLimeTop", "endColor": "dsLimeBottom", "angle": 180, "cornerRadius": 22},
@@ -238,7 +239,7 @@ def assistant_attach_sheet():
     root = d.root
     root.bg = "dsBackground"
     close = glass_button("close", "xmark", action="didTapClose:", size=36, icon=16, accessibility="Close")
-    title = Label("Add a photo", id="title", font=("SemiBold", 24), align="center", outlet="titleLabel")
+    title = Label("Add a photo", id="title", font=("SemiBold", 24), align="center", lines=0, outlet="titleLabel")
     sub = Label("Show me the room you want to change", id="sub", font=("Regular", 15), color="dsTextSecondary",
                 align="center", lines=0, outlet="subtitleLabel")
     items = []
@@ -247,17 +248,17 @@ def assistant_attach_sheet():
     for i, (symbol, text, hint) in enumerate(options):
         ic = Image(id=f"opt{i}-icon", system=symbol, size=15, weight="medium", tint="dsTextPrimary")
         box = View(id=f"opt{i}-box", cls="DSView", bg="dsCard", runtime={"cornerRadius": 9}, children=[ic])
-        lb = Label(text, id=f"opt{i}-label", font=("Medium", 16), collection="optionLabels", tag_value=i)
+        lb = Label(text, id=f"opt{i}-label", font=("Medium", 16), collection="optionLabels", tag_value=i, lines=0, resist=(750, 1000))
         parts = [lb]
         if hint:
             parts.append(Label(hint, id=f"opt{i}-hint", font=("Regular", 13), color="dsTextTertiary",
-                               outlet="projectsHintLabel"))
+                               outlet="projectsHintLabel", lines=0, resist=(750, 1000)))
         texts = VStack(parts, id=f"opt{i}-texts", spacing=2, align="fill")
         chev = Image(id=f"opt{i}-chev", system="chevron.right", size=13, weight="semibold", tint="dsTextTertiary")
-        row = HStack([box, texts, chev], id=f"opt{i}-row", spacing=14, align="center", margins=(0, 16, 0, 16))
+        row = HStack([box, texts, chev], id=f"opt{i}-row", spacing=14, align="center", margins=(8, 16, 8, 16))
         ctl = Control(id=f"opt{i}", cls="DSPressableControl", bg="clear", collection="optionRows", tag_value=i,
                       runtime={"pressedScale": 0.98}, children=[row]).on("didTapOption:")
-        size(ctl, h=56)
+        C(ctl, "height", const=56, rel="greaterThanOrEqual")
         pin(row)
         square(box, 32)
         center(ic)
@@ -270,10 +271,15 @@ def assistant_attach_sheet():
             items.append(div)
     group = View(id="group", cls="DSView", bg="dsSurface", runtime={"cornerRadius": 18}, clips=True,
                  children=[VStack(items, id="group-stack", align="fill")])
-    col = VStack([title, sub, group], id="col", spacing=14, align="fill")
-    root.add(col, close)
-    pin(col, edges="lr", inset=20)
-    C(col, "top", root, "top", 28)
+    heading = View(id="heading", bg="clear", children=[title])
+    pin(title, inset=(0, 40, 0, 40))
+    col = VStack([heading, sub, group], id="col", spacing=14, align="fill")
+    scroll = Scroll([col], id="scroll", indicators=True)
+    root.add(scroll, close)
+    pin(scroll, edges="ltr", inset=(28, 20, 0, 20))
+    C(d.safe_area, "bottom", scroll, "bottom", 12)
+    pin(col, to=scroll.content, inset=(0, 0, 16, 0))
+    equal(col, scroll.frame, "width")
     pin(group.children[0])
     pin(close, edges="tr", inset=16)
     return d
@@ -327,7 +333,7 @@ def assistant_project_picker():
     d = Doc("AssistantProjectPickerViewController", owner="AssistantProjectPickerViewController", size=(393, 700))
     root = d.root
     root.bg = "dsBackground"
-    title = Label("From my projects", id="title", font=("SemiBold", 24), align="center", outlet="titleLabel")
+    title = Label("From my projects", id="title", font=("SemiBold", 24), align="center", outlet="titleLabel", minScale=0.8)
     close = glass_button("close", "xmark", action="didTapClose:", size=36, icon=16, accessibility="Close")
     cv = Collection(id="cv", spacing=13, item=(170, 214), insets=(8, 20, 24, 20), outlet="collectionView")
     empty = Label("No projects yet", id="empty", font=("Regular", 15), color="dsTextTertiary", align="center",

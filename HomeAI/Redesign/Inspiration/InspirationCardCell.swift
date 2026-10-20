@@ -1,7 +1,7 @@
 import UIKit
 
-/// I1 mosaic card: photo (r20), style tag pill, glass bookmark. Layout: InspirationCardCell.xib.
-final class InspirationCardCell: UICollectionViewCell {
+/// I1 mosaic card: photo (r20), style tag pill, glass bookmark. Layout: Inspiration.storyboard prototype.
+final class InspirationCardCell: DSAdaptiveCollectionViewCell {
     static let reuseID = "InspirationCardCell"
 
     @IBOutlet private(set) weak var photoImageView: UIImageView!
@@ -16,6 +16,11 @@ final class InspirationCardCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        // A partially visible reusable card can inherit large safe-area insets.
+        // Its fixed-height tag uses explicit padding from the XIB.
+        tagView.subviews.compactMap { $0 as? UIStackView }.forEach {
+            $0.insetsLayoutMarginsFromSafeArea = false
+        }
         isAccessibilityElement = false
         photoImageView.isAccessibilityElement = true
         photoImageView.accessibilityTraits = .button

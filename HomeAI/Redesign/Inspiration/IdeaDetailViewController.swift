@@ -1,7 +1,7 @@
 import UIKit
 
 /// A/08 · I2 Detail (+ I2 · Saved): hero photo, tags, palette, Save / Try on my room.
-/// Presented over the feed with `InspirationHeroTransition`. Layout: IdeaDetailViewController.xib.
+/// Presented over the feed with `InspirationHeroTransition`. Layout: Inspiration.storyboard.
 final class IdeaDetailViewController: UIViewController {
 
     @IBOutlet private(set) weak var heroImageView: UIImageView!
@@ -29,13 +29,13 @@ final class IdeaDetailViewController: UIViewController {
     private var initialImage: UIImage?
     /// Tag tap → feed filter (room or style).
     var onTag: ((InspirationIdea.Room?, String?) -> Void)?
-    /// Set by the transition: true while the hero zoom runs, so the entrance doesn't double up.
+    /// Set before presentation so the custom transition is the only owner of the entrance.
     var presentedWithZoom = false
 
     private var didRunEntrance = false
 
     static func make(idea: InspirationIdea, image: UIImage?) -> IdeaDetailViewController {
-        let vc = IdeaDetailViewController(nibName: "IdeaDetailViewController", bundle: .main)
+        let vc = AppStoryboard.instantiate(IdeaDetailViewController.self)
         vc.idea = idea
         vc.initialImage = image
         return vc
@@ -217,7 +217,7 @@ extension IdeaDetailViewController: UIGestureRecognizerDelegate {
     }
 }
 
-// MARK: - Hero transition (card → 520 pt photo, panel springs up)
+// MARK: - Hero transition (card zoom and 12 pt panel entrance)
 
 final class InspirationHeroTransition: NSObject, UIViewControllerTransitioningDelegate, UIViewControllerAnimatedTransitioning {
 
@@ -258,7 +258,6 @@ final class InspirationHeroTransition: NSObject, UIViewControllerTransitioningDe
             UIView.animate(withDuration: 0.3, animations: { toView.alpha = 1 }) { _ in ctx.completeTransition(true) }
             return
         }
-        detail.presentedWithZoom = true
         let backdrop = UIView(frame: container.bounds)
         backdrop.backgroundColor = DS.Color.background
         backdrop.alpha = 0
@@ -269,16 +268,16 @@ final class InspirationHeroTransition: NSObject, UIViewControllerTransitioningDe
         snapshot.clipsToBounds = true
         snapshot.layer.cornerRadius = 20
         snapshot.layer.cornerCurve = .continuous
-        snapshot.frame = source.convert(source.bounds, to: container)
-        container.addSubview(snapshot)
+        snapshot.frame = source.convert(source.bounds, to: toView)
+        // The photo must stay behind the panel's rounded overlap throughout the zoom.
+        toView.insertSubview(snapshot, aboveSubview: detail.heroImageView)
         source.alpha = 0
 
         toView.backgroundColor = .clear
         detail.heroImageView.alpha = 0
         let chrome: [UIView] = [detail.navView, detail.aiTagView]
         chrome.forEach { $0.alpha = 0 }
-        detail.panelView.transform = CGAffineTransform(translationX: 0, y: detail.panelView.bounds.height)
-        let heroFrame = detail.heroImageView.convert(detail.heroImageView.bounds, to: container)
+        let heroFrame = detail.heroImageView.convert(detail.heroImageView.bounds, to: toView)
 
         let zoom = UIViewPropertyAnimator(duration: 0.55, dampingRatio: 0.86) {
             snapshot.frame = heroFrame
@@ -294,11 +293,9 @@ final class InspirationHeroTransition: NSObject, UIViewControllerTransitioningDe
             ctx.completeTransition(!ctx.transitionWasCancelled)
         }
         zoom.startAnimation()
-        let panel = UIViewPropertyAnimator(duration: 0.45, dampingRatio: 0.82) {
-            detail.panelView.transform = .identity
-        }
-        panel.startAnimation(afterDelay: 0.08)
-        detail.animatePanelContent(delay: 0.14)
+        // I2: keep the final layout and fade the panel from a 12 pt offset.
+        DS.Motion.enter(detail.panelView, delay: 0.11, dy: 12)
+        detail.animatePanelContent(delay: 0.17)
         UIView.animate(withDuration: 0.3, delay: 0.25) { chrome.forEach { $0.alpha = 1 } }
     }
 

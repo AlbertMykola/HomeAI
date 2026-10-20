@@ -1,7 +1,7 @@
 import UIKit
 
 /// P2 · "You've used your free designs" sheet shown on Generate with 0 credits.
-/// Layout: OutOfCreditsSheetViewController.xib.
+/// Layout: Wizard.storyboard.
 final class OutOfCreditsSheetViewController: UIViewController {
 
     @IBOutlet private weak var titleLabel: UILabel!
@@ -16,7 +16,7 @@ final class OutOfCreditsSheetViewController: UIViewController {
     private var onUnlocked: (() -> Void)?
 
     static func present(from presenter: UIViewController, photo: UIImage?, onUnlocked: @escaping () -> Void) {
-        let vc = OutOfCreditsSheetViewController(nibName: "OutOfCreditsSheetViewController", bundle: .main)
+        let vc = AppStoryboard.instantiate(OutOfCreditsSheetViewController.self)
         vc.photo = photo
         vc.onUnlocked = onUnlocked
         DSSheet.present(vc, from: presenter, height: 470)

@@ -41,23 +41,25 @@ private struct Defaults {
     }
 
     struct Text {
-        static let roomTitle = "See your room in a new style".localized
-        static let nextDesignTitle = "Create the next design for your space".localized
-        static let saveTitle = "Keep the design you love".localized
-        static let editTitle = "Make your design feel just right".localized
-        static let benefits = [
-            "Unlimited AI Renders".localized,
-            "All Premium Styles".localized,
-            "Ultra Fast Rendering".localized,
-            "Design Every Corner".localized
-        ]
-        static let noPayNow = "No Pay Now".localized
-        static let restore = "Restore".localized
-        static let terms = "Terms".localized
-        static let privacy = "Privacy".localized
-        static let notNow = "Not now".localized
-        static let error = "Error".localized
-        static let ok = "OK".localized
+        static var roomTitle: String { "See your room in a new style".localized }
+        static var nextDesignTitle: String { "Create the next design for your space".localized }
+        static var saveTitle: String { "Keep the design you love".localized }
+        static var editTitle: String { "Make your design feel just right".localized }
+        static var benefits: [String] {
+            [
+                "Unlimited AI Renders".localized,
+                "All Premium Styles".localized,
+                "Ultra Fast Rendering".localized,
+                "Design Every Corner".localized
+            ]
+        }
+        static var noPayNow: String { "No Pay Now".localized }
+        static var restore: String { "Restore".localized }
+        static var terms: String { "Terms".localized }
+        static var privacy: String { "Privacy".localized }
+        static var notNow: String { "Not now".localized }
+        static var error: String { "Error".localized }
+        static var ok: String { "OK".localized }
     }
 }
 
@@ -78,21 +80,13 @@ final class PaywallViewController: UIViewController {
     @IBOutlet private var benefitLabels: [UILabel]!
 
     @IBOutlet private weak var topPlanView: UIView!
-    @IBOutlet private weak var bottomPlanView: UIView!
     @IBOutlet private weak var topPlanBorderView: UIView!
-    @IBOutlet private weak var bottomPlanBorderView: UIView!
     @IBOutlet private weak var topPlanButton: UIButton!
-    @IBOutlet private weak var bottomPlanButton: UIButton!
     @IBOutlet private weak var topPlanTitleLabel: UILabel!
-    @IBOutlet private weak var bottomPlanTitleLabel: UILabel!
     @IBOutlet private weak var topBillingLabel: UILabel!
-    @IBOutlet private weak var bottomBillingLabel: UILabel!
     @IBOutlet private weak var topPriceLabel: UILabel!
-    @IBOutlet private weak var bottomPriceLabel: UILabel!
     @IBOutlet private weak var topBadgeView: UIView!
-    @IBOutlet private weak var bottomBadgeView: UIView!
     @IBOutlet private weak var topBadgeLabel: UILabel!
-    @IBOutlet private weak var bottomBadgeLabel: UILabel!
 
     @IBOutlet private weak var continueButton: UIButton!
     @IBOutlet private weak var noPayingLabel: UILabel!
@@ -151,7 +145,7 @@ final class PaywallViewController: UIViewController {
         applyTheme()
         setPaywallLoading(true)
         #if DEBUG
-        if ProcessInfo.processInfo.arguments.contains("--paywall-layout-preview") {
+        if AppQA.enabled || ProcessInfo.processInfo.arguments.contains("--paywall-layout-preview") {
             applyLayoutPreviewProducts()
             return
         }
@@ -228,33 +222,20 @@ final class PaywallViewController: UIViewController {
 
     #if DEBUG
     private func applyLayoutPreviewProducts() {
-        let annual = PaywallProductsPresentation.ProductRow(
-            storeIndex: 0,
-            title: PaywallProductCopy.yearlyAccessTitle,
-            priceDisplay: PaywallPriceDisplay(
-                billedPrice: "$49.99", billingPeriod: PaywallProductCopy.annualBillingPeriod,
-                emphasizedPrice: "$4.17", emphasizedPeriod: PaywallProductCopy.perMonth
-            ),
-            badge: .init(kind: .savings, title: "Save 89%"),
-            hasFreeTrial: false
-        )
         let weekly = PaywallProductsPresentation.ProductRow(
-            storeIndex: 1,
+            storeIndex: 0,
             title: PaywallProductCopy.weeklyAccessTitle,
             priceDisplay: PaywallPriceDisplay(
                 billedPrice: "$8.99", billingPeriod: PaywallProductCopy.weeklyBillingPeriod,
                 emphasizedPrice: "$8.99", emphasizedPeriod: PaywallProductCopy.perWeek
             ),
-            badge: .init(kind: .trial, title: "3 Day trial"),
+            badge: .init(kind: .trial, title: PaywallProductCopy.trialBadgeTitle(days: 3)),
             hasFreeTrial: true
         )
-        let presentation = PaywallProductsPresentation(top: annual, bottom: weekly)
+        let presentation = PaywallProductsPresentation(top: weekly)
         paywallPresentation = presentation
         applyPaywallPresentation(presentation)
         setPaywallLoading(false)
-        if ProcessInfo.processInfo.arguments.contains("--paywall-select-annual") {
-            topPlanButton.sendActions(for: .touchUpInside)
-        }
     }
     #endif
 
@@ -263,7 +244,7 @@ final class PaywallViewController: UIViewController {
         scrollView.backgroundColor = .clear
         scrollView.clipsToBounds = true
 
-        [topPlanView, bottomPlanView].forEach {
+        [topPlanView].forEach {
             $0?.layer.cornerRadius = Defaults.Layout.cardCornerRadius
             $0?.layer.cornerCurve = .continuous
             $0?.clipsToBounds = false
@@ -271,20 +252,19 @@ final class PaywallViewController: UIViewController {
         benefitRows.forEach { $0.clipsToBounds = false }
         topPlanView.superview?.clipsToBounds = false
         topPlanView.superview?.superview?.clipsToBounds = false
-        [topPlanBorderView, bottomPlanBorderView].forEach { borderView in
+        [topPlanBorderView].forEach { borderView in
             borderView?.backgroundColor = .clear
             borderView?.isUserInteractionEnabled = false
             borderView?.layer.cornerRadius = Defaults.Layout.cardCornerRadius
             borderView?.layer.cornerCurve = .continuous
             borderView?.layer.borderWidth = Defaults.Layout.cardBorderWidth
         }
-        [topBadgeView, bottomBadgeView].forEach {
+        [topBadgeView].forEach {
             $0?.layer.cornerRadius = Defaults.Layout.badgeCornerRadius
             $0?.layer.cornerCurve = .continuous
             $0?.layer.zPosition = 10
         }
         topPlanView?.bringSubviewToFront(topBadgeView)
-        bottomPlanView?.bringSubviewToFront(bottomBadgeView)
 
         heroContainerView.clipsToBounds = true
         afterClipView.clipsToBounds = true
@@ -331,7 +311,7 @@ final class PaywallViewController: UIViewController {
             ($0.firstItem as? UIView) === titleLabel.superview && $0.firstAttribute == .bottom
         }?.constant = scaled(6)
         plansContentTopConstraint()?.constant = scaled(12)
-        plansHeightConstraint?.constant = scaled(160)
+        plansHeightConstraint?.constant = scaled(88)
         titleLabel.numberOfLines = 2
         titleLabel.adjustsFontSizeToFitWidth = true
         titleLabel.minimumScaleFactor = 0.8
@@ -349,7 +329,7 @@ final class PaywallViewController: UIViewController {
         let planTitleSize: CGFloat = 16
         let billingSize: CGFloat = 12
         let priceSize: CGFloat = 18
-        for label in [topPlanTitleLabel, bottomPlanTitleLabel] {
+        for label in [topPlanTitleLabel] {
             let fontSize = scaled(planTitleSize)
             label?.font = UIFontMetrics(forTextStyle: .headline).scaledFont(
                 for: UIFont(name: "Geologica-SemiBold", size: fontSize) ?? .systemFont(ofSize: fontSize, weight: .semibold)
@@ -358,7 +338,7 @@ final class PaywallViewController: UIViewController {
             label?.minimumScaleFactor = 0.8
             label?.adjustsFontSizeToFitWidth = true
         }
-        for label in [topBillingLabel, bottomBillingLabel] {
+        for label in [topBillingLabel] {
             let fontSize = scaled(billingSize)
             label?.font = UIFontMetrics(forTextStyle: .subheadline).scaledFont(
                 for: UIFont(name: "Geologica-Regular", size: fontSize) ?? .systemFont(ofSize: fontSize)
@@ -368,12 +348,12 @@ final class PaywallViewController: UIViewController {
             label?.minimumScaleFactor = 0.8
             label?.adjustsFontSizeToFitWidth = true
         }
-        for (plan, billingLabel) in [(topPlanView, topBillingLabel), (bottomPlanView, bottomBillingLabel)] {
+        for (plan, billingLabel) in [(topPlanView, topBillingLabel)] {
             if let plan, let billingLabel {
                 billingLabel.trailingAnchor.constraint(lessThanOrEqualTo: plan.trailingAnchor, constant: -16).isActive = true
             }
         }
-        for label in [topPriceLabel, bottomPriceLabel] {
+        for label in [topPriceLabel] {
             let fontSize = scaled(priceSize)
             label?.font = UIFontMetrics(forTextStyle: .headline).scaledFont(
                 for: UIFont(name: "Geologica-SemiBold", size: fontSize) ?? .systemFont(ofSize: fontSize, weight: .semibold)
@@ -465,11 +445,10 @@ final class PaywallViewController: UIViewController {
         let isCompactViewport = UIScreen.main.bounds.height <= 700 && !isAccessibilitySize
         titleLabel.numberOfLines = isAccessibilitySize ? 3 : 2
         topPriceLabel.isHidden = isAccessibilitySize
-        bottomPriceLabel.isHidden = isAccessibilitySize
         let scaled: (CGFloat) -> CGFloat = { $0.scaledByHeight() }
         let responsivePlansHeight: CGFloat = isAccessibilitySize
-            ? scaled(200)
-            : scaled(152)
+            ? scaled(120)
+            : scaled(88)
         if plansHeightConstraint?.constant != responsivePlansHeight {
             plansHeightConstraint?.constant = responsivePlansHeight
         }
@@ -504,9 +483,6 @@ final class PaywallViewController: UIViewController {
         benefitRows.first?.superview?.constraints
             .filter { $0.identifier?.hasPrefix("benefit-row-gap-") == true }
             .forEach { $0.constant = benefitRowGap }
-        if let plansList = topPlanView.superview {
-            plansList.constraints.first { $0.identifier == "plan-row-gap" }?.constant = scaled(isCompactViewport ? 8 : 10)
-        }
         let iconSizes: [(CGFloat, CGFloat)] = isCompactViewport
             ? [(24, 24), (24, 24), (24, 24), (24, 24)]
             : [(33, 32), (30, 32), (33, 34), (32, 32)]
@@ -563,8 +539,8 @@ final class PaywallViewController: UIViewController {
         view.backgroundColor = Defaults.Colors.background
         titleLabel.textColor = Defaults.Colors.primaryText
         sortedBenefitLabels.forEach { $0.textColor = Defaults.Colors.primaryText }
-        [topPlanTitleLabel, bottomPlanTitleLabel].forEach { $0?.textColor = Defaults.Colors.primaryText }
-        [topBillingLabel, bottomBillingLabel, noPayingLabel].forEach { $0?.textColor = Defaults.Colors.secondaryText }
+        [topPlanTitleLabel].forEach { $0?.textColor = Defaults.Colors.primaryText }
+        [topBillingLabel, noPayingLabel].forEach { $0?.textColor = Defaults.Colors.secondaryText }
         [restoreButton, termsButton, privacyButton].forEach {
             $0?.setTitleColor(Defaults.Colors.secondaryText, for: .normal)
         }
@@ -572,7 +548,7 @@ final class PaywallViewController: UIViewController {
             .compactMap { $0 as? UILabel }
             .forEach { $0.textColor = Defaults.Colors.secondaryText.withAlphaComponent(0.5) }
 
-        [topPlanView, bottomPlanView].forEach { $0?.backgroundColor = Defaults.Colors.card }
+        [topPlanView].forEach { $0?.backgroundColor = Defaults.Colors.card }
         sliderView.backgroundColor = Defaults.Colors.premiumGreen
         sliderKnobView.backgroundColor = Defaults.Colors.premiumGreen
         sliderKnobView.layer.borderColor = resolvedCGColor(Defaults.Colors.sliderKnobBorder)
@@ -586,11 +562,9 @@ final class PaywallViewController: UIViewController {
         applyCloseButtonColor()
         if let presentation = paywallPresentation {
             apply(row: presentation.top, titleLabel: topPlanTitleLabel, billingLabel: topBillingLabel, priceLabel: topPriceLabel)
-            apply(row: presentation.bottom, titleLabel: bottomPlanTitleLabel, billingLabel: bottomBillingLabel, priceLabel: bottomPriceLabel)
             updateSelection(animated: false)
         } else {
             applyPlanStyle(topPlanView, borderView: topPlanBorderView, selected: false)
-            applyPlanStyle(bottomPlanView, borderView: bottomPlanBorderView, selected: false)
         }
         setNeedsStatusBarAppearanceUpdate()
     }
@@ -827,8 +801,6 @@ final class PaywallViewController: UIViewController {
     private func applyPaywallPresentation(_ presentation: PaywallProductsPresentation) {
         apply(row: presentation.top, titleLabel: topPlanTitleLabel, billingLabel: topBillingLabel, priceLabel: topPriceLabel)
         applyBadgeContent(to: topBadgeView, label: topBadgeLabel, badge: presentation.top.badge)
-        apply(row: presentation.bottom, titleLabel: bottomPlanTitleLabel, billingLabel: bottomBillingLabel, priceLabel: bottomPriceLabel)
-        applyBadgeContent(to: bottomBadgeView, label: bottomBadgeLabel, badge: presentation.bottom.badge)
         selectedPaywallUIRow = presentation.preferredUIRow
         updateSelection(animated: false)
         logPaywall("paywall_product_selected", productIndex: presentation.storeIndex(for: selectedPaywallUIRow), extra: [
@@ -857,7 +829,7 @@ final class PaywallViewController: UIViewController {
     }
 
     private func applyBadgeStyle(to view: UIView, label: UILabel, row: PaywallUIRow, selected: Bool) {
-        guard let badge = paywallPresentation?.productRow(for: row).badge else {
+        guard let badge = paywallPresentation?.productRow(for: row)?.badge else {
             view.isHidden = true
             return
         }
@@ -875,7 +847,7 @@ final class PaywallViewController: UIViewController {
     }
 
     private func selectProduct(_ row: PaywallUIRow) {
-        guard !isPaywallLoading, paywallPresentation != nil else { return }
+        guard !isPaywallLoading, paywallPresentation?.productRow(for: row) != nil else { return }
         hapticVibration()
         amplitude.logEvent(.pressSwitch)
         selectedPaywallUIRow = row
@@ -888,11 +860,8 @@ final class PaywallViewController: UIViewController {
     private func updateSelection(animated: Bool) {
         let updates = {
             let topSelected = self.selectedPaywallUIRow == .top
-            let bottomSelected = self.selectedPaywallUIRow == .bottom
             self.applyPlanStyle(self.topPlanView, borderView: self.topPlanBorderView, selected: topSelected)
-            self.applyPlanStyle(self.bottomPlanView, borderView: self.bottomPlanBorderView, selected: bottomSelected)
             self.applyBadgeStyle(to: self.topBadgeView, label: self.topBadgeLabel, row: .top, selected: topSelected)
-            self.applyBadgeStyle(to: self.bottomBadgeView, label: self.bottomBadgeLabel, row: .bottom, selected: bottomSelected)
             self.updateSelectedProductCopy()
         }
         if animated {
@@ -912,23 +881,21 @@ final class PaywallViewController: UIViewController {
     }
 
     private func updateSelectedProductCopy() {
-        let hasTrial = paywallPresentation?.productRow(for: selectedPaywallUIRow).hasFreeTrial == true
+        let hasTrial = paywallPresentation?.productRow(for: selectedPaywallUIRow)?.hasFreeTrial == true
         noPayingLabel.text = hasTrial ? Defaults.Text.noPayNow : "Cancel anytime".localized
         continueButton.setTitle(hasTrial ? PaywallProductCopy.tryFreeTrial : PaywallProductCopy.continue, for: .normal)
     }
 
     private func setPaywallLoading(_ loading: Bool) {
         isPaywallLoading = loading
-        [topPlanTitleLabel, bottomPlanTitleLabel, topBillingLabel, bottomBillingLabel, topPriceLabel, bottomPriceLabel].forEach {
+        [topPlanTitleLabel, topBillingLabel, topPriceLabel].forEach {
             $0?.alpha = loading ? 0 : 1
         }
         if loading {
             topBadgeView.isHidden = true
-            bottomBadgeView.isHidden = true
         } else {
             stopProductSkeleton()
             topPlanView.bringSubviewToFront(topBadgeView)
-            bottomPlanView.bringSubviewToFront(bottomBadgeView)
         }
         setPurchaseControlsEnabled(!loading && !isPurchasing)
     }
@@ -937,12 +904,11 @@ final class PaywallViewController: UIViewController {
         let active = enabled && paywallPresentation != nil
         continueButton.isEnabled = active
         topPlanButton.isEnabled = active
-        bottomPlanButton.isEnabled = active
     }
 
     private func startProductSkeleton() {
         let colors = UIView.paywallSkeletonShimmerColors(for: traitCollection)
-        [topPlanView, bottomPlanView].forEach { plan in
+        [topPlanView].forEach { plan in
             guard let plan, plan.bounds.width > 1 else { return }
             if plan.isPaywallShimmering {
                 plan.updateShimmerFrame()
@@ -953,7 +919,7 @@ final class PaywallViewController: UIViewController {
     }
 
     private func stopProductSkeleton() {
-        [topPlanView, bottomPlanView].forEach { $0?.stopShimmer() }
+        [topPlanView].forEach { $0?.stopShimmer() }
     }
 
     private func updateShimmerFramesIfNeeded() {
@@ -1073,10 +1039,6 @@ final class PaywallViewController: UIViewController {
 
     @IBAction private func topProductAction(_ sender: UIButton) {
         selectProduct(.top)
-    }
-
-    @IBAction private func bottomProductAction(_ sender: UIButton) {
-        selectProduct(.bottom)
     }
 
     @IBAction private func continueAction(_ sender: UIButton) {

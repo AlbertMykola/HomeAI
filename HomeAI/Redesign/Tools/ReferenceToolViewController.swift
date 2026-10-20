@@ -2,7 +2,7 @@ import UIKit
 import PhotosUI
 
 /// A/07 · T3 Match a reference: "Style from" + "My room", Inspiration picks, what to copy.
-/// Layout: ReferenceToolViewController.xib.
+/// Layout: Tools.storyboard.
 final class ReferenceToolViewController: ToolStepViewController {
 
     @IBOutlet private weak var referenceImageView: UIImageView!
@@ -36,8 +36,7 @@ final class ReferenceToolViewController: ToolStepViewController {
         roomImageView.image = session.photo
         roomEmptyView.isHidden = session.photo != nil
         loadInspiration()
-        inspirationCollectionView.register(UINib(nibName: "MaterialTileCell", bundle: nil),
-                                           forCellWithReuseIdentifier: MaterialTileCell.reuseID)
+
         if let layout = inspirationCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.itemSize = CGSize(width: 76, height: 100)
             layout.minimumLineSpacing = 8

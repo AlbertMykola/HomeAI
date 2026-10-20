@@ -55,18 +55,24 @@ final class NavigationManager {
     // MARK: - Bootstrap
     func setupWindow(with windowScene: UIWindowScene) {
         window = UIWindow(windowScene: windowScene)
+        #if DEBUG
+        if AppQA.enabled {
+            window?.overrideUserInterfaceStyle = ProcessInfo.processInfo.arguments.contains("--qa-dark") ? .dark : .light
+            if ProcessInfo.processInfo.environment["XCTestConfigurationFilePath"] != nil {
+                window?.rootViewController = UIViewController()
+            } else {
+                window?.rootViewController = AppQA.root()
+            }
+            window?.makeKeyAndVisible()
+            return
+        }
+        #endif
         // Redesign A is light-only.
         AppearanceMode.apply(to: window, animated: false)
         NetworkMonitor.shared.start()
         configureNavigationBarAppearance()
         
-        // ЗМІНА: Завжди починаємо з LaunchViewController
-        guard let launchVC = mainStoryboard.instantiateViewController(withIdentifier: "LaunchViewController") as? LaunchViewController else {
-            assertionFailure("LaunchViewController not found in Main.storyboard. Did you set Storyboard ID?")
-            // Аварійний варіант, якщо щось пішло не так
-            proceedToApp()
-            return
-        }
+        let launchVC = AppStoryboard.instantiate(LaunchViewController.self)
         
         window?.rootViewController = launchVC
         window?.makeKeyAndVisible()
@@ -80,13 +86,15 @@ final class NavigationManager {
         let openedFromLocalPush = pendingLocalPushOpen
         pendingLocalPushOpen = false
 
-        if didShowOB == nil || Constants.Debug.alwaysShowOnboarding {
+        if didShowOB != true || Constants.Debug.alwaysShowOnboarding {
             setOnboardingAsRoot(in: window, animated: true)
         } else {
+            // O4 personalizes its first Home session; subsequent cold launches start with Interior.
+            UserDefaults.standard.set(HomeFocus.interior.rawValue, forKey: HomeFocus.defaultsKey)
             setTabBarAsRoot(
                 in: window,
                 animated: true,
-                showsLaunchPaywall: !openedFromLocalPush,
+                showsLaunchPaywall: false,
                 selectOptionsTab: openedFromLocalPush
             )
         }
@@ -99,10 +107,7 @@ final class NavigationManager {
         showsLaunchPaywall: Bool = false,
         selectOptionsTab: Bool = false
     ) {
-        guard let tabBarController = mainStoryboard.instantiateViewController(withIdentifier: "TabBarController") as? UITabBarController else {
-            assertionFailure("TabBarController not found in Main.storyboard")
-            return
-        }
+        let tabBarController = AppStoryboard.instantiate(TabBarController.self)
         tabBarController.setViewControllers(makeTabControllers(), animated: false)
         if selectOptionsTab {
             tabBarController.selectedIndex = 0
@@ -114,6 +119,9 @@ final class NavigationManager {
             applyRoot()
         }
         window.makeKeyAndVisible()
+        #if DEBUG
+        if AppQA.enabled { return }
+        #endif
         LocalNotificationService.shared.sync(requestPermissionIfNeeded: false)
         Task { @MainActor [weak tabBarController] in
             let config = await WorkerConfigService.shared.refreshIfNeeded()
@@ -161,15 +169,15 @@ final class NavigationManager {
 
     /// Create · Inspiration · Projects · Profile.
     private func makeTabControllers() -> [UIViewController] {
-        let home = HomeViewController(nibName: "HomeViewController", bundle: .main)
-        let inspiration = InspirationFeedViewController(nibName: "InspirationFeedViewController", bundle: .main)
-        let projects = ProjectsViewController(nibName: "ProjectsViewController", bundle: .main)
-        let profile = ProfileTabViewController(nibName: "ProfileTabViewController", bundle: .main)
+        let home = AppStoryboard.instantiate(HomeViewController.self)
+        let inspiration = AppStoryboard.instantiate(InspirationFeedViewController.self)
+        let projects = AppStoryboard.instantiate(ProjectsViewController.self)
+        let profile = AppStoryboard.instantiate(ProfileTabViewController.self)
         return [home, inspiration, projects, profile].map { PortraitNavigationController(rootViewController: $0) }
     }
 
     private func setOnboardingAsRoot(in window: UIWindow, animated: Bool) {
-        let ob = OBPageViewController()
+        let ob = AppStoryboard.instantiate(OBPageViewController.self)
         // Not redesigned yet → keep it light even when the app follows a dark system appearance.
         ob.overrideUserInterfaceStyle = .light
         let applyRoot = { window.rootViewController = ob }
@@ -254,7 +262,7 @@ final class NavigationManager {
                     mode: .overFull)
             return
         }
-        let vc = PaywallViewController(nibName: "PaywallViewController", bundle: .main)
+        let vc = AppStoryboard.instantiate(PaywallViewController.self)
         pendingPremiumPurchaseCompletion = onPurchase
         vc.onSuccessfulPurchase = { [weak self] in
             guard let self else { return }
@@ -415,7 +423,7 @@ final class NavigationManager {
     func showGeneration(manager: GemeniPromptManager, sourcePhoto: UIImage?, styleTitle: String? = nil,
                         onChangePhoto: (() -> Void)? = nil, onEditRequest: (() -> Void)? = nil) {
         let runner = GenerationRunner(promptManager: manager)
-        let vc = GenerationViewController(nibName: "GenerationViewController", bundle: .main)
+        let vc = AppStoryboard.instantiate(GenerationViewController.self)
         vc.runner = runner
         vc.sourcePhoto = sourcePhoto ?? manager.baseImage
         vc.styleTitle = styleTitle
@@ -426,7 +434,7 @@ final class NavigationManager {
 
     /// A/06 · R1 Result for a saved version (doc id).
     func showResult(docID: String, image: UIImage?, reveal: Bool) {
-        let vc = ResultViewController(nibName: "ResultViewController", bundle: .main)
+        let vc = AppStoryboard.instantiate(ResultViewController.self)
         vc.docID = docID
         vc.initialImage = image
         vc.reveal = reveal

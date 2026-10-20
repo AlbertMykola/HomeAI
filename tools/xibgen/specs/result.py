@@ -1,5 +1,43 @@
 from xibgen import *
 from dslib import *
+from pathlib import Path
+import re
+
+
+def figma_icon(id, key, tint="dsTextPrimary", outlet=None):
+    # Keep the exported SVG unchanged and centre its real bounds in the design's icon slot.
+    svg = (Path(__file__).resolve().parents[3] / "HomeAI/Assets.xcassets/Redesign" /
+           ("figma_" + key + ".imageset") / (key + ".svg")).read_text()
+    width = float(re.search(r'width="([0-9.]+)"', svg).group(1))
+    height = float(re.search(r'height="([0-9.]+)"', svg).group(1))
+    art = Image(id=id+"-art", image="figma_"+key, mode="scaleAspectFit", tint=tint, outlet=outlet)
+    slot = View(id=id, bg="clear", interaction=False, children=[art])
+    size(art, width, height)
+    center(art)
+    return slot
+
+
+def replace_icon(parent, index, key, tint="white"):
+    old = parent.children[index]
+    icon = figma_icon(old.id, key, tint=tint)
+    # Constraints own element objects, not just ids (including standalone width/height).
+    for c in Doc.current.constraints:
+        if c.a is old: c.a = icon
+        if c.b is old: c.b = icon
+    parent.children[index] = icon
+    icon.parent = parent
+    return parent
+
+
+def figma_glass(button, key, tint="white"):
+    return replace_icon(button, 0, key, tint)
+
+
+def scale_constraints(doc, prefix, excluding=()):
+    for c in doc.constraints:
+        if c.outlet not in excluding:
+            c.identifier = prefix + c.id
+
 
 TOOLS = [("style", "Style", "paintpalette"), ("paint", "Paint", "paintbrush.fill"),
          ("replace", "Replace", "arrow.triangle.2.circlepath"), ("remove", "Remove", "eraser"),
@@ -41,14 +79,15 @@ def result():
                             dark=True, accessibility="Save to Photos")
     share = glass_button("share", "square.and.arrow.up", outlet="shareButton", action="didTapShare:", dark=True,
                          accessibility="Share")
-    more = Button(id="more", system="ellipsis", symbolSize=17, weight="semibold", color="white", tint="white",
+    more = Button(id="more", image="figma_more20", color="white", tint="white",
                   bg=("#000000", 0.3), outlet="moreButton", accessibility="More",
-                  runtime={"layer.cornerRadius": 22, "layer.borderWidth": 0.5})
+                  runtime={"layer.cornerRadius": 22, "layer.borderWidth": 0.5, "borderColor": ("#FFFFFF", 0.2)})
+    figma_glass(back, "back"); figma_glass(download, "download20"); figma_glass(share, "share20")
     nav_right = HStack([download, share, more], id="nav-right", spacing=8)
     nav = View(id="nav", bg="clear", outlet="navView", children=[back, nav_right])
 
     # ---------------- overlays on the photo ----------------
-    cmp_icon = Image(id="cmp-icon", system="rectangle.split.2x1", size=13, weight="semibold", tint="white")
+    cmp_icon = figma_icon("cmp-icon", "compare", tint="white")
     cmp_label = Label("Hold to compare", id="cmp-label", font=("Medium", 13), color="white", outlet="compareLabel")
     compare = View(id="compare", cls="DSView", bg=("#000000", 0.35), outlet="compareView", runtime={"pill": True},
                    children=[HStack([cmp_icon, cmp_label], id="cmp-row", spacing=6, align="center",
@@ -64,7 +103,7 @@ def result():
     texts = VStack([title, subtitle], id="texts", spacing=2, hug=(249, 251))
 
     def round_button(id, symbol, action, outlet, label):
-        ic = Image(id=f"{id}-icon", system=symbol, size=16, weight="medium", tint="dsTextPrimary")
+        ic = figma_icon(f"{id}-icon", "like" if id == "like" else "dislike", outlet="likeIconView" if id == "like" else None)
         b = Control(id=id, cls="DSPressableControl", bg="dsSurface", outlet=outlet, accessibility=label,
                     runtime={"pill": True}, children=[ic]).on(action)
         square(b, 40)
@@ -80,7 +119,7 @@ def result():
 
     tool_views = []
     for i, (key, t, symbol) in enumerate(TOOLS):
-        ic = Image(id=f"tool-{key}-icon", system=symbol, size=18, weight="medium", tint="dsTextPrimary")
+        ic = figma_icon(f"tool-{key}-icon", key)
         circle = View(id=f"tool-{key}-circle", cls="DSView", bg="dsSurface", runtime={"pill": True}, children=[ic])
         lb = Label(t, id=f"tool-{key}-label", font=("Medium", 11), align="center", minScale=0.7,
                    collection="toolLabels", tag_value=i)
@@ -97,13 +136,13 @@ def result():
     tools_stack = HStack(tool_views, id="tools-stack", spacing=6, margins=(0, 20, 0, 20))
     tools = Scroll([tools_stack], id="tools", horizontal=True, outlet="toolsScrollView")
 
-    ask_icon = Image(id="ask-icon", system="sparkles", size=15, weight="medium", tint="#5DAA12", outlet="askIconView")
+    ask_icon = figma_icon("ask-icon", "ask", tint="#5DAA12", outlet="askIconView")
     ask_label = Label("Ask for a change…", id="ask-label", font=("Regular", 15), color="dsTextTertiary",
                       outlet="askPlaceholderLabel")
     ask_tap = Control(id="ask-tap", cls="DSPressableControl", bg="clear", outlet="askControl",
                       runtime={"pressedScale": 0.98, "hapticOnPress": False},
                       children=[HStack([ask_icon, ask_label], id="ask-row", spacing=10, align="center")]).on("didTapAsk:")
-    mic_icon = Image(id="mic-icon", system="mic", size=15, weight="medium", tint="dsTextPrimary")
+    mic_icon = figma_icon("mic-icon", "mic")
     mic = Control(id="mic", cls="DSPressableControl", bg="dsCard", outlet="micButton", accessibility="Speak a change",
                   runtime={"pill": True}, children=[mic_icon]).on("didTapMic:")
     ask_bar = View(id="ask-bar", cls="DSView", bg="dsSurface", outlet="askBarView", runtime={"pill": True},
@@ -213,9 +252,9 @@ def result():
     pin(panel, edges="lrb")
     pin(panel_stack, edges="lr")
     C(panel_stack, "top", panel, "top", 18)
-    C(sa, "bottom", panel_stack, "bottom", 6)
-    size(versions, h=76)
-    size(tools, h=74)
+    C(root, "bottom", panel_stack, "bottom", 27)
+    size(versions, h=74)
+    size(tools, h=71)
     pin(tools_stack, to=tools.content)
     equal(tools_stack, tools.frame, "height")
     size(ask_bar, h=50)
@@ -264,17 +303,18 @@ def result():
     pin(v_done_pulse)
     center(v_done_icon)
     square(v_done_icon, 24)
+    scale_constraints(d, "result.", excluding=("askPanelBottomConstraint", "askFieldHeightConstraint", "revealBandTopConstraint"))
     return d
 
 
 @xib("HomeAI/Redesign/Result/ResultVersionCell.xib")
 def version_cell():
-    d = Doc("ResultVersionCell", kind="collectionCell", cls="ResultVersionCell", size=(56, 76), reuse="ResultVersionCell")
+    d = Doc("ResultVersionCell", kind="collectionCell", cls="ResultVersionCell", size=(56, 74), reuse="ResultVersionCell")
     thumb = Image(id="thumb", mode="scaleAspectFill", cls="DSImageView", bg="dsSurface", runtime={"cornerRadius": 16},
                   outlet="thumbImageView")
     ring = View(id="ring", cls="DSView", bg="clear", interaction=False, outlet="ringView",
                 runtime={"cornerRadius": 16, "borderWidth": 2.5, "borderColor": "dsTextPrimary"})
-    again_icon = Image(id="again-icon", system="arrow.clockwise", size=17, weight="medium", tint="dsTextPrimary",
+    again_icon = Image(id="again-icon", image="figma_again", mode="center", tint="dsTextPrimary",
                        outlet="againIconView", hidden=True)
     label = Label("V1", id="label", font=("Regular", 11), color="dsTextTertiary", align="center", outlet="titleLabel")
     d.cell(thumb, ring, again_icon, label)
@@ -285,6 +325,7 @@ def version_cell():
     square(again_icon, 22)
     below(label, thumb, 4)
     pin(label, edges="lr")
+    scale_constraints(d, "resultVersion.")
     return d
 
 
@@ -294,16 +335,22 @@ def compare():
     root = d.root
     root.bg = "black"
     sa = d.safe_area
-    after = Image(id="after", mode="scaleAspectFit", outlet="afterImageView")
-    before = Image(id="before", mode="scaleAspectFit", outlet="beforeImageView")
+    after = Image(id="after", mode="scaleAspectFill", outlet="afterImageView")
+    before = Image(id="before", mode="scaleAspectFill", outlet="beforeImageView")
     before_clip = View(id="before-clip", bg="clear", clips=True, outlet="beforeClipView", children=[before])
     divider = View(id="divider", bg="white", outlet="dividerView")
-    handle = Image(id="handle", image="ds_compare_handle", outlet="handleView", clips=False)
+    left = figma_icon("handle-left", "compare_left", tint="black")
+    right = figma_icon("handle-right", "compare_right", tint="black")
+    row = HStack([left, right], id="handle-arrows", spacing=0)
+    handle = View(id="handle", cls="DSView", bg=("#FFFFFF", 0.85), outlet="handleView", runtime={"pill": True, "shadowOpacity": 0.2, "shadowRadius": 7, "shadowOffsetY": 4}, children=[row])
+    square(left, 15); square(right, 15); center(row)
     stage = View(id="stage", bg="black", clips=True, outlet="stageView", children=[after, before_clip, divider, handle])
     close = glass_button("close", "xmark", outlet="closeButton", action="didTapClose:", dark=True, accessibility="Close")
     fit = glass_button("fit", "viewfinder", outlet="fitButton", action="didTapFit:", dark=True,
                        accessibility="Reset zoom")
-    seg_knob = View(id="seg-knob", cls="DSView", bg="dsKnob", outlet="segmentKnob", runtime={"pill": True})
+    figma_glass(close, "close20"); figma_glass(fit, "fit")
+    seg_knob = View(id="seg-knob", cls="DSView", bg="dsKnob", outlet="segmentKnob",
+                    runtime={"pill": True, "shadowOpacity": 0.12, "shadowRadius": 3, "shadowOffsetY": 2})
     segs = []
     for i, t in enumerate(["Original", "Split", "Result"]):
         c = Control(id=f"seg{i}", cls="DSPressableControl", tag_value=i, collection="segmentControls",
@@ -313,34 +360,35 @@ def compare():
         center(c.children[0])
         segs.append(c)
     seg_row = HStack(segs, id="seg-row", dist="fillEqually")
-    segmented = View(id="segmented", cls="DSView", bg="dsGlass", runtime={"pill": True}, outlet="segmentedView",
+    segmented = View(id="segmented", cls="DSView", bg="dsSegment", runtime={"pill": True}, outlet="segmentedView",
                      children=[seg_knob, seg_row])
     root.add(stage, close, fit, segmented)
     pin(stage, edges="lr")
-    C(stage, "top", sa, "top", 0)
-    C(segmented, "top", stage, "bottom", 12)
+    C(stage, "top", sa, "top", 17)
+    C(segmented, "top", stage, "bottom", 14)
     pin(after)
     pin(before_clip, edges="ltb")
-    C(before_clip, "width", stage, "width", mult="0.5", outlet="beforeWidthConstraint")
+    C(before_clip, "width", const=0, outlet="beforeWidthConstraint")
     pin(before, to=before_clip, edges="ltb")
     equal(before, stage, "width")
     pin(divider, edges="tb")
-    size(divider, w=2)
+    size(divider, w=3)
     C(divider, "centerX", before_clip, "trailing")
-    square(handle, 32)
+    square(handle, 44)
     center(handle, to=divider)
     pin(close, edges="l", inset=16)
-    C(close, "top", sa, "top", 4)
+    C(close, "top", sa, "top", 1)
     pin(fit, edges="r", inset=16)
-    C(fit, "top", sa, "top", 4)
-    pin(segmented, edges="lr", inset=46)
+    C(fit, "top", sa, "top", 1)
+    pin(segmented, edges="lr", inset=(0, 46, 0, 47))
     size(segmented, h=40)
-    C(sa, "bottom", segmented, "bottom", 8)
+    C(root, "bottom", segmented, "bottom", 22)
     pin(seg_row, inset=3)
     C(seg_knob, "top", segmented, "top", 3)
     C(segmented, "bottom", seg_knob, "bottom", 3)
     C(seg_knob, "width", segs[0], "width")
     C(seg_knob, "leading", segmented, "leading", 3, outlet="segmentKnobLeading")
+    scale_constraints(d, "compare.", excluding=("beforeWidthConstraint", "segmentKnobLeading"))
     return d
 
 
@@ -375,14 +423,17 @@ def change_style_sheet():
     seg_row = HStack(segs, id="str-row", dist="fillEqually")
     strength = View(id="strength", cls="DSView", bg="dsSegment", runtime={"cornerRadius": 19}, outlet="strengthView",
                     children=[seg_knob, seg_row])
-    keep_t = Label("Keep room structure", id="keep-t", font=("Medium", 15), outlet="keepTitleLabel")
+    keep_t = Label("Keep room structure", id="keep-t", font=("Medium", 15), outlet="keepTitleLabel",
+                   lines=0, resist=(750, 1000))
     keep_s = Label("Walls, windows and layout stay", id="keep-s", font=("Regular", 12), color="dsTextTertiary",
-                   outlet="keepSubtitleLabel")
+                   outlet="keepSubtitleLabel", lines=0, resist=(750, 1000))
     keep_switch = Switch(id="keep-switch", on=True, onTint="#34C759", outlet="keepSwitch")
     keep_row = HStack([VStack([keep_t, keep_s], id="keep-texts", spacing=2), View(id="keep-sp", bg="clear", hug=(1, 250)),
                        keep_switch], id="keep-row", align="center", spacing=8)
-    restyle = primary_button("restyle", "Restyle · 1 credit", outlet="restyleButton", action="didTapRestyle:",
+    restyle = primary_button("restyle", "Restyle", outlet="restyleButton", action="didTapRestyle:",
                              icon="wand.and.stars", title_outlet="restyleLabel")
+    restyle.children[0].children[-1].lines = 0
+    restyle.children[0].children[-1].resist = (750, 1000)
     col = VStack([sheet_title("Change style"), sheet_sub("Same room, new look"), grid, see_all, strength, keep_row,
                   restyle], id="col", spacing=14, align="fill")
     root.add(col, close)
@@ -437,12 +488,26 @@ def share_sheet():
     root.bg = "dsBackground"
     close = glass_button("close", "xmark", outlet="closeButton", action="didTapClose:", size=36, icon=16,
                          accessibility="Close")
+    figma_glass(close, "close16", tint="dsTextPrimary")
     before = Image(id="before", mode="scaleAspectFill", outlet="beforeImageView")
     after = Image(id="after", mode="scaleAspectFill", outlet="afterImageView")
     single = Image(id="single", mode="scaleAspectFill", outlet="singleImageView", hidden=True)
+    def preview_tag(id, text, outlet):
+        label = Label(text, id=id+"-label", font=("Medium", 11), color="white", outlet=outlet)
+        tag = View(id=id, cls="DSView", bg=("#000000", 0.45), runtime={"pill": True},
+                   children=[label])
+        size(tag, h=24); pin(label, edges="lr", inset=9); center(label, x=False)
+        return tag
+    before_tag = preview_tag("before-tag", "Before", "beforeLabel")
+    after_tag = preview_tag("after-tag", "After", "afterLabel")
+    mark_label = Label("Made with Rehomely", id="preview-mark-label", font=("Medium", 11), color="white", outlet="previewWatermarkLabel", minScale=0.6)
+    mark_icon = figma_icon("preview-mark-icon", "watermark", tint="dsLime")
+    mark = View(id="preview-mark", cls="DSView", bg=("#000000", 0.45), runtime={"pill": True}, outlet="previewWatermarkView",
+                children=[HStack([mark_icon, mark_label], id="preview-mark-row", spacing=4, align="center", margins=(0, 9, 0, 9))])
+    size(mark, h=24); square(mark_icon, 12); pin(mark.children[0])
     preview = View(id="preview", cls="DSView", bg="black", clips=True, runtime={"cornerRadius": 22},
                    outlet="previewView",
-                   children=[HStack([before, after], id="ba", spacing=2, dist="fillEqually"), single])
+                   children=[HStack([before, after], id="ba", spacing=2, dist="fillEqually"), single, before_tag, after_tag, mark])
     seg_knob = View(id="seg-knob", cls="DSView", bg="dsKnob", outlet="formatKnob",
                     runtime={"cornerRadius": 16, "shadowOpacity": 0.12, "shadowRadius": 3, "shadowOffsetY": 2})
     segs = []
@@ -459,24 +524,30 @@ def share_sheet():
                    children=[seg_knob, seg_row])
 
     def option_row(id, icon, title, sub, accessory):
-        ic = Image(id=f"{id}-icon", system=icon, size=15, weight="medium", tint="dsTextPrimary")
+        ic = figma_icon(f"{id}-icon", "mark" if id == "mark" else "hd")
         box = View(id=f"{id}-box", cls="DSView", bg="dsCard", runtime={"cornerRadius": 9}, children=[ic])
-        t = Label(title, id=f"{id}-t", font=("Medium", 16))
-        s = Label(sub, id=f"{id}-s", font=("Regular", 13), color="dsTextTertiary")
-        row = HStack([box, VStack([t, s], id=f"{id}-texts", spacing=2), View(id=f"{id}-sp", bg="clear", hug=(1, 250)),
-                      accessory], id=id, spacing=14, align="center", margins=(0, 16, 0, 16))
+        t = Label(title, id=f"{id}-t", font=("Medium", 16), lines=0, resist=(750, 1000))
+        s = Label(sub, id=f"{id}-s", font=("Regular", 13), color="dsTextTertiary", lines=0, resist=(750, 1000))
+        texts = VStack([t, s], id=f"{id}-texts", spacing=2)
+        row = View(id=id, bg="clear", children=[box, texts, accessory])
+        C(box, "leading", row, "leading", 16); center(box, to=row, x=False)
+        C(row, "trailing", accessory, "trailing", 16); center(accessory, to=row, x=False)
+        C(texts, "leading", box, "trailing", 14)
+        C(accessory, "leading", texts, "trailing", 14)
+        C(texts, "top", row, "top", 8)
+        C(row, "bottom", texts, "bottom", 8)
         square(box, 32)
         center(ic)
         square(ic, 18)
-        size(row, h=56)
+        C(row, "height", const=56, rel="greaterThanOrEqual")
         return row
 
-    mark_switch = Switch(id="mark-switch", on=True, onTint="#34C759", outlet="watermarkSwitch")
-    crown = Image(id="pro-crown", system="crown.fill", size=12, weight="semibold", tint="black")
+    mark_switch = Switch(id="mark-switch", on=True, onTint="#34C759", outlet="watermarkSwitch", hug=(1000, 1000), resist=(1000, 1000))
+    crown = figma_icon("pro-crown", "crown", tint="black")
     pro_badge = View(id="pro-badge", cls="DSView", bg="dsLime", runtime={"pill": True}, outlet="hdProBadge",
-                     children=[HStack([crown, Label("PRO", id="pro-l", font=("Bold", 13), color="black")], id="pro-row", spacing=4,
+                     children=[HStack([crown, Label("PRO", id="pro-l", font=("Bold", 13), color="black", minScale=0.8)], id="pro-row", spacing=4,
                                       align="center", margins=(0, 10, 0, 12))])
-    hd_switch = Switch(id="hd-switch", on=False, onTint="#34C759", outlet="hdSwitch", hidden=True)
+    hd_switch = Switch(id="hd-switch", on=False, onTint="#34C759", outlet="hdSwitch", hidden=True, hug=(1000, 1000), resist=(1000, 1000))
     hd_access = HStack([pro_badge, hd_switch], id="hd-access", spacing=0, align="center")
     row1 = option_row("mark", "sparkles", "Made with Rehomely", "Small mark in the corner", mark_switch)
     row2 = option_row("hd", "photo.on.rectangle", "HD export · 4K", "Free: 1080 px", hd_access)
@@ -486,14 +557,15 @@ def share_sheet():
     actions = []
     for i, (key, t, symbol) in enumerate([("save", "Save", "arrow.down.to.line"), ("copy", "Copy", "doc.on.doc"),
                                           ("messages", "Messages", "message"), ("more", "More", "ellipsis")]):
-        ic = Image(id=f"act-{key}-icon", system=symbol, size=18, weight="medium", tint="dsTextPrimary")
+        ic = figma_icon(f"act-{key}-icon", {"save": "download22", "copy": "copy", "messages": "message", "more": "more22"}[key])
         circle = View(id=f"act-{key}-circle", cls="DSView", bg="dsChip", runtime={"pill": True}, children=[ic])
         lb = Label(t, id=f"act-{key}-l", font=("Regular", 12), color="dsTextSecondary", align="center",
-                   collection="actionLabels", tag_value=i)
+                   collection="actionLabels", tag_value=i, lines=0, resist=(750, 1000))
         col = VStack([circle, lb], id=f"act-{key}-col", spacing=6, align="center")
         ctrl = Control(id=f"act-{key}", cls="DSPressableControl", tag_value=i, collection="actionControls",
                        accessibility=t, children=[col]).on("didTapQuickAction:")
         size(ctrl, w=72)
+        equal(lb, ctrl, "width")
         pin(col, edges="ltr")
         C(ctrl, "bottom", col, "bottom")
         square(circle, 56)
@@ -503,15 +575,32 @@ def share_sheet():
     actions_row = HStack(actions, id="actions", dist="equalSpacing")
     share_btn = primary_button("share-btn", "Share", outlet="shareButton", action="didTapShare:",
                                icon="square.and.arrow.up", title_outlet="shareLabel")
-    col = VStack([sheet_title("Share your redesign"), preview, formats, options, actions_row, share_btn], id="col",
-                 spacing=16, align="fill")
-    root.add(col, close)
-    pin(col, edges="lr", inset=20)
-    C(col, "top", root, "top", 30)
+    # Share is a floating sheet with its own grabber, inset 8 pt from the screen.
+    export_row = share_btn.children[0]
+    replace_icon(export_row, 0, "export", tint="black")
+    grabber = sheet_grabber()
+    header = sheet_title("Share your redesign")
+    col = VStack([preview, formats, options, actions_row, share_btn], id="col", spacing=16, align="fill")
+    scroll = Scroll([col], id="scroll", outlet="contentScrollView", indicators=True)
+    root.add(grabber, header, scroll, close)
+    center(grabber, x=True, y=False); C(grabber, "top", root, "top", 8)
+    # Leave the same clear space on both sides so long translations never enter Close.
+    pin(header, edges="lr", inset=60)
+    C(header, "top", root, "top", 26.666667)
+    pin(scroll, edges="lr", inset=20)
+    C(scroll, "top", header, "bottom", 16)
+    C(root, "bottom", scroll, "bottom", 0)
+    pin(col, to=scroll.content, inset=(0, 0, 28, 0))
+    equal(col, scroll.frame, "width")
     pin(close, edges="tr", inset=(16, 0, 0, 16))
     size(preview, h=210)
     pin(preview.children[0])
     pin(single)
+    pin(before_tag, edges="lt", inset=10)
+    C(after_tag, "leading", after, "leading", 10)
+    C(after_tag, "top", preview, "top", 10)
+    pin(mark, edges="rb", inset=10)
+    C(mark, "width", preview, "width", -20, rel="lessThanOrEqual")
     size(formats, h=38)
     pin(seg_row, inset=3)
     C(seg_knob, "top", formats, "top", 3)
@@ -520,9 +609,10 @@ def share_sheet():
     C(seg_knob, "leading", formats, "leading", 3, outlet="formatKnobLeading")
     pin(options.children[0])
     size(divider, h=1)
-    size(pro_badge, h=30)
+    size(pro_badge, w=69, h=30)
     pin(pro_badge.children[0])
     square(crown, 15)
+    scale_constraints(d, "share.", excluding=("formatKnobLeading",))
     return d
 
 
@@ -536,9 +626,9 @@ def dislike_sheet():
     reasons = ["Changed my room layout", "Doesn't look realistic", "Wrong style", "Weird objects or artifacts",
                "Ignored my request", "Other"]
     chips = [chip(f"r{i}", t, collection="reasonChips", tag=i, action="didTapReason:") for i, t in enumerate(reasons)]
-    rows = VStack([HStack(chips[0:2], id="rr1", spacing=8), HStack(chips[2:4], id="rr2", spacing=8),
-                   HStack(chips[4:6], id="rr3", spacing=8)], id="reasons", spacing=8, align="leading",
-                  outlet="reasonsStack")
+    rows = VStack([HStack(chips[i:i+2] + [View(id=f"rr{i}-spacer", bg="clear", hug=(1, 250))],
+                              id=f"rr{i}", spacing=8, align="center", cls="DSAdaptiveChipRow")
+                   for i in range(0, 6, 2)], id="reasons", spacing=8, align="fill", outlet="reasonsStack")
     field = TextField(placeholder="Tell us more (optional)", font=("Regular", 15), id="more-field", outlet="detailsField")
     field_box = View(id="field-box", cls="DSView", bg="dsSurface", runtime={"cornerRadius": 18}, children=[field])
     gift = Image(id="gift", system="gift", size=15, weight="medium", tint="dsLink")
@@ -548,12 +638,18 @@ def dislike_sheet():
                 children=[HStack([gift, note_label], id="note-row", spacing=10, align="center", margins=(12, 14, 12, 14))])
     send = primary_button("send", "Send & try again", outlet="sendRetryButton", action="didTapSendRetry:",
                           icon="arrow.clockwise", title_outlet="sendRetryLabel")
+    send.children[0].children[-1].lines = 0
+    send.children[0].children[-1].resist = (750, 1000)
     just = Button("Just send feedback", id="just", font=("SemiBold", 15), outlet="justSendButton").on("didTapJustSend:")
-    col = VStack([sheet_title("What went wrong?"), sheet_sub("Your answer trains the next version"), rows, field_box,
+    heading = View(id="heading", bg="clear", children=[sheet_title("What went wrong?")])
+    pin(heading.children[0], inset=(0, 40, 0, 40))
+    col = VStack([heading, sheet_sub("Your answer trains the next version"), rows, field_box,
                   note, send, just], id="col", spacing=14, align="fill")
-    root.add(col, close)
-    pin(col, edges="lr", inset=20)
-    C(col, "top", root, "top", 30)
+    scroll = Scroll([col], id="scroll", outlet="contentScrollView", indicators=True)
+    root.add(scroll, close)
+    pin(scroll, edges="ltr", inset=(30, 20, 0, 20))
+    pin(col, to=scroll.content, inset=(0, 0, 20, 0))
+    equal(col, scroll.frame, "width")
     pin(close, edges="tr", inset=(16, 0, 0, 16))
     size(field_box, h=52)
     pin(field, inset=(0, 16, 0, 16))

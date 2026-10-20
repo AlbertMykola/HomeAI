@@ -1,8 +1,9 @@
 import UIKit
 
 /// A/06 · R9 "What went wrong?" — multi-select reasons, optional details, free retry.
-/// Layout: DislikeSheetViewController.xib.
+/// Layout: Result.storyboard.
 final class DislikeSheetViewController: UIViewController {
+    @IBOutlet private weak var contentScrollView: UIScrollView!
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
@@ -23,7 +24,7 @@ final class DislikeSheetViewController: UIViewController {
     private var onSend: (([String], String, Bool, Bool) -> Void)?
 
     static func present(from presenter: UIViewController, onSend: @escaping ([String], String, Bool, Bool) -> Void) {
-        let vc = DislikeSheetViewController(nibName: "DislikeSheetViewController", bundle: .main)
+        let vc = AppStoryboard.instantiate(DislikeSheetViewController.self)
         vc.onSend = onSend
         DSSheet.present(vc, from: presenter, height: 560)
     }
@@ -34,15 +35,22 @@ final class DislikeSheetViewController: UIViewController {
         return !Calendar.current.isDateInToday(last)
     }
 
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        reasonsStack.arrangedSubviews.forEach { ($0 as? DSAdaptiveChipRow)?.fit(in: view.dsLayoutSize.width - OnboardingLayout(size: view.dsAdaptiveReferenceSize).value(40)) }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        contentScrollView.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -12).isActive = true
+        contentScrollView.keyboardDismissMode = .interactive
         titleLabel.text = "What went wrong?".localized
         subtitleLabel.text = "Your answer trains the next version".localized
         detailsField.placeholder = "Tell us more (optional)".localized
         detailsField.delegate = self
         freeRetryLabel.text = "We'll regenerate this one for free".localized
         freeRetryView.isHidden = !freeRetryAvailable
-        sendRetryLabel.text = freeRetryAvailable ? "Send & try again".localized : "Send & try again · 1 credit".localized
+        sendRetryLabel.text = "Send & try again".localized + " · " + String(format: "About %d s".localized, 30)
         justSendButton.setTitle("Just send feedback".localized, for: .normal)
         reasonChips.sorted { $0.tag < $1.tag }.enumerated().forEach { index, chip in
             chip.subviews.first?.subviews.compactMap { $0 as? UILabel }.first?.text = Self.reasons[index].localized

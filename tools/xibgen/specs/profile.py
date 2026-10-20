@@ -7,7 +7,7 @@ LANGUAGES = 15
 # (tag, symbol, title, kind) kind: "value" | "chevron" | "toggle"
 GROUPS = [
     [(0, "globe", "Language", "value"), (1, "sun.max", "Appearance", "value"), (2, "bell", "Notifications", "toggle")],
-    [(3, "arrow.clockwise", "Restore purchases", "chevron"), (4, "crown", "Manage subscription", "chevron")],
+    [(3, "arrow.clockwise", "Restore purchases", "chevron")],
     [(5, "questionmark.circle", "Help & feedback", "chevron"), (6, "star", "Rate Rehomely", "chevron"),
      (7, "square.and.arrow.up", "Share with a friend", "chevron")],
     [(8, "checkmark.shield", "Privacy policy", "chevron"), (9, "doc.text", "Terms of use", "chevron")],
@@ -60,10 +60,10 @@ def group(i, rows):
 
 def perk(i, text):
     ic = Image(id=f"perk{i}-icon", system="checkmark", size=10, weight="bold", tint="dsLime")
-    lb = Label(text, id=f"perk{i}-label", font=("Medium", 12), color="white", collection="perkLabels", tag_value=i)
+    lb = Label(text, id=f"perk{i}-label", font=("Medium", 12), color="white", collection="perkLabels", tag_value=i, lines=0, resist=(750, 1000))
     v = View(id=f"perk{i}", cls="DSView", bg=("#FFFFFF", 0.1), runtime={"cornerRadius": 14},
-             children=[HStack([ic, lb], id=f"perk{i}-row", spacing=4, align="center", margins=(0, 10, 0, 10))])
-    size(v, h=28)
+             children=[HStack([ic, lb], id=f"perk{i}-row", spacing=4, align="center", margins=(6, 10, 6, 10))])
+    C(v, "height", const=28, rel="greaterThanOrEqual")
     pin(v.children[0])
     square(ic, 12)
     return v
@@ -79,20 +79,20 @@ def profile():
     title = Label("Profile", id="title", font=("SemiBold", 32), outlet="largeTitleLabel")
 
     # Free plan card
-    f_title = Label("Free plan", id="free-title", font=("SemiBold", 20), color="black", outlet="freeTitleLabel")
+    f_title = Label("Free plan", id="free-title", font=("SemiBold", 20), color="black", outlet="freeTitleLabel", lines=0)
     f_sub = Label("2 of 3 free designs left", id="free-sub", font=("Regular", 14), color="#1F3A00",
-                  outlet="freeSubtitleLabel")
-    f_texts = VStack([f_title, f_sub], id="free-texts", spacing=2, align="leading")
+                  outlet="freeSubtitleLabel", lines=0)
+    f_texts = VStack([f_title, f_sub], id="free-texts", spacing=2, align="fill")
     f_icon = Image(id="free-icon-img", system="sparkles", size=18, weight="semibold", tint="black")
     f_icon_box = View(id="free-icon", cls="DSView", bg=("#FFFFFF", 0.5), runtime={"cornerRadius": 22},
                       children=[f_icon])
     f_head = HStack([f_texts, View(id="free-sp", bg="clear", hug=(1, 250)), f_icon_box], id="free-head",
                     align="center")
-    track = View(id="track", cls="DSView", bg=("#000000", 0.1), runtime={"cornerRadius": 4}, outlet="progressTrackView")
+    track = View(id="track", cls="DSView", bg=("#000000", 0.1), clips=True, runtime={"cornerRadius": 4}, outlet="progressTrackView")
     fill = View(id="fill", cls="DSView", bg="black", runtime={"cornerRadius": 4}, outlet="progressFillView")
     track.add(fill)
     pro_label = Label("Get Pro", id="getpro-label", font=("SemiBold", 15), color="white", align="center",
-                      outlet="getProLabel")
+                      outlet="getProLabel", lines=0)
     get_pro = Control(id="getpro", cls="DSPressableControl", bg="black", clips=True, runtime={"pill": True},
                       outlet="getProButton", children=[pro_label]).on("didTapGetPro:")
     f_bg = View(id="free-bg", cls="DSGradientView", interaction=False, runtime={"startColor": "#C4FA6A",
@@ -105,16 +105,16 @@ def profile():
                      children=[f_bg, f_col])
 
     # Pro card
-    p_title = Label("Rehomely Pro", id="pro-title", font=("SemiBold", 20), color="white", outlet="proTitleLabel")
+    p_title = Label("Rehomely Pro", id="pro-title", font=("SemiBold", 20), color="white", outlet="proTitleLabel", lines=0)
     p_sub = Label("Unlimited designs", id="pro-sub", font=("Regular", 13), color="#A1A1A6", outlet="proSubtitleLabel",
-                  lines=2)
-    p_texts = VStack([p_title, p_sub], id="pro-texts", spacing=2, align="leading", hug=(249, 250))
+                  lines=0)
+    p_texts = VStack([p_title, p_sub], id="pro-texts", spacing=2, align="fill", hug=(249, 250))
     crown = Image(id="crown", system="crown", size=18, weight="semibold", tint="black", outlet="crownImageView")
     crown_box = View(id="crown-box", cls="DSView", bg="dsLime", runtime={"cornerRadius": 22}, children=[crown])
     p_head = HStack([p_texts, crown_box], id="pro-head", align="center", spacing=12)
     perks = HStack([perk(i, t) for i, t in enumerate(["4K export", "No watermark", "All tools"])], id="perks",
-                   spacing=8, align="center")
-    perks_row = HStack([perks, View(id="perks-sp", bg="clear", hug=(1, 250))], id="perks-row", align="fill")
+                   spacing=8, align="fill", dist="fillEqually")
+    perks_row = perks
     resub_label = Label("Resubscribe", id="resub-label", font=("SemiBold", 15), color="black", align="center")
     resub = Control(id="resub", cls="DSPrimaryButton", outlet="resubscribeButton", hidden=True,
                     children=[resub_label]).on("didTapGetPro:")
@@ -148,7 +148,7 @@ def profile():
     fade = View(id="fade", cls="DSGradientView", interaction=False,
                 runtime={"startColor": "dsBackgroundClear", "midColor": "dsBackground", "midLocation": 0.45,
                          "endColor": "dsBackground", "angle": 180})
-    header_bg = Blur(id="header-bg", style="systemUltraThinMaterialLight", outlet="headerBackgroundView", alpha=0)
+    header_bg = Blur(id="header-bg", style="systemUltraThinMaterial", outlet="headerBackgroundView", alpha=0)
     compact = Label("Profile", id="compact", font=("SemiBold", 17), align="center", outlet="compactTitleLabel",
                     alpha=0)
     header = View(id="header", bg="clear", interaction=False, children=[compact])
@@ -175,9 +175,12 @@ def profile():
     square(f_icon, 22)
     size(track, h=8)
     pin(fill, to=track, edges="ltb")
-    C(fill, "width", const=200, outlet="progressFillWidthConstraint")
-    size(get_pro, h=48)
+    C(fill, "width", const=200, outlet="progressFillWidthConstraint", prio=999)
+    C(fill, "width", track, "width", rel="lessThanOrEqual")
+    C(get_pro, "height", const=48, rel="greaterThanOrEqual")
     center(pro_label)
+    C(pro_label, "leading", get_pro, "leading", 16, rel="greaterThanOrEqual")
+    C(pro_label, "top", get_pro, "top", 8, rel="greaterThanOrEqual")
     pin(p_col, to=pro_card, inset=20)
     square(crown_box, 44)
     center(crown)

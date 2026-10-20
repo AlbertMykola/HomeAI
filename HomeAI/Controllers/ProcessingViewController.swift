@@ -6,7 +6,7 @@ import GoogleGenerativeAI
 private struct Defaults {
     struct Text {
         static let processing = "Processing...".localized
-        static let description = "Please, don’t close the app ".localized
+        static let description = "Please, don't close the app ".localized
     }
 
     struct Images {

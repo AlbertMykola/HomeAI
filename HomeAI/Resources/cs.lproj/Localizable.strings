@@ -58,7 +58,6 @@
 "Garden Design" = "Návrh zahrady";
 "Reference Style" = "Referenční styl";
 "Replace Objects" = "Nahradit objekty";
-"Replace Object" = "Nahradit objekt";
 "New Flooring" = "Nová podlaha";
 "New Walls" = "Nové stěny";
 "Change your indoor space" = "Proměňte svůj interiér";
@@ -94,14 +93,12 @@
 
 // Photo
 "Add a photo" = "Přidat fotografii";
-"Upload a photo of your current room." = "Nahrajte fotografii svého současného pokoje.";
 "Upload a photo of your current facade." = "Nahrajte fotografii své současné fasády.";
 "Upload a photo of your current outdoor space." = "Nahrajte fotografii svého současného venkovního prostoru.";
 "Upload a photo of your current design." = "Nahrajte fotografii svého současného návrhu.";
 "Upload a photo of your current room." = "Nahrajte fotografii svého současného pokoje.";
 "Upload a photo to redesign your floor" = "Nahrajte fotografii pro přepracování podlahy";
 "Upload a photo of your current walls." = "Nahrajte fotografii svých současných stěn.";
-"" = "";
 
 "Get your dream design" = "Získejte svůj vysněný návrh";
 "Take a photo" = "Pořídit fotografii";
@@ -138,7 +135,6 @@
 "Follow the current room" = "Vycházet ze stávající místnosti";
 "Redesign without restrictions" = "Přepracovat bez omezení";
 "Color Palette" = "Barevná paleta";
-"" = "";
 
 // Room
 "Choose Room" = "Vyberte místnost";
@@ -150,7 +146,6 @@
 "Bathroom" = "Koupelna";
 "Living room" = "Obývací pokoj";
 "Dinning room" = "Jídelna";
-"Office" = "Kancelář";
 "Study room" = "Pracovna";
 "Gaming room" = "Herní pokoj";
 "Kids room" = "Dětský pokoj";
@@ -164,7 +159,6 @@
 // Style
 "Choose Style" = "Vyberte styl";
 "Modern" = "Moderní";
-"Contemporary" = "Současný";
 "Minimalist" = "Minimalistický";
 "High-tech" = "High-tech";
 "Scandinavian" = "Skandinávský";
@@ -188,7 +182,6 @@
 "Wabi-sabi" = "Wabi-sabi";
 "Vintage" = "Vintage";
 "Rustic" = "Rustikální";
-"Farmhouse" = "Farmhouse";
 "Tropical" = "Tropický";
 "Flat" = "Byt";
 "House" = "Dům";
@@ -222,7 +215,6 @@
 "Wood" = "Dřevěný";
 "Creepy" = "Strašidelný";
 "Chocolate" = "Čokoládový";
-"Cyberpunk" = "Cyberpunk";
 
 //Inspiration Detail
 "Done" = "Hotovo";
@@ -262,7 +254,6 @@
 "New Floor" = "Nová podlaha";
 "New Style" = "Nový styl";
 "New Color" = "Nová barva";
-"" = "";
 
 //Paywall
 "Go Premium Design Without Limits" = "Přejít na Premium\nNavrhujte bez omezení";
@@ -318,8 +309,6 @@
 "Privacy Policy" = "Zásady ochrany osobních údajů";
 "Terms & Conditions" = "Obchodní podmínky";
 "Contact Us" = "Kontaktujte nás";
-"" = "";
-"" = "";
 
 // Photo Tips
 "Use natural light whenever possible, or switch on all lights in the room.\nShoot at eye level to keep the perspective natural and realistic.\nPTake photos from a corner or doorway to capture more of the space.\nClear away clutter and tidy up to achieve a clean, polished look." = "Pokud je to možné, používejte přirozené světlo nebo rozsviťte všechna světla v místnosti.\nFoťte ve výšce očí, aby perspektiva působila přirozeně a realisticky.\nPořizujte fotografie z rohu místnosti nebo ode dveří, abyste zachytili více prostoru.\nUkliďte nepořádek a prostor upravte, aby působil čistě a upraveně.";
@@ -333,8 +322,6 @@
 "Too Close" = "Příliš blízko";
 "Too Dark" = "Příliš tmavé";
 "Too Mess" = "Příliš neuklizené";
-
-"View at eye level" = "Pohled ve výšce očí";
 "Good light" = "Dobré světlo";
 "Clean Room" = "Čistý pokoj";
 
@@ -354,7 +341,6 @@
 
 // Custom Prompt
 "Enter Custom Promt" = "Zadejte vlastní prompt";
-"Describe your design style idea..." = "Popište svou představu o stylu návrhu...";
 "Clear" = "Vymazat";
 "Example Promt" = "Ukázkový prompt";
 "A calm interior with soft daylight, light walls, natural textures, simple furniture forms, cozy seating, subtle shadows, balanced composition, realistic materials, high detail, photorealistic render" = "Klidný interiér s jemným denním světlem, světlými stěnami, přírodními texturami, jednoduchými tvary nábytku, útulným posezením, jemnými stíny, vyváženou kompozicí, realistickými materiály, vysokými detaily a fotorealistickým renderem";
@@ -405,8 +391,6 @@
 "Outlined object" = "Obkreslený objekt";
 "Correct Selection " = "Správný výběr";
 "Clear highlight" = "Jasné zvýraznění";
-"" = "";
-"" = "";
 
 //SurfaceMaterialPickerViewController
 "Describe your design style idea..." = "Popište svou představu o stylu návrhu...";
@@ -417,16 +401,6 @@
 "Daily limit reached" = "Denní limit dosažen";
 "daily_limit_reached_message" = "Dnes jste využili všech %d generování obrázků. Zkuste to prosím znovu zítra.";
 "You've used all 15 image generations for today. Please try again tomorrow." = "Dnes jste využili všech 15 generování obrázků. Zkuste to prosím znovu zítra.";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
 "" = "";
 "Meet Your AI Experts:" = "Seznamte se se svými AI experty:";
 "AI Renovation Assistant" = "AI asistent pro renovace";
@@ -809,6 +783,7 @@
 "No free designs left" = "Žádné návrhy zdarma";
 "%d of %d free designs left" = "Zbývá %d z %d návrhů zdarma";
 "Get Pro · %@ / year" = "Získat Pro · %@ / rok";
+"Get Pro · %@ / week" = "Získat Pro · %@ / týden";
 "Help & feedback" = "Nápověda a zpětná vazba";
 "Appearance" = "Vzhled";
 "Notifications are off" = "Oznámení jsou vypnutá";
@@ -889,6 +864,8 @@
 "Unlock every style" = "Odemkněte všechny styly";
 "This is a Pro feature. Pro also unlocks:" = "Toto je funkce Pro. Pro také odemyká:";
 "%@ / year · cancel anytime" = "%@ / rok · zrušte kdykoli";
+"Weekly subscription is unavailable. Please try again." = "Týdenní předplatné není dostupné. Zkuste to prosím znovu.";
+"%@ / week · cancel anytime" = "%@ / týden · zrušte kdykoli";
 "Welcome to Pro" = "Vítejte v Pro";
 "Everything is unlocked. Go make every room yours." = "Vše je odemčeno. Udělejte si z každého pokoje svůj.";
 "Start designing" = "Začít navrhovat";
@@ -1144,3 +1121,78 @@
 "Living Wall" = "Zelená stěna";
 "Cork Wall" = "Korková stěna";
 "Wood Shiplap" = "Dřevěný obklad";
+
+/* Figma A · onboarding (English fallback until translated). */
+"onboarding_skip" = "Přeskočit";
+"onboarding_before" = "Před";
+"onboarding_after" = "Po";
+"onboarding_room_title" = "Proměňte každý pokoj během chvilky";
+"onboarding_room_subtitle" = "Vyfoťte pokoj a získejte nový návrh. Stěny, okna i dispozice zůstanou na místě.";
+"onboarding_tools_title" = "Jedna aplikace, 11 AI nástrojů";
+"onboarding_tools_subtitle" = "Změňte barvu stěn, podlahu, odstraňte předměty, vybavte prázdný pokoj a mnohem víc.";
+"onboarding_words_title" = "Upravujte vlastními slovy";
+"onboarding_words_subtitle" = "Napište nebo řekněte, co změnit. Všechno ostatní zůstane přesně stejné.";
+"onboarding_demo_placeholder" = "Popište změnu…";
+"onboarding_demo_prompt" = "Změňte den na večer s teplým osvětlením";
+"onboarding_tool_walls" = "Vymalovat stěny";
+"onboarding_tool_floor" = "Nová podlaha";
+"onboarding_tool_remove" = "Odstranit předměty";
+"onboarding_tool_replace" = "Vyměnit nábytek";
+"onboarding_tool_style" = "Nový styl";
+"onboarding_goal_title" = "Co budeme měnit?";
+"onboarding_goal_subtitle" = "Nejprve zobrazíme vhodné nástroje. Volbu můžete kdykoli změnit.";
+"onboarding_goal_skip" = "Nevíte? Zatím přeskočit";
+"onboarding_goal_interior" = "Interiér";
+"onboarding_goal_interior_detail" = "Místnost v domě";
+"onboarding_goal_exterior" = "Exteriér";
+"onboarding_goal_exterior_detail" = "Fasáda domu";
+"onboarding_goal_garden" = "Zahrada";
+"onboarding_goal_garden_detail" = "Dvůr a terasa";
+"onboarding_goal_surfaces" = "Stěny a podlahy";
+"onboarding_goal_surfaces_detail" = "Jen povrchy";
+"onboarding_splash_tagline" = "AI návrhy pro každý pokoj";
+
+/* Shared and legacy UI: complete localization coverage. */
+"Chat" = "Chat";
+"Choose Type" = "Vyberte typ";
+"Cyberpunk" = "Kyberpunk";
+"Detecting..." = "Rozpoznávání…";
+"Edit" = "Upravit";
+"Not completed" = "Nedokončeno";
+"Perform the necessary action to continue." = "Pro pokračování dokončete požadovanou akci.";
+"Please select a material option." = "Vyberte prosím materiál.";
+"Something went wrong. Please try again." = "Něco se pokazilo. Zkuste to znovu.";
+"A refined interior with contrast between light and dark surfaces, elegant furniture, subtle metallic accents, controlled lighting, depth and shadows, realistic textures" = "Elegantní interiér s kontrastem světlých a tmavých povrchů, vkusným nábytkem, jemnými kovovými detaily, promyšleným osvětlením, hloubkou, stíny a realistickými texturami";
+
+/* VoiceOver controls */
+"Ask by voice" = "Zeptat se hlasem";
+"Back" = "Zpět";
+"Close" = "Zavřít";
+"Compare" = "Porovnat";
+"Dislike" = "Nelíbí se mi";
+"Flash" = "Blesk";
+"Hide" = "Skrýt";
+"Hold to see the original" = "Podržením zobrazíte originál";
+"Like" = "Líbí se mi";
+"Minimize" = "Minimalizovat";
+"Photo library" = "Knihovna fotek";
+"Redo" = "Znovu provést";
+"Remove photo" = "Odebrat fotku";
+"Remove reference" = "Odebrat předlohu";
+"Reset zoom" = "Obnovit přiblížení";
+"Save to Photos" = "Uložit do Fotek";
+"Search" = "Hledat";
+"Send" = "Odeslat";
+"Speak" = "Mluvit";
+"Speak a change" = "Nadiktovat změnu";
+"Switch camera" = "Přepnout fotoaparát";
+"Take photo" = "Vyfotit";
+"Type instead" = "Napsat text";
+/* Personalized Home hero */
+"home_hero_exterior_title" = "Proměňte exteriér";
+"home_hero_exterior_subtitle" = "Nový styl za ~30 s. Tvar domu zůstává.";
+"home_hero_garden_title" = "Proměňte zahradu";
+"home_hero_garden_subtitle" = "Nová zahrada za ~30 s. Prostor zůstává.";
+"home_hero_surfaces_title" = "Obnovte povrchy";
+"home_hero_surfaces_subtitle" = "Vyzkoušejte nové stěny a podlahy za ~30 s.";
+"About %d s" = "Přibližně %d s";

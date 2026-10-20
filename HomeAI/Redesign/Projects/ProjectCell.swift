@@ -1,8 +1,8 @@
 import UIKit
 
 /// PR1 project card: cover (current version) with Vn pill, title, "3 versions · Today";
-/// select mode adds a check circle and a 3 pt lime ring. Layout: ProjectCell.xib.
-final class ProjectCell: UICollectionViewCell {
+/// select mode adds a check circle and a 3 pt lime ring. Layout: Projects.storyboard prototype.
+final class ProjectCell: DSAdaptiveCollectionViewCell {
     static let reuseID = "ProjectCell"
 
     @IBOutlet private(set) weak var coverImageView: UIImageView!
@@ -30,9 +30,15 @@ final class ProjectCell: UICollectionViewCell {
         versionLabel.text = "V\(versions.count)"
         isAccessibilityElement = true
         accessibilityLabel = "\(title), \(subtitleLabel.text ?? "")"
-        let p = HistoryDocOpener.thumbnailPath(for: doc)
+        let viewport = dsAdaptiveReferenceSize
+        let metrics = OnboardingLayout(size: viewport)
+        let width = max(metrics.value(170), floor((viewport.width - metrics.value(53)) / 2))
+        let size = CGSize(width: width, height: width * 200 / 170)
+        // The compact stored preview is too small for a wide tablet card.
+        let p = FileManager.default.fileExists(atPath: doc.storagePath)
+            ? doc.storagePath : HistoryDocOpener.thumbnailPath(for: doc)
         path = p
-        ThumbnailLoader.load(path: p, pointSize: CGSize(width: 170, height: 200)) { [weak self] image in
+        ThumbnailLoader.load(path: p, pointSize: size) { [weak self] image in
             guard let self, self.path == p else { return }
             self.coverImageView.image = image
         }

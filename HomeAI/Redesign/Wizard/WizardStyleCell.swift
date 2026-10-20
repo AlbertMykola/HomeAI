@@ -1,7 +1,7 @@
 import UIKit
 
-/// Style tile 109×136 r22 + title. Layout: WizardStyleCell.xib.
-final class WizardStyleCell: UICollectionViewCell {
+/// Style tile 109×136 r22 + title. Layout: Wizard.storyboard prototype.
+final class WizardStyleCell: DSAdaptiveCollectionViewCell {
 
     static let reuseID = "WizardStyleCell"
 
@@ -63,7 +63,7 @@ final class WizardStyleCell: UICollectionViewCell {
         let changes = {
             self.tileView.layer.borderWidth = chosen ? 3 : 0
             self.tileView.layer.borderColor = DS.Color.lime.cgColor
-            self.titleLabel.font = DS.Font.geologica(chosen ? .semiBold : .medium, 13)
+            self.titleLabel.font = DS.Font.geologica(chosen ? .semiBold : .medium, self.titleLabel.font.pointSize)
             self.checkView.alpha = chosen ? 1 : 0
             self.checkView.transform = chosen ? .identity : CGAffineTransform(scaleX: 0.4, y: 0.4)
         }

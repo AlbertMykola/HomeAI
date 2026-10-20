@@ -102,7 +102,7 @@ final class GeminiRESTServiceTests: XCTestCase {
         }
     }
 
-    func testNoImageResponseReturnsStableError() async {
+    func testSafetyRefusalReturnsContentBlockedError() async {
         URLProtocolStub.requestHandler = { request in
             (
                 Self.response(status: 200, request: request),
@@ -112,10 +112,25 @@ final class GeminiRESTServiceTests: XCTestCase {
 
         do {
             _ = try await makeService().generateImage(from: makeParts(), designOption: .garden)
+            XCTFail("Expected moderation refusal")
+        } catch let error as GeminiServiceError {
+            XCTAssertEqual(error.category, "content_blocked")
+            XCTAssertNotNil(error.errorDescription)
+        } catch {
+            XCTFail("Unexpected error: \(error)")
+        }
+    }
+
+    func testTextOnlyResponseWithoutSafetyReasonReturnsNoImageError() async {
+        URLProtocolStub.requestHandler = { request in
+            (Self.response(status: 200, request: request),
+             Data(#"{"candidates":[{"content":{"parts":[{"text":"No image"}]},"finishReason":"STOP"}]}"#.utf8))
+        }
+        do {
+            _ = try await makeService().generateImage(from: makeParts(), designOption: .interior)
             XCTFail("Expected no-image failure")
         } catch let error as GeminiServiceError {
             XCTAssertEqual(error.category, "no_image")
-            XCTAssertNotNil(error.errorDescription)
         } catch {
             XCTFail("Unexpected error: \(error)")
         }

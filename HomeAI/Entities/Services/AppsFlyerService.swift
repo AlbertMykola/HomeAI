@@ -5,6 +5,7 @@ final class AppsFlyerService: NSObject {
     static let shared = AppsFlyerService()
 
     private var didConfigure = false
+    private var hasPendingSession = false
     private var pendingUserActivities: [NSUserActivity] = []
     private var pendingOpenURLs: [(URL, [AnyHashable: Any]?)] = []
 
@@ -26,14 +27,21 @@ final class AppsFlyerService: NSObject {
         lib.deepLinkDelegate = self
         lib.handleLaunchOptions(launchOptions)
         flushPendingDeepLinks()
-        lib.registerSessionReadyListener {
-            DispatchQueue.main.async {
-                TrackingManager.requestPermission { _ in
-                    AppsFlyerLib.shared().start()
-                    AdaptyService.shared.setAppsFlyerAttribution()
-                }
+        lib.registerSessionReadyListener { [weak self] in
+            DispatchQueue.main.async { [weak self] in
+                self?.hasPendingSession = true
+                self?.startReadySessionIfTrackingResolved()
             }
         }
+    }
+
+    /// ATT belongs to the onboarding/lifecycle UI. A ready SDK must not present it over O1.
+    func startReadySessionIfTrackingResolved() {
+        guard hasPendingSession,
+              UserDefaults.standard.bool(forKey: Constants.Keys.didLogTrackingPermission) else { return }
+        hasPendingSession = false
+        AppsFlyerLib.shared().start()
+        AdaptyService.shared.setAppsFlyerAttribution()
     }
 
     func start() {

@@ -1,0 +1,381 @@
+<?xml version='1.0' encoding='utf-8'?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="16e6-d4dc-0878" orientation="portrait" appearance="light" />
+    <dependencies>
+        <deployment identifier="iOS" />
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063" />
+        <capability name="Image references" minToolsVersion="12.0" />
+        <capability name="Named colors" minToolsVersion="9.0" />
+        <capability name="Safe area layout guides" minToolsVersion="9.0" />
+        <capability name="System colors in document resources" minToolsVersion="11.0" />
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0" />
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Geologica-Regular.ttf">
+            <string>Geologica-Regular</string>
+        </array>
+        <array key="Geologica-SemiBold.ttf">
+            <string>Geologica-SemiBold</string>
+        </array>
+        <array key="Geologica-Medium.ttf">
+            <string>Geologica-Medium</string>
+        </array>
+        <array key="Geologica-Bold.ttf">
+            <string>Geologica-Bold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <scene sceneID="f68d-83cd-7b55">
+            <objects>
+                <viewController storyboardIdentifier="DSToastView" id="723a-b948-573a" sceneMemberID="viewController">
+                    <view id="bb04-97ec-8121" contentMode="scaleToFill" customClass="DSToastView" customModule="HomeAI" customModuleProvider="target" key="view">
+                        <rect key="frame" x="0" y="0" width="353" height="60" />
+                        <subviews>
+                            <view contentMode="scaleToFill" id="598c-4b5b-e1e8" userLabel="Root" translatesAutoresizingMaskIntoConstraints="NO">
+                                <rect key="frame" x="0.0" y="0.0" width="353" height="48" />
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8294-676c-51c0" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="cardView">
+                                        <subviews>
+                                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="25d2-987e-cd1a" opaque="NO" alignment="center" spacing="10" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                <subviews>
+                                                    <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="86d1-bb8a-a698" userLabel="iconView" image="checkmark.circle" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="16" weight="semibold" />
+                                                        <color key="tintColor" name="dsLime" />
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="20" id="8447-9b0c-6c0b" identifier="ds.reference.8447-9b0c-6c0b" />
+                                                            <constraint firstAttribute="height" constant="20" id="1ed4-de5e-4118" identifier="ds.reference.1ed4-de5e-4118" />
+                                                        </constraints>
+                                                    </imageView>
+                                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="f977-6bd5-b970" userLabel="messageLabel" opaque="NO" text="Saved to Photos" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                        <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="15" />
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                        <nil key="highlightedColor" />
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Saved to Photos" />
+                                                        </userDefinedRuntimeAttributes>
+                                                        <nil key="backgroundColor" />
+                                                    </label>
+                                                    <label contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="750" hidden="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4dbe-4804-8468" userLabel="actionLabel" opaque="NO" text="Open" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO">
+                                                        <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="15" />
+                                                        <color key="textColor" name="dsLime" />
+                                                        <nil key="highlightedColor" />
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Open" />
+                                                        </userDefinedRuntimeAttributes>
+                                                        <nil key="backgroundColor" />
+                                                    </label>
+                                                </subviews>
+                                                <edgeInsets key="layoutMargins" top="12" left="18" bottom="12" right="20" />
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" red="0.1373" green="0.1373" blue="0.1451" alpha="0.960" colorSpace="custom" customColorSpace="sRGB" />
+                                        <constraints>
+                                            <constraint firstItem="25d2-987e-cd1a" firstAttribute="leading" secondItem="8294-676c-51c0" secondAttribute="leading" id="8bf2-fdba-f7eb" identifier="ds.reference.8bf2-fdba-f7eb" />
+                                            <constraint firstItem="25d2-987e-cd1a" firstAttribute="top" secondItem="8294-676c-51c0" secondAttribute="top" id="7c20-55c3-858f" identifier="ds.reference.7c20-55c3-858f" />
+                                            <constraint firstItem="8294-676c-51c0" firstAttribute="trailing" secondItem="25d2-987e-cd1a" secondAttribute="trailing" id="ecfe-6825-b35b" identifier="ds.reference.ecfe-6825-b35b" />
+                                            <constraint firstItem="8294-676c-51c0" firstAttribute="bottom" secondItem="25d2-987e-cd1a" secondAttribute="bottom" id="6351-7572-048c" identifier="ds.reference.6351-7572-048c" />
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="2e59-5ff3-64c7" identifier="ds.reference.2e59-5ff3-64c7" />
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                <real key="value" value="24" />
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                <real key="value" value="0.22" />
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                <real key="value" value="16" />
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY">
+                                                <real key="value" value="8" />
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                <viewLayoutGuide key="safeArea" id="1eb3-b5ac-272f" />
+                                <constraints>
+                                    <constraint firstItem="8294-676c-51c0" firstAttribute="top" secondItem="598c-4b5b-e1e8" secondAttribute="top" id="b9de-d921-a996" identifier="ds.reference.b9de-d921-a996" />
+                                    <constraint firstItem="598c-4b5b-e1e8" firstAttribute="bottom" secondItem="8294-676c-51c0" secondAttribute="bottom" id="2f9d-9da5-33e0" identifier="ds.reference.2f9d-9da5-33e0" />
+                                    <constraint firstItem="8294-676c-51c0" firstAttribute="centerX" secondItem="598c-4b5b-e1e8" secondAttribute="centerX" id="344c-d68c-1d3c" identifier="ds.reference.344c-d68c-1d3c" />
+                                    <constraint firstItem="8294-676c-51c0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="598c-4b5b-e1e8" secondAttribute="leading" id="b3ad-8d65-9e74" identifier="ds.reference.b3ad-8d65-9e74" />
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="598c-4b5b-e1e8" firstAttribute="leading" secondItem="bb04-97ec-8121" secondAttribute="leading" id="8a9a-dc21-942b" identifier="ds.reference.8a9a-dc21-942b" />
+                            <constraint firstItem="598c-4b5b-e1e8" firstAttribute="trailing" secondItem="bb04-97ec-8121" secondAttribute="trailing" id="a304-b105-de63" identifier="ds.reference.a304-b105-de63" />
+                            <constraint firstItem="598c-4b5b-e1e8" firstAttribute="top" secondItem="bb04-97ec-8121" secondAttribute="top" id="11a1-c080-382b" identifier="ds.reference.11a1-c080-382b" />
+                            <constraint firstItem="598c-4b5b-e1e8" firstAttribute="bottom" secondItem="bb04-97ec-8121" secondAttribute="bottom" id="495d-0933-012f" identifier="ds.reference.495d-0933-012f" />
+                        </constraints>
+                        <connections>
+                            <outlet property="contentView" destination="598c-4b5b-e1e8" id="1b28-a12d-c6b3" />
+                            <outlet property="cardView" destination="8294-676c-51c0" id="6cb7-9d78-dd1b" />
+                            <outlet property="iconView" destination="86d1-bb8a-a698" id="7694-c3ce-89d3" />
+                            <outlet property="messageLabel" destination="f977-6bd5-b970" id="d02c-90e6-40c9" />
+                            <outlet property="actionLabel" destination="4dbe-4804-8468" id="471c-b9b9-2db8" />
+                        </connections>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c5e8-ac73-f39e" customClass="UIResponder" sceneMemberID="firstResponder" />
+            </objects>
+            <point key="canvasLocation" x="0" y="0" />
+        </scene>
+        <scene sceneID="4712-0d1a-79bb">
+            <objects>
+                <viewController storyboardIdentifier="SheetBackdropView" id="6b19-4f48-004a" sceneMemberID="viewController">
+                    <view key="view" id="e9ea-0579-bf80" contentMode="scaleToFill" customClass="SheetBackdropView" customModule="HomeAI" customModuleProvider="target">
+                        <rect key="frame" x="0" y="0" width="393" height="852" />
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
+                        <color key="backgroundColor" white="0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6416-7e70-1480" customClass="UIResponder" sceneMemberID="firstResponder" />
+            </objects>
+            <point key="canvasLocation" x="600" y="0" />
+        </scene>
+        <scene sceneID="4e29-fc05-5bb6">
+            <objects>
+                <viewController storyboardIdentifier="EditorHotspotView" id="62a9-f0be-a69c" sceneMemberID="viewController">
+                    <view key="view" id="c159-13f4-edff" contentMode="scaleToFill" customClass="EditorHotspotView" customModule="HomeAI" customModuleProvider="target">
+                        <rect key="frame" x="0" y="0" width="16" height="16" />
+                        <autoresizingMask key="autoresizingMask" />
+                        <color key="backgroundColor" white="1" alpha="0.95" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cb97-e661-ef66" customClass="UIResponder" sceneMemberID="firstResponder" />
+            </objects>
+            <point key="canvasLocation" x="1200" y="0" />
+        </scene>
+        <scene sceneID="903b-c508-3f0f">
+            <objects>
+                <viewController storyboardIdentifier="EditorSelectionView" id="c7c2-bd66-9740" sceneMemberID="viewController">
+                    <view key="view" id="2a67-98cc-18a1" contentMode="scaleToFill" customClass="EditorSelectionView" customModule="HomeAI" customModuleProvider="target">
+                        <rect key="frame" x="0" y="0" width="160" height="120" />
+                        <autoresizingMask key="autoresizingMask" />
+                        <subviews>
+                            <label id="bdf8-49e3-8232" translatesAutoresizingMaskIntoConstraints="NO" contentMode="scaleToFill" text="Selected object" numberOfLines="1" customClass="PaddingLabel" customModule="HomeAI" customModuleProvider="target">
+                                <rect key="frame" x="0" y="0" width="100" height="100" />
+                                <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="13" />
+                                <color key="textColor" white="0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                <color key="backgroundColor" name="dsLime" />
+                            </label>
+                        </subviews>
+                        <connections>
+                            <outlet property="titleLabel" destination="bdf8-49e3-8232" id="a2a3-89a2-6056" />
+                        </connections>
+                        <constraints>
+                            <constraint firstItem="bdf8-49e3-8232" firstAttribute="leading" secondItem="2a67-98cc-18a1" secondAttribute="leading" constant="6" id="2dd8-9e14-531b" identifier="ds.reference.2dd8-9e14-531b" />
+                            <constraint firstItem="bdf8-49e3-8232" firstAttribute="bottom" secondItem="2a67-98cc-18a1" secondAttribute="top" constant="-8" id="f985-b95b-d041" identifier="ds.reference.f985-b95b-d041" />
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="237a-5781-daf4" customClass="UIResponder" sceneMemberID="firstResponder" />
+            </objects>
+            <point key="canvasLocation" x="0" y="1100" />
+        </scene>
+    </scenes>
+    <resources>
+        <image name="sparkles" catalog="system" width="128" height="128" />
+        <namedColor name="dsCard">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <namedColor name="dsDivider">
+            <color red="0.9216" green="0.9216" blue="0.9216" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <namedColor name="dsSurface">
+            <color red="0.9686" green="0.9686" blue="0.9686" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <namedColor name="dsTextPrimary">
+            <color red="0.0000" green="0.0000" blue="0.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <namedColor name="dsTextTertiary">
+            <color red="0.5569" green="0.5569" blue="0.5765" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="plus" catalog="system" width="128" height="128" />
+        <namedColor name="dsBackground">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <namedColor name="dsLimeSoft">
+            <color red="0.9333" green="1.0000" blue="0.8392" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="clay_assistant" width="64" height="64" />
+        <namedColor name="dsChip">
+            <color red="0.9490" green="0.9490" blue="0.9490" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="xmark" catalog="system" width="128" height="128" />
+        <namedColor name="dsGlass">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="0.750" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <namedColor name="dsGlassBorder">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="0.900" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="exclamationmark.circle.fill" catalog="system" width="128" height="128" />
+        <namedColor name="dsLimeBottom">
+            <color red="0.6078" green="0.8902" blue="0.1490" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <namedColor name="dsLimeTop">
+            <color red="0.7216" green="0.9647" blue="0.3333" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="camera" catalog="system" width="128" height="128" />
+        <image name="chevron.right" catalog="system" width="128" height="128" />
+        <image name="folder" catalog="system" width="128" height="128" />
+        <image name="photo.on.rectangle" catalog="system" width="128" height="128" />
+        <namedColor name="dsTextSecondary">
+            <color red="0.2510" green="0.2510" blue="0.2510" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="arrow.right" catalog="system" width="128" height="128" />
+        <image name="arrow.up" catalog="system" width="128" height="128" />
+        <image name="chevron.left" catalog="system" width="128" height="128" />
+        <image name="clock.arrow.circlepath" catalog="system" width="128" height="128" />
+        <image name="lightbulb" catalog="system" width="128" height="128" />
+        <image name="mic" catalog="system" width="128" height="128" />
+        <image name="paintpalette" catalog="system" width="128" height="128" />
+        <image name="ruler" catalog="system" width="128" height="128" />
+        <image name="sofa" catalog="system" width="128" height="128" />
+        <namedColor name="dsBackgroundClear">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="0.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <namedColor name="dsLink">
+            <color red="0.2431" green="0.4784" blue="0.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="clay_flooring" width="64" height="64" />
+        <image name="clay_floorplan" width="64" height="64" />
+        <image name="clay_furnish" width="64" height="64" />
+        <image name="clay_paint" width="64" height="64" />
+        <image name="clay_rearrange" width="64" height="64" />
+        <image name="clay_remove" width="64" height="64" />
+        <image name="clay_replace" width="64" height="64" />
+        <image name="ds_compare_handle" width="64" height="64" />
+        <image name="home_card_exterior" width="64" height="64" />
+        <image name="home_card_garden" width="64" height="64" />
+        <image name="home_card_reference" width="64" height="64" />
+        <image name="home_hero_after" width="64" height="64" />
+        <image name="home_hero_before" width="64" height="64" />
+        <image name="crown.fill" catalog="system" width="128" height="128" />
+        <image name="house" catalog="system" width="128" height="128" />
+        <image name="tree" catalog="system" width="128" height="128" />
+        <image name="wifi.slash" catalog="system" width="128" height="128" />
+        <namedColor name="dsCardGreenEnd">
+            <color red="0.9137" green="0.9843" blue="0.8275" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <namedColor name="dsCardGreenStart">
+            <color red="0.9569" green="1.0000" blue="0.9098" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <namedColor name="dsInk">
+            <color red="0.0000" green="0.0000" blue="0.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <namedColor name="dsLime">
+            <color red="0.6471" green="0.9333" blue="0.1843" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="tools_light_day" width="64" height="64" />
+        <image name="tools_light_dusk" width="64" height="64" />
+        <image name="tools_light_golden" width="64" height="64" />
+        <image name="checkmark" catalog="system" width="128" height="128" />
+        <image name="desktopcomputer" catalog="system" width="128" height="128" />
+        <image name="person.2" catalog="system" width="128" height="128" />
+        <image name="square.dashed" catalog="system" width="128" height="128" />
+        <image name="arrow.clockwise" catalog="system" width="128" height="128" />
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="128" />
+        <image name="cube" catalog="system" width="128" height="128" />
+        <image name="square.grid.2x2" catalog="system" width="128" height="128" />
+        <namedColor name="dsKnob">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <namedColor name="dsSegment">
+            <color red="0.9412" green="0.9412" blue="0.9412" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="gift" catalog="system" width="128" height="128" />
+        <image name="figma_again" width="64" height="64" />
+        <image name="figma_close20" width="64" height="64" />
+        <image name="figma_compare_left" width="64" height="64" />
+        <image name="figma_compare_right" width="64" height="64" />
+        <image name="figma_fit" width="64" height="64" />
+        <image name="figma_ask" width="64" height="64" />
+        <image name="figma_back" width="64" height="64" />
+        <image name="figma_compare" width="64" height="64" />
+        <image name="figma_dislike" width="64" height="64" />
+        <image name="figma_download20" width="64" height="64" />
+        <image name="figma_floor" width="64" height="64" />
+        <image name="figma_furnish" width="64" height="64" />
+        <image name="figma_layout" width="64" height="64" />
+        <image name="figma_like" width="64" height="64" />
+        <image name="figma_mic" width="64" height="64" />
+        <image name="figma_more20" width="64" height="64" />
+        <image name="figma_paint" width="64" height="64" />
+        <image name="figma_remove" width="64" height="64" />
+        <image name="figma_replace" width="64" height="64" />
+        <image name="figma_share20" width="64" height="64" />
+        <image name="figma_style" width="64" height="64" />
+        <image name="textformat" catalog="system" width="128" height="128" />
+        <image name="wand.and.stars" catalog="system" width="128" height="128" />
+        <image name="figma_close16" width="64" height="64" />
+        <image name="figma_copy" width="64" height="64" />
+        <image name="figma_crown" width="64" height="64" />
+        <image name="figma_download22" width="64" height="64" />
+        <image name="figma_export" width="64" height="64" />
+        <image name="figma_hd" width="64" height="64" />
+        <image name="figma_mark" width="64" height="64" />
+        <image name="figma_message" width="64" height="64" />
+        <image name="figma_more22" width="64" height="64" />
+        <image name="figma_watermark" width="64" height="64" />
+        <image name="ellipsis" catalog="system" width="128" height="128" />
+        <image name="pencil" catalog="system" width="128" height="128" />
+        <image name="rectangle.split.2x1" catalog="system" width="128" height="128" />
+        <image name="clay_interior" width="64" height="64" />
+        <image name="square.3.layers.3d" catalog="system" width="128" height="128" />
+        <image name="square.and.arrow.up" catalog="system" width="128" height="128" />
+        <image name="trash" catalog="system" width="128" height="128" />
+        <namedColor name="dsTabBar">
+            <color red="1.0000" green="1.0000" blue="1.0000" alpha="0.780" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="hand.raised" catalog="system" width="128" height="128" />
+        <image name="arrow.triangle.2.circlepath" catalog="system" width="128" height="128" />
+        <image name="arrow.uturn.backward" catalog="system" width="128" height="128" />
+        <image name="arrow.uturn.forward" catalog="system" width="128" height="128" />
+        <image name="eraser" catalog="system" width="128" height="128" />
+        <image name="bolt.slash" catalog="system" width="128" height="128" />
+        <image name="viewfinder" catalog="system" width="128" height="128" />
+        <image name="checkmark.shield" catalog="system" width="128" height="128" />
+        <image name="wizard_demo_kitchen" width="64" height="64" />
+        <image name="wizard_demo_living" width="64" height="64" />
+        <image name="wizard_demo_study" width="64" height="64" />
+        <image name="checkmark.circle" catalog="system" width="128" height="128" />
+        <image name="crown" catalog="system" width="128" height="128" />
+        <image name="lock" catalog="system" width="128" height="128" />
+        <namedColor name="dsStepOff">
+            <color red="0.8510" green="0.8510" blue="0.8510" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="tips_bad" width="64" height="64" />
+        <image name="tips_good" width="64" height="64" />
+        <image name="eye" catalog="system" width="128" height="128" />
+        <image name="sun.max" catalog="system" width="128" height="128" />
+        <image name="xmark.circle" catalog="system" width="128" height="128" />
+        <image name="person" catalog="system" width="128" height="128" />
+        <image name="plus.square" catalog="system" width="128" height="128" />
+        <namedColor name="dsLimeTint">
+            <color red="0.6471" green="0.9333" blue="0.1843" alpha="0.300" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="bell" catalog="system" width="128" height="128" />
+        <image name="doc.text" catalog="system" width="128" height="128" />
+        <image name="exclamationmark.triangle.fill" catalog="system" width="128" height="128" />
+        <image name="globe" catalog="system" width="128" height="128" />
+        <image name="questionmark.circle" catalog="system" width="128" height="128" />
+        <image name="star" catalog="system" width="128" height="128" />
+        <namedColor name="dsWarningSoft">
+            <color red="1.0000" green="0.9569" blue="0.8392" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
+        </namedColor>
+        <image name="magnifyingglass" catalog="system" width="128" height="128" />
+        <image name="bookmark" catalog="system" width="128" height="128" />
+        <image name="paywall_diorama" width="64" height="64" />
+        <image name="paywall_sparkle_1" width="64" height="64" />
+        <image name="paywall_sparkle_2" width="64" height="64" />
+        <image name="paywall_sparkle_3" width="64" height="64" />
+        <image name="paywall_sparkle_4" width="64" height="64" />
+        <image name="checkmark.seal.fill" catalog="system" width="128" height="128" />
+        <image name="checkmark.shield.fill" catalog="system" width="128" height="128" />
+        <image name="chevron.down" catalog="system" width="128" height="128" />
+        <image name="house.lodge" catalog="system" width="128" height="128" />
+        <image name="ob_logo" width="96" height="96" />
+    </resources>
+</document>

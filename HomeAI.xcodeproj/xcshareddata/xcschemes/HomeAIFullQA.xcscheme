@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme version="1.3" LastUpgradeVersion="2700">
+  <BuildAction parallelizeBuildables="YES" buildImplicitDependencies="YES">
+    <BuildActionEntries>
+      <BuildActionEntry buildForTesting="YES" buildForRunning="NO" buildForProfiling="NO" buildForArchiving="NO" buildForAnalyzing="YES">
+        <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="AA0000063000000000000001" BuildableName="HomeAITests.xctest" BlueprintName="HomeAITests" ReferencedContainer="container:HomeAI.xcodeproj"/>
+      </BuildActionEntry>
+      <BuildActionEntry buildForTesting="YES" buildForRunning="NO" buildForProfiling="NO" buildForArchiving="NO" buildForAnalyzing="YES">
+        <BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="AB0000063000000000000002" BuildableName="HomeAIUITests.xctest" BlueprintName="HomeAIUITests" ReferencedContainer="container:HomeAI.xcodeproj"/>
+      </BuildActionEntry>
+    </BuildActionEntries>
+  </BuildAction>
+  <TestAction buildConfiguration="Debug" selectedDebuggerIdentifier="Xcode.DebuggerFoundation.Debugger.LLDB" selectedLauncherIdentifier="Xcode.IDEFoundation.Launcher.PosixSpawn" shouldUseLaunchSchemeArgsEnv="NO">
+    <Testables>
+      <TestableReference skipped="NO" parallelizable="NO"><BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="AA0000063000000000000001" BuildableName="HomeAITests.xctest" BlueprintName="HomeAITests" ReferencedContainer="container:HomeAI.xcodeproj"/></TestableReference>
+      <TestableReference skipped="NO" parallelizable="NO"><BuildableReference BuildableIdentifier="primary" BlueprintIdentifier="AB0000063000000000000002" BuildableName="HomeAIUITests.xctest" BlueprintName="HomeAIUITests" ReferencedContainer="container:HomeAI.xcodeproj"/></TestableReference>
+    </Testables>
+    <EnvironmentVariables><EnvironmentVariable key="REHOMELY_FULL_QA" value="1" isEnabled="YES"/></EnvironmentVariables>
+  </TestAction>
+</Scheme>

@@ -24,7 +24,7 @@ enum AdaptyServiceError: LocalizedError, Equatable {
     var errorDescription: String? {
         switch self {
         case .placementNotFound: return "Paywall placement not found".localized
-        case .insufficientProducts: return "Paywall requires at least two products".localized
+        case .insufficientProducts: return "Weekly subscription is unavailable. Please try again.".localized
         case .invalidProductIndex: return "Invalid product index"
         case .purchaseCancelled: return nil
         case .purchasePending: return "Purchase pending"

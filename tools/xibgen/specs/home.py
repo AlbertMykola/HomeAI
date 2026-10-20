@@ -37,18 +37,20 @@ def home():
     banner_icon = Image(id="banner-icon", system="sparkles", size=17, weight="semibold", tint="dsTextPrimary",
                         outlet="freeBannerIcon")
     banner_text = Label("1 free design left", id="banner-text", font=("Medium", 15), outlet="freeBannerLabel",
-                        hug=(249, 251))
+                        hug=(249, 251), lines=0, resist=(750, 1000))
     banner_pro = Label("Get Pro", id="banner-pro", font=("SemiBold", 15), color="dsLink", outlet="freeBannerProLabel",
-                       hug=(750, 251))
+                       hug=(751, 251), resist=(1000, 1000))
     banner_close = Button(id="banner-close", system="xmark", symbolSize=13, weight="semibold",
                           color="dsTextTertiary", tint="dsTextTertiary",
                           accessibility="Hide").on("didTapCloseFreeBanner:")
-    banner_row = HStack([banner_icon, banner_text, banner_pro, banner_close], id="banner-row", spacing=10,
-                        align="center", margins=(0, 16, 0, 10))
+    banner_close.runtime["accessibilityIdentifier"] = "home.freeBanner.close"
+    banner_row = HStack([banner_icon, banner_text, banner_pro], id="banner-row", spacing=10,
+                        align="center", margins=(9, 16, 9, 10))
     banner = Control(id="banner", cls="DSPressableControl", bg="dsLimeSoft", outlet="freeBannerControl",
                      runtime={"cornerRadius": 18, "borderWidth": 1, "borderColor": "dsLime"},
                      children=[banner_row]).on("didTapFreeBanner:")
     banner_wrap = wrap(banner, "banner-wrap", inset=(0, 20, 12, 20), outlet="freeBannerContainer", hidden=True)
+    banner_wrap.add(banner_close)
 
     # hero
     after = Image(id="hero-after", image="home_hero_after", mode="scaleAspectFill", outlet="heroAfterImageView")
@@ -90,19 +92,23 @@ def home():
     # Redesign more — horizontal cards
     cards = []
     for i, (key, title, symbol) in enumerate([("exterior", "Exterior", "house"), ("garden", "Garden", "tree"),
-                                               ("reference", "By reference", "photo.on.rectangle")]):
-        img = Image(id=f"card-{key}-img", image=f"home_card_{key}", mode="scaleAspectFill")
+                                               ("reference", "By reference", "photo.on.rectangle"),
+                                               ("extra", "By reference", "photo.on.rectangle")]):
+        img = Image(id=f"card-{key}-img", image="home_card_reference" if key == "extra" else f"home_card_{key}",
+                    mode="scaleAspectFill", collection="moreCardImages", tag_value=i)
         sc = View(id=f"card-{key}-scrim", cls="DSGradientView", interaction=False,
                   runtime={"startColor": ("#000000", 0.0), "endColor": ("#000000", 0.55), "angle": 180})
-        ic = Image(id=f"card-{key}-icon", system=symbol, size=13, weight="semibold", tint="white")
+        ic = Image(id=f"card-{key}-icon", system=symbol, size=13, weight="semibold", tint="white",
+                   collection="moreCardIcons", tag_value=i)
         lb = Label(title, id=f"card-{key}-label", font=("SemiBold", 14), color="white", collection="moreCardLabels",
-                   tag_value=i)
+                   tag_value=i, minScale=0.8)
         row = HStack([ic, lb], id=f"card-{key}-row", spacing=6, align="center")
         card = Control(id=f"card-{key}", cls="DSPressableControl", clips=True, bg="dsSurface", tag_value=i,
-                       collection="moreCards", runtime={"cornerRadius": 24}, children=[img, sc, row]).on("didTapMoreCard:")
+                       collection="moreCards", runtime={"cornerRadius": 24}, children=[img, sc, row], hidden=key == "extra").on("didTapMoreCard:")
         cards.append(card)
     more_stack = HStack(cards, id="more-stack", spacing=10, margins=(0, 20, 0, 20))
-    more_scroll = Scroll([more_stack], id="more-scroll", horizontal=True)
+    more_scroll = Scroll([more_stack], id="more-scroll", horizontal=True,
+                         runtime={"accessibilityIdentifier": "home.more.carousel"})
     more_wrap = wrap(more_scroll, "more-wrap", inset=(14, 0, 0, 0))
 
     # Quick edits
@@ -114,7 +120,7 @@ def home():
     tiles = []
     for i, (key, title, image) in enumerate(tools):
         ic = Image(id=f"tool-{key}-icon", image=image)
-        lb = Label(title, id=f"tool-{key}-label", font=("Medium", 13), align="center", minScale=0.8,
+        lb = Label(title, id=f"tool-{key}-label", font=("Medium", 13), align="center", minScale=0.8, lines=0, resist=(750, 1000),
                    collection="toolLabels", tag_value=i)
         col = VStack([ic, lb], id=f"tool-{key}-col", spacing=6, align="center")
         tile = Control(id=f"tool-{key}", cls="DSPressableControl", bg="dsSurface", tag_value=i, collection="toolTiles",
@@ -136,9 +142,9 @@ def home():
                   runtime={"startColor": "dsCardGreenStart", "endColor": "dsCardGreenEnd", "angle": 137})
         ic = Image(id=f"plan-{key}-icon", image=image)
         spacer = View(id=f"plan-{key}-spacer", bg="clear", hug=(250, 1))
-        t = Label(title, id=f"plan-{key}-title", font=("SemiBold", 15), minScale=0.8, collection="planTitleLabels",
+        t = Label(title, id=f"plan-{key}-title", font=("SemiBold", 15), lines=0, resist=(750, 1000), collection="planTitleLabels",
                   tag_value=i)
-        s = Label(sub, id=f"plan-{key}-sub", font=("Regular", 12), color="dsTextSecondary", minScale=0.8,
+        s = Label(sub, id=f"plan-{key}-sub", font=("Regular", 12), color="dsTextSecondary", lines=0, resist=(750, 1000),
                   collection="planSubtitleLabels", tag_value=i)
         col = VStack([ic, spacer, t, s], id=f"plan-{key}-col", spacing=4, align="leading")
         card = Control(id=f"plan-{key}", cls="DSPressableControl", clips=True, tag_value=i, collection="planCards",
@@ -161,7 +167,7 @@ def home():
     scroll = Scroll([content], id="scroll", outlet="scrollView", indicators=False)
 
     # ---------------- fixed header ----------------
-    header_bg = Blur(id="header-bg", style="systemUltraThinMaterialLight", outlet="headerBackgroundView", alpha=0)
+    header_bg = Blur(id="header-bg", style="systemUltraThinMaterial", outlet="headerBackgroundView", alpha=0)
     header_line = View(id="header-line", bg=("#000000", 0.06), outlet="headerHairline", alpha=0)
     logo = Label("Rehomely", id="logo", font=("SemiBold", 26), kern=-0.52, outlet="logoLabel", hug=(251, 251))
     spark = Image(id="credits-icon", system="sparkles", size=13, weight="semibold", tint="dsTextPrimary",
@@ -209,8 +215,10 @@ def home():
         pin(w.children[0], inset=w.wrap_inset)
 
     # banner
-    pin(banner_row)
-    size(banner, h=48)
+    pin(banner_row, inset=(0, 0, 0, 40))
+    center(banner_close, to=banner, x=False)
+    C(banner, "trailing", banner_close, "trailing", 10)
+    C(banner, "height", const=48, rel="greaterThanOrEqual")
     square(banner_icon, 22)
     square(banner_close, 30)
 
@@ -247,7 +255,7 @@ def home():
     equal(more_stack, more_scroll.frame, "height")
     for card in cards:
         img, sc, row = card.children
-        size(card, w=160)
+        size(card, w=160, prio=999 if card is cards[-1] else None)
         pin(img)
         pin(sc, edges="lrb")
         size(sc, h=70)
@@ -266,9 +274,11 @@ def home():
     # plan cards
     for card in plan_cards:
         bg, col = card.children
-        size(card, h=158)
+        C(card, "height", const=158, rel="greaterThanOrEqual")
         pin(bg)
         pin(col, inset=16)
+        equal(col.children[2], col, "width")
+        equal(col.children[3], col, "width")
         square(col.children[0], 64)
 
     size(recent_cv, h=214)

@@ -2,7 +2,7 @@ import UIKit
 
 /// A2 user message: optional photo 190×136 + lime gradient bubble on the right, "Couldn't send · Retry" under it.
 /// Layout: AssistantUserCell.xib.
-final class AssistantUserCell: UITableViewCell {
+final class AssistantUserCell: DSAdaptiveTableViewCell {
     static let reuseID = "AssistantUserCell"
 
     @IBOutlet private weak var photoImageView: UIImageView!
@@ -35,7 +35,7 @@ final class AssistantUserCell: UITableViewCell {
 
 /// A2 assistant message: clay avatar, typing dots → answer typed out with a lime caret, then idea cards.
 /// Layout: AssistantReplyCell.xib.
-final class AssistantReplyCell: UITableViewCell {
+final class AssistantReplyCell: DSAdaptiveTableViewCell {
     static let reuseID = "AssistantReplyCell"
 
     @IBOutlet private weak var typingView: UIView!
@@ -61,8 +61,7 @@ final class AssistantReplyCell: UITableViewCell {
         super.awakeFromNib()
         selectionStyle = .none
         backgroundColor = .clear
-        ideasCollectionView.register(UINib(nibName: "AssistantIdeaCell", bundle: nil),
-                                     forCellWithReuseIdentifier: AssistantIdeaCell.reuseID)
+
         ideasCollectionView.dataSource = self
         ideasCollectionView.clipsToBounds = false
     }
@@ -194,7 +193,12 @@ final class AssistantReplyCell: UITableViewCell {
 
     private func setIdeasVisible(_ visible: Bool) {
         ideasCollectionView.isHidden = !visible
-        ideasHeightConstraint.constant = visible ? 218 : 0
+        updateAdaptiveContent(using: OnboardingLayout(size: dsAdaptiveReferenceSize))
+    }
+
+    override func updateAdaptiveContent(using metrics: OnboardingLayout) {
+        let height = ideasCollectionView.isHidden ? 0 : metrics.value(218)
+        if abs(ideasHeightConstraint.constant - height) > 0.01 { ideasHeightConstraint.constant = height }
     }
 
     /// Cards slide in from the right (+30 pt), 80 ms apart.
@@ -217,7 +221,7 @@ extension AssistantReplyCell: UICollectionViewDataSource {
 }
 
 /// Idea card: style preview, title, why, "Apply to my photo". Layout: AssistantIdeaCell.xib.
-final class AssistantIdeaCell: UICollectionViewCell {
+final class AssistantIdeaCell: DSAdaptiveCollectionViewCell {
     static let reuseID = "AssistantIdeaCell"
 
     @IBOutlet private weak var previewImageView: UIImageView!

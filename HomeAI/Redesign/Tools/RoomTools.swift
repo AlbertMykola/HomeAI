@@ -1,6 +1,6 @@
 import UIKit
 
-/// A/07 · T6 Furnish empty room: room type, style circles, how much furniture. Layout: FurnishToolViewController.xib.
+/// A/07 · T6 Furnish empty room: room type, style circles, how much furniture. Layout: Tools.storyboard.
 final class FurnishToolViewController: ToolStepViewController {
 
     @IBOutlet private weak var roomTitleLabel: UILabel!
@@ -38,8 +38,7 @@ final class FurnishToolViewController: ToolStepViewController {
         let titles = ["Minimal", "Balanced", "Full"]
         densityLabels.sorted { $0.tag < $1.tag }.enumerated().forEach { $1.text = titles[$0].localized }
         updateExplainer()
-        stylesCollectionView.register(UINib(nibName: "StyleCircleCell", bundle: nil),
-                                      forCellWithReuseIdentifier: StyleCircleCell.reuseID)
+
         stylesCollectionView.dataSource = self
         stylesCollectionView.delegate = self
     }
@@ -102,7 +101,7 @@ extension FurnishToolViewController: UICollectionViewDataSource, UICollectionVie
 }
 
 /// Round style thumb (72) with lime ring. Layout: StyleCircleCell.xib.
-final class StyleCircleCell: UICollectionViewCell {
+final class StyleCircleCell: DSAdaptiveCollectionViewCell {
     static let reuseID = "StyleCircleCell"
 
     @IBOutlet private weak var thumbImageView: UIImageView!
@@ -113,7 +112,7 @@ final class StyleCircleCell: UICollectionViewCell {
 
     func configure(title: String, imagePath: String, selected: Bool) {
         titleLabel.text = title
-        titleLabel.font = DS.Font.geologica(selected ? .semiBold : .regular, 12)
+        titleLabel.font = DS.Font.geologica(selected ? .semiBold : .regular, titleLabel.font.pointSize)
         ringView.alpha = selected ? 1 : 0
         checkView.alpha = selected ? 1 : 0
         isAccessibilityElement = true
@@ -127,7 +126,7 @@ final class StyleCircleCell: UICollectionViewCell {
     }
 }
 
-/// A/07 · T7 Floor plan to 3D: plan card, view (isometric / top), style. Layout: FloorPlanToolViewController.xib.
+/// A/07 · T7 Floor plan to 3D: plan card, view (isometric / top), style. Layout: Tools.storyboard.
 final class FloorPlanToolViewController: ToolStepViewController {
 
     @IBOutlet private weak var planImageView: UIImageView!
@@ -188,7 +187,7 @@ final class FloorPlanToolViewController: ToolStepViewController {
     }
 }
 
-/// A/07 · T8 Rearrange: layout presets as radio rows. Layout: RearrangeToolViewController.xib.
+/// A/07 · T8 Rearrange: layout presets as radio rows. Layout: Tools.storyboard.
 final class RearrangeToolViewController: ToolStepViewController {
 
     @IBOutlet private var optionCards: [DSPressableControl]!

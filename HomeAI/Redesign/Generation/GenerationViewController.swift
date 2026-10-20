@@ -1,11 +1,14 @@
 import UIKit
 import UserNotifications
 
-/// A/05 · G1 Generating (+ G3 failed / G4 photo not suitable). Layout: GenerationViewController.xib.
+/// A/05 · G1 Generating (+ G3 failed / G4 photo not suitable). Layout: Generation.storyboard.
 /// Presented full screen; ⌄ collapses it while the runner keeps going (GenerationCenter).
 final class GenerationViewController: UIViewController {
 
     // nav + photo
+    @IBOutlet private var scanParticles: [UIView]!
+    @IBOutlet private var animatedLayoutConstraints: [NSLayoutConstraint]!
+    private lazy var particleGeometry = StoryboardGeometry(constraints: animatedLayoutConstraints)
     @IBOutlet private weak var collapseButton: DSPressableControl!
     @IBOutlet private weak var navTitleLabel: UILabel!
     @IBOutlet private weak var photoCardView: UIView!
@@ -72,6 +75,10 @@ final class GenerationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navTitleLabel.text = "Creating your design".localized
+        etaLabel.text = String(format: "~%d s left".localized, 30)
+        [percentLabel, failureTitleLabel, failureBodyLabel, failureCodeLabel].forEach {
+            $0?.setContentCompressionResistancePriority(.required, for: .vertical)
+        }
         photoImageView.image = sourcePhoto
         failurePhotoView.image = sourcePhoto
         let titles = ["Analyzing your room".localized,
@@ -118,6 +125,7 @@ final class GenerationViewController: UIViewController {
         switch state {
         case .idle, .running:
             failureView.isHidden = true
+            setProgressHidden(false)
         case .blocked(let access):
             if access == .dailyLimitExceeded {
                 DailyGenerationLimitManager.shared.presentDailyLimitAlert(from: self)
@@ -130,8 +138,13 @@ final class GenerationViewController: UIViewController {
             finish(with: outcome)
         case .failed(let failure):
             failureCount += 1
+            setProgressHidden(true)
             showFailure(failure)
         }
+    }
+
+    private func setProgressHidden(_ hidden: Bool) {
+        [collapseButton, navTitleLabel, photoCardView, progressStack, stepsStack, notifyControl].forEach { $0?.isHidden = hidden }
     }
 
     // MARK: Progress (estimate — no backend progress yet; eases to 90 %, never sticks at 99 %)
@@ -187,7 +200,7 @@ final class GenerationViewController: UIViewController {
                 spinners[i].alpha = isActive ? 1 : 0
                 labels[i].textColor = isDone || isActive ? DS.Color.textPrimary : DS.Color.textTertiary
             }
-            labels[i].font = DS.Font.geologica(isActive ? .semiBold : .regular, 15)
+            labels[i].font = DS.Font.geologica(isActive ? .semiBold : .regular, labels[i].font.pointSize)
             if isDone, dones[i].transform == .identity, i == step - 1 {
                 dones[i].transform = CGAffineTransform(scaleX: 0.4, y: 0.4)
                 UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0) {
@@ -257,12 +270,12 @@ final class GenerationViewController: UIViewController {
     }
 
     private func flashPoints() {
-        pointsView.subviews.forEach { $0.removeFromSuperview() }
+        scanParticles.forEach { $0.layer.removeAllAnimations(); $0.alpha = 0 }
         let bounds = pointsView.bounds.insetBy(dx: 20, dy: 20)
         guard bounds.width > 0 else { return }
-        for i in 0..<14 {
-            let dot = UIView(frame: CGRect(x: bounds.minX + .random(in: 0...bounds.width),
-                                           y: bounds.minY + .random(in: 0...bounds.height), width: 6, height: 6))
+        for (i, dot) in scanParticles.sorted(by: { $0.tag < $1.tag }).enumerated() {
+            particleGeometry.setFrame(dot, CGRect(x: bounds.minX + .random(in: 0...bounds.width),
+                                                 y: bounds.minY + .random(in: 0...bounds.height), width: 6, height: 6))
             dot.backgroundColor = .white
             dot.layer.cornerRadius = 3
             dot.layer.shadowColor = DS.Color.lime.cgColor
@@ -271,7 +284,6 @@ final class GenerationViewController: UIViewController {
             dot.layer.shadowOffset = .zero
             dot.alpha = 0
             dot.transform = CGAffineTransform(scaleX: 0.3, y: 0.3)
-            pointsView.addSubview(dot)
             let delay = Double(i) * 0.12 + .random(in: 0...0.4)
             UIView.animateKeyframes(withDuration: 0.9, delay: delay, options: []) {
                 UIView.addKeyframe(withRelativeStartTime: 0, relativeDuration: 0.35) {

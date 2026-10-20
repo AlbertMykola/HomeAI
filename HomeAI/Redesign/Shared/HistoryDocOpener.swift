@@ -21,6 +21,18 @@ enum HistoryDocOpener {
         let promptManager = GemeniPromptManager()
         promptManager.updateOption(option)
         promptManager.updateBaseImage(baseImage)
+        if option == .reference, let path = doc.referencePath, let image = UIImage(contentsOfFile: path) {
+            promptManager.updateReferenceImage(image)
+        }
+        if option == .replace || option == .delete {
+            // A mask belongs to the exact input of this edit, not the project's first photo.
+            if let path = doc.originalPath, let image = UIImage(contentsOfFile: path) {
+                promptManager.updateBaseImage(image)
+            }
+            if let path = doc.maskPath, let image = UIImage(contentsOfFile: path) {
+                promptManager.updateMask(image)
+            }
+        }
         if let mode = doc.savedDesignMode { promptManager.updateDesignMode(mode) }
         if let material = doc.savedSurfaceMaterial { promptManager.updateSurfaceMaterial(material) }
         if let custom = doc.surfaceCustomPrompt, !custom.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {

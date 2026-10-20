@@ -38,7 +38,12 @@ enum DS {
             UIViewPropertyAnimator(duration: duration, dampingRatio: 0.78)
         }
 
-        static var reduceMotion: Bool { UIAccessibility.isReduceMotionEnabled }
+        static var reduceMotion: Bool {
+            #if DEBUG
+            if AppQA.enabled, let value = AppQA.reduceMotion { return value }
+            #endif
+            return UIAccessibility.isReduceMotionEnabled
+        }
 
         /// Runs `animations` after `delay` using a property animator (ease-out by default).
         @discardableResult
@@ -47,6 +52,13 @@ enum DS {
                             timing: UITimingCurveProvider = UICubicTimingParameters(animationCurve: .easeOut),
                             _ animations: @escaping () -> Void,
                             completion: (() -> Void)? = nil) -> UIViewPropertyAnimator {
+            #if DEBUG
+            if AppQA.enabled && AppQA.snapshot {
+                UIView.performWithoutAnimation(animations)
+                completion?()
+                return UIViewPropertyAnimator(duration: 0, curve: .linear)
+            }
+            #endif
             let animator = UIViewPropertyAnimator(duration: duration, timingParameters: timing)
             animator.addAnimations(animations)
             animator.addCompletion { _ in completion?() }
@@ -58,6 +70,9 @@ enum DS {
         static func enterBouncy(_ view: UIView?, delay: TimeInterval, dy: CGFloat = 12, scale: CGFloat = 1,
                                 duration: TimeInterval = 0.45) {
             guard let view else { return }
+            #if DEBUG
+            if AppQA.enabled && AppQA.snapshot { view.alpha = 1; view.transform = .identity; return }
+            #endif
             guard !reduceMotion else { enter(view, delay: delay); return }
             view.alpha = 0
             view.transform = CGAffineTransform(translationX: 0, y: dy).scaledBy(x: scale, y: scale)
@@ -70,7 +85,11 @@ enum DS {
         static func enter(_ view: UIView?, delay: TimeInterval, dy: CGFloat = 0, dx: CGFloat = 0,
                           scale: CGFloat = 1, duration: TimeInterval = 0.45, pop: Bool = false, spring: Bool = false) {
             guard let view else { return }
+            #if DEBUG
+            if AppQA.enabled && AppQA.snapshot { view.alpha = 1; view.transform = .identity; return }
+            #endif
             if reduceMotion {
+                view.transform = .identity
                 view.alpha = 0
                 animate(0.2, delay: min(delay, 0.1)) { view.alpha = 1 }
                 return

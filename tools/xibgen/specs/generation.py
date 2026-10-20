@@ -69,7 +69,7 @@ def generation():
     # ---------------- notify ----------------
     bell = Image(id="bell", system="bell", size=16, weight="medium", tint="dsTextPrimary", outlet="notifyIconView")
     notify_label = Label("Notify me when it's ready", id="notify-label", font=("Medium", 15), outlet="notifyLabel",
-                         hug=(249, 251))
+                         hug=(249, 251), lines=0, resist=(750, 1000))
     chev = Image(id="notify-chev", system="chevron.right", size=13, weight="semibold", tint="dsTextTertiary",
                  outlet="notifyAccessoryView")
     notify = Control(id="notify", cls="DSPressableControl", bg="dsSurface", outlet="notifyControl",
@@ -102,8 +102,10 @@ def generation():
         "didTapFailureSecondary:")
     texts = VStack([f_title, f_body], id="f-texts", spacing=10, align="fill", outlet="failureTextStack")
     actions = VStack([f_primary, f_secondary], id="f-actions", spacing=10, align="fill", outlet="failureActionsStack")
+    failure_content = View(id="failure-content", bg="clear", children=[f_photo, f_tint, f_icon, texts, f_code])
+    failure_scroll = Scroll([failure_content], id="failure-scroll", indicators=True)
     failure = View(id="failure", bg="dsBackground", outlet="failureView", hidden=True,
-                   children=[f_back, f_photo, f_tint, f_icon, texts, f_code, actions])
+                   children=[failure_scroll, actions, f_back])
 
     root.add(collapse, nav_title, card, progress, steps, notify, failure)
 
@@ -148,7 +150,12 @@ def generation():
     C(f_back, "top", sa, "top", 2)
     size(f_photo, 200, 250)
     center(f_photo, y=False)
-    C(f_photo, "top", sa, "top", 81)
+    pin(failure_scroll, edges="lr")
+    C(failure_scroll, "top", sa, "top")
+    C(actions, "top", failure_scroll, "bottom", 24)
+    pin(failure_content, to=failure_scroll.content)
+    equal(failure_content, failure_scroll.frame, "width")
+    C(f_photo, "top", failure_content, "top", 81)
     pin(f_tint, to=f_photo)
     square(f_icon, 64)
     center(f_icon, y=False)
@@ -158,11 +165,10 @@ def generation():
     pin(texts, edges="lr", inset=20)
     below(texts, f_icon, 28)
     pin(f_code, edges="lr", inset=20)
-    C(actions, "top", f_code, "bottom", 24, rel="greaterThanOrEqual")
-    C(f_code, "top", texts, "bottom", 16, rel="greaterThanOrEqual")
+    C(failure_content, "bottom", f_code, "bottom")
+    C(f_code, "top", texts, "bottom", 16)
     pin(actions, edges="lr", inset=20)
     C(sa, "bottom", actions, "bottom", 0)
-    C(actions, "top", f_code, "bottom", 66, prio=250)
     size(f_secondary, h=44)
     return d
 
@@ -182,7 +188,7 @@ def notify_sheet():
                     children=[app_icon_img])
     app_name = Label("Rehomely", id="app-name", font=("system", 14, "semibold"))
     now = Label("now", id="now", font=("system", 13), color="dsTextTertiary", outlet="nowLabel", hug=(750, 251))
-    msg = Label("Your living room is ready ✨", id="msg", font=("system", 14), outlet="messageLabel")
+    msg = Label("Your living room is ready ✨", id="msg", font=("system", 14), outlet="messageLabel", lines=0, resist=(750, 1000))
     texts = VStack([HStack([app_name, now], id="name-row", spacing=6), msg], id="n-texts", spacing=2)
     thumb = Image(id="thumb", mode="scaleAspectFill", cls="DSImageView", runtime={"cornerRadius": 8},
                   outlet="thumbImageView")

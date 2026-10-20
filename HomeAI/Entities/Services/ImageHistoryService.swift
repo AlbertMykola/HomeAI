@@ -30,6 +30,8 @@ struct ImageDoc: Codable {
     let replaceMode: String?
     let objectToReplace: String?
     let rearrangeSubOption: String?
+    let referencePath: String?
+    let maskPath: String?
 
     var designOption: DesignOption? {
         option.flatMap { DesignOption(rawValue: $0) }
@@ -126,7 +128,11 @@ final class ImageHistoryService {
 
     init() {
         let base = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first!
+        #if DEBUG
+        historyDirectory = (AppQA.enabled ? AppQA.storageURL : base).appendingPathComponent("ImageHistory", isDirectory: true)
+        #else
         historyDirectory = base.appendingPathComponent("ImageHistory", isDirectory: true)
+        #endif
         try? fileManager.createDirectory(at: historyDirectory, withIntermediateDirectories: true)
         reloadCache()
     }
@@ -186,7 +192,9 @@ final class ImageHistoryService {
                             surfaceCustomPrompt: String?,
                             replaceMode: GemeniPromptManager.ReplaceMode?,
                             objectToReplace: String?,
-                            rearrangeSubOption: GemeniPromptManager.RearrangeSubOption? = nil) async throws -> ImageDoc {
+                            rearrangeSubOption: GemeniPromptManager.RearrangeSubOption? = nil,
+                            referenceImage: UIImage? = nil,
+                            maskImage: UIImage? = nil) async throws -> ImageDoc {
         let fileId = UUID().uuidString.lowercased()
         let entryFolder = historyDirectory.appendingPathComponent(fileId, isDirectory: true)
         try fileManager.createDirectory(at: entryFolder, withIntermediateDirectories: true)
@@ -211,6 +219,21 @@ final class ImageHistoryService {
             originalPath = originalURL.path
         }
         
+        var referencePath: String?
+        if let referenceImage {
+            guard let data = referenceImage.jpegData(compressionQuality: 0.9) else { throw PromptError.imageConversionFailed }
+            let url = entryFolder.appendingPathComponent("reference.jpg")
+            try data.write(to: url, options: .atomic)
+            referencePath = url.path
+        }
+        var maskPath: String?
+        if let maskImage {
+            guard let data = maskImage.pngData() else { throw PromptError.imageConversionFailed }
+            let url = entryFolder.appendingPathComponent("mask.png")
+            try data.write(to: url, options: .atomic)
+            maskPath = url.path
+        }
+
         let doc = ImageDoc(
             id: fileId,
             prompt: prompt,
@@ -236,7 +259,9 @@ final class ImageHistoryService {
             surfaceCustomPrompt: surfaceCustomPrompt,
             replaceMode: replaceMode.map { "\($0)" },
             objectToReplace: objectToReplace,
-            rearrangeSubOption: rearrangeSubOption?.rawValue
+            rearrangeSubOption: rearrangeSubOption?.rawValue,
+            referencePath: referencePath,
+            maskPath: maskPath
         )
 
         let encoder = JSONEncoder()
@@ -307,7 +332,9 @@ private extension ImageDoc {
         return replacingPaths(
             storagePath: makeRelative(storagePath, base: base) ?? "",
             previewPath: makeRelative(previewPath, base: base),
-            originalPath: makeRelative(originalPath, base: base)
+            originalPath: makeRelative(originalPath, base: base),
+            referencePath: makeRelative(referencePath, base: base),
+            maskPath: makeRelative(maskPath, base: base)
         )
     }
     
@@ -315,11 +342,13 @@ private extension ImageDoc {
         return replacingPaths(
             storagePath: makeAbsolute(storagePath, base: base) ?? "",
             previewPath: makeAbsolute(previewPath, base: base),
-            originalPath: makeAbsolute(originalPath, base: base)
+            originalPath: makeAbsolute(originalPath, base: base),
+            referencePath: makeAbsolute(referencePath, base: base),
+            maskPath: makeAbsolute(maskPath, base: base)
         )
     }
     
-    func replacingPaths(storagePath: String, previewPath: String?, originalPath: String?) -> ImageDoc {
+    func replacingPaths(storagePath: String, previewPath: String?, originalPath: String?, referencePath: String?, maskPath: String?) -> ImageDoc {
         ImageDoc(
             id: id,
             prompt: prompt,
@@ -345,7 +374,9 @@ private extension ImageDoc {
             surfaceCustomPrompt: surfaceCustomPrompt,
             replaceMode: replaceMode,
             objectToReplace: objectToReplace,
-            rearrangeSubOption: rearrangeSubOption
+            rearrangeSubOption: rearrangeSubOption,
+            referencePath: referencePath,
+            maskPath: maskPath
         )
     }
     
@@ -396,4 +427,3 @@ private extension ImageDoc {
         return false
     }
 }
-

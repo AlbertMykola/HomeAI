@@ -1,6 +1,6 @@
 import UIKit
 
-/// A/04 · W2 Which room is it? (Exterior: building type). Layout: WizardRoomViewController.xib.
+/// A/04 · W2 Which room is it? (Exterior: building type). Layout: Wizard.storyboard.
 final class WizardRoomViewController: WizardStepViewController {
 
     @IBOutlet private weak var titleLabel: UILabel!
@@ -30,7 +30,7 @@ final class WizardRoomViewController: WizardStepViewController {
             places.insert(places.remove(at: i), at: 0)
         }
         selectedIndex = session.place.flatMap { places.firstIndex(of: $0) }
-        collectionView.register(UINib(nibName: "WizardTileCell", bundle: nil), forCellWithReuseIdentifier: WizardTileCell.reuseID)
+
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.alpha = 0
@@ -39,8 +39,10 @@ final class WizardRoomViewController: WizardStepViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            let width = floor((collectionView.bounds.width - 40 - 26) / 3)
-            if layout.itemSize.width != width { layout.itemSize = CGSize(width: width, height: 112) }
+            let metrics = OnboardingLayout(size: view.dsLayoutSize)
+            let width = floor((collectionView.bounds.width - metrics.value(40 + 26)) / 3)
+            let size = CGSize(width: width, height: metrics.value(112))
+            if layout.itemSize != size { layout.itemSize = size }
         }
     }
 

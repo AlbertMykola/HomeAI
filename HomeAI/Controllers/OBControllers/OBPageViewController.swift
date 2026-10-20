@@ -4,6 +4,7 @@ import UIKit
 
 protocol OBPageChild: AnyObject {
     var obDelegate: OBPageChildDelegate? { get set }
+    func obUseParentHorizontalViewport()
     /// Lays out the hero at its rest pose so the page can slide in without a constraint jump.
     func obPrepareHeroForAppearance()
     /// Freezes in-place hero motion so it does not fight the page-scroll animation.
@@ -15,6 +16,7 @@ protocol OBPageChild: AnyObject {
 }
 
 extension OBPageChild {
+    func obUseParentHorizontalViewport() {}
     func obPrepareHeroForAppearance() {}
     func obPauseHeroAnimation() {}
     func obStartHeroAnimation() {}
@@ -32,44 +34,49 @@ final class OBPageViewController: UIViewController, UIScrollViewDelegate, OBPage
 
     private lazy var pages: [UIViewController] = {
         let vcs: [UIViewController] = [
-            WelcomeOBViewController(nibName: "WelcomeOBViewController", bundle: nil),
-            OBExteriorViewController(nibName: "OBExteriorViewController", bundle: nil),
-            GardenOBViewController(nibName: "GardenOBViewController", bundle: nil),
-            RateOBViewController(nibName: "RateOBViewController", bundle: nil)
+            OnboardingPageViewController.make(page: .room),
+            OnboardingPageViewController.make(page: .tools),
+            OnboardingPageViewController.make(page: .words),
+            AppStoryboard.instantiate(OnboardingGoalViewController.self)
         ]
         vcs.forEach { ($0 as? OBPageChild)?.obDelegate = self }
         return vcs
     }()
 
-    private let scrollView: UIScrollView = {
-        let scrollView = UIScrollView()
-        scrollView.isPagingEnabled = true
-        scrollView.showsHorizontalScrollIndicator = false
-        scrollView.showsVerticalScrollIndicator = false
-        scrollView.bounces = false
-        scrollView.isDirectionalLockEnabled = true
-        scrollView.contentInsetAdjustmentBehavior = .never
-        scrollView.clipsToBounds = true
-        return scrollView
-    }()
+    @IBOutlet private weak var scrollView: UIScrollView!
 
-    private var currentIndex = 0
+    private(set) var currentIndex = OnboardingPreview.page
     private var lastLaidOutSize: CGSize = .zero
+    private var lastLaidOutScrollSize: CGSize = .zero
     private var isProgrammaticScrolling = false
     private var pagingLocked = false
     private var didCompleteOnboarding = false
+    private var lastReportedIndex: Int?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .black
+        overrideUserInterfaceStyle = .light
+        view.backgroundColor = .white
+        view.accessibilityIdentifier = "onboarding.page.\(currentIndex)"
         scrollView.delegate = self
-        view.addSubview(scrollView)
 
-        attachPage(at: 0)
-        attachPage(at: 1)
+        attachPage(at: currentIndex)
+        attachPage(at: currentIndex + 1)
         layoutPagesIfNeeded(force: true)
-        (pages[0] as? OBPageChild)?.obStartHeroAnimation()
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        (pages[currentIndex] as? OBPageChild)?.obStartHeroAnimation()
+        reportVisiblePage()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        (pages[currentIndex] as? OBPageChild)?.obPauseHeroAnimation()
+    }
+
+    override var childForStatusBarStyle: UIViewController? { pages[currentIndex] }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
@@ -77,28 +84,36 @@ final class OBPageViewController: UIViewController, UIScrollViewDelegate, OBPage
     }
 
     private func layoutPagesIfNeeded(force: Bool) {
-        let size = view.bounds.size
+        let size = view.dsLayoutSize
         guard size.width > 0, size.height > 0 else { return }
         let sizeChanged = lastLaidOutSize != size
-        guard force || sizeChanged else { return }
+        let scrollSizeChanged = lastLaidOutScrollSize != scrollView.bounds.size
+        guard force || sizeChanged || scrollSizeChanged else { return }
         lastLaidOutSize = size
+        lastLaidOutScrollSize = scrollView.bounds.size
 
-        scrollView.frame = view.bounds
         scrollView.contentSize = CGSize(width: size.width * CGFloat(pages.count), height: size.height)
         for (index, page) in pages.enumerated() where page.parent === self {
             page.view.frame = pageFrame(at: index)
         }
-        if !isProgrammaticScrolling {
-            scrollView.contentOffset = CGPoint(x: size.width * CGFloat(currentIndex), y: 0)
+        // A Duo fold can resize the window during scrolling. Settle onto a complete page.
+        let interruptedTransition = sizeChanged && isProgrammaticScrolling
+        scrollView.setContentOffset(CGPoint(x: size.width * CGFloat(currentIndex), y: 0), animated: false)
+        if interruptedTransition {
+            // Restore the page identity and hero as well as touch handling after cancelling the scroll.
+            settle(at: currentIndex)
         }
     }
 
     private func pageFrame(at index: Int) -> CGRect {
-        CGRect(
-            x: view.bounds.width * CGFloat(index),
+        // The storyboard scroll view still has its design size during viewDidLoad.
+        // Use the parent's intended viewport before its first Auto Layout pass.
+        let size = view.dsLayoutSize
+        return CGRect(
+            x: size.width * CGFloat(index),
             y: 0,
-            width: view.bounds.width,
-            height: view.bounds.height
+            width: size.width,
+            height: size.height
         )
     }
 
@@ -107,8 +122,15 @@ final class OBPageViewController: UIViewController, UIScrollViewDelegate, OBPage
         let page = pages[index]
         guard page.parent !== self else { return }
         addChild(page)
+        (page as? OBPageChild)?.obUseParentHorizontalViewport()
+        // The pager owns child frames; decoded flexible masks would resize them
+        // again when the scroll view leaves its storyboard design size.
+        page.view.autoresizingMask = []
         page.view.frame = pageFrame(at: index)
         scrollView.addSubview(page.view)
+        if let demo = page as? OnboardingPageViewController {
+            demo.heroView.interactiveGestures.forEach { scrollView.panGestureRecognizer.require(toFail: $0) }
+        }
         page.didMove(toParent: self)
         (page as? OBPageChild)?.obPrepareHeroForAppearance()
     }
@@ -122,6 +144,8 @@ final class OBPageViewController: UIViewController, UIScrollViewDelegate, OBPage
     private func settle(at index: Int) {
         let previous = currentIndex
         currentIndex = index
+        view.accessibilityIdentifier = "onboarding.page.\(index)"
+        setNeedsStatusBarAppearanceUpdate()
         isProgrammaticScrolling = false
         view.isUserInteractionEnabled = true
         if previous != index {
@@ -129,6 +153,15 @@ final class OBPageViewController: UIViewController, UIScrollViewDelegate, OBPage
         }
         (pages[index] as? OBPageChild)?.obStartHeroAnimation()
         attachPage(at: index + 1)
+        attachPage(at: index - 1)
+        if view.window != nil { reportVisiblePage() }
+    }
+
+    private func reportVisiblePage() {
+        guard lastReportedIndex != currentIndex else { return }
+        lastReportedIndex = currentIndex
+        guard !OnboardingPreview.enabled || AppQA.enabled else { return }
+        AmplitudeService.shared.logRedesignEvent("onboarding_step", properties: ["step": currentIndex + 1])
     }
 
     // MARK: - OBPageChildDelegate
@@ -140,13 +173,20 @@ final class OBPageViewController: UIViewController, UIScrollViewDelegate, OBPage
         if next < pages.count {
             currentIndex = idx
             isProgrammaticScrolling = true
+            view.accessibilityIdentifier = "onboarding.transitioning"
             view.isUserInteractionEnabled = false
             attachPage(at: next)
             (child as? OBPageChild)?.obPauseHeroAnimation()
             layoutPagesIfNeeded(force: true)
-            let offset = CGPoint(x: view.bounds.width * CGFloat(next), y: 0)
+            let offset = CGPoint(x: scrollView.bounds.width * CGFloat(next), y: 0)
             scrollView.setContentOffset(offset, animated: true)
         } else {
+            if OnboardingPreview.enabled {
+                (child as? OBPageChild)?.obPauseHeroAnimation()
+                // Preview completion is visible to UI tests without network calls or purchases.
+                view.accessibilityIdentifier = "onboarding.completed"
+                return
+            }
             didCompleteOnboarding = true
             pagingLocked = true
             scrollView.isScrollEnabled = false
@@ -155,6 +195,7 @@ final class OBPageViewController: UIViewController, UIScrollViewDelegate, OBPage
 
             Task { @MainActor [weak self, weak child] in
                 guard self != nil else { return }
+                await Self.requestTrackingIfNeeded()
                 let hasSubscription = await AdaptyService.shared.hasActiveSubscriptionWhenReady()
                 (child as? OBPageChild)?.obSetActionLoading(false)
 
@@ -178,6 +219,21 @@ final class OBPageViewController: UIViewController, UIScrollViewDelegate, OBPage
 
     func obChildRequestsClose(_ child: UIViewController) {
         dismiss(animated: true)
+    }
+
+    private static func requestTrackingIfNeeded() async {
+        #if DEBUG
+        if AppQA.enabled { return }
+        #endif
+        guard !UserDefaults.standard.bool(forKey: Constants.Keys.didLogTrackingPermission) else { return }
+        await withCheckedContinuation { continuation in
+            TrackingManager.requestPermission { status in
+                AmplitudeService.shared.logEvent(.trackingPermission(granted: status == .authorized))
+                UserDefaults.standard.set(true, forKey: Constants.Keys.didLogTrackingPermission)
+                AppsFlyerService.shared.startReadySessionIfTrackingResolved()
+                continuation.resume()
+            }
+        }
     }
 
     // MARK: - UIScrollViewDelegate

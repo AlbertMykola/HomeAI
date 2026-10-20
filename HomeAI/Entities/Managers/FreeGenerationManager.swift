@@ -6,7 +6,10 @@ final class FreeGenerationManager {
     private let key = "generationCount"
 
     private var maxCount: Int {
-        WorkerConfigService.shared.freeGenerationsLifetime
+        #if DEBUG
+        if AppQA.enabled { return 2 }
+        #endif
+        return WorkerConfigService.shared.freeGenerationsLifetime
     }
 
     private init() {}
@@ -16,6 +19,9 @@ final class FreeGenerationManager {
 
     // Зберігати у Keychain
     private func saveCount(_ count: Int) {
+        #if DEBUG
+        if AppQA.enabled { AppQA.freeCount = count; return }
+        #endif
         guard let data = "\(count)".data(using: .utf8) else { return }
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
@@ -32,6 +38,9 @@ final class FreeGenerationManager {
 
     // Зчитати з Keychain
     private func loadCount() -> Int {
+        #if DEBUG
+        if AppQA.enabled { return AppQA.freeCount }
+        #endif
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: key,

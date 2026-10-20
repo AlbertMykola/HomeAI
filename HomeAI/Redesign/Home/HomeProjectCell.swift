@@ -1,7 +1,7 @@
 import UIKit
 
-/// Recent project card on Home (150×214). Layout: HomeProjectCell.xib.
-final class HomeProjectCell: UICollectionViewCell {
+/// Recent project card on Home (150×214). Layout: Home.storyboard prototype.
+final class HomeProjectCell: DSAdaptiveCollectionViewCell {
 
     static let reuseID = "HomeProjectCell"
 
@@ -30,7 +30,8 @@ final class HomeProjectCell: UICollectionViewCell {
 
         let path = HistoryDocOpener.thumbnailPath(for: doc)
         representedPath = path
-        ThumbnailLoader.load(path: path, pointSize: CGSize(width: 150, height: 160)) { [weak self] image in
+        let metrics = OnboardingLayout(size: dsAdaptiveReferenceSize)
+        ThumbnailLoader.load(path: path, pointSize: CGSize(width: metrics.value(150), height: metrics.value(160))) { [weak self] image in
             guard let self, self.representedPath == path else { return }
             self.thumbImageView.image = image
         }

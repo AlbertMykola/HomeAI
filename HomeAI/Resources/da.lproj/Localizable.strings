@@ -52,7 +52,6 @@
 "Garden Design" = "Havedesign";
 "Reference Style" = "Referencestil";
 "Replace Objects" = "Erstat objekter";
-"Replace Object" = "Erstat objekt";
 "New Flooring" = "Nyt gulv";
 "New Walls" = "Nye vægge";
 "Change your indoor space" = "Forvandl dit indendørs rum";
@@ -86,14 +85,12 @@
 "Select an object and let AI remove it instantly." = "Vælg et objekt, og lad AI fjerne det med det samme.";
 // Photo
 "Add a photo" = "Tilføj et foto";
-"Upload a photo of your current room." = "Upload et foto af dit nuværende rum.";
 "Upload a photo of your current facade." = "Upload et foto af din nuværende facade.";
 "Upload a photo of your current outdoor space." = "Upload et foto af dit nuværende udendørsområde.";
 "Upload a photo of your current design." = "Upload et foto af dit nuværende design.";
 "Upload a photo of your current room." = "Upload et foto af dit nuværende rum.";
 "Upload a photo to redesign your floor" = "Upload et foto for at redesigne dit gulv";
 "Upload a photo of your current walls." = "Upload et foto af dine nuværende vægge.";
-"" = "";
 
 "Get your dream design" = "Få dit drømmedesign";
 "Take a photo" = "Tag et foto";
@@ -129,7 +126,6 @@
 "Follow the current room" = "Følg det nuværende rum";
 "Redesign without restrictions" = "Redesign uden begrænsninger";
 "Color Palette" = "Farvepalet";
-"" = "";
 
 // Room
 "Choose Room" = "Vælg rum";
@@ -141,7 +137,6 @@
 "Bathroom" = "Badeværelse";
 "Living room" = "Stue";
 "Dinning room" = "Spisestue";
-"Office" = "Kontor";
 "Study room" = "Arbejdsrum";
 "Gaming room" = "Gamingrum";
 "Kids room" = "Børneværelse";
@@ -154,7 +149,6 @@
 // Style
 "Choose Style" = "Vælg stil";
 "Modern" = "Moderne";
-"Contemporary" = "Nutidig";
 "Minimalist" = "Minimalistisk";
 "High-tech" = "High-tech";
 "Scandinavian" = "Skandinavisk";
@@ -178,7 +172,6 @@
 "Wabi-sabi" = "Wabi-sabi";
 "Vintage" = "Vintage";
 "Rustic" = "Rustik";
-"Farmhouse" = "Landhus";
 "Tropical" = "Tropisk";
 "Flat" = "Lejlighed";
 "House" = "Hus";
@@ -212,7 +205,6 @@
 "Wood" = "Træ";
 "Creepy" = "Uhyggelig";
 "Chocolate" = "Chokolade";
-"Cyberpunk" = "Cyberpunk";
 //Inspiration Detail
 "Done" = "Færdig";
 "Save" = "Gem";
@@ -251,7 +243,6 @@
 "New Floor" = "Nyt gulv";
 "New Style" = "Ny stil";
 "New Color" = "Ny farve";
-"" = "";
 
 //Paywall
 "Go Premium Design Without Limits" = "Gå Premium\nDesign uden grænser";
@@ -306,8 +297,6 @@
 "Privacy Policy" = "Privatlivspolitik";
 "Terms & Conditions" = "Vilkår og betingelser";
 "Contact Us" = "Kontakt os";
-"" = "";
-"" = "";
 
 // Photo Tips
 "Use natural light whenever possible, or switch on all lights in the room.\nShoot at eye level to keep the perspective natural and realistic.\nPTake photos from a corner or doorway to capture more of the space.\nClear away clutter and tidy up to achieve a clean, polished look." = "Brug naturligt lys, når det er muligt, eller tænd alle lys i rummet.\nTag billedet i øjenhøjde for at bevare et naturligt og realistisk perspektiv.\nTag billeder fra et hjørne eller en døråbning for at få mere af rummet med.\nFjern rod og ryd op for at opnå et rent og gennemført udtryk.";
@@ -320,7 +309,6 @@
 "Too Close" = "For tæt på";
 "Too Dark" = "For mørkt";
 "Too Mess" = "For rodet";
-"View at eye level" = "I øjenhøjde";
 "Good light" = "Godt lys";
 "Clean Room" = "Rent rum";
 "Too Far" = "For langt væk";
@@ -338,7 +326,6 @@
 "Good Example:" = "Godt eksempel:";
 // Custom Prompt
 "Enter Custom Promt" = "Indtast brugerdefineret prompt";
-"Describe your design style idea..." = "Beskriv din idé til designstil...";
 "Clear" = "Ryd";
 "Example Promt" = "Eksempel på prompt";
 "A calm interior with soft daylight, light walls, natural textures, simple furniture forms, cozy seating, subtle shadows, balanced composition, realistic materials, high detail, photorealistic render" = "Et roligt interiør med blødt dagslys, lyse vægge, naturlige teksturer, enkle møbelformer, hyggelige siddepladser, diskrete skygger, afbalanceret komposition, realistiske materialer, høj detaljegrad og fotorealistisk rendering";
@@ -386,8 +373,6 @@
 "Outlined object" = "Objekt med omrids";
 "Correct Selection " = "Korrekt markering";
 "Clear highlight" = "Tydelig markering";
-"" = "";
-"" = "";
 
 //SurfaceMaterialPickerViewController
 "Describe your design style idea..." = "Beskriv din idé til designstil...";
@@ -397,16 +382,6 @@
 "Daily limit reached" = "Daglig grænse nået";
 "daily_limit_reached_message" = "Du har brugt alle %d billedgenereringer i dag. Prøv igen i morgen.";
 "You've used all 15 image generations for today. Please try again tomorrow." = "Du har brugt alle 15 billedgenereringer for i dag. Prøv igen i morgen.";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
 "" = "";
 "Meet Your AI Experts:" = "Mød dine AI-eksperter:";
 "AI Renovation Assistant" = "AI-renoveringsassistent";
@@ -798,6 +773,7 @@
 "No free designs left" = "Ingen gratis design tilbage";
 "%d of %d free designs left" = "%d af %d gratis design tilbage";
 "Get Pro · %@ / year" = "Få Pro · %@ / år";
+"Get Pro · %@ / week" = "Få Pro · %@ / uge";
 "Help & feedback" = "Hjælp og feedback";
 "Appearance" = "Udseende";
 "Notifications are off" = "Notifikationer er slået fra";
@@ -878,6 +854,8 @@
 "Unlock every style" = "Lås op for alle stilarter";
 "This is a Pro feature. Pro also unlocks:" = "Dette er en Pro-funktion. Pro låser også op for:";
 "%@ / year · cancel anytime" = "%@ / år · opsig når som helst";
+"Weekly subscription is unavailable. Please try again." = "Det ugentlige abonnement er ikke tilgængeligt. Prøv igen.";
+"%@ / week · cancel anytime" = "%@ / uge · opsig når som helst";
 "Welcome to Pro" = "Velkommen til Pro";
 "Everything is unlocked. Go make every room yours." = "Alt er låst op. Gør hvert rum til dit.";
 "Start designing" = "Begynd at designe";
@@ -1133,3 +1111,78 @@
 "Living Wall" = "Grøn væg";
 "Cork Wall" = "Korkvæg";
 "Wood Shiplap" = "Træbeklædning";
+
+/* Figma A · onboarding (English fallback until translated). */
+"onboarding_skip" = "Spring over";
+"onboarding_before" = "Før";
+"onboarding_after" = "Efter";
+"onboarding_room_title" = "Forny ethvert rum på få sekunder";
+"onboarding_room_subtitle" = "Tag et billede, og få et nyt design. Vægge, vinduer og indretning bliver på plads.";
+"onboarding_tools_title" = "Én app, 11 AI-værktøjer";
+"onboarding_tools_subtitle" = "Mal vægge, skift gulve, fjern ting, møblér et tomt rum og meget mere.";
+"onboarding_words_title" = "Redigér med dine egne ord";
+"onboarding_words_subtitle" = "Skriv eller sig, hvad du vil ændre. Alt andet forbliver præcis, som det er.";
+"onboarding_demo_placeholder" = "Beskriv en ændring…";
+"onboarding_demo_prompt" = "Gør det til aften med varmt lys";
+"onboarding_tool_walls" = "Mal vægge";
+"onboarding_tool_floor" = "Nyt gulv";
+"onboarding_tool_remove" = "Fjern genstande";
+"onboarding_tool_replace" = "Udskift møbler";
+"onboarding_tool_style" = "Ny stil";
+"onboarding_goal_title" = "Hvad skal vi forny?";
+"onboarding_goal_subtitle" = "Vi viser de rette værktøjer først. Du kan altid ændre dit valg.";
+"onboarding_goal_skip" = "I tvivl? Spring over nu";
+"onboarding_goal_interior" = "Indretning";
+"onboarding_goal_interior_detail" = "Et rum indendørs";
+"onboarding_goal_exterior" = "Udvendigt";
+"onboarding_goal_exterior_detail" = "Husets facade";
+"onboarding_goal_garden" = "Have";
+"onboarding_goal_garden_detail" = "Have og terrasse";
+"onboarding_goal_surfaces" = "Vægge og gulve";
+"onboarding_goal_surfaces_detail" = "Kun overfladerne";
+"onboarding_splash_tagline" = "AI-design til ethvert rum";
+
+/* Shared and legacy UI: complete localization coverage. */
+"Chat" = "Chat";
+"Choose Type" = "Vælg type";
+"Cyberpunk" = "Cyberpunk";
+"Detecting..." = "Registrerer…";
+"Edit" = "Redigér";
+"Not completed" = "Ikke fuldført";
+"Perform the necessary action to continue." = "Udfør den nødvendige handling for at fortsætte.";
+"Please select a material option." = "Vælg et materiale.";
+"Something went wrong. Please try again." = "Noget gik galt. Prøv igen.";
+"A refined interior with contrast between light and dark surfaces, elegant furniture, subtle metallic accents, controlled lighting, depth and shadows, realistic textures" = "Et raffineret interiør med kontrast mellem lyse og mørke overflader, elegante møbler, diskrete metalaccenter, afstemt belysning, dybde, skygger og realistiske teksturer";
+
+/* VoiceOver controls */
+"Ask by voice" = "Spørg med stemmen";
+"Back" = "Tilbage";
+"Close" = "Luk";
+"Compare" = "Sammenlign";
+"Dislike" = "Synes ikke om";
+"Flash" = "Blitz";
+"Hide" = "Skjul";
+"Hold to see the original" = "Hold inde for at se originalen";
+"Like" = "Synes om";
+"Minimize" = "Minimer";
+"Photo library" = "Fotobibliotek";
+"Redo" = "Annuller fortryd";
+"Remove photo" = "Fjern foto";
+"Remove reference" = "Fjern reference";
+"Reset zoom" = "Nulstil zoom";
+"Save to Photos" = "Gem i Fotos";
+"Search" = "Søg";
+"Send" = "Send";
+"Speak" = "Tal";
+"Speak a change" = "Dikter en ændring";
+"Switch camera" = "Skift kamera";
+"Take photo" = "Tag foto";
+"Type instead" = "Skriv tekst i stedet";
+/* Personalized Home hero */
+"home_hero_exterior_title" = "Forny facaden";
+"home_hero_exterior_subtitle" = "Ny stil på ~30 sek. Husets form bevares.";
+"home_hero_garden_title" = "Forny haven";
+"home_hero_garden_subtitle" = "Ny have på ~30 sek. Arealet bevares.";
+"home_hero_surfaces_title" = "Forny overfladerne";
+"home_hero_surfaces_subtitle" = "Prøv nye vægge og gulve på ~30 sek.";
+"About %d s" = "Ca. %d sek.";

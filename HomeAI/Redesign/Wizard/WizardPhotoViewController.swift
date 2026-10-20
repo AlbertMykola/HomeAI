@@ -2,7 +2,7 @@ import UIKit
 import PhotosUI
 import AVFoundation
 
-/// A/04 · W1 Add photo (+ "selected" state). Layout: WizardPhotoViewController.xib.
+/// A/04 · W1 Add photo (+ "selected" state). Layout: Wizard.storyboard.
 final class WizardPhotoViewController: WizardStepViewController {
 
     @IBOutlet private weak var scrollView: UIScrollView!
@@ -46,10 +46,6 @@ final class WizardPhotoViewController: WizardStepViewController {
         super.viewDidLoad()
         localize()
         nextButton.inactive = true
-        if session.option == .floolPlan {
-            demoTitleLabel.isHidden = true
-            demoControls.first?.superview?.isHidden = true
-        }
         for control in demoControls {
             (control.subviews.first as? UIImageView)?.image = UIImage(named: demoImages[min(control.tag, 2)].0)
         }
@@ -109,7 +105,7 @@ final class WizardPhotoViewController: WizardStepViewController {
     @IBAction private func didTapTakePhoto(_ sender: Any) {
         CameraViewController.requestAccess(from: self, onLibrary: { [weak self] in self?.presentLibraryPicker() }) { [weak self] granted in
             guard let self, granted else { return }
-            let camera = CameraViewController(nibName: "CameraViewController", bundle: .main)
+            let camera = AppStoryboard.instantiate(CameraViewController.self)
             camera.onCapture = { [weak self] image in self?.didPick(image, isDemo: false) }
             camera.modalPresentationStyle = .fullScreen
             self.present(camera, animated: true)
@@ -138,6 +134,7 @@ final class WizardPhotoViewController: WizardStepViewController {
         switch session.option {
         case .exterior: return [("ob_2_before_image", nil), ("home_card_exterior", nil), ("ob_2_after_image", nil)]
         case .garden: return [("ob_3_before_image", nil), ("home_card_garden", nil), ("ob_3_after_image", nil)]
+        case .floolPlan: return [("floorplan_demo_one", nil), ("floorplan_demo_two", nil), ("floorplan_demo_three", nil)]
         default: return Self.demoRooms.map { ($0.0, $0.1) }
         }
     }
@@ -149,7 +146,7 @@ final class WizardPhotoViewController: WizardStepViewController {
     }
 
     @IBAction private func didTapTips(_ sender: Any) {
-        PhotoTipsSheetViewController.present(from: self)
+        PhotoTipsSheetViewController.present(from: self, option: session.option)
     }
 
     @IBAction private func didTapNext(_ sender: Any) {

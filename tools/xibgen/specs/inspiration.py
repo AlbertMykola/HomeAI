@@ -52,9 +52,9 @@ def inspiration():
     skeleton = View(id="skeleton", bg="dsBackground", outlet="skeletonView", clips=True, children=[sk_chip_row, sk_grid])
 
     # header
-    header_bg = Blur(id="header-bg", style="systemUltraThinMaterialLight", outlet="headerBackgroundView", alpha=0)
+    header_bg = Blur(id="header-bg", style="systemUltraThinMaterial", outlet="headerBackgroundView", alpha=0)
     hairline = View(id="hairline", bg=("#000000", 0.06), outlet="headerHairline", alpha=0)
-    big_title = Label("Inspiration", id="big-title", font=("SemiBold", 32), outlet="largeTitleLabel")
+    big_title = Label("Inspiration", id="big-title", font=("SemiBold", 32), outlet="largeTitleLabel", minScale=0.8)
     small_title = Label("Inspiration", id="small-title", font=("SemiBold", 17), align="center",
                         outlet="compactTitleLabel", alpha=0)
     search = glass_button("search", "magnifyingglass", outlet="searchButton", action="didTapSearch:",
@@ -212,6 +212,7 @@ def inspiration_detail():
     square(save_icon, 22)
     try_btn = primary_button("try", "Try on my room", outlet="tryButton", action="didTapTry:", icon="sparkles",
                              title_outlet="tryTitleLabel")
+    try_btn.children[0].children[-1].lines = 2
     cta = HStack([save, try_btn], id="cta", spacing=12, align="fill")
 
     panel_stack = VStack([title_group, tags_wrap, palette, cta], id="panel-stack", spacing=30, align="fill",
@@ -243,7 +244,7 @@ def inspiration_detail():
     C(panel, "top", sa, "top", 300, rel="greaterThanOrEqual")
     pin(panel_stack, edges="lr", inset=20)
     C(panel_stack, "top", panel, "top", 24)
-    C(sa, "bottom", panel_stack, "bottom", 0)
+    C(sa, "bottom", panel_stack, "bottom", 0, prio=999)
     C(root, "bottom", panel_stack, "bottom", 16, rel="greaterThanOrEqual")
 
     pin(tags_scroll, inset=(0, -20, 0, -20))

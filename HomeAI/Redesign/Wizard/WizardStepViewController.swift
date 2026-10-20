@@ -10,17 +10,13 @@ class WizardStepViewController: UIViewController {
     var step: WizardSession.Step { .photo }
     private var didConfigureStepper = false
 
-    required override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-    }
-
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
 
-    /// Builds a step from its XIB (named after the class).
+    /// Loads a step from its editable storyboard scene.
     static func make(session: WizardSession) -> Self {
-        let vc = Self(nibName: String(describing: self), bundle: .main)
+        let vc = AppStoryboard.instantiate(Self.self)
         vc.session = session
         vc.hidesBottomBarWhenPushed = true
         return vc
@@ -46,7 +42,7 @@ class WizardStepViewController: UIViewController {
 
     override var preferredStatusBarStyle: UIStatusBarStyle { .default }
 
-    // MARK: Nav bar (responder-chain actions from WizardNavBar.xib)
+    // MARK: Nav bar (responder-chain actions from Wizard.storyboard)
 
     @IBAction func didTapWizardBack(_ sender: Any) {
         navigationController?.popViewController(animated: true)
@@ -150,12 +146,9 @@ class WizardStepViewController: UIViewController {
         }
     }
 
-    /// "Uses 1 of your 2 free designs" / "Unlimited with Pro" / "1 credit · about 30 s".
+    /// The generation CTA shows duration; entitlement and credit checks happen in generate().
     func costLine(seconds: Int = 30) -> String {
-        if AdaptyService.shared.hasActiveSubscription {
-            return String(format: "Unlimited with Pro · about %d s".localized, seconds)
-        }
-        return String(format: "1 credit · about %d s".localized, seconds)
+        String(format: "About %d s".localized, seconds)
     }
 
     /// Fade + offset entrance helper (stagger in ms from the dev notes).

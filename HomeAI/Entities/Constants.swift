@@ -27,6 +27,7 @@ struct Constants {
 
         // OB
         static let didShowOnboarding = "did_show_onboarding_8"
+        static let onboardingGoal = "onboarding_goal"
         static let didShowRateAlert = "did_show_rate_alert_2"
         static let didShowAddPhotoPhotoTips = "did_show_add_photo_photo_tips_1"
         static let didLogTrackingPermission = "did_log_tracking_permission_1"
@@ -139,10 +140,11 @@ struct Constants {
             false
             #endif
         }()
-        /// DEBUG: після Launch завжди відкривати онбординг. У Release має бути false.
+        /// DEBUG: explicitly opt into replaying onboarding; normal launches respect completion.
         static let alwaysShowOnboarding = {
             #if DEBUG
-            !ProcessInfo.processInfo.arguments.contains("-skipOnboarding")
+            ProcessInfo.processInfo.arguments.contains("-showOnboarding")
+                && !ProcessInfo.processInfo.arguments.contains("-skipOnboarding")
             #else
             false
             #endif

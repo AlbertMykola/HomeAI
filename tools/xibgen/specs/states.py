@@ -18,11 +18,12 @@ def ds_alert():
     buttons = []
     for i in range(2):
         lb = Label("Cancel", id=f"btn{i}-label", font=("SemiBold", 16), align="center", collection="buttonLabels",
-                   tag_value=i)
+                   tag_value=i, lines=0, resist=(750, 1000))
         b = Control(id=f"btn{i}", cls="DSPressableControl", bg="dsChip", collection="buttons", tag_value=i,
                     runtime={"pill": True}, children=[lb]).on("didTapButton:")
-        size(b, h=48)
+        C(b, "height", const=48, rel="greaterThanOrEqual")
         center(lb)
+        C(lb, "top", b, "top", 8, rel="greaterThanOrEqual")
         C(lb, "leading", b, "leading", 10, rel="greaterThanOrEqual")
         buttons.append(b)
     row = HStack(buttons, id="buttons", spacing=10, dist="fillEqually")

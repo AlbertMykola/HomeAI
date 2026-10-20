@@ -2,7 +2,7 @@ import UIKit
 
 /// A/02 · P3 Pro feature: contextual upsell instead of the full paywall. Honest: ✕ from the first frame,
 /// "Not now" returns the user where they were. See Pro plans → P1 with source=feature_<name>.
-/// Layout: ProFeatureSheetViewController.xib.
+/// Layout: Paywall.storyboard.
 final class ProFeatureSheetViewController: UIViewController {
 
     enum Feature: String {
@@ -43,6 +43,7 @@ final class ProFeatureSheetViewController: UIViewController {
     @IBOutlet private weak var seeButton: DSPrimaryButton!
     @IBOutlet private weak var seeLabel: UILabel!
     @IBOutlet private weak var notNowButton: UIButton!
+    @IBOutlet private weak var contentStack: UIStackView!
 
     private var feature: Feature = .watermark
     private var placement = Constants.Keys.optionPlacememt
@@ -50,12 +51,18 @@ final class ProFeatureSheetViewController: UIViewController {
 
     static func present(_ feature: Feature, from presenter: UIViewController, placement: String = Constants.Keys.optionPlacememt,
                         onPurchase: (() -> Void)? = nil) {
-        let vc = ProFeatureSheetViewController(nibName: "ProFeatureSheetViewController", bundle: .main)
+        let vc = AppStoryboard.instantiate(ProFeatureSheetViewController.self)
         vc.feature = feature
         vc.placement = placement
         vc.onPurchase = onPurchase
         AmplitudeService.shared.logRedesignEvent("pro_feature_sheet", properties: ["feature": feature.rawValue])
-        DSSheet.present(vc, from: presenter, height: DSSheet.fittingHeight(of: vc, width: presenter.view.bounds.width))
+        vc.loadViewIfNeeded()
+        let contentSize = vc.contentStack.systemLayoutSizeFitting(
+            CGSize(width: max(1, presenter.view.dsLayoutSize.width - 40), height: UIView.layoutFittingCompressedSize.height),
+            withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
+        // UIKit caps custom detents on short displays. The content remains scrollable
+        // if the final sheet width or height is smaller than the presenter's viewport.
+        DSSheet.present(vc, from: presenter, height: contentSize.height + 28)
     }
 
     override func viewDidLoad() {
@@ -66,8 +73,9 @@ final class ProFeatureSheetViewController: UIViewController {
         benefitLabels.sorted { $0.tag < $1.tag }.enumerated().forEach { $1.text = benefits[$0] }
         seeLabel.text = "See Pro plans".localized
         notNowButton.setTitle("Not now".localized, for: .normal)
-        priceLabel.text = AdaptyService.shared.cachedYearlyPrice.map { String(format: "%@ / year · cancel anytime".localized, $0) }
+        priceLabel.text = AdaptyService.shared.cachedWeeklyPrice.map { String(format: "%@ / week · cancel anytime".localized, $0) }
             ?? "Cancel anytime".localized
+        heroView.alpha = 0
         benefitRows.forEach { $0.alpha = 0 }
     }
 

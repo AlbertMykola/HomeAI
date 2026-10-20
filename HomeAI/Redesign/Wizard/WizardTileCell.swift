@@ -1,7 +1,7 @@
 import UIKit
 
-/// Room / building tile (109×112). Selected: lime soft + 2 pt lime border + black check. Layout: WizardTileCell.xib.
-final class WizardTileCell: UICollectionViewCell {
+/// Room / building tile (109×112). Selected: lime soft + 2 pt lime border + black check. Layout: Wizard.storyboard prototype.
+final class WizardTileCell: DSAdaptiveCollectionViewCell {
 
     static let reuseID = "WizardTileCell"
 
@@ -48,7 +48,7 @@ final class WizardTileCell: UICollectionViewCell {
             self.tileView.backgroundColor = selected ? DS.Color.limeSoft : DS.Color.surface
             self.tileView.layer.borderWidth = selected ? 2 : 0
             self.tileView.layer.borderColor = DS.Color.lime.cgColor
-            self.titleLabel.font = DS.Font.geologica(selected ? .semiBold : .medium, 13)
+            self.titleLabel.font = DS.Font.geologica(selected ? .semiBold : .medium, self.titleLabel.font.pointSize)
             self.checkView.alpha = selected ? 1 : 0
             self.checkView.transform = selected ? .identity : CGAffineTransform(scaleX: 0.4, y: 0.4)
         }

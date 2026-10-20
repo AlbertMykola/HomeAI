@@ -134,7 +134,7 @@ enum GardenType: CaseIterable {
         case .christmas: "Сhristmas".localized
         case .tropical: "Tropical".localized
         case .luxary: "Luxary".localized
-        case .japaneese: "Japaneese".localized
+        case .japaneese: "Japanese".localized
         case .english: "English".localized
         case .mediterranean: "Mediterranean".localized
         case .bohemian: "Bohemian".localized

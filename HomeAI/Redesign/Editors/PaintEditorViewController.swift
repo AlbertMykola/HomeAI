@@ -2,7 +2,7 @@ import UIKit
 import CoreImage
 
 /// A/06 · R3 Paint walls. Auto: the AI finds and repaints the walls. Brush: paint the walls yourself and see a live
-/// on-device preview (colour × photo, multiply) before applying. Layout: PaintEditorViewController.xib.
+/// on-device preview (colour × photo, multiply) before applying. Layout: Editors.storyboard.
 final class PaintEditorViewController: MaskEditorViewController {
 
     override var discardMessage: String { "Your paint preview will be lost. This doesn't use a credit.".localized }

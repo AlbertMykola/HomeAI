@@ -1,7 +1,7 @@
 import UIKit
 
 /// A/02 · P5 Welcome to Pro: confetti (lime / black / white, 1.2 s, CAEmitterLayer) then the content eases in
-/// (1.2 s ease-out). Haptic .success. Layout: WelcomeProViewController.xib.
+/// (1.2 s ease-out). Haptic .success. Layout: Paywall.storyboard.
 final class WelcomeProViewController: UIViewController {
 
     @IBOutlet private weak var markView: UIView!
@@ -16,7 +16,7 @@ final class WelcomeProViewController: UIViewController {
     private var didRun = false
 
     static func make(onStart: @escaping () -> Void) -> WelcomeProViewController {
-        let vc = WelcomeProViewController(nibName: "WelcomeProViewController", bundle: .main)
+        let vc = AppStoryboard.instantiate(WelcomeProViewController.self)
         vc.onStart = onStart
         vc.modalPresentationStyle = .fullScreen
         vc.overrideUserInterfaceStyle = .light

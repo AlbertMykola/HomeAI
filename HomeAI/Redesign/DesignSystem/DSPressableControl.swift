@@ -20,19 +20,24 @@ class DSPressableControl: UIControl {
     @IBInspectable var actionName: String?
 
     private var pressAnimator: UIViewPropertyAnimator?
+    private var automaticAccessibilityLabel: String?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         layer.cornerCurve = .continuous
         if let actionName, !actionName.isEmpty {
             addTarget(self, action: #selector(dispatchNamedAction), for: .touchUpInside)
+            if accessibilityIdentifier == nil { accessibilityIdentifier = "\(actionName)\(tag)" }
         }
         // Everything inside is decoration — the control itself handles touches.
         allSubviews(of: self).forEach { $0.isUserInteractionEnabled = false }
         isAccessibilityElement = true
         accessibilityTraits = .button
-        if accessibilityLabel == nil {
+        if let label = accessibilityLabel {
+            accessibilityLabel = label.localized
+        } else {
             accessibilityLabel = allSubviews(of: self).compactMap { ($0 as? UILabel)?.text }.joined(separator: ", ")
+            automaticAccessibilityLabel = accessibilityLabel
         }
     }
 
@@ -61,6 +66,10 @@ class DSPressableControl: UIControl {
 
     override func layoutSubviews() {
         super.layoutSubviews()
+        if let previous = automaticAccessibilityLabel, accessibilityLabel == previous {
+            let current = allSubviews(of: self).compactMap { ($0 as? UILabel)?.text }.joined(separator: ", ")
+            if current != previous { accessibilityLabel = current; automaticAccessibilityLabel = current }
+        }
         if pill { layer.cornerRadius = bounds.height / 2 }
         if shadowOpacity > 0 {
             layer.shadowPath = UIBezierPath(roundedRect: bounds, cornerRadius: layer.cornerRadius).cgPath

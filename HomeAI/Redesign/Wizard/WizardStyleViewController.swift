@@ -1,6 +1,6 @@
 import UIKit
 
-/// A/04 · W3 Pick a style. Layout: WizardStyleViewController.xib.
+/// A/04 · W3 Pick a style. Layout: Wizard.storyboard.
 final class WizardStyleViewController: WizardStepViewController {
 
     @IBOutlet private weak var titleLabel: UILabel!
@@ -33,7 +33,7 @@ final class WizardStyleViewController: WizardStepViewController {
             chip.subviews.first?.subviews.compactMap { $0 as? UILabel }.first?.text = chipTitles[index].localized
             chip.accessibilityLabel = chipTitles[index].localized
         }
-        collectionView.register(UINib(nibName: "WizardStyleCell", bundle: nil), forCellWithReuseIdentifier: WizardStyleCell.reuseID)
+
         collectionView.dataSource = self
         collectionView.delegate = self
         let longPress = UILongPressGestureRecognizer(target: self, action: #selector(handlePeek(_:)))
@@ -46,9 +46,11 @@ final class WizardStyleViewController: WizardStepViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            let width = floor((collectionView.bounds.width - 40 - 26) / 3)
-            layout.minimumLineSpacing = 16
-            if layout.itemSize.width != width { layout.itemSize = CGSize(width: width, height: width * 136 / 109 + 23) }
+            let metrics = OnboardingLayout(size: view.dsLayoutSize)
+            let width = floor((collectionView.bounds.width - metrics.value(40 + 26)) / 3)
+            layout.minimumLineSpacing = metrics.value(16)
+            let size = CGSize(width: width, height: width * 136 / 109 + metrics.value(23))
+            if layout.itemSize != size { layout.itemSize = size }
         }
     }
 
@@ -166,14 +168,8 @@ final class WizardStyleViewController: WizardStepViewController {
               let cell = collectionView.cellForItem(at: indexPath) as? WizardStyleCell,
               let image = cell.previewImage else { return }
         DS.Haptic.medium()
-        let peek = UIViewController()
-        peek.view.backgroundColor = .black
-        let imageView = UIImageView(image: image)
-        imageView.contentMode = .scaleAspectFit
-        imageView.frame = peek.view.bounds
-        imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        peek.view.addSubview(imageView)
-        peek.view.addGestureRecognizer(UITapGestureRecognizer(target: peek, action: #selector(UIViewController.dismissPeek)))
+        let peek = AppStoryboard.instantiate(StylePreviewViewController.self)
+        peek.image = image
         peek.modalTransitionStyle = .crossDissolve
         peek.modalPresentationStyle = .overFullScreen
         present(peek, animated: true)

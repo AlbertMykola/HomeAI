@@ -69,8 +69,10 @@ def _runtime_attr(key, value):
     if isinstance(value, (int, float)):
         return (f'<userDefinedRuntimeAttribute type="number" keyPath="{key}">'
                 f'<real key="value" value="{value}"/></userDefinedRuntimeAttribute>')
-    if isinstance(value, str) and value.startswith("str:"):
-        return f'<userDefinedRuntimeAttribute type="string" keyPath="{key}" value={quoteattr(value[4:])}/>'
+    if isinstance(value, str) and (value.startswith("str:") or key in {
+            "accessibilityIdentifier", "accessibilityLabel", "accessibilityHint", "accessibilityValue"}):
+        text = value[4:] if value.startswith("str:") else value
+        return f'<userDefinedRuntimeAttribute type="string" keyPath="{key}" value={quoteattr(text)}/>'
     if isinstance(value, tuple) and len(value) == 2 and value[0] == "size":
         w, h = value[1]
         return (f'<userDefinedRuntimeAttribute type="size" keyPath="{key}">'
@@ -659,10 +661,11 @@ class Slider(El):
 # ---------------------------------------------------------------------------
 
 class C:
-    def __init__(self, a, attr, b=None, attr2=None, const=0, mult=None, rel="equal", prio=None, outlet=None, id=None):
+    def __init__(self, a, attr, b=None, attr2=None, const=0, mult=None, rel="equal", prio=None, outlet=None, id=None, identifier=None):
         self.a, self.attr, self.b, self.attr2 = a, attr, b, attr2 or (attr if b is not None else None)
         self.const, self.mult, self.rel, self.prio, self.outlet = const, mult, rel, prio, outlet
         self.id = id or f"c{next(_ids)}"
+        self.identifier = identifier
         Doc.current.constraints.append(self)
 
     def to_xml(self, container):
@@ -681,6 +684,8 @@ class C:
             a["constant"] = str(self.const)
         if self.prio is not None:
             a["priority"] = str(self.prio)
+        if self.identifier is not None:
+            a["identifier"] = self.identifier
         a["id"] = self.id
         return "<constraint " + " ".join(f'{k}="{v}"' for k, v in a.items()) + "/>"
 
@@ -815,6 +820,16 @@ class Doc:
         return content
 
     def write(self, path):
+        # Keep authored vertical metrics, but reserve native side bars / cutouts.
+        # Traditional portrait phones have zero horizontal safe-area insets.
+        if self.kind == "view" and self.owner and self.owner.endswith("ViewController"):
+            horizontal = {"leading", "trailing", "left", "right", "centerX", "width"}
+            for c in self.constraints:
+                if c.b is not None:
+                    if c.a is self.root and c.attr in horizontal:
+                        c.a = self.safe_area
+                    if c.b is self.root and c.attr2 in horizontal:
+                        c.b = self.safe_area
         for c in self.constraints:
             _place(c)
         root = self.root

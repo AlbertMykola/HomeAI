@@ -1,7 +1,7 @@
 import UIKit
 
-/// A/06 · R7 Change style (sheet): 6 styles, Subtle / Balanced / Bold, keep structure, Restyle · 1 credit.
-/// Layout: ChangeStyleSheetViewController.xib.
+/// A/06 · R7 Change style: styles, strength, structure and a duration-only generation action.
+/// Layout: Result.storyboard.
 final class ChangeStyleSheetViewController: UIViewController {
 
     @IBOutlet private weak var titleLabel: UILabel!
@@ -30,7 +30,7 @@ final class ChangeStyleSheetViewController: UIViewController {
 
     static func present(from presenter: UIViewController, option: DesignOption, current: String?,
                         onRestyle: @escaping (WizardSession.Style, Bool, Int) -> Void) {
-        let vc = ChangeStyleSheetViewController(nibName: "ChangeStyleSheetViewController", bundle: .main)
+        let vc = AppStoryboard.instantiate(ChangeStyleSheetViewController.self)
         vc.option = option
         vc.currentStyleName = current
         vc.onRestyle = onRestyle
@@ -45,8 +45,8 @@ final class ChangeStyleSheetViewController: UIViewController {
         keepSubtitleLabel.text = "Walls, windows and layout stay".localized
         let titles = ["Subtle", "Balanced", "Bold"]
         strengthLabels.sorted { $0.tag < $1.tag }.enumerated().forEach { $1.text = titles[$0].localized }
-        restyleLabel.text = AdaptyService.shared.hasActiveSubscription ? "Restyle".localized : "Restyle · 1 credit".localized
-        collectionView.register(UINib(nibName: "ChangeStyleCell", bundle: nil), forCellWithReuseIdentifier: ChangeStyleCell.reuseID)
+        restyleLabel.text = "Restyle".localized + " · " + String(format: "About %d s".localized, 30)
+
         collectionView.dataSource = self
         collectionView.delegate = self
         loadStyles()
@@ -56,10 +56,12 @@ final class ChangeStyleSheetViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            let w = floor((collectionView.bounds.width - 24) / 3)
-            if layout.itemSize.width != w {
-                layout.itemSize = CGSize(width: w, height: w + 24)
-                layout.minimumLineSpacing = 14
+            let metrics = OnboardingLayout(size: view.dsAdaptiveReferenceSize)
+            let w = floor((collectionView.bounds.width - metrics.value(24)) / 3)
+            let size = CGSize(width: w, height: w + metrics.value(24))
+            if layout.itemSize != size {
+                layout.itemSize = size
+                layout.minimumLineSpacing = metrics.value(14)
             }
         }
         applyStrength(animated: false)
@@ -111,12 +113,13 @@ final class ChangeStyleSheetViewController: UIViewController {
     }
 
     private func applyStrength(animated: Bool) {
-        let width = (strengthView.bounds.width - 6) / 3
+        let inset = OnboardingLayout(size: view.dsAdaptiveReferenceSize).value(3)
+        let width = (strengthView.bounds.width - 2 * inset) / 3
         let labels = strengthLabels.sorted { $0.tag < $1.tag }
         let changes = {
-            self.strengthKnobLeading.constant = 3 + width * CGFloat(self.strength)
+            self.strengthKnobLeading.constant = inset + width * CGFloat(self.strength)
             for (i, l) in labels.enumerated() {
-                l.font = DS.Font.geologica(i == self.strength ? .semiBold : .medium, 14)
+                l.font = DS.Font.geologica(i == self.strength ? .semiBold : .medium, l.font.pointSize)
                 l.textColor = i == self.strength ? DS.Color.textPrimary : DS.Color.textSecondary
             }
             self.strengthView.layoutIfNeeded()
@@ -169,7 +172,7 @@ extension ChangeStyleSheetViewController: UICollectionViewDataSource, UICollecti
 }
 
 /// R7 style thumbnail 104 r18 with "Current" tag / lime selection. Layout: ChangeStyleCell.xib.
-final class ChangeStyleCell: UICollectionViewCell {
+final class ChangeStyleCell: DSAdaptiveCollectionViewCell {
     static let reuseID = "ChangeStyleCell"
 
     @IBOutlet private weak var thumbImageView: UIImageView!
@@ -186,7 +189,7 @@ final class ChangeStyleCell: UICollectionViewCell {
 
     func configure(title: String, imagePath: String?, current: Bool, selected: Bool) {
         titleLabel.text = title
-        titleLabel.font = DS.Font.geologica(selected ? .semiBold : .regular, 13)
+        titleLabel.font = DS.Font.geologica(selected ? .semiBold : .regular, titleLabel.font.pointSize)
         (currentTag.subviews.first as? UILabel)?.text = "Current".localized
         currentTag.isHidden = !current
         UIView.animate(withDuration: 0.25) {

@@ -11,9 +11,9 @@ def tab_bar():
     root.bg = "clear"
     card = View(id="card", cls="DSView", bg="clear", outlet="cardView",
                 runtime={"cornerRadius": 32, "shadowOpacity": 0.1, "shadowRadius": 15, "shadowOffsetY": 8})
-    blur = Blur(id="blur", style="systemUltraThinMaterialLight",
+    blur = Blur(id="blur", style="systemUltraThinMaterial",
                 runtime={"layer.cornerRadius": 32})
-    tint = View(id="tint", cls="DSView", bg="dsTabBar",
+    tint = View(id="tint", cls="DSView", bg="clear",
                 runtime={"cornerRadius": 32, "borderWidth": 0.5, "borderColor": "dsGlassBorder"})
     items = []
     for index, (key, title, symbol) in enumerate(TABS):
@@ -22,7 +22,7 @@ def tab_bar():
         icon = Image(id=f"{key}-icon", system=symbol, size=20, weight="medium", tint="dsTextSecondary",
                      collection="iconViews", tag_value=index)
         label = Label(title, id=f"{key}-label", font=("Medium", 10), color="dsTextSecondary",
-                      align="center", collection="titleLabels", tag_value=index)
+                      align="center", collection="titleLabels", tag_value=index, minScale=0.8)
         col = VStack([icon, label], id=f"{key}-stack", spacing=2, align="center")
         item = Control(id=f"{key}-item", cls="DSPressableControl", children=[hl, col], collection="itemControls",
                        tag_value=len(items), runtime={"hapticOnPress": False, "pressedScale": 0.94},
@@ -40,6 +40,8 @@ def tab_bar():
         col = item.children[1]
         pin(hl)
         center(col)
+        C(col, "width", item, "width", -8)
+        equal(col.children[1], col, "width")
         square(col.children[0], 24)
     return d
 

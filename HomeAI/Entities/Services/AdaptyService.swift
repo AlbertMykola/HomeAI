@@ -19,7 +19,10 @@ public class AdaptyService: NSObject {
     private var activationTask: Task<Void, Never>?
 
     public var hasActiveSubscription: Bool {
-        isPremium(cachedProfile)
+        #if DEBUG
+        if AppQA.enabled { return AppQA.premium }
+        #endif
+        return isPremium(cachedProfile)
     }
 
     @MainActor
@@ -64,6 +67,9 @@ public class AdaptyService: NSObject {
     /// Чекає activate + перший профіль (або timeout).
     @MainActor
     public func awaitUserReady(timeoutSeconds: TimeInterval = 8) async {
+        #if DEBUG
+        if AppQA.enabled { return }
+        #endif
         if didCompleteInitialUserLoad { return }
 
         await withCheckedContinuation { (continuation: CheckedContinuation<Void, Never>) in
@@ -107,17 +113,21 @@ public class AdaptyService: NSObject {
         placementID: String,
         completion: @escaping (Result<PaywallProductsLoadResult, Error>) -> Void
     ) {
+        // A failed reload must not leave a previously displayed product purchasable.
+        products = []
+        currentFlow = nil
         Task { @MainActor in
             await self.activationTask?.value
             do {
                 let flow = try await Adapty.getFlow(placementId: placementID)
-                let products = try await Adapty.getPaywallProducts(flow: flow)
-                self.currentFlow = flow
-                self.products = products
+                let fetchedProducts = try await Adapty.getPaywallProducts(flow: flow)
+                let products = WeeklyPaywallProducts.onlyWeekly(from: fetchedProducts)
                 guard let presentation = PaywallProductsPresentation.make(from: products) else {
                     completion(.failure(AdaptyServiceError.insufficientProducts))
                     return
                 }
+                self.currentFlow = flow
+                self.products = products
                 completion(.success(PaywallProductsLoadResult(products: products, presentation: presentation)))
             } catch {
                 completion(.failure(error))
@@ -142,6 +152,10 @@ public class AdaptyService: NSObject {
         }
 
         let product = products[index]
+        guard product.paywallIsWeeklySubscription else {
+            completion(.failure(AdaptyServiceError.insufficientProducts))
+            return
+        }
 
         Task { @MainActor in
             do {
@@ -213,9 +227,10 @@ public class AdaptyService: NSObject {
                          billingIssue: level.billingIssueDetectedAt != nil || level.isInGracePeriod)
     }
 
-    /// Localized yearly price if the paywall products were already loaded ("$9.99").
-    var cachedYearlyPrice: String? {
-        products.first { $0.subscriptionPeriod?.unit == .year }?.localizedPrice
+    /// The same preferred weekly product offered by the paywall.
+    var cachedWeeklyPrice: String? {
+        guard let index = WeeklyPaywallProducts.selection(from: products).preferredIndex else { return nil }
+        return products[index].localizedPrice
     }
 
     public func restore() async throws -> String {

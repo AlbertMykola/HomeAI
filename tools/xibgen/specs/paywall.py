@@ -175,7 +175,7 @@ def welcome_pro():
                 runtime={"cornerRadius": 40, "shadowOpacity": 0.25, "shadowRadius": 20, "shadowOffsetY": 16},
                 children=[crown])
     title = Label("Welcome to Pro", id="title", font=("SemiBold", 34), color="black", align="center", kern=-0.34,
-                  outlet="titleLabel")
+                  outlet="titleLabel", minScale=0.8)
     sub = Label("Everything is unlocked. Go make every room yours.", id="sub", font=("Regular", 16),
                 color="#404040", align="center", lines=0, lineHeight=1.17, outlet="subtitleLabel")
     items = []
@@ -241,14 +241,17 @@ def pro_feature_sheet():
                   align="center", outlet="priceLabel")
     see = primary_button("see", "See Pro plans", outlet="seeButton", action="didTapSee:", title_outlet="seeLabel")
     notnow = Button("Not now", id="notnow", font=("SemiBold", 17), color="dsTextPrimary",
-                    outlet="notNowButton").on("didTapClose:")
+                    outlet="notNowButton", runtime={"accessibilityIdentifier": "proFeature.notNow"}).on("didTapClose:")
     size(notnow, h=56)
-    col = VStack([hero_wrap, title, sub, benefits, price, see, notnow], id="col", spacing=14, align="fill")
-    root.add(col, close)
-    pin(col, edges="lr", inset=20)
-    C(col, "top", root, "top", 24)
-    # Sheet height = content (custom detents already sit above the home indicator).
-    C(d.safe_area, "bottom", col, "bottom", 4, prio=250)
+    col = VStack([hero_wrap, title, sub, benefits, price, see, notnow], id="col", spacing=14, align="fill",
+                 outlet="contentStack")
+    scroll = Scroll([col], id="scroll", runtime={"accessibilityIdentifier": "proFeature.content"})
+    root.add(scroll, close)
+    pin(scroll, edges="lr", inset=20)
+    C(scroll, "top", root, "top", 24)
+    C(d.safe_area, "bottom", scroll, "bottom", 4)
+    pin(col, to=scroll.content)
+    equal(col, scroll.frame, "width")
     pin(hero, to=hero_wrap, edges="tb")
     center(hero, to=hero_wrap, y=False)
     square(hero, 76)

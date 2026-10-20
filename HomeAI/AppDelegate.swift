@@ -8,7 +8,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         #if DEBUG
-        if ProcessInfo.processInfo.arguments.contains("--paywall-layout-preview") {
+        if AppQA.enabled { QANetworkBlocker.install() }
+        if AppQA.enabled || ProcessInfo.processInfo.arguments.contains("--paywall-layout-preview") || OnboardingPreview.enabled {
             _ = AmplitudeService.shared
             return true
         }

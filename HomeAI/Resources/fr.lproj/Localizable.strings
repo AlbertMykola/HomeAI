@@ -52,7 +52,6 @@
 "Garden Design" = "Design de jardin";
 "Reference Style" = "Style de référence";
 "Replace Objects" = "Remplacer des objets";
-"Replace Object" = "Remplacer l’objet";
 "New Flooring" = "Nouveau sol";
 "New Walls" = "Nouveaux murs";
 "Change your indoor space" = "Transformez votre espace intérieur";
@@ -86,14 +85,12 @@
 "Select an object and let AI remove it instantly." = "Sélectionnez un objet et laissez l’IA le supprimer instantanément.";
 // Photo
 "Add a photo" = "Ajouter une photo";
-"Upload a photo of your current room." = "Téléchargez une photo de votre pièce actuelle.";
 "Upload a photo of your current facade." = "Téléchargez une photo de votre façade actuelle.";
 "Upload a photo of your current outdoor space." = "Téléchargez une photo de votre espace extérieur actuel.";
 "Upload a photo of your current design." = "Téléchargez une photo de votre design actuel.";
 "Upload a photo of your current room." = "Téléchargez une photo de votre pièce actuelle.";
 "Upload a photo to redesign your floor" = "Téléchargez une photo pour repenser votre sol";
 "Upload a photo of your current walls." = "Téléchargez une photo de vos murs actuels.";
-"" = "";
 
 "Get your dream design" = "Obtenez le design de vos rêves";
 "Take a photo" = "Prendre une photo";
@@ -129,7 +126,6 @@
 "Follow the current room" = "Suivre la pièce actuelle";
 "Redesign without restrictions" = "Repenser sans restrictions";
 "Color Palette" = "Palette de couleurs";
-"" = "";
 
 // Room
 "Choose Room" = "Choisir une pièce";
@@ -141,7 +137,6 @@
 "Bathroom" = "Salle de bains";
 "Living room" = "Salon";
 "Dinning room" = "Salle à manger";
-"Office" = "Bureau";
 "Study room" = "Salle d’étude";
 "Gaming room" = "Salle de jeux";
 "Kids room" = "Chambre d’enfant";
@@ -154,7 +149,6 @@
 // Style
 "Choose Style" = "Choisir un style";
 "Modern" = "Moderne";
-"Contemporary" = "Contemporain";
 "Minimalist" = "Minimaliste";
 "High-tech" = "High-tech";
 "Scandinavian" = "Scandinave";
@@ -178,7 +172,6 @@
 "Wabi-sabi" = "Wabi-sabi";
 "Vintage" = "Vintage";
 "Rustic" = "Rustique";
-"Farmhouse" = "Maison de campagne";
 "Tropical" = "Tropical";
 "Flat" = "Appartement";
 "House" = "Maison";
@@ -212,7 +205,6 @@
 "Wood" = "Bois";
 "Creepy" = "Effrayant";
 "Chocolate" = "Chocolat";
-"Cyberpunk" = "Cyberpunk";
 //Inspiration Detail
 "Done" = "Terminé";
 "Save" = "Enregistrer";
@@ -251,7 +243,6 @@
 "New Floor" = "Nouveau sol";
 "New Style" = "Nouveau style";
 "New Color" = "Nouvelle couleur";
-"" = "";
 
 //Paywall
 "Go Premium Design Without Limits" = "Passez Premium\nDesign sans limites";
@@ -306,8 +297,6 @@
 "Privacy Policy" = "Politique de confidentialité";
 "Terms & Conditions" = "Conditions générales";
 "Contact Us" = "Contactez-nous";
-"" = "";
-"" = "";
 
 // Photo Tips
 "Use natural light whenever possible, or switch on all lights in the room.\nShoot at eye level to keep the perspective natural and realistic.\nPTake photos from a corner or doorway to capture more of the space.\nClear away clutter and tidy up to achieve a clean, polished look." = "Utilisez la lumière naturelle lorsque c’est possible, ou allumez toutes les lumières de la pièce.\nPrenez les photos à hauteur des yeux pour conserver une perspective naturelle et réaliste.\nPrenez les photos depuis un coin ou une porte afin de capturer davantage d’espace.\nRangez le désordre et mettez de l’ordre pour obtenir un rendu propre et soigné.";
@@ -320,7 +309,6 @@
 "Too Close" = "Trop près";
 "Too Dark" = "Trop sombre";
 "Too Mess" = "Trop en désordre";
-"View at eye level" = "Vue à hauteur des yeux";
 "Good light" = "Bonne lumière";
 "Clean Room" = "Pièce rangée";
 "Too Far" = "Trop loin";
@@ -338,7 +326,6 @@
 "Good Example:" = "Bon exemple :";
 // Custom Prompt
 "Enter Custom Promt" = "Saisir un prompt personnalisé";
-"Describe your design style idea..." = "Décrivez votre idée de style de design...";
 "Clear" = "Effacer";
 "Example Promt" = "Exemple de prompt";
 "A calm interior with soft daylight, light walls, natural textures, simple furniture forms, cozy seating, subtle shadows, balanced composition, realistic materials, high detail, photorealistic render" = "Un intérieur apaisant avec une lumière du jour douce, des murs clairs, des textures naturelles, des formes de mobilier simples, des assises confortables, des ombres subtiles, une composition équilibrée, des matériaux réalistes, un haut niveau de détail et un rendu photoréaliste";
@@ -386,8 +373,6 @@
 "Outlined object" = "Objet entouré";
 "Correct Selection " = "Sélection correcte";
 "Clear highlight" = "Marquage clair";
-"" = "";
-"" = "";
 
 //SurfaceMaterialPickerViewController
 "Describe your design style idea..." = "Décrivez votre idée de style de design...";
@@ -397,16 +382,6 @@
 "Daily limit reached" = "Limite quotidienne atteinte";
 "daily_limit_reached_message" = "Vous avez utilisé vos %d générations d’images pour aujourd’hui. Réessayez demain.";
 "You've used all 15 image generations for today. Please try again tomorrow." = "Vous avez utilisé les 15 générations d’images prévues pour aujourd’hui. Réessayez demain.";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
 "" = "";
 "Meet Your AI Experts:" = "Découvrez vos experts IA :";
 "AI Renovation Assistant" = "Assistant rénovation IA";
@@ -798,6 +773,7 @@
 "No free designs left" = "Plus de designs gratuits";
 "%d of %d free designs left" = "%d designs gratuits restants sur %d";
 "Get Pro · %@ / year" = "Passer à Pro · %@ / an";
+"Get Pro · %@ / week" = "Passer à Pro · %@ / semaine";
 "Help & feedback" = "Aide et avis";
 "Appearance" = "Apparence";
 "Notifications are off" = "Les notifications sont désactivées";
@@ -878,6 +854,8 @@
 "Unlock every style" = "Débloquez tous les styles";
 "This is a Pro feature. Pro also unlocks:" = "Fonction Pro. Pro débloque aussi :";
 "%@ / year · cancel anytime" = "%@ / an · annulez à tout moment";
+"Weekly subscription is unavailable. Please try again." = "L’abonnement hebdomadaire est indisponible. Veuillez réessayer.";
+"%@ / week · cancel anytime" = "%@ / semaine · annulez à tout moment";
 "Welcome to Pro" = "Bienvenue dans Pro";
 "Everything is unlocked. Go make every room yours." = "Tout est débloqué. Faites de chaque pièce la vôtre.";
 "Start designing" = "Commencer";
@@ -1133,3 +1111,78 @@
 "Living Wall" = "Mur végétal";
 "Cork Wall" = "Mur en liège";
 "Wood Shiplap" = "Lambris bois";
+
+/* Figma A · onboarding (English fallback until translated). */
+"onboarding_skip" = "Passer";
+"onboarding_before" = "Avant";
+"onboarding_after" = "Après";
+"onboarding_room_title" = "Transformez chaque pièce en quelques secondes";
+"onboarding_room_subtitle" = "Prenez une photo et obtenez un nouveau design. Les murs, fenêtres et volumes restent en place.";
+"onboarding_tools_title" = "Une app, 11 outils IA";
+"onboarding_tools_subtitle" = "Repeignez les murs, changez les sols, retirez des objets, meublez une pièce vide et bien plus.";
+"onboarding_words_title" = "Modifiez avec vos propres mots";
+"onboarding_words_subtitle" = "Écrivez ou dites ce que vous souhaitez changer. Tout le reste reste exactement identique.";
+"onboarding_demo_placeholder" = "Décrivez une modification…";
+"onboarding_demo_prompt" = "Passez au soir avec un éclairage chaleureux";
+"onboarding_tool_walls" = "Peindre les murs";
+"onboarding_tool_floor" = "Nouveau sol";
+"onboarding_tool_remove" = "Retirer des objets";
+"onboarding_tool_replace" = "Remplacer les meubles";
+"onboarding_tool_style" = "Nouveau style";
+"onboarding_goal_title" = "Que souhaitez-vous transformer ?";
+"onboarding_goal_subtitle" = "Les outils adaptés s’afficheront en premier. Vous pourrez changer à tout moment.";
+"onboarding_goal_skip" = "Pas encore sûr ? Passer";
+"onboarding_goal_interior" = "Intérieur";
+"onboarding_goal_interior_detail" = "Une pièce de la maison";
+"onboarding_goal_exterior" = "Extérieur";
+"onboarding_goal_exterior_detail" = "Façade de la maison";
+"onboarding_goal_garden" = "Jardin";
+"onboarding_goal_garden_detail" = "Jardin et terrasse";
+"onboarding_goal_surfaces" = "Murs et sols";
+"onboarding_goal_surfaces_detail" = "Uniquement les surfaces";
+"onboarding_splash_tagline" = "Le design IA pour chaque pièce";
+
+/* Shared and legacy UI: complete localization coverage. */
+"Chat" = "Discussion";
+"Choose Type" = "Choisir le type";
+"Cyberpunk" = "Cyberpunk";
+"Detecting..." = "Détection…";
+"Edit" = "Modifier";
+"Not completed" = "Non terminé";
+"Perform the necessary action to continue." = "Effectuez l’action nécessaire pour continuer.";
+"Please select a material option." = "Veuillez sélectionner un matériau.";
+"Something went wrong. Please try again." = "Une erreur est survenue. Veuillez réessayer.";
+"A refined interior with contrast between light and dark surfaces, elegant furniture, subtle metallic accents, controlled lighting, depth and shadows, realistic textures" = "Un intérieur raffiné avec un contraste entre surfaces claires et foncées, du mobilier élégant, de subtiles touches métalliques, un éclairage maîtrisé, de la profondeur, des ombres et des textures réalistes";
+
+/* VoiceOver controls */
+"Ask by voice" = "Poser une question à voix haute";
+"Back" = "Retour";
+"Close" = "Fermer";
+"Compare" = "Comparer";
+"Dislike" = "Je n’aime pas";
+"Flash" = "Flash";
+"Hide" = "Masquer";
+"Hold to see the original" = "Maintenez pour voir l’original";
+"Like" = "J’aime";
+"Minimize" = "Réduire";
+"Photo library" = "Photothèque";
+"Redo" = "Rétablir";
+"Remove photo" = "Supprimer la photo";
+"Remove reference" = "Supprimer la référence";
+"Reset zoom" = "Réinitialiser le zoom";
+"Save to Photos" = "Enregistrer dans Photos";
+"Search" = "Rechercher";
+"Send" = "Envoyer";
+"Speak" = "Parler";
+"Speak a change" = "Dicter une modification";
+"Switch camera" = "Changer de caméra";
+"Take photo" = "Prendre une photo";
+"Type instead" = "Saisir du texte";
+/* Personalized Home hero */
+"home_hero_exterior_title" = "Repensez votre façade";
+"home_hero_exterior_subtitle" = "Nouveau style en ~30 s. La forme reste.";
+"home_hero_garden_title" = "Repensez votre jardin";
+"home_hero_garden_subtitle" = "Nouveau jardin en ~30 s. L’espace reste.";
+"home_hero_surfaces_title" = "Changez vos revêtements";
+"home_hero_surfaces_subtitle" = "Testez de nouveaux murs et sols en ~30 s.";
+"About %d s" = "Environ %d s";

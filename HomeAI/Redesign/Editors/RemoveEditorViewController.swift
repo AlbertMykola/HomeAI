@@ -1,6 +1,6 @@
 import UIKit
 
-/// A/06 · R5 Remove: brush / lasso / tap object, size slider, undo / redo, clear. Layout: RemoveEditorViewController.xib.
+/// A/06 · R5 Remove: brush / lasso / tap object, size slider, undo / redo, clear. Layout: Editors.storyboard.
 final class RemoveEditorViewController: MaskEditorViewController {
 
     @IBOutlet private weak var undoButton: DSPressableControl!
@@ -136,15 +136,8 @@ final class RemoveEditorViewController: MaskEditorViewController {
 /// White pulsing dot marking a detected object.
 enum HotspotDot {
     static func make(at center: CGPoint) -> UIView {
-        let dot = UIView(frame: CGRect(x: center.x - 8, y: center.y - 8, width: 16, height: 16))
-        dot.backgroundColor = UIColor.white.withAlphaComponent(0.95)
-        dot.layer.cornerRadius = 8
-        dot.layer.borderWidth = 3
-        dot.layer.borderColor = UIColor.black.withAlphaComponent(0.15).cgColor
-        dot.layer.shadowOpacity = 0.3
-        dot.layer.shadowRadius = 4
-        dot.layer.shadowOffset = CGSize(width: 0, height: 2)
-        dot.isUserInteractionEnabled = false
+        let dot = AppStoryboard.component(EditorHotspotView.self)
+        dot.frame = CGRect(x: center.x - 8, y: center.y - 8, width: 16, height: 16)
         if !DS.Motion.reduceMotion {
             let pulse = CABasicAnimation(keyPath: "transform.scale")
             pulse.fromValue = 1

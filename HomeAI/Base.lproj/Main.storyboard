@@ -612,7 +612,7 @@
         <!--Launch View Controller-->
         <scene sceneID="J2q-rU-eeP">
             <objects>
-                <viewController storyboardIdentifier="LaunchViewController" id="quI-Pm-l4d" customClass="LaunchViewController" customModule="HomeAI" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="UnusedLaunchViewController" id="quI-Pm-l4d" customClass="UIViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="pvw-n8-vD7">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -652,7 +652,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="myProgress" destination="E6i-vF-ldf" id="CTN-8H-A88"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kZG-c1-pw1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

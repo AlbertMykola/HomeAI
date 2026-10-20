@@ -1,7 +1,7 @@
 import UIKit
 
-/// Top toast (e.g. "Saved to Photos", "You're offline"). Layout: DSToastView.xib.
-final class DSToastView: DSNibView {
+/// Top toast (e.g. "Saved to Photos", "You're offline"). Layout: Components.storyboard.
+final class DSToastView: DSComponentView {
 
     @IBOutlet private weak var cardView: DSView!
     @IBOutlet private weak var iconView: UIImageView!
@@ -32,6 +32,24 @@ final class DSToastView: DSNibView {
     private static weak var current: DSToastView?
     private var onTap: (() -> Void)?
     private var hideWork: DispatchWorkItem?
+    private var referenceLayout: DSReferenceLayout?
+    private var placement: [(NSLayoutConstraint, CGFloat)] = []
+
+    override func didLoadFromStoryboard() {
+        super.didLoadFromStoryboard()
+        referenceLayout = DSReferenceLayout(root: self)
+    }
+
+    override func layoutSubviews() {
+        let size = dsAdaptiveReferenceSize
+        referenceLayout?.apply(size: size)
+        let metrics = OnboardingLayout(size: size)
+        placement.forEach { constraint, value in
+            let scaled = metrics.value(value)
+            if abs(constraint.constant - scaled) > 0.01 { constraint.constant = scaled }
+        }
+        super.layoutSubviews()
+    }
 
     /// A/12 Toasts & banners: one at a time (a new one replaces the old), drops from the top (−60 pt, spring
     /// response 0.4 / damping 0.8) with an icon pop, stays 2.5 s (4 s with an action), leaves ease-in 0.3 s.
@@ -42,7 +60,7 @@ final class DSToastView: DSNibView {
         guard let host = host ?? UIApplication.getKeyWindow() else { return }
         let light = light || isPhotoScreenOnTop(host.window ?? (host as? UIWindow))
         current?.removeFromSuperview()
-        let toast = DSToastView()
+        let toast = AppStoryboard.toast()
         toast.messageLabel.text = message
         toast.actionLabel.text = action
         toast.actionLabel.isHidden = action == nil
@@ -55,11 +73,13 @@ final class DSToastView: DSNibView {
         }
         toast.translatesAutoresizingMaskIntoConstraints = false
         host.addSubview(toast)
-        NSLayoutConstraint.activate([
-            toast.topAnchor.constraint(equalTo: host.safeAreaLayoutGuide.topAnchor, constant: topOffset),
-            toast.leadingAnchor.constraint(equalTo: host.leadingAnchor, constant: 20),
-            toast.trailingAnchor.constraint(equalTo: host.trailingAnchor, constant: -20)
-        ])
+        let metrics = OnboardingLayout(size: host.dsAdaptiveReferenceSize)
+        toast.placement = [
+            (toast.topAnchor.constraint(equalTo: host.safeAreaLayoutGuide.topAnchor, constant: metrics.value(topOffset)), topOffset),
+            (toast.leadingAnchor.constraint(equalTo: host.safeAreaLayoutGuide.leadingAnchor, constant: metrics.value(20)), 20),
+            (toast.trailingAnchor.constraint(equalTo: host.safeAreaLayoutGuide.trailingAnchor, constant: -metrics.value(20)), -20)
+        ]
+        NSLayoutConstraint.activate(toast.placement.map(\.0))
         current = toast
         if let onTap {
             toast.onTap = onTap

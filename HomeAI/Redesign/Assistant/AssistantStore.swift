@@ -52,7 +52,10 @@ final class AssistantStore {
     static let requiresProForChat = true
 
     private let folder: URL = {
-        let base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+        var base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+        #if DEBUG
+        if AppQA.enabled { base = AppQA.storageURL }
+        #endif
         let url = base.appendingPathComponent("assistant", isDirectory: true)
         try? FileManager.default.createDirectory(at: url, withIntermediateDirectories: true)
         return url

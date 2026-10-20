@@ -158,8 +158,8 @@ enum DesignOption: String, CaseIterable {
             return .init(
                 title: "Rearrange Furniture".localized,
                 description: "Optimize your layout".localized,
-                icon: UIImage(named: "") ?? UIImage(),
-                heroImage: UIImage(named: "") ?? UIImage(),
+                icon: UIImage(),
+                heroImage: UIImage(),
                 beforeAfter: UIImage(named: "rearrange_before_after_image") ?? UIImage(),
                 tipsDescription: "Use natural light whenever possible, or switch on all lights in the room.\nShoot at eye level to keep the perspective natural and realistic.\nPTake photos from a corner or doorway to capture more of the space.\nClear away clutter and tidy up to achieve a clean, polished look.".localized,
                 badExample: [
@@ -174,8 +174,8 @@ enum DesignOption: String, CaseIterable {
             return .init(
             title: "Furnish Room".localized,
             description: "Fill empty spaces".localized,
-            icon: UIImage(named: "") ?? UIImage(),
-            heroImage: UIImage(named: "") ?? UIImage(),
+            icon: UIImage(),
+            heroImage: UIImage(),
             beforeAfter: UIImage(named: "furnish_before_after_image") ?? UIImage(),
             tipsDescription: "".localized,
             badExample: [
@@ -188,8 +188,8 @@ enum DesignOption: String, CaseIterable {
             return .init(
             title: "Floor Plan".localized,
             description: "Turn plans into 3D".localized,
-            icon: UIImage(named: "") ?? UIImage(),
-            heroImage: UIImage(named: "") ?? UIImage(),
+            icon: UIImage(),
+            heroImage: UIImage(),
             beforeAfter: UIImage(named: "floor_before_after_image") ?? UIImage(),
             tipsDescription: "Full 2D floor plan with every room clearly visible.\nSharp, high-quality image with clean lines.\nSimple layout without extra notes or markings.\nAvoid blurry, cropped, or low-resolution plans.".localized,
             badExample: [

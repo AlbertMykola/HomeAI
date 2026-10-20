@@ -52,7 +52,6 @@
 "Garden Design" = "Tuinontwerp";
 "Reference Style" = "Referentiestijl";
 "Replace Objects" = "Objecten vervangen";
-"Replace Object" = "Object vervangen";
 "New Flooring" = "Nieuwe vloer";
 "New Walls" = "Nieuwe muren";
 "Change your indoor space" = "Transformeer je binnenruimte";
@@ -86,14 +85,12 @@
 "Select an object and let AI remove it instantly." = "Selecteer een object en laat AI het direct verwijderen.";
 // Photo
 "Add a photo" = "Foto toevoegen";
-"Upload a photo of your current room." = "Upload een foto van je huidige kamer.";
 "Upload a photo of your current facade." = "Upload een foto van je huidige gevel.";
 "Upload a photo of your current outdoor space." = "Upload een foto van je huidige buitenruimte.";
 "Upload a photo of your current design." = "Upload een foto van je huidige ontwerp.";
 "Upload a photo of your current room." = "Upload een foto van je huidige kamer.";
 "Upload a photo to redesign your floor" = "Upload een foto om je vloer opnieuw te ontwerpen";
 "Upload a photo of your current walls." = "Upload een foto van je huidige muren.";
-"" = "";
 
 "Get your dream design" = "Krijg je droomontwerp";
 "Take a photo" = "Maak een foto";
@@ -129,7 +126,6 @@
 "Follow the current room" = "Volg de huidige kamer";
 "Redesign without restrictions" = "Opnieuw ontwerpen zonder beperkingen";
 "Color Palette" = "Kleurenpalet";
-"" = "";
 
 // Room
 "Choose Room" = "Kies kamer";
@@ -141,7 +137,6 @@
 "Bathroom" = "Badkamer";
 "Living room" = "Woonkamer";
 "Dinning room" = "Eetkamer";
-"Office" = "Kantoor";
 "Study room" = "Studeerkamer";
 "Gaming room" = "Gamekamer";
 "Kids room" = "Kinderkamer";
@@ -154,7 +149,6 @@
 // Style
 "Choose Style" = "Kies stijl";
 "Modern" = "Modern";
-"Contemporary" = "Eigentijds";
 "Minimalist" = "Minimalistisch";
 "High-tech" = "Hightech";
 "Scandinavian" = "Scandinavisch";
@@ -178,7 +172,6 @@
 "Wabi-sabi" = "Wabi-sabi";
 "Vintage" = "Vintage";
 "Rustic" = "Rustiek";
-"Farmhouse" = "Landelijk";
 "Tropical" = "Tropisch";
 "Flat" = "Appartement";
 "House" = "Huis";
@@ -212,7 +205,6 @@
 "Wood" = "Hout";
 "Creepy" = "Griezelig";
 "Chocolate" = "Chocolade";
-"Cyberpunk" = "Cyberpunk";
 //Inspiration Detail
 "Done" = "Klaar";
 "Save" = "Opslaan";
@@ -251,7 +243,6 @@
 "New Floor" = "Nieuwe vloer";
 "New Style" = "Nieuwe stijl";
 "New Color" = "Nieuwe kleur";
-"" = "";
 
 //Paywall
 "Go Premium Design Without Limits" = "Ga Premium\nOntwerp zonder limieten";
@@ -306,8 +297,6 @@
 "Privacy Policy" = "Privacybeleid";
 "Terms & Conditions" = "Algemene voorwaarden";
 "Contact Us" = "Contact opnemen";
-"" = "";
-"" = "";
 
 // Photo Tips
 "Use natural light whenever possible, or switch on all lights in the room.\nShoot at eye level to keep the perspective natural and realistic.\nPTake photos from a corner or doorway to capture more of the space.\nClear away clutter and tidy up to achieve a clean, polished look." = "Gebruik waar mogelijk natuurlijk licht, of doe alle lampen in de kamer aan.\nFotografeer op ooghoogte om het perspectief natuurlijk en realistisch te houden.\nMaak foto's vanuit een hoek of deuropening om meer van de ruimte vast te leggen.\nRuim rommel op en maak de ruimte netjes voor een schone, verzorgde uitstraling.";
@@ -320,7 +309,6 @@
 "Too Close" = "Te dichtbij";
 "Too Dark" = "Te donker";
 "Too Mess" = "Te rommelig";
-"View at eye level" = "Op ooghoogte";
 "Good light" = "Goed licht";
 "Clean Room" = "Nette kamer";
 "Too Far" = "Te ver weg";
@@ -338,7 +326,6 @@
 "Good Example:" = "Goed voorbeeld:";
 // Custom Prompt
 "Enter Custom Promt" = "Voer aangepaste prompt in";
-"Describe your design style idea..." = "Beschrijf je idee voor een ontwerpstijl...";
 "Clear" = "Wissen";
 "Example Promt" = "Voorbeeldprompt";
 "A calm interior with soft daylight, light walls, natural textures, simple furniture forms, cozy seating, subtle shadows, balanced composition, realistic materials, high detail, photorealistic render" = "Een rustig interieur met zacht daglicht, lichte muren, natuurlijke texturen, eenvoudige meubelvormen, gezellige zitplekken, subtiele schaduwen, een gebalanceerde compositie, realistische materialen, veel detail en een fotorealistische render";
@@ -386,8 +373,6 @@
 "Outlined object" = "Omlijnd object";
 "Correct Selection " = "Juiste selectie";
 "Clear highlight" = "Duidelijke markering";
-"" = "";
-"" = "";
 
 //SurfaceMaterialPickerViewController
 "Describe your design style idea..." = "Beschrijf je idee voor een ontwerpstijl...";
@@ -397,16 +382,6 @@
 "Daily limit reached" = "Dagelijkse limiet bereikt";
 "daily_limit_reached_message" = "Je hebt vandaag alle %d afbeeldinggeneraties gebruikt. Probeer het morgen opnieuw.";
 "You've used all 15 image generations for today. Please try again tomorrow." = "Je hebt alle 15 beeldgeneraties voor vandaag gebruikt. Probeer het morgen opnieuw.";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
-"" = "";
 "" = "";
 "Meet Your AI Experts:" = "Ontmoet je AI-experts:";
 "AI Renovation Assistant" = "AI-renovatieassistent";
@@ -798,6 +773,7 @@
 "No free designs left" = "Geen gratis ontwerpen meer";
 "%d of %d free designs left" = "Nog %d van %d gratis ontwerpen";
 "Get Pro · %@ / year" = "Pro nemen · %@ / jaar";
+"Get Pro · %@ / week" = "Pro nemen · %@ / week";
 "Help & feedback" = "Hulp & feedback";
 "Appearance" = "Weergave";
 "Notifications are off" = "Meldingen staan uit";
@@ -878,6 +854,8 @@
 "Unlock every style" = "Ontgrendel alle stijlen";
 "This is a Pro feature. Pro also unlocks:" = "Dit is een Pro-functie. Pro ontgrendelt ook:";
 "%@ / year · cancel anytime" = "%@ / jaar · altijd opzegbaar";
+"Weekly subscription is unavailable. Please try again." = "Het weekabonnement is niet beschikbaar. Probeer het opnieuw.";
+"%@ / week · cancel anytime" = "%@ / week · altijd opzegbaar";
 "Welcome to Pro" = "Welkom bij Pro";
 "Everything is unlocked. Go make every room yours." = "Alles is ontgrendeld. Maak elke kamer van jou.";
 "Start designing" = "Begin met ontwerpen";
@@ -1133,3 +1111,78 @@
 "Living Wall" = "Groene wand";
 "Cork Wall" = "Kurkwand";
 "Wood Shiplap" = "Houten rabatdelen";
+
+/* Figma A · onboarding (English fallback until translated). */
+"onboarding_skip" = "Overslaan";
+"onboarding_before" = "Voor";
+"onboarding_after" = "Na";
+"onboarding_room_title" = "Geef elke kamer in seconden een nieuwe look";
+"onboarding_room_subtitle" = "Maak een foto en krijg een nieuw ontwerp. Muren, ramen en indeling blijven behouden.";
+"onboarding_tools_title" = "Eén app, 11 AI-tools";
+"onboarding_tools_subtitle" = "Verf muren, verander vloeren, verwijder spullen, richt een lege kamer in en nog veel meer.";
+"onboarding_words_title" = "Bewerk met je eigen woorden";
+"onboarding_words_subtitle" = "Typ of zeg wat je wilt veranderen. Al het andere blijft precies zoals het is.";
+"onboarding_demo_placeholder" = "Beschrijf een wijziging…";
+"onboarding_demo_prompt" = "Maak er een avond van met warm licht";
+"onboarding_tool_walls" = "Muren verven";
+"onboarding_tool_floor" = "Nieuwe vloer";
+"onboarding_tool_remove" = "Objecten verwijderen";
+"onboarding_tool_replace" = "Meubels vervangen";
+"onboarding_tool_style" = "Nieuwe stijl";
+"onboarding_goal_title" = "Wat gaan we opnieuw ontwerpen?";
+"onboarding_goal_subtitle" = "We tonen eerst de juiste tools. Je kunt altijd wisselen.";
+"onboarding_goal_skip" = "Nog niet zeker? Nu overslaan";
+"onboarding_goal_interior" = "Interieur";
+"onboarding_goal_interior_detail" = "Een kamer in huis";
+"onboarding_goal_exterior" = "Buitenkant";
+"onboarding_goal_exterior_detail" = "Gevel van het huis";
+"onboarding_goal_garden" = "Tuin";
+"onboarding_goal_garden_detail" = "Tuin en terras";
+"onboarding_goal_surfaces" = "Muren en vloeren";
+"onboarding_goal_surfaces_detail" = "Alleen de oppervlakken";
+"onboarding_splash_tagline" = "AI-ontwerp voor elke kamer";
+
+/* Shared and legacy UI: complete localization coverage. */
+"Chat" = "Chat";
+"Choose Type" = "Kies het type";
+"Cyberpunk" = "Cyberpunk";
+"Detecting..." = "Detecteren…";
+"Edit" = "Bewerken";
+"Not completed" = "Niet voltooid";
+"Perform the necessary action to continue." = "Voer de vereiste actie uit om door te gaan.";
+"Please select a material option." = "Kies een materiaal.";
+"Something went wrong. Please try again." = "Er ging iets mis. Probeer het opnieuw.";
+"A refined interior with contrast between light and dark surfaces, elegant furniture, subtle metallic accents, controlled lighting, depth and shadows, realistic textures" = "Een verfijnd interieur met contrast tussen lichte en donkere oppervlakken, elegante meubels, subtiele metalen accenten, doordachte verlichting, diepte, schaduwen en realistische texturen";
+
+/* VoiceOver controls */
+"Ask by voice" = "Vraag met je stem";
+"Back" = "Terug";
+"Close" = "Sluiten";
+"Compare" = "Vergelijken";
+"Dislike" = "Niet leuk";
+"Flash" = "Flits";
+"Hide" = "Verbergen";
+"Hold to see the original" = "Houd ingedrukt om het origineel te zien";
+"Like" = "Leuk";
+"Minimize" = "Minimaliseren";
+"Photo library" = "Fotobibliotheek";
+"Redo" = "Opnieuw";
+"Remove photo" = "Foto verwijderen";
+"Remove reference" = "Referentie verwijderen";
+"Reset zoom" = "Zoom herstellen";
+"Save to Photos" = "Bewaar in Foto’s";
+"Search" = "Zoeken";
+"Send" = "Versturen";
+"Speak" = "Spreken";
+"Speak a change" = "Een wijziging dicteren";
+"Switch camera" = "Camera wisselen";
+"Take photo" = "Foto maken";
+"Type instead" = "Tekst typen";
+/* Personalized Home hero */
+"home_hero_exterior_title" = "Vernieuw je gevel";
+"home_hero_exterior_subtitle" = "Nieuwe look in ~30 s. De huisvorm blijft.";
+"home_hero_garden_title" = "Vernieuw je tuin";
+"home_hero_garden_subtitle" = "Nieuwe tuin in ~30 s. De ruimte blijft.";
+"home_hero_surfaces_title" = "Vernieuw oppervlakken";
+"home_hero_surfaces_subtitle" = "Probeer nieuwe muren en vloeren in ~30 s.";
+"About %d s" = "Ongeveer %d s";

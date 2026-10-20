@@ -42,15 +42,15 @@ final class MaskCanvasView: UIView {
     }
 
     /// Lets the hosting screen draw extra overlays (selection frames, hotspots) aligned with the photo.
-    let decorationView = UIView()
+    @IBOutlet private(set) weak var decorationView: UIView!
     /// Optional live preview layer (Paint) above the photo, under the mask overlay.
-    let previewImageView = UIImageView()
+    @IBOutlet private(set) weak var previewImageView: UIImageView!
 
     // MARK: Private
 
-    private let contentView = UIView()
-    private let imageView = UIImageView()
-    private let overlayView = UIImageView()
+    @IBOutlet private weak var contentView: UIView!
+    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var overlayView: UIImageView!
     private let liveStroke = CAShapeLayer()
     private let cursor = CAShapeLayer()
     private var maskContext: CGContext?
@@ -62,26 +62,19 @@ final class MaskCanvasView: UIView {
     private var zoom: CGFloat = 1
     private var panOffset: CGPoint = .zero
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setup()
-    }
-
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
+    override func awakeFromNib() {
+        super.awakeFromNib()
         setup()
     }
 
     private func setup() {
         clipsToBounds = true
         backgroundColor = .black
-        addSubview(contentView)
-        [imageView, previewImageView, overlayView, decorationView].forEach {
+        [imageView!, previewImageView!, overlayView!, decorationView!].forEach {
             $0.isUserInteractionEnabled = false
-            contentView.addSubview($0)
         }
         imageView.contentMode = .scaleAspectFill
-        for v in [imageView, previewImageView, overlayView] {
+        for v in [imageView!, previewImageView!, overlayView!] {
             v.setContentHuggingPriority(.init(1), for: .vertical)
             v.setContentCompressionResistancePriority(.init(1), for: .vertical)
         }
@@ -116,9 +109,6 @@ final class MaskCanvasView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        contentView.bounds = bounds
-        contentView.center = CGPoint(x: bounds.midX, y: bounds.midY)
-        [imageView, previewImageView, overlayView, decorationView].forEach { $0.frame = contentView.bounds }
         liveStroke.frame = contentView.bounds
         applyTransform()
     }

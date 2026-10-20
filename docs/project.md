@@ -8,38 +8,45 @@ Display name: **ReHomely**. Bundle: `com.albert.apps.design.ai`. SwiftUI нем�
 ```
 AppDelegate (Sentry → Facebook → Adapty; Firebase/AppsFlyer/Amplitude на наступному runloop)
   → SceneDelegate → NavigationManager.setupWindow
-      → LaunchViewController (5 с)
+      → LaunchViewController (Onboarding.storyboard, 0.8 с)
           → proceedToApp()
-              → немає didShowOnboarding (або DEBUG alwaysShowOnboarding)
+              → didShowOnboarding != true (або явний DEBUG -showOnboarding)
                     → OBPageViewController
-              → інакше TabBarController + launch paywall
+              → інакше TabBarController, Home починається з Interior
 ```
 
 Ключ онбордингу: `did_show_onboarding_8`.  
-DEBUG: `Constants.Debug.alwaysShowOnboarding == true` (Release = false).
+Debug і Release поважають completion flag. Для примусового повтору у Debug потрібен `-showOnboarding`; `-skipOnboarding` вимикає це примусове повторення. Одразу після завершення O4 Home показує вибраний напрям у першому сеансі; з наступного запуску процесу — Interior. Оригінальний `onboarding_goal` зберігається.
 
 ## Таби
 
 | Таб | Storyboard ID | Файл |
 |---|---|---|
-| Options | `OptionsViewController` | `Controllers/OptionsViewController.swift` |
-| Inspiration | `InspirationViewController` | `Controllers/InspirationViewController.swift` |
-| Profile | `ProfileViewController` | `Controllers/ProfileViewController.swift` |
+| Create | `HomeViewController` | `Storyboards/Home.storyboard` |
+| Inspiration | `InspirationFeedViewController` | `Storyboards/Inspiration.storyboard` |
+| Projects | `ProjectsViewController` | `Storyboards/Projects.storyboard` |
+| Profile | `ProfileTabViewController` | `Storyboards/Profile.storyboard` |
 
 Кожен таб у `PortraitNavigationController`. Роутинг — `NavigationManager`, не coordinator.
 
+З 20.10.2026 навігація використовує системні `UITabBarController` / `UITabBar`. Чотири кореневі сцени задають `tabBarItem` у storyboard; `TabBarController` підставляє локалізовані назви. UIKit керує розміром, матеріалом, safe area й розташуванням панелі, зокрема може показувати її вгорі на iPad. Кастомний `DSTabBarView`, його overlay-сцена, масштабування та додатковий нижній safe-area inset прибрані. Push-екрани й режим вибору Projects приховують панель через системний `setTabBarHidden`; власної анімації таббара немає.
+
 ## Онбординг
 
-Pager: `OBPageViewController` (paging `UIScrollView`, не storyboard). XIBs:
+Pager: `OBPageViewController` (paging `UIScrollView`). Новий Figma A стек:
 
-1. `WelcomeOBViewController` — interior before/after
-2. `OBExteriorViewController`
-3. `GardenOBViewController`
-4. `RateOBViewController` — Lottie `iphone ob 4.json`, CTA Get Started. Системний `requestReview` тут більше не викликається.
+1. `OnboardingPageViewController(.room)` — before/after, ручка з drag.
+2. `.tools` — карусель п’яти інструментів зі сканером.
+3. `.words` — демонстрація текстової правки.
+4. `OnboardingGoalViewController` — персоналізація (interior/exterior/garden/surfaces).
 
-Останній екран: Adapty → `completeOnboarding()` → TabBar → paywall `ob-placement-com`, якщо немає підписки.
+Сцени `Onboarding.storyboard`, `OnboardingHeroView`, `OnboardingLayout` (bounds вікна, база 393×852). Зображення у `Assets.xcassets/Onboarding`. Старі OB-класи збережені, але pager їх не використовує.
 
-Деталі / лог: `docs/onboarding.md`.
+Кнопки Skip немає; на O4 потрібно вибрати ціль. Вибір пишеться в `onboarding_goal` та `redesign_home_focus` і персоналізує перший Home та стартовий інструмент. Завершення: ATT → Adapty → TabBar → paywall `ob-placement-com`. Повторний запуск — Home з інтер’єром першим, без онбордингу й launch-paywall.
+
+UI QA: схема `HomeAIOnboardingQA`, `HomeAIUITests`; DEBUG `--onboarding-preview`, `--onboarding-page 0…3`, `--onboarding-still`, `--onboarding-splash`. Деталі: `docs/onboarding.md`.
+
+Повний каталог: схема `HomeAIFullQA`, DEBUG `--app-qa`, 72 стани / 15 мов. Відтворення й результати завершених прогонів — [full-app QA](qa/full-app-qa.md).
 
 ## Генерація дизайну
 
@@ -99,19 +106,21 @@ cd cloudflare-worker && npm test
 | Генерація | `ImageGenerationService`, `GeminiRESTService`, `OpenAIWorkerImageGenerationService` | Existing Worker/Gemini for old versions; separate versioned OpenAI Worker for the new version |
 | Чат | `AssistantChatService` | текст через worker |
 | Ліміти | `WorkerConfigService`, `GenerationAccess` | free / daily premium |
-| Remote flags | `SupabaseAppConfigService` | `obSwRateAlert` — системний Store review на згенерованій детальці (Apple лімітить частоту), не на онбордингу |
+| Remote flags | `SupabaseAppConfigService` | `obSwRateAlert` — для legacy-маршруту; поточний `RatePrompt` запитує системний рейтинг один раз після першої успішної генерації |
 | Історія | `ImageHistoryService` | локально + upload |
 | Локальні пуші | `LocalNotificationService` | 15 re-engagement пушів для юзерів без преміума, 20:12 локального часу |
 
 Глобальні кольори/ключі/URL — лише `Entities/Constants.swift`.  
 Локальні тексти/лейаут файлу — `private struct Defaults`.
 
+Пейвол завжди пропонує лише тижневу підписку з продуктів Adapty. Якщо тижневого продукту немає, показується помилка доступності; автоматичного переходу на інший період немає. Profile та Pro feature sheet використовують кешовану ціну цього самого тижневого продукту.
+
 ## UI-конвенції
 
-- Екрани: storyboard (шел) або XIB (онбординг, клітини).
+- Увесь поточний UI: `HomeAI/Storyboards/*.storyboard`; `AppStoryboard` створює сцени. Клітинки — storyboard prototypes. Старі невикористовувані XIB legacy-екранів не є джерелом поточного дизайну.
 - Кнопки CTA: `LiquidGlassButton`.
 - Констрейнти з IB: `constraintsCollection` + `scaleConstant()` (база висоти 852).
-- Шрифти в storyboard/XIB (Geologica). Картинки в XIB, якщо можна.
+- Ієрархії, шрифти Geologica, зображення, констрейнти та outlets задаються у storyboard. Swift містить стан, локалізацію, анімації й адаптивну зміну існуючих констрейнтів. `tools/xibgen` — архівний інструмент; поточний UI ним не генерується.
 - Локалізація: 15 мов, `Resources/<lang>.lproj/Localizable.strings`, `"key".localized`.
 
 ## Cloudflare worker
@@ -125,3 +134,11 @@ cd cloudflare-worker && npm test
 - `logs.swift` — не апп-код
 - Firebase Auth у processing заглушений
 - опечатка ключа `optionPlacememt`
+
+## Адаптивна розмітка storyboard
+
+Статичні сцени використовують `DSAdaptiveRootView`, а клітинки — `DSAdaptiveCollectionViewCell` / `DSAdaptiveTableViewCell`. `DSReferenceLayout` зберігає авторські константи й застосовує наявний `scaledByHeight` від розміру поточного viewport, включно зі шрифтами, відступами, іконками та сітками. Повторні layout і resize не накопичують масштаб; обмеження 1.35 прибране. Онбординг, Result/Compare/Share та пейволи з власним reference layout не отримують другого масштабу. Системний таббар не входить у reference layout; його safe area надає UIKit. `ds.dynamic` позначає констрейнти, які контролер обчислює з поточного стану, наприклад ручку before/after. Ієрархії залишаються в storyboard.
+
+Поради отримують `DesignOption` із поточного wizard; локалізований legacy-каталог використовується для фасаду, саду, маскування й планів. Три векторні приклади планів у `Assets.xcassets/PhotoGuidance` доступні офлайн через стандартні demo-картки. Перша успішна генерація записує pending review; Result запитує системний рейтинг один раз при показі саме цього результату.
+
+Adaptive thumbnails request the rendered card resolution; wide Projects cards load the saved original instead of stretching the compact preview. Photo-guidance rows use storyboard minimum heights measured after each label receives its final scaled bounds.

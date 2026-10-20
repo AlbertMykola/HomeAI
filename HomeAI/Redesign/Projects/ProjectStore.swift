@@ -34,7 +34,10 @@ final class ProjectStore {
     private let history = ImageHistoryService()
 
     private init() {
-        let base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+        var base = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!
+        #if DEBUG
+        if AppQA.enabled { base = AppQA.storageURL }
+        #endif
         try? FileManager.default.createDirectory(at: base, withIntermediateDirectories: true)
         fileURL = base.appendingPathComponent("design_projects.json")
         load()
@@ -45,6 +48,9 @@ final class ProjectStore {
     /// Projects with their docs, newest activity first. History entries made before projects existed
     /// become single-version projects.
     func allProjects() -> [(project: DesignProject, versions: [ImageDoc])] {
+        #if DEBUG
+        if AppQA.enabled && AppQA.emptyProjects { return [] }
+        #endif
         let docs = history.allDocs()
         let byID = Dictionary(docs.map { ($0.id, $0) }, uniquingKeysWith: { a, _ in a })
         var used = Set<String>()
@@ -72,7 +78,7 @@ final class ProjectStore {
         guard let first = versions.first else { return "Design".localized }
         if let style = first.style, !style.isEmpty, style != "No Style", style != "Custom", first.designOption != .rearrange {
             // "Japandi living room" reads well in English only; other languages get "Вітальня · Сучасний".
-            let english = (Locale.preferredLanguages.first ?? "en").hasPrefix("en")
+            let english = AppLocalization.language.hasPrefix("en")
             return english ? "\(style) \(first.projectTitle.lowercased())" : "\(first.projectTitle) · \(style)"
         }
         return first.projectTitle

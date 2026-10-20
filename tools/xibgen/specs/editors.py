@@ -34,7 +34,8 @@ def editor_shell(name, title, make_right_buttons):
     pin(scrim, edges="ltr")
     size(scrim, h=140)
     pin(close, edges="l", inset=16)
-    C(close, "top", sa, "top", -2)
+    C(close, "top", sa, "top", -2, prio=999)
+    C(close, "top", root, "top", 0, rel="greaterThanOrEqual")
     center(nav_title, to=close, x=False)
     center(nav_title, y=False)
     pin(right, edges="r", inset=16)
@@ -52,8 +53,8 @@ def editor_shell(name, title, make_right_buttons):
 
 
 def panel_header(title, sub, extra=None):
-    t = Label(title, id="p-title", font=("SemiBold", 20), outlet="panelTitleLabel")
-    s = Label(sub, id="p-sub", font=("Regular", 13), color="dsTextTertiary", outlet="panelSubtitleLabel", minScale=0.8)
+    t = Label(title, id="p-title", font=("SemiBold", 20), outlet="panelTitleLabel", minScale=0.85)
+    s = Label(sub, id="p-sub", font=("Regular", 13), color="dsTextTertiary", outlet="panelSubtitleLabel", lines=0, resist=(750, 1000))
     texts = VStack([t, s], id="p-texts", spacing=2, hug=(249, 251))
     return HStack([texts] + ([extra] if extra else []), id="p-header", align="center", spacing=8)
 
@@ -68,6 +69,7 @@ def segmented(id, titles, outlet_prefix, action, height=34, width=None):
                     children=[Label(t, id=f"{id}{i}-l", font=("Medium", 14), color="dsTextSecondary", align="center",
                                     minScale=0.7, collection=f"{outlet_prefix}Labels", tag_value=i)]).on(action)
         center(c.children[0])
+        C(c.children[0], "leading", c, "leading", 4, rel="greaterThanOrEqual")
         segs.append(c)
     row = HStack(segs, id=f"{id}-row", dist="fillEqually")
     seg = View(id=id, cls="DSView", bg="dsSegment", runtime={"cornerRadius": height / 2}, outlet=f"{outlet_prefix}View",
@@ -119,8 +121,10 @@ def paint_editor():
     size_row = brush_size_row()
     size_row.hidden = True
     size_row.outlet = "brushSizeRow"
-    apply_btn = primary_button("apply", "Apply · 1 credit", outlet="applyButton", action="didTapApply:",
+    apply_btn = primary_button("apply", "Apply", outlet="applyButton", action="didTapApply:",
                                icon="checkmark", title_outlet="applyLabel")
+    apply_btn.children[0].children[-1].lines = 0
+    apply_btn.children[0].children[-1].resist = (750, 1000)
     stack.add(header, palettes, sw_scroll, size_row, apply_btn)
     return d
 
@@ -163,8 +167,10 @@ def replace_editor():
                        keep], id="keep-row", align="center", spacing=8)
     brush_link = Button("Can't find it? Paint over the object", id="brush-link", font=("Medium", 13), color="dsLink",
                         outlet="brushFallbackButton", hidden=True).on("didTapBrushFallback:")
-    apply_btn = primary_button("apply", "Replace · 1 credit", outlet="applyButton", action="didTapApply:",
+    apply_btn = primary_button("apply", "Replace", outlet="applyButton", action="didTapApply:",
                                icon="arrow.triangle.2.circlepath", title_outlet="applyLabel")
+    apply_btn.children[0].children[-1].lines = 0
+    apply_btn.children[0].children[-1].resist = (750, 1000)
     stack.add(header, suggestions, prompt, keep_row, brush_link, apply_btn)
     size(prompt, h=52)
     pin(prompt.children[0])
@@ -187,8 +193,11 @@ def remove_editor():
     size_row = brush_size_row()
     size_row.outlet = "brushSizeRow"
     clear = secondary_button("clear", "Clear", outlet="clearButton", action="didTapClear:", height=56)
-    apply_btn = primary_button("apply", "Remove · 1 credit", outlet="applyButton", action="didTapApply:", icon="eraser",
+    apply_btn = primary_button("apply", "Remove", outlet="applyButton", action="didTapApply:", icon="eraser",
                                title_outlet="applyLabel")
+    apply_btn.children[0].children[-1].minScale = 0.8
+    apply_btn.children[0].children[-1].lines = 0
+    apply_btn.children[0].children[-1].resist = (750, 1000)
     actions = HStack([clear, apply_btn], id="actions", spacing=12)
     size(clear, w=114)
     stack.add(header, mode, size_row, actions)

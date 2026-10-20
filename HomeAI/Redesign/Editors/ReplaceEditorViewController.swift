@@ -1,7 +1,7 @@
 import UIKit
 
 /// A/06 · R4 Replace: tap a detected object (or paint over it), describe the replacement, keep size & position.
-/// Layout: ReplaceEditorViewController.xib.
+/// Layout: Editors.storyboard.
 final class ReplaceEditorViewController: MaskEditorViewController {
 
     @IBOutlet private weak var suggestionScrollView: UIScrollView!
@@ -109,21 +109,9 @@ final class ReplaceEditorViewController: MaskEditorViewController {
     private func drawSelection(for object: ObjectDetector.Object) {
         selection?.removeFromSuperview()
         let rect = canvasView.imageRectToDecoration(object.bounds).insetBy(dx: -6, dy: -6)
-        let frame = UIView(frame: rect)
-        frame.layer.borderColor = DS.Color.lime.cgColor
-        frame.layer.borderWidth = 2.5
-        frame.layer.cornerRadius = 16
-        frame.backgroundColor = DS.Color.lime.withAlphaComponent(0.14)
-        frame.isUserInteractionEnabled = false
-        let tag = PaddingLabel()
-        tag.text = "✓ " + object.label
-        tag.font = DS.Font.geologica(.semiBold, 13)
-        tag.backgroundColor = DS.Color.lime
-        tag.layer.cornerRadius = 14
-        tag.clipsToBounds = true
-        tag.sizeToFit()
-        tag.frame.origin = CGPoint(x: 6, y: -tag.bounds.height - 8)
-        frame.addSubview(tag)
+        let frame = AppStoryboard.component(EditorSelectionView.self)
+        frame.frame = rect
+        frame.title = "✓ " + object.label
         canvasView.decorationView.addSubview(frame)
         selection = frame
         frame.transform = CGAffineTransform(scaleX: 1.15, y: 1.15)

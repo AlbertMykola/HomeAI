@@ -1,6 +1,6 @@
 import UIKit
 
-/// A/08 · I1 Inspiration feed (+ I1 · Skeleton). Tab root. Layout: InspirationFeedViewController.xib.
+/// A/08 · I1 Inspiration feed (+ I1 · Skeleton). Tab root. Layout: Inspiration.storyboard.
 final class InspirationFeedViewController: UIViewController {
 
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -67,8 +67,7 @@ final class InspirationFeedViewController: UIViewController {
             return Self.ratios[hash % Self.ratios.count]
         }
         collectionView.collectionViewLayout = layout
-        collectionView.register(UINib(nibName: "InspirationCardCell", bundle: nil),
-                                forCellWithReuseIdentifier: InspirationCardCell.reuseID)
+
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -86,6 +85,11 @@ final class InspirationFeedViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
         updateOfflineState(animated: false)
+        if !didRunEntrance {
+            largeTitleLabel.alpha = 0
+            searchButton.alpha = 0
+            roomChips.forEach { $0.alpha = 0 }
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -102,8 +106,9 @@ final class InspirationFeedViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let top = headerView.frame.maxY + 12
-        let bottom = view.safeAreaInsets.bottom + 24
+        let metrics = OnboardingLayout(size: view.dsAdaptiveReferenceSize)
+        let top = headerView.frame.maxY + metrics.value(12)
+        let bottom = view.safeAreaInsets.bottom + metrics.value(24)
         if collectionView.contentInset.top != top || collectionView.contentInset.bottom != bottom {
             let atTop = collectionView.contentOffset.y <= -collectionView.contentInset.top + 1
             collectionView.contentInset = UIEdgeInsets(top: top, left: 0, bottom: bottom, right: 0)
@@ -244,13 +249,19 @@ final class InspirationFeedViewController: UIViewController {
 
     private func updateHeader() {
         let y = collectionView.contentOffset.y + collectionView.contentInset.top
-        let p = min(max(y / 40, 0), 1)
-        let bg = min(max(y / 12, 0), 1)
+        let metrics = OnboardingLayout(size: view.dsAdaptiveReferenceSize)
+        let p = min(max(y / metrics.value(40), 0), 1)
+        let bg = min(max(y / metrics.value(12), 0), 1)
         headerBackgroundView.alpha = bg
         headerHairline.alpha = bg
+        guard didRunEntrance else {
+            largeTitleLabel.alpha = 0
+            compactTitleLabel.alpha = 0
+            return
+        }
         guard !isSearching else { return }
         largeTitleLabel.alpha = 1 - p
-        largeTitleLabel.transform = CGAffineTransform(translationX: 0, y: -8 * p)
+        largeTitleLabel.transform = CGAffineTransform(translationX: 0, y: -metrics.value(8) * p)
         compactTitleLabel.alpha = p
     }
 
@@ -407,6 +418,8 @@ final class InspirationFeedViewController: UIViewController {
         }
         detail.modalPresentationStyle = .custom
         detail.transitioningDelegate = transition
+        // Decide the entrance owner before UIKit sends viewWillAppear.
+        detail.presentedWithZoom = true
         DS.Haptic.light()
         present(detail, animated: true)
     }

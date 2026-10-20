@@ -2,7 +2,7 @@ import UIKit
 import PhotosUI
 
 /// A/09 · AI designer: A1 start (greeting + quick questions), A1 Attach, A2 typing / reply with idea cards.
-/// Layout: AssistantViewController.xib (+ AssistantUserCell / AssistantReplyCell / AssistantIdeaCell).
+/// Layout: Assistant.storyboard (+ AssistantUserCell / AssistantReplyCell / AssistantIdeaCell).
 final class AssistantViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
@@ -14,6 +14,7 @@ final class AssistantViewController: UIViewController {
     @IBOutlet private var questionLabels: [UILabel]!
     @IBOutlet private var questionControls: [DSPressableControl]!
     @IBOutlet private weak var navView: UIView!
+    @IBOutlet private weak var headerFadeView: UIView!
     @IBOutlet private weak var navTitleLabel: UILabel!
     @IBOutlet private weak var statusLabel: UILabel!
     @IBOutlet private weak var attachmentView: UIView!
@@ -39,7 +40,7 @@ final class AssistantViewController: UIViewController {
     private var revealID: String?
 
     static func make(conversation: AssistantConversation? = nil) -> AssistantViewController {
-        let vc = AssistantViewController(nibName: "AssistantViewController", bundle: .main)
+        let vc = AppStoryboard.instantiate(AssistantViewController.self)
         if let conversation { vc.conversation = conversation }
         return vc
     }
@@ -61,8 +62,7 @@ final class AssistantViewController: UIViewController {
         composerBottomConstraint.isActive = false
         composerView.bottomAnchor.constraint(equalTo: view.keyboardLayoutGuide.topAnchor, constant: -4).isActive = true
 
-        tableView.register(UINib(nibName: "AssistantUserCell", bundle: nil), forCellReuseIdentifier: AssistantUserCell.reuseID)
-        tableView.register(UINib(nibName: "AssistantReplyCell", bundle: nil), forCellReuseIdentifier: AssistantReplyCell.reuseID)
+
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
@@ -77,6 +77,16 @@ final class AssistantViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+        guard !didRunEntrance else { return }
+        navView.alpha = 0
+        composerView.alpha = 0
+        if conversation.messages.isEmpty {
+            heroAvatarView.alpha = 0
+            greetingTitleLabel.alpha = 0
+            greetingSubtitleLabel.alpha = 0
+            tryAskingLabel.alpha = 0
+            questionControls.forEach { $0.alpha = 0 }
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -87,10 +97,11 @@ final class AssistantViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        let top = navView.frame.maxY + 14
+        let metrics = OnboardingLayout(size: view.dsAdaptiveReferenceSize)
+        let top = navView.frame.maxY + metrics.value(14)
         if tableView.contentInset.top != top {
             tableView.contentInset.top = top
-            tableView.contentInset.bottom = 12
+            tableView.contentInset.bottom = metrics.value(12)
             scrollToBottom(animated: false)
         }
     }
@@ -128,12 +139,11 @@ final class AssistantViewController: UIViewController {
     // title 110, subtitle 170, "Try asking" 230, questions 290 + 60 ms, composer 530 ms; y 12, 450 ms)
 
     private func runEntrance() {
+        DS.Motion.animate(0.3) { self.navView.alpha = 1 }
         guard conversation.messages.isEmpty else {
             DS.Motion.enter(composerView, delay: 0.1, dy: 12)
             return
         }
-        navView.alpha = 0
-        DS.Motion.animate(0.3) { self.navView.alpha = 1 }
         if !DS.Motion.reduceMotion {
             heroAvatarView.alpha = 0
             heroAvatarView.transform = CGAffineTransform(scaleX: 0.6, y: 0.6)
@@ -141,6 +151,8 @@ final class AssistantViewController: UIViewController {
             DS.Motion.animate(0.4, delay: 0.05, timing: DS.Motion.easeOutBack, {
                 self.heroAvatarView.transform = .identity
             }, completion: { [weak self] in self?.startAvatarFloat() })
+        } else {
+            DS.Motion.enter(heroAvatarView, delay: 0, duration: 0.2)
         }
         DS.Motion.enter(greetingTitleLabel, delay: 0.11, dy: 12)
         DS.Motion.enter(greetingSubtitleLabel, delay: 0.17, dy: 12)
@@ -242,7 +254,7 @@ final class AssistantViewController: UIViewController {
     private func openCamera() {
         CameraViewController.requestAccess(from: self, onLibrary: { [weak self] in self?.openLibrary() }) { [weak self] granted in
             guard let self, granted else { return }
-            let camera = CameraViewController(nibName: "CameraViewController", bundle: .main)
+            let camera = AppStoryboard.instantiate(CameraViewController.self)
             camera.onCapture = { [weak self] image in self?.attach(image) }
             camera.modalPresentationStyle = .fullScreen
             self.present(camera, animated: true)
@@ -559,4 +571,3 @@ extension AssistantViewController: PHPickerViewControllerDelegate {
         }
     }
 }
-

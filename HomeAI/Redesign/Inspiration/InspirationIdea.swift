@@ -67,7 +67,7 @@ struct InspirationIdea: Equatable {
     }
 
     private var place: String { room == .outdoor ? category.localized : room.title }
-    private static var isEnglish: Bool { (Locale.preferredLanguages.first ?? "en").hasPrefix("en") }
+    private static var isEnglish: Bool { AppLocalization.language.hasPrefix("en") }
 
     var tags: [String] {
         var tags = [style.localized, room.title]
@@ -189,7 +189,12 @@ extension Notification.Name {
 final class IdeasStore {
 
     static let shared = IdeasStore()
-    private let key = "redesign_saved_ideas"
+    private var key: String {
+        #if DEBUG
+        if AppQA.enabled { return "qa_saved_ideas" }
+        #endif
+        return "redesign_saved_ideas"
+    }
 
     private(set) var savedIDs: [String] {
         get { UserDefaults.standard.stringArray(forKey: key) ?? [] }
@@ -218,6 +223,9 @@ final class IdeasStore {
     }
 
     func savedIdeas(from all: [InspirationIdea] = InspirationFeed.load()) -> [InspirationIdea] {
+        #if DEBUG
+        if AppQA.enabled && AppQA.emptyProjects { return [] }
+        #endif
         let byID = Dictionary(all.map { ($0.id, $0) }, uniquingKeysWith: { a, _ in a })
         return savedIDs.compactMap { byID[$0] }
     }

@@ -11,10 +11,6 @@
 	<false/>
 	<key>NSAdvertisingAttributionReportEndpoint</key>
 	<string>https://appsflyer-skadnetwork.com/</string>
-	<key>NSMicrophoneUsageDescription</key>
-	<string>Speak your edits instead of typing. Audio is processed on your iPhone.</string>
-	<key>NSSpeechRecognitionUsageDescription</key>
-	<string>Your voice is turned into text to edit your design, on your iPhone when it supports it.</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Geologica-Thin.ttf</string>
@@ -40,8 +36,6 @@
 					<string>Default Configuration</string>
 					<key>UISceneDelegateClassName</key>
 					<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
-					<key>UISceneStoryboardFile</key>
-					<string>Main</string>
 				</dict>
 			</array>
 		</dict>

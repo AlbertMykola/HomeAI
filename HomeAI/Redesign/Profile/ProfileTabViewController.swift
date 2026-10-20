@@ -37,8 +37,9 @@ enum AppearanceMode: Int, CaseIterable {
     }
 }
 
-/// A/11 · S1 Profile (Free / Pro / full scroll). Layout: ProfileTabViewController.xib.
+/// A/11 · S1 Profile (Free / Pro / full scroll). Layout: Profile.storyboard.
 final class ProfileTabViewController: UIViewController {
+    @IBOutlet private weak var appearanceMenuButton: UIButton!
 
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var contentStack: UIStackView!
@@ -50,7 +51,8 @@ final class ProfileTabViewController: UIViewController {
     @IBOutlet private weak var freeSubtitleLabel: UILabel!
     @IBOutlet private weak var progressTrackView: UIView!
     @IBOutlet private weak var progressFillView: UIView!
-    @IBOutlet private weak var progressFillWidthConstraint: NSLayoutConstraint!
+    // Retain the entrance constraint while the proportional constraint is active.
+    @IBOutlet private var progressFillWidthConstraint: NSLayoutConstraint!
     @IBOutlet private weak var getProButton: DSPressableControl!
     @IBOutlet private weak var getProLabel: UILabel!
     @IBOutlet private weak var proCardView: UIView!
@@ -62,6 +64,7 @@ final class ProfileTabViewController: UIViewController {
     @IBOutlet private weak var billingBanner: DSPressableControl!
     @IBOutlet private weak var billingLabel: UILabel!
     @IBOutlet private var groupViews: [UIView]!
+    @IBOutlet private weak var restorePurchasesGroup: UIView!
     @IBOutlet private var rowViews: [UIView]!
     @IBOutlet private var rowTitleLabels: [UILabel]!
     @IBOutlet private weak var languageValueLabel: UILabel!
@@ -73,15 +76,19 @@ final class ProfileTabViewController: UIViewController {
     @IBOutlet private weak var restoreLabel: UILabel!
 
     private var didRunEntrance = false
+    private var entrancePrepared = false
+    private var isAnimatingProgress = false
     private var progress: CGFloat = 0
+    private var progressRatioConstraint: NSLayoutConstraint?
+    private var fittedProgress: CGFloat?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         largeTitleLabel.text = "Profile".localized
         compactTitleLabel.text = "Profile".localized
-        let titles = ["Language", "Appearance", "Notifications", "Restore purchases", "Manage subscription",
-                      "Help & feedback", "Rate Rehomely", "Share with a friend", "Privacy policy", "Terms of use"]
-        rowTitleLabels.forEach { $0.text = titles[$0.tag].localized }
+        let titles = [0: "Language", 1: "Appearance", 2: "Notifications", 3: "Restore purchases",
+                      5: "Help & feedback", 6: "Rate Rehomely", 7: "Share with a friend", 8: "Privacy policy", 9: "Terms of use"]
+        rowTitleLabels.forEach { $0.text = titles[$0.tag]?.localized }
         let perks = ["4K export", "No watermark", "All tools"]
         perkLabels.sorted { $0.tag < $1.tag }.enumerated().forEach { $1.text = perks[$0].localized }
         restoreLabel.text = "Restoring purchases…".localized
@@ -105,11 +112,26 @@ final class ProfileTabViewController: UIViewController {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
         refresh()
+        if !didRunEntrance && !entrancePrepared {
+            // Prepare before the first visible frame, rather than hiding an already visible screen.
+            entrancePrepared = true
+            contentStack.arrangedSubviews.filter { !$0.isHidden }.forEach {
+                $0.alpha = 0
+                $0.transform = CGAffineTransform(translationX: 0, y: DS.Motion.reduceMotion ? 0 : 12)
+            }
+            progressRatioConstraint?.isActive = false
+            progressFillWidthConstraint.isActive = true
+            progressFillWidthConstraint.constant = 0
+        }
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        if !didRunEntrance || DS.Motion.reduceMotion { progressFillWidthConstraint.constant = progressTrackView.bounds.width * progress }
+        let bottom = OnboardingLayout(size: view.dsAdaptiveReferenceSize).value(24)
+        if scrollView.contentInset.bottom != bottom { scrollView.contentInset.bottom = bottom }
+        if (!entrancePrepared && !isAnimatingProgress) || DS.Motion.reduceMotion {
+            fitProgressToTrack()
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -121,14 +143,17 @@ final class ProfileTabViewController: UIViewController {
         contentStack.arrangedSubviews.filter { !$0.isHidden }.enumerated().forEach {
             DS.Motion.enter($1, delay: 0.06 * Double($0), dy: 12)
         }
-        if !freeCardView.isHidden, !DS.Motion.reduceMotion {
-            progressFillWidthConstraint.constant = 0
-            view.layoutIfNeeded()
-            let target = progressTrackView.bounds.width * progress
+        var animateProgress = !DS.Motion.reduceMotion
+        #if DEBUG
+        if AppQA.enabled && AppQA.snapshot { animateProgress = false }
+        #endif
+        if !freeCardView.isHidden, animateProgress {
+            isAnimatingProgress = true
             let grow = UIViewPropertyAnimator(duration: 0.8, dampingRatio: 0.8) {
-                self.progressFillWidthConstraint.constant = target
+                self.fitProgressToTrack()
                 self.view.layoutIfNeeded()
             }
+            grow.addCompletion { [weak self] _ in self?.isAnimatingProgress = false }
             grow.startAnimation(afterDelay: 0.4)
             [1.6, 4.2].forEach { t in
                 DispatchQueue.main.asyncAfter(deadline: .now() + t) { [weak self] in
@@ -137,13 +162,26 @@ final class ProfileTabViewController: UIViewController {
                 }
             }
         }
+        if !animateProgress { fitProgressToTrack() }
+        entrancePrepared = false
         if !proCardView.isHidden { DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) { [weak self] in self?.wiggleCrown() } }
     }
 
     // MARK: State
 
+    private func fitProgressToTrack() {
+        guard progressRatioConstraint?.isActive != true || fittedProgress != progress else { return }
+        progressFillWidthConstraint.isActive = false
+        progressRatioConstraint?.isActive = false
+        let ratio = progressFillView.widthAnchor.constraint(equalTo: progressTrackView.widthAnchor, multiplier: progress)
+        progressRatioConstraint = ratio
+        fittedProgress = progress
+        ratio.isActive = true
+    }
+
     @objc private func refresh() {
         let isPro = AdaptyService.shared.hasActiveSubscription
+        restorePurchasesGroup.isHidden = isPro
         freeCardView.isHidden = isPro
         proCardView.isHidden = !isPro
         if isPro {
@@ -168,8 +206,8 @@ final class ProfileTabViewController: UIViewController {
             freeSubtitleLabel.text = left == 0 ? "No free designs left".localized
                 : String(format: "%d of %d free designs left".localized, left, limit)
             progress = CGFloat(left) / CGFloat(limit)
-            if let price = AdaptyService.shared.cachedYearlyPrice {
-                getProLabel.text = String(format: "Get Pro · %@ / year".localized, price)
+            if let price = AdaptyService.shared.cachedWeeklyPrice {
+                getProLabel.text = String(format: "Get Pro · %@ / week".localized, price)
             } else {
                 getProLabel.text = "Get Pro".localized
             }
@@ -186,7 +224,7 @@ final class ProfileTabViewController: UIViewController {
     }
 
     static var currentLanguageName: String {
-        let code = Bundle.main.preferredLocalizations.first ?? "en"
+        let code = AppLocalization.language
         return Locale(identifier: code).localizedString(forIdentifier: code)?.capitalized(with: Locale(identifier: code)) ?? code
     }
 
@@ -196,11 +234,10 @@ final class ProfileTabViewController: UIViewController {
         DS.Haptic.selection()
         AmplitudeService.shared.logRedesignEvent("profile_row", properties: ["row": sender.tag])
         switch sender.tag {
-        case 0: navigationController?.pushViewController(LanguageViewController(nibName: "LanguageViewController", bundle: .main),
+        case 0: navigationController?.pushViewController(AppStoryboard.instantiate(LanguageViewController.self),
                                                          animated: true)
         case 1: break // pull-down menu (configureAppearanceMenu)
         case 3: restorePurchases()
-        case 4: didTapManage(sender)
         case 5: SupportMail.compose(from: self, subject: "Help & feedback".localized, body: nil)
         case 6: rate()
         case 7: shareApp(from: sender)
@@ -213,15 +250,14 @@ final class ProfileTabViewController: UIViewController {
     /// Appearance → pull-down menu with a check next to the current mode (iOS 14+ UIMenu on the row).
     private func configureAppearanceMenu() {
         guard let row = rowViews.first(where: { $0.tag == 1 }) as? UIControl else { return }
-        let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        row.addSubview(button)
-        NSLayoutConstraint.activate([
-            button.leadingAnchor.constraint(equalTo: row.leadingAnchor), button.trailingAnchor.constraint(equalTo: row.trailingAnchor),
-            button.topAnchor.constraint(equalTo: row.topAnchor), button.bottomAnchor.constraint(equalTo: row.bottomAnchor)
-        ])
+        let button = appearanceMenuButton!
+        // The row's pressable disables decoration during decoding; this storyboard child is interactive.
+        button.isUserInteractionEnabled = true
+        row.isAccessibilityElement = false
+        button.accessibilityIdentifier = "profile.appearance.menu"
         button.showsMenuAsPrimaryAction = true
         button.accessibilityLabel = "Appearance".localized
+        button.accessibilityValue = AppearanceMode.current.title
         button.menu = makeAppearanceMenu()
     }
 
@@ -232,7 +268,8 @@ final class ProfileTabViewController: UIViewController {
                 AppearanceMode.apply(to: self?.view.window, animated: true)
                 DS.Haptic.selection()
                 self?.appearanceValueLabel.text = mode.title
-                (self?.rowViews.first { $0.tag == 1 }?.subviews.compactMap { $0 as? UIButton }.first)?.menu = self?.makeAppearanceMenu()
+                self?.appearanceMenuButton?.accessibilityValue = mode.title
+                self?.appearanceMenuButton?.menu = self?.makeAppearanceMenu()
             }
         })
     }
@@ -392,6 +429,8 @@ final class ProfileTabViewController: UIViewController {
 extension ProfileTabViewController: UIScrollViewDelegate {
     /// Large title collapses into a blurred "Profile" bar after 40 pt.
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        // Initial safe-area/layout callbacks must not reveal the title before its entrance.
+        guard didRunEntrance else { return }
         let p = min(max(scrollView.contentOffset.y / 40, 0), 1)
         headerBackgroundView.alpha = p
         compactTitleLabel.alpha = p
@@ -400,7 +439,7 @@ extension ProfileTabViewController: UIScrollViewDelegate {
 }
 
 /// A/11 · S2 Language. iOS per-app language: a tap opens the app's page in Settings (the change needs a relaunch).
-/// Layout: LanguageViewController.xib.
+/// Layout: Profile.storyboard.
 final class LanguageViewController: UIViewController {
 
     @IBOutlet private weak var navTitleLabel: UILabel!
@@ -413,7 +452,7 @@ final class LanguageViewController: UIViewController {
 
     /// Languages the app ships (lproj folders).
     private static let codes = ["en", "uk", "de", "es", "fr", "it", "pl", "pt-BR", "ja", "ko", "nl", "cs", "da", "nb", "ru"]
-    private var current = Bundle.main.preferredLocalizations.first ?? "en"
+    private var current = AppLocalization.language
 
     override func viewDidLoad() {
         super.viewDidLoad()

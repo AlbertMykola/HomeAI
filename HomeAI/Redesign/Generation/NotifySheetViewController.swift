@@ -2,7 +2,7 @@ import UIKit
 import UserNotifications
 
 /// A/05 · G2 "Get one ping when it's ready?" — push pre-prompt (asked at most twice).
-/// Layout: NotifySheetViewController.xib.
+/// Layout: Generation.storyboard.
 final class NotifySheetViewController: UIViewController {
 
     @IBOutlet private weak var titleLabel: UILabel!
@@ -23,15 +23,23 @@ final class NotifySheetViewController: UIViewController {
     private let amplitude = AmplitudeService.shared
 
     static func present(from presenter: UIViewController, photo: UIImage?, styleTitle: String?, onDone: @escaping () -> Void) {
-        let shown = UserDefaults.standard.integer(forKey: shownCountKey)
-        guard shown < 2 else {
-            UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { _, _ in
-                DispatchQueue.main.async(execute: onDone)
+        // The catalog must show the preprompt in every locale without spending the user's two views.
+        #if DEBUG
+        let fixture = AppQA.enabled
+        #else
+        let fixture = false
+        #endif
+        if !fixture {
+            let shown = UserDefaults.standard.integer(forKey: shownCountKey)
+            guard shown < 2 else {
+                UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) { _, _ in
+                    DispatchQueue.main.async(execute: onDone)
+                }
+                return
             }
-            return
+            UserDefaults.standard.set(shown + 1, forKey: shownCountKey)
         }
-        UserDefaults.standard.set(shown + 1, forKey: shownCountKey)
-        let vc = NotifySheetViewController(nibName: "NotifySheetViewController", bundle: .main)
+        let vc = AppStoryboard.instantiate(NotifySheetViewController.self)
         vc.photo = photo
         vc.styleTitle = styleTitle
         vc.onDone = onDone

@@ -2,7 +2,7 @@ from xibgen import *
 from dslib import *
 
 
-def tool_screen(name, title, subtitle, photo_status=False, cta_title="Generate", cta_sub="1 credit · about 30 s"):
+def tool_screen(name, title, subtitle, photo_status=False, cta_title="Generate", cta_sub="About %d s"):
     """W1 → T<n> (step 2/2): nav, title, photo summary, then sections added by the caller to `body`."""
     d = Doc(name, owner=name)
     root = d.root
@@ -51,9 +51,13 @@ def section(text, id, outlet=None):
     return Label(text, id=id, font=("SemiBold", 17), outlet=outlet)
 
 
-def toggle_row(id, title, sub, outlet, on=True):
+def toggle_row(id, title, sub, outlet, on=True, wrap_copy=False):
     t = Label(title, id=f"{id}-t", font=("Medium", 15), outlet=f"{outlet}TitleLabel")
     s = Label(sub, id=f"{id}-s", font=("Regular", 12), color="dsTextTertiary", outlet=f"{outlet}SubtitleLabel")
+    if wrap_copy:
+        for label in (t, s):
+            label.lines = 0
+            label.resist = (750, 1000)
     sw = Switch(id=f"{id}-sw", on=on, onTint="#34C759", outlet=f"{outlet}Switch")
     spacer = View(id=f"{id}-sp", bg="clear", hug=(1, 250))
     return HStack([VStack([t, s], id=f"{id}-texts", spacing=2), spacer, sw], id=id, align="center", spacing=8)
@@ -154,7 +158,7 @@ def exterior_tool():
         lights.append(ctrl)
     light_row = HStack(lights, id="lights", spacing=13, dist="fillEqually")
     body.add(section("Facade style", "s-facade", "facadeTitleLabel"), grid, section("Lighting", "s-light", "lightTitleLabel"),
-             light_row, toggle_row("keep", "Keep structure", "Roof, windows and doors stay in place", "keep"))
+             light_row, toggle_row("keep", "Keep structure", "Roof, windows and doors stay in place", "keep", wrap_copy=True))
     return d
 
 
@@ -168,7 +172,7 @@ def garden_tool():
                           first_selected=False)
     body.add(section("Garden style", "s-style", "styleTitleLabel"), styles,
              section("Season", "s-season", "seasonTitleLabel"), seasons,
-             toggle_row("keep", "Keep paths & patio", "Hardscape stays, we redo planting", "keep"))
+             toggle_row("keep", "Keep paths & patio", "Hardscape stays, we redo planting", "keep", wrap_copy=True))
     return d
 
 
@@ -327,12 +331,12 @@ def style_circle_cell():
 def floor_plan_tool():
     d, body = tool_screen("FloorPlanToolViewController", "Floor plan to 3D",
                           "Upload a plan or a photo of one. We build the rooms in 3D.",
-                          cta_title="Build 3D", cta_sub="1 credit · about 60 s")
+                          cta_title="Build 3D", cta_sub="About %d s")
     body.children[1].hidden = True
     plan_img = Image(id="plan-img", mode="scaleAspectFill", cls="DSImageView", runtime={"cornerRadius": 16},
                      outlet="planImageView")
     badge_icon = Image(id="plan-badge-i", system="checkmark.circle.fill", size=12, weight="semibold", tint="dsLink")
-    badge_label = Label("Plan added", id="plan-badge-l", font=("Medium", 12), color="dsLink", outlet="planBadgeLabel")
+    badge_label = Label("Plan added", id="plan-badge-l", font=("Medium", 12), color="dsLink", outlet="planBadgeLabel", minScale=0.8)
     badge = View(id="plan-badge", cls="DSView", bg="dsLimeSoft", runtime={"pill": True},
                  children=[HStack([badge_icon, badge_label], id="plan-badge-row", spacing=5, align="center",
                                   margins=(0, 8, 0, 10))])
@@ -392,7 +396,7 @@ def rearrange_tool():
         box = View(id=f"opt{i}-box", cls="DSView", bg="dsCard", runtime={"cornerRadius": 12}, children=[ic])
         tl = Label(t, id=f"opt{i}-t", font=("SemiBold", 15), collection="optionTitleLabels", tag_value=i)
         sl = Label(s, id=f"opt{i}-s", font=("Regular", 12), color="dsTextTertiary", collection="optionSubtitleLabels",
-                   tag_value=i, minScale=0.8)
+                   tag_value=i, lines=0, resist=(750, 1000))
         radio_dot = View(id=f"opt{i}-dot", cls="DSView", bg="dsTextPrimary", runtime={"pill": True}, alpha=0,
                          collection="optionRadioDots", tag_value=i)
         radio = View(id=f"opt{i}-radio", cls="DSView", bg="dsCard", runtime={"pill": True, "borderWidth": 1.5,
@@ -401,9 +405,9 @@ def rearrange_tool():
         card = Control(id=f"opt{i}", cls="DSPressableControl", bg="dsSurface", tag_value=i, collection="optionCards",
                        runtime={"cornerRadius": 20},
                        children=[HStack([box, VStack([tl, sl], id=f"opt{i}-texts", spacing=2, hug=(249, 251)), radio],
-                                        id=f"opt{i}-row", spacing=14, align="center", margins=(0, 14, 0, 16))]).on(
+                                        id=f"opt{i}-row", spacing=14, align="center", margins=(10, 14, 10, 16))]).on(
             "didTapOption:")
-        size(card, h=72)
+        C(card, "height", const=72, rel="greaterThanOrEqual")
         pin(card.children[0])
         square(box, 48)
         center(ic)

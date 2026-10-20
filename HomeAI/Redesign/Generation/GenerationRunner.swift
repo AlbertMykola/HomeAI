@@ -49,6 +49,14 @@ final class GenerationRunner {
 
     deinit { task?.cancel() }
 
+    #if DEBUG
+    /// Uses the real state renderer without starting a paid network request.
+    func setQAState(_ state: State) {
+        precondition(AppQA.enabled)
+        self.state = state
+    }
+    #endif
+
     var isRunning: Bool {
         if case .running = state { return true }
         return false
@@ -153,6 +161,7 @@ final class GenerationRunner {
                                                                  provider: result.provider.rawValue, model: result.model,
                                                                  latencyMS: self.latency(since: started)))
                     self.amplitude.logEvent(.finishGeneration)
+                    RatePrompt.recordSuccessfulGeneration(docID: outcome.docID)
                     self.state = .succeeded(outcome)
                 }
             } catch is CancellationError {
@@ -219,7 +228,9 @@ final class GenerationRunner {
             interiorStyle: gpm.interiorStyle, exteriorStyle: gpm.exteriorStyle, designMode: gpm.designMode,
             customPrompt: gpm.customPrompt, surfaceMaterial: gpm.surfaceMaterial,
             surfaceCustomPrompt: gpm.surfaceCustomPrompt, replaceMode: gpm.replaceMode,
-            objectToReplace: gpm.objectToReplace, rearrangeSubOption: gpm.rearrangeSubOption)
+            objectToReplace: gpm.objectToReplace, rearrangeSubOption: gpm.rearrangeSubOption,
+            referenceImage: gpm.designOption == .reference ? gpm.referenceImage : nil,
+            maskImage: [.replace, .delete].contains(gpm.designOption) ? gpm.maskImage : nil)
         await MainActor.run {
             if let baseDocID {
                 ProjectStore.shared.addVersion(docID: doc.id, toProjectContaining: baseDocID)

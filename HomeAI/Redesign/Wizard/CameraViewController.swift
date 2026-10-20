@@ -9,7 +9,7 @@ final class CameraPreviewView: UIView {
     var previewLayer: AVCaptureVideoPreviewLayer { layer as! AVCaptureVideoPreviewLayer }
 }
 
-/// A/04 · W1-c Camera with a framing guide (grid 3×3, level line, hint). Layout: CameraViewController.xib.
+/// A/04 · W1-c Camera with a framing guide (grid 3×3, level line, hint). Layout: Wizard.storyboard.
 final class CameraViewController: UIViewController {
 
     @IBOutlet private weak var previewView: CameraPreviewView!

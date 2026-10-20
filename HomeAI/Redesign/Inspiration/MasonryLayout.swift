@@ -14,10 +14,15 @@ final class MasonryLayout: UICollectionViewLayout {
     private var cache: [UICollectionViewLayoutAttributes] = []
     private var contentHeight: CGFloat = 0
     private var preparedWidth: CGFloat = 0
+    private var preparedHeight: CGFloat = 0
+
+    private var metrics: OnboardingLayout {
+        OnboardingLayout(size: collectionView?.dsAdaptiveReferenceSize ?? CGSize(width: 393, height: 852))
+    }
 
     var columnWidth: CGFloat {
         guard let cv = collectionView else { return 170 }
-        return floor((cv.bounds.width - sideInset * 2 - columnSpacing * CGFloat(columns - 1)) / CGFloat(columns))
+        return floor((cv.bounds.width - metrics.value(sideInset * 2 + columnSpacing * CGFloat(columns - 1))) / CGFloat(columns))
     }
 
     override func prepare() {
@@ -25,6 +30,7 @@ final class MasonryLayout: UICollectionViewLayout {
         guard let cv = collectionView else { return }
         cache.removeAll()
         preparedWidth = cv.bounds.width
+        preparedHeight = cv.bounds.height
         let width = columnWidth
         var offsets = Array(repeating: CGFloat(0), count: columns)
         let count = cv.numberOfSections > 0 ? cv.numberOfItems(inSection: 0) : 0
@@ -32,13 +38,13 @@ final class MasonryLayout: UICollectionViewLayout {
             let ip = IndexPath(item: item, section: 0)
             let column = offsets.firstIndex(of: offsets.min() ?? 0) ?? 0
             let height = round(width * heightRatio(ip))
-            let x = sideInset + CGFloat(column) * (width + columnSpacing)
+            let x = metrics.value(sideInset) + CGFloat(column) * (width + metrics.value(columnSpacing))
             let attrs = UICollectionViewLayoutAttributes(forCellWith: ip)
             attrs.frame = CGRect(x: x, y: offsets[column], width: width, height: height)
             cache.append(attrs)
-            offsets[column] += height + rowSpacing
+            offsets[column] += height + metrics.value(rowSpacing)
         }
-        contentHeight = max(0, (offsets.max() ?? 0) - rowSpacing)
+        contentHeight = max(0, (offsets.max() ?? 0) - metrics.value(rowSpacing))
     }
 
     override var collectionViewContentSize: CGSize {
@@ -54,7 +60,7 @@ final class MasonryLayout: UICollectionViewLayout {
     }
 
     override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
-        newBounds.width != preparedWidth
+        newBounds.width != preparedWidth || newBounds.height != preparedHeight
     }
 
     // Inserted / removed cards scale 0.94 + fade, like the I1 entrance.

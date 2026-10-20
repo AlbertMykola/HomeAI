@@ -1,7 +1,7 @@
 import UIKit
 
 /// A/12 Generic error alert / Discard edits alert: dim fades 0.25 s, the card scales 1.12 → 1 with a 0.3 s fade.
-/// Layout: DSAlertViewController.xib.
+/// Layout: States.storyboard.
 final class DSAlertViewController: UIViewController {
 
     struct Action {
@@ -23,7 +23,7 @@ final class DSAlertViewController: UIViewController {
     private var actions: [Action] = []
 
     static func show(from presenter: UIViewController, title: String, message: String?, actions: [Action]) {
-        let vc = DSAlertViewController(nibName: "DSAlertViewController", bundle: .main)
+        let vc = AppStoryboard.instantiate(DSAlertViewController.self)
         vc.alertTitle = title
         vc.message = message
         vc.actions = Array(actions.prefix(2))

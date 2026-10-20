@@ -2,8 +2,8 @@ import UIKit
 
 extension NSLayoutConstraint {
 
-    func scaleConstant(baseHeight: CGFloat = 852) {
-        let screenHeight = UIScreen.main.bounds.height
+    func scaleConstant(baseHeight: CGFloat = 852, height: CGFloat? = nil) {
+        let screenHeight = height ?? UIScreen.main.bounds.height
         let scaleFactor = screenHeight / baseHeight
         self.constant *= scaleFactor
     }

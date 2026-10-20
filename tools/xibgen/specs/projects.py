@@ -58,6 +58,7 @@ def projects():
     size(e_space, 10, 8)
     e_cta = primary_button("empty-cta", "Redesign a room", outlet="emptyPrimaryButton", action="didTapEmptyPrimary:",
                            icon="sparkles", title_outlet="emptyPrimaryLabel")
+    e_cta.children[0].children[-1].minScale = 0.8
     size(e_cta, w=260)
     e_ghost = Button("Browse inspiration", id="empty-ghost", font=("SemiBold", 15), color="dsTextPrimary",
                      outlet="emptyGhostButton").on("didTapBrowse:")
@@ -70,7 +71,7 @@ def projects():
                          "endColor": "dsBackground", "angle": 180})
 
     # header
-    header_bg = Blur(id="header-bg", style="systemUltraThinMaterialLight", outlet="headerBackgroundView", alpha=0)
+    header_bg = Blur(id="header-bg", style="systemUltraThinMaterial", outlet="headerBackgroundView", alpha=0)
     title = Label("Projects", id="title", font=("SemiBold", 32), outlet="largeTitleLabel", minScale=0.6)
     select_label = Label("Select", id="select-label", font=("Medium", 15), outlet="selectLabel")
     select = Control(id="select", cls="DSPressableControl", bg="dsChip", runtime={"pill": True},
@@ -141,6 +142,8 @@ def project_cell():
     ring = View(id="ring", cls="DSView", bg="clear", outlet="selectionRingView", hidden=True, interaction=False,
                 runtime={"cornerRadius": 22, "borderWidth": 3, "borderColor": "dsLime"})
     version = pill("version", "V3", ("#000000", 0.35), "white", label_outlet="versionLabel")
+    # A partially visible card must keep its badge height beneath the floating tab bar.
+    version.children[0].attrs["insetsLayoutMarginsFromSafeArea"] = "NO"
     check_icon = Image(id="check-icon", system="checkmark", size=12, weight="bold", tint="black",
                        outlet="checkIconView")
     check = View(id="check", cls="DSView", bg=("#FFFFFF", 0.35), outlet="checkView", hidden=True,
