@@ -17,7 +17,8 @@ enum ImageGenerationServiceFactory {
                from: Constants.Generation.OpenAI.productionWorkerURL,
                requireHTTPS: true
            ) {
-            return OpenAIWorkerImageGenerationService(endpoint: endpoint)
+            return OpenAIWorkerImageGenerationService(endpoint: endpoint,
+                                                       mobileGateKey: Constants.Generation.OpenAI.mobileGateKey)
         }
         #endif
 
@@ -27,7 +28,8 @@ enum ImageGenerationServiceFactory {
                from: Constants.Generation.OpenAI.productionWorkerURL,
                requireHTTPS: true
            ) {
-            return OpenAIWorkerImageGenerationService(endpoint: endpoint)
+            return OpenAIWorkerImageGenerationService(endpoint: endpoint,
+                                                       mobileGateKey: Constants.Generation.OpenAI.mobileGateKey)
         }
         return GeminiRESTService()
     }

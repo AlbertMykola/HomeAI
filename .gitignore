@@ -7,3 +7,6 @@ cloudflare-worker/.dev.vars
 cloudflare-worker/.dev.vars.local
 cloudflare-worker-openai/.dev.vars
 cloudflare-worker-openai/.dev.vars.local
+
+# Local app secrets (bundled from the synchronized HomeAI folder, never committed).
+HomeAI/Resources/Secrets.plist

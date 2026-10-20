@@ -117,6 +117,10 @@ struct Constants {
 
         struct OpenAI {
             static let productionWorkerURL = "https://fragrant-fog-a5e3.dirty-truth-app.workers.dev/v1/images/generate"
+            /// Shared gate for the worker (`X-HomeAI-Mobile-Key`, worker secret MOBILE_GATE_KEY). Not strong auth:
+            /// it only stops casual use of the public workers.dev URL.
+            /// From the gitignored `HomeAI/Resources/Secrets.plist` (template: `Secrets.example.plist`).
+            static var mobileGateKey: String? { AppSecrets.value(for: "MOBILE_GATE_KEY") }
             static let flareModel = "gpt-image-2.5-flare"
             static let sunburstModel = "gpt-image-2.5-sunburst"
             static let quality = "medium"
