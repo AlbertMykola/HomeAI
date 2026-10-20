@@ -147,12 +147,21 @@ async function generateImage(request, env) {
 	if (!upstream.ok) {
 		const providerCode = String(output?.error?.code ?? "")
 		const category = classifyProviderError(upstream.status, providerCode)
+		// What OpenAI itself said (never the key): visible in `wrangler tail` and in the app's error reports.
+		const upstreamError = {
+			status: upstream.status,
+			code: output?.error?.code ?? null,
+			type: output?.error?.type ?? null,
+			message: truncate(String(output?.error?.message ?? ""), 500),
+		}
+		console.error(JSON.stringify({ event: "openai_error", requestId, model, operation: input.operation, ...upstreamError }))
 		return apiError(
 			upstream.status,
 			category.code,
 			category.publicMessage,
 			category.retryable,
 			requestId,
+			upstreamError,
 		)
 	}
 
@@ -316,16 +325,18 @@ function numberOrNull(value) {
 	return typeof value === "number" ? value : null
 }
 
-function apiError(status, code, message, retryable, requestId = crypto.randomUUID()) {
+function apiError(status, code, message, retryable, requestId = crypto.randomUUID(), upstream = undefined) {
+	const error = { code, message, retryable }
+	if (upstream) error.upstream = upstream
 	return json(status, {
 		version: 1,
 		requestId,
-		error: {
-			code,
-			message,
-			retryable,
-		},
+		error,
 	})
+}
+
+function truncate(text, limit) {
+	return text.length > limit ? `${text.slice(0, limit)}…` : text
 }
 
 function json(status, body) {

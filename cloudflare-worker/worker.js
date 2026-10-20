@@ -138,10 +138,39 @@ async function proxyGemini(request, env, upstreamPath, search) {
 	const sizeError = await validateGeminiBodySize(request)
 	if (sizeError) return sizeError
 
-	if (mode === "vertex") {
-		return proxyVertexGemini(request, env, upstreamPath, search)
+	const response = mode === "vertex"
+		? await proxyVertexGemini(request, env, upstreamPath, search)
+		: await proxyGeminiAIStudio(request, env, upstreamPath, search)
+	if (!response.ok) await logUpstreamError("gemini", mode, upstreamPath, response)
+	return response
+}
+
+/**
+ * Logs a failed upstream answer for `wrangler tail` (status + provider error, no keys / no request body).
+ * The body itself is still passed to the app unchanged.
+ * @param {string} provider
+ * @param {string} mode
+ * @param {string} path
+ * @param {Response} response
+ */
+async function logUpstreamError(provider, mode, path, response) {
+	try {
+		const text = await response.clone().text()
+		let parsed = null
+		try { parsed = JSON.parse(text) } catch { /* not JSON */ }
+		const error = parsed?.error ?? parsed?.[0]?.error ?? null
+		console.error(JSON.stringify({
+			event: `${provider}_error`,
+			mode,
+			path,
+			status: response.status,
+			code: error?.code ?? null,
+			upstreamStatus: error?.status ?? null,
+			message: String(error?.message ?? text).slice(0, 500),
+		}))
+	} catch {
+		console.error(JSON.stringify({ event: `${provider}_error`, mode, path, status: response.status }))
 	}
-	return proxyGeminiAIStudio(request, env, upstreamPath, search)
 }
 
 /**
