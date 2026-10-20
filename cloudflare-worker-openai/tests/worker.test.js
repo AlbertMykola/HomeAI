@@ -109,7 +109,7 @@ test("uses Sunburst and sends an alpha mask as mask", async () => {
 	}
 })
 
-test("returns stable errors instead of upstream JSON", async () => {
+test("returns stable error codes plus the upstream error, never the key", async () => {
 	const originalFetch = globalThis.fetch
 	globalThis.fetch = async () => new Response(
 		JSON.stringify({ error: { message: "Internal upstream detail", code: "x" } }),
@@ -126,7 +126,10 @@ test("returns stable errors instead of upstream JSON", async () => {
 		assert.equal(response.status, 503)
 		assert.equal(body.error.code, "provider_unavailable")
 		assert.equal(body.error.retryable, true)
-		assert.equal(JSON.stringify(body).includes("Internal upstream detail"), false)
+		assert.equal(body.error.upstream.status, 503)
+		assert.equal(body.error.upstream.code, "x")
+		assert.equal(body.error.upstream.message, "Internal upstream detail")
+		assert.equal(JSON.stringify(body).includes("secret"), false)
 	} finally {
 		globalThis.fetch = originalFetch
 	}
