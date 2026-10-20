@@ -510,6 +510,10 @@ final class ResultViewController: UIViewController {
     }
 
     private func runEdit(manager: GemeniPromptManager, note: String?, free: Bool = false) {
+        guard AIPhotoConsent.hasConsent else {
+            AIPhotoConsent.run(from: self) { [weak self] in self?.runEdit(manager: manager, note: note, free: free) }
+            return
+        }
         guard NetworkMonitor.shared.isOnline else {
             OfflineGate.run(from: self) { [weak self] in self?.runEdit(manager: manager, note: note, free: free) }
             return

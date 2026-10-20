@@ -461,6 +461,11 @@ final class NavigationManager {
     }
 
     func showProcessing(manager: GemeniPromptManager) {
+        // App Review 5.1.2(i): explicit consent before the photo goes to the third-party AI (legacy flows too).
+        if !AIPhotoConsent.hasConsent, let anchor = presentationAnchor() {
+            AIPhotoConsent.run(from: anchor) { [weak self] in self?.showProcessing(manager: manager) }
+            return
+        }
         let storyboard = UIStoryboard(name: "Main", bundle: .main)
         guard let processingVC = storyboard.instantiateViewController(withIdentifier: "ProcessingViewController") as? ProcessingViewController else {
             return

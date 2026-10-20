@@ -104,6 +104,10 @@ class WizardStepViewController: UIViewController {
     /// Offline / credits checks, then G1. `configure` fills the prompt manager right before starting.
     func generate(styleTitle: String?, configure: @escaping (GemeniPromptManager) -> Void) {
         view.endEditing(true)
+        guard AIPhotoConsent.hasConsent else {
+            AIPhotoConsent.run(from: self) { [weak self] in self?.generate(styleTitle: styleTitle, configure: configure) }
+            return
+        }
         guard NetworkMonitor.shared.isOnline else {
             // A/12 Offline · full screen: comes back here by itself when the network returns.
             OfflineGate.run(from: self) { [weak self] in self?.generate(styleTitle: styleTitle, configure: configure) }

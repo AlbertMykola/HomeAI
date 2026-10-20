@@ -424,6 +424,10 @@ final class AssistantViewController: UIViewController {
             }
             return
         }
+        guard AIPhotoConsent.hasConsent else {
+            AIPhotoConsent.run(from: self) { [weak self] in self?.apply(idea, from: replyID) }
+            return
+        }
         guard NetworkMonitor.shared.isOnline else {
             OfflineGate.run(from: self) { [weak self] in self?.apply(idea, from: replyID) }
             return
