@@ -42,7 +42,6 @@ class ObjectSelectionViewController: UIViewController, PageStepDelegate, PromptM
     
     private let amplitude = AmplitudeService.shared
     private let drawingCanvas = DrawingCanvasView()
-    private let geminiService = GeminiRESTService()
     private var detectedObjects: [DetectedObject] = []
     private var hasCustomPrompt: Bool = false
     private let scrollView = UIScrollView()

@@ -34,8 +34,10 @@ struct SupabaseAppConfig: Codable, Equatable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(Int64.self, forKey: .id)
-        createdAt = try container.decodeIfPresent(Date.self, forKey: .createdAt) ?? Date()
-        updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt)
+        // Timestamps are informational: a format the decoder doesn't know (e.g. Postgres `timestamp` without a
+        // time zone, "2026-07-16T16:01:47.379775") must not drop the whole config and its provider switch.
+        createdAt = (try? container.decodeIfPresent(Date.self, forKey: .createdAt)) ?? Date()
+        updatedAt = try? container.decodeIfPresent(Date.self, forKey: .updatedAt)
         obSwRateAlert = try container.decodeIfPresent(Bool.self, forKey: .obSwRateAlert) ?? false
         imageGenerationProvider = try container.decodeIfPresent(
             ImageGenerationProvider.self,
