@@ -84,6 +84,12 @@ final class ProfileTabViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        #if DEBUG
+        // Debug only: paste an OpenAI key to test generation directly (bypasses the Cloudflare worker).
+        versionLabel.isUserInteractionEnabled = true
+        versionLabel.addGestureRecognizer(UILongPressGestureRecognizer(target: self,
+                                                                       action: #selector(didLongPressVersion(_:))))
+        #endif
         largeTitleLabel.text = "Profile".localized
         compactTitleLabel.text = "Profile".localized
         let titles = [0: "Language", 1: "Appearance", 2: "Notifications", 3: "Restore purchases",
@@ -502,3 +508,35 @@ final class LanguageViewController: UIViewController {
         navigationController?.popViewController(animated: true)
     }
 }
+
+#if DEBUG
+extension ProfileTabViewController {
+    @objc fileprivate func didLongPressVersion(_ gesture: UILongPressGestureRecognizer) {
+        guard gesture.state == .began else { return }
+        let isSet = OpenAIDirectDebugKey.isSet
+        let alert = UIAlertController(
+            title: "OpenAI direct (Debug)",
+            message: isSet ? "Key saved: generation goes directly to OpenAI." : "Paste an OpenAI API key to call OpenAI directly from this iPhone (no Cloudflare).",
+            preferredStyle: .alert)
+        alert.addTextField { field in
+            field.placeholder = "sk-…"
+            field.isSecureTextEntry = true
+            field.autocorrectionType = .no
+            field.autocapitalizationType = .none
+        }
+        alert.addAction(UIAlertAction(title: "Save", style: .default) { _ in
+            guard let key = alert.textFields?.first?.text, !key.isEmpty else { return }
+            OpenAIDirectDebugKey.save(key)
+            DSToastView.show("OpenAI direct: on", style: .success)
+        })
+        if isSet {
+            alert.addAction(UIAlertAction(title: "Clear (back to worker)", style: .destructive) { _ in
+                OpenAIDirectDebugKey.clear()
+                DSToastView.show("OpenAI direct: off", style: .info)
+            })
+        }
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+        present(alert, animated: true)
+    }
+}
+#endif

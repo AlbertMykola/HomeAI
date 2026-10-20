@@ -153,6 +153,10 @@ async function generateImage(request, env) {
 			code: output?.error?.code ?? null,
 			type: output?.error?.type ?? null,
 			message: truncate(String(output?.error?.message ?? ""), 500),
+			// OpenAI's own ids for support tickets (no secrets).
+			requestId: upstream.headers.get("x-request-id"),
+			organization: upstream.headers.get("openai-organization"),
+			project: upstream.headers.get("openai-project"),
 		}
 		console.error(JSON.stringify({ event: "openai_error", requestId, model, operation: input.operation, ...upstreamError }))
 		return apiError(

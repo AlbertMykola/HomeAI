@@ -295,6 +295,10 @@ struct OpenAIWorkerUpstreamError: Decodable {
     let code: String?
     let type: String?
     let message: String?
+    /// OpenAI's `x-request-id` / `openai-organization` / `openai-project` (ids only).
+    let requestId: String?
+    let organization: String?
+    let project: String?
 }
 
 extension OpenAIWorkerImageError: ErrorReporter.Reportable {
@@ -305,7 +309,12 @@ extension OpenAIWorkerImageError: ErrorReporter.Reportable {
                          upstreamStatus: upstream?.status,
                          upstreamCode: upstream?.code ?? upstream?.type,
                          upstreamMessage: upstream?.message ?? message,
-                         requestID: requestID)
+                         requestID: requestID,
+                         extra: [
+                             "request_id_openai": upstream?.requestId,
+                             "openai_org": upstream?.organization,
+                             "openai_project": upstream?.project
+                         ].compactMapValues { $0 })
         case .requestFailed(let error):
             let ns = error as NSError
             return .init(provider: ImageGenerationProvider.openAI.rawValue,

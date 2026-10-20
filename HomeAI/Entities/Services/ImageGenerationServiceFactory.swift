@@ -8,6 +8,10 @@ enum ImageGenerationServiceFactory {
         if AppQA.enabled && (environment["REHOMELY_FULL_QA"] == "1" || ProcessInfo.processInfo.arguments.contains("--app-qa")) {
             return AppQA.generationService
         }
+        // Debug test without Cloudflare: key typed on the device (Profile → long-press the version).
+        if let key = OpenAIDirectDebugKey.value {
+            return OpenAIDirectDebugService(apiKey: key)
+        }
         if environment["HOMEAI_IMAGE_PROVIDER"]?.lowercased() == "openai",
            let endpoint = generationEndpoint(
                from: Constants.Generation.OpenAI.productionWorkerURL,
