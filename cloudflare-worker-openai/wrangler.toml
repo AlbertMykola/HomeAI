@@ -9,9 +9,3 @@ compatibility_date = "2026-09-17"
 #   npx wrangler secret put MOBILE_GATE_KEY
 #   npx wrangler secret put OPENAI_IMAGE_MODEL
 #   npx wrangler secret put OPENAI_IMAGE_QUALITY
-
-# Run next to OpenAI's US region (lower latency). Note: on its own this did NOT fix OpenAI's
-# 403 unsupported_country_region_territory for calls from Workers (2026-10-20).
-[placement]
-mode = "targeted"
-region = "aws:us-east-1"
