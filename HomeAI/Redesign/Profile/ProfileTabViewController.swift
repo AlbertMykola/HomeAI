@@ -86,9 +86,12 @@ final class ProfileTabViewController: UIViewController {
         super.viewDidLoad()
         #if DEBUG
         // Debug only: paste an OpenAI key to test generation directly (bypasses the Cloudflare worker).
-        versionLabel.isUserInteractionEnabled = true
-        versionLabel.addGestureRecognizer(UILongPressGestureRecognizer(target: self,
-                                                                       action: #selector(didLongPressVersion(_:))))
+        // Version (bottom) and the large "Profile" title (top): long-press either.
+        for label in [versionLabel, largeTitleLabel] {
+            label?.isUserInteractionEnabled = true
+            label?.addGestureRecognizer(UILongPressGestureRecognizer(target: self,
+                                                                     action: #selector(didLongPressVersion(_:))))
+        }
         #endif
         largeTitleLabel.text = "Profile".localized
         compactTitleLabel.text = "Profile".localized
