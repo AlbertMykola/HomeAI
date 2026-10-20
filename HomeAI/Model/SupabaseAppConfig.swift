@@ -42,7 +42,7 @@ struct SupabaseAppConfig: Codable, Equatable {
         imageGenerationProvider = try container.decodeIfPresent(
             ImageGenerationProvider.self,
             forKey: .imageGenerationProvider
-        ) ?? .gemini
+        ) ?? .defaultProvider
     }
 
     static let fallback = SupabaseAppConfig(
@@ -50,6 +50,12 @@ struct SupabaseAppConfig: Codable, Equatable {
         createdAt: Date(),
         updatedAt: nil,
         obSwRateAlert: false,
-        imageGenerationProvider: .gemini
+        imageGenerationProvider: .defaultProvider
     )
+}
+
+extension ImageGenerationProvider {
+    /// Used when Supabase `App_Config.image_generation_provider` is missing (or no config yet): the OpenAI worker.
+    /// Rollback without a build: set the column to "gemini" (Gemini worker).
+    static let defaultProvider: ImageGenerationProvider = .openAI
 }

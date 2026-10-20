@@ -141,7 +141,7 @@ final class SupabaseAppConfigService {
             createdAt: Date(),
             updatedAt: nil,
             obSwRateAlert: cached.obSwRateAlert,
-            imageGenerationProvider: cached.imageGenerationProvider ?? .gemini
+            imageGenerationProvider: cached.imageGenerationProvider ?? .defaultProvider
         )
     }
 
