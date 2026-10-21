@@ -23,28 +23,33 @@ enum AIPhotoConsent {
         UserDefaults.standard.bool(forKey: key(for: currentProvider))
     }
 
-    /// Runs `action` right away if the user already agreed, otherwise asks first. "Not now" does nothing.
+    /// No blocking alert (Albert, 2026-10-21): the provider and the Privacy Policy are named under the generate
+    /// button (`disclosureText`), and tapping it counts as agreeing. Stored the same way as before, so
+    /// `hasConsent` / analytics downstream keep working.
     static func run(from presenter: UIViewController, _ action: @escaping () -> Void) {
         #if DEBUG
         if AppQA.enabled { return action() }
         #endif
-        guard !hasConsent else { return action() }
-        let provider = currentProvider
-        AmplitudeService.shared.logRedesignEvent("ai_consent_shown", properties: ["provider": provider.rawValue])
-        DSAlertViewController.show(
-            from: presenter,
-            title: String(format: "Your photo is sent to %@".localized, providerName),
-            message: String(format: "To create your design, Rehomely sends your photo and request text to %@, a third-party AI service. They are used only to generate the image. Details are in our Privacy Policy.".localized,
-                            providerName),
-            actions: [
-                .init(title: "Not now".localized, style: .cancel) {
-                    AmplitudeService.shared.logRedesignEvent("ai_consent_declined", properties: ["provider": provider.rawValue])
-                },
-                .init(title: "I agree".localized, style: .primary) {
-                    UserDefaults.standard.set(true, forKey: key(for: provider))
-                    AmplitudeService.shared.logRedesignEvent("ai_consent_accepted", properties: ["provider": provider.rawValue])
-                    action()
-                }
-            ])
+        if !hasConsent {
+            let provider = currentProvider
+            UserDefaults.standard.set(true, forKey: key(for: provider))
+            AmplitudeService.shared.logRedesignEvent("ai_consent_accepted",
+                                                     properties: ["provider": provider.rawValue, "mode": "inline"])
+        }
+        action()
+    }
+
+    /// "Photo and request are processed by <provider>. Privacy Policy" — the link part is accent-colored.
+    static func disclosureText(font: UIFont, color: UIColor, linkColor: UIColor) -> NSAttributedString {
+        let link = "Privacy Policy".localized
+        let sentence = String(format: "Your photo and request are processed by %@.".localized, providerName)
+        let text = NSMutableAttributedString(string: sentence + " ", attributes: [.font: font, .foregroundColor: color])
+        text.append(NSAttributedString(string: link, attributes: [
+            .font: font, .foregroundColor: linkColor, .underlineStyle: NSUnderlineStyle.single.rawValue
+        ]))
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.alignment = .center
+        text.addAttribute(.paragraphStyle, value: paragraph, range: NSRange(location: 0, length: text.length))
+        return text
     }
 }

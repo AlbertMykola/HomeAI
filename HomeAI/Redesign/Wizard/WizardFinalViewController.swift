@@ -1,3 +1,4 @@
+import SafariServices
 import UIKit
 
 /// A/04 · W4 Final touches. Layout: Wizard.storyboard.
@@ -34,6 +35,7 @@ final class WizardFinalViewController: WizardStepViewController {
     @IBOutlet private weak var generateTitleLabel: UILabel!
     @IBOutlet private weak var generateSubtitleLabel: UILabel!
     @IBOutlet private weak var generateIconView: UIImageView!
+    @IBOutlet private weak var aiDisclosureLabel: UILabel!
 
     override var step: WizardSession.Step { .final }
 
@@ -56,6 +58,7 @@ final class WizardFinalViewController: WizardStepViewController {
         detailsField.delegate = self
         detailsField.text = session.details
         generateTitleLabel.text = "Generate design".localized
+        configureDisclosure()
         sortedLabels(segmentLabels).enumerated().forEach { $1.text = ["Keep structure", "More freedom"][$0].localized }
         sortedLabels(paletteLabels).enumerated().forEach { $1.text = WizardSession.Palette(rawValue: $0)?.title }
         roomChip.isHidden = session.place == nil
@@ -187,6 +190,21 @@ final class WizardFinalViewController: WizardStepViewController {
         generate(styleTitle: session.style?.title) { _ in session.applyToPromptManager() }
     }
 
+    // MARK: AI disclosure (App Review 5.1.2(i): who gets the photo; tapping Generate = agreeing)
+
+    private func configureDisclosure() {
+        aiDisclosureLabel.attributedText = AIPhotoConsent.disclosureText(
+            font: aiDisclosureLabel.font, color: DS.Color.textSecondary, linkColor: DS.Color.textPrimary)
+        aiDisclosureLabel.accessibilityTraits = .link
+        aiDisclosureLabel.accessibilityHint = "Opens the Privacy Policy".localized
+        aiDisclosureLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTapPrivacy)))
+    }
+
+    @objc private func didTapPrivacy() {
+        guard let url = URL(string: Constants.API.privacy) else { return }
+        present(SFSafariViewController(url: url), animated: true)
+    }
+
     // MARK: Keyboard
 
     private func observeKeyboard() {
@@ -211,6 +229,7 @@ final class WizardFinalViewController: WizardStepViewController {
     private func hideForEntrance() {
         blocks.forEach { $0.alpha = 0 }
         generateButton.alpha = 0
+        aiDisclosureLabel.alpha = 0
     }
 
     /// Blocks 60 ms apart → palettes slide in → field → CTA from below; shimmer 1.6 / 4.4 s, pulse 3.0 s, sparkle 1.0 / 3.8 s.
@@ -220,6 +239,7 @@ final class WizardFinalViewController: WizardStepViewController {
             DS.Motion.enter($1, delay: 0.45 + Double($0) * 0.05, dx: 24, scale: 0.9)
         }
         DS.Motion.enter(generateButton, delay: 0.7, dy: 24, spring: true)
+        DS.Motion.enter(aiDisclosureLabel, delay: 0.8, dy: 12)
         guard !DS.Motion.reduceMotion else { return }
         let plan: [(TimeInterval, () -> Void)] = [
             (1.0, { [weak self] in self?.spinSparkle() }),

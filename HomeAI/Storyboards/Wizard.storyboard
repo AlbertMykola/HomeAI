@@ -2308,7 +2308,7 @@
                                     <constraint firstItem="c655-479c-5111" firstAttribute="leading" secondItem="e577-df2d-755a" secondAttribute="leading" id="3b10-24e6-7cd1" identifier="ds.reference.3b10-24e6-7cd1" />
                                     <constraint firstItem="e577-df2d-755a" firstAttribute="trailing" secondItem="c655-479c-5111" secondAttribute="trailing" id="2e50-2361-1c70" identifier="ds.reference.2e50-2361-1c70" />
                                     <constraint firstItem="c655-479c-5111" firstAttribute="top" secondItem="e577-df2d-755a" secondAttribute="top" constant="8" id="ea4e-915b-f4ae" identifier="ds.reference.ea4e-915b-f4ae" />
-                                    <constraint firstItem="e577-df2d-755a" firstAttribute="bottom" secondItem="c655-479c-5111" secondAttribute="bottom" constant="120" id="9626-44a7-ece3" identifier="ds.reference.9626-44a7-ece3" />
+                                    <constraint firstItem="e577-df2d-755a" firstAttribute="bottom" secondItem="c655-479c-5111" secondAttribute="bottom" constant="150" id="9626-44a7-ece3" identifier="ds.reference.9626-44a7-ece3" />
                                     <constraint firstItem="c655-479c-5111" firstAttribute="width" secondItem="c4de-c78c-b9ee" secondAttribute="width" id="4ac3-d7ff-d51e" identifier="ds.reference.4ac3-d7ff-d51e" />
                                 </constraints>
                             </scrollView>
@@ -2545,6 +2545,12 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapGenerate:" />
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <label contentMode="scaleToFill" userInteractionEnabled="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7d1a-5c0e-a1d0" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="aiDisclosureLabel" opaque="NO" text="Photo and request are processed by Google Gemini. Privacy Policy" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="12" />
+                                <color key="textColor" name="dsTextSecondary" />
+                                <nil key="highlightedColor" />
+                                <nil key="backgroundColor" />
+                            </label>
                         </subviews>
                         <color key="backgroundColor" name="dsBackground" />
                         <viewLayoutGuide key="safeArea" id="876d-5ca3-7750" />
@@ -2558,6 +2564,9 @@
                             <constraint firstItem="2c2a-464e-85c3" firstAttribute="leading" secondItem="876d-5ca3-7750" secondAttribute="leading" constant="20" id="a532-0649-2075" identifier="ds.reference.a532-0649-2075" />
                             <constraint firstItem="876d-5ca3-7750" firstAttribute="trailing" secondItem="2c2a-464e-85c3" secondAttribute="trailing" constant="20" id="f81d-1241-8158" identifier="ds.reference.f81d-1241-8158" />
                             <constraint firstItem="876d-5ca3-7750" firstAttribute="bottom" secondItem="2c2a-464e-85c3" secondAttribute="bottom" id="a964-9774-93bf" identifier="ds.reference.a964-9774-93bf" />
+                            <constraint firstItem="7d1a-5c0e-a1d0" firstAttribute="leading" secondItem="876d-5ca3-7750" secondAttribute="leading" constant="28" id="7d1a-5c0e-a1d1" identifier="ds.reference.7d1a-5c0e-a1d1" />
+                            <constraint firstItem="876d-5ca3-7750" firstAttribute="trailing" secondItem="7d1a-5c0e-a1d0" secondAttribute="trailing" constant="28" id="7d1a-5c0e-a1d2" identifier="ds.reference.7d1a-5c0e-a1d2" />
+                            <constraint firstItem="2c2a-464e-85c3" firstAttribute="top" secondItem="7d1a-5c0e-a1d0" secondAttribute="bottom" constant="10" id="7d1a-5c0e-a1d3" identifier="ds.reference.7d1a-5c0e-a1d3" />
                             <constraint firstItem="09a5-0461-9e4b" firstAttribute="leading" secondItem="876d-5ca3-7750" secondAttribute="leading" id="e527-93b1-1cc8" identifier="ds.reference.e527-93b1-1cc8" />
                             <constraint firstItem="876d-5ca3-7750" firstAttribute="trailing" secondItem="09a5-0461-9e4b" secondAttribute="trailing" id="21b7-d79e-5e82" identifier="ds.reference.21b7-d79e-5e82" />
                             <constraint firstItem="f31b-390e-b219" firstAttribute="bottom" secondItem="09a5-0461-9e4b" secondAttribute="bottom" id="21d2-24d6-800c" identifier="ds.reference.21d2-24d6-800c" />
@@ -2617,6 +2626,7 @@
                         <outlet property="detailsField" destination="2f6f-36de-4d55" id="9c9b-5f9c-dc8e" />
                         <outlet property="navBar" destination="3910-656c-3387" id="60a9-4ace-5a07" />
                         <outlet property="generateButton" destination="2c2a-464e-85c3" id="bcda-0c9e-4fac" />
+                        <outlet property="aiDisclosureLabel" destination="7d1a-5c0e-a1d0" id="7d1a-5c0e-a1d4" />
                         <outlet property="generateIconView" destination="fb86-2516-9003" id="6f08-462a-1fe5" />
                         <outlet property="generateTitleLabel" destination="8614-91b9-b3b2" id="f170-94b9-4bc6" />
                         <outlet property="generateSubtitleLabel" destination="de00-feea-af53" id="6d12-942f-78b0" />
