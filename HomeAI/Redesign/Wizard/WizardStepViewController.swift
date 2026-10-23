@@ -1,10 +1,38 @@
 import UIKit
 
 /// Base for every wizard step: custom nav bar, stepper, back / discard handling.
-class WizardStepViewController: UIViewController {
+class WizardStepViewController: UIViewController, DSWideLayoutFullWidth {
 
     @IBOutlet weak var navBar: WizardNavBar!
     @IBOutlet weak var titleStack: UIStackView?
+    /// iPhone Duo unfolded, landscape: the room photo stays visible on the right while you choose
+    /// (room / style / final steps; layouts in Wizard.storyboard, priorities swapped here).
+    @IBOutlet weak var previewPaneView: UIView?
+    @IBOutlet weak var previewImageView: UIImageView?
+    @IBOutlet var listOnlyConstraints: [NSLayoutConstraint]?
+    @IBOutlet var splitConstraints: [NSLayoutConstraint]?
+    private var showsPreview = false
+
+    var dsUsesFullWidth: Bool { previewPaneView != nil && wantsPreview }
+
+    private var wantsPreview: Bool {
+        guard let window = view.window else { return false }
+        let size = (navigationController?.view ?? view).bounds.size
+        return DSWideLayout.isWide(size.width - window.safeAreaInsets.left - window.safeAreaInsets.right)
+            && size.width > size.height
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        guard let pane = previewPaneView else { return }
+        previewImageView?.image = session.photo
+        let preview = wantsPreview
+        guard preview != showsPreview else { return }
+        showsPreview = preview
+        listOnlyConstraints?.forEach { $0.priority = UILayoutPriority(preview ? 1 : 999) }
+        splitConstraints?.forEach { $0.priority = UILayoutPriority(preview ? 999 : 1) }
+        pane.isHidden = !preview
+    }
 
     var session: WizardSession!
     var step: WizardSession.Step { .photo }
