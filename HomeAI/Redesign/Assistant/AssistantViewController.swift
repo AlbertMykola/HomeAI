@@ -34,6 +34,8 @@ final class AssistantViewController: UIViewController, DSWideLayoutFullWidth {
     // iPhone Duo unfolded, landscape: chat on the left, the latest idea (or your photo) large on the right.
     @IBOutlet private weak var previewPaneView: UIView!
     @IBOutlet private weak var previewImageView: UIImageView!
+    /// Figma Duo/L/09: "Apply to my photo" for the idea shown in the preview.
+    @IBOutlet private weak var previewApplyButton: UIView!
     @IBOutlet private var listOnlyConstraints: [NSLayoutConstraint]!
     @IBOutlet private var splitConstraints: [NSLayoutConstraint]!
     private var showsPreview = false
@@ -60,9 +62,20 @@ final class AssistantViewController: UIViewController, DSWideLayoutFullWidth {
         if preview { refreshPreview() }
     }
 
+    /// The newest reply's first idea (what the preview shows).
+    private var latestIdea: (idea: AssistantIdea, replyID: String)? {
+        conversation.messages.reversed().first { !$0.ideas.isEmpty }.map { ($0.ideas[0], $0.id) }
+    }
+
+    @IBAction private func didTapApplyPreview(_ sender: Any) {
+        guard let latest = latestIdea else { return }
+        apply(latest.idea, from: latest.replyID)
+    }
+
     /// Latest idea's catalog image, else the latest photo you attached.
     private func refreshPreview() {
-        if let path = conversation.messages.reversed().lazy.flatMap(\.ideas).first?.previewPath {
+        previewApplyButton.isHidden = latestIdea == nil
+        if let path = latestIdea?.idea.previewPath {
             guard previewKey != path else { return }
             previewKey = path
             CatalogImage.load(path) { [weak self] image in

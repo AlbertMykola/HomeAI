@@ -1695,9 +1695,32 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="7e14-0a03" userLabel="previewImageView" />
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7e71-0000-0001" customClass="DSPrimaryButton" customModule="HomeAI" customModuleProvider="target" userLabel="previewApplyButton">
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Apply to my photo" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7e71-0000-0002" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="previewApplyLabel">
+                                                <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17" />
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                <nil key="highlightedColor" />
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Apply to my photo" />
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="56" id="7e71-0000-0011" />
+                                            <constraint firstItem="7e71-0000-0002" firstAttribute="centerX" secondItem="7e71-0000-0001" secondAttribute="centerX" id="7e71-0000-0012" />
+                                            <constraint firstItem="7e71-0000-0002" firstAttribute="centerY" secondItem="7e71-0000-0001" secondAttribute="centerY" id="7e71-0000-0013" />
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapApplyPreview:" />
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" name="dsBackground" />
                                 <constraints>
+                                    <constraint firstItem="7e71-0000-0001" firstAttribute="leading" secondItem="7e14-0a01" secondAttribute="leading" constant="20" id="7e71-0000-0101" />
+                                    <constraint firstItem="7e14-0a01" firstAttribute="trailing" secondItem="7e71-0000-0001" secondAttribute="trailing" constant="20" id="7e71-0000-0102" />
+                                    <constraint firstItem="7e14-0a01" firstAttribute="bottom" secondItem="7e71-0000-0001" secondAttribute="bottom" constant="24" id="7e71-0000-0103" />
                                     <constraint firstItem="7e14-0a02" firstAttribute="centerX" secondItem="7e14-0a01" secondAttribute="centerX" id="7e14-0c01" />
                                     <constraint firstItem="7e14-0a02" firstAttribute="centerY" secondItem="7e14-0a01" secondAttribute="centerY" id="7e14-0c02" />
                                     <constraint firstItem="7e14-0a02" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7e14-0a01" secondAttribute="leading" constant="32" id="7e14-0c03" />
@@ -1746,6 +1769,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="previewApplyButton" destination="7e71-0000-0001" id="7e71-0000-0201" />
                         <outlet property="previewPaneView" destination="7e14-0a01" id="7e14-0f01" />
                         <outlet property="previewImageView" destination="7e14-0a03" id="7e14-0f02" />
                         <outletCollection property="listOnlyConstraints" destination="9065-553e-dc97" collectionClass="NSMutableArray" id="7e14-1000" />
