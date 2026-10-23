@@ -19,7 +19,8 @@ final class SupabaseGenerationUploadService {
 
     func scheduleUpload(fileId: String, generatedFileURL: URL, originalFileURL: URL?) {
         #if DEBUG
-        if AppQA.enabled { return }
+        // -fakeGeneration is a local test run: the photo must not leave the device.
+        if AppQA.enabled || ProcessInfo.processInfo.arguments.contains("-fakeGeneration") { return }
         #endif
         Task.detached(priority: .utility) { [weak self] in
             let adaptyUserId = await MainActor.run { AdaptyService.shared.userID }
