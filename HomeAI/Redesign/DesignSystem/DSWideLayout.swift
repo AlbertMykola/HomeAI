@@ -61,6 +61,8 @@ final class DSSplitPane {
     private(set) var isSplit = false
     /// Called before a pane detail moves onto the navigation stack (folding), e.g. to show its back button.
     var willCollapse: ((UIViewController) -> Void)?
+    /// Folding presents the open detail full screen instead of pushing it (for details that are modals on phones).
+    var collapseByPresenting = false
 
     init(host: UIViewController, pane: UIView, listOnly: [NSLayoutConstraint], split: [NSLayoutConstraint]) {
         self.host = host
@@ -84,8 +86,14 @@ final class DSSplitPane {
             remove(detail)
             self.detail = nil
             willCollapse?(detail)
+            let present = collapseByPresenting
             DispatchQueue.main.async { [weak host] in
-                host?.navigationController?.pushViewController(detail, animated: false)
+                if present {
+                    detail.modalPresentationStyle = .fullScreen
+                    host?.present(detail, animated: false)
+                } else {
+                    host?.navigationController?.pushViewController(detail, animated: false)
+                }
             }
         }
     }

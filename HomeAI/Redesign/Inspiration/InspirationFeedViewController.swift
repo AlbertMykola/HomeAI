@@ -4,6 +4,17 @@ import UIKit
 final class InspirationFeedViewController: UIViewController, DSWideLayoutFullWidth {
 
     @IBOutlet private weak var collectionView: UICollectionView!
+    /// iPhone Duo unfolded: the selected idea opens on the right (layouts in Inspiration.storyboard).
+    @IBOutlet private weak var detailPaneView: UIView!
+    @IBOutlet private var listOnlyConstraints: [NSLayoutConstraint]!
+    @IBOutlet private var splitConstraints: [NSLayoutConstraint]!
+    private lazy var splitPane: DSSplitPane = {
+        let pane = DSSplitPane(host: self, pane: detailPaneView, listOnly: listOnlyConstraints, split: splitConstraints)
+        // Folding: an idea open in the pane is presented as a sheet again.
+        pane.collapseByPresenting = true
+        pane.willCollapse = { ($0 as? IdeaDetailViewController)?.isInPane = false }
+        return pane
+    }()
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet private weak var headerBackgroundView: UIView!
     @IBOutlet private weak var headerHairline: UIView!
@@ -102,6 +113,11 @@ final class InspirationFeedViewController: UIViewController, DSWideLayoutFullWid
         roomChips.sorted { $0.tag < $1.tag }.enumerated().forEach { i, chip in
             DS.Motion.enter(chip, delay: 0.06 + Double(i) * 0.04, dx: 16)
         }
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        splitPane.update()
     }
 
     override func viewDidLayoutSubviews() {
@@ -405,11 +421,22 @@ final class InspirationFeedViewController: UIViewController, DSWideLayoutFullWid
 
     // MARK: Detail
 
+    #if DEBUG
+    func qaOpenFirstIdea() { openDetail(at: IndexPath(item: 0, section: 0)) }
+    #endif
+
     private func openDetail(at indexPath: IndexPath) {
         guard let idea = shown[safe: indexPath.item] else { return }
         let cell = collectionView.cellForItem(at: indexPath) as? InspirationCardCell
         let detail = IdeaDetailViewController.make(idea: idea, image: cell?.image)
         detail.onTag = { [weak self] room, style in self?.applyTag(room: room, style: style) }
+        detail.onClose = { [weak self] in self?.splitPane.clear() }
+        detail.isInPane = true
+        if splitPane.show(detail) {
+            DS.Haptic.light()
+            return
+        }
+        detail.isInPane = false
         transition.sourceView = { [weak self] in
             guard let self, let i = self.shown.firstIndex(of: idea),
                   let cell = self.collectionView.cellForItem(at: IndexPath(item: i, section: 0)) as? InspirationCardCell

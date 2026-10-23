@@ -31,6 +31,12 @@ final class IdeaDetailViewController: UIViewController {
     var onTag: ((InspirationIdea.Room?, String?) -> Void)?
     /// Set before presentation so the custom transition is the only owner of the entrance.
     var presentedWithZoom = false
+    /// Shown in the Inspiration detail pane (iPhone Duo unfolded) instead of presented: no close button or
+    /// swipe-down; "leaving" clears the pane.
+    var isInPane = false {
+        didSet { if isViewLoaded { backButton.isHidden = isInPane } }
+    }
+    var onClose: (() -> Void)?
 
     private var didRunEntrance = false
 
@@ -67,9 +73,21 @@ final class IdeaDetailViewController: UIViewController {
             swatch.accessibilityLabel = String(format: "Copy color %@".localized, "#" + colors[i])
         }
         applySaved(animated: false)
+        backButton.isHidden = isInPane
+        guard !isInPane else { return }
         let pan = UIPanGestureRecognizer(target: self, action: #selector(handleDismissPan(_:)))
         pan.delegate = self
         view.addGestureRecognizer(pan)
+    }
+
+    /// Dismisses (modal) or clears the pane, then runs `then`.
+    private func leave(then: (() -> Void)? = nil) {
+        if isInPane {
+            onClose?()
+            then?()
+        } else {
+            dismiss(animated: true, completion: then)
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -107,7 +125,7 @@ final class IdeaDetailViewController: UIViewController {
     // MARK: Actions
 
     @IBAction private func didTapClose(_ sender: Any) {
-        dismiss(animated: true)
+        leave()
     }
 
     @IBAction private func didTapSave(_ sender: Any) {
@@ -117,7 +135,7 @@ final class IdeaDetailViewController: UIViewController {
         guard saved else { return }
         DSToastView.show("Saved to Ideas".localized, style: .success, action: "View".localized, in: view,
                          topOffset: 60, duration: 2.0) { [weak self] in
-            self?.dismiss(animated: true) {
+            self?.leave {
                 NavigationManager.shared.selectTab(.projects)
             }
         }
@@ -155,7 +173,7 @@ final class IdeaDetailViewController: UIViewController {
         let room: InspirationIdea.Room? = tag == 1 ? idea.room : nil
         let style: String? = tag == 1 ? nil : (label(in: sender)?.text ?? idea.style)
         let onTag = self.onTag
-        dismiss(animated: true) { onTag?(room, style) }
+        leave { onTag?(room, style) }
     }
 
     @IBAction private func didTapSwatch(_ sender: UIControl) {
@@ -171,7 +189,7 @@ final class IdeaDetailViewController: UIViewController {
         AmplitudeService.shared.logRedesignEvent("inspiration_try", properties: ["style": idea.style,
                                                                                 "room": idea.category])
         let idea = self.idea!
-        dismiss(animated: true) {
+        leave {
             NavigationManager.shared.startDesign(option: idea.option) { session in
                 session.applyInspiration(idea)
             }
