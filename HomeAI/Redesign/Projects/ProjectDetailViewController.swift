@@ -324,7 +324,7 @@ final class ProjectDetailViewController: UIViewController {
         switch item {
         case .version(let doc, let n):
             let what = ProjectStore.shared.note(for: doc.id)
-                ?? doc.style.flatMap { $0.isEmpty || $0 == "No Style" || $0 == "Custom" ? nil : $0 }
+                ?? doc.style.flatMap { $0.isEmpty || $0 == "No Style" || $0 == "Custom" ? nil : $0.localized }
                 ?? doc.projectTitle
             return "V\(n) · \(what)"
         case .original:

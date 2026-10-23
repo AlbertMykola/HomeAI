@@ -79,7 +79,7 @@ final class ProjectStore {
         if let style = first.style, !style.isEmpty, style != "No Style", style != "Custom", first.designOption != .rearrange {
             // "Japandi living room" reads well in English only; other languages get "Вітальня · Сучасний".
             let english = AppLocalization.language.hasPrefix("en")
-            return english ? "\(style) \(first.projectTitle.lowercased())" : "\(first.projectTitle) · \(style)"
+            return english ? "\(style) \(first.projectTitle.lowercased())" : "\(first.projectTitle) · \(style.localized)"
         }
         return first.projectTitle
     }

@@ -296,8 +296,8 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
         switch doc.designOption {
         case .interior?, .exterior?, .garden?, .floolPlan?, .reference?:
             return doc.savedDesignMode == .renovationDesign ? "More freedom".localized : "Keep structure".localized
-        case .newWalls?: return String(format: "%@ walls".localized, doc.style ?? "")
-        case .newFlooring?: return String(format: "%@ floor".localized, doc.style ?? "")
+        case .newWalls?: return String(format: "%@ walls".localized, (doc.style ?? "").localized)
+        case .newFlooring?: return String(format: "%@ floor".localized, (doc.style ?? "").localized)
         case .replace?: return doc.objectToReplace.map { String(format: "Replaced with %@".localized, $0) } ?? "Replaced".localized
         case .delete?: return "Object removed".localized
         case .rearrange?: return "New layout".localized
