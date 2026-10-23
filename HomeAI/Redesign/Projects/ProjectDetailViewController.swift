@@ -13,6 +13,14 @@ final class ProjectDetailViewController: UIViewController {
         didSet { if isViewLoaded { backButton.isHidden = isInPane } }
     }
     var onClose: (() -> Void)?
+
+    /// For the Projects rail toolbar (iPhone Duo): open this project full screen / share its latest version.
+    var expandedCopy: ProjectDetailViewController {
+        let copy = Self.make(projectID: projectID, lastDocID: lastDocID)
+        copy.initialCover = bImageView.image
+        return copy
+    }
+    var shareImage: UIImage? { bImageView.image ?? aImageView.image }
     // Strong: removed from the hierarchy in viewDidLoad and kept as the table header.
     @IBOutlet private var headerContainer: UIView!
     @IBOutlet private weak var compareView: UIView!

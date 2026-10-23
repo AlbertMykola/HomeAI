@@ -1240,10 +1240,51 @@
                                     
                                 </userDefinedRuntimeAttributes>
                             </view>
-                        </subviews>
+                        <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7e51-0000-0001" userLabel="railToolbar">
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7e51-0000-0010" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
+                                        <subviews>
+                                            <imageView contentMode="scaleAspectFit" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7e51-0000-0010i" image="arrow.up.left.and.arrow.down.right" catalog="system">
+                                                <color key="tintColor" name="dsTextPrimary" />
+                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" weight="medium" />
+                                            </imageView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="7e51-0000-0010w" />
+                                            <constraint firstAttribute="height" constant="44" id="7e51-0000-0010h" />
+                                            <constraint firstItem="7e51-0000-0010i" firstAttribute="centerX" secondItem="7e51-0000-0010" secondAttribute="centerX" id="7e51-0000-0010x" />
+                                            <constraint firstItem="7e51-0000-0010i" firstAttribute="centerY" secondItem="7e51-0000-0010" secondAttribute="centerY" id="7e51-0000-0010y" />
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapExpandDetail:" />
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7e51-0000-0020" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
+                                        <subviews>
+                                            <imageView contentMode="scaleAspectFit" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7e51-0000-0020i" image="square.and.arrow.up" catalog="system">
+                                                <color key="tintColor" name="dsTextPrimary" />
+                                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" weight="medium" />
+                                            </imageView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="7e51-0000-0020w" />
+                                            <constraint firstAttribute="height" constant="44" id="7e51-0000-0020h" />
+                                            <constraint firstItem="7e51-0000-0020i" firstAttribute="centerX" secondItem="7e51-0000-0020" secondAttribute="centerX" id="7e51-0000-0020x" />
+                                            <constraint firstItem="7e51-0000-0020i" firstAttribute="centerY" secondItem="7e51-0000-0020" secondAttribute="centerY" id="7e51-0000-0020y" />
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapShareDetail:" />
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    
+                                </subviews>
+                            </stackView>
+                            </subviews>
                         <color key="backgroundColor" name="dsBackground" />
                         <viewLayoutGuide key="safeArea" id="990c-80d5-6bb2" />
                         <constraints>
+                            <constraint firstItem="7e51-0000-0001" firstAttribute="leading" secondItem="990c-80d5-6bb2" secondAttribute="trailing" constant="14" id="7e51-0000-0101" />
+                            <constraint firstItem="7e51-0000-0001" firstAttribute="top" secondItem="069a-c5fa-e018" secondAttribute="top" constant="96" id="7e51-0000-0102" />
                             <constraint firstItem="7e0a-0000-0a01" firstAttribute="top" secondItem="990c-80d5-6bb2" secondAttribute="top" constant="0" id="7e0a-0000-0d01" />
                             <constraint firstItem="990c-80d5-6bb2" firstAttribute="bottom" secondItem="7e0a-0000-0a01" secondAttribute="bottom" constant="0" id="7e0a-0000-0d02" />
                             <constraint firstItem="990c-80d5-6bb2" firstAttribute="trailing" secondItem="7e0a-0000-0a01" secondAttribute="trailing" constant="0" id="7e0a-0000-0d03" />
@@ -1277,6 +1318,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="railToolbar" destination="7e51-0000-0001" id="7e51-0000-0201" />
                         <outlet property="detailPaneView" destination="7e0a-0000-0a01" id="7e0a-0000-0f01" />
                         <outletCollection property="listOnlyConstraints" destination="98f9-d808-00b1" collectionClass="NSMutableArray" id="7e0a-0001-0000" />
                         <outletCollection property="listOnlyConstraints" destination="b696-0c29-fda5" collectionClass="NSMutableArray" id="7e0a-0001-0001" />

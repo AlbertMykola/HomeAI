@@ -9,6 +9,8 @@ final class ProjectsViewController: UIViewController, DSWideLayoutFullWidth {
     @IBOutlet private weak var detailPaneView: UIView!
     @IBOutlet private var listOnlyConstraints: [NSLayoutConstraint]!
     @IBOutlet private var splitConstraints: [NSLayoutConstraint]!
+    /// Unfolded landscape (Figma Duo/L/10): ⤢ and Share for the open project, by the system rail.
+    @IBOutlet private weak var railToolbar: UIStackView!
     private lazy var splitPane: DSSplitPane = {
         let pane = DSSplitPane(host: self, pane: detailPaneView, listOnly: listOnlyConstraints, split: splitConstraints)
         pane.willCollapse = { ($0 as? ProjectDetailViewController)?.isInPane = false }
@@ -87,6 +89,21 @@ final class ProjectsViewController: UIViewController, DSWideLayoutFullWidth {
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         splitPane.update()
+        railToolbar.isHidden = !(splitPane.isSplit && splitPane.detail is ProjectDetailViewController
+                                 && view.bounds.width > view.bounds.height)
+    }
+
+    @IBAction private func didTapExpandDetail(_ sender: Any) {
+        guard let detail = splitPane.detail as? ProjectDetailViewController else { return }
+        DS.Haptic.light()
+        navigationController?.pushViewController(detail.expandedCopy, animated: true)
+    }
+
+    @IBAction private func didTapShareDetail(_ sender: Any) {
+        guard let image = (splitPane.detail as? ProjectDetailViewController)?.shareImage else { return }
+        let sheet = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+        sheet.popoverPresentationController?.sourceView = railToolbar
+        present(sheet, animated: true)
     }
 
     override func viewDidLayoutSubviews() {
