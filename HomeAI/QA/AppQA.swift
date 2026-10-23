@@ -89,7 +89,34 @@ enum AppQA {
         if ProjectStore.shared.project(containing: fixtureDocID)?.versions.count == 1 {
             ProjectStore.shared.addVersion(docID: "qa-room-v2", toProjectContaining: fixtureDocID)
         }
+        #if DEBUG
+        seedFloorPlanResult(in: history, date: date)
+        #endif
     }
+
+    #if DEBUG
+    static let floorPlanDocID = "qa-plan-v1"
+
+    /// Floor plan → 3D result (plan as the original, the clay render as the result) for the Duo split check.
+    private static func seedFloorPlanResult(in history: URL, date: String) {
+        let fm = FileManager.default
+        let folder = history.appendingPathComponent(floorPlanDocID, isDirectory: true)
+        guard !fm.fileExists(atPath: folder.appendingPathComponent("metadata.json").path),
+              let plan = UIImage(named: "floorplan_demo_one"), let model = UIImage(named: "clay_floorplan") else { return }
+        try? fm.createDirectory(at: folder, withIntermediateDirectories: true)
+        let imageURL = folder.appendingPathComponent("generated.jpg")
+        let originalURL = folder.appendingPathComponent("original.jpg")
+        try? model.jpegData(compressionQuality: 0.85)?.write(to: imageURL)
+        try? plan.jpegData(compressionQuality: 0.85)?.write(to: originalURL)
+        let doc: [String: Any] = ["id": floorPlanDocID, "prompt": "QA fixture", "provider": "qa", "model": "local-fixture",
+                                  "storagePath": imageURL.path, "originalPath": originalURL.path,
+                                  "option": DesignOption.floolPlan.rawValue, "style": "Japandi", "createdAt": date,
+                                  "customPrompt": "", "designMode": "interiorDesign"]
+        if let data = try? JSONSerialization.data(withJSONObject: doc, options: .sortedKeys) {
+            try? data.write(to: folder.appendingPathComponent("metadata.json"), options: .atomic)
+        }
+    }
+    #endif
 
     static func makeTabs(index: Int = 0) -> UIViewController {
         let tab = AppStoryboard.instantiate(TabBarController.self)
@@ -169,6 +196,11 @@ enum AppQA {
             let session = WizardSession(option: options[name]!)
             session.photo = photo; session.isDemoPhoto = true
             return ToolStepFactory.make(session: session)
+        case "result-plan":
+            let vc = AppStoryboard.instantiate(ResultViewController.self)
+            vc.docID = floorPlanDocID
+            vc.initialImage = UIImage(named: "clay_floorplan")
+            return vc
         case "result", "result-ask", "result-ask-pro":
             let vc = AppStoryboard.instantiate(ResultViewController.self)
             vc.docID = ProjectStore.shared.project(containing: fixtureDocID)?.versions.last?.id ?? fixtureDocID
