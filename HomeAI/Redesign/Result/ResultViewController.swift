@@ -10,10 +10,10 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
     /// Both sets live in Result.storyboard; only their priorities swap.
     @IBOutlet private var stackedConstraints: [NSLayoutConstraint]!
     @IBOutlet private var sideBySideConstraints: [NSLayoutConstraint]!
-    /// Unfolded portrait: "before" and "after" next to each other instead of stacked (hold-to-compare).
-    @IBOutlet private var overlayConstraints: [NSLayoutConstraint]!
-    @IBOutlet private var pairConstraints: [NSLayoutConstraint]!
-    private var showsPair = false
+    /// Unfolded portrait (Figma Duo/P/06): result on the upper half, the editor panel from the hinge down.
+    @IBOutlet private var portraitConstraints: [NSLayoutConstraint]!
+    /// Phone constraints that the portrait arrangement replaces (photo bottom, panel stack top).
+    @IBOutlet private var portraitReleasedConstraints: [NSLayoutConstraint]!
     /// Drag the design out (wide windows only: there both photos are visible, so hold-to-compare is off).
     private lazy var dragInteraction = UIDragInteraction(delegate: self)
     /// Wide landscape: the "before" photo above the tools in the side panel.
@@ -173,17 +173,13 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
         view.backgroundColor = side ? DS.Color.background : .black
         stackedConstraints.forEach { if $0.priority != (side ? low : high) { $0.priority = side ? low : high } }
         sideBySideConstraints.forEach { if $0.priority != (side ? high : low) { $0.priority = side ? high : low } }
-        dragInteraction.isEnabled = isWideWindow
+        dragInteraction.isEnabled = side   // elsewhere a long press is hold-to-compare
         pairOriginalImageView.image = originalImageView.image
         pairOriginalImageView.isHidden = !side || originalImageView.image == nil
         beforeChipLabel.isHidden = pairOriginalImageView.isHidden
-        let pair = isWideWindow && !side && originalImageView.image != nil
-        guard pair != showsPair else { return }
-        showsPair = pair
-        overlayConstraints.forEach { $0.priority = pair ? low : high }
-        pairConstraints.forEach { $0.priority = pair ? high : low }
-        originalImageView.alpha = pair ? 1 : 0
-        compareView.isHidden = pair
+        let portrait = isWideWindow && !side
+        portraitConstraints.forEach { $0.priority = portrait ? high : low }
+        if !side { portraitReleasedConstraints.forEach { $0.priority = portrait ? low : high } }
     }
 
     override func viewDidLayoutSubviews() {
@@ -341,7 +337,7 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
     }
 
     @objc private func handleHold(_ gesture: UILongPressGestureRecognizer) {
-        guard originalImageView.image != nil, !isWideWindow else { return }
+        guard originalImageView.image != nil, !isSideBySide else { return }
         switch gesture.state {
         case .began:
             DS.Haptic.light()
@@ -993,7 +989,6 @@ extension ResultViewController: UICollectionViewDataSource, UICollectionViewDele
         switch items[indexPath.item] {
         case .original:
             DS.Haptic.light()
-            guard !showsPair else { return }
             UIView.animate(withDuration: 0.15) { self.originalImageView.alpha = 1 }
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
                 UIView.animate(withDuration: 0.2) { self.originalImageView.alpha = 0 }
