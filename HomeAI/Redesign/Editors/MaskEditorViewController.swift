@@ -42,15 +42,32 @@ class MaskEditorViewController: UIViewController {
         super.init(coder: coder)
     }
 
-    override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
+    // iPhone Duo unfolded, landscape (Figma Duo/L/06 R3–R5): canvas on the left half, the original photo above
+    // the panel on the right. Sets authored in Editors.storyboard (phone 999 / split 1).
+    @IBOutlet weak var beforeImageView: UIImageView?
+    @IBOutlet var listOnlyConstraints: [NSLayoutConstraint]?
+    @IBOutlet var splitConstraints: [NSLayoutConstraint]?
+    private lazy var layoutSwitch = DSLayoutSwitch(phone: listOnlyConstraints ?? [], unfolded: splitConstraints ?? [])
+    private var phoneBackground: UIColor?
+
+    override var preferredStatusBarStyle: UIStatusBarStyle { layoutSwitch.isUnfolded ? .default : .lightContent }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        dsApplyWideColumn(fullWidth: usesFullWidthWhenWide && dsWantsWideLandscape)
+        let split = beforeImageView != nil && dsWantsWideLandscape
+        dsApplyWideColumn(fullWidth: split)
+        if layoutSwitch.set(unfolded: split) {
+            if phoneBackground == nil { phoneBackground = view.backgroundColor }
+            view.backgroundColor = split ? DS.Color.background : phoneBackground
+            didChangeSplit(split)
+            setNeedsStatusBarAppearanceUpdate()
+        }
+        beforeImageView?.isHidden = !split
+        if split { beforeImageView?.image = originalOverlayView.image ?? image }
     }
 
-    /// Editors with their own two-pane layout on the unfolded Duo (Paint) skip the reading column.
-    var usesFullWidthWhenWide: Bool { false }
+    /// Subclasses adjust their own views when the editor switches between the phone and split layouts.
+    func didChangeSplit(_ split: Bool) {}
 
     override func viewDidLoad() {
         super.viewDidLoad()

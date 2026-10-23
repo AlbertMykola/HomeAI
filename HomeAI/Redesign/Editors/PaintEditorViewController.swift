@@ -79,33 +79,12 @@ final class PaintEditorViewController: MaskEditorViewController {
         updateApplyState()
     }
 
-    // iPhone Duo unfolded, landscape (Figma Duo/L/06 Paint): canvas on the left half, the original photo above
-    // the Paint panel on the right — the swatch preview on the left compares against it directly.
-    @IBOutlet private weak var beforeImageView: UIImageView!
-    @IBOutlet private var listOnlyConstraints: [NSLayoutConstraint]!
-    @IBOutlet private var splitConstraints: [NSLayoutConstraint]!
     /// Chip and swatch rows bleed to the screen edge on a phone; in the split they stop at the panel column.
     @IBOutlet private var bleedScrollViews: [UIScrollView]!
-    private lazy var layoutSwitch = DSLayoutSwitch(phone: listOnlyConstraints, unfolded: splitConstraints)
-    private var phoneBackground: UIColor?
 
-    override var usesFullWidthWhenWide: Bool { true }
-
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        layoutSwitch.isUnfolded ? .default : super.preferredStatusBarStyle
-    }
-
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        let split = dsWantsWideLandscape
-        if layoutSwitch.set(unfolded: split) {
-            if phoneBackground == nil { phoneBackground = view.backgroundColor }
-            view.backgroundColor = split ? DS.Color.background : phoneBackground
-            bleedScrollViews.forEach { $0.clipsToBounds = split }
-            setNeedsStatusBarAppearanceUpdate()
-        }
-        beforeImageView.isHidden = !split
-        if split { beforeImageView.image = originalOverlayView.image }
+    override func didChangeSplit(_ split: Bool) {
+        super.didChangeSplit(split)
+        bleedScrollViews.forEach { $0.clipsToBounds = split }
     }
 
     override func viewDidLayoutSubviews() {

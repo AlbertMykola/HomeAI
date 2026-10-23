@@ -72,7 +72,10 @@ final class ShareSheetViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        referenceLayout?.apply(size: view.window?.dsLayoutSize ?? presentingViewController?.view.dsLayoutSize ?? UIScreen.main.bounds.size)
+        // In a Duo pane the sheet is an iPhone-wide column: scale to its own width, not the unfolded window.
+        let window = view.window?.dsLayoutSize ?? presentingViewController?.view.dsLayoutSize ?? UIScreen.main.bounds.size
+        let size = DSWideLayout.isWide(window.width) ? CGSize(width: view.bounds.width, height: 852 * view.bounds.width / 393) : window
+        referenceLayout?.apply(size: size)
         let inset = 3 * max(0.1, referenceLayout?.scale ?? 1)
         formatKnobLeading.constant = inset + (formatView.bounds.width - 2 * inset) / 3 * CGFloat(format.rawValue)
     }
