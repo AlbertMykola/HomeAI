@@ -177,8 +177,12 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
         stackedConstraints.forEach { if $0.priority != (side ? low : high) { $0.priority = side ? low : high } }
         sideBySideConstraints.forEach { if $0.priority != (side ? high : low) { $0.priority = side ? high : low } }
         dragInteraction.isEnabled = side   // elsewhere a long press is hold-to-compare
-        pairOriginalImageView.image = originalImageView.image
+        // Floor plan → 3D (Figma Duo/L/07): the plan fills the left half, the 3D model goes in the card.
+        let plan = side && currentDoc?.designOption == .floolPlan
+        if plan != showsPlanOnLeft { showsPlanOnLeft = plan; originalImageView.alpha = plan ? 1 : 0 }
+        pairOriginalImageView.image = plan ? resultImageView.image : originalImageView.image
         pairOriginalImageView.isHidden = !side || originalImageView.image == nil
+        beforeChipLabel.text = plan ? "3D" : "Before".localized
         beforeChipLabel.isHidden = pairOriginalImageView.isHidden
         railToolbar.isHidden = !side
         [downloadButton, shareButton, moreButton].forEach { $0?.isHidden = side }
@@ -340,6 +344,8 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
         photoView.addInteraction(dragInteraction)
         observeHinge()
     }
+
+    private var showsPlanOnLeft = false
 
     @objc private func handleHold(_ gesture: UILongPressGestureRecognizer) {
         guard originalImageView.image != nil, !isSideBySide else { return }
