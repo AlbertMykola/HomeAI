@@ -179,7 +179,11 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
         dragInteraction.isEnabled = side   // elsewhere a long press is hold-to-compare
         // Floor plan → 3D (Figma Duo/L/07): the plan fills the left half, the 3D model goes in the card.
         let plan = side && currentDoc?.designOption == .floolPlan
-        if plan != showsPlanOnLeft { showsPlanOnLeft = plan; originalImageView.alpha = plan ? 1 : 0 }
+        if plan != showsPlanOnLeft {
+            showsPlanOnLeft = plan
+            originalImageView.alpha = plan ? 1 : 0
+            resultImageView.alpha = plan ? 0 : 1   // the plan layer sits under the result
+        }
         pairOriginalImageView.image = plan ? resultImageView.image : originalImageView.image
         pairOriginalImageView.isHidden = !side || originalImageView.image == nil
         beforeChipLabel.text = plan ? "3D" : "Before".localized
