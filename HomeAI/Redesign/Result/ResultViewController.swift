@@ -14,6 +14,8 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
     @IBOutlet private var overlayConstraints: [NSLayoutConstraint]!
     @IBOutlet private var pairConstraints: [NSLayoutConstraint]!
     private var showsPair = false
+    /// Drag the design out (wide windows only: there both photos are visible, so hold-to-compare is off).
+    private lazy var dragInteraction = UIDragInteraction(delegate: self)
     /// Wide landscape: the "before" photo above the tools in the side panel.
     @IBOutlet private weak var pairOriginalImageView: UIImageView!
     @IBOutlet private weak var resultImageView: UIImageView!
@@ -150,6 +152,7 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
         let low = UILayoutPriority(1), high = UILayoutPriority(999)
         stackedConstraints.forEach { if $0.priority != (side ? low : high) { $0.priority = side ? low : high } }
         sideBySideConstraints.forEach { if $0.priority != (side ? high : low) { $0.priority = side ? high : low } }
+        dragInteraction.isEnabled = isWideWindow
         pairOriginalImageView.image = originalImageView.image
         pairOriginalImageView.isHidden = !side || originalImageView.image == nil
         let pair = isWideWindow && !side && originalImageView.image != nil
@@ -309,10 +312,13 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
         tap.require(toFail: hold)
         tap.delegate = self
         photoView.addGestureRecognizer(tap)
+        // Split View / iPhone Duo: drag the design out to Messages, Notes, Files…
+        dragInteraction.isEnabled = false
+        photoView.addInteraction(dragInteraction)
     }
 
     @objc private func handleHold(_ gesture: UILongPressGestureRecognizer) {
-        guard originalImageView.image != nil, !showsPair else { return }
+        guard originalImageView.image != nil, !isWideWindow else { return }
         switch gesture.state {
         case .began:
             DS.Haptic.light()
@@ -1058,5 +1064,15 @@ extension ResultViewController: UIGestureRecognizerDelegate {
             current = view.superview
         }
         return true
+    }
+}
+
+extension ResultViewController: UIDragInteractionDelegate {
+    func dragInteraction(_ interaction: UIDragInteraction, itemsForBeginning session: UIDragSession) -> [UIDragItem] {
+        guard let image = resultImageView.image else { return [] }
+        AmplitudeService.shared.logRedesignEvent("result_dragged", properties: [:])
+        let item = UIDragItem(itemProvider: NSItemProvider(object: image))
+        item.localObject = image
+        return [item]
     }
 }

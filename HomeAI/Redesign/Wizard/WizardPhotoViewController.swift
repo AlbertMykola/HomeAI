@@ -50,6 +50,8 @@ final class WizardPhotoViewController: WizardStepViewController {
             (control.subviews.first as? UIImageView)?.image = UIImage(named: demoImages[min(control.tag, 2)].0)
         }
         if session.photo != nil { showSelected(animated: false) }
+        // Split View / iPhone Duo: a photo dragged in from Photos, Files or Safari is picked like the library.
+        view.addInteraction(UIDropInteraction(delegate: self))
         [titleStack, takePhotoCard, libraryCard, demoTitleLabel, tipsButton, nextButton].forEach { $0?.alpha = 0 }
         demoControls.forEach { $0.alpha = 0 }
     }
@@ -311,6 +313,24 @@ extension WizardPhotoViewController: PHPickerViewControllerDelegate {
         provider.loadObject(ofClass: UIImage.self) { [weak self] object, _ in
             guard let image = object as? UIImage else { return }
             DispatchQueue.main.async { self?.didPick(image, isDemo: false) }
+        }
+    }
+}
+
+extension WizardPhotoViewController: UIDropInteractionDelegate {
+    func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
+        session.items.count == 1 && session.canLoadObjects(ofClass: UIImage.self)
+    }
+
+    func dropInteraction(_ interaction: UIDropInteraction, sessionDidUpdate session: UIDropSession) -> UIDropProposal {
+        UIDropProposal(operation: .copy)
+    }
+
+    func dropInteraction(_ interaction: UIDropInteraction, performDrop session: UIDropSession) {
+        session.loadObjects(ofClass: UIImage.self) { [weak self] objects in
+            guard let image = objects.first as? UIImage else { return }
+            AmplitudeService.shared.logRedesignEvent("wizard_photo_dropped", properties: [:])
+            self?.didPick(image, isDemo: false)
         }
     }
 }
