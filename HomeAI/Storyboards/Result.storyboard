@@ -3128,30 +3128,55 @@
                         <constraints>
                             <constraint firstItem="cbc0-34bf-dd31" firstAttribute="leading" secondItem="7ed8-4d38-2b74" secondAttribute="leading" identifier="result.c414" id="c9f0-7442-7d09" />
                             <constraint firstItem="cbc0-34bf-dd31" firstAttribute="top" secondItem="6f8f-e25f-e8be" secondAttribute="top" identifier="result.c415" id="e675-1182-6185" />
-                            <constraint firstItem="7ed8-4d38-2b74" firstAttribute="trailing" secondItem="cbc0-34bf-dd31" secondAttribute="trailing" identifier="result.c416" id="f57b-0284-34f3" />
-                            <constraint firstItem="cbc0-34bf-dd31" firstAttribute="bottom" secondItem="965f-69ec-6e31" secondAttribute="top" constant="72" identifier="result.c417" id="31c7-ad1e-93fd" />
+                            <constraint priority="999" firstItem="7ed8-4d38-2b74" firstAttribute="trailing" secondItem="cbc0-34bf-dd31" secondAttribute="trailing" identifier="result.c416" id="f57b-0284-34f3" />
+                            <constraint priority="999" firstItem="cbc0-34bf-dd31" firstAttribute="bottom" secondItem="965f-69ec-6e31" secondAttribute="top" constant="72" identifier="result.c417" id="31c7-ad1e-93fd" />
                             <constraint firstItem="1837-cfd3-4105" firstAttribute="leading" secondItem="7ed8-4d38-2b74" secondAttribute="leading" constant="16" identifier="result.c449" id="2da7-8604-c730" />
-                            <constraint firstItem="7ed8-4d38-2b74" firstAttribute="trailing" secondItem="1837-cfd3-4105" secondAttribute="trailing" constant="16" identifier="result.c450" id="8bb4-637e-4b7b" />
+                            <constraint priority="999" firstItem="7ed8-4d38-2b74" firstAttribute="trailing" secondItem="1837-cfd3-4105" secondAttribute="trailing" constant="16" identifier="result.c450" id="8bb4-637e-4b7b" />
                             <constraint firstItem="1837-cfd3-4105" firstAttribute="top" secondItem="7ed8-4d38-2b74" secondAttribute="top" constant="-4" identifier="result.c451" id="25ec-1fc3-baca" />
                             <constraint firstItem="6445-4d8f-aeb5" firstAttribute="leading" secondItem="7ed8-4d38-2b74" secondAttribute="leading" constant="16" identifier="result.c459" id="0ddb-8d30-222b" />
-                            <constraint firstItem="965f-69ec-6e31" firstAttribute="top" secondItem="6445-4d8f-aeb5" secondAttribute="bottom" constant="16" identifier="result.c460" id="5a76-687b-8415" />
-                            <constraint firstItem="7ed8-4d38-2b74" firstAttribute="trailing" secondItem="c8c3-4a59-1c7e" secondAttribute="trailing" constant="16" identifier="result.c468" id="31bc-ca68-52ef" />
+                            <constraint priority="999" firstItem="965f-69ec-6e31" firstAttribute="top" secondItem="6445-4d8f-aeb5" secondAttribute="bottom" constant="16" identifier="result.c460" id="5a76-687b-8415" />
+                            <constraint priority="999" firstItem="7ed8-4d38-2b74" firstAttribute="trailing" secondItem="c8c3-4a59-1c7e" secondAttribute="trailing" constant="16" identifier="result.c468" id="31bc-ca68-52ef" />
                             <constraint firstItem="c8c3-4a59-1c7e" firstAttribute="centerY" secondItem="6445-4d8f-aeb5" secondAttribute="centerY" identifier="result.c469" id="a878-74a7-f7ee" />
-                            <constraint firstItem="965f-69ec-6e31" firstAttribute="leading" secondItem="7ed8-4d38-2b74" secondAttribute="leading" identifier="result.c474" id="6d1f-3553-cd91" />
+                            <constraint priority="999" firstItem="965f-69ec-6e31" firstAttribute="leading" secondItem="7ed8-4d38-2b74" secondAttribute="leading" identifier="result.c474" id="6d1f-3553-cd91" />
                             <constraint firstItem="7ed8-4d38-2b74" firstAttribute="trailing" secondItem="965f-69ec-6e31" secondAttribute="trailing" identifier="result.c475" id="c51f-0295-82dd" />
                             <constraint firstItem="6f8f-e25f-e8be" firstAttribute="bottom" secondItem="965f-69ec-6e31" secondAttribute="bottom" identifier="result.c476" id="8640-fed8-7778" />
                             <constraint firstItem="6f8f-e25f-e8be" firstAttribute="bottom" secondItem="933c-b288-142c" secondAttribute="bottom" constant="27" identifier="result.c480" id="c88f-d755-a3c0" />
-                            <constraint firstItem="ddd1-e622-b83a" firstAttribute="leading" secondItem="7ed8-4d38-2b74" secondAttribute="leading" identifier="result.c506" id="5ff5-acb9-a27b" />
+                            <constraint priority="999" firstItem="ddd1-e622-b83a" firstAttribute="leading" secondItem="7ed8-4d38-2b74" secondAttribute="leading" identifier="result.c506" id="5ff5-acb9-a27b" />
                             <constraint firstItem="7ed8-4d38-2b74" firstAttribute="trailing" secondItem="ddd1-e622-b83a" secondAttribute="trailing" identifier="result.c507" id="4fb0-52b2-de33" />
                             <constraint firstItem="ddd1-e622-b83a" firstAttribute="bottom" secondItem="6f8f-e25f-e8be" secondAttribute="bottom" id="8b13-29c8-fcec" identifier="ds.reference.8b13-29c8-fcec" />
-                            <constraint firstItem="42c7-278a-32b8" firstAttribute="leading" secondItem="7ed8-4d38-2b74" secondAttribute="leading" identifier="result.c535" id="3119-0da5-1e61" />
+                            <constraint priority="999" firstItem="42c7-278a-32b8" firstAttribute="leading" secondItem="7ed8-4d38-2b74" secondAttribute="leading" identifier="result.c535" id="3119-0da5-1e61" />
                             <constraint firstItem="7ed8-4d38-2b74" firstAttribute="trailing" secondItem="42c7-278a-32b8" secondAttribute="trailing" identifier="result.c536" id="3510-12bd-2f31" />
                             <constraint firstItem="6f8f-e25f-e8be" firstAttribute="bottom" secondItem="42c7-278a-32b8" secondAttribute="bottom" identifier="result.c537" id="7cf8-4eb9-9870" />
                             <constraint firstItem="7ed8-4d38-2b74" firstAttribute="bottom" secondItem="d58a-febe-ec0a" secondAttribute="bottom" constant="12" identifier="result.c541" id="7bc3-6168-f3d5" />
+                            <constraint priority="1" firstItem="6f8f-e25f-e8be" firstAttribute="bottom" secondItem="cbc0-34bf-dd31" secondAttribute="bottom" identifier="result.wide.a1" id="5a1d-0000-00a1" />
+                            <constraint priority="1" firstItem="965f-69ec-6e31" firstAttribute="leading" secondItem="cbc0-34bf-dd31" secondAttribute="trailing" constant="-24" identifier="result.wide.a2" id="5a1d-0000-00a2" />
+                            <constraint priority="1" firstItem="965f-69ec-6e31" firstAttribute="width" secondItem="7ed8-4d38-2b74" secondAttribute="width" multiplier="0.42" identifier="result.wide.a3" id="5a1d-0000-00a3" />
+                            <constraint priority="1" firstItem="7ed8-4d38-2b74" firstAttribute="bottom" secondItem="6445-4d8f-aeb5" secondAttribute="bottom" constant="16" identifier="result.wide.a4" id="5a1d-0000-00a4" />
+                            <constraint priority="1" firstItem="965f-69ec-6e31" firstAttribute="leading" secondItem="c8c3-4a59-1c7e" secondAttribute="trailing" constant="16" identifier="result.wide.a5" id="5a1d-0000-00a5" />
+                            <constraint priority="1" firstItem="ddd1-e622-b83a" firstAttribute="leading" secondItem="965f-69ec-6e31" secondAttribute="leading" identifier="result.wide.a6" id="5a1d-0000-00a6" />
+                            <constraint priority="1" firstItem="42c7-278a-32b8" firstAttribute="leading" secondItem="965f-69ec-6e31" secondAttribute="leading" identifier="result.wide.a7" id="5a1d-0000-00a7" />
+                            <constraint priority="1" firstItem="965f-69ec-6e31" firstAttribute="leading" secondItem="1837-cfd3-4105" secondAttribute="trailing" constant="16" identifier="result.wide.a8" id="5a1d-0000-00a8" />
+                            <constraint firstItem="965f-69ec-6e31" firstAttribute="top" relation="greaterThanOrEqual" secondItem="7ed8-4d38-2b74" secondAttribute="top" constant="8" identifier="result.wide.top" id="5a1d-0000-00b1" />
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="photoView" destination="cbc0-34bf-dd31" id="9105-2087-ba56" />
+                        <outletCollection property="stackedConstraints" destination="31c7-ad1e-93fd" collectionClass="NSMutableArray" id="5a1d-0001-0000" />
+                        <outletCollection property="stackedConstraints" destination="f57b-0284-34f3" collectionClass="NSMutableArray" id="5a1d-0001-0001" />
+                        <outletCollection property="stackedConstraints" destination="6d1f-3553-cd91" collectionClass="NSMutableArray" id="5a1d-0001-0002" />
+                        <outletCollection property="stackedConstraints" destination="5a76-687b-8415" collectionClass="NSMutableArray" id="5a1d-0001-0003" />
+                        <outletCollection property="stackedConstraints" destination="31bc-ca68-52ef" collectionClass="NSMutableArray" id="5a1d-0001-0004" />
+                        <outletCollection property="stackedConstraints" destination="5ff5-acb9-a27b" collectionClass="NSMutableArray" id="5a1d-0001-0005" />
+                        <outletCollection property="stackedConstraints" destination="3119-0da5-1e61" collectionClass="NSMutableArray" id="5a1d-0001-0006" />
+                        <outletCollection property="stackedConstraints" destination="8bb4-637e-4b7b" collectionClass="NSMutableArray" id="5a1d-0001-0007" />
+                        <outletCollection property="sideBySideConstraints" destination="5a1d-0000-00a1" collectionClass="NSMutableArray" id="5a1d-0002-00a1" />
+                        <outletCollection property="sideBySideConstraints" destination="5a1d-0000-00a2" collectionClass="NSMutableArray" id="5a1d-0002-00a2" />
+                        <outletCollection property="sideBySideConstraints" destination="5a1d-0000-00a3" collectionClass="NSMutableArray" id="5a1d-0002-00a3" />
+                        <outletCollection property="sideBySideConstraints" destination="5a1d-0000-00a4" collectionClass="NSMutableArray" id="5a1d-0002-00a4" />
+                        <outletCollection property="sideBySideConstraints" destination="5a1d-0000-00a5" collectionClass="NSMutableArray" id="5a1d-0002-00a5" />
+                        <outletCollection property="sideBySideConstraints" destination="5a1d-0000-00a6" collectionClass="NSMutableArray" id="5a1d-0002-00a6" />
+                        <outletCollection property="sideBySideConstraints" destination="5a1d-0000-00a7" collectionClass="NSMutableArray" id="5a1d-0002-00a7" />
+                        <outletCollection property="sideBySideConstraints" destination="5a1d-0000-00a8" collectionClass="NSMutableArray" id="5a1d-0002-00a8" />
                         <outlet property="originalImageView" destination="2b06-b0c9-235e" id="d27d-e554-36fd" />
                         <outlet property="resultImageView" destination="e47d-d7df-73eb" id="50b1-3516-c101" />
                         <outlet property="revealBlurView" destination="a53c-b67a-2cd1" id="1254-7eba-80a6" />

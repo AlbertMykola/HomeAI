@@ -12,7 +12,7 @@ final class PortraitNavigationController: UINavigationController {
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        dsApplyWideColumn(fullWidth: topViewController is DSWideLayoutFullWidth)
+        dsApplyWideColumn(fullWidth: (topViewController as? DSWideLayoutFullWidth)?.dsUsesFullWidth == true)
     }
 }
 

@@ -20,8 +20,14 @@ enum DSWideLayout {
     }
 }
 
-/// Screens that use the full width themselves (multi-column grids).
-protocol DSWideLayoutFullWidth: UIViewController {}
+/// Screens that use the full width themselves (multi-column grids, side-by-side layouts).
+protocol DSWideLayoutFullWidth: UIViewController {
+    var dsUsesFullWidth: Bool { get }
+}
+
+extension DSWideLayoutFullWidth {
+    var dsUsesFullWidth: Bool { true }
+}
 
 extension UIViewController {
     /// Call from `viewWillLayoutSubviews` of a container or full-screen controller.

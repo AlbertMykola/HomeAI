@@ -2,10 +2,14 @@ import UIKit
 import StoreKit
 
 /// A/06 · R1 Result + editor panel (versions, tools, ask for a change). Layout: Result.storyboard.
-final class ResultViewController: UIViewController {
+final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
 
     // photo
     @IBOutlet private weak var photoView: UIView!
+    /// Phones / portrait: photo above the panel. Wide landscape (iPhone Duo unfolded): photo left, panel right.
+    /// Both sets live in Result.storyboard; only their priorities swap.
+    @IBOutlet private var stackedConstraints: [NSLayoutConstraint]!
+    @IBOutlet private var sideBySideConstraints: [NSLayoutConstraint]!
     @IBOutlet private weak var resultImageView: UIImageView!
     @IBOutlet private weak var likeIconView: UIImageView!
     @IBOutlet private weak var originalImageView: UIImageView!
@@ -118,6 +122,23 @@ final class ResultViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+
+    var dsUsesFullWidth: Bool { isSideBySide }
+
+    private var isSideBySide: Bool {
+        guard let window = view.window else { return false }
+        let size = (navigationController?.view ?? view).bounds.size
+        let width = size.width - window.safeAreaInsets.left - window.safeAreaInsets.right
+        return DSWideLayout.isWide(width) && size.width > size.height
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        let side = isSideBySide
+        let low = UILayoutPriority(1), high = UILayoutPriority(999)
+        stackedConstraints.forEach { if $0.priority != (side ? low : high) { $0.priority = side ? low : high } }
+        sideBySideConstraints.forEach { if $0.priority != (side ? high : low) { $0.priority = side ? high : low } }
     }
 
     override func viewDidLayoutSubviews() {
