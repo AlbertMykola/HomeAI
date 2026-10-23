@@ -11,7 +11,9 @@ enum DSSheet {
     /// Figma's floating Share sheet: 8 pt screen inset, full rounded corners, no presenter scaling.
     @discardableResult static func presentFloating(_ vc: UIViewController, from presenter: UIViewController,
                                                    height: CGFloat) -> UIViewControllerTransitioningDelegate {
-        let transition = DSFloatingSheetTransition(height: height)
+        // Unfolded Duo: in its pane like the other sheets (Figma Duo/L/06 R8).
+        let pane = presenter.view.window.map { DSWideLayout.isWide($0.dsLayoutSize.width) } ?? false
+        let transition = DSFloatingSheetTransition(height: height, pane: pane)
         vc.modalPresentationStyle = .custom
         vc.transitioningDelegate = transition
         #if DEBUG

@@ -19,6 +19,16 @@ final class CompareViewController: UIViewController {
     @IBOutlet private var segmentControls: [DSPressableControl]!
     @IBOutlet private var segmentLabels: [UILabel]!
 
+    /// iPhone Duo unfolded, landscape (Figma Duo/L/06 R2): Split shows the original in the left pane and the
+    /// result in the right one — the divider never sits on the hinge. Sets in Result.storyboard (phone 999 / pair 1).
+    @IBOutlet private var phoneConstraints: [NSLayoutConstraint]!
+    @IBOutlet private var pairConstraints: [NSLayoutConstraint]!
+    private lazy var layoutSwitch = DSLayoutSwitch(phone: phoneConstraints, unfolded: pairConstraints)
+    private var isPair: Bool { layoutSwitch.isUnfolded }
+    /// Original / Result in the pair layout use the whole stage again.
+    @IBOutlet private weak var afterStageLeading: NSLayoutConstraint!
+    @IBOutlet private weak var afterHingeLeading: NSLayoutConstraint!
+
     var beforeImage: UIImage?
     var afterImage: UIImage?
 
@@ -48,6 +58,11 @@ final class CompareViewController: UIViewController {
         hintSlide()
     }
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        _ = layoutSwitch.set(unfolded: dsWantsWideLandscape)
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         referenceLayout?.apply(size: view.dsLayoutSize)
@@ -59,12 +74,17 @@ final class CompareViewController: UIViewController {
 
     private func layoutDivider() {
         let fraction: CGFloat = mode == .original ? 1 : (mode == .result ? 0 : splitFraction)
-        let width = stageView.bounds.width * fraction
+        // Pair: the original ends 4 pt before the hinge (window centre).
+        let hinge = view.bounds.midX - stageView.frame.minX - 4
+        let width = isPair && mode == .split ? hinge : stageView.bounds.width * fraction
         if abs(beforeWidthConstraint.constant - width) > 0.01 {
             beforeWidthConstraint.constant = width
         }
-        dividerView.alpha = mode == .split ? 1 : 0
-        handleView.alpha = mode == .split ? 1 : 0
+        let halves = isPair && mode == .split
+        afterStageLeading.priority = UILayoutPriority(halves ? 1 : 999)
+        afterHingeLeading.priority = UILayoutPriority(halves ? 999 : 1)
+        dividerView.alpha = mode == .split && !isPair ? 1 : 0
+        handleView.alpha = mode == .split && !isPair ? 1 : 0
     }
 
     @objc private func handleDrag(_ gesture: UIPanGestureRecognizer) {
@@ -75,7 +95,7 @@ final class CompareViewController: UIViewController {
             applyZoom()
             return
         }
-        guard mode == .split else { return }
+        guard mode == .split, !isPair else { return }
         splitFraction = min(max(gesture.location(in: stageView).x / max(stageView.bounds.width, 1), 0), 1)
         layoutDivider()
     }
@@ -129,7 +149,7 @@ final class CompareViewController: UIViewController {
 
     /// Handle pops, then the divider glides +90 → −90 → centre to show it can be dragged.
     private func hintSlide() {
-        guard !DS.Motion.reduceMotion else { return }
+        guard !DS.Motion.reduceMotion, !isPair else { return }
         DS.Motion.enter(handleView, delay: 0.1, scale: 0.4, duration: 0.35, pop: true)
         let w = max(stageView.bounds.width, 1)
         let steps: [CGFloat] = [0.5 + 90 / w, 0.5 - 90 / w, 0.5]
