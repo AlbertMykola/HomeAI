@@ -26,6 +26,16 @@ final class CameraViewController: UIViewController {
     @IBOutlet private weak var shutterButton: DSPressableControl!
     @IBOutlet private weak var flipButton: DSPressableControl!
     @IBOutlet private weak var flashOverlay: UIView!
+    // iPhone Duo half folded ("laptop" on a table, Figma Duo/HF/04): hands-free shot — viewfinder on the upper
+    // half, controls and a self-timer on the lower half (Wizard.storyboard).
+    @IBOutlet private weak var timerControl: UISegmentedControl!
+    @IBOutlet private weak var countdownLabel: UILabel!
+    @IBOutlet private var handsFreeViews: [UIView]!
+    @IBOutlet private var phoneConstraints: [NSLayoutConstraint]!
+    @IBOutlet private var tabletopConstraints: [NSLayoutConstraint]!
+    private lazy var postureSwitch = DSLayoutSwitch(phone: phoneConstraints, unfolded: tabletopConstraints)
+    private var countdown: Timer?
+    private static let timerSeconds = [0, 3, 10]
 
     var onCapture: ((UIImage) -> Void)?
 
@@ -63,6 +73,12 @@ final class CameraViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         hintLabel.text = "Step back to fit the whole room".localized
+        timerControl.setTitle("Off".localized, forSegmentAt: 0)
+        timerControl.setTitle(String(format: "%d s".localized, 3), forSegmentAt: 1)
+        timerControl.setTitle(String(format: "%d s".localized, 10), forSegmentAt: 2)
+        timerControl.setTitleTextAttributes([.foregroundColor: UIColor.white.withAlphaComponent(0.8)], for: .normal)
+        timerControl.setTitleTextAttributes([.foregroundColor: UIColor.black], for: .selected)
+        observeHinge()
         previewView.previewLayer.session = session
         previewView.previewLayer.videoGravity = .resizeAspectFill
         configureSession()
@@ -78,6 +94,7 @@ final class CameraViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         breathingTimer?.invalidate()
+        countdown?.invalidate()
         motion.stopDeviceMotionUpdates()
         sessionQueue.async { [session] in if session.isRunning { session.stopRunning() } }
     }
@@ -169,7 +186,69 @@ final class CameraViewController: UIViewController {
         present(picker, animated: true)
     }
 
+    // MARK: Hands-free (half-folded Duo)
+
+    private var isTabletop: Bool { postureSwitch.isUnfolded }
+
+    private func observeHinge() {
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("--qa-tabletop") { return setTabletop(true) }
+        #endif
+        guard #available(iOS 27.1, *) else { return }
+        view.addInteraction(UIHingeInteraction { [weak self] _, update in
+            self?.setTabletop(update.hinge?.status == .partiallyOpen)
+        })
+    }
+
+    private func setTabletop(_ on: Bool) {
+        guard postureSwitch.set(unfolded: on) else { return }
+        AmplitudeService.shared.logRedesignEvent("camera_posture", properties: ["tabletop": on])
+        handsFreeViews.forEach { $0.isHidden = !on }
+        hintLabel.text = (on ? "Duo stands on its own · step out of the frame" : "Step back to fit the whole room").localized
+        if on { timerControl.selectedSegmentIndex = 1 }   // 3 s by default when standing on its own
+        if !on { cancelCountdown() }
+        UIView.animate(withDuration: DS.Motion.reduceMotion ? 0 : 0.4, delay: 0, usingSpringWithDamping: 0.9,
+                       initialSpringVelocity: 0) { self.view.layoutIfNeeded() }
+    }
+
+    @IBAction private func didChangeTimer(_ sender: UISegmentedControl) {
+        DS.Haptic.selection()
+    }
+
+    private func cancelCountdown() {
+        countdown?.invalidate()
+        countdown = nil
+        countdownLabel.isHidden = true
+    }
+
+    /// Big digits in the viewfinder, a tick each second, then the shot.
+    private func startCountdown(_ seconds: Int) {
+        var left = seconds
+        countdownLabel.text = "\(left)"
+        countdownLabel.isHidden = false
+        DS.Haptic.light()
+        countdown = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] timer in
+            guard let self else { return timer.invalidate() }
+            left -= 1
+            guard left > 0 else {
+                self.cancelCountdown()
+                self.capture()
+                return
+            }
+            self.countdownLabel.text = "\(left)"
+            DS.Haptic.light()
+        }
+    }
+
     @IBAction private func didTapShutter(_ sender: Any) {
+        guard currentInput != nil else { return }
+        if countdown != nil { return cancelCountdown() }   // tap again to cancel
+        let seconds = isTabletop ? Self.timerSeconds[timerControl.selectedSegmentIndex] : 0
+        guard seconds == 0 else { return startCountdown(seconds) }
+        capture()
+    }
+
+    private func capture() {
         guard currentInput != nil else { return }
         DS.Haptic.medium()
         breathingTimer?.invalidate()

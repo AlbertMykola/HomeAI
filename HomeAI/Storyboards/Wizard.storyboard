@@ -341,14 +341,68 @@
                             <view contentMode="scaleToFill" alpha="0" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="529c-bb38-cdaf" userLabel="flashOverlay">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
                             </view>
-                        </subviews>
+                        <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="1" translatesAutoresizingMaskIntoConstraints="NO" id="7e40-0000-0001" userLabel="timerControl">
+                                <segments>
+                                    <segment title="Off" />
+                                    <segment title="3 s" />
+                                    <segment title="10 s" />
+                                </segments>
+                                <color key="selectedSegmentTintColor" name="dsLime" />
+                                <connections>
+                                    <action selector="didChangeTimer:" destination="3ece-1f58-3349" eventType="valueChanged" id="7e40-0000-0002" />
+                                </connections>
+                            </segmentedControl>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" text="3" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7e40-0000-0003" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="countdownLabel" clipsSubviews="YES">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="112" id="7e40-0000-0107" />
+                                    <constraint firstAttribute="height" constant="112" id="7e40-0000-0108" />
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Geologica-Bold" family="Geologica" pointSize="72" />
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                <nil key="highlightedColor" />
+                                <color key="backgroundColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <real key="value" value="56" />
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="3" />
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Hands-free shot" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7e40-0000-0004" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="handsFreeTitleLabel">
+                                <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17" />
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                <nil key="highlightedColor" />
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Hands-free shot" />
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Put Duo on a table, aim the top half at the room and tap the shutter. The timer gives you time to step aside." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7e40-0000-0005" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="handsFreeBodyLabel">
+                                <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14" />
+                                <color key="textColor" white="1" alpha="0.6" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                <nil key="highlightedColor" />
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Put Duo on a table, aim the top half at the room and tap the shutter. The timer gives you time to step aside." />
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                            </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
                         <viewLayoutGuide key="safeArea" id="2be1-eae4-fec8" />
                         <constraints>
+                            <constraint priority="1" firstItem="b245-b656-3fce" firstAttribute="bottom" secondItem="8d88-9c1b-6034" secondAttribute="centerY" id="7e40-0000-0101" />
+                            <constraint priority="1" firstItem="bb0c-6b5b-dab6" firstAttribute="top" secondItem="8d88-9c1b-6034" secondAttribute="centerY" constant="64" id="7e40-0000-0102" />
+                            <constraint firstItem="7e40-0000-0001" firstAttribute="top" secondItem="8d88-9c1b-6034" secondAttribute="centerY" constant="20" id="7e40-0000-0103" />
+                            <constraint firstItem="7e40-0000-0001" firstAttribute="leading" secondItem="2be1-eae4-fec8" secondAttribute="leading" constant="20" id="7e40-0000-0104" />
+                            <constraint firstItem="7e40-0000-0003" firstAttribute="centerX" secondItem="b245-b656-3fce" secondAttribute="centerX" id="7e40-0000-0105" />
+                            <constraint firstItem="7e40-0000-0003" firstAttribute="centerY" secondItem="b245-b656-3fce" secondAttribute="centerY" id="7e40-0000-0106" />
+                            <constraint firstItem="7e40-0000-0005" firstAttribute="top" secondItem="7e40-0000-0004" secondAttribute="bottom" constant="6" id="7e40-0000-0109" />
+                            <constraint firstItem="bb0c-6b5b-dab6" firstAttribute="top" secondItem="7e40-0000-0005" secondAttribute="bottom" constant="16" id="7e40-0000-0110" />
+                            <constraint firstItem="7e40-0000-0004" firstAttribute="centerX" secondItem="2be1-eae4-fec8" secondAttribute="centerX" id="7e40-0000-0111" />
+                            <constraint firstItem="7e40-0000-0005" firstAttribute="leading" secondItem="2be1-eae4-fec8" secondAttribute="leading" constant="40" id="7e40-0000-0112" />
+                            <constraint firstItem="2be1-eae4-fec8" firstAttribute="trailing" secondItem="7e40-0000-0005" secondAttribute="trailing" constant="40" id="7e40-0000-0113" />
                             <constraint firstItem="b245-b656-3fce" firstAttribute="leading" secondItem="2be1-eae4-fec8" secondAttribute="leading" id="a849-350c-c91a" identifier="ds.reference.a849-350c-c91a" />
                             <constraint firstItem="2be1-eae4-fec8" firstAttribute="trailing" secondItem="b245-b656-3fce" secondAttribute="trailing" id="8972-c6fd-0e4d" identifier="ds.reference.8972-c6fd-0e4d" />
                             <constraint firstItem="b245-b656-3fce" firstAttribute="top" secondItem="2be1-eae4-fec8" secondAttribute="top" constant="51" id="a97e-a291-3bfc" identifier="ds.reference.a97e-a291-3bfc" />
-                            <constraint firstItem="bb0c-6b5b-dab6" firstAttribute="top" secondItem="b245-b656-3fce" secondAttribute="bottom" id="2aae-3aa1-d5a0" identifier="ds.reference.2aae-3aa1-d5a0" />
+                            <constraint priority="999" firstItem="bb0c-6b5b-dab6" firstAttribute="top" secondItem="b245-b656-3fce" secondAttribute="bottom" id="2aae-3aa1-d5a0" identifier="ds.reference.2aae-3aa1-d5a0" />
                             <constraint firstItem="ba8a-7d09-882a" firstAttribute="leading" secondItem="b245-b656-3fce" secondAttribute="leading" id="3659-5c79-497a" identifier="ds.reference.3659-5c79-497a" />
                             <constraint firstItem="ba8a-7d09-882a" firstAttribute="top" secondItem="b245-b656-3fce" secondAttribute="top" id="45af-6c1f-f469" identifier="ds.reference.45af-6c1f-f469" />
                             <constraint firstItem="b245-b656-3fce" firstAttribute="trailing" secondItem="ba8a-7d09-882a" secondAttribute="trailing" id="0eb5-a9f1-f1f6" identifier="ds.reference.0eb5-a9f1-f1f6" />
@@ -373,6 +427,14 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="timerControl" destination="7e40-0000-0001" id="7e40-0000-0201" />
+                        <outlet property="countdownLabel" destination="7e40-0000-0003" id="7e40-0000-0202" />
+                        <outletCollection property="handsFreeViews" destination="7e40-0000-0001" collectionClass="NSMutableArray" id="7e40-0000-0203" />
+                        <outletCollection property="handsFreeViews" destination="7e40-0000-0004" collectionClass="NSMutableArray" id="7e40-0000-0204" />
+                        <outletCollection property="handsFreeViews" destination="7e40-0000-0005" collectionClass="NSMutableArray" id="7e40-0000-0205" />
+                        <outletCollection property="phoneConstraints" destination="2aae-3aa1-d5a0" collectionClass="NSMutableArray" id="7e40-0000-0206" />
+                        <outletCollection property="tabletopConstraints" destination="7e40-0000-0101" collectionClass="NSMutableArray" id="7e40-0000-0207" />
+                        <outletCollection property="tabletopConstraints" destination="7e40-0000-0102" collectionClass="NSMutableArray" id="7e40-0000-0208" />
                         <outlet property="previewView" destination="b245-b656-3fce" id="32ce-e4ce-e011" />
                         <outlet property="gridView" destination="ba8a-7d09-882a" id="f4aa-7cd9-5b3a" />
                         <outlet property="levelView" destination="b3b8-70cb-d674" id="7d1b-6231-2226" />

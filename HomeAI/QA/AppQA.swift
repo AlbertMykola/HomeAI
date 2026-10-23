@@ -221,6 +221,7 @@ enum AppQA {
         case "offline": return StateScreenViewController.make(.offline)
         case "blocked": return StateScreenViewController.make(.contentBlocked(photo: photo, policyID: "QA"))
         case "camera-off": return StateScreenViewController.make(.cameraOff)
+        case "camera": return AppStoryboard.instantiate(CameraViewController.self)   // --qa-tabletop: half-folded Duo
         case "force-update": return StateScreenViewController.make(.forceUpdate)
         case "photo-tips": return QAPresentationHost { PhotoTipsSheetViewController.present(from: $0) }
         case let tool where tool.hasPrefix("photo-tips-"):
