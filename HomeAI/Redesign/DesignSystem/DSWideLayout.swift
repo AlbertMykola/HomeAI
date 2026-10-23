@@ -138,3 +138,36 @@ final class DSSplitPane {
         controller.view.translatesAutoresizingMaskIntoConstraints = true
     }
 }
+
+extension UIViewController {
+    /// iPhone Duo unfolded in landscape: a wide window that is wider than tall (uses the container's window,
+    /// which exists before the child gets one).
+    var dsWantsWideLandscape: Bool {
+        guard let window = navigationController?.view.window ?? view.window else { return false }
+        let size = (navigationController?.view ?? view).bounds.size
+        return DSWideLayout.isWide(size.width - window.safeAreaInsets.left - window.safeAreaInsets.right)
+            && size.width > size.height
+    }
+}
+
+/// Two storyboard-authored constraint sets (phone 999 / unfolded 1) and the priority swap between them.
+final class DSLayoutSwitch {
+    private let phone: [NSLayoutConstraint]
+    private let unfolded: [NSLayoutConstraint]
+    private(set) var isUnfolded = false
+
+    init(phone: [NSLayoutConstraint], unfolded: [NSLayoutConstraint]) {
+        self.phone = phone
+        self.unfolded = unfolded
+    }
+
+    /// Returns true when the arrangement changed.
+    @discardableResult
+    func set(unfolded on: Bool) -> Bool {
+        guard on != isUnfolded else { return false }
+        isUnfolded = on
+        phone.forEach { $0.priority = UILayoutPriority(on ? 1 : 999) }
+        unfolded.forEach { $0.priority = UILayoutPriority(on ? 999 : 1) }
+        return true
+    }
+}

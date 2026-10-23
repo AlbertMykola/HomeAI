@@ -3,7 +3,7 @@ import UserNotifications
 
 /// A/05 · G1 Generating (+ G3 failed / G4 photo not suitable). Layout: Generation.storyboard.
 /// Presented full screen; ⌄ collapses it while the runner keeps going (GenerationCenter).
-final class GenerationViewController: UIViewController {
+final class GenerationViewController: UIViewController, DSWideLayoutFullWidth {
 
     // nav + photo
     @IBOutlet private var scanParticles: [UIView]!
@@ -12,6 +12,17 @@ final class GenerationViewController: UIViewController {
     @IBOutlet private weak var collapseButton: DSPressableControl!
     @IBOutlet private weak var navTitleLabel: UILabel!
     @IBOutlet private weak var photoCardView: UIView!
+    /// iPhone Duo unfolded, landscape (Figma Duo/L/05): scanning photo left, progress right (Generation.storyboard).
+    @IBOutlet private var listOnlyConstraints: [NSLayoutConstraint]!
+    @IBOutlet private var splitConstraints: [NSLayoutConstraint]!
+    private lazy var layoutSwitch = DSLayoutSwitch(phone: listOnlyConstraints, unfolded: splitConstraints)
+
+    var dsUsesFullWidth: Bool { dsWantsWideLandscape }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        if layoutSwitch.set(unfolded: dsWantsWideLandscape) { navigationController?.view.setNeedsLayout() }
+    }
     @IBOutlet private weak var photoClipView: UIView!
     @IBOutlet private weak var photoImageView: UIImageView!
     @IBOutlet private weak var scannedAreaView: UIView!
