@@ -79,6 +79,32 @@ final class PaintEditorViewController: MaskEditorViewController {
         updateApplyState()
     }
 
+    // iPhone Duo unfolded, landscape (Figma Duo/L/06 Paint): canvas on the left half, the original photo above
+    // the Paint panel on the right — the swatch preview on the left compares against it directly.
+    @IBOutlet private weak var beforeImageView: UIImageView!
+    @IBOutlet private var listOnlyConstraints: [NSLayoutConstraint]!
+    @IBOutlet private var splitConstraints: [NSLayoutConstraint]!
+    private lazy var layoutSwitch = DSLayoutSwitch(phone: listOnlyConstraints, unfolded: splitConstraints)
+    private var phoneBackground: UIColor?
+
+    override var usesFullWidthWhenWide: Bool { true }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        layoutSwitch.isUnfolded ? .darkContent : super.preferredStatusBarStyle
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        let split = dsWantsWideLandscape
+        if layoutSwitch.set(unfolded: split) {
+            if phoneBackground == nil { phoneBackground = view.backgroundColor }
+            view.backgroundColor = split ? DS.Color.background : phoneBackground
+            setNeedsStatusBarAppearanceUpdate()
+        }
+        beforeImageView.isHidden = !split
+        if split { beforeImageView.image = originalOverlayView.image }
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         applySegment(index: isBrush ? 1 : 0, labels: modeLabels, knobLeading: modeKnobLeading, container: modeView,

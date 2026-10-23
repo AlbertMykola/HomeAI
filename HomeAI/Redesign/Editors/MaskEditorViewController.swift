@@ -46,8 +46,11 @@ class MaskEditorViewController: UIViewController {
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        dsApplyWideColumn()
+        dsApplyWideColumn(fullWidth: usesFullWidthWhenWide && dsWantsWideLandscape)
     }
+
+    /// Editors with their own two-pane layout on the unfolded Duo (Paint) skip the reading column.
+    var usesFullWidthWhenWide: Bool { false }
 
     override func viewDidLoad() {
         super.viewDidLoad()
