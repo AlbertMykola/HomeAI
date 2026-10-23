@@ -180,7 +180,7 @@ final class HomeViewController: UIViewController, DSWideLayoutFullWidth {
             arrangement = next
             // Switch off first, then on: the spacer collapse belongs to both unfolded sets.
             let groups: [([NSLayoutConstraint], Bool)] = [
-                (listOnlyConstraints, next != .landscape), (heroPhoneConstraints, next == .phone),
+                (listOnlyConstraints, next != .landscape), (heroPhoneConstraints, next == .phone),   // stack / hero
                 (splitConstraints, next == .landscape), (portraitConstraints, next == .portrait)
             ]
             groups.filter { !$0.1 }.forEach { $0.0.forEach { $0.priority = UILayoutPriority(1) } }
@@ -200,7 +200,10 @@ final class HomeViewController: UIViewController, DSWideLayoutFullWidth {
         super.viewDidLayoutSubviews()
         // Portrait: the content starts under the pinned hero and scrolls behind it.
         // Hero ends 12 pt above the hinge (screen centre); the stack's own top offset is 59 pt.
-        let inset = arrangement == .portrait ? max(0, view.bounds.midY - 12 + 16 - 59 - scrollView.frame.minY) : 0
+        // UIKit adds its own safe-area inset on top of contentInset, so subtract it.
+        let systemTop = scrollView.adjustedContentInset.top - scrollView.contentInset.top
+        let inset = arrangement == .portrait
+            ? max(0, view.bounds.midY - 12 + 16 - 59 - scrollView.frame.minY - systemTop) : 0
         if abs(scrollView.contentInset.top - inset) > 0.5 {
             scrollView.contentInset.top = inset
             scrollView.verticalScrollIndicatorInsets.top = inset

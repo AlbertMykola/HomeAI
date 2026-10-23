@@ -1295,7 +1295,7 @@
 <constraint priority="1" firstItem="0d81-69ed-f25c" firstAttribute="leading" secondItem="acac-dd11-1dc5" secondAttribute="leading" constant="20" id="7e20-0000-0011" />
 <constraint priority="1" firstItem="0d81-69ed-f25c" firstAttribute="leading" secondItem="acac-dd11-1dc5" secondAttribute="leading" constant="20" id="7e20-0000-0021" />
 <constraint priority="1" firstItem="acac-dd11-1dc5" firstAttribute="trailing" secondItem="0d81-69ed-f25c" secondAttribute="trailing" constant="20" id="7e20-0000-0022" />
-<constraint priority="1" firstItem="0d81-69ed-f25c" firstAttribute="top" secondItem="acac-dd11-1dc5" secondAttribute="top" constant="104" id="7e20-0000-0023" />
+<constraint priority="1" firstItem="0d81-69ed-f25c" firstAttribute="top" secondItem="acac-dd11-1dc5" secondAttribute="top" constant="138" id="7e20-0000-0023" />
 <constraint priority="1" firstItem="721a-4132-f071" firstAttribute="centerY" secondItem="0d81-69ed-f25c" secondAttribute="bottom" constant="12" id="7e20-0000-0024" />
 <constraint priority="1" firstItem="0d81-69ed-f25c" firstAttribute="top" secondItem="acac-dd11-1dc5" secondAttribute="top" constant="76" id="7e20-0000-0012" />
 <constraint priority="1" firstItem="acac-dd11-1dc5" firstAttribute="bottom" secondItem="0d81-69ed-f25c" secondAttribute="bottom" constant="16" id="7e20-0000-0013" />
@@ -1564,11 +1564,6 @@
 <outletCollection property="portraitConstraints" destination="7e20-0000-0023" collectionClass="NSMutableArray" id="7e20-0004-0023" />
 <outletCollection property="portraitConstraints" destination="7e20-0000-0024" collectionClass="NSMutableArray" id="7e20-0004-0024" />
 <outletCollection property="portraitConstraints" destination="7e20-0000-0001" collectionClass="NSMutableArray" id="7e20-0004-0001" />
-<outletCollection property="listOnlyConstraints" destination="4ae5-137f-d64c" collectionClass="NSMutableArray" id="7e20-0001-0010" />
-<outletCollection property="listOnlyConstraints" destination="6553-0bc1-a0e1" collectionClass="NSMutableArray" id="7e20-0001-0000" />
-<outletCollection property="listOnlyConstraints" destination="f7f9-9da2-f574" collectionClass="NSMutableArray" id="7e20-0001-0001" />
-<outletCollection property="listOnlyConstraints" destination="8a4e-a21b-cf0e" collectionClass="NSMutableArray" id="7e20-0001-0002" />
-<outletCollection property="listOnlyConstraints" destination="7ff1-a2eb-f33a" collectionClass="NSMutableArray" id="7e20-0001-0003" />
 <outletCollection property="listOnlyConstraints" destination="bd0f-5adb-a544" collectionClass="NSMutableArray" id="7e20-0001-0004" />
 <outletCollection property="listOnlyConstraints" destination="6ebb-c0da-68d8" collectionClass="NSMutableArray" id="7e20-0001-0005" />
 <outletCollection property="splitConstraints" destination="7e20-0000-0001" collectionClass="NSMutableArray" id="7e20-0002-0001" />
