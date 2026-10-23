@@ -19,6 +19,9 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
     /// Wide landscape: the "before" photo above the tools in the side panel.
     @IBOutlet private weak var pairOriginalImageView: UIImageView!
     @IBOutlet private weak var beforeChipLabel: UILabel!
+    /// Unfolded landscape (Figma Duo/L/06): download / share / more move to a vertical toolbar by the system rail.
+    @IBOutlet private weak var railToolbar: UIStackView!
+    @IBOutlet private weak var railMoreButton: UIButton!
     @IBOutlet private weak var resultImageView: UIImageView!
     @IBOutlet private weak var likeIconView: UIImageView!
     @IBOutlet private weak var originalImageView: UIImageView!
@@ -177,6 +180,8 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
         pairOriginalImageView.image = originalImageView.image
         pairOriginalImageView.isHidden = !side || originalImageView.image == nil
         beforeChipLabel.isHidden = pairOriginalImageView.isHidden
+        railToolbar.isHidden = !side
+        [downloadButton, shareButton, moreButton].forEach { $0?.isHidden = side }
         let portrait = isWideWindow && !side
         portraitConstraints.forEach { $0.priority = portrait ? high : low }
         if !side { portraitReleasedConstraints.forEach { $0.priority = portrait ? low : high } }
@@ -417,6 +422,8 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
         moreButton.menu = UIMenu(children: [UIDeferredMenuElement.uncached { [weak self] completion in
             completion(self?.moreMenuActions() ?? [])
         }])
+        railMoreButton.showsMenuAsPrimaryAction = true
+        railMoreButton.menu = moreButton.menu
     }
 
     private func moreMenuActions() -> [UIMenuElement] {

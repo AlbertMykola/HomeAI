@@ -3152,10 +3152,63 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
-                        </subviews>
+                        <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="7e50-0000-0001" userLabel="railToolbar">
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7e50-0000-0010" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
+                                        <subviews>
+                                            <imageView contentMode="scaleAspectFit" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7e50-0000-0010i" image="figma_download20">
+                                                <color key="tintColor" name="dsTextPrimary" />
+                                            </imageView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="7e50-0000-0010w" />
+                                            <constraint firstAttribute="height" constant="44" id="7e50-0000-0010h" />
+                                            <constraint firstItem="7e50-0000-0010i" firstAttribute="centerX" secondItem="7e50-0000-0010" secondAttribute="centerX" id="7e50-0000-0010x" />
+                                            <constraint firstItem="7e50-0000-0010i" firstAttribute="centerY" secondItem="7e50-0000-0010" secondAttribute="centerY" id="7e50-0000-0010y" />
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapDownload:" />
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7e50-0000-0020" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
+                                        <subviews>
+                                            <imageView contentMode="scaleAspectFit" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7e50-0000-0020i" image="figma_share20">
+                                                <color key="tintColor" name="dsTextPrimary" />
+                                            </imageView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="7e50-0000-0020w" />
+                                            <constraint firstAttribute="height" constant="44" id="7e50-0000-0020h" />
+                                            <constraint firstItem="7e50-0000-0020i" firstAttribute="centerX" secondItem="7e50-0000-0020" secondAttribute="centerX" id="7e50-0000-0020x" />
+                                            <constraint firstItem="7e50-0000-0020i" firstAttribute="centerY" secondItem="7e50-0000-0020" secondAttribute="centerY" id="7e50-0000-0020y" />
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapShare:" />
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7e50-0000-0030" userLabel="railMoreButton">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="44" id="7e50-0000-0031" />
+                                            <constraint firstAttribute="height" constant="44" id="7e50-0000-0032" />
+                                        </constraints>
+                                        <color key="tintColor" name="dsTextPrimary" />
+                                        <state key="normal" image="ellipsis" catalog="system" />
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" name="dsBackground" />
+                                <edgeInsets key="layoutMargins" top="8" left="0" bottom="8" right="0" />
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <real key="value" value="30" />
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </stackView>
+                            </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
                         <viewLayoutGuide key="safeArea" id="7ed8-4d38-2b74" />
                         <constraints>
+                            <constraint firstItem="7e50-0000-0001" firstAttribute="leading" secondItem="7ed8-4d38-2b74" secondAttribute="trailing" constant="14" id="7e50-0000-0101" />
+                            <constraint firstItem="7e50-0000-0001" firstAttribute="top" secondItem="6f8f-e25f-e8be" secondAttribute="top" constant="96" id="7e50-0000-0102" />
                             <constraint firstItem="cbc0-34bf-dd31" firstAttribute="leading" secondItem="7ed8-4d38-2b74" secondAttribute="leading" identifier="result.c414" id="c9f0-7442-7d09" />
                             <constraint firstItem="cbc0-34bf-dd31" firstAttribute="top" secondItem="6f8f-e25f-e8be" secondAttribute="top" identifier="result.c415" id="e675-1182-6185" />
                             <constraint priority="999" firstItem="7ed8-4d38-2b74" firstAttribute="trailing" secondItem="cbc0-34bf-dd31" secondAttribute="trailing" identifier="result.c416" id="f57b-0284-34f3" />
@@ -3193,6 +3246,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="railToolbar" destination="7e50-0000-0001" id="7e50-0000-0201" />
+                        <outlet property="railMoreButton" destination="7e50-0000-0030" id="7e50-0000-0202" />
                         <outlet property="photoView" destination="cbc0-34bf-dd31" id="9105-2087-ba56" />
                         <outlet property="pairOriginalImageView" destination="5a1d-0005-0001" id="5a1d-0005-0010" />
                         <outletCollection property="portraitConstraints" destination="5a1d-0007-0001" collectionClass="NSMutableArray" id="5a1d-0007-0011" />
