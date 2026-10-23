@@ -1514,7 +1514,8 @@
                                                                         <color key="backgroundColor" name="dsCard" />
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="36" id="21fe-7664-da41" identifier="ds.reference.21fe-7664-da41" />
-                                                                            <constraint firstItem="efd4-9eec-604f" firstAttribute="centerX" secondItem="c977-eaee-630e" secondAttribute="centerX" id="bfd9-1b8f-2b01" identifier="ds.reference.bfd9-1b8f-2b01" />
+                                                                            <constraint firstItem="efd4-9eec-604f" firstAttribute="leading" secondItem="c977-eaee-630e" secondAttribute="leading" constant="12" id="bfd9-1b8f-2b01" />
+                                                                            <constraint firstItem="c977-eaee-630e" firstAttribute="trailing" secondItem="efd4-9eec-604f" secondAttribute="trailing" constant="14" id="7e63-0000-0001" />
                                                                             <constraint firstItem="efd4-9eec-604f" firstAttribute="centerY" secondItem="c977-eaee-630e" secondAttribute="centerY" id="f792-b90f-a3ff" identifier="ds.reference.f792-b90f-a3ff" />
                                                                         </constraints>
                                                                         <userDefinedRuntimeAttributes>
