@@ -5,33 +5,45 @@ class WizardStepViewController: UIViewController, DSWideLayoutFullWidth {
 
     @IBOutlet weak var navBar: WizardNavBar!
     @IBOutlet weak var titleStack: UIStackView?
-    /// iPhone Duo unfolded, landscape: the room photo stays visible on the right while you choose
+    /// iPhone Duo unfolded, landscape (Figma Duo/L/04): the room photo fills the left half while you choose
     /// (room / style / final steps; layouts in Wizard.storyboard, priorities swapped here).
     @IBOutlet weak var previewPaneView: UIView?
     @IBOutlet weak var previewImageView: UIImageView?
     @IBOutlet var listOnlyConstraints: [NSLayoutConstraint]?
     @IBOutlet var splitConstraints: [NSLayoutConstraint]?
-    private var showsPreview = false
+    /// Unfolded portrait (Figma Duo/P/04): the photo sits between the nav bar and the hinge, choices below.
+    @IBOutlet var portraitConstraints: [NSLayoutConstraint]?
+    @IBOutlet var portraitReleasedConstraints: [NSLayoutConstraint]?
 
-    var dsUsesFullWidth: Bool { previewPaneView != nil && wantsPreview }
+    private enum Arrangement { case phone, landscape, portrait }
+    private var arrangement = Arrangement.phone
 
-    private var wantsPreview: Bool {
-        guard let window = navigationController?.view.window ?? view.window else { return false }
+    var dsUsesFullWidth: Bool { previewPaneView != nil && wideArrangement != .phone }
+
+    private var wideArrangement: Arrangement {
+        guard let window = navigationController?.view.window ?? view.window else { return .phone }
         let size = (navigationController?.view ?? view).bounds.size
-        return DSWideLayout.isWide(size.width - window.safeAreaInsets.left - window.safeAreaInsets.right)
-            && size.width > size.height
+        guard DSWideLayout.isWide(size.width - window.safeAreaInsets.left - window.safeAreaInsets.right) else {
+            return .phone
+        }
+        return size.width > size.height ? .landscape : .portrait
     }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         guard let pane = previewPaneView else { return }
         previewImageView?.image = session.photo
-        let preview = wantsPreview
-        guard preview != showsPreview else { return }
-        showsPreview = preview
-        listOnlyConstraints?.forEach { $0.priority = UILayoutPriority(preview ? 1 : 999) }
-        splitConstraints?.forEach { $0.priority = UILayoutPriority(preview ? 999 : 1) }
-        pane.isHidden = !preview
+        let next = wideArrangement
+        guard next != arrangement else { return }
+        arrangement = next
+        let p = { (on: Bool) in UILayoutPriority(on ? 999 : 1) }
+        listOnlyConstraints?.forEach { $0.priority = p(next != .landscape) }
+        splitConstraints?.forEach { $0.priority = p(next == .landscape) }
+        portraitConstraints?.forEach { $0.priority = p(next == .portrait) }
+        portraitReleasedConstraints?.forEach { $0.priority = p(next != .portrait) }
+        pane.isHidden = next == .phone
+        pane.layer.cornerRadius = next == .portrait ? 24 : 0
+        navigationController?.view.setNeedsLayout()
     }
 
     var session: WizardSession!

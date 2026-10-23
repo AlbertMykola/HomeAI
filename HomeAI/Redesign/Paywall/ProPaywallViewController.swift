@@ -88,7 +88,7 @@ final class ProPaywallViewController: UIViewController {
         let wideLandscape = DSWideLayout.isWide(view.bounds.width - (view.window?.safeAreaInsets.left ?? 0)
                                                 - (view.window?.safeAreaInsets.right ?? 0))
             && view.bounds.width > view.bounds.height
-        dsApplyWideColumn(fullWidth: wideLandscape)
+        dsApplyWideColumn(fullWidth: wideLandscape, portraitColumn: 420)
         guard wideLandscape != isTwoColumn else { return }
         isTwoColumn = wideLandscape
         singleColumnConstraints.forEach { $0.priority = UILayoutPriority(wideLandscape ? 1 : 999) }

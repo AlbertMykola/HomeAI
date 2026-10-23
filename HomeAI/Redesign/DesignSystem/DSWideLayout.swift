@@ -10,13 +10,17 @@ enum DSWideLayout {
 
     static func isWide(_ width: CGFloat) -> Bool { width >= wideWidth }
 
-    /// Horizontal inset that centres a `columnWidth` column in `controller`'s window area (0 on phones).
-    static func columnInset(for controller: UIViewController) -> CGFloat {
+    /// Horizontal inset that centres a reading column in `controller`'s window area (0 on phones).
+    /// Unfolded landscape: 560 pt for screens without their own two-pane layout. Unfolded portrait follows
+    /// Figma (Duo/P): full width, except screens that ask for a `portraitColumn` (paywall 420 pt).
+    static func columnInset(for controller: UIViewController, portraitColumn: CGFloat? = nil) -> CGFloat {
         guard let window = controller.view.window else { return 0 }
         let outer = window.safeAreaInsets
         let available = controller.view.bounds.width - outer.left - outer.right
         guard isWide(available) else { return 0 }
-        return floor((available - columnWidth) / 2)
+        let portrait = controller.view.bounds.height > controller.view.bounds.width
+        guard let column = portrait ? portraitColumn : columnWidth else { return 0 }
+        return max(0, floor((available - column) / 2))
     }
 }
 
@@ -31,8 +35,8 @@ extension DSWideLayoutFullWidth {
 
 extension UIViewController {
     /// Call from `viewWillLayoutSubviews` of a container or full-screen controller.
-    func dsApplyWideColumn(fullWidth: Bool = false) {
-        let inset = fullWidth ? 0 : DSWideLayout.columnInset(for: self)
+    func dsApplyWideColumn(fullWidth: Bool = false, portraitColumn: CGFloat? = nil) {
+        let inset = fullWidth ? 0 : DSWideLayout.columnInset(for: self, portraitColumn: portraitColumn)
         let target = UIEdgeInsets(top: additionalSafeAreaInsets.top, left: inset,
                                   bottom: additionalSafeAreaInsets.bottom, right: inset)
         if additionalSafeAreaInsets != target { additionalSafeAreaInsets = target }
