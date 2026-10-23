@@ -6,7 +6,15 @@ import UIKit
 final class ProjectDetailViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var headerContainer: UIView!
+    @IBOutlet private weak var backButton: UIView!
+    /// Shown in the Projects detail pane (iPhone Duo unfolded) instead of being pushed: no back button,
+    /// and "leaving" clears the pane.
+    var isInPane = false {
+        didSet { if isViewLoaded { backButton.isHidden = isInPane } }
+    }
+    var onClose: (() -> Void)?
+    // Strong: removed from the hierarchy in viewDidLoad and kept as the table header.
+    @IBOutlet private var headerContainer: UIView!
     @IBOutlet private weak var compareView: UIView!
     @IBOutlet private weak var aImageView: UIImageView!
     @IBOutlet private weak var bImageView: UIImageView!
@@ -88,7 +96,16 @@ final class ProjectDetailViewController: UIViewController {
         compareView.isAccessibilityElement = true
         compareView.accessibilityTraits = .adjustable
         NotificationCenter.default.addObserver(self, selector: #selector(reload), name: .projectsDidChange, object: nil)
+        backButton.isHidden = isInPane
         reload()
+    }
+
+    private func close() {
+        if parent is UINavigationController || !isInPane {
+            navigationController?.popViewController(animated: true)
+        } else {
+            onClose?()
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -135,7 +152,7 @@ final class ProjectDetailViewController: UIViewController {
         let match = all.first { $0.project.id == projectID }
             ?? lastDocID.flatMap { id in all.first { $0.project.versionIDs.contains(id) } }
         guard let match else {
-            navigationController?.popViewController(animated: true)
+            close()
             return
         }
         project = match.project
@@ -218,7 +235,7 @@ final class ProjectDetailViewController: UIViewController {
     // MARK: Actions
 
     @IBAction private func didTapBack(_ sender: Any) {
-        navigationController?.popViewController(animated: true)
+        close()
     }
 
     @IBAction private func didTapContinue(_ sender: Any) {
@@ -271,7 +288,7 @@ final class ProjectDetailViewController: UIViewController {
             Task { @MainActor in
                 try? await ProjectStore.shared.deleteProject(id: project.id, fallbackDocID: project.versionIDs.first ?? "")
                 DSToastView.show("Project deleted".localized, style: .success)
-                self?.navigationController?.popViewController(animated: true)
+                self?.close()
             }
         })
         sheet.addAction(UIAlertAction(title: "Cancel".localized, style: .cancel))

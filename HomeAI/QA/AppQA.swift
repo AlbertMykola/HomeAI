@@ -125,6 +125,14 @@ enum AppQA {
         case "home": return makeTabs()
         case "inspiration": return makeTabs(index: 1)
         case "projects", "projects-empty": return makeTabs(index: 2)
+        case "projects-open":
+            // Wide windows: first project in the detail pane; phones: pushed.
+            let tabs = makeTabs(index: 2)
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                let nav = (tabs as? UITabBarController)?.selectedViewController as? UINavigationController
+                (nav?.viewControllers.first as? ProjectsViewController)?.qaOpenFirstProject()
+            }
+            return tabs
         case "project-detail":
             let project = ProjectStore.shared.project(containing: fixtureDocID)!
             return ProjectDetailViewController.make(projectID: project.project.id, lastDocID: project.versions.last?.id)

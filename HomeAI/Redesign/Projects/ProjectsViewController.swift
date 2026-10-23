@@ -5,6 +5,15 @@ import UIKit
 final class ProjectsViewController: UIViewController, DSWideLayoutFullWidth {
 
     @IBOutlet private weak var collectionView: UICollectionView!
+    /// iPhone Duo unfolded: the selected project opens on the right (layouts in Projects.storyboard).
+    @IBOutlet private weak var detailPaneView: UIView!
+    @IBOutlet private var listOnlyConstraints: [NSLayoutConstraint]!
+    @IBOutlet private var splitConstraints: [NSLayoutConstraint]!
+    private lazy var splitPane: DSSplitPane = {
+        let pane = DSSplitPane(host: self, pane: detailPaneView, listOnly: listOnlyConstraints, split: splitConstraints)
+        pane.willCollapse = { ($0 as? ProjectDetailViewController)?.isInPane = false }
+        return pane
+    }()
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet private weak var headerBackgroundView: UIView!
     @IBOutlet private weak var largeTitleLabel: UILabel!
@@ -73,6 +82,11 @@ final class ProjectsViewController: UIViewController, DSWideLayoutFullWidth {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         if selecting { setSelecting(false) }
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        splitPane.update()
     }
 
     override func viewDidLayoutSubviews() {
@@ -344,12 +358,21 @@ final class ProjectsViewController: UIViewController, DSWideLayoutFullWidth {
 
     // MARK: Open
 
+    #if DEBUG
+    func qaOpenFirstProject() {
+        guard !designs.isEmpty else { return }
+        openProject(at: 0, from: nil)
+    }
+    #endif
+
     private func openProject(at index: Int, from cell: ProjectCell?) {
         let item = designs[index]
         DS.Haptic.light()
         let vc = ProjectDetailViewController.make(projectID: item.project.id, lastDocID: item.versions.last?.id)
         vc.initialCover = cell?.coverImageView.image
-        navigationController?.pushViewController(vc, animated: true)
+        vc.onClose = { [weak self] in self?.splitPane.clear() }
+        vc.isInPane = splitPane.show(vc)
+        if !vc.isInPane { navigationController?.pushViewController(vc, animated: true) }
     }
 
     private func openIdea(at index: Int) {
