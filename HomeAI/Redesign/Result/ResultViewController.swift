@@ -135,7 +135,7 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
     var dsUsesFullWidth: Bool { isWideWindow }
 
     private var isWideWindow: Bool {
-        guard let window = view.window else { return false }
+        guard let window = navigationController?.view.window ?? view.window else { return false }
         let size = (navigationController?.view ?? view).bounds.size
         return DSWideLayout.isWide(size.width - window.safeAreaInsets.left - window.safeAreaInsets.right)
     }

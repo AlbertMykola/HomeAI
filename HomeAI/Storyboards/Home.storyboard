@@ -141,265 +141,9 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d144-1ed0-a9cc">
-                                                <subviews>
-                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0d81-69ed-f25c" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="heroView">
-                                                        <subviews>
-                                                            <view contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="666b-1e15-bed0" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="heroClipView">
-                                                                <subviews>
-                                                                    <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acb2-ec33-c58e" userLabel="heroAfterImageView" image="home_hero_after" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
-                                                        </imageView>
-                                                                    <view contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3886-ed08-2025" userLabel="heroBeforeClipView">
-                                                                        <subviews>
-                                                                            <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcda-bba9-2100" userLabel="heroBeforeImageView" image="home_hero_before" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
-                                                                </imageView>
-                                                                        </subviews>
-                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" constant="110" id="80bc-e601-8aaa" identifier="ds.dynamic" />
-                                                                            <constraint firstItem="dcda-bba9-2100" firstAttribute="leading" secondItem="3886-ed08-2025" secondAttribute="leading" id="8a61-b370-d6cd" identifier="ds.reference.8a61-b370-d6cd" />
-                                                                            <constraint firstItem="dcda-bba9-2100" firstAttribute="top" secondItem="3886-ed08-2025" secondAttribute="top" id="3912-6f9c-2fbc" identifier="ds.reference.3912-6f9c-2fbc" />
-                                                                            <constraint firstItem="3886-ed08-2025" firstAttribute="bottom" secondItem="dcda-bba9-2100" secondAttribute="bottom" id="1686-bbea-c27a" identifier="ds.reference.1686-bbea-c27a" />
-                                                                        </constraints>
-                                                                    </view>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2c11-f37a-fce1" userLabel="heroDividerView">
-                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" constant="2" id="09a5-4920-807a" identifier="ds.reference.09a5-4920-807a" />
-                                                                        </constraints>
-                                                                    </view>
-                                                                    <imageView contentMode="scaleAspectFit" clipsSubviews="NO" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6431-da83-d38a" userLabel="heroHandleView" image="ds_compare_handle" horizontalHuggingPriority="251" verticalHuggingPriority="251">
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" constant="32" id="6614-196c-2274" identifier="ds.reference.6614-196c-2274" />
-                                                                            <constraint firstAttribute="height" constant="32" id="703a-bc56-e581" identifier="ds.reference.703a-bc56-e581" />
-                                                                        </constraints>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
-                                                                                <real key="value" value="0.18" />
-                                                                            </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
-                                                                                <real key="value" value="4" />
-                                                                            </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
-                                                                                <size key="value" width="0" height="2" />
-                                                                            </userDefinedRuntimeAttribute>
-                                                                        </userDefinedRuntimeAttributes>
-                                                                    </imageView>
-                                                                    <view contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b058-bc35-9fdf" customClass="DSGradientView" customModule="HomeAI" customModuleProvider="target">
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="200" id="9963-1fdf-0582" identifier="ds.reference.9963-1fdf-0582" />
-                                                                        </constraints>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
-                                                                                <color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.000" colorSpace="custom" customColorSpace="sRGB" />
-                                                                            </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="color" keyPath="endColor">
-                                                                                <color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.620" colorSpace="custom" customColorSpace="sRGB" />
-                                                                            </userDefinedRuntimeAttribute>
-                                                                            <userDefinedRuntimeAttribute type="number" keyPath="angle">
-                                                                                <real key="value" value="180" />
-                                                                            </userDefinedRuntimeAttribute>
-                                                                        </userDefinedRuntimeAttributes>
-                                                                    </view>
-                                                                    <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="35ec-1416-022f" opaque="NO" axis="vertical" spacing="12">
-                                                                        <subviews>
-                                                                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bc3a-25cc-29c2" userLabel="heroTextStack" opaque="NO" axis="vertical" alignment="leading" spacing="4">
-                                                                                <subviews>
-                                                                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fcb-a39f-505d" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="heroTitleLabel" opaque="NO" text="Redesign a room" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.7" horizontalHuggingPriority="251" verticalHuggingPriority="251">
-                                                                                        <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="28" />
-                                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                        <nil key="highlightedColor" />
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="letterSpacing">
-                                                                                                <real key="value" value="-0.28" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Redesign a room" />
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                        <nil key="backgroundColor" />
-                                                                                    </label>
-                                                                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9e29-ef64-82ad" userLabel="heroSubtitleLabel" opaque="NO" text="New style in ~30 s. Your layout stays." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.8" horizontalHuggingPriority="251" verticalHuggingPriority="251">
-                                                                                        <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14" />
-                                                                                        <color key="textColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.850" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <nil key="highlightedColor" />
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="New style in ~30 s. Your layout stays." />
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                        <nil key="backgroundColor" />
-                                                                                    </label>
-                                                                                </subviews>
-                                                                            </stackView>
-                                                                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="007a-aa6d-d3c8" opaque="NO" spacing="10">
-                                                                                <subviews>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="405b-6ec9-604b" customClass="DSPrimaryButton" customModule="HomeAI" customModuleProvider="target" userLabel="uploadButton">
-                                                                                        <subviews>
-                                                                                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2b10-0c31-2076" opaque="NO" alignment="center" spacing="8">
-                                                                                                <subviews>
-                                                                                                    <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9265-1e2c-37f9" image="camera" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
-                                                                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" weight="medium" />
-                                                                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                                        <constraints>
-                                                                                                            <constraint firstAttribute="width" constant="20" id="c2cb-d0f1-6b41" identifier="ds.reference.c2cb-d0f1-6b41" />
-                                                                                                            <constraint firstAttribute="height" constant="20" id="a723-4740-638f" identifier="ds.reference.a723-4740-638f" />
-                                                                                                        </constraints>
-                                                                                                    </imageView>
-                                                                                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a7d9-8138-baa8" userLabel="uploadTitleLabel" opaque="NO" text="Upload a photo" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
-                                                                                                        <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="16" />
-                                                                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                                        <nil key="highlightedColor" />
-                                                                                                        <userDefinedRuntimeAttributes>
-                                                                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Upload a photo" />
-                                                                                                        </userDefinedRuntimeAttributes>
-                                                                                                        <nil key="backgroundColor" />
-                                                                                                    </label>
-                                                                                                </subviews>
-                                                                                            </stackView>
-                                                                                        </subviews>
-                                                                                        <constraints>
-                                                                                            <constraint firstItem="2b10-0c31-2076" firstAttribute="centerX" secondItem="405b-6ec9-604b" secondAttribute="centerX" id="c3ba-5afa-784a" identifier="ds.reference.c3ba-5afa-784a" />
-                                                                                            <constraint firstItem="2b10-0c31-2076" firstAttribute="centerY" secondItem="405b-6ec9-604b" secondAttribute="centerY" id="30bb-7499-53b6" identifier="ds.reference.30bb-7499-53b6" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapUpload:" />
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                    <view contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d73f-2d4f-3a97" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="costPillView">
-                                                                                        <subviews>
-                                                                                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2729-de27-bff9" opaque="NO" alignment="center" spacing="4" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
-                                                                                                <subviews>
-                                                                                                    <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1e5f-1104-4a02" image="sparkles" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
-                                                                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="12" weight="semibold" />
-                                                                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                                        <constraints>
-                                                                                                            <constraint firstAttribute="width" constant="14" id="e9d7-9004-faa5" identifier="ds.reference.e9d7-9004-faa5" />
-                                                                                                            <constraint firstAttribute="height" constant="14" id="5028-c134-ad77" identifier="ds.reference.5028-c134-ad77" />
-                                                                                                        </constraints>
-                                                                                                    </imageView>
-                                                                                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="317a-0a9e-c841" opaque="NO" text="1" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
-                                                                                                        <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="15" />
-                                                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                                        <nil key="highlightedColor" />
-                                                                                                        <nil key="backgroundColor" />
-                                                                                                    </label>
-                                                                                                </subviews>
-                                                                                                <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14" />
-                                                                                            </stackView>
-                                                                                        </subviews>
-                                                                                        <color key="backgroundColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.250" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <constraints>
-                                                                                            <constraint firstItem="2729-de27-bff9" firstAttribute="leading" secondItem="d73f-2d4f-3a97" secondAttribute="leading" id="818e-178e-1e1a" identifier="ds.reference.818e-178e-1e1a" />
-                                                                                            <constraint firstItem="2729-de27-bff9" firstAttribute="top" secondItem="d73f-2d4f-3a97" secondAttribute="top" id="1314-aa77-4328" identifier="ds.reference.1314-aa77-4328" />
-                                                                                            <constraint firstItem="d73f-2d4f-3a97" firstAttribute="trailing" secondItem="2729-de27-bff9" secondAttribute="trailing" id="f055-1695-9489" identifier="ds.reference.f055-1695-9489" />
-                                                                                            <constraint firstItem="d73f-2d4f-3a97" firstAttribute="bottom" secondItem="2729-de27-bff9" secondAttribute="bottom" id="045d-bfb0-2d5a" identifier="ds.reference.045d-bfb0-2d5a" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                </subviews>
-                                                                                <constraints>
-                                                                                    <constraint firstAttribute="height" constant="48" id="d818-1ddb-77d1" identifier="ds.reference.d818-1ddb-77d1" />
-                                                                                </constraints>
-                                                                            </stackView>
-                                                                        </subviews>
-                                                                    </stackView>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="954d-4ee5-49d5" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="heroTagView">
-                                                                        <subviews>
-                                                                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c58f-ffbc-def5" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
-                                                                                <subviews>
-                                                                                    <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ec19-ec13-e5a7" userLabel="heroTagIcon" image="sofa" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
-                                                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="11" weight="semibold" />
-                                                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="14" id="f872-694b-85de" identifier="ds.reference.f872-694b-85de" />
-                                                                                            <constraint firstAttribute="height" constant="14" id="0b79-04a4-9e42" identifier="ds.reference.0b79-04a4-9e42" />
-                                                                                        </constraints>
-                                                                                    </imageView>
-                                                                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ed8e-5507-de9d" userLabel="heroTagLabel" opaque="NO" text="Interior" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
-                                                                                        <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="12" />
-                                                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                        <nil key="highlightedColor" />
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Interior" />
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                        <nil key="backgroundColor" />
-                                                                                    </label>
-                                                                                </subviews>
-                                                                                <edgeInsets key="layoutMargins" top="0" left="10" bottom="0" right="10" />
-                                                                            </stackView>
-                                                                        </subviews>
-                                                                        <color key="backgroundColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.800" colorSpace="custom" customColorSpace="sRGB" />
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="28" id="6ddd-c102-34fd" identifier="ds.reference.6ddd-c102-34fd" />
-                                                                            <constraint firstItem="c58f-ffbc-def5" firstAttribute="leading" secondItem="954d-4ee5-49d5" secondAttribute="leading" id="d000-ab6e-3b18" identifier="ds.reference.d000-ab6e-3b18" />
-                                                                            <constraint firstItem="c58f-ffbc-def5" firstAttribute="top" secondItem="954d-4ee5-49d5" secondAttribute="top" id="f8e4-0226-5e08" identifier="ds.reference.f8e4-0226-5e08" />
-                                                                            <constraint firstItem="954d-4ee5-49d5" firstAttribute="trailing" secondItem="c58f-ffbc-def5" secondAttribute="trailing" id="6f2a-5c50-d2a6" identifier="ds.reference.6f2a-5c50-d2a6" />
-                                                                            <constraint firstItem="954d-4ee5-49d5" firstAttribute="bottom" secondItem="c58f-ffbc-def5" secondAttribute="bottom" id="208a-72fc-6dcb" identifier="ds.reference.208a-72fc-6dcb" />
-                                                                        </constraints>
-                                                                        <userDefinedRuntimeAttributes>
-                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                        </userDefinedRuntimeAttributes>
-                                                                    </view>
-                                                                </subviews>
-                                                                <color key="backgroundColor" name="dsSurface" />
-                                                                <constraints>
-                                                                    <constraint firstItem="acb2-ec33-c58e" firstAttribute="leading" secondItem="666b-1e15-bed0" secondAttribute="leading" id="d1cd-6ed9-c89f" identifier="ds.reference.d1cd-6ed9-c89f" />
-                                                                    <constraint firstItem="acb2-ec33-c58e" firstAttribute="top" secondItem="666b-1e15-bed0" secondAttribute="top" id="c3b8-a038-4676" identifier="ds.reference.c3b8-a038-4676" />
-                                                                    <constraint firstItem="666b-1e15-bed0" firstAttribute="trailing" secondItem="acb2-ec33-c58e" secondAttribute="trailing" id="ddc8-f852-3322" identifier="ds.reference.ddc8-f852-3322" />
-                                                                    <constraint firstItem="666b-1e15-bed0" firstAttribute="bottom" secondItem="acb2-ec33-c58e" secondAttribute="bottom" id="0720-3ab4-be0f" identifier="ds.reference.0720-3ab4-be0f" />
-                                                                    <constraint firstItem="3886-ed08-2025" firstAttribute="leading" secondItem="666b-1e15-bed0" secondAttribute="leading" id="f0c8-801f-0478" identifier="ds.reference.f0c8-801f-0478" />
-                                                                    <constraint firstItem="3886-ed08-2025" firstAttribute="top" secondItem="666b-1e15-bed0" secondAttribute="top" id="1520-a324-567c" identifier="ds.reference.1520-a324-567c" />
-                                                                    <constraint firstItem="666b-1e15-bed0" firstAttribute="bottom" secondItem="3886-ed08-2025" secondAttribute="bottom" id="6a0b-dbc8-5e8b" identifier="ds.reference.6a0b-dbc8-5e8b" />
-                                                                    <constraint firstItem="dcda-bba9-2100" firstAttribute="width" secondItem="666b-1e15-bed0" secondAttribute="width" id="087a-36d8-a66b" identifier="ds.reference.087a-36d8-a66b" />
-                                                                    <constraint firstItem="2c11-f37a-fce1" firstAttribute="top" secondItem="666b-1e15-bed0" secondAttribute="top" id="83e3-a138-4e4e" identifier="ds.reference.83e3-a138-4e4e" />
-                                                                    <constraint firstItem="666b-1e15-bed0" firstAttribute="bottom" secondItem="2c11-f37a-fce1" secondAttribute="bottom" id="c773-21c2-3e57" identifier="ds.reference.c773-21c2-3e57" />
-                                                                    <constraint firstItem="2c11-f37a-fce1" firstAttribute="centerX" secondItem="3886-ed08-2025" secondAttribute="trailing" id="1593-cee9-83c2" identifier="ds.reference.1593-cee9-83c2" />
-                                                                    <constraint firstItem="6431-da83-d38a" firstAttribute="centerX" secondItem="2c11-f37a-fce1" secondAttribute="centerX" id="39d7-b587-54a5" identifier="ds.reference.39d7-b587-54a5" />
-                                                                    <constraint firstItem="6431-da83-d38a" firstAttribute="centerY" secondItem="666b-1e15-bed0" secondAttribute="top" constant="128" id="b23a-b2ca-166c" identifier="ds.reference.b23a-b2ca-166c" />
-                                                                    <constraint firstItem="b058-bc35-9fdf" firstAttribute="leading" secondItem="666b-1e15-bed0" secondAttribute="leading" id="c9de-d97a-aaf9" identifier="ds.reference.c9de-d97a-aaf9" />
-                                                                    <constraint firstItem="666b-1e15-bed0" firstAttribute="trailing" secondItem="b058-bc35-9fdf" secondAttribute="trailing" id="7b1c-4c32-0b49" identifier="ds.reference.7b1c-4c32-0b49" />
-                                                                    <constraint firstItem="666b-1e15-bed0" firstAttribute="bottom" secondItem="b058-bc35-9fdf" secondAttribute="bottom" id="ca54-6bc4-7bb3" identifier="ds.reference.ca54-6bc4-7bb3" />
-                                                                    <constraint firstItem="35ec-1416-022f" firstAttribute="leading" secondItem="666b-1e15-bed0" secondAttribute="leading" constant="20" id="c8ea-1b07-1d80" identifier="ds.reference.c8ea-1b07-1d80" />
-                                                                    <constraint firstItem="666b-1e15-bed0" firstAttribute="trailing" secondItem="35ec-1416-022f" secondAttribute="trailing" constant="20" id="7aac-5e83-1ffc" identifier="ds.reference.7aac-5e83-1ffc" />
-                                                                    <constraint firstItem="666b-1e15-bed0" firstAttribute="bottom" secondItem="35ec-1416-022f" secondAttribute="bottom" constant="23" id="c9a8-40b5-fa8f" identifier="ds.reference.c9a8-40b5-fa8f" />
-                                                                    <constraint firstItem="954d-4ee5-49d5" firstAttribute="leading" secondItem="666b-1e15-bed0" secondAttribute="leading" constant="16" id="0fd7-dd0d-99cd" identifier="ds.reference.0fd7-dd0d-99cd" />
-                                                                    <constraint firstItem="954d-4ee5-49d5" firstAttribute="top" secondItem="666b-1e15-bed0" secondAttribute="top" constant="16" id="cf7f-3f3d-20c4" identifier="ds.reference.cf7f-3f3d-20c4" />
-                                                                </constraints>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                        <real key="value" value="34" />
-                                                                    </userDefinedRuntimeAttribute>
-                                                                </userDefinedRuntimeAttributes>
-                                                            </view>
-                                                        </subviews>
-                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="356" id="4ae5-137f-d64c" identifier="ds.reference.4ae5-137f-d64c" />
-                                                            <constraint firstItem="666b-1e15-bed0" firstAttribute="leading" secondItem="0d81-69ed-f25c" secondAttribute="leading" id="f231-557e-d448" identifier="ds.reference.f231-557e-d448" />
-                                                            <constraint firstItem="666b-1e15-bed0" firstAttribute="top" secondItem="0d81-69ed-f25c" secondAttribute="top" id="9728-3152-1cfc" identifier="ds.reference.9728-3152-1cfc" />
-                                                            <constraint firstItem="0d81-69ed-f25c" firstAttribute="trailing" secondItem="666b-1e15-bed0" secondAttribute="trailing" id="e947-ece6-780f" identifier="ds.reference.e947-ece6-780f" />
-                                                            <constraint firstItem="0d81-69ed-f25c" firstAttribute="bottom" secondItem="666b-1e15-bed0" secondAttribute="bottom" id="af51-05b2-08aa" identifier="ds.reference.af51-05b2-08aa" />
-                                                        </constraints>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                <real key="value" value="34" />
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                                <real key="value" value="0.12" />
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                                <real key="value" value="15" />
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY">
-                                                                <real key="value" value="10" />
-                                                            </userDefinedRuntimeAttribute>
-                                                        </userDefinedRuntimeAttributes>
-                                                    </view>
-                                                </subviews>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
                                                 <constraints>
-                                                    <constraint firstItem="0d81-69ed-f25c" firstAttribute="leading" secondItem="d144-1ed0-a9cc" secondAttribute="leading" constant="20" id="6553-0bc1-a0e1" identifier="ds.reference.6553-0bc1-a0e1" />
-                                                    <constraint firstItem="0d81-69ed-f25c" firstAttribute="top" secondItem="d144-1ed0-a9cc" secondAttribute="top" id="f7f9-9da2-f574" identifier="ds.reference.f7f9-9da2-f574" />
-                                                    <constraint firstItem="d144-1ed0-a9cc" firstAttribute="trailing" secondItem="0d81-69ed-f25c" secondAttribute="trailing" constant="20" id="8a4e-a21b-cf0e" identifier="ds.reference.8a4e-a21b-cf0e" />
-                                                    <constraint firstItem="d144-1ed0-a9cc" firstAttribute="bottom" secondItem="0d81-69ed-f25c" secondAttribute="bottom" id="7ff1-a2eb-f33a" identifier="ds.reference.7ff1-a2eb-f33a" />
+<constraint priority="1" firstAttribute="height" id="7e20-0000-0001" />
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2aec-39d3-3e80">
@@ -1289,15 +1033,276 @@
                                             </view>
                                         </subviews>
                                     </stackView>
+<view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0d81-69ed-f25c" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="heroView">
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="666b-1e15-bed0" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="heroClipView">
+                                                                <subviews>
+                                                                    <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="acb2-ec33-c58e" userLabel="heroAfterImageView" image="home_hero_after" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
+                                                        </imageView>
+                                                                    <view contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3886-ed08-2025" userLabel="heroBeforeClipView">
+                                                                        <subviews>
+                                                                            <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dcda-bba9-2100" userLabel="heroBeforeImageView" image="home_hero_before" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
+                                                                </imageView>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="110" id="80bc-e601-8aaa" identifier="ds.dynamic" />
+                                                                            <constraint firstItem="dcda-bba9-2100" firstAttribute="leading" secondItem="3886-ed08-2025" secondAttribute="leading" id="8a61-b370-d6cd" identifier="ds.reference.8a61-b370-d6cd" />
+                                                                            <constraint firstItem="dcda-bba9-2100" firstAttribute="top" secondItem="3886-ed08-2025" secondAttribute="top" id="3912-6f9c-2fbc" identifier="ds.reference.3912-6f9c-2fbc" />
+                                                                            <constraint firstItem="3886-ed08-2025" firstAttribute="bottom" secondItem="dcda-bba9-2100" secondAttribute="bottom" id="1686-bbea-c27a" identifier="ds.reference.1686-bbea-c27a" />
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2c11-f37a-fce1" userLabel="heroDividerView">
+                                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="2" id="09a5-4920-807a" identifier="ds.reference.09a5-4920-807a" />
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <imageView contentMode="scaleAspectFit" clipsSubviews="NO" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6431-da83-d38a" userLabel="heroHandleView" image="ds_compare_handle" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="32" id="6614-196c-2274" identifier="ds.reference.6614-196c-2274" />
+                                                                            <constraint firstAttribute="height" constant="32" id="703a-bc56-e581" identifier="ds.reference.703a-bc56-e581" />
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowOpacity">
+                                                                                <real key="value" value="0.18" />
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.shadowRadius">
+                                                                                <real key="value" value="4" />
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="size" keyPath="layer.shadowOffset">
+                                                                                <size key="value" width="0" height="2" />
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </imageView>
+                                                                    <view contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b058-bc35-9fdf" customClass="DSGradientView" customModule="HomeAI" customModuleProvider="target">
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="200" id="9963-1fdf-0582" identifier="ds.reference.9963-1fdf-0582" />
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                                                                <color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.000" colorSpace="custom" customColorSpace="sRGB" />
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                                                                <color key="value" red="0.0000" green="0.0000" blue="0.0000" alpha="0.620" colorSpace="custom" customColorSpace="sRGB" />
+                                                                            </userDefinedRuntimeAttribute>
+                                                                            <userDefinedRuntimeAttribute type="number" keyPath="angle">
+                                                                                <real key="value" value="180" />
+                                                                            </userDefinedRuntimeAttribute>
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
+                                                                    <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="35ec-1416-022f" opaque="NO" axis="vertical" spacing="12">
+                                                                        <subviews>
+                                                                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bc3a-25cc-29c2" userLabel="heroTextStack" opaque="NO" axis="vertical" alignment="leading" spacing="4">
+                                                                                <subviews>
+                                                                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1fcb-a39f-505d" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="heroTitleLabel" opaque="NO" text="Redesign a room" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.7" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                                        <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="28" />
+                                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                                                        <nil key="highlightedColor" />
+                                                                                        <userDefinedRuntimeAttributes>
+                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="letterSpacing">
+                                                                                                <real key="value" value="-0.28" />
+                                                                                            </userDefinedRuntimeAttribute>
+                                                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Redesign a room" />
+                                                                                        </userDefinedRuntimeAttributes>
+                                                                                        <nil key="backgroundColor" />
+                                                                                    </label>
+                                                                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9e29-ef64-82ad" userLabel="heroSubtitleLabel" opaque="NO" text="New style in ~30 s. Your layout stays." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.8" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                                        <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="14" />
+                                                                                        <color key="textColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.850" colorSpace="custom" customColorSpace="sRGB" />
+                                                                                        <nil key="highlightedColor" />
+                                                                                        <userDefinedRuntimeAttributes>
+                                                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="New style in ~30 s. Your layout stays." />
+                                                                                        </userDefinedRuntimeAttributes>
+                                                                                        <nil key="backgroundColor" />
+                                                                                    </label>
+                                                                                </subviews>
+                                                                            </stackView>
+                                                                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="007a-aa6d-d3c8" opaque="NO" spacing="10">
+                                                                                <subviews>
+                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="405b-6ec9-604b" customClass="DSPrimaryButton" customModule="HomeAI" customModuleProvider="target" userLabel="uploadButton">
+                                                                                        <subviews>
+                                                                                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2b10-0c31-2076" opaque="NO" alignment="center" spacing="8">
+                                                                                                <subviews>
+                                                                                                    <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9265-1e2c-37f9" image="camera" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" weight="medium" />
+                                                                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                                                                        <constraints>
+                                                                                                            <constraint firstAttribute="width" constant="20" id="c2cb-d0f1-6b41" identifier="ds.reference.c2cb-d0f1-6b41" />
+                                                                                                            <constraint firstAttribute="height" constant="20" id="a723-4740-638f" identifier="ds.reference.a723-4740-638f" />
+                                                                                                        </constraints>
+                                                                                                    </imageView>
+                                                                                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a7d9-8138-baa8" userLabel="uploadTitleLabel" opaque="NO" text="Upload a photo" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                                                        <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="16" />
+                                                                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                                                                        <nil key="highlightedColor" />
+                                                                                                        <userDefinedRuntimeAttributes>
+                                                                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Upload a photo" />
+                                                                                                        </userDefinedRuntimeAttributes>
+                                                                                                        <nil key="backgroundColor" />
+                                                                                                    </label>
+                                                                                                </subviews>
+                                                                                            </stackView>
+                                                                                        </subviews>
+                                                                                        <constraints>
+                                                                                            <constraint firstItem="2b10-0c31-2076" firstAttribute="centerX" secondItem="405b-6ec9-604b" secondAttribute="centerX" id="c3ba-5afa-784a" identifier="ds.reference.c3ba-5afa-784a" />
+                                                                                            <constraint firstItem="2b10-0c31-2076" firstAttribute="centerY" secondItem="405b-6ec9-604b" secondAttribute="centerY" id="30bb-7499-53b6" identifier="ds.reference.30bb-7499-53b6" />
+                                                                                        </constraints>
+                                                                                        <userDefinedRuntimeAttributes>
+                                                                                            <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapUpload:" />
+                                                                                        </userDefinedRuntimeAttributes>
+                                                                                    </view>
+                                                                                    <view contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d73f-2d4f-3a97" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="costPillView">
+                                                                                        <subviews>
+                                                                                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2729-de27-bff9" opaque="NO" alignment="center" spacing="4" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                                                                <subviews>
+                                                                                                    <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1e5f-1104-4a02" image="sparkles" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="12" weight="semibold" />
+                                                                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                                                                        <constraints>
+                                                                                                            <constraint firstAttribute="width" constant="14" id="e9d7-9004-faa5" identifier="ds.reference.e9d7-9004-faa5" />
+                                                                                                            <constraint firstAttribute="height" constant="14" id="5028-c134-ad77" identifier="ds.reference.5028-c134-ad77" />
+                                                                                                        </constraints>
+                                                                                                    </imageView>
+                                                                                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="317a-0a9e-c841" opaque="NO" text="1" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                                                        <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="15" />
+                                                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                                                                        <nil key="highlightedColor" />
+                                                                                                        <nil key="backgroundColor" />
+                                                                                                    </label>
+                                                                                                </subviews>
+                                                                                                <edgeInsets key="layoutMargins" top="0" left="14" bottom="0" right="14" />
+                                                                                            </stackView>
+                                                                                        </subviews>
+                                                                                        <color key="backgroundColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.250" colorSpace="custom" customColorSpace="sRGB" />
+                                                                                        <constraints>
+                                                                                            <constraint firstItem="2729-de27-bff9" firstAttribute="leading" secondItem="d73f-2d4f-3a97" secondAttribute="leading" id="818e-178e-1e1a" identifier="ds.reference.818e-178e-1e1a" />
+                                                                                            <constraint firstItem="2729-de27-bff9" firstAttribute="top" secondItem="d73f-2d4f-3a97" secondAttribute="top" id="1314-aa77-4328" identifier="ds.reference.1314-aa77-4328" />
+                                                                                            <constraint firstItem="d73f-2d4f-3a97" firstAttribute="trailing" secondItem="2729-de27-bff9" secondAttribute="trailing" id="f055-1695-9489" identifier="ds.reference.f055-1695-9489" />
+                                                                                            <constraint firstItem="d73f-2d4f-3a97" firstAttribute="bottom" secondItem="2729-de27-bff9" secondAttribute="bottom" id="045d-bfb0-2d5a" identifier="ds.reference.045d-bfb0-2d5a" />
+                                                                                        </constraints>
+                                                                                        <userDefinedRuntimeAttributes>
+                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
+                                                                                        </userDefinedRuntimeAttributes>
+                                                                                    </view>
+                                                                                </subviews>
+                                                                                <constraints>
+                                                                                    <constraint firstAttribute="height" constant="48" id="d818-1ddb-77d1" identifier="ds.reference.d818-1ddb-77d1" />
+                                                                                </constraints>
+                                                                            </stackView>
+                                                                        </subviews>
+                                                                    </stackView>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="954d-4ee5-49d5" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="heroTagView">
+                                                                        <subviews>
+                                                                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c58f-ffbc-def5" opaque="NO" alignment="center" spacing="6" layoutMarginsFollowReadableWidth="NO" layoutMarginsRelativeArrangement="YES">
+                                                                                <subviews>
+                                                                                    <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ec19-ec13-e5a7" userLabel="heroTagIcon" image="sofa" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="11" weight="semibold" />
+                                                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="width" constant="14" id="f872-694b-85de" identifier="ds.reference.f872-694b-85de" />
+                                                                                            <constraint firstAttribute="height" constant="14" id="0b79-04a4-9e42" identifier="ds.reference.0b79-04a4-9e42" />
+                                                                                        </constraints>
+                                                                                    </imageView>
+                                                                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ed8e-5507-de9d" userLabel="heroTagLabel" opaque="NO" text="Interior" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                                        <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="12" />
+                                                                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                                                        <nil key="highlightedColor" />
+                                                                                        <userDefinedRuntimeAttributes>
+                                                                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Interior" />
+                                                                                        </userDefinedRuntimeAttributes>
+                                                                                        <nil key="backgroundColor" />
+                                                                                    </label>
+                                                                                </subviews>
+                                                                                <edgeInsets key="layoutMargins" top="0" left="10" bottom="0" right="10" />
+                                                                            </stackView>
+                                                                        </subviews>
+                                                                        <color key="backgroundColor" red="1.0000" green="1.0000" blue="1.0000" alpha="0.800" colorSpace="custom" customColorSpace="sRGB" />
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="28" id="6ddd-c102-34fd" identifier="ds.reference.6ddd-c102-34fd" />
+                                                                            <constraint firstItem="c58f-ffbc-def5" firstAttribute="leading" secondItem="954d-4ee5-49d5" secondAttribute="leading" id="d000-ab6e-3b18" identifier="ds.reference.d000-ab6e-3b18" />
+                                                                            <constraint firstItem="c58f-ffbc-def5" firstAttribute="top" secondItem="954d-4ee5-49d5" secondAttribute="top" id="f8e4-0226-5e08" identifier="ds.reference.f8e4-0226-5e08" />
+                                                                            <constraint firstItem="954d-4ee5-49d5" firstAttribute="trailing" secondItem="c58f-ffbc-def5" secondAttribute="trailing" id="6f2a-5c50-d2a6" identifier="ds.reference.6f2a-5c50-d2a6" />
+                                                                            <constraint firstItem="954d-4ee5-49d5" firstAttribute="bottom" secondItem="c58f-ffbc-def5" secondAttribute="bottom" id="208a-72fc-6dcb" identifier="ds.reference.208a-72fc-6dcb" />
+                                                                        </constraints>
+                                                                        <userDefinedRuntimeAttributes>
+                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
+                                                                        </userDefinedRuntimeAttributes>
+                                                                    </view>
+                                                                </subviews>
+                                                                <color key="backgroundColor" name="dsSurface" />
+                                                                <constraints>
+                                                                    <constraint firstItem="acb2-ec33-c58e" firstAttribute="leading" secondItem="666b-1e15-bed0" secondAttribute="leading" id="d1cd-6ed9-c89f" identifier="ds.reference.d1cd-6ed9-c89f" />
+                                                                    <constraint firstItem="acb2-ec33-c58e" firstAttribute="top" secondItem="666b-1e15-bed0" secondAttribute="top" id="c3b8-a038-4676" identifier="ds.reference.c3b8-a038-4676" />
+                                                                    <constraint firstItem="666b-1e15-bed0" firstAttribute="trailing" secondItem="acb2-ec33-c58e" secondAttribute="trailing" id="ddc8-f852-3322" identifier="ds.reference.ddc8-f852-3322" />
+                                                                    <constraint firstItem="666b-1e15-bed0" firstAttribute="bottom" secondItem="acb2-ec33-c58e" secondAttribute="bottom" id="0720-3ab4-be0f" identifier="ds.reference.0720-3ab4-be0f" />
+                                                                    <constraint firstItem="3886-ed08-2025" firstAttribute="leading" secondItem="666b-1e15-bed0" secondAttribute="leading" id="f0c8-801f-0478" identifier="ds.reference.f0c8-801f-0478" />
+                                                                    <constraint firstItem="3886-ed08-2025" firstAttribute="top" secondItem="666b-1e15-bed0" secondAttribute="top" id="1520-a324-567c" identifier="ds.reference.1520-a324-567c" />
+                                                                    <constraint firstItem="666b-1e15-bed0" firstAttribute="bottom" secondItem="3886-ed08-2025" secondAttribute="bottom" id="6a0b-dbc8-5e8b" identifier="ds.reference.6a0b-dbc8-5e8b" />
+                                                                    <constraint firstItem="dcda-bba9-2100" firstAttribute="width" secondItem="666b-1e15-bed0" secondAttribute="width" id="087a-36d8-a66b" identifier="ds.reference.087a-36d8-a66b" />
+                                                                    <constraint firstItem="2c11-f37a-fce1" firstAttribute="top" secondItem="666b-1e15-bed0" secondAttribute="top" id="83e3-a138-4e4e" identifier="ds.reference.83e3-a138-4e4e" />
+                                                                    <constraint firstItem="666b-1e15-bed0" firstAttribute="bottom" secondItem="2c11-f37a-fce1" secondAttribute="bottom" id="c773-21c2-3e57" identifier="ds.reference.c773-21c2-3e57" />
+                                                                    <constraint firstItem="2c11-f37a-fce1" firstAttribute="centerX" secondItem="3886-ed08-2025" secondAttribute="trailing" id="1593-cee9-83c2" identifier="ds.reference.1593-cee9-83c2" />
+                                                                    <constraint firstItem="6431-da83-d38a" firstAttribute="centerX" secondItem="2c11-f37a-fce1" secondAttribute="centerX" id="39d7-b587-54a5" identifier="ds.reference.39d7-b587-54a5" />
+                                                                    <constraint firstItem="6431-da83-d38a" firstAttribute="centerY" secondItem="666b-1e15-bed0" secondAttribute="top" constant="128" id="b23a-b2ca-166c" identifier="ds.reference.b23a-b2ca-166c" />
+                                                                    <constraint firstItem="b058-bc35-9fdf" firstAttribute="leading" secondItem="666b-1e15-bed0" secondAttribute="leading" id="c9de-d97a-aaf9" identifier="ds.reference.c9de-d97a-aaf9" />
+                                                                    <constraint firstItem="666b-1e15-bed0" firstAttribute="trailing" secondItem="b058-bc35-9fdf" secondAttribute="trailing" id="7b1c-4c32-0b49" identifier="ds.reference.7b1c-4c32-0b49" />
+                                                                    <constraint firstItem="666b-1e15-bed0" firstAttribute="bottom" secondItem="b058-bc35-9fdf" secondAttribute="bottom" id="ca54-6bc4-7bb3" identifier="ds.reference.ca54-6bc4-7bb3" />
+                                                                    <constraint firstItem="35ec-1416-022f" firstAttribute="leading" secondItem="666b-1e15-bed0" secondAttribute="leading" constant="20" id="c8ea-1b07-1d80" identifier="ds.reference.c8ea-1b07-1d80" />
+                                                                    <constraint firstItem="666b-1e15-bed0" firstAttribute="trailing" secondItem="35ec-1416-022f" secondAttribute="trailing" constant="20" id="7aac-5e83-1ffc" identifier="ds.reference.7aac-5e83-1ffc" />
+                                                                    <constraint firstItem="666b-1e15-bed0" firstAttribute="bottom" secondItem="35ec-1416-022f" secondAttribute="bottom" constant="23" id="c9a8-40b5-fa8f" identifier="ds.reference.c9a8-40b5-fa8f" />
+                                                                    <constraint firstItem="954d-4ee5-49d5" firstAttribute="leading" secondItem="666b-1e15-bed0" secondAttribute="leading" constant="16" id="0fd7-dd0d-99cd" identifier="ds.reference.0fd7-dd0d-99cd" />
+                                                                    <constraint firstItem="954d-4ee5-49d5" firstAttribute="top" secondItem="666b-1e15-bed0" secondAttribute="top" constant="16" id="cf7f-3f3d-20c4" identifier="ds.reference.cf7f-3f3d-20c4" />
+                                                                </constraints>
+                                                                <userDefinedRuntimeAttributes>
+                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                        <real key="value" value="34" />
+                                                                    </userDefinedRuntimeAttribute>
+                                                                </userDefinedRuntimeAttributes>
+                                                            </view>
+                                                        </subviews>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                        <constraints>
+                                                            <constraint priority="999" firstAttribute="height" constant="356" id="4ae5-137f-d64c" identifier="ds.reference.4ae5-137f-d64c" />
+                                                            <constraint firstItem="666b-1e15-bed0" firstAttribute="leading" secondItem="0d81-69ed-f25c" secondAttribute="leading" id="f231-557e-d448" identifier="ds.reference.f231-557e-d448" />
+                                                            <constraint firstItem="666b-1e15-bed0" firstAttribute="top" secondItem="0d81-69ed-f25c" secondAttribute="top" id="9728-3152-1cfc" identifier="ds.reference.9728-3152-1cfc" />
+                                                            <constraint firstItem="0d81-69ed-f25c" firstAttribute="trailing" secondItem="666b-1e15-bed0" secondAttribute="trailing" id="e947-ece6-780f" identifier="ds.reference.e947-ece6-780f" />
+                                                            <constraint firstItem="0d81-69ed-f25c" firstAttribute="bottom" secondItem="666b-1e15-bed0" secondAttribute="bottom" id="af51-05b2-08aa" identifier="ds.reference.af51-05b2-08aa" />
+                                                        </constraints>
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                <real key="value" value="34" />
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
+                                                                <real key="value" value="0.12" />
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                                                <real key="value" value="15" />
+                                                            </userDefinedRuntimeAttribute>
+                                                            <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY">
+                                                                <real key="value" value="10" />
+                                                            </userDefinedRuntimeAttribute>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </view>
                                 </subviews>
                                 <viewLayoutGuide key="contentLayoutGuide" id="f23e-2d31-5fe1" />
                                 <viewLayoutGuide key="frameLayoutGuide" id="acac-dd11-1dc5" />
                                 <constraints>
-                                    <constraint firstItem="cdf6-d2bf-6c1a" firstAttribute="leading" secondItem="f23e-2d31-5fe1" secondAttribute="leading" id="bd0f-5adb-a544" identifier="ds.reference.bd0f-5adb-a544" />
+<constraint priority="999" firstItem="0d81-69ed-f25c" firstAttribute="leading" secondItem="d144-1ed0-a9cc" secondAttribute="leading" constant="20" id="6553-0bc1-a0e1" identifier="ds.reference.6553-0bc1-a0e1" />
+<constraint priority="999" firstItem="0d81-69ed-f25c" firstAttribute="top" secondItem="d144-1ed0-a9cc" secondAttribute="top" id="f7f9-9da2-f574" identifier="ds.reference.f7f9-9da2-f574" />
+<constraint priority="999" firstItem="d144-1ed0-a9cc" firstAttribute="trailing" secondItem="0d81-69ed-f25c" secondAttribute="trailing" constant="20" id="8a4e-a21b-cf0e" identifier="ds.reference.8a4e-a21b-cf0e" />
+<constraint priority="999" firstItem="d144-1ed0-a9cc" firstAttribute="bottom" secondItem="0d81-69ed-f25c" secondAttribute="bottom" id="7ff1-a2eb-f33a" identifier="ds.reference.7ff1-a2eb-f33a" />
+<constraint priority="1" firstItem="0d81-69ed-f25c" firstAttribute="leading" secondItem="acac-dd11-1dc5" secondAttribute="leading" constant="20" id="7e20-0000-0011" />
+<constraint priority="1" firstItem="0d81-69ed-f25c" firstAttribute="top" secondItem="acac-dd11-1dc5" secondAttribute="top" constant="76" id="7e20-0000-0012" />
+<constraint priority="1" firstItem="acac-dd11-1dc5" firstAttribute="bottom" secondItem="0d81-69ed-f25c" secondAttribute="bottom" constant="16" id="7e20-0000-0013" />
+<constraint priority="1" firstItem="721a-4132-f071" firstAttribute="centerX" secondItem="0d81-69ed-f25c" secondAttribute="trailing" constant="20" id="7e20-0000-0014" />
+<constraint priority="1" firstItem="cdf6-d2bf-6c1a" firstAttribute="leading" secondItem="721a-4132-f071" secondAttribute="centerX" id="7e20-0000-0015" />
+<constraint priority="1" firstItem="f23e-2d31-5fe1" firstAttribute="width" secondItem="acac-dd11-1dc5" secondAttribute="width" id="7e20-0000-0016" />
+                                    <constraint priority="999" firstItem="cdf6-d2bf-6c1a" firstAttribute="leading" secondItem="f23e-2d31-5fe1" secondAttribute="leading" id="bd0f-5adb-a544" identifier="ds.reference.bd0f-5adb-a544" />
                                     <constraint firstItem="f23e-2d31-5fe1" firstAttribute="trailing" secondItem="cdf6-d2bf-6c1a" secondAttribute="trailing" id="4bdc-35a4-63e1" identifier="ds.reference.4bdc-35a4-63e1" />
                                     <constraint firstItem="f23e-2d31-5fe1" firstAttribute="bottom" secondItem="cdf6-d2bf-6c1a" secondAttribute="bottom" id="d54a-a40c-c538" identifier="ds.reference.d54a-a40c-c538" />
                                     <constraint firstItem="cdf6-d2bf-6c1a" firstAttribute="top" secondItem="f23e-2d31-5fe1" secondAttribute="top" constant="59" id="011d-52fa-7727" identifier="ds.reference.011d-52fa-7727" />
-                                    <constraint firstItem="cdf6-d2bf-6c1a" firstAttribute="width" secondItem="acac-dd11-1dc5" secondAttribute="width" id="6ebb-c0da-68d8" identifier="ds.reference.6ebb-c0da-68d8" />
+                                    <constraint priority="999" firstItem="cdf6-d2bf-6c1a" firstAttribute="width" secondItem="acac-dd11-1dc5" secondAttribute="width" id="6ebb-c0da-68d8" identifier="ds.reference.6ebb-c0da-68d8" />
                                 </constraints>
                             </scrollView>
                             <visualEffectView contentMode="scaleToFill" alpha="0" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="582a-35c3-b2cf" userLabel="headerBackgroundView">
@@ -1545,6 +1550,20 @@
                         </constraints>
                     </view>
                     <connections>
+<outletCollection property="listOnlyConstraints" destination="4ae5-137f-d64c" collectionClass="NSMutableArray" id="7e20-0001-0010" />
+<outletCollection property="listOnlyConstraints" destination="6553-0bc1-a0e1" collectionClass="NSMutableArray" id="7e20-0001-0000" />
+<outletCollection property="listOnlyConstraints" destination="f7f9-9da2-f574" collectionClass="NSMutableArray" id="7e20-0001-0001" />
+<outletCollection property="listOnlyConstraints" destination="8a4e-a21b-cf0e" collectionClass="NSMutableArray" id="7e20-0001-0002" />
+<outletCollection property="listOnlyConstraints" destination="7ff1-a2eb-f33a" collectionClass="NSMutableArray" id="7e20-0001-0003" />
+<outletCollection property="listOnlyConstraints" destination="bd0f-5adb-a544" collectionClass="NSMutableArray" id="7e20-0001-0004" />
+<outletCollection property="listOnlyConstraints" destination="6ebb-c0da-68d8" collectionClass="NSMutableArray" id="7e20-0001-0005" />
+<outletCollection property="splitConstraints" destination="7e20-0000-0001" collectionClass="NSMutableArray" id="7e20-0002-0001" />
+<outletCollection property="splitConstraints" destination="7e20-0000-0011" collectionClass="NSMutableArray" id="7e20-0002-0011" />
+<outletCollection property="splitConstraints" destination="7e20-0000-0012" collectionClass="NSMutableArray" id="7e20-0002-0012" />
+<outletCollection property="splitConstraints" destination="7e20-0000-0013" collectionClass="NSMutableArray" id="7e20-0002-0013" />
+<outletCollection property="splitConstraints" destination="7e20-0000-0014" collectionClass="NSMutableArray" id="7e20-0002-0014" />
+<outletCollection property="splitConstraints" destination="7e20-0000-0015" collectionClass="NSMutableArray" id="7e20-0002-0015" />
+<outletCollection property="splitConstraints" destination="7e20-0000-0016" collectionClass="NSMutableArray" id="7e20-0002-0016" />
                         <outlet property="topGlowView" destination="0680-6bb6-8279" id="a8d9-7277-0438" />
                         <outlet property="scrollView" destination="51a0-8118-e531" id="1b43-ce09-997d" />
                         <outlet property="contentStack" destination="cdf6-d2bf-6c1a" id="fa3c-a1cc-e105" />

@@ -1,7 +1,7 @@
 import UIKit
 
 /// A/03 · Home (tab Create). Layout: Home.storyboard.
-final class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController, DSWideLayoutFullWidth {
 
     // MARK: Outlets — header
     @IBOutlet private weak var topGlowView: UIView!
@@ -21,6 +21,19 @@ final class HomeViewController: UIViewController {
 
     // MARK: Outlets — content
     @IBOutlet private weak var scrollView: UIScrollView!
+    /// iPhone Duo unfolded, landscape (Figma Duo/L/03): hero fixed on the left half, the rest scrolls on the right.
+    @IBOutlet private var listOnlyConstraints: [NSLayoutConstraint]!
+    @IBOutlet private var splitConstraints: [NSLayoutConstraint]!
+    private var isSplit = false
+
+    var dsUsesFullWidth: Bool { wantsSplit }
+
+    private var wantsSplit: Bool {
+        guard let window = navigationController?.view.window ?? view.window else { return false }
+        let size = (navigationController?.view ?? view).bounds.size
+        return DSWideLayout.isWide(size.width - window.safeAreaInsets.left - window.safeAreaInsets.right)
+            && size.width > size.height
+    }
     @IBOutlet private weak var contentStack: UIStackView!
     @IBOutlet private weak var freeBannerContainer: UIView!
     @IBOutlet private weak var freeBannerControl: DSPressableControl!
@@ -155,6 +168,13 @@ final class HomeViewController: UIViewController {
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
+        let split = wantsSplit
+        if split != isSplit {
+            isSplit = split
+            listOnlyConstraints.forEach { $0.priority = UILayoutPriority(split ? 1 : 999) }
+            splitConstraints.forEach { $0.priority = UILayoutPriority(split ? 999 : 1) }
+            navigationController?.view.setNeedsLayout()   // container drops / restores its reading column
+        }
         updatePlanLabelMinimumHeights()
 
     }

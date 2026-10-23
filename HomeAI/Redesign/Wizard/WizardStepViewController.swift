@@ -16,7 +16,7 @@ class WizardStepViewController: UIViewController, DSWideLayoutFullWidth {
     var dsUsesFullWidth: Bool { previewPaneView != nil && wantsPreview }
 
     private var wantsPreview: Bool {
-        guard let window = view.window else { return false }
+        guard let window = navigationController?.view.window ?? view.window else { return false }
         let size = (navigationController?.view ?? view).bounds.size
         return DSWideLayout.isWide(size.width - window.safeAreaInsets.left - window.safeAreaInsets.right)
             && size.width > size.height
