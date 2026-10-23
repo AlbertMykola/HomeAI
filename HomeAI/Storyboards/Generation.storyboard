@@ -958,6 +958,9 @@
                             <constraint priority="999" firstItem="55c6-0e3f-1d9c" firstAttribute="leading" secondItem="e57e-0730-282d" secondAttribute="leading" constant="20" id="3993-403f-890e" identifier="ds.reference.3993-403f-890e" />
                             <constraint firstItem="e57e-0730-282d" firstAttribute="trailing" secondItem="55c6-0e3f-1d9c" secondAttribute="trailing" constant="20" id="8143-efec-ffb6" identifier="ds.reference.8143-efec-ffb6" />
                             <constraint priority="999" firstItem="55c6-0e3f-1d9c" firstAttribute="top" secondItem="c501-d555-0596" secondAttribute="bottom" constant="20" id="df2b-cb64-87c2" identifier="ds.reference.df2b-cb64-87c2" />
+                            <constraint firstItem="d9da-b0dd-059f" firstAttribute="centerY" secondItem="c501-d555-0596" secondAttribute="bottom" constant="16" priority="1" id="7e90-0000-0001" />
+                            <constraint firstItem="55c6-0e3f-1d9c" firstAttribute="top" secondItem="d9da-b0dd-059f" secondAttribute="centerY" constant="41" priority="1" id="7e90-0000-0002" />
+                            <constraint firstItem="b8fa-1e10-e143" firstAttribute="top" secondItem="ee18-d0ca-1cd8" secondAttribute="bottom" constant="28" priority="1" id="7e90-0000-0003" />
                             <constraint priority="999" firstItem="ee18-d0ca-1cd8" firstAttribute="leading" secondItem="e57e-0730-282d" secondAttribute="leading" constant="20" id="cd96-b61e-b804" identifier="ds.reference.cd96-b61e-b804" />
                             <constraint firstItem="e57e-0730-282d" firstAttribute="trailing" secondItem="ee18-d0ca-1cd8" secondAttribute="trailing" constant="20" id="fadd-b1b2-78da" identifier="ds.reference.fadd-b1b2-78da" />
                             <constraint firstItem="ee18-d0ca-1cd8" firstAttribute="top" secondItem="55c6-0e3f-1d9c" secondAttribute="bottom" constant="16" id="812e-d193-fde6" identifier="ds.reference.812e-d193-fde6" />
@@ -995,6 +998,12 @@
                         <outletCollection property="splitConstraints" destination="7e30-w006" collectionClass="NSMutableArray" id="7e30-s006" />
                         <outletCollection property="splitConstraints" destination="7e30-w007" collectionClass="NSMutableArray" id="7e30-s007" />
                         <outletCollection property="splitConstraints" destination="7e30-w008" collectionClass="NSMutableArray" id="7e30-s008" />
+                        <outletCollection property="portraitConstraints" destination="7e90-0000-0001" collectionClass="NSMutableArray" id="7e90-0001-0001" />
+                        <outletCollection property="portraitConstraints" destination="7e90-0000-0002" collectionClass="NSMutableArray" id="7e90-0001-0002" />
+                        <outletCollection property="portraitReleasedConstraints" destination="8bba-f661-e63d" collectionClass="NSMutableArray" id="7e90-0001-0003" />
+                        <outletCollection property="portraitReleasedConstraints" destination="df2b-cb64-87c2" collectionClass="NSMutableArray" id="7e90-0001-0004" />
+                        <outletCollection property="portraitConstraints" destination="7e90-0000-0003" collectionClass="NSMutableArray" id="7e90-0001-0005" />
+                        <outletCollection property="portraitReleasedConstraints" destination="fec1-a5d9-5bcd" collectionClass="NSMutableArray" id="7e90-0001-0006" />
                         <outlet property="collapseButton" destination="94af-bfcd-18a0" id="a105-417b-1977" />
                         <outlet property="navTitleLabel" destination="0b2d-5b3e-5b2f" id="8547-ad5b-92db" />
                         <outlet property="photoCardView" destination="c501-d555-0596" id="1afb-e1ce-766a" />

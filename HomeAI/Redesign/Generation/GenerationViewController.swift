@@ -16,12 +16,24 @@ final class GenerationViewController: UIViewController, DSWideLayoutFullWidth {
     @IBOutlet private var listOnlyConstraints: [NSLayoutConstraint]!
     @IBOutlet private var splitConstraints: [NSLayoutConstraint]!
     private lazy var layoutSwitch = DSLayoutSwitch(phone: listOnlyConstraints, unfolded: splitConstraints)
+    /// Unfolded portrait and half folded (Figma Duo/HF/05): the scanning photo fills the top half, progress,
+    /// steps and "Notify me" start under the hinge, so Duo can stand on a table while it works.
+    @IBOutlet private var portraitConstraints: [NSLayoutConstraint]!
+    @IBOutlet private var portraitReleasedConstraints: [NSLayoutConstraint]!
 
     var dsUsesFullWidth: Bool { dsWantsWideLandscape }
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        if layoutSwitch.set(unfolded: dsWantsWideLandscape) { navigationController?.view.setNeedsLayout() }
+        let landscape = dsWantsWideLandscape
+        if layoutSwitch.set(unfolded: landscape) { navigationController?.view.setNeedsLayout() }
+        let size = view.bounds.size
+        let portrait = !landscape && DSWideLayout.isWide(size.width) && size.height > size.width
+        // The released constraints belong to the phone set, which the landscape switch also turns off.
+        let released = UILayoutPriority(portrait || landscape ? 1 : 999)
+        portraitReleasedConstraints.forEach { if $0.priority != released { $0.priority = released } }
+        let split = UILayoutPriority(portrait ? 999 : 1)
+        portraitConstraints.forEach { if $0.priority != split { $0.priority = split } }
     }
     @IBOutlet private weak var photoClipView: UIView!
     @IBOutlet private weak var photoImageView: UIImageView!
