@@ -5,8 +5,11 @@ import UIKit
 class DSAdaptiveRootView: UIView {
     private var metrics: DSReferenceLayout?
 
+    /// Set by a presentation that sizes this root as an iPhone screen of its own (sheets in a Duo pane).
+    var referenceSizeOverride: CGSize?
+
     var referenceSize: CGSize {
-        CGSize(width: dsLayoutSize.width, height: window?.bounds.height ?? bounds.height)
+        referenceSizeOverride ?? CGSize(width: dsLayoutSize.width, height: window?.bounds.height ?? bounds.height)
     }
 
     func prepareMetrics() {

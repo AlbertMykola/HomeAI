@@ -3,7 +3,7 @@ import UIKit
 /// A/02 · P3 Pro feature: contextual upsell instead of the full paywall. Honest: ✕ from the first frame,
 /// "Not now" returns the user where they were. See Pro plans → P1 with source=feature_<name>.
 /// Layout: Paywall.storyboard.
-final class ProFeatureSheetViewController: UIViewController {
+final class ProFeatureSheetViewController: UIViewController, DSSheetContentMeasuring {
 
     enum Feature: String {
         case watermark, hdExport = "4k", unlimitedEdits = "edits", aiDesigner = "assistant", proStyle = "style"
@@ -57,12 +57,16 @@ final class ProFeatureSheetViewController: UIViewController {
         vc.onPurchase = onPurchase
         AmplitudeService.shared.logRedesignEvent("pro_feature_sheet", properties: ["feature": feature.rawValue])
         vc.loadViewIfNeeded()
-        let contentSize = vc.contentStack.systemLayoutSizeFitting(
-            CGSize(width: max(1, presenter.view.dsLayoutSize.width - 40), height: UIView.layoutFittingCompressedSize.height),
-            withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
         // UIKit caps custom detents on short displays. The content remains scrollable
         // if the final sheet width or height is smaller than the presenter's viewport.
-        DSSheet.present(vc, from: presenter, height: contentSize.height + 28)
+        DSSheet.present(vc, from: presenter, height: vc.sheetContentHeight(width: presenter.view.dsLayoutSize.width))
+    }
+
+    func sheetContentHeight(width: CGFloat) -> CGFloat {
+        loadViewIfNeeded()
+        return contentStack.systemLayoutSizeFitting(
+            CGSize(width: max(1, width - 40), height: UIView.layoutFittingCompressedSize.height),
+            withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel).height + 28
     }
 
     override func viewDidLoad() {

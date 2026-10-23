@@ -12,6 +12,12 @@ final class WelcomeProViewController: UIViewController {
     @IBOutlet private weak var startButton: DSPrimaryButton!
     @IBOutlet private weak var startLabel: UILabel!
 
+    /// iPhone Duo unfolded, landscape (Figma Duo/L/02 · P5): the crown on the lime left pane, text, list and
+    /// "Start designing" in the right column. Sets authored in Paywall.storyboard (phone 999 / split 1).
+    @IBOutlet private var phoneConstraints: [NSLayoutConstraint]!
+    @IBOutlet private var splitConstraints: [NSLayoutConstraint]!
+    private lazy var layoutSwitch = DSLayoutSwitch(phone: phoneConstraints, unfolded: splitConstraints)
+
     private var onStart: (() -> Void)?
     private var didRun = false
 
@@ -27,7 +33,9 @@ final class WelcomeProViewController: UIViewController {
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        dsApplyWideColumn()
+        let split = dsWantsWideLandscape
+        _ = layoutSwitch.set(unfolded: split)
+        dsApplyWideColumn(fullWidth: split)
     }
 
     override func viewDidLoad() {
