@@ -1345,9 +1345,11 @@
                                 <constraints>
                                     <constraint firstItem="2b06-b0c9-235e" firstAttribute="leading" secondItem="cbc0-34bf-dd31" secondAttribute="leading" identifier="result.c418" id="ae38-f9eb-f8f7" />
                                     <constraint firstItem="2b06-b0c9-235e" firstAttribute="top" secondItem="cbc0-34bf-dd31" secondAttribute="top" identifier="result.c419" id="bd3b-e516-ae81" />
-                                    <constraint firstItem="cbc0-34bf-dd31" firstAttribute="trailing" secondItem="2b06-b0c9-235e" secondAttribute="trailing" identifier="result.c420" id="5787-0368-8558" />
+                                    <constraint priority="999" firstItem="cbc0-34bf-dd31" firstAttribute="trailing" secondItem="2b06-b0c9-235e" secondAttribute="trailing" identifier="result.c420" id="5787-0368-8558" />
+                                    <constraint priority="1" firstItem="cbc0-34bf-dd31" firstAttribute="centerX" secondItem="2b06-b0c9-235e" secondAttribute="trailing" constant="3" identifier="result.pair.1" id="5a1d-0003-0001" />
+                                    <constraint priority="1" firstItem="e47d-d7df-73eb" firstAttribute="leading" secondItem="cbc0-34bf-dd31" secondAttribute="centerX" constant="3" identifier="result.pair.2" id="5a1d-0003-0002" />
                                     <constraint firstItem="cbc0-34bf-dd31" firstAttribute="bottom" secondItem="2b06-b0c9-235e" secondAttribute="bottom" identifier="result.c421" id="c001-9fac-9a1f" />
-                                    <constraint firstItem="e47d-d7df-73eb" firstAttribute="leading" secondItem="cbc0-34bf-dd31" secondAttribute="leading" identifier="result.c422" id="4309-e737-1fad" />
+                                    <constraint priority="999" firstItem="e47d-d7df-73eb" firstAttribute="leading" secondItem="cbc0-34bf-dd31" secondAttribute="leading" identifier="result.c422" id="4309-e737-1fad" />
                                     <constraint firstItem="e47d-d7df-73eb" firstAttribute="top" secondItem="cbc0-34bf-dd31" secondAttribute="top" identifier="result.c423" id="3280-788f-3d44" />
                                     <constraint firstItem="cbc0-34bf-dd31" firstAttribute="trailing" secondItem="e47d-d7df-73eb" secondAttribute="trailing" identifier="result.c424" id="5882-58c9-4128" />
                                     <constraint firstItem="cbc0-34bf-dd31" firstAttribute="bottom" secondItem="e47d-d7df-73eb" secondAttribute="bottom" identifier="result.c425" id="67e8-b85e-3e66" />
@@ -2375,12 +2377,23 @@
                                             </view>
                                         </subviews>
                                     </stackView>
+                                    <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="5a1d-0005-0001" userLabel="pairOriginalImageView">
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <real key="value" value="20" />
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" name="dsBackground" />
                                 <constraints>
                                     <constraint firstItem="933c-b288-142c" firstAttribute="leading" secondItem="965f-69ec-6e31" secondAttribute="leading" identifier="result.c477" id="9cc7-3fd1-7a6a" />
                                     <constraint firstItem="965f-69ec-6e31" firstAttribute="trailing" secondItem="933c-b288-142c" secondAttribute="trailing" identifier="result.c478" id="1313-d592-f470" />
-                                    <constraint firstItem="933c-b288-142c" firstAttribute="top" secondItem="965f-69ec-6e31" secondAttribute="top" constant="18" identifier="result.c479" id="5fa1-5167-69a4" />
+                                    <constraint priority="999" firstItem="933c-b288-142c" firstAttribute="top" secondItem="965f-69ec-6e31" secondAttribute="top" constant="18" identifier="result.c479" id="5fa1-5167-69a4" />
+                                    <constraint priority="1" firstItem="5a1d-0005-0001" firstAttribute="top" secondItem="965f-69ec-6e31" secondAttribute="top" constant="18" identifier="result.wide.img1" id="5a1d-0005-0002" />
+                                    <constraint firstItem="5a1d-0005-0001" firstAttribute="leading" secondItem="933c-b288-142c" secondAttribute="leading" id="5a1d-0005-0003" />
+                                    <constraint firstItem="5a1d-0005-0001" firstAttribute="trailing" secondItem="933c-b288-142c" secondAttribute="trailing" id="5a1d-0005-0004" />
+                                    <constraint priority="1" firstItem="933c-b288-142c" firstAttribute="top" secondItem="5a1d-0005-0001" secondAttribute="bottom" constant="16" identifier="result.wide.img2" id="5a1d-0005-0005" />
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -3150,6 +3163,7 @@
                             <constraint firstItem="7ed8-4d38-2b74" firstAttribute="bottom" secondItem="d58a-febe-ec0a" secondAttribute="bottom" constant="12" identifier="result.c541" id="7bc3-6168-f3d5" />
                             <constraint priority="1" firstItem="6f8f-e25f-e8be" firstAttribute="bottom" secondItem="cbc0-34bf-dd31" secondAttribute="bottom" identifier="result.wide.a1" id="5a1d-0000-00a1" />
                             <constraint priority="1" firstItem="965f-69ec-6e31" firstAttribute="leading" secondItem="cbc0-34bf-dd31" secondAttribute="trailing" constant="-24" identifier="result.wide.a2" id="5a1d-0000-00a2" />
+                            <constraint priority="1" firstItem="965f-69ec-6e31" firstAttribute="top" secondItem="7ed8-4d38-2b74" secondAttribute="top" constant="8" identifier="result.wide.top2" id="5a1d-0005-0006" />
                             <constraint priority="1" firstItem="965f-69ec-6e31" firstAttribute="width" secondItem="7ed8-4d38-2b74" secondAttribute="width" multiplier="0.42" identifier="result.wide.a3" id="5a1d-0000-00a3" />
                             <constraint priority="1" firstItem="7ed8-4d38-2b74" firstAttribute="bottom" secondItem="6445-4d8f-aeb5" secondAttribute="bottom" constant="16" identifier="result.wide.a4" id="5a1d-0000-00a4" />
                             <constraint priority="1" firstItem="965f-69ec-6e31" firstAttribute="leading" secondItem="c8c3-4a59-1c7e" secondAttribute="trailing" constant="16" identifier="result.wide.a5" id="5a1d-0000-00a5" />
@@ -3161,6 +3175,15 @@
                     </view>
                     <connections>
                         <outlet property="photoView" destination="cbc0-34bf-dd31" id="9105-2087-ba56" />
+                        <outlet property="pairOriginalImageView" destination="5a1d-0005-0001" id="5a1d-0005-0010" />
+                        <outletCollection property="stackedConstraints" destination="5fa1-5167-69a4" collectionClass="NSMutableArray" id="5a1d-0005-0011" />
+                        <outletCollection property="sideBySideConstraints" destination="5a1d-0005-0002" collectionClass="NSMutableArray" id="5a1d-0005-0012" />
+                        <outletCollection property="sideBySideConstraints" destination="5a1d-0005-0005" collectionClass="NSMutableArray" id="5a1d-0005-0013" />
+                        <outletCollection property="sideBySideConstraints" destination="5a1d-0005-0006" collectionClass="NSMutableArray" id="5a1d-0005-0014" />
+                        <outletCollection property="overlayConstraints" destination="5787-0368-8558" collectionClass="NSMutableArray" id="5a1d-0004-0001" />
+                        <outletCollection property="overlayConstraints" destination="4309-e737-1fad" collectionClass="NSMutableArray" id="5a1d-0004-0002" />
+                        <outletCollection property="pairConstraints" destination="5a1d-0003-0001" collectionClass="NSMutableArray" id="5a1d-0004-0003" />
+                        <outletCollection property="pairConstraints" destination="5a1d-0003-0002" collectionClass="NSMutableArray" id="5a1d-0004-0004" />
                         <outletCollection property="stackedConstraints" destination="31c7-ad1e-93fd" collectionClass="NSMutableArray" id="5a1d-0001-0000" />
                         <outletCollection property="stackedConstraints" destination="f57b-0284-34f3" collectionClass="NSMutableArray" id="5a1d-0001-0001" />
                         <outletCollection property="stackedConstraints" destination="6d1f-3553-cd91" collectionClass="NSMutableArray" id="5a1d-0001-0002" />

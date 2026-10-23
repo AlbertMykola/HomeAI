@@ -10,6 +10,12 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
     /// Both sets live in Result.storyboard; only their priorities swap.
     @IBOutlet private var stackedConstraints: [NSLayoutConstraint]!
     @IBOutlet private var sideBySideConstraints: [NSLayoutConstraint]!
+    /// Unfolded portrait: "before" and "after" next to each other instead of stacked (hold-to-compare).
+    @IBOutlet private var overlayConstraints: [NSLayoutConstraint]!
+    @IBOutlet private var pairConstraints: [NSLayoutConstraint]!
+    private var showsPair = false
+    /// Wide landscape: the "before" photo above the tools in the side panel.
+    @IBOutlet private weak var pairOriginalImageView: UIImageView!
     @IBOutlet private weak var resultImageView: UIImageView!
     @IBOutlet private weak var likeIconView: UIImageView!
     @IBOutlet private weak var originalImageView: UIImageView!
@@ -124,13 +130,18 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
-    var dsUsesFullWidth: Bool { isSideBySide }
+    var dsUsesFullWidth: Bool { isWideWindow }
 
-    private var isSideBySide: Bool {
+    private var isWideWindow: Bool {
         guard let window = view.window else { return false }
         let size = (navigationController?.view ?? view).bounds.size
-        let width = size.width - window.safeAreaInsets.left - window.safeAreaInsets.right
-        return DSWideLayout.isWide(width) && size.width > size.height
+        return DSWideLayout.isWide(size.width - window.safeAreaInsets.left - window.safeAreaInsets.right)
+    }
+
+    /// Wide landscape: photo left, panel right.
+    private var isSideBySide: Bool {
+        let size = (navigationController?.view ?? view).bounds.size
+        return isWideWindow && size.width > size.height
     }
 
     override func viewWillLayoutSubviews() {
@@ -139,6 +150,15 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
         let low = UILayoutPriority(1), high = UILayoutPriority(999)
         stackedConstraints.forEach { if $0.priority != (side ? low : high) { $0.priority = side ? low : high } }
         sideBySideConstraints.forEach { if $0.priority != (side ? high : low) { $0.priority = side ? high : low } }
+        pairOriginalImageView.image = originalImageView.image
+        pairOriginalImageView.isHidden = !side || originalImageView.image == nil
+        let pair = isWideWindow && !side && originalImageView.image != nil
+        guard pair != showsPair else { return }
+        showsPair = pair
+        overlayConstraints.forEach { $0.priority = pair ? low : high }
+        pairConstraints.forEach { $0.priority = pair ? high : low }
+        originalImageView.alpha = pair ? 1 : 0
+        compareView.isHidden = pair
     }
 
     override func viewDidLayoutSubviews() {
@@ -198,6 +218,7 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
                 ThumbnailLoader.load(path: path, pointSize: CGSize(width: 1200, height: 1600)) { [weak self] image in
                     self?.originalImage = image
                     self?.originalImageView.image = image
+                    self?.view.setNeedsLayout()
                 }
             }
         }
@@ -291,7 +312,7 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
     }
 
     @objc private func handleHold(_ gesture: UILongPressGestureRecognizer) {
-        guard originalImageView.image != nil else { return }
+        guard originalImageView.image != nil, !showsPair else { return }
         switch gesture.state {
         case .began:
             DS.Haptic.light()
@@ -943,6 +964,7 @@ extension ResultViewController: UICollectionViewDataSource, UICollectionViewDele
         switch items[indexPath.item] {
         case .original:
             DS.Haptic.light()
+            guard !showsPair else { return }
             UIView.animate(withDuration: 0.15) { self.originalImageView.alpha = 1 }
             DispatchQueue.main.asyncAfter(deadline: .now() + 1.2) {
                 UIView.animate(withDuration: 0.2) { self.originalImageView.alpha = 0 }
