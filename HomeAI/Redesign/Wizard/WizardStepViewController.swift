@@ -49,7 +49,7 @@ class WizardStepViewController: UIViewController, DSWideLayoutFullWidth {
         portraitConstraints?.forEach { $0.priority = p(next == .portrait) }
         portraitReleasedConstraints?.forEach { $0.priority = p(next != .portrait) }
         pane.isHidden = next == .phone
-        pane.layer.cornerRadius = next == .portrait ? 24 : 0
+        pane.layer.cornerRadius = next == .portrait ? 24 : 28   // Figma Duo/L/04: inset 20, corners 28
         navigationController?.view.setNeedsLayout()
     }
 
