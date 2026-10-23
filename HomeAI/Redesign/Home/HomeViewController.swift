@@ -24,15 +24,22 @@ final class HomeViewController: UIViewController, DSWideLayoutFullWidth {
     /// iPhone Duo unfolded, landscape (Figma Duo/L/03): hero fixed on the left half, the rest scrolls on the right.
     @IBOutlet private var listOnlyConstraints: [NSLayoutConstraint]!
     @IBOutlet private var splitConstraints: [NSLayoutConstraint]!
-    private var isSplit = false
+    /// Unfolded portrait (Figma Duo/P/03): hero pinned above the hinge, only the lower half scrolls.
+    @IBOutlet private var heroPhoneConstraints: [NSLayoutConstraint]!
+    @IBOutlet private var portraitConstraints: [NSLayoutConstraint]!
+    private enum Arrangement { case phone, landscape, portrait }
+    private var arrangement = Arrangement.phone
+    private var isSplit: Bool { arrangement == .landscape }
 
-    var dsUsesFullWidth: Bool { wantsSplit }
+    var dsUsesFullWidth: Bool { wideArrangement != .phone }
 
-    private var wantsSplit: Bool {
-        guard let window = navigationController?.view.window ?? view.window else { return false }
+    private var wideArrangement: Arrangement {
+        guard let window = navigationController?.view.window ?? view.window else { return .phone }
         let size = (navigationController?.view ?? view).bounds.size
-        return DSWideLayout.isWide(size.width - window.safeAreaInsets.left - window.safeAreaInsets.right)
-            && size.width > size.height
+        guard DSWideLayout.isWide(size.width - window.safeAreaInsets.left - window.safeAreaInsets.right) else {
+            return .phone
+        }
+        return size.width > size.height ? .landscape : .portrait
     }
     @IBOutlet private weak var contentStack: UIStackView!
     @IBOutlet private weak var freeBannerContainer: UIView!
@@ -168,11 +175,16 @@ final class HomeViewController: UIViewController, DSWideLayoutFullWidth {
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        let split = wantsSplit
-        if split != isSplit {
-            isSplit = split
-            listOnlyConstraints.forEach { $0.priority = UILayoutPriority(split ? 1 : 999) }
-            splitConstraints.forEach { $0.priority = UILayoutPriority(split ? 999 : 1) }
+        let next = wideArrangement
+        if next != arrangement {
+            arrangement = next
+            // Switch off first, then on: the spacer collapse belongs to both unfolded sets.
+            let groups: [([NSLayoutConstraint], Bool)] = [
+                (listOnlyConstraints, next != .landscape), (heroPhoneConstraints, next == .phone),
+                (splitConstraints, next == .landscape), (portraitConstraints, next == .portrait)
+            ]
+            groups.filter { !$0.1 }.forEach { $0.0.forEach { $0.priority = UILayoutPriority(1) } }
+            groups.filter { $0.1 }.forEach { $0.0.forEach { $0.priority = UILayoutPriority(999) } }
             navigationController?.view.setNeedsLayout()   // container drops / restores its reading column
         }
         updatePlanLabelMinimumHeights()
@@ -186,6 +198,13 @@ final class HomeViewController: UIViewController, DSWideLayoutFullWidth {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        // Portrait: the content starts under the pinned hero and scrolls behind it.
+        // Hero ends 12 pt above the hinge (screen centre); the stack's own top offset is 59 pt.
+        let inset = arrangement == .portrait ? max(0, view.bounds.midY - 12 + 16 - 59 - scrollView.frame.minY) : 0
+        if abs(scrollView.contentInset.top - inset) > 0.5 {
+            scrollView.contentInset.top = inset
+            scrollView.verticalScrollIndicatorInsets.top = inset
+        }
         updateCompactHeader()
         updatePlanLabelMinimumHeights()
         if abs(heroWidth - lastHeroWidth) > 0.5 {

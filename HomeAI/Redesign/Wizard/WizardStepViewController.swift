@@ -15,6 +15,12 @@ class WizardStepViewController: UIViewController, DSWideLayoutFullWidth {
     @IBOutlet var portraitConstraints: [NSLayoutConstraint]?
     @IBOutlet var portraitReleasedConstraints: [NSLayoutConstraint]?
 
+    /// Style step (Figma Duo/L/04 · style): the chosen style as a card on the photo.
+    @IBOutlet weak var styleCardView: UIView?
+    @IBOutlet weak var styleCardImageView: UIImageView?
+    @IBOutlet weak var styleCardTitleLabel: UILabel?
+    private var styleCardPath: String?
+
     private enum Arrangement { case phone, landscape, portrait }
     private var arrangement = Arrangement.phone
 
@@ -33,6 +39,7 @@ class WizardStepViewController: UIViewController, DSWideLayoutFullWidth {
         super.viewWillLayoutSubviews()
         guard let pane = previewPaneView else { return }
         previewImageView?.image = session.photo
+        refreshStyleCard()
         let next = wideArrangement
         guard next != arrangement else { return }
         arrangement = next
@@ -44,6 +51,22 @@ class WizardStepViewController: UIViewController, DSWideLayoutFullWidth {
         pane.isHidden = next == .phone
         pane.layer.cornerRadius = next == .portrait ? 24 : 0
         navigationController?.view.setNeedsLayout()
+    }
+
+    func refreshStyleCard() {
+        guard let card = styleCardView else { return }
+        card.isHidden = session.style == nil || previewPaneView?.isHidden != false
+        styleCardTitleLabel?.text = session.style?.title
+        let path: String?
+        switch session.style {
+        case .interior(let s)?: path = s.image
+        case .exterior(let s)?: path = s.image
+        default: path = nil
+        }
+        guard path != styleCardPath else { return }
+        styleCardPath = path
+        styleCardImageView?.image = nil
+        if let path { CatalogImage.load(path) { [weak self] in if self?.styleCardPath == path { self?.styleCardImageView?.image = $0 } } }
     }
 
     var session: WizardSession!

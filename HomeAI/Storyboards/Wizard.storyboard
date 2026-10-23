@@ -4456,9 +4456,66 @@
                                         </userDefinedRuntimeAttributes>
                                     </label>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="7e12-0a03" userLabel="previewImageView" />
+                                
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7e70-0000-0001" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="styleCardView">
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="7e70-0000-0002" userLabel="styleCardImageView">
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="44" id="7e70-0000-0011" />
+                                                    <constraint firstAttribute="height" constant="44" id="7e70-0000-0012" />
+                                                </constraints>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                        <real key="value" value="10" />
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Style" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7e70-0000-0003" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="styleCardCaptionLabel">
+                                                <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="11" />
+                                                <color key="textColor" name="dsTextSecondary" />
+                                                <nil key="highlightedColor" />
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Style" />
+                                                </userDefinedRuntimeAttributes>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Japandi" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7e70-0000-0004" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="styleCardTitleLabel">
+                                                <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17" />
+                                                <color key="textColor" name="dsTextPrimary" />
+                                                <nil key="highlightedColor" />
+                                            </label>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="7e70-0000-0005" image="checkmark.circle.fill" catalog="system" userLabel="styleCardCheckView">
+                                                <color key="tintColor" name="dsLime" />
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="24" id="7e70-0000-0013" />
+                                                    <constraint firstAttribute="height" constant="24" id="7e70-0000-0014" />
+                                                </constraints>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" name="dsBackground" />
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="68" id="7e70-0000-0015" />
+                                            <constraint firstItem="7e70-0000-0002" firstAttribute="leading" secondItem="7e70-0000-0001" secondAttribute="leading" constant="12" id="7e70-0000-0016" />
+                                            <constraint firstItem="7e70-0000-0002" firstAttribute="centerY" secondItem="7e70-0000-0001" secondAttribute="centerY" id="7e70-0000-0017" />
+                                            <constraint firstItem="7e70-0000-0003" firstAttribute="leading" secondItem="7e70-0000-0002" secondAttribute="trailing" constant="12" id="7e70-0000-0018" />
+                                            <constraint firstItem="7e70-0000-0003" firstAttribute="bottom" secondItem="7e70-0000-0001" secondAttribute="centerY" id="7e70-0000-0019" />
+                                            <constraint firstItem="7e70-0000-0004" firstAttribute="leading" secondItem="7e70-0000-0003" secondAttribute="leading" id="7e70-0000-0020" />
+                                            <constraint firstItem="7e70-0000-0004" firstAttribute="top" secondItem="7e70-0000-0001" secondAttribute="centerY" id="7e70-0000-0021" />
+                                            <constraint firstItem="7e70-0000-0005" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7e70-0000-0004" secondAttribute="trailing" constant="8" id="7e70-0000-0022" />
+                                            <constraint firstItem="7e70-0000-0001" firstAttribute="trailing" secondItem="7e70-0000-0005" secondAttribute="trailing" constant="16" id="7e70-0000-0023" />
+                                            <constraint firstItem="7e70-0000-0005" firstAttribute="centerY" secondItem="7e70-0000-0001" secondAttribute="centerY" id="7e70-0000-0024" />
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <real key="value" value="20" />
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" name="dsSurface" />
                                 <constraints>
+                                    <constraint firstItem="7e70-0000-0001" firstAttribute="leading" secondItem="7e12-0a01" secondAttribute="leading" constant="16" id="7e70-0000-0101" />
+                                    <constraint firstItem="7e12-0a01" firstAttribute="trailing" secondItem="7e70-0000-0001" secondAttribute="trailing" constant="16" id="7e70-0000-0102" />
+                                    <constraint firstItem="7e12-0a01" firstAttribute="bottom" secondItem="7e70-0000-0001" secondAttribute="bottom" constant="16" id="7e70-0000-0103" />
                                     <constraint firstItem="7e12-0a02" firstAttribute="centerX" secondItem="7e12-0a01" secondAttribute="centerX" id="7e12-0c01" />
                                     <constraint firstItem="7e12-0a02" firstAttribute="centerY" secondItem="7e12-0a01" secondAttribute="centerY" id="7e12-0c02" />
                                     <constraint firstItem="7e12-0a02" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7e12-0a01" secondAttribute="leading" constant="32" id="7e12-0c03" />
@@ -4508,6 +4565,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="styleCardView" destination="7e70-0000-0001" id="7e70-0000-0201" />
+                        <outlet property="styleCardImageView" destination="7e70-0000-0002" id="7e70-0000-0202" />
+                        <outlet property="styleCardTitleLabel" destination="7e70-0000-0004" id="7e70-0000-0203" />
                         <outletCollection property="splitConstraints" destination="7e12-0d01" collectionClass="NSMutableArray" id="7e12-50" />
                         <outletCollection property="splitConstraints" destination="7e12-0d02" collectionClass="NSMutableArray" id="7e12-51" />
                         <outletCollection property="splitConstraints" destination="7e12-0d03" collectionClass="NSMutableArray" id="7e12-52" />

@@ -145,12 +145,14 @@ final class WizardStyleViewController: WizardStepViewController {
                 return nil
             }()) { [weak self] text in
                 self?.session.style = .custom(text)
+                self?.refreshStyleCard()
                 self?.collectionView.reloadData()
                 self?.goToNextStep()
             }
             return
         }
         session.style = style
+        refreshStyleCard()
         DS.Haptic.selection()
         collectionView.visibleCells.compactMap { $0 as? WizardStyleCell }.forEach { $0.setChosen(false, animated: true) }
         (collectionView.cellForItem(at: indexPath) as? WizardStyleCell)?.setChosen(true, animated: true)
