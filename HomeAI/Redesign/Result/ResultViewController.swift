@@ -18,6 +18,7 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
     private lazy var dragInteraction = UIDragInteraction(delegate: self)
     /// Wide landscape: the "before" photo above the tools in the side panel.
     @IBOutlet private weak var pairOriginalImageView: UIImageView!
+    @IBOutlet private weak var beforeChipLabel: UILabel!
     @IBOutlet private weak var resultImageView: UIImageView!
     @IBOutlet private weak var likeIconView: UIImageView!
     @IBOutlet private weak var originalImageView: UIImageView!
@@ -168,11 +169,14 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
         super.viewWillLayoutSubviews()
         let side = isSideBySide
         let low = UILayoutPriority(1), high = UILayoutPriority(999)
+        // The photo is full-bleed black; next to the system rail (unfolded landscape) the app background shows.
+        view.backgroundColor = side ? DS.Color.background : .black
         stackedConstraints.forEach { if $0.priority != (side ? low : high) { $0.priority = side ? low : high } }
         sideBySideConstraints.forEach { if $0.priority != (side ? high : low) { $0.priority = side ? high : low } }
         dragInteraction.isEnabled = isWideWindow
         pairOriginalImageView.image = originalImageView.image
         pairOriginalImageView.isHidden = !side || originalImageView.image == nil
+        beforeChipLabel.isHidden = pairOriginalImageView.isHidden
         let pair = isWideWindow && !side && originalImageView.image != nil
         guard pair != showsPair else { return }
         showsPair = pair
