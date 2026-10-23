@@ -32,6 +32,23 @@ final class WizardPhotoViewController: WizardStepViewController {
     @IBOutlet private weak var nextButton: DSPrimaryButton!
     @IBOutlet private weak var nextTitleLabel: UILabel!
 
+    // iPhone Duo unfolded, landscape (Figma Duo/L/04 · W1): the left pane holds the source cards, then the
+    // picked photo with Change and the check badge; the right column lists the four steps. Wizard.storyboard.
+    @IBOutlet private weak var paneSourcesStack: UIStackView?
+    @IBOutlet private weak var paneChangeButton: UIView?
+    @IBOutlet private weak var paneChangeLabel: UILabel?
+    @IBOutlet private weak var paneCheckBadgeView: UIView?
+    @IBOutlet private weak var paneCheckIconView: UIImageView?
+    @IBOutlet private weak var paneCheckLabel: UILabel?
+    @IBOutlet private weak var stepsListView: UIView?
+    @IBOutlet private var stepRowViews: [UIView]?
+    @IBOutlet private var stepIconContainers: [UIView]?
+    @IBOutlet private var stepIconViews: [UIImageView]?
+    @IBOutlet private var stepTitleLabels: [UILabel]?
+    @IBOutlet private var stepSubtitleLabels: [UILabel]?
+    @IBOutlet private weak var dragHintView: UIView?
+    @IBOutlet private weak var dragHintLabel: UILabel?
+
     override var step: WizardSession.Step { .photo }
 
     private var didRunEntrance = false
@@ -67,8 +84,12 @@ final class WizardPhotoViewController: WizardStepViewController {
         updateTitles()
         let titles = ["Take a photo", "Choose from library"]
         let subtitles = ["Camera with a framing guide", "Only the photo you pick is shared"]
-        sourceTitleLabels.sorted { $0.tag < $1.tag }.enumerated().forEach { $1.text = titles[$0].localized }
-        sourceSubtitleLabels.sorted { $0.tag < $1.tag }.enumerated().forEach { $1.text = subtitles[$0].localized }
+        sourceTitleLabels.forEach { $0.text = titles[min($0.tag, 1)].localized }   // tags 0/1; the Duo pane has copies
+        sourceSubtitleLabels.forEach { $0.text = subtitles[min($0.tag, 1)].localized }
+        paneChangeLabel?.text = "Change".localized
+        let stepTitles = ["Photo", "Room", "Style", "Final touches"]
+        stepTitleLabels?.forEach { $0.text = stepTitles[min($0.tag, 3)].localized }
+        dragHintLabel?.text = "Drag another photo onto the left side to replace it.".localized
         demoTitleLabel.text = "No photo handy? Try one of ours".localized
         tipsLabel.text = "Photo tips".localized
         changeLabel.text = "Change".localized
@@ -184,6 +205,47 @@ final class WizardPhotoViewController: WizardStepViewController {
         let picker = PHPickerViewController(configuration: config)
         picker.delegate = self
         present(picker, animated: true)
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        guard let pane = previewPaneView else { return }
+        let split = dsWantsWideLandscape
+        let hasPhoto = session.photo != nil
+        pane.isHidden = !split
+        pane.backgroundColor = hasPhoto ? DS.Color.surface : .clear
+        previewImageView?.isHidden = !hasPhoto
+        paneSourcesStack?.isHidden = hasPhoto
+        paneChangeButton?.isHidden = !hasPhoto
+        paneCheckBadgeView?.isHidden = !hasPhoto || isChecking || (checkLabel.text ?? "").isEmpty
+        [takePhotoCard, libraryCard].forEach { $0?.isHidden = split }
+        if hasPhoto { previewView.isHidden = split }
+        stepsListView?.isHidden = !(split && hasPhoto)
+        dragHintView?.isHidden = !(split && hasPhoto)
+        guard split && hasPhoto else { return }
+        paneCheckLabel?.text = checkLabel.text
+        paneCheckIconView?.image = checkIconView.image
+        paneCheckIconView?.tintColor = checkIconView.tintColor
+        paneCheckBadgeView?.backgroundColor = checkBadgeView.backgroundColor
+        updateStepRows()
+    }
+
+    /// Photo done, Room current, Style and Final touches next (Figma Duo/L/04 · W1 selected).
+    private func updateStepRows() {
+        let room = session.detectedPlace?.title
+        let subtitles = [isChecking ? "Checking the photo…".localized : (checkLabel.text ?? ""),
+                         room.map { String(format: "%@ · detected".localized, $0) } ?? "Next: pick the room".localized,
+                         "Next: pick a look".localized, "Structure, colors, details".localized]
+        stepSubtitleLabels?.forEach { $0.text = subtitles[min($0.tag, 3)] }
+        for row in stepRowViews ?? [] {
+            let current = row.tag == 1
+            row.backgroundColor = current ? .white : .clear
+            row.layer.borderWidth = current ? 2 : 0
+            row.layer.borderColor = DS.Color.lime.cgColor
+        }
+        stepIconContainers?.forEach { $0.backgroundColor = $0.tag == 0 ? DS.Color.lime : UIColor(named: "dsChip") }
+        stepIconViews?.forEach { $0.alpha = $0.tag >= 2 ? 0.45 : 1 }
+        stepTitleLabels?.forEach { $0.alpha = $0.tag >= 2 ? 0.45 : 1 }
     }
 
     // MARK: Selected state
