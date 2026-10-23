@@ -56,7 +56,7 @@ final class DSToastView: DSComponentView {
     /// Swipe up to dismiss. Dark glass by default; `light` for dark / photo screens.
     static func show(_ message: String, style: Style = .info, symbol: String? = nil, action: String? = nil,
                      in host: UIView? = nil, topOffset: CGFloat = 52, duration: TimeInterval? = nil,
-                     light: Bool = false, onTap: (() -> Void)? = nil) {
+                     light: Bool = false, source: UIView? = nil, onTap: (() -> Void)? = nil) {
         guard let host = host ?? UIApplication.getKeyWindow() else { return }
         let light = light || isPhotoScreenOnTop(host.window ?? (host as? UIWindow))
         current?.removeFromSuperview()
@@ -74,10 +74,16 @@ final class DSToastView: DSComponentView {
         toast.translatesAutoresizingMaskIntoConstraints = false
         host.addSubview(toast)
         let metrics = OnboardingLayout(size: host.dsAdaptiveReferenceSize)
+        let guide = host.safeAreaLayoutGuide
+        // iPhone Duo unfolded, landscape (Figma Duo/L/12): the toast drops over the pane it comes from (the photo,
+        // left, by default), never across the hinge.
+        let pane = isWideLandscape(host) ? DSPane.of(source, default: .left) : nil
+        let leading = pane == .right ? host.centerXAnchor : guide.leadingAnchor
+        let trailing = pane == .left ? host.centerXAnchor : guide.trailingAnchor
         toast.placement = [
-            (toast.topAnchor.constraint(equalTo: host.safeAreaLayoutGuide.topAnchor, constant: metrics.value(topOffset)), topOffset),
-            (toast.leadingAnchor.constraint(equalTo: host.safeAreaLayoutGuide.leadingAnchor, constant: metrics.value(20)), 20),
-            (toast.trailingAnchor.constraint(equalTo: host.safeAreaLayoutGuide.trailingAnchor, constant: -metrics.value(20)), -20)
+            (toast.topAnchor.constraint(equalTo: guide.topAnchor, constant: metrics.value(topOffset)), topOffset),
+            (toast.leadingAnchor.constraint(equalTo: leading, constant: metrics.value(20)), 20),
+            (toast.trailingAnchor.constraint(equalTo: trailing, constant: -metrics.value(20)), -20)
         ]
         NSLayoutConstraint.activate(toast.placement.map(\.0))
         current = toast
@@ -107,6 +113,11 @@ final class DSToastView: DSComponentView {
         let work = DispatchWorkItem { [weak toast] in toast?.hide() }
         toast.hideWork = work
         DispatchQueue.main.asyncAfter(deadline: .now() + (duration ?? (action == nil ? 2.5 : 4)), execute: work)
+    }
+
+    private static func isWideLandscape(_ host: UIView) -> Bool {
+        let size = host.bounds.size
+        return DSWideLayout.isWide(size.width - host.safeAreaInsets.left - host.safeAreaInsets.right) && size.width > size.height
     }
 
     private func hide() {

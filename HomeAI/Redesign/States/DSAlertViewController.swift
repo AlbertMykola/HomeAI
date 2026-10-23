@@ -17,16 +17,26 @@ final class DSAlertViewController: UIViewController {
     @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private var buttons: [DSPressableControl]!
     @IBOutlet private var buttonLabels: [UILabel]!
+    // iPhone Duo unfolded, landscape (Figma Duo/L/12): the card centres in the pane it belongs to, never on the
+    // hinge; the dim still covers the whole screen. Sets authored in States.storyboard (phone 999 / panes 1).
+    @IBOutlet private var phoneConstraints: [NSLayoutConstraint]!
+    @IBOutlet private var leftPaneConstraints: [NSLayoutConstraint]!
+    @IBOutlet private var rightPaneConstraints: [NSLayoutConstraint]!
 
     private var alertTitle = ""
     private var message: String?
     private var actions: [Action] = []
+    private var pane: DSPane = .right
 
-    static func show(from presenter: UIViewController, title: String, message: String?, actions: [Action]) {
+    /// `source`: the view the alert is about (its pane hosts the card on the unfolded Duo). Defaults to the
+    /// presenter's own pane, or the controls pane (right) for a full-width screen.
+    static func show(from presenter: UIViewController, title: String, message: String?, actions: [Action],
+                     source: UIView? = nil) {
         let vc = AppStoryboard.instantiate(DSAlertViewController.self)
         vc.alertTitle = title
         vc.message = message
         vc.actions = Array(actions.prefix(2))
+        vc.pane = DSPane.of(source ?? presenter.view, default: .right)
         vc.modalPresentationStyle = .overFullScreen
         vc.modalTransitionStyle = .crossDissolve
         presenter.present(vc, animated: false)
@@ -68,6 +78,17 @@ final class DSAlertViewController: UIViewController {
         dimView.alpha = 0
         cardView.alpha = 0
         cardView.transform = CGAffineTransform(scaleX: 1.12, y: 1.12)
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        let inPane = dsWantsWideLandscape
+        let sets: [([NSLayoutConstraint], Bool)] = [
+            (phoneConstraints, !inPane), (leftPaneConstraints, inPane && pane == .left),
+            (rightPaneConstraints, inPane && pane == .right)
+        ]
+        sets.forEach { set, _ in set.forEach { $0.priority = UILayoutPriority(1) } }
+        sets.filter(\.1).forEach { set, _ in set.forEach { $0.priority = UILayoutPriority(999) } }
     }
 
     override func viewDidAppear(_ animated: Bool) {

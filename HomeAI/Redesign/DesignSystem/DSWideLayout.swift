@@ -175,3 +175,16 @@ final class DSLayoutSwitch {
         return true
     }
 }
+
+/// Which half of the unfolded Duo a view sits in (the panes split at the hinge, the window's centre).
+enum DSPane {
+    case left, right
+
+    /// A view narrower than ~¾ of its window belongs to the half holding its centre; a full-width one gets `default`.
+    static func of(_ view: UIView?, default fallback: DSPane) -> DSPane {
+        guard let view, let window = view.window else { return fallback }
+        let frame = view.convert(view.bounds, to: window)
+        guard frame.width < window.bounds.width * 0.75 else { return fallback }
+        return frame.midX < window.bounds.midX ? .left : .right
+    }
+}
