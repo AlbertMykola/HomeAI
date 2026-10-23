@@ -17,6 +17,11 @@ final class ProPaywallViewController: UIViewController {
     @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private weak var stageView: UIView!
     @IBOutlet private weak var illustrationView: UIImageView!
+    /// Wide landscape (iPhone Duo unfolded): illustration on the left, offer on the right (Paywall.storyboard).
+    @IBOutlet private weak var wideHeroImageView: UIImageView!
+    @IBOutlet private var singleColumnConstraints: [NSLayoutConstraint]!
+    @IBOutlet private var twoColumnConstraints: [NSLayoutConstraint]!
+    private var isTwoColumn = false
     @IBOutlet private var sparkleViews: [UIImageView]!
     @IBOutlet private weak var stageHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var cardView: UIView!
@@ -80,7 +85,16 @@ final class ProPaywallViewController: UIViewController {
 
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        dsApplyWideColumn()
+        let wideLandscape = DSWideLayout.isWide(view.bounds.width - (view.window?.safeAreaInsets.left ?? 0)
+                                                - (view.window?.safeAreaInsets.right ?? 0))
+            && view.bounds.width > view.bounds.height
+        dsApplyWideColumn(fullWidth: wideLandscape)
+        guard wideLandscape != isTwoColumn else { return }
+        isTwoColumn = wideLandscape
+        singleColumnConstraints.forEach { $0.priority = UILayoutPriority(wideLandscape ? 1 : 999) }
+        twoColumnConstraints.forEach { $0.priority = UILayoutPriority(wideLandscape ? 999 : 1) }
+        wideHeroImageView.isHidden = !wideLandscape
+        stageView.isHidden = wideLandscape
     }
 
     override func viewDidLoad() {

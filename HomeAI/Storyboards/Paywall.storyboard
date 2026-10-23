@@ -858,26 +858,42 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapRestore:" />
                                 </userDefinedRuntimeAttributes>
                             </view>
+                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" image="paywall_diorama" id="7e0c-0000-0001" userLabel="wideHeroImageView" />
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
                         <viewLayoutGuide key="safeArea" id="5abf-3107-3df5" />
                         <constraints>
+                            <constraint firstItem="7e0c-0000-0001" firstAttribute="leading" secondItem="5abf-3107-3df5" secondAttribute="leading" constant="24" id="7e0c-0000-0101" />
+                            <constraint firstItem="7e0c-0000-0001" firstAttribute="top" secondItem="5abf-3107-3df5" secondAttribute="top" constant="24" id="7e0c-0000-0102" />
+                            <constraint firstItem="5abf-3107-3df5" firstAttribute="bottom" secondItem="7e0c-0000-0001" secondAttribute="bottom" constant="24" id="7e0c-0000-0103" />
+                            <constraint priority="1" firstItem="7e0c-0000-0001" firstAttribute="width" secondItem="5abf-3107-3df5" secondAttribute="width" multiplier="0.44" id="7e0c-0000-0104" />
+                            <constraint priority="1" firstItem="PW1-SCR-019" firstAttribute="leading" secondItem="7e0c-0000-0001" secondAttribute="trailing" constant="24" id="7e0c-0000-0105" />
+                            <constraint priority="1" firstItem="d1c2-80c4-1df0" firstAttribute="leading" secondItem="7e0c-0000-0001" secondAttribute="trailing" constant="24" id="7e0c-0000-0106" />
+                            <constraint priority="1" firstItem="8789-57c0-cfcb" firstAttribute="centerX" secondItem="PW1-SCR-019" secondAttribute="centerX" id="7e0c-0000-0107" />
                             <constraint firstItem="7535-04e5-7217" firstAttribute="leading" secondItem="5abf-3107-3df5" secondAttribute="leading" constant="16" id="1df5-d1c3-44e5" identifier="paywall.1df5-d1c3-44e5" />
                             <constraint firstItem="7535-04e5-7217" firstAttribute="top" secondItem="5abf-3107-3df5" secondAttribute="top" constant="4" id="eb99-7190-f67b" identifier="paywall.eb99-7190-f67b" />
                             <constraint firstItem="5abf-3107-3df5" firstAttribute="trailing" secondItem="b940-f37a-1d5f" secondAttribute="trailing" constant="16" id="31d9-c3cf-f507" identifier="paywall.31d9-c3cf-f507" />
                             <constraint firstItem="b940-f37a-1d5f" firstAttribute="centerY" secondItem="7535-04e5-7217" secondAttribute="centerY" id="6c27-8743-f3cd" identifier="paywall.6c27-8743-f3cd" />
-                            <constraint firstItem="PW1-SCR-019" firstAttribute="leading" secondItem="5abf-3107-3df5" secondAttribute="leading" constant="20" id="0281-c5e9-445b" identifier="paywall.0281-c5e9-445b" />
+                            <constraint priority="999" firstItem="PW1-SCR-019" firstAttribute="leading" secondItem="5abf-3107-3df5" secondAttribute="leading" constant="20" id="0281-c5e9-445b" identifier="paywall.0281-c5e9-445b" />
                             <constraint firstItem="5abf-3107-3df5" firstAttribute="trailing" secondItem="PW1-SCR-019" secondAttribute="trailing" constant="20" id="c2d2-7429-3744" identifier="paywall.c2d2-7429-3744" />
                             <constraint firstItem="PW1-SCR-019" firstAttribute="top" secondItem="7535-04e5-7217" secondAttribute="bottom" constant="8" id="d224-3289-9cda" identifier="paywall.d224-3289-9cda" />
                             <constraint firstItem="d1c2-80c4-1df0" firstAttribute="top" secondItem="PW1-SCR-019" secondAttribute="bottom" constant="12" id="c4c5-015b-66e5" identifier="paywall.c4c5-015b-66e5" />
-                            <constraint firstItem="d1c2-80c4-1df0" firstAttribute="leading" secondItem="5abf-3107-3df5" secondAttribute="leading" constant="20" id="8943-5c6a-bc6e" identifier="paywall.8943-5c6a-bc6e" />
+                            <constraint priority="999" firstItem="d1c2-80c4-1df0" firstAttribute="leading" secondItem="5abf-3107-3df5" secondAttribute="leading" constant="20" id="8943-5c6a-bc6e" identifier="paywall.8943-5c6a-bc6e" />
                             <constraint firstItem="5abf-3107-3df5" firstAttribute="trailing" secondItem="d1c2-80c4-1df0" secondAttribute="trailing" constant="20" id="3c6c-259c-f05e" identifier="paywall.3c6c-259c-f05e" />
                             <constraint firstItem="8789-57c0-cfcb" firstAttribute="top" secondItem="d1c2-80c4-1df0" secondAttribute="bottom" constant="16" id="b22a-a622-3a3f" identifier="paywall.b22a-a622-3a3f" />
-                            <constraint firstItem="8789-57c0-cfcb" firstAttribute="centerX" secondItem="5abf-3107-3df5" secondAttribute="centerX" id="3be9-f639-c275" identifier="paywall.3be9-f639-c275" />
+                            <constraint priority="999" firstItem="8789-57c0-cfcb" firstAttribute="centerX" secondItem="5abf-3107-3df5" secondAttribute="centerX" id="3be9-f639-c275" identifier="paywall.3be9-f639-c275" />
                             <constraint firstItem="5abf-3107-3df5" firstAttribute="bottom" secondItem="8789-57c0-cfcb" secondAttribute="bottom" constant="8" id="30c1-eb6a-748a" identifier="paywall.30c1-eb6a-748a" />
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="wideHeroImageView" destination="7e0c-0000-0001" id="7e0c-0000-0201" />
+                        <outletCollection property="singleColumnConstraints" destination="0281-c5e9-445b" collectionClass="NSMutableArray" id="7e0c-0000-0300" />
+                        <outletCollection property="singleColumnConstraints" destination="8943-5c6a-bc6e" collectionClass="NSMutableArray" id="7e0c-0000-0301" />
+                        <outletCollection property="singleColumnConstraints" destination="3be9-f639-c275" collectionClass="NSMutableArray" id="7e0c-0000-0302" />
+                        <outletCollection property="twoColumnConstraints" destination="7e0c-0000-0104" collectionClass="NSMutableArray" id="7e0c-0000-0404" />
+                        <outletCollection property="twoColumnConstraints" destination="7e0c-0000-0105" collectionClass="NSMutableArray" id="7e0c-0000-0405" />
+                        <outletCollection property="twoColumnConstraints" destination="7e0c-0000-0106" collectionClass="NSMutableArray" id="7e0c-0000-0406" />
+                        <outletCollection property="twoColumnConstraints" destination="7e0c-0000-0107" collectionClass="NSMutableArray" id="7e0c-0000-0407" />
                         <outlet property="contentStack" destination="5afa-a5e2-3bff" id="0613-f696-c2fe" />
                         <outlet property="titleLabel" destination="ff3c-a39a-ef65" id="eb78-4571-b07d" />
                         <outlet property="subtitleLabel" destination="49e4-8311-274f" id="46ce-16e3-1986" />
