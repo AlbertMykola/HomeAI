@@ -3162,9 +3162,9 @@
                             <constraint firstItem="6f8f-e25f-e8be" firstAttribute="bottom" secondItem="42c7-278a-32b8" secondAttribute="bottom" identifier="result.c537" id="7cf8-4eb9-9870" />
                             <constraint firstItem="7ed8-4d38-2b74" firstAttribute="bottom" secondItem="d58a-febe-ec0a" secondAttribute="bottom" constant="12" identifier="result.c541" id="7bc3-6168-f3d5" />
                             <constraint priority="1" firstItem="6f8f-e25f-e8be" firstAttribute="bottom" secondItem="cbc0-34bf-dd31" secondAttribute="bottom" identifier="result.wide.a1" id="5a1d-0000-00a1" />
-                            <constraint priority="1" firstItem="965f-69ec-6e31" firstAttribute="leading" secondItem="cbc0-34bf-dd31" secondAttribute="trailing" constant="-24" identifier="result.wide.a2" id="5a1d-0000-00a2" />
+                            <constraint priority="1" firstItem="965f-69ec-6e31" firstAttribute="leading" secondItem="cbc0-34bf-dd31" secondAttribute="trailing" identifier="result.wide.a2" id="5a1d-0000-00a2" />
                             <constraint priority="1" firstItem="965f-69ec-6e31" firstAttribute="top" secondItem="7ed8-4d38-2b74" secondAttribute="top" constant="8" identifier="result.wide.top2" id="5a1d-0005-0006" />
-                            <constraint priority="1" firstItem="965f-69ec-6e31" firstAttribute="width" secondItem="7ed8-4d38-2b74" secondAttribute="width" multiplier="0.42" identifier="result.wide.a3" id="5a1d-0000-00a3" />
+                            <constraint priority="1" firstItem="965f-69ec-6e31" firstAttribute="leading" secondItem="6f8f-e25f-e8be" secondAttribute="centerX" identifier="result.wide.a3" id="5a1d-0000-00a3" />
                             <constraint priority="1" firstItem="7ed8-4d38-2b74" firstAttribute="bottom" secondItem="6445-4d8f-aeb5" secondAttribute="bottom" constant="16" identifier="result.wide.a4" id="5a1d-0000-00a4" />
                             <constraint priority="1" firstItem="965f-69ec-6e31" firstAttribute="leading" secondItem="c8c3-4a59-1c7e" secondAttribute="trailing" constant="16" identifier="result.wide.a5" id="5a1d-0000-00a5" />
                             <constraint priority="1" firstItem="ddd1-e622-b83a" firstAttribute="leading" secondItem="965f-69ec-6e31" secondAttribute="leading" identifier="result.wide.a6" id="5a1d-0000-00a6" />
