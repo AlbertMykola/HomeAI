@@ -128,8 +128,10 @@ final class ProjectDetailViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let width = tableView.bounds.width
-        // A table header is measured before UIKit lays out its detached hierarchy.
-        (headerContainer as? DSAdaptiveRootView)?.applyMetrics(size: view.dsLayoutSize)
+        // A table header is measured before UIKit lays out its detached hierarchy. Use the size the header scales
+        // itself with (window height), or a Duo pane shorter than the window measures smaller text and clips it.
+        (headerContainer as? DSAdaptiveRootView)?.applyMetrics(
+            size: CGSize(width: width, height: view.window?.bounds.height ?? view.bounds.height))
         let size = headerContainer.systemLayoutSizeFitting(CGSize(width: width, height: 0),
                                                            withHorizontalFittingPriority: .required,
                                                            verticalFittingPriority: .fittingSizeLevel)
