@@ -15,6 +15,8 @@ final class GenerationViewController: UIViewController, DSWideLayoutFullWidth {
     /// iPhone Duo unfolded, landscape (Figma Duo/L/05): scanning photo left, progress right (Generation.storyboard).
     @IBOutlet private var listOnlyConstraints: [NSLayoutConstraint]!
     @IBOutlet private var splitConstraints: [NSLayoutConstraint]!
+    /// Failure states in the split (Figma Duo/L/05 G3/G4): picture on a tinted left pane, text and actions right.
+    @IBOutlet private weak var failurePaneView: UIView?
     private lazy var layoutSwitch = DSLayoutSwitch(phone: listOnlyConstraints, unfolded: splitConstraints)
     /// Unfolded portrait and half folded (Figma Duo/HF/05): the scanning photo fills the top half, progress,
     /// steps and "Notify me" start under the hinge, so Duo can stand on a table while it works.
@@ -27,6 +29,7 @@ final class GenerationViewController: UIViewController, DSWideLayoutFullWidth {
         super.viewWillLayoutSubviews()
         let landscape = dsWantsWideLandscape
         if layoutSwitch.set(unfolded: landscape) { navigationController?.view.setNeedsLayout() }
+        failurePaneView?.isHidden = !landscape
         let size = view.bounds.size
         let portrait = !landscape && DSWideLayout.isWide(size.width) && size.height > size.width
         // The released constraints belong to the phone set, which the landscape switch also turns off.
