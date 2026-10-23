@@ -3,7 +3,7 @@ import PhotosUI
 
 /// A/09 · AI designer: A1 start (greeting + quick questions), A1 Attach, A2 typing / reply with idea cards.
 /// Layout: Assistant.storyboard (+ AssistantUserCell / AssistantReplyCell / AssistantIdeaCell).
-final class AssistantViewController: UIViewController {
+final class AssistantViewController: UIViewController, DSWideLayoutFullWidth {
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var startScrollView: UIScrollView!
@@ -30,6 +30,53 @@ final class AssistantViewController: UIViewController {
     private let service = AssistantChatService()
     private let speech = SpeechInput()
     private var conversation = AssistantConversation()
+
+    // iPhone Duo unfolded, landscape: chat on the left, the latest idea (or your photo) large on the right.
+    @IBOutlet private weak var previewPaneView: UIView!
+    @IBOutlet private weak var previewImageView: UIImageView!
+    @IBOutlet private var listOnlyConstraints: [NSLayoutConstraint]!
+    @IBOutlet private var splitConstraints: [NSLayoutConstraint]!
+    private var showsPreview = false
+    private var previewKey: String?
+
+    var dsUsesFullWidth: Bool { wantsPreview }
+
+    private var wantsPreview: Bool {
+        guard let window = view.window else { return false }
+        let size = (navigationController?.view ?? view).bounds.size
+        return DSWideLayout.isWide(size.width - window.safeAreaInsets.left - window.safeAreaInsets.right)
+            && size.width > size.height
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        let preview = wantsPreview
+        if preview != showsPreview {
+            showsPreview = preview
+            listOnlyConstraints.forEach { $0.priority = UILayoutPriority(preview ? 1 : 999) }
+            splitConstraints.forEach { $0.priority = UILayoutPriority(preview ? 999 : 1) }
+            previewPaneView.isHidden = !preview
+        }
+        if preview { refreshPreview() }
+    }
+
+    /// Latest idea's catalog image, else the latest photo you attached.
+    private func refreshPreview() {
+        if let path = conversation.messages.reversed().lazy.flatMap(\.ideas).first?.previewPath {
+            guard previewKey != path else { return }
+            previewKey = path
+            CatalogImage.load(path) { [weak self] image in
+                guard self?.previewKey == path else { return }
+                UIView.transition(with: self?.previewImageView ?? UIView(), duration: 0.3, options: .transitionCrossDissolve) {
+                    self?.previewImageView.image = image
+                }
+            }
+        } else if let file = conversation.messages.reversed().compactMap(\.imageFile).first {
+            guard previewKey != file else { return }
+            previewKey = file
+            previewImageView.image = AssistantStore.shared.image(named: file)
+        }
+    }
     private var pendingImage: UIImage?
     private var isSending = false
     private var isListening = false
