@@ -207,15 +207,27 @@ public class AdaptyService: NSObject {
                         )))
                     } else {
                         ErrorReporter.report(AdaptyServiceError.purchaseFailed, operation: "purchase",
-                                             details: .init(provider: "adapty"))
+                                             details: .init(provider: "adapty", extra: [
+                                                "product_id": product.vendorProductId,
+                                                "expected_access_level": Constants.Keys.adaptyAccessLevel,
+                                                "active_access_levels": profile.accessLevels
+                                                    .filter { $0.value.isActive }.keys.sorted().joined(separator: ",")
+                                             ]))
                         completion(.failure(AdaptyServiceError.purchaseFailed))
                     }
                 }
             } catch {
+                let errorChain = Self.purchaseErrorChain(error)
+                #if DEBUG
+                print("[Purchase] product=\(product.vendorProductId) errors=\(errorChain)")
+                #endif
                 if Self.isPurchaseCancelled(error) {
                     completion(.failure(AdaptyServiceError.purchaseCancelled))
                 } else {
-                    ErrorReporter.report(error, operation: "purchase", details: .init(provider: "adapty"))
+                    ErrorReporter.report(error, operation: "purchase", details: .init(provider: "adapty", extra: [
+                        "product_id": product.vendorProductId,
+                        "purchase_error_chain": errorChain
+                    ]))
                     completion(.failure(error))
                 }
             }
@@ -354,6 +366,18 @@ public class AdaptyService: NSObject {
             return adaptyError.adaptyErrorCode == .paymentCancelled
         }
         return false
+    }
+
+    /// Preserve Apple's nested error codes without logging account data or receipt payloads.
+    private static func purchaseErrorChain(_ error: Error) -> String {
+        var current: NSError? = error as NSError
+        var visited = Set<ObjectIdentifier>()
+        var codes: [String] = []
+        while let next = current, codes.count < 8, visited.insert(ObjectIdentifier(next)).inserted {
+            codes.append("\(next.domain):\(next.code)")
+            current = next.userInfo[NSUnderlyingErrorKey] as? NSError
+        }
+        return codes.joined(separator: " > ")
     }
 }
 
