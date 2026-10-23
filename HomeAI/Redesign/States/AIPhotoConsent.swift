@@ -1,9 +1,11 @@
 import UIKit
 
 /// App Review 5.1.2(i): before the first upload, say that the photo and request text go to a third-party AI service
-/// and get an explicit "Agree". Provider-neutral text (Albert, 2026-10-21), so one agreement covers both providers;
+/// and get an explicit "Agree". The agreement is persisted once for all generation flows and providers;
 /// earlier per-provider agreements still count.
 enum AIPhotoConsent {
+
+    private static let acceptedKey = "ai_photo_consent_accepted"
 
     private static func key(for provider: ImageGenerationProvider) -> String {
         "ai_photo_consent_\(provider.rawValue)"
@@ -15,8 +17,13 @@ enum AIPhotoConsent {
 
     static var hasConsent: Bool {
         let defaults = UserDefaults.standard
-        return defaults.bool(forKey: key(for: currentProvider))
-            || [ImageGenerationProvider.gemini, .openAI].contains { defaults.bool(forKey: key(for: $0)) }
+        if defaults.bool(forKey: acceptedKey) { return true }
+        let previouslyAccepted = [ImageGenerationProvider.gemini, .openAI]
+            .contains { defaults.bool(forKey: key(for: $0)) }
+        if previouslyAccepted {
+            defaults.set(true, forKey: acceptedKey)
+        }
+        return previouslyAccepted
     }
 
     /// Runs `action` right away if the user already agreed, otherwise asks first. "Not now" does nothing.
@@ -36,6 +43,7 @@ enum AIPhotoConsent {
                     AmplitudeService.shared.logRedesignEvent("ai_consent_declined", properties: ["provider": provider.rawValue])
                 },
                 .init(title: "I agree".localized, style: .primary) {
+                    UserDefaults.standard.set(true, forKey: acceptedKey)
                     UserDefaults.standard.set(true, forKey: key(for: provider))
                     AmplitudeService.shared.logRedesignEvent("ai_consent_accepted", properties: ["provider": provider.rawValue])
                     action()
