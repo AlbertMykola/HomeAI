@@ -38,10 +38,34 @@ enum AppearanceMode: Int, CaseIterable {
 }
 
 /// A/11 · S1 Profile (Free / Pro / full scroll). Layout: Profile.storyboard.
-final class ProfileTabViewController: UIViewController {
+final class ProfileTabViewController: UIViewController, DSWideLayoutFullWidth {
     @IBOutlet private weak var appearanceMenuButton: UIButton!
 
     @IBOutlet private weak var scrollView: UIScrollView!
+    /// iPhone Duo unfolded (Figma Duo/L/11): settings on the left, the opened section (Language) on the right.
+    @IBOutlet private weak var detailPaneView: UIView!
+    @IBOutlet private var listOnlyConstraints: [NSLayoutConstraint]!
+    @IBOutlet private var splitConstraints: [NSLayoutConstraint]!
+    private lazy var splitPane: DSSplitPane = {
+        let pane = DSSplitPane(host: self, pane: detailPaneView, listOnly: listOnlyConstraints, split: splitConstraints)
+        pane.willCollapse = { ($0 as? LanguageViewController)?.isInPane = false }
+        return pane
+    }()
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        splitPane.update()
+        if splitPane.isSplit, splitPane.detail == nil { showLanguage(animated: false) }
+    }
+
+    private func showLanguage(animated: Bool) {
+        let language = AppStoryboard.instantiate(LanguageViewController.self)
+        language.isInPane = true
+        if !splitPane.show(language) {
+            language.isInPane = false
+            navigationController?.pushViewController(language, animated: animated)
+        }
+    }
     @IBOutlet private weak var contentStack: UIStackView!
     @IBOutlet private weak var largeTitleLabel: UILabel!
     @IBOutlet private weak var compactTitleLabel: UILabel!
@@ -243,8 +267,7 @@ final class ProfileTabViewController: UIViewController {
         DS.Haptic.selection()
         AmplitudeService.shared.logRedesignEvent("profile_row", properties: ["row": sender.tag])
         switch sender.tag {
-        case 0: navigationController?.pushViewController(AppStoryboard.instantiate(LanguageViewController.self),
-                                                         animated: true)
+        case 0: if !(splitPane.detail is LanguageViewController) { showLanguage(animated: true) }
         case 1: break // pull-down menu (configureAppearanceMenu)
         case 3: restorePurchases()
         case 5: SupportMail.compose(from: self, subject: "Help & feedback".localized, body: nil)
@@ -451,6 +474,12 @@ extension ProfileTabViewController: UIScrollViewDelegate {
 /// Layout: Profile.storyboard.
 final class LanguageViewController: UIViewController {
 
+    @IBOutlet private weak var backButton: UIView!
+    /// Shown in the Profile detail pane (iPhone Duo unfolded): no back button.
+    var isInPane = false {
+        didSet { if isViewLoaded { backButton.isHidden = isInPane } }
+    }
+
     @IBOutlet private weak var navTitleLabel: UILabel!
     @IBOutlet private weak var hintLabel: UILabel!
     @IBOutlet private weak var contentStack: UIStackView!
@@ -474,6 +503,7 @@ final class LanguageViewController: UIViewController {
             englishLabels.first { $0.tag == i }?.text = english.localizedString(forIdentifier: code) ?? code
         }
         applyCheck(animated: false)
+        backButton.isHidden = isInPane
     }
 
     override func viewWillAppear(_ animated: Bool) {
