@@ -14,6 +14,10 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
     @IBOutlet private var portraitConstraints: [NSLayoutConstraint]!
     /// Phone constraints that the portrait arrangement replaces (photo bottom, panel stack top).
     @IBOutlet private var portraitReleasedConstraints: [NSLayoutConstraint]!
+    /// Half folded (Figma Duo/HF/06): before and after side by side on the upper half.
+    @IBOutlet private var overlayConstraints: [NSLayoutConstraint]!
+    @IBOutlet private var pairConstraints: [NSLayoutConstraint]!
+    private var showsPair = false
     /// Drag the design out (wide windows only: there both photos are visible, so hold-to-compare is off).
     private lazy var dragInteraction = UIDragInteraction(delegate: self)
     /// Wide landscape: the "before" photo above the tools in the side panel.
@@ -154,6 +158,9 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
 
     /// iPhone Duo hinge (iOS 27.1): half open = tabletop posture.
     private func observeHinge() {
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("--qa-tabletop") { isTabletop = true; return }
+        #endif
         guard #available(iOS 27.1, *) else { return }
         let interaction = UIHingeInteraction { [weak self] _, update in
             guard let self else { return }
@@ -193,6 +200,14 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
         let portrait = isWideWindow && !side
         portraitConstraints.forEach { $0.priority = portrait ? high : low }
         if !side { portraitReleasedConstraints.forEach { $0.priority = portrait ? low : high } }
+        let pair = isTabletop && !side && originalImageView.image != nil
+        if pair != showsPair {
+            showsPair = pair
+            overlayConstraints.forEach { $0.priority = pair ? low : high }
+            pairConstraints.forEach { $0.priority = pair ? high : low }
+            if !showsPlanOnLeft { originalImageView.alpha = pair ? 1 : 0 }
+            compareView.isHidden = pair
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -352,7 +367,7 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
     private var showsPlanOnLeft = false
 
     @objc private func handleHold(_ gesture: UILongPressGestureRecognizer) {
-        guard originalImageView.image != nil, !isSideBySide else { return }
+        guard originalImageView.image != nil, !isSideBySide, !showsPair else { return }
         switch gesture.state {
         case .began:
             DS.Haptic.light()
