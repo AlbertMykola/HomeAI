@@ -140,10 +140,28 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
         return DSWideLayout.isWide(size.width - window.safeAreaInsets.left - window.safeAreaInsets.right)
     }
 
-    /// Wide landscape: photo left, panel right.
+    /// Wide landscape: photo left, panel right — unless the Duo is half folded (tabletop), then photo on the
+    /// upper half and tools on the lower half.
     private var isSideBySide: Bool {
         let size = (navigationController?.view ?? view).bounds.size
-        return isWideWindow && size.width > size.height
+        return isWideWindow && size.width > size.height && !isTabletop
+    }
+    private var isTabletop = false
+
+    /// iPhone Duo hinge (iOS 27.1): half open = tabletop posture.
+    private func observeHinge() {
+        guard #available(iOS 27.1, *) else { return }
+        let interaction = UIHingeInteraction { [weak self] _, update in
+            guard let self else { return }
+            let tabletop = update.hinge?.status == .partiallyOpen
+            guard tabletop != self.isTabletop else { return }
+            self.isTabletop = tabletop
+            AmplitudeService.shared.logRedesignEvent("result_posture", properties: ["tabletop": tabletop])
+            self.view.setNeedsLayout()
+            UIView.animate(withDuration: DS.Motion.reduceMotion ? 0 : 0.45, delay: 0, usingSpringWithDamping: 0.9,
+                           initialSpringVelocity: 0) { self.view.layoutIfNeeded() }
+        }
+        view.addInteraction(interaction)
     }
 
     override func viewWillLayoutSubviews() {
@@ -315,6 +333,7 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
         // Split View / iPhone Duo: drag the design out to Messages, Notes, Files…
         dragInteraction.isEnabled = false
         photoView.addInteraction(dragInteraction)
+        observeHinge()
     }
 
     @objc private func handleHold(_ gesture: UILongPressGestureRecognizer) {
