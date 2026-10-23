@@ -1251,26 +1251,73 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapGenerate:" />
                                 </userDefinedRuntimeAttributes>
                             </view>
+                        <view hidden="YES" contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ea0-0a01" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="detailPaneView">
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ea0-0a03" userLabel="previewImageView" />
+                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ea0-0a02" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="detailPlaceholderLabel" opaque="NO" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO">
+                                        <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15" />
+                                        <color key="textColor" name="dsTextSecondary" />
+                                        <nil key="highlightedColor" />
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="" />
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="dsSurface" />
+                                <constraints>
+                                    <constraint firstItem="7ea0-0a02" firstAttribute="centerX" secondItem="7ea0-0a01" secondAttribute="centerX" id="7ea0-0c01" />
+                                    <constraint firstItem="7ea0-0a02" firstAttribute="centerY" secondItem="7ea0-0a01" secondAttribute="centerY" id="7ea0-0c02" />
+                                    <constraint firstItem="7ea0-0a02" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7ea0-0a01" secondAttribute="leading" constant="32" id="7ea0-0c03" />
+                                    <constraint firstItem="7ea0-0a03" firstAttribute="leading" secondItem="7ea0-0a01" secondAttribute="leading" id="7ea0-0c10" />
+                                    <constraint firstItem="7ea0-0a03" firstAttribute="trailing" secondItem="7ea0-0a01" secondAttribute="trailing" id="7ea0-0c11" />
+                                    <constraint firstItem="7ea0-0a03" firstAttribute="top" secondItem="7ea0-0a01" secondAttribute="top" id="7ea0-0c12" />
+                                    <constraint firstItem="7ea0-0a03" firstAttribute="bottom" secondItem="7ea0-0a01" secondAttribute="bottom" id="7ea0-0c13" />
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <real key="value" value="28" />
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="dsBackground" />
                         <viewLayoutGuide key="safeArea" id="ca9c-0af1-666b" />
                         <constraints>
-                            <constraint firstItem="fbeb-b677-58ae" firstAttribute="leading" secondItem="ca9c-0af1-666b" secondAttribute="leading" id="3b11-214c-43e0" identifier="ds.reference.3b11-214c-43e0" />
+                            <constraint firstItem="7ea0-0a01" firstAttribute="top" secondItem="fb2e-fe0e-7e04" secondAttribute="top" constant="20" id="7ea0-0d01" />
+                            <constraint firstItem="fb2e-fe0e-7e04" firstAttribute="bottom" secondItem="7ea0-0a01" secondAttribute="bottom" constant="20" id="7ea0-0d02" />
+                            <constraint firstItem="7ea0-0a01" firstAttribute="leading" secondItem="fb2e-fe0e-7e04" secondAttribute="leading" constant="20" id="7ea0-0d03" />
+                            <constraint priority="1" firstItem="7ea0-0a01" firstAttribute="trailing" secondItem="fb2e-fe0e-7e04" secondAttribute="centerX" constant="-20" id="7ea0-0d04" />
+                            <constraint priority="1" firstItem="fbeb-b677-58ae" firstAttribute="leading" secondItem="7ea0-0a01" secondAttribute="trailing" constant="20" id="7ea0-0e00" />
+                            <constraint priority="1" firstItem="f09d-e2ed-c9e7" firstAttribute="leading" secondItem="7ea0-0a01" secondAttribute="trailing" constant="20" id="7ea0-0e01" />
+                            <constraint priority="1" firstItem="2128-1a05-79cf" firstAttribute="leading" secondItem="7ea0-0a01" secondAttribute="trailing" constant="40" id="7ea0-0e02" />
+                            <constraint priority="1" firstItem="93d7-c368-3403" firstAttribute="leading" secondItem="7ea0-0a01" secondAttribute="trailing" constant="20" id="7ea0-0e03" />
+                            <constraint priority="999" firstItem="fbeb-b677-58ae" firstAttribute="leading" secondItem="ca9c-0af1-666b" secondAttribute="leading" id="3b11-214c-43e0" identifier="ds.reference.3b11-214c-43e0" />
                             <constraint firstItem="ca9c-0af1-666b" firstAttribute="trailing" secondItem="fbeb-b677-58ae" secondAttribute="trailing" id="7b22-e28b-c210" identifier="ds.reference.7b22-e28b-c210" />
                             <constraint firstItem="fbeb-b677-58ae" firstAttribute="top" secondItem="ca9c-0af1-666b" secondAttribute="top" constant="-4" id="c318-e096-27f8" identifier="ds.reference.c318-e096-27f8" />
-                            <constraint firstItem="f09d-e2ed-c9e7" firstAttribute="leading" secondItem="ca9c-0af1-666b" secondAttribute="leading" id="e8f6-57ce-4fa6" identifier="ds.reference.e8f6-57ce-4fa6" />
+                            <constraint priority="999" firstItem="f09d-e2ed-c9e7" firstAttribute="leading" secondItem="ca9c-0af1-666b" secondAttribute="leading" id="e8f6-57ce-4fa6" identifier="ds.reference.e8f6-57ce-4fa6" />
                             <constraint firstItem="ca9c-0af1-666b" firstAttribute="trailing" secondItem="f09d-e2ed-c9e7" secondAttribute="trailing" id="c919-6e49-0561" identifier="ds.reference.c919-6e49-0561" />
                             <constraint firstItem="fb2e-fe0e-7e04" firstAttribute="bottom" secondItem="f09d-e2ed-c9e7" secondAttribute="bottom" id="4455-f32c-e5b4" identifier="ds.reference.4455-f32c-e5b4" />
-                            <constraint firstItem="2128-1a05-79cf" firstAttribute="leading" secondItem="ca9c-0af1-666b" secondAttribute="leading" constant="20" id="9e5a-86c7-06bf" identifier="ds.reference.9e5a-86c7-06bf" />
+                            <constraint priority="999" firstItem="2128-1a05-79cf" firstAttribute="leading" secondItem="ca9c-0af1-666b" secondAttribute="leading" constant="20" id="9e5a-86c7-06bf" identifier="ds.reference.9e5a-86c7-06bf" />
                             <constraint firstItem="ca9c-0af1-666b" firstAttribute="trailing" secondItem="2128-1a05-79cf" secondAttribute="trailing" constant="20" id="da44-6c31-25e8" identifier="ds.reference.da44-6c31-25e8" />
                             <constraint firstItem="ca9c-0af1-666b" firstAttribute="bottom" secondItem="2128-1a05-79cf" secondAttribute="bottom" id="55e2-20d9-c2be" identifier="ds.reference.55e2-20d9-c2be" />
-                            <constraint firstItem="93d7-c368-3403" firstAttribute="leading" secondItem="ca9c-0af1-666b" secondAttribute="leading" id="2a99-1a25-12db" identifier="ds.reference.2a99-1a25-12db" />
+                            <constraint priority="999" firstItem="93d7-c368-3403" firstAttribute="leading" secondItem="ca9c-0af1-666b" secondAttribute="leading" id="2a99-1a25-12db" identifier="ds.reference.2a99-1a25-12db" />
                             <constraint firstItem="ca9c-0af1-666b" firstAttribute="trailing" secondItem="93d7-c368-3403" secondAttribute="trailing" id="84cd-2a42-dc6f" identifier="ds.reference.84cd-2a42-dc6f" />
                             <constraint firstItem="fb2e-fe0e-7e04" firstAttribute="bottom" secondItem="93d7-c368-3403" secondAttribute="bottom" id="2b08-5c25-0839" identifier="ds.reference.2b08-5c25-0839" />
                             <constraint firstItem="93d7-c368-3403" firstAttribute="top" secondItem="fbeb-b677-58ae" secondAttribute="bottom" id="04a2-17cf-445b" identifier="ds.reference.04a2-17cf-445b" />
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="previewPaneView" destination="7ea0-0a01" id="7ea0-0f01" />
+                        <outlet property="previewImageView" destination="7ea0-0a03" id="7ea0-0f02" />
+                        <outletCollection property="listOnlyConstraints" destination="3b11-214c-43e0" collectionClass="NSMutableArray" id="7ea0-1000" />
+                        <outletCollection property="listOnlyConstraints" destination="e8f6-57ce-4fa6" collectionClass="NSMutableArray" id="7ea0-1001" />
+                        <outletCollection property="listOnlyConstraints" destination="9e5a-86c7-06bf" collectionClass="NSMutableArray" id="7ea0-1002" />
+                        <outletCollection property="listOnlyConstraints" destination="2a99-1a25-12db" collectionClass="NSMutableArray" id="7ea0-1003" />
+                        <outletCollection property="splitConstraints" destination="7ea0-0d04" collectionClass="NSMutableArray" id="7ea0-2000" />
+                        <outletCollection property="splitConstraints" destination="7ea0-0e00" collectionClass="NSMutableArray" id="7ea0-2001" />
+                        <outletCollection property="splitConstraints" destination="7ea0-0e01" collectionClass="NSMutableArray" id="7ea0-2002" />
+                        <outletCollection property="splitConstraints" destination="7ea0-0e02" collectionClass="NSMutableArray" id="7ea0-2003" />
+                        <outletCollection property="splitConstraints" destination="7ea0-0e03" collectionClass="NSMutableArray" id="7ea0-2004" />
                         <outlet property="scrollView" destination="93d7-c368-3403" id="ddb4-fb1c-6dc6" />
                         <outlet property="contentStack" destination="e43a-1392-26c4" id="1baa-6c59-3edc" />
                         <outlet property="titleStack" destination="d997-15be-0784" id="02b3-abc2-2f6a" />
@@ -2092,26 +2139,73 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapGenerate:" />
                                 </userDefinedRuntimeAttributes>
                             </view>
+                        <view hidden="YES" contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ea1-0a01" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="detailPaneView">
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ea1-0a03" userLabel="previewImageView" />
+                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ea1-0a02" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="detailPlaceholderLabel" opaque="NO" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO">
+                                        <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15" />
+                                        <color key="textColor" name="dsTextSecondary" />
+                                        <nil key="highlightedColor" />
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="" />
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="dsSurface" />
+                                <constraints>
+                                    <constraint firstItem="7ea1-0a02" firstAttribute="centerX" secondItem="7ea1-0a01" secondAttribute="centerX" id="7ea1-0c01" />
+                                    <constraint firstItem="7ea1-0a02" firstAttribute="centerY" secondItem="7ea1-0a01" secondAttribute="centerY" id="7ea1-0c02" />
+                                    <constraint firstItem="7ea1-0a02" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7ea1-0a01" secondAttribute="leading" constant="32" id="7ea1-0c03" />
+                                    <constraint firstItem="7ea1-0a03" firstAttribute="leading" secondItem="7ea1-0a01" secondAttribute="leading" id="7ea1-0c10" />
+                                    <constraint firstItem="7ea1-0a03" firstAttribute="trailing" secondItem="7ea1-0a01" secondAttribute="trailing" id="7ea1-0c11" />
+                                    <constraint firstItem="7ea1-0a03" firstAttribute="top" secondItem="7ea1-0a01" secondAttribute="top" id="7ea1-0c12" />
+                                    <constraint firstItem="7ea1-0a03" firstAttribute="bottom" secondItem="7ea1-0a01" secondAttribute="bottom" id="7ea1-0c13" />
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <real key="value" value="28" />
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="dsBackground" />
                         <viewLayoutGuide key="safeArea" id="f636-d246-8def" />
                         <constraints>
-                            <constraint firstItem="890c-53c2-46d3" firstAttribute="leading" secondItem="f636-d246-8def" secondAttribute="leading" id="72ba-2e0c-aacf" identifier="ds.reference.72ba-2e0c-aacf" />
+                            <constraint firstItem="7ea1-0a01" firstAttribute="top" secondItem="ddca-3972-7e95" secondAttribute="top" constant="20" id="7ea1-0d01" />
+                            <constraint firstItem="ddca-3972-7e95" firstAttribute="bottom" secondItem="7ea1-0a01" secondAttribute="bottom" constant="20" id="7ea1-0d02" />
+                            <constraint firstItem="7ea1-0a01" firstAttribute="leading" secondItem="ddca-3972-7e95" secondAttribute="leading" constant="20" id="7ea1-0d03" />
+                            <constraint priority="1" firstItem="7ea1-0a01" firstAttribute="trailing" secondItem="ddca-3972-7e95" secondAttribute="centerX" constant="-20" id="7ea1-0d04" />
+                            <constraint priority="1" firstItem="890c-53c2-46d3" firstAttribute="leading" secondItem="7ea1-0a01" secondAttribute="trailing" constant="20" id="7ea1-0e00" />
+                            <constraint priority="1" firstItem="6f84-bc99-beda" firstAttribute="leading" secondItem="7ea1-0a01" secondAttribute="trailing" constant="20" id="7ea1-0e01" />
+                            <constraint priority="1" firstItem="e6b5-60fe-18cf" firstAttribute="leading" secondItem="7ea1-0a01" secondAttribute="trailing" constant="40" id="7ea1-0e02" />
+                            <constraint priority="1" firstItem="2c76-94a0-7d0b" firstAttribute="leading" secondItem="7ea1-0a01" secondAttribute="trailing" constant="20" id="7ea1-0e03" />
+                            <constraint priority="999" firstItem="890c-53c2-46d3" firstAttribute="leading" secondItem="f636-d246-8def" secondAttribute="leading" id="72ba-2e0c-aacf" identifier="ds.reference.72ba-2e0c-aacf" />
                             <constraint firstItem="f636-d246-8def" firstAttribute="trailing" secondItem="890c-53c2-46d3" secondAttribute="trailing" id="b248-6058-1ec1" identifier="ds.reference.b248-6058-1ec1" />
                             <constraint firstItem="890c-53c2-46d3" firstAttribute="top" secondItem="f636-d246-8def" secondAttribute="top" constant="-4" id="695e-6922-90a1" identifier="ds.reference.695e-6922-90a1" />
-                            <constraint firstItem="6f84-bc99-beda" firstAttribute="leading" secondItem="f636-d246-8def" secondAttribute="leading" id="fbce-7b8f-4628" identifier="ds.reference.fbce-7b8f-4628" />
+                            <constraint priority="999" firstItem="6f84-bc99-beda" firstAttribute="leading" secondItem="f636-d246-8def" secondAttribute="leading" id="fbce-7b8f-4628" identifier="ds.reference.fbce-7b8f-4628" />
                             <constraint firstItem="f636-d246-8def" firstAttribute="trailing" secondItem="6f84-bc99-beda" secondAttribute="trailing" id="4daa-4c59-2d21" identifier="ds.reference.4daa-4c59-2d21" />
                             <constraint firstItem="ddca-3972-7e95" firstAttribute="bottom" secondItem="6f84-bc99-beda" secondAttribute="bottom" id="20a6-0622-b0af" identifier="ds.reference.20a6-0622-b0af" />
-                            <constraint firstItem="e6b5-60fe-18cf" firstAttribute="leading" secondItem="f636-d246-8def" secondAttribute="leading" constant="20" id="520b-cb1d-2f95" identifier="ds.reference.520b-cb1d-2f95" />
+                            <constraint priority="999" firstItem="e6b5-60fe-18cf" firstAttribute="leading" secondItem="f636-d246-8def" secondAttribute="leading" constant="20" id="520b-cb1d-2f95" identifier="ds.reference.520b-cb1d-2f95" />
                             <constraint firstItem="f636-d246-8def" firstAttribute="trailing" secondItem="e6b5-60fe-18cf" secondAttribute="trailing" constant="20" id="d7bc-d67a-b358" identifier="ds.reference.d7bc-d67a-b358" />
                             <constraint firstItem="f636-d246-8def" firstAttribute="bottom" secondItem="e6b5-60fe-18cf" secondAttribute="bottom" id="aad4-76df-4a11" identifier="ds.reference.aad4-76df-4a11" />
-                            <constraint firstItem="2c76-94a0-7d0b" firstAttribute="leading" secondItem="f636-d246-8def" secondAttribute="leading" id="3441-2137-30a3" identifier="ds.reference.3441-2137-30a3" />
+                            <constraint priority="999" firstItem="2c76-94a0-7d0b" firstAttribute="leading" secondItem="f636-d246-8def" secondAttribute="leading" id="3441-2137-30a3" identifier="ds.reference.3441-2137-30a3" />
                             <constraint firstItem="f636-d246-8def" firstAttribute="trailing" secondItem="2c76-94a0-7d0b" secondAttribute="trailing" id="8697-e154-e444" identifier="ds.reference.8697-e154-e444" />
                             <constraint firstItem="ddca-3972-7e95" firstAttribute="bottom" secondItem="2c76-94a0-7d0b" secondAttribute="bottom" id="60ae-6ed8-847c" identifier="ds.reference.60ae-6ed8-847c" />
                             <constraint firstItem="2c76-94a0-7d0b" firstAttribute="top" secondItem="890c-53c2-46d3" secondAttribute="bottom" id="1cef-e9d5-7430" identifier="ds.reference.1cef-e9d5-7430" />
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="previewPaneView" destination="7ea1-0a01" id="7ea1-0f01" />
+                        <outlet property="previewImageView" destination="7ea1-0a03" id="7ea1-0f02" />
+                        <outletCollection property="listOnlyConstraints" destination="72ba-2e0c-aacf" collectionClass="NSMutableArray" id="7ea1-1000" />
+                        <outletCollection property="listOnlyConstraints" destination="fbce-7b8f-4628" collectionClass="NSMutableArray" id="7ea1-1001" />
+                        <outletCollection property="listOnlyConstraints" destination="520b-cb1d-2f95" collectionClass="NSMutableArray" id="7ea1-1002" />
+                        <outletCollection property="listOnlyConstraints" destination="3441-2137-30a3" collectionClass="NSMutableArray" id="7ea1-1003" />
+                        <outletCollection property="splitConstraints" destination="7ea1-0d04" collectionClass="NSMutableArray" id="7ea1-2000" />
+                        <outletCollection property="splitConstraints" destination="7ea1-0e00" collectionClass="NSMutableArray" id="7ea1-2001" />
+                        <outletCollection property="splitConstraints" destination="7ea1-0e01" collectionClass="NSMutableArray" id="7ea1-2002" />
+                        <outletCollection property="splitConstraints" destination="7ea1-0e02" collectionClass="NSMutableArray" id="7ea1-2003" />
+                        <outletCollection property="splitConstraints" destination="7ea1-0e03" collectionClass="NSMutableArray" id="7ea1-2004" />
                         <outlet property="scrollView" destination="2c76-94a0-7d0b" id="8f47-d20f-9eec" />
                         <outlet property="contentStack" destination="0945-0099-4d93" id="ae32-19fa-45ae" />
                         <outlet property="titleStack" destination="b3bc-32b0-4a04" id="f7ce-deb3-0813" />
@@ -2920,26 +3014,73 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapGenerate:" />
                                 </userDefinedRuntimeAttributes>
                             </view>
+                        <view hidden="YES" contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ea2-0a01" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="detailPaneView">
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ea2-0a03" userLabel="previewImageView" />
+                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ea2-0a02" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="detailPlaceholderLabel" opaque="NO" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO">
+                                        <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15" />
+                                        <color key="textColor" name="dsTextSecondary" />
+                                        <nil key="highlightedColor" />
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="" />
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="dsSurface" />
+                                <constraints>
+                                    <constraint firstItem="7ea2-0a02" firstAttribute="centerX" secondItem="7ea2-0a01" secondAttribute="centerX" id="7ea2-0c01" />
+                                    <constraint firstItem="7ea2-0a02" firstAttribute="centerY" secondItem="7ea2-0a01" secondAttribute="centerY" id="7ea2-0c02" />
+                                    <constraint firstItem="7ea2-0a02" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7ea2-0a01" secondAttribute="leading" constant="32" id="7ea2-0c03" />
+                                    <constraint firstItem="7ea2-0a03" firstAttribute="leading" secondItem="7ea2-0a01" secondAttribute="leading" id="7ea2-0c10" />
+                                    <constraint firstItem="7ea2-0a03" firstAttribute="trailing" secondItem="7ea2-0a01" secondAttribute="trailing" id="7ea2-0c11" />
+                                    <constraint firstItem="7ea2-0a03" firstAttribute="top" secondItem="7ea2-0a01" secondAttribute="top" id="7ea2-0c12" />
+                                    <constraint firstItem="7ea2-0a03" firstAttribute="bottom" secondItem="7ea2-0a01" secondAttribute="bottom" id="7ea2-0c13" />
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <real key="value" value="28" />
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="dsBackground" />
                         <viewLayoutGuide key="safeArea" id="9886-634e-c7c1" />
                         <constraints>
-                            <constraint firstItem="424d-3deb-a98f" firstAttribute="leading" secondItem="9886-634e-c7c1" secondAttribute="leading" id="5d38-5fd1-689d" identifier="ds.reference.5d38-5fd1-689d" />
+                            <constraint firstItem="7ea2-0a01" firstAttribute="top" secondItem="adf8-d7ce-b2e9" secondAttribute="top" constant="20" id="7ea2-0d01" />
+                            <constraint firstItem="adf8-d7ce-b2e9" firstAttribute="bottom" secondItem="7ea2-0a01" secondAttribute="bottom" constant="20" id="7ea2-0d02" />
+                            <constraint firstItem="7ea2-0a01" firstAttribute="leading" secondItem="adf8-d7ce-b2e9" secondAttribute="leading" constant="20" id="7ea2-0d03" />
+                            <constraint priority="1" firstItem="7ea2-0a01" firstAttribute="trailing" secondItem="adf8-d7ce-b2e9" secondAttribute="centerX" constant="-20" id="7ea2-0d04" />
+                            <constraint priority="1" firstItem="424d-3deb-a98f" firstAttribute="leading" secondItem="7ea2-0a01" secondAttribute="trailing" constant="20" id="7ea2-0e00" />
+                            <constraint priority="1" firstItem="fb50-0b90-2e0b" firstAttribute="leading" secondItem="7ea2-0a01" secondAttribute="trailing" constant="20" id="7ea2-0e01" />
+                            <constraint priority="1" firstItem="018d-243b-5f36" firstAttribute="leading" secondItem="7ea2-0a01" secondAttribute="trailing" constant="40" id="7ea2-0e02" />
+                            <constraint priority="1" firstItem="b523-489a-e823" firstAttribute="leading" secondItem="7ea2-0a01" secondAttribute="trailing" constant="20" id="7ea2-0e03" />
+                            <constraint priority="999" firstItem="424d-3deb-a98f" firstAttribute="leading" secondItem="9886-634e-c7c1" secondAttribute="leading" id="5d38-5fd1-689d" identifier="ds.reference.5d38-5fd1-689d" />
                             <constraint firstItem="9886-634e-c7c1" firstAttribute="trailing" secondItem="424d-3deb-a98f" secondAttribute="trailing" id="b5ba-d764-1e3c" identifier="ds.reference.b5ba-d764-1e3c" />
                             <constraint firstItem="424d-3deb-a98f" firstAttribute="top" secondItem="9886-634e-c7c1" secondAttribute="top" constant="-4" id="44c0-e99f-3a5c" identifier="ds.reference.44c0-e99f-3a5c" />
-                            <constraint firstItem="fb50-0b90-2e0b" firstAttribute="leading" secondItem="9886-634e-c7c1" secondAttribute="leading" id="245f-661a-21ef" identifier="ds.reference.245f-661a-21ef" />
+                            <constraint priority="999" firstItem="fb50-0b90-2e0b" firstAttribute="leading" secondItem="9886-634e-c7c1" secondAttribute="leading" id="245f-661a-21ef" identifier="ds.reference.245f-661a-21ef" />
                             <constraint firstItem="9886-634e-c7c1" firstAttribute="trailing" secondItem="fb50-0b90-2e0b" secondAttribute="trailing" id="46d4-dbc0-468b" identifier="ds.reference.46d4-dbc0-468b" />
                             <constraint firstItem="adf8-d7ce-b2e9" firstAttribute="bottom" secondItem="fb50-0b90-2e0b" secondAttribute="bottom" id="c2a1-3a4e-0563" identifier="ds.reference.c2a1-3a4e-0563" />
-                            <constraint firstItem="018d-243b-5f36" firstAttribute="leading" secondItem="9886-634e-c7c1" secondAttribute="leading" constant="20" id="8e83-dc11-7c88" identifier="ds.reference.8e83-dc11-7c88" />
+                            <constraint priority="999" firstItem="018d-243b-5f36" firstAttribute="leading" secondItem="9886-634e-c7c1" secondAttribute="leading" constant="20" id="8e83-dc11-7c88" identifier="ds.reference.8e83-dc11-7c88" />
                             <constraint firstItem="9886-634e-c7c1" firstAttribute="trailing" secondItem="018d-243b-5f36" secondAttribute="trailing" constant="20" id="3495-45ce-ec7c" identifier="ds.reference.3495-45ce-ec7c" />
                             <constraint firstItem="9886-634e-c7c1" firstAttribute="bottom" secondItem="018d-243b-5f36" secondAttribute="bottom" id="0865-fc2c-bdd0" identifier="ds.reference.0865-fc2c-bdd0" />
-                            <constraint firstItem="b523-489a-e823" firstAttribute="leading" secondItem="9886-634e-c7c1" secondAttribute="leading" id="82b4-c702-0492" identifier="ds.reference.82b4-c702-0492" />
+                            <constraint priority="999" firstItem="b523-489a-e823" firstAttribute="leading" secondItem="9886-634e-c7c1" secondAttribute="leading" id="82b4-c702-0492" identifier="ds.reference.82b4-c702-0492" />
                             <constraint firstItem="9886-634e-c7c1" firstAttribute="trailing" secondItem="b523-489a-e823" secondAttribute="trailing" id="7cbf-3a9d-6fb4" identifier="ds.reference.7cbf-3a9d-6fb4" />
                             <constraint firstItem="adf8-d7ce-b2e9" firstAttribute="bottom" secondItem="b523-489a-e823" secondAttribute="bottom" id="4503-9ab9-1409" identifier="ds.reference.4503-9ab9-1409" />
                             <constraint firstItem="b523-489a-e823" firstAttribute="top" secondItem="424d-3deb-a98f" secondAttribute="bottom" id="5517-9fef-b757" identifier="ds.reference.5517-9fef-b757" />
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="previewPaneView" destination="7ea2-0a01" id="7ea2-0f01" />
+                        <outlet property="previewImageView" destination="7ea2-0a03" id="7ea2-0f02" />
+                        <outletCollection property="listOnlyConstraints" destination="5d38-5fd1-689d" collectionClass="NSMutableArray" id="7ea2-1000" />
+                        <outletCollection property="listOnlyConstraints" destination="245f-661a-21ef" collectionClass="NSMutableArray" id="7ea2-1001" />
+                        <outletCollection property="listOnlyConstraints" destination="8e83-dc11-7c88" collectionClass="NSMutableArray" id="7ea2-1002" />
+                        <outletCollection property="listOnlyConstraints" destination="82b4-c702-0492" collectionClass="NSMutableArray" id="7ea2-1003" />
+                        <outletCollection property="splitConstraints" destination="7ea2-0d04" collectionClass="NSMutableArray" id="7ea2-2000" />
+                        <outletCollection property="splitConstraints" destination="7ea2-0e00" collectionClass="NSMutableArray" id="7ea2-2001" />
+                        <outletCollection property="splitConstraints" destination="7ea2-0e01" collectionClass="NSMutableArray" id="7ea2-2002" />
+                        <outletCollection property="splitConstraints" destination="7ea2-0e02" collectionClass="NSMutableArray" id="7ea2-2003" />
+                        <outletCollection property="splitConstraints" destination="7ea2-0e03" collectionClass="NSMutableArray" id="7ea2-2004" />
                         <outlet property="scrollView" destination="b523-489a-e823" id="ba26-ec6b-7e27" />
                         <outlet property="contentStack" destination="8554-e393-901c" id="4cd5-f91d-29d4" />
                         <outlet property="titleStack" destination="3469-1c36-933e" id="802c-eff1-6fb1" />
@@ -3775,26 +3916,73 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapGenerate:" />
                                 </userDefinedRuntimeAttributes>
                             </view>
+                        <view hidden="YES" contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ea3-0a01" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="detailPaneView">
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ea3-0a03" userLabel="previewImageView" />
+                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ea3-0a02" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="detailPlaceholderLabel" opaque="NO" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO">
+                                        <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15" />
+                                        <color key="textColor" name="dsTextSecondary" />
+                                        <nil key="highlightedColor" />
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="" />
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="dsSurface" />
+                                <constraints>
+                                    <constraint firstItem="7ea3-0a02" firstAttribute="centerX" secondItem="7ea3-0a01" secondAttribute="centerX" id="7ea3-0c01" />
+                                    <constraint firstItem="7ea3-0a02" firstAttribute="centerY" secondItem="7ea3-0a01" secondAttribute="centerY" id="7ea3-0c02" />
+                                    <constraint firstItem="7ea3-0a02" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7ea3-0a01" secondAttribute="leading" constant="32" id="7ea3-0c03" />
+                                    <constraint firstItem="7ea3-0a03" firstAttribute="leading" secondItem="7ea3-0a01" secondAttribute="leading" id="7ea3-0c10" />
+                                    <constraint firstItem="7ea3-0a03" firstAttribute="trailing" secondItem="7ea3-0a01" secondAttribute="trailing" id="7ea3-0c11" />
+                                    <constraint firstItem="7ea3-0a03" firstAttribute="top" secondItem="7ea3-0a01" secondAttribute="top" id="7ea3-0c12" />
+                                    <constraint firstItem="7ea3-0a03" firstAttribute="bottom" secondItem="7ea3-0a01" secondAttribute="bottom" id="7ea3-0c13" />
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <real key="value" value="28" />
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="dsBackground" />
                         <viewLayoutGuide key="safeArea" id="d0ca-2f4d-530d" />
                         <constraints>
-                            <constraint firstItem="2433-3454-0f57" firstAttribute="leading" secondItem="d0ca-2f4d-530d" secondAttribute="leading" id="8772-4539-1981" identifier="ds.reference.8772-4539-1981" />
+                            <constraint firstItem="7ea3-0a01" firstAttribute="top" secondItem="3191-b834-9309" secondAttribute="top" constant="20" id="7ea3-0d01" />
+                            <constraint firstItem="3191-b834-9309" firstAttribute="bottom" secondItem="7ea3-0a01" secondAttribute="bottom" constant="20" id="7ea3-0d02" />
+                            <constraint firstItem="7ea3-0a01" firstAttribute="leading" secondItem="3191-b834-9309" secondAttribute="leading" constant="20" id="7ea3-0d03" />
+                            <constraint priority="1" firstItem="7ea3-0a01" firstAttribute="trailing" secondItem="3191-b834-9309" secondAttribute="centerX" constant="-20" id="7ea3-0d04" />
+                            <constraint priority="1" firstItem="2433-3454-0f57" firstAttribute="leading" secondItem="7ea3-0a01" secondAttribute="trailing" constant="20" id="7ea3-0e00" />
+                            <constraint priority="1" firstItem="c951-ad1a-e962" firstAttribute="leading" secondItem="7ea3-0a01" secondAttribute="trailing" constant="20" id="7ea3-0e01" />
+                            <constraint priority="1" firstItem="cf0f-54b3-ea57" firstAttribute="leading" secondItem="7ea3-0a01" secondAttribute="trailing" constant="40" id="7ea3-0e02" />
+                            <constraint priority="1" firstItem="68a2-7db0-ec0c" firstAttribute="leading" secondItem="7ea3-0a01" secondAttribute="trailing" constant="20" id="7ea3-0e03" />
+                            <constraint priority="999" firstItem="2433-3454-0f57" firstAttribute="leading" secondItem="d0ca-2f4d-530d" secondAttribute="leading" id="8772-4539-1981" identifier="ds.reference.8772-4539-1981" />
                             <constraint firstItem="d0ca-2f4d-530d" firstAttribute="trailing" secondItem="2433-3454-0f57" secondAttribute="trailing" id="909f-51f5-5f4e" identifier="ds.reference.909f-51f5-5f4e" />
                             <constraint firstItem="2433-3454-0f57" firstAttribute="top" secondItem="d0ca-2f4d-530d" secondAttribute="top" constant="-4" id="a2a2-8405-edba" identifier="ds.reference.a2a2-8405-edba" />
-                            <constraint firstItem="c951-ad1a-e962" firstAttribute="leading" secondItem="d0ca-2f4d-530d" secondAttribute="leading" id="5a02-57d1-2574" identifier="ds.reference.5a02-57d1-2574" />
+                            <constraint priority="999" firstItem="c951-ad1a-e962" firstAttribute="leading" secondItem="d0ca-2f4d-530d" secondAttribute="leading" id="5a02-57d1-2574" identifier="ds.reference.5a02-57d1-2574" />
                             <constraint firstItem="d0ca-2f4d-530d" firstAttribute="trailing" secondItem="c951-ad1a-e962" secondAttribute="trailing" id="b62c-c408-5d29" identifier="ds.reference.b62c-c408-5d29" />
                             <constraint firstItem="3191-b834-9309" firstAttribute="bottom" secondItem="c951-ad1a-e962" secondAttribute="bottom" id="f40d-4100-dac8" identifier="ds.reference.f40d-4100-dac8" />
-                            <constraint firstItem="cf0f-54b3-ea57" firstAttribute="leading" secondItem="d0ca-2f4d-530d" secondAttribute="leading" constant="20" id="2636-c8be-68ce" identifier="ds.reference.2636-c8be-68ce" />
+                            <constraint priority="999" firstItem="cf0f-54b3-ea57" firstAttribute="leading" secondItem="d0ca-2f4d-530d" secondAttribute="leading" constant="20" id="2636-c8be-68ce" identifier="ds.reference.2636-c8be-68ce" />
                             <constraint firstItem="d0ca-2f4d-530d" firstAttribute="trailing" secondItem="cf0f-54b3-ea57" secondAttribute="trailing" constant="20" id="43b8-1dcc-b7ab" identifier="ds.reference.43b8-1dcc-b7ab" />
                             <constraint firstItem="d0ca-2f4d-530d" firstAttribute="bottom" secondItem="cf0f-54b3-ea57" secondAttribute="bottom" id="761e-c82e-c9f2" identifier="ds.reference.761e-c82e-c9f2" />
-                            <constraint firstItem="68a2-7db0-ec0c" firstAttribute="leading" secondItem="d0ca-2f4d-530d" secondAttribute="leading" id="48a7-ba6c-b363" identifier="ds.reference.48a7-ba6c-b363" />
+                            <constraint priority="999" firstItem="68a2-7db0-ec0c" firstAttribute="leading" secondItem="d0ca-2f4d-530d" secondAttribute="leading" id="48a7-ba6c-b363" identifier="ds.reference.48a7-ba6c-b363" />
                             <constraint firstItem="d0ca-2f4d-530d" firstAttribute="trailing" secondItem="68a2-7db0-ec0c" secondAttribute="trailing" id="6922-b06c-4bc9" identifier="ds.reference.6922-b06c-4bc9" />
                             <constraint firstItem="3191-b834-9309" firstAttribute="bottom" secondItem="68a2-7db0-ec0c" secondAttribute="bottom" id="5b96-c917-7c0a" identifier="ds.reference.5b96-c917-7c0a" />
                             <constraint firstItem="68a2-7db0-ec0c" firstAttribute="top" secondItem="2433-3454-0f57" secondAttribute="bottom" id="68b0-f81d-a597" identifier="ds.reference.68b0-f81d-a597" />
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="previewPaneView" destination="7ea3-0a01" id="7ea3-0f01" />
+                        <outlet property="previewImageView" destination="7ea3-0a03" id="7ea3-0f02" />
+                        <outletCollection property="listOnlyConstraints" destination="8772-4539-1981" collectionClass="NSMutableArray" id="7ea3-1000" />
+                        <outletCollection property="listOnlyConstraints" destination="5a02-57d1-2574" collectionClass="NSMutableArray" id="7ea3-1001" />
+                        <outletCollection property="listOnlyConstraints" destination="2636-c8be-68ce" collectionClass="NSMutableArray" id="7ea3-1002" />
+                        <outletCollection property="listOnlyConstraints" destination="48a7-ba6c-b363" collectionClass="NSMutableArray" id="7ea3-1003" />
+                        <outletCollection property="splitConstraints" destination="7ea3-0d04" collectionClass="NSMutableArray" id="7ea3-2000" />
+                        <outletCollection property="splitConstraints" destination="7ea3-0e00" collectionClass="NSMutableArray" id="7ea3-2001" />
+                        <outletCollection property="splitConstraints" destination="7ea3-0e01" collectionClass="NSMutableArray" id="7ea3-2002" />
+                        <outletCollection property="splitConstraints" destination="7ea3-0e02" collectionClass="NSMutableArray" id="7ea3-2003" />
+                        <outletCollection property="splitConstraints" destination="7ea3-0e03" collectionClass="NSMutableArray" id="7ea3-2004" />
                         <outlet property="scrollView" destination="68a2-7db0-ec0c" id="289e-e79c-629a" />
                         <outlet property="contentStack" destination="d32c-dcca-16ef" id="a8b9-44c9-cb62" />
                         <outlet property="titleStack" destination="a4fc-2d65-887e" id="2d65-18e3-e690" />
@@ -4471,26 +4659,73 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapGenerate:" />
                                 </userDefinedRuntimeAttributes>
                             </view>
+                        <view hidden="YES" contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ea4-0a01" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="detailPaneView">
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ea4-0a03" userLabel="previewImageView" />
+                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ea4-0a02" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="detailPlaceholderLabel" opaque="NO" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO">
+                                        <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15" />
+                                        <color key="textColor" name="dsTextSecondary" />
+                                        <nil key="highlightedColor" />
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="" />
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="dsSurface" />
+                                <constraints>
+                                    <constraint firstItem="7ea4-0a02" firstAttribute="centerX" secondItem="7ea4-0a01" secondAttribute="centerX" id="7ea4-0c01" />
+                                    <constraint firstItem="7ea4-0a02" firstAttribute="centerY" secondItem="7ea4-0a01" secondAttribute="centerY" id="7ea4-0c02" />
+                                    <constraint firstItem="7ea4-0a02" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7ea4-0a01" secondAttribute="leading" constant="32" id="7ea4-0c03" />
+                                    <constraint firstItem="7ea4-0a03" firstAttribute="leading" secondItem="7ea4-0a01" secondAttribute="leading" id="7ea4-0c10" />
+                                    <constraint firstItem="7ea4-0a03" firstAttribute="trailing" secondItem="7ea4-0a01" secondAttribute="trailing" id="7ea4-0c11" />
+                                    <constraint firstItem="7ea4-0a03" firstAttribute="top" secondItem="7ea4-0a01" secondAttribute="top" id="7ea4-0c12" />
+                                    <constraint firstItem="7ea4-0a03" firstAttribute="bottom" secondItem="7ea4-0a01" secondAttribute="bottom" id="7ea4-0c13" />
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <real key="value" value="28" />
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="dsBackground" />
                         <viewLayoutGuide key="safeArea" id="6927-fd7f-1b7f" />
                         <constraints>
-                            <constraint firstItem="842f-f4c4-4a3b" firstAttribute="leading" secondItem="6927-fd7f-1b7f" secondAttribute="leading" id="d7b1-1436-e101" identifier="ds.reference.d7b1-1436-e101" />
+                            <constraint firstItem="7ea4-0a01" firstAttribute="top" secondItem="67c0-08e0-3b11" secondAttribute="top" constant="20" id="7ea4-0d01" />
+                            <constraint firstItem="67c0-08e0-3b11" firstAttribute="bottom" secondItem="7ea4-0a01" secondAttribute="bottom" constant="20" id="7ea4-0d02" />
+                            <constraint firstItem="7ea4-0a01" firstAttribute="leading" secondItem="67c0-08e0-3b11" secondAttribute="leading" constant="20" id="7ea4-0d03" />
+                            <constraint priority="1" firstItem="7ea4-0a01" firstAttribute="trailing" secondItem="67c0-08e0-3b11" secondAttribute="centerX" constant="-20" id="7ea4-0d04" />
+                            <constraint priority="1" firstItem="842f-f4c4-4a3b" firstAttribute="leading" secondItem="7ea4-0a01" secondAttribute="trailing" constant="20" id="7ea4-0e00" />
+                            <constraint priority="1" firstItem="43e6-74dd-f87b" firstAttribute="leading" secondItem="7ea4-0a01" secondAttribute="trailing" constant="20" id="7ea4-0e01" />
+                            <constraint priority="1" firstItem="247c-9de2-c780" firstAttribute="leading" secondItem="7ea4-0a01" secondAttribute="trailing" constant="40" id="7ea4-0e02" />
+                            <constraint priority="1" firstItem="eb8e-7c57-6c99" firstAttribute="leading" secondItem="7ea4-0a01" secondAttribute="trailing" constant="20" id="7ea4-0e03" />
+                            <constraint priority="999" firstItem="842f-f4c4-4a3b" firstAttribute="leading" secondItem="6927-fd7f-1b7f" secondAttribute="leading" id="d7b1-1436-e101" identifier="ds.reference.d7b1-1436-e101" />
                             <constraint firstItem="6927-fd7f-1b7f" firstAttribute="trailing" secondItem="842f-f4c4-4a3b" secondAttribute="trailing" id="bc85-a0ce-76b9" identifier="ds.reference.bc85-a0ce-76b9" />
                             <constraint firstItem="842f-f4c4-4a3b" firstAttribute="top" secondItem="6927-fd7f-1b7f" secondAttribute="top" constant="-4" id="020d-93b4-af2e" identifier="ds.reference.020d-93b4-af2e" />
-                            <constraint firstItem="43e6-74dd-f87b" firstAttribute="leading" secondItem="6927-fd7f-1b7f" secondAttribute="leading" id="12be-b3fc-527e" identifier="ds.reference.12be-b3fc-527e" />
+                            <constraint priority="999" firstItem="43e6-74dd-f87b" firstAttribute="leading" secondItem="6927-fd7f-1b7f" secondAttribute="leading" id="12be-b3fc-527e" identifier="ds.reference.12be-b3fc-527e" />
                             <constraint firstItem="6927-fd7f-1b7f" firstAttribute="trailing" secondItem="43e6-74dd-f87b" secondAttribute="trailing" id="187d-60df-d78e" identifier="ds.reference.187d-60df-d78e" />
                             <constraint firstItem="67c0-08e0-3b11" firstAttribute="bottom" secondItem="43e6-74dd-f87b" secondAttribute="bottom" id="9805-2054-71d9" identifier="ds.reference.9805-2054-71d9" />
-                            <constraint firstItem="247c-9de2-c780" firstAttribute="leading" secondItem="6927-fd7f-1b7f" secondAttribute="leading" constant="20" id="8109-94d3-e266" identifier="ds.reference.8109-94d3-e266" />
+                            <constraint priority="999" firstItem="247c-9de2-c780" firstAttribute="leading" secondItem="6927-fd7f-1b7f" secondAttribute="leading" constant="20" id="8109-94d3-e266" identifier="ds.reference.8109-94d3-e266" />
                             <constraint firstItem="6927-fd7f-1b7f" firstAttribute="trailing" secondItem="247c-9de2-c780" secondAttribute="trailing" constant="20" id="12c7-6afc-c242" identifier="ds.reference.12c7-6afc-c242" />
                             <constraint firstItem="6927-fd7f-1b7f" firstAttribute="bottom" secondItem="247c-9de2-c780" secondAttribute="bottom" id="c423-f97d-9e0a" identifier="ds.reference.c423-f97d-9e0a" />
-                            <constraint firstItem="eb8e-7c57-6c99" firstAttribute="leading" secondItem="6927-fd7f-1b7f" secondAttribute="leading" id="3974-a2dc-73f6" identifier="ds.reference.3974-a2dc-73f6" />
+                            <constraint priority="999" firstItem="eb8e-7c57-6c99" firstAttribute="leading" secondItem="6927-fd7f-1b7f" secondAttribute="leading" id="3974-a2dc-73f6" identifier="ds.reference.3974-a2dc-73f6" />
                             <constraint firstItem="6927-fd7f-1b7f" firstAttribute="trailing" secondItem="eb8e-7c57-6c99" secondAttribute="trailing" id="168a-a45e-7029" identifier="ds.reference.168a-a45e-7029" />
                             <constraint firstItem="67c0-08e0-3b11" firstAttribute="bottom" secondItem="eb8e-7c57-6c99" secondAttribute="bottom" id="4174-740d-8934" identifier="ds.reference.4174-740d-8934" />
                             <constraint firstItem="eb8e-7c57-6c99" firstAttribute="top" secondItem="842f-f4c4-4a3b" secondAttribute="bottom" id="9f13-c0ba-b5df" identifier="ds.reference.9f13-c0ba-b5df" />
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="previewPaneView" destination="7ea4-0a01" id="7ea4-0f01" />
+                        <outlet property="previewImageView" destination="7ea4-0a03" id="7ea4-0f02" />
+                        <outletCollection property="listOnlyConstraints" destination="d7b1-1436-e101" collectionClass="NSMutableArray" id="7ea4-1000" />
+                        <outletCollection property="listOnlyConstraints" destination="12be-b3fc-527e" collectionClass="NSMutableArray" id="7ea4-1001" />
+                        <outletCollection property="listOnlyConstraints" destination="8109-94d3-e266" collectionClass="NSMutableArray" id="7ea4-1002" />
+                        <outletCollection property="listOnlyConstraints" destination="3974-a2dc-73f6" collectionClass="NSMutableArray" id="7ea4-1003" />
+                        <outletCollection property="splitConstraints" destination="7ea4-0d04" collectionClass="NSMutableArray" id="7ea4-2000" />
+                        <outletCollection property="splitConstraints" destination="7ea4-0e00" collectionClass="NSMutableArray" id="7ea4-2001" />
+                        <outletCollection property="splitConstraints" destination="7ea4-0e01" collectionClass="NSMutableArray" id="7ea4-2002" />
+                        <outletCollection property="splitConstraints" destination="7ea4-0e02" collectionClass="NSMutableArray" id="7ea4-2003" />
+                        <outletCollection property="splitConstraints" destination="7ea4-0e03" collectionClass="NSMutableArray" id="7ea4-2004" />
                         <outlet property="scrollView" destination="eb8e-7c57-6c99" id="3b8b-2888-436f" />
                         <outlet property="contentStack" destination="9bdc-7f4d-9c60" id="f292-5453-b2c6" />
                         <outlet property="titleStack" destination="6bc0-0e94-f7ab" id="3117-88df-56c7" />
@@ -5267,26 +5502,73 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapGenerate:" />
                                 </userDefinedRuntimeAttributes>
                             </view>
+                        <view hidden="YES" contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ea5-0a01" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="detailPaneView">
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ea5-0a03" userLabel="previewImageView" />
+                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ea5-0a02" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="detailPlaceholderLabel" opaque="NO" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO">
+                                        <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15" />
+                                        <color key="textColor" name="dsTextSecondary" />
+                                        <nil key="highlightedColor" />
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="" />
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="dsSurface" />
+                                <constraints>
+                                    <constraint firstItem="7ea5-0a02" firstAttribute="centerX" secondItem="7ea5-0a01" secondAttribute="centerX" id="7ea5-0c01" />
+                                    <constraint firstItem="7ea5-0a02" firstAttribute="centerY" secondItem="7ea5-0a01" secondAttribute="centerY" id="7ea5-0c02" />
+                                    <constraint firstItem="7ea5-0a02" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7ea5-0a01" secondAttribute="leading" constant="32" id="7ea5-0c03" />
+                                    <constraint firstItem="7ea5-0a03" firstAttribute="leading" secondItem="7ea5-0a01" secondAttribute="leading" id="7ea5-0c10" />
+                                    <constraint firstItem="7ea5-0a03" firstAttribute="trailing" secondItem="7ea5-0a01" secondAttribute="trailing" id="7ea5-0c11" />
+                                    <constraint firstItem="7ea5-0a03" firstAttribute="top" secondItem="7ea5-0a01" secondAttribute="top" id="7ea5-0c12" />
+                                    <constraint firstItem="7ea5-0a03" firstAttribute="bottom" secondItem="7ea5-0a01" secondAttribute="bottom" id="7ea5-0c13" />
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <real key="value" value="28" />
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="dsBackground" />
                         <viewLayoutGuide key="safeArea" id="a09f-fd75-3822" />
                         <constraints>
-                            <constraint firstItem="42c3-c15e-e071" firstAttribute="leading" secondItem="a09f-fd75-3822" secondAttribute="leading" id="1b62-07e0-1364" identifier="ds.reference.1b62-07e0-1364" />
+                            <constraint firstItem="7ea5-0a01" firstAttribute="top" secondItem="2c3f-794f-8481" secondAttribute="top" constant="20" id="7ea5-0d01" />
+                            <constraint firstItem="2c3f-794f-8481" firstAttribute="bottom" secondItem="7ea5-0a01" secondAttribute="bottom" constant="20" id="7ea5-0d02" />
+                            <constraint firstItem="7ea5-0a01" firstAttribute="leading" secondItem="2c3f-794f-8481" secondAttribute="leading" constant="20" id="7ea5-0d03" />
+                            <constraint priority="1" firstItem="7ea5-0a01" firstAttribute="trailing" secondItem="2c3f-794f-8481" secondAttribute="centerX" constant="-20" id="7ea5-0d04" />
+                            <constraint priority="1" firstItem="42c3-c15e-e071" firstAttribute="leading" secondItem="7ea5-0a01" secondAttribute="trailing" constant="20" id="7ea5-0e00" />
+                            <constraint priority="1" firstItem="aaf6-d6fa-65b5" firstAttribute="leading" secondItem="7ea5-0a01" secondAttribute="trailing" constant="20" id="7ea5-0e01" />
+                            <constraint priority="1" firstItem="b6e9-5667-b8a4" firstAttribute="leading" secondItem="7ea5-0a01" secondAttribute="trailing" constant="40" id="7ea5-0e02" />
+                            <constraint priority="1" firstItem="28e1-6098-046b" firstAttribute="leading" secondItem="7ea5-0a01" secondAttribute="trailing" constant="20" id="7ea5-0e03" />
+                            <constraint priority="999" firstItem="42c3-c15e-e071" firstAttribute="leading" secondItem="a09f-fd75-3822" secondAttribute="leading" id="1b62-07e0-1364" identifier="ds.reference.1b62-07e0-1364" />
                             <constraint firstItem="a09f-fd75-3822" firstAttribute="trailing" secondItem="42c3-c15e-e071" secondAttribute="trailing" id="d8ae-443c-2846" identifier="ds.reference.d8ae-443c-2846" />
                             <constraint firstItem="42c3-c15e-e071" firstAttribute="top" secondItem="a09f-fd75-3822" secondAttribute="top" constant="-4" id="f127-06a4-32f2" identifier="ds.reference.f127-06a4-32f2" />
-                            <constraint firstItem="aaf6-d6fa-65b5" firstAttribute="leading" secondItem="a09f-fd75-3822" secondAttribute="leading" id="c9de-6120-122e" identifier="ds.reference.c9de-6120-122e" />
+                            <constraint priority="999" firstItem="aaf6-d6fa-65b5" firstAttribute="leading" secondItem="a09f-fd75-3822" secondAttribute="leading" id="c9de-6120-122e" identifier="ds.reference.c9de-6120-122e" />
                             <constraint firstItem="a09f-fd75-3822" firstAttribute="trailing" secondItem="aaf6-d6fa-65b5" secondAttribute="trailing" id="03e1-652a-6c37" identifier="ds.reference.03e1-652a-6c37" />
                             <constraint firstItem="2c3f-794f-8481" firstAttribute="bottom" secondItem="aaf6-d6fa-65b5" secondAttribute="bottom" id="4187-3145-7d6c" identifier="ds.reference.4187-3145-7d6c" />
-                            <constraint firstItem="b6e9-5667-b8a4" firstAttribute="leading" secondItem="a09f-fd75-3822" secondAttribute="leading" constant="20" id="98a2-9137-6d0b" identifier="ds.reference.98a2-9137-6d0b" />
+                            <constraint priority="999" firstItem="b6e9-5667-b8a4" firstAttribute="leading" secondItem="a09f-fd75-3822" secondAttribute="leading" constant="20" id="98a2-9137-6d0b" identifier="ds.reference.98a2-9137-6d0b" />
                             <constraint firstItem="a09f-fd75-3822" firstAttribute="trailing" secondItem="b6e9-5667-b8a4" secondAttribute="trailing" constant="20" id="beee-1666-cca7" identifier="ds.reference.beee-1666-cca7" />
                             <constraint firstItem="a09f-fd75-3822" firstAttribute="bottom" secondItem="b6e9-5667-b8a4" secondAttribute="bottom" id="3da1-de5e-ac67" identifier="ds.reference.3da1-de5e-ac67" />
-                            <constraint firstItem="28e1-6098-046b" firstAttribute="leading" secondItem="a09f-fd75-3822" secondAttribute="leading" id="cd82-5637-c1f3" identifier="ds.reference.cd82-5637-c1f3" />
+                            <constraint priority="999" firstItem="28e1-6098-046b" firstAttribute="leading" secondItem="a09f-fd75-3822" secondAttribute="leading" id="cd82-5637-c1f3" identifier="ds.reference.cd82-5637-c1f3" />
                             <constraint firstItem="a09f-fd75-3822" firstAttribute="trailing" secondItem="28e1-6098-046b" secondAttribute="trailing" id="ce4b-a15f-60d9" identifier="ds.reference.ce4b-a15f-60d9" />
                             <constraint firstItem="2c3f-794f-8481" firstAttribute="bottom" secondItem="28e1-6098-046b" secondAttribute="bottom" id="b497-cc91-419b" identifier="ds.reference.b497-cc91-419b" />
                             <constraint firstItem="28e1-6098-046b" firstAttribute="top" secondItem="42c3-c15e-e071" secondAttribute="bottom" id="3542-3720-f50c" identifier="ds.reference.3542-3720-f50c" />
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="previewPaneView" destination="7ea5-0a01" id="7ea5-0f01" />
+                        <outlet property="previewImageView" destination="7ea5-0a03" id="7ea5-0f02" />
+                        <outletCollection property="listOnlyConstraints" destination="1b62-07e0-1364" collectionClass="NSMutableArray" id="7ea5-1000" />
+                        <outletCollection property="listOnlyConstraints" destination="c9de-6120-122e" collectionClass="NSMutableArray" id="7ea5-1001" />
+                        <outletCollection property="listOnlyConstraints" destination="98a2-9137-6d0b" collectionClass="NSMutableArray" id="7ea5-1002" />
+                        <outletCollection property="listOnlyConstraints" destination="cd82-5637-c1f3" collectionClass="NSMutableArray" id="7ea5-1003" />
+                        <outletCollection property="splitConstraints" destination="7ea5-0d04" collectionClass="NSMutableArray" id="7ea5-2000" />
+                        <outletCollection property="splitConstraints" destination="7ea5-0e00" collectionClass="NSMutableArray" id="7ea5-2001" />
+                        <outletCollection property="splitConstraints" destination="7ea5-0e01" collectionClass="NSMutableArray" id="7ea5-2002" />
+                        <outletCollection property="splitConstraints" destination="7ea5-0e02" collectionClass="NSMutableArray" id="7ea5-2003" />
+                        <outletCollection property="splitConstraints" destination="7ea5-0e03" collectionClass="NSMutableArray" id="7ea5-2004" />
                         <outlet property="scrollView" destination="28e1-6098-046b" id="6f96-f7fd-ede0" />
                         <outlet property="contentStack" destination="2925-a0e1-8ae2" id="6cf5-8277-b398" />
                         <outlet property="titleStack" destination="2808-52f3-f01f" id="d702-2658-e581" />
@@ -6197,26 +6479,73 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapGenerate:" />
                                 </userDefinedRuntimeAttributes>
                             </view>
+                        <view hidden="YES" contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ea6-0a01" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="detailPaneView">
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ea6-0a03" userLabel="previewImageView" />
+                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ea6-0a02" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="detailPlaceholderLabel" opaque="NO" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO">
+                                        <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15" />
+                                        <color key="textColor" name="dsTextSecondary" />
+                                        <nil key="highlightedColor" />
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="" />
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="dsSurface" />
+                                <constraints>
+                                    <constraint firstItem="7ea6-0a02" firstAttribute="centerX" secondItem="7ea6-0a01" secondAttribute="centerX" id="7ea6-0c01" />
+                                    <constraint firstItem="7ea6-0a02" firstAttribute="centerY" secondItem="7ea6-0a01" secondAttribute="centerY" id="7ea6-0c02" />
+                                    <constraint firstItem="7ea6-0a02" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7ea6-0a01" secondAttribute="leading" constant="32" id="7ea6-0c03" />
+                                    <constraint firstItem="7ea6-0a03" firstAttribute="leading" secondItem="7ea6-0a01" secondAttribute="leading" id="7ea6-0c10" />
+                                    <constraint firstItem="7ea6-0a03" firstAttribute="trailing" secondItem="7ea6-0a01" secondAttribute="trailing" id="7ea6-0c11" />
+                                    <constraint firstItem="7ea6-0a03" firstAttribute="top" secondItem="7ea6-0a01" secondAttribute="top" id="7ea6-0c12" />
+                                    <constraint firstItem="7ea6-0a03" firstAttribute="bottom" secondItem="7ea6-0a01" secondAttribute="bottom" id="7ea6-0c13" />
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <real key="value" value="28" />
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="dsBackground" />
                         <viewLayoutGuide key="safeArea" id="2b3d-1a0a-1d24" />
                         <constraints>
-                            <constraint firstItem="6724-6b99-1839" firstAttribute="leading" secondItem="2b3d-1a0a-1d24" secondAttribute="leading" id="0013-7eaa-086b" identifier="ds.reference.0013-7eaa-086b" />
+                            <constraint firstItem="7ea6-0a01" firstAttribute="top" secondItem="af69-710e-58bf" secondAttribute="top" constant="20" id="7ea6-0d01" />
+                            <constraint firstItem="af69-710e-58bf" firstAttribute="bottom" secondItem="7ea6-0a01" secondAttribute="bottom" constant="20" id="7ea6-0d02" />
+                            <constraint firstItem="7ea6-0a01" firstAttribute="leading" secondItem="af69-710e-58bf" secondAttribute="leading" constant="20" id="7ea6-0d03" />
+                            <constraint priority="1" firstItem="7ea6-0a01" firstAttribute="trailing" secondItem="af69-710e-58bf" secondAttribute="centerX" constant="-20" id="7ea6-0d04" />
+                            <constraint priority="1" firstItem="6724-6b99-1839" firstAttribute="leading" secondItem="7ea6-0a01" secondAttribute="trailing" constant="20" id="7ea6-0e00" />
+                            <constraint priority="1" firstItem="0ac3-34d4-f9b1" firstAttribute="leading" secondItem="7ea6-0a01" secondAttribute="trailing" constant="20" id="7ea6-0e01" />
+                            <constraint priority="1" firstItem="5a9e-9acc-8d37" firstAttribute="leading" secondItem="7ea6-0a01" secondAttribute="trailing" constant="40" id="7ea6-0e02" />
+                            <constraint priority="1" firstItem="0835-efe4-f036" firstAttribute="leading" secondItem="7ea6-0a01" secondAttribute="trailing" constant="20" id="7ea6-0e03" />
+                            <constraint priority="999" firstItem="6724-6b99-1839" firstAttribute="leading" secondItem="2b3d-1a0a-1d24" secondAttribute="leading" id="0013-7eaa-086b" identifier="ds.reference.0013-7eaa-086b" />
                             <constraint firstItem="2b3d-1a0a-1d24" firstAttribute="trailing" secondItem="6724-6b99-1839" secondAttribute="trailing" id="8229-937c-94db" identifier="ds.reference.8229-937c-94db" />
                             <constraint firstItem="6724-6b99-1839" firstAttribute="top" secondItem="2b3d-1a0a-1d24" secondAttribute="top" constant="-4" id="7e2f-4d80-c9c5" identifier="ds.reference.7e2f-4d80-c9c5" />
-                            <constraint firstItem="0ac3-34d4-f9b1" firstAttribute="leading" secondItem="2b3d-1a0a-1d24" secondAttribute="leading" id="64a7-c9ec-aa84" identifier="ds.reference.64a7-c9ec-aa84" />
+                            <constraint priority="999" firstItem="0ac3-34d4-f9b1" firstAttribute="leading" secondItem="2b3d-1a0a-1d24" secondAttribute="leading" id="64a7-c9ec-aa84" identifier="ds.reference.64a7-c9ec-aa84" />
                             <constraint firstItem="2b3d-1a0a-1d24" firstAttribute="trailing" secondItem="0ac3-34d4-f9b1" secondAttribute="trailing" id="fc53-0def-08b3" identifier="ds.reference.fc53-0def-08b3" />
                             <constraint firstItem="af69-710e-58bf" firstAttribute="bottom" secondItem="0ac3-34d4-f9b1" secondAttribute="bottom" id="83d5-94f9-0f6b" identifier="ds.reference.83d5-94f9-0f6b" />
-                            <constraint firstItem="5a9e-9acc-8d37" firstAttribute="leading" secondItem="2b3d-1a0a-1d24" secondAttribute="leading" constant="20" id="2613-68b2-4ffd" identifier="ds.reference.2613-68b2-4ffd" />
+                            <constraint priority="999" firstItem="5a9e-9acc-8d37" firstAttribute="leading" secondItem="2b3d-1a0a-1d24" secondAttribute="leading" constant="20" id="2613-68b2-4ffd" identifier="ds.reference.2613-68b2-4ffd" />
                             <constraint firstItem="2b3d-1a0a-1d24" firstAttribute="trailing" secondItem="5a9e-9acc-8d37" secondAttribute="trailing" constant="20" id="ed43-efe4-f4e4" identifier="ds.reference.ed43-efe4-f4e4" />
                             <constraint firstItem="2b3d-1a0a-1d24" firstAttribute="bottom" secondItem="5a9e-9acc-8d37" secondAttribute="bottom" id="4720-5ad5-4411" identifier="ds.reference.4720-5ad5-4411" />
-                            <constraint firstItem="0835-efe4-f036" firstAttribute="leading" secondItem="2b3d-1a0a-1d24" secondAttribute="leading" id="6d54-83e8-2381" identifier="ds.reference.6d54-83e8-2381" />
+                            <constraint priority="999" firstItem="0835-efe4-f036" firstAttribute="leading" secondItem="2b3d-1a0a-1d24" secondAttribute="leading" id="6d54-83e8-2381" identifier="ds.reference.6d54-83e8-2381" />
                             <constraint firstItem="2b3d-1a0a-1d24" firstAttribute="trailing" secondItem="0835-efe4-f036" secondAttribute="trailing" id="e216-cc4d-effc" identifier="ds.reference.e216-cc4d-effc" />
                             <constraint firstItem="af69-710e-58bf" firstAttribute="bottom" secondItem="0835-efe4-f036" secondAttribute="bottom" id="e9a4-1fb8-f9aa" identifier="ds.reference.e9a4-1fb8-f9aa" />
                             <constraint firstItem="0835-efe4-f036" firstAttribute="top" secondItem="6724-6b99-1839" secondAttribute="bottom" id="bd67-8b76-43f7" identifier="ds.reference.bd67-8b76-43f7" />
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="previewPaneView" destination="7ea6-0a01" id="7ea6-0f01" />
+                        <outlet property="previewImageView" destination="7ea6-0a03" id="7ea6-0f02" />
+                        <outletCollection property="listOnlyConstraints" destination="0013-7eaa-086b" collectionClass="NSMutableArray" id="7ea6-1000" />
+                        <outletCollection property="listOnlyConstraints" destination="64a7-c9ec-aa84" collectionClass="NSMutableArray" id="7ea6-1001" />
+                        <outletCollection property="listOnlyConstraints" destination="2613-68b2-4ffd" collectionClass="NSMutableArray" id="7ea6-1002" />
+                        <outletCollection property="listOnlyConstraints" destination="6d54-83e8-2381" collectionClass="NSMutableArray" id="7ea6-1003" />
+                        <outletCollection property="splitConstraints" destination="7ea6-0d04" collectionClass="NSMutableArray" id="7ea6-2000" />
+                        <outletCollection property="splitConstraints" destination="7ea6-0e00" collectionClass="NSMutableArray" id="7ea6-2001" />
+                        <outletCollection property="splitConstraints" destination="7ea6-0e01" collectionClass="NSMutableArray" id="7ea6-2002" />
+                        <outletCollection property="splitConstraints" destination="7ea6-0e02" collectionClass="NSMutableArray" id="7ea6-2003" />
+                        <outletCollection property="splitConstraints" destination="7ea6-0e03" collectionClass="NSMutableArray" id="7ea6-2004" />
                         <outlet property="scrollView" destination="0835-efe4-f036" id="8891-1353-1fa0" />
                         <outlet property="contentStack" destination="c70d-ca83-9d05" id="a6c1-8a82-f2cd" />
                         <outlet property="titleStack" destination="67e7-3a49-3ab6" id="1954-7595-9076" />
@@ -6898,26 +7227,73 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapGenerate:" />
                                 </userDefinedRuntimeAttributes>
                             </view>
+                        <view hidden="YES" contentMode="scaleToFill" clipsSubviews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7ea7-0a01" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="detailPaneView">
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="7ea7-0a03" userLabel="previewImageView" />
+                                    <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ea7-0a02" customClass="DSLabel" customModule="HomeAI" customModuleProvider="target" userLabel="detailPlaceholderLabel" opaque="NO" text="" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO">
+                                        <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="15" />
+                                        <color key="textColor" name="dsTextSecondary" />
+                                        <nil key="highlightedColor" />
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="" />
+                                        </userDefinedRuntimeAttributes>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" name="dsSurface" />
+                                <constraints>
+                                    <constraint firstItem="7ea7-0a02" firstAttribute="centerX" secondItem="7ea7-0a01" secondAttribute="centerX" id="7ea7-0c01" />
+                                    <constraint firstItem="7ea7-0a02" firstAttribute="centerY" secondItem="7ea7-0a01" secondAttribute="centerY" id="7ea7-0c02" />
+                                    <constraint firstItem="7ea7-0a02" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="7ea7-0a01" secondAttribute="leading" constant="32" id="7ea7-0c03" />
+                                    <constraint firstItem="7ea7-0a03" firstAttribute="leading" secondItem="7ea7-0a01" secondAttribute="leading" id="7ea7-0c10" />
+                                    <constraint firstItem="7ea7-0a03" firstAttribute="trailing" secondItem="7ea7-0a01" secondAttribute="trailing" id="7ea7-0c11" />
+                                    <constraint firstItem="7ea7-0a03" firstAttribute="top" secondItem="7ea7-0a01" secondAttribute="top" id="7ea7-0c12" />
+                                    <constraint firstItem="7ea7-0a03" firstAttribute="bottom" secondItem="7ea7-0a01" secondAttribute="bottom" id="7ea7-0c13" />
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <real key="value" value="28" />
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" name="dsBackground" />
                         <viewLayoutGuide key="safeArea" id="29ae-5c33-f782" />
                         <constraints>
-                            <constraint firstItem="d328-856a-5170" firstAttribute="leading" secondItem="29ae-5c33-f782" secondAttribute="leading" id="8ae0-ae9e-0e2e" identifier="ds.reference.8ae0-ae9e-0e2e" />
+                            <constraint firstItem="7ea7-0a01" firstAttribute="top" secondItem="7da1-da88-3536" secondAttribute="top" constant="20" id="7ea7-0d01" />
+                            <constraint firstItem="7da1-da88-3536" firstAttribute="bottom" secondItem="7ea7-0a01" secondAttribute="bottom" constant="20" id="7ea7-0d02" />
+                            <constraint firstItem="7ea7-0a01" firstAttribute="leading" secondItem="7da1-da88-3536" secondAttribute="leading" constant="20" id="7ea7-0d03" />
+                            <constraint priority="1" firstItem="7ea7-0a01" firstAttribute="trailing" secondItem="7da1-da88-3536" secondAttribute="centerX" constant="-20" id="7ea7-0d04" />
+                            <constraint priority="1" firstItem="d328-856a-5170" firstAttribute="leading" secondItem="7ea7-0a01" secondAttribute="trailing" constant="20" id="7ea7-0e00" />
+                            <constraint priority="1" firstItem="3463-6102-67ba" firstAttribute="leading" secondItem="7ea7-0a01" secondAttribute="trailing" constant="20" id="7ea7-0e01" />
+                            <constraint priority="1" firstItem="e1c2-0633-00f2" firstAttribute="leading" secondItem="7ea7-0a01" secondAttribute="trailing" constant="40" id="7ea7-0e02" />
+                            <constraint priority="1" firstItem="d2d2-0fb0-bc6e" firstAttribute="leading" secondItem="7ea7-0a01" secondAttribute="trailing" constant="20" id="7ea7-0e03" />
+                            <constraint priority="999" firstItem="d328-856a-5170" firstAttribute="leading" secondItem="29ae-5c33-f782" secondAttribute="leading" id="8ae0-ae9e-0e2e" identifier="ds.reference.8ae0-ae9e-0e2e" />
                             <constraint firstItem="29ae-5c33-f782" firstAttribute="trailing" secondItem="d328-856a-5170" secondAttribute="trailing" id="0ca5-02e3-1b95" identifier="ds.reference.0ca5-02e3-1b95" />
                             <constraint firstItem="d328-856a-5170" firstAttribute="top" secondItem="29ae-5c33-f782" secondAttribute="top" constant="-4" id="4fe9-4cc0-55f9" identifier="ds.reference.4fe9-4cc0-55f9" />
-                            <constraint firstItem="3463-6102-67ba" firstAttribute="leading" secondItem="29ae-5c33-f782" secondAttribute="leading" id="63d8-d12f-28ce" identifier="ds.reference.63d8-d12f-28ce" />
+                            <constraint priority="999" firstItem="3463-6102-67ba" firstAttribute="leading" secondItem="29ae-5c33-f782" secondAttribute="leading" id="63d8-d12f-28ce" identifier="ds.reference.63d8-d12f-28ce" />
                             <constraint firstItem="29ae-5c33-f782" firstAttribute="trailing" secondItem="3463-6102-67ba" secondAttribute="trailing" id="2c69-526a-f443" identifier="ds.reference.2c69-526a-f443" />
                             <constraint firstItem="7da1-da88-3536" firstAttribute="bottom" secondItem="3463-6102-67ba" secondAttribute="bottom" id="6394-cbe0-003b" identifier="ds.reference.6394-cbe0-003b" />
-                            <constraint firstItem="e1c2-0633-00f2" firstAttribute="leading" secondItem="29ae-5c33-f782" secondAttribute="leading" constant="20" id="965f-9adf-8534" identifier="ds.reference.965f-9adf-8534" />
+                            <constraint priority="999" firstItem="e1c2-0633-00f2" firstAttribute="leading" secondItem="29ae-5c33-f782" secondAttribute="leading" constant="20" id="965f-9adf-8534" identifier="ds.reference.965f-9adf-8534" />
                             <constraint firstItem="29ae-5c33-f782" firstAttribute="trailing" secondItem="e1c2-0633-00f2" secondAttribute="trailing" constant="20" id="5ecb-1769-4a03" identifier="ds.reference.5ecb-1769-4a03" />
                             <constraint firstItem="29ae-5c33-f782" firstAttribute="bottom" secondItem="e1c2-0633-00f2" secondAttribute="bottom" id="cac0-c2a9-502c" identifier="ds.reference.cac0-c2a9-502c" />
-                            <constraint firstItem="d2d2-0fb0-bc6e" firstAttribute="leading" secondItem="29ae-5c33-f782" secondAttribute="leading" id="f548-f5b1-3149" identifier="ds.reference.f548-f5b1-3149" />
+                            <constraint priority="999" firstItem="d2d2-0fb0-bc6e" firstAttribute="leading" secondItem="29ae-5c33-f782" secondAttribute="leading" id="f548-f5b1-3149" identifier="ds.reference.f548-f5b1-3149" />
                             <constraint firstItem="29ae-5c33-f782" firstAttribute="trailing" secondItem="d2d2-0fb0-bc6e" secondAttribute="trailing" id="4fcf-9657-da81" identifier="ds.reference.4fcf-9657-da81" />
                             <constraint firstItem="7da1-da88-3536" firstAttribute="bottom" secondItem="d2d2-0fb0-bc6e" secondAttribute="bottom" id="6e3c-940b-2e63" identifier="ds.reference.6e3c-940b-2e63" />
                             <constraint firstItem="d2d2-0fb0-bc6e" firstAttribute="top" secondItem="d328-856a-5170" secondAttribute="bottom" id="fd13-47a4-ea6a" identifier="ds.reference.fd13-47a4-ea6a" />
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="previewPaneView" destination="7ea7-0a01" id="7ea7-0f01" />
+                        <outlet property="previewImageView" destination="7ea7-0a03" id="7ea7-0f02" />
+                        <outletCollection property="listOnlyConstraints" destination="8ae0-ae9e-0e2e" collectionClass="NSMutableArray" id="7ea7-1000" />
+                        <outletCollection property="listOnlyConstraints" destination="63d8-d12f-28ce" collectionClass="NSMutableArray" id="7ea7-1001" />
+                        <outletCollection property="listOnlyConstraints" destination="965f-9adf-8534" collectionClass="NSMutableArray" id="7ea7-1002" />
+                        <outletCollection property="listOnlyConstraints" destination="f548-f5b1-3149" collectionClass="NSMutableArray" id="7ea7-1003" />
+                        <outletCollection property="splitConstraints" destination="7ea7-0d04" collectionClass="NSMutableArray" id="7ea7-2000" />
+                        <outletCollection property="splitConstraints" destination="7ea7-0e00" collectionClass="NSMutableArray" id="7ea7-2001" />
+                        <outletCollection property="splitConstraints" destination="7ea7-0e01" collectionClass="NSMutableArray" id="7ea7-2002" />
+                        <outletCollection property="splitConstraints" destination="7ea7-0e02" collectionClass="NSMutableArray" id="7ea7-2003" />
+                        <outletCollection property="splitConstraints" destination="7ea7-0e03" collectionClass="NSMutableArray" id="7ea7-2004" />
                         <outlet property="scrollView" destination="d2d2-0fb0-bc6e" id="52ef-b6d5-2488" />
                         <outlet property="contentStack" destination="784c-914d-ad77" id="9332-404b-9640" />
                         <outlet property="titleStack" destination="796a-e952-be95" id="5735-b120-8aed" />

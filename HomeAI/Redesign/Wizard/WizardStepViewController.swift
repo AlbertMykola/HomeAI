@@ -48,7 +48,8 @@ class WizardStepViewController: UIViewController, DSWideLayoutFullWidth {
         splitConstraints?.forEach { $0.priority = p(next == .landscape) }
         portraitConstraints?.forEach { $0.priority = p(next == .portrait) }
         portraitReleasedConstraints?.forEach { $0.priority = p(next != .portrait) }
-        pane.isHidden = next == .phone
+        // Screens without a portrait set (tools, Figma Duo/P/07) keep the photo summary row instead of a pane.
+        pane.isHidden = next == .phone || (next == .portrait && (portraitConstraints ?? []).isEmpty)
         pane.layer.cornerRadius = next == .portrait ? 24 : 28   // Figma Duo/L/04: inset 20, corners 28
         navigationController?.view.setNeedsLayout()
     }

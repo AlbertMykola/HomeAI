@@ -27,6 +27,12 @@ class ToolStepViewController: WizardStepViewController {
 
     private var didRunEntrance = false
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        // Unfolded Duo landscape (Figma Duo/L/07): the photo sits in the left pane, so the summary row goes.
+        photoSummaryView.isHidden = previewPaneView?.isHidden == false
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         photoThumbView.image = session.photo
