@@ -44,6 +44,11 @@ class MaskEditorViewController: UIViewController {
 
     override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        dsApplyWideColumn()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         // Long translations must wrap inside the window. An unbounded, self-sizing hint with

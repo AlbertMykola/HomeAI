@@ -24,7 +24,7 @@ final class TabBarController: UITabBarController {
     }
 
     override var shouldAutorotate: Bool {
-        !UIDevice.isPadPortraitLocked
+        !UIDevice.isPortraitLocked
     }
 
     override func viewDidLoad() {

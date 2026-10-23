@@ -25,6 +25,11 @@ final class WelcomeProViewController: UIViewController {
 
     override var preferredStatusBarStyle: UIStatusBarStyle { .darkContent }
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        dsApplyWideColumn()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel.text = "Welcome to Pro".localized

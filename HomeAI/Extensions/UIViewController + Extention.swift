@@ -84,16 +84,29 @@ extension UIDevice {
         CHHapticEngine.capabilitiesForHardware().supportsHaptics
     }
 
-    static var isPadPortraitLocked: Bool {
-        current.userInterfaceIdiom == .pad
+    /// Foldable iPhones (iPhone Duo): the inner display is used in both orientations and in Split View.
+    static let isFoldablePhone: Bool = {
+        let foldableModels: Set<String> = ["iPhone19,4"]
+        if let simulated = ProcessInfo.processInfo.environment["SIMULATOR_MODEL_IDENTIFIER"] {
+            return foldableModels.contains(simulated)
+        }
+        var info = utsname()
+        uname(&info)
+        let model = withUnsafeBytes(of: &info.machine) { String(decoding: $0.prefix { $0 != 0 }, as: UTF8.self) }
+        return foldableModels.contains(model)
+    }()
+
+    /// iPad and classic iPhones stay portrait; iPhone Duo rotates (Info.plist lists landscape for iPhone).
+    static var isPortraitLocked: Bool {
+        current.userInterfaceIdiom == .pad || !isFoldablePhone
     }
 
     static var portraitLockedInterfaceOrientations: UIInterfaceOrientationMask {
-        isPadPortraitLocked ? .portrait : .all
+        isPortraitLocked ? .portrait : .allButUpsideDown
     }
 
     static func lockToPortraitIfNeeded(in windowScene: UIWindowScene) {
-        guard isPadPortraitLocked else { return }
+        guard isPortraitLocked else { return }
 
         if #available(iOS 16.0, *) {
             let preferences = UIWindowScene.GeometryPreferences.iOS(interfaceOrientations: .portrait)

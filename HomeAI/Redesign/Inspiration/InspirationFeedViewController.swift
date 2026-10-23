@@ -1,7 +1,7 @@
 import UIKit
 
 /// A/08 · I1 Inspiration feed (+ I1 · Skeleton). Tab root. Layout: Inspiration.storyboard.
-final class InspirationFeedViewController: UIViewController {
+final class InspirationFeedViewController: UIViewController, DSWideLayoutFullWidth {
 
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var headerView: UIView!

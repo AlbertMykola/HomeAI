@@ -5,7 +5,10 @@ struct OnboardingLayout {
     let scale: CGFloat
 
     init(size: CGSize) {
-        scale = min(size.width / 393, size.height / 852)
+        let fitted = min(size.width / 393, size.height / 852)
+        // Landscape windows (iPhone Duo unfolded) are short, not small: keep text and controls readable and let
+        // the screen scroll instead of shrinking everything to the height.
+        scale = size.width > size.height ? max(fitted, 0.92) : fitted
     }
 
     var referenceHeight: CGFloat { 852 * scale }

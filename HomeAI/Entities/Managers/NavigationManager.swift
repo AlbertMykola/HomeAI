@@ -7,7 +7,12 @@ final class PortraitNavigationController: UINavigationController {
     }
 
     override var shouldAutorotate: Bool {
-        !UIDevice.isPadPortraitLocked
+        !UIDevice.isPortraitLocked
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        dsApplyWideColumn(fullWidth: topViewController is DSWideLayoutFullWidth)
     }
 }
 

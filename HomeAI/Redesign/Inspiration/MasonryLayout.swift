@@ -1,10 +1,12 @@
 import UIKit
 
-/// Two-column masonry (A/08 · I1): column width from the screen, height from `heightRatio`, gaps 13 / 12.
+/// Masonry (A/08 · I1): 2 columns on phones, 3–4 on wide windows (iPhone Duo unfolded); column width from the
+/// screen, height from `heightRatio`, gaps 13 / 12.
 /// Items keep their height across filters, so batch updates make cards fly to their new places.
 final class MasonryLayout: UICollectionViewLayout {
 
-    var columns = 2
+    /// Columns for the current width (`DSGrid`).
+    var columns: Int { DSGrid.columns(for: collectionView?.bounds.width ?? 0) }
     var columnSpacing: CGFloat = 13
     var rowSpacing: CGFloat = 12
     var sideInset: CGFloat = 20

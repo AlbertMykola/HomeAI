@@ -3,8 +3,8 @@ import Adapty
 import SafariServices
 import StoreKit
 
-/// A/02 · P1 Paywall (+ trial off, P4 processing, Purchase failed / Restore alerts). Honest: ✕ and Restore are
-/// visible from the first frame. Prices and the trial come from the Adapty paywall products (StoreKit);
+/// A/02 · P1 Paywall (+ trial off, P4 processing, Purchase failed / Restore alerts).
+/// Close appears five seconds after opening. Prices and the trial come from the Adapty paywall products (StoreKit);
 /// Both trial states use weekly products. The toggle is available only when both offers exist.
 /// Layout: Paywall.storyboard. Light only.
 final class ProPaywallViewController: UIViewController {
@@ -55,7 +55,6 @@ final class ProPaywallViewController: UIViewController {
     private var products: [AdaptyPaywallProduct] = []
     private var trialOn = true
     private var isPurchasing = false
-    private var purchaseTimeout: DispatchWorkItem?
     private var didRunEntrance = false
     private let amplitude = AmplitudeService.shared
     private let sessionID = UUID().uuidString
@@ -77,6 +76,11 @@ final class ProPaywallViewController: UIViewController {
     }
 
     override var preferredStatusBarStyle: UIStatusBarStyle { .darkContent }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        dsApplyWideColumn()
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -199,6 +203,9 @@ final class ProPaywallViewController: UIViewController {
         super.viewDidAppear(animated)
         guard !didRunEntrance else { return }
         didRunEntrance = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
+            self?.closeButton.isHidden = false
+        }
         AdaptyService.shared.paywallShown()
         runEntrance()
     }
@@ -217,8 +224,7 @@ final class ProPaywallViewController: UIViewController {
             switch result {
             case .success(let loaded):
                 self.products = loaded.products
-                let selection = WeeklyPaywallProducts.selection(from: loaded.products)
-                // No eligible trial → straight to "trial off".
+                let selection = WeeklyPaywallProducts.presentationSelection(from: loaded.products)
                 self.trialOn = selection.trialIndex != nil
                 self.setLoading(false)
                 self.render(animated: false)
@@ -231,7 +237,7 @@ final class ProPaywallViewController: UIViewController {
     }
 
     private var selectedIndex: Int? {
-        WeeklyPaywallProducts.selection(from: products).selectedIndex(trialEnabled: trialOn)
+        WeeklyPaywallProducts.presentationSelection(from: products).selectedIndex(trialEnabled: trialOn)
     }
     private var selectedProduct: AdaptyPaywallProduct? { selectedIndex.flatMap { products.indices.contains($0) ? products[$0] : nil } }
 
@@ -243,8 +249,8 @@ final class ProPaywallViewController: UIViewController {
         guard let product = selectedProduct else { return }
         let price = product.localizedPrice ?? product.paywallFormattedCurrencyAmount(product.paywallPriceDecimal)
         let period = "week".localized
-        let days = product.paywallTrialDays ?? 3
-        let hasTrial = trialOn && product.paywallHasFreeTrial
+        let days = product.paywallConfiguredTrialDays ?? 3
+        let hasTrial = trialOn && product.paywallHasFreeTrialOffer
         let apply = {
             self.subtitleLabel.text = hasTrial
                 ? String(format: "Enjoy %d days free — cancel anytime.".localized, days)
@@ -254,7 +260,10 @@ final class ProPaywallViewController: UIViewController {
                 self.trialLabel.text = "Free Trial Enabled".localized
                 self.dueFreeLabel.text = String(format: "%d days free".localized, days)
                 self.dueTodayPriceLabel.text = Self.zeroPrice(like: price)
-                let charge = Calendar.current.date(byAdding: .day, value: days, to: Date()) ?? Date()
+                let today = Date()
+                let charge = product.paywallHasFreeTrial
+                    ? (Calendar.current.date(byAdding: .day, value: days, to: today) ?? today)
+                    : today
                 self.chargeDateLabel.text = String(format: "Due %@".localized,
                                                    DateFormatter.localizedString(from: charge, dateStyle: .medium, timeStyle: .none))
                 self.chargePriceLabel.text = price
@@ -279,7 +288,7 @@ final class ProPaywallViewController: UIViewController {
             self.trialToggle.accessibilityLabel = self.trialLabel.text
             self.ctaButton.accessibilityLabel = self.ctaLabel.text
         }
-        trialToggle.isHidden = !WeeklyPaywallProducts.selection(from: products).canToggleTrial
+        trialToggle.isHidden = !WeeklyPaywallProducts.presentationSelection(from: products).canToggleTrial
         trialToggle.accessibilityTraits = hasTrial ? [.button, .selected] : .button
         if animated {
             UIView.animate(withDuration: 0.45, delay: 0, usingSpringWithDamping: 0.85, initialSpringVelocity: 0,
@@ -425,14 +434,14 @@ final class ProPaywallViewController: UIViewController {
     // MARK: Actions
 
     @IBAction private func didTapClose(_ sender: Any) {
-        guard !isPurchasing else { return }
+        guard !closeButton.isHidden, !isPurchasing else { return }
         amplitude.logEvent(.closeButtonAction)
         amplitude.logPaywallEvent("paywall_closed", properties: properties())
         dismiss(animated: true)
     }
 
     @IBAction private func didTapTrial(_ sender: Any) {
-        var canToggle = WeeklyPaywallProducts.selection(from: products).canToggleTrial
+        var canToggle = WeeklyPaywallProducts.presentationSelection(from: products).canToggleTrial
         #if DEBUG
         canToggle = canToggle || AppQA.enabled
         #endif
@@ -464,19 +473,10 @@ final class ProPaywallViewController: UIViewController {
         DS.Haptic.medium()
         amplitude.logEvent(.presBuyProduct(index: index))
         amplitude.logPaywallEvent("purchase_start", properties: properties(index: index))
-        // P4: never block without a way out — 30 s timeout → Purchase failed.
-        let timeout = DispatchWorkItem { [weak self] in
-            guard let self, self.isPurchasing else { return }
-            self.isPurchasing = false
-            self.setProcessing(false)
-            self.showPurchaseFailed(index: index)
-        }
-        purchaseTimeout = timeout
-        DispatchQueue.main.asyncAfter(deadline: .now() + 30, execute: timeout)
+        // StoreKit owns confirmation, cancellation and pending purchases; sandbox authentication can exceed 30 seconds.
         AdaptyService.shared.buyProduct(index: index) { [weak self] result in
             DispatchQueue.main.async {
                 guard let self, self.isPurchasing else { return }
-                self.purchaseTimeout?.cancel()
                 self.isPurchasing = false
                 self.setProcessing(false)
                 switch result {
@@ -506,7 +506,7 @@ final class ProPaywallViewController: UIViewController {
     private func setProcessing(_ on: Bool) {
         ctaSpinner.isHidden = !on
         on ? ctaSpinner.startAnimating() : ctaSpinner.stopAnimating()
-        ctaLabel.text = on ? "Confirming with App Store…".localized : (trialOn && selectedProduct?.paywallHasFreeTrial == true
+        ctaLabel.text = on ? "Confirming with App Store…".localized : (trialOn && selectedProduct?.paywallHasFreeTrialOffer == true
             ? "Start Free Trial".localized : "Continue".localized)
         ctaButton.isUserInteractionEnabled = !on
         UIView.animate(withDuration: 0.2) {

@@ -60,6 +60,11 @@ final class StateScreenViewController: UIViewController {
 
     override var preferredStatusBarStyle: UIStatusBarStyle { .default }
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        dsApplyWideColumn()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()

@@ -2,7 +2,7 @@ import UIKit
 
 /// A/10 · PR1 Projects tab: Designs (projects grid, select mode, delete confirm) · Ideas (saved from Inspiration),
 /// PR3 empty states. Layout: Projects.storyboard.
-final class ProjectsViewController: UIViewController {
+final class ProjectsViewController: UIViewController, DSWideLayoutFullWidth {
 
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var headerView: UIView!
@@ -111,7 +111,8 @@ final class ProjectsViewController: UIViewController {
     private func updateItemSize() {
         guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         let metrics = OnboardingLayout(size: view.dsLayoutSize)
-        let w = floor((collectionView.bounds.width - metrics.value(40 + 13)) / 2)
+        let columns = CGFloat(DSGrid.columns(for: collectionView.bounds.width))
+        let w = floor((collectionView.bounds.width - metrics.value(40 + 13 * (columns - 1))) / columns)
         let h = segment == .designs ? round(w * 200 / 170) + metrics.value(46) : round(w * 230 / 170)
         let size = CGSize(width: w, height: h)
         guard layout.itemSize != size else { return }
