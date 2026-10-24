@@ -13,6 +13,22 @@ final class OnboardingGoalViewController: UIViewController, OBPageChild {
     @IBOutlet private weak var rows: UIStackView!
     @IBOutlet private weak var horizontalViewportView: OnboardingViewportView!
     @IBOutlet private var viewportSafeConstraints: [NSLayoutConstraint]!
+    /// iPhone Duo unfolded, landscape (Figma Duo/L/01 · O4): dots, title and subtitle on a tinted left pane, the
+    /// 2×2 grid in the right column. Sets in Onboarding.storyboard (phone 999 / split 1); iPhones unchanged.
+    @IBOutlet private var phoneConstraints: [NSLayoutConstraint]!
+    @IBOutlet private var splitConstraints: [NSLayoutConstraint]!
+    @IBOutlet private var splitTextTrailing: [NSLayoutConstraint]!
+    @IBOutlet private weak var splitPaneView: UIView!
+    @IBOutlet private weak var splitPaneTrailing: NSLayoutConstraint!
+    @IBOutlet private weak var splitGridLeading: NSLayoutConstraint!
+    private lazy var layoutSwitch = DSLayoutSwitch(phone: phoneConstraints, unfolded: splitConstraints)
+    private var isSplit: Bool {
+        UIDevice.isFoldablePhone && view.bounds.width > view.bounds.height && DSWideLayout.isWide(view.bounds.width)
+    }
+    /// iPhone Duo unfolded, portrait (Figma Duo/P/01 · O4): the header centred above the hinge, the grid below it.
+    private var isUnfoldedPortrait: Bool {
+        UIDevice.isFoldablePhone && view.bounds.width <= view.bounds.height && DSWideLayout.isWide(view.bounds.width)
+    }
     @objc private var horizontalViewportGuide: UILayoutGuide? {
         usesParentHorizontalViewport ? horizontalViewportView?.layoutMarginsGuide : nil
     }
@@ -51,14 +67,25 @@ final class OnboardingGoalViewController: UIViewController, OBPageChild {
         }
     }
 
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        let split = isSplit
+        _ = layoutSwitch.set(unfolded: split)
+        splitPaneView.isHidden = !split
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         let layout = OnboardingLayout(size: layoutSize)
-        let inset = layout.inset(in: layoutSize.width, base: 20)
+        let split = isSplit
+        let unfoldedPortrait = isUnfoldedPortrait
+        let inset = unfoldedPortrait ? layout.value(20) : layout.inset(in: layoutSize.width, base: 20)
         horizontalInsets.forEach { $0.constant = inset }
-        titleLabel.font = layout.font(.semiBold, 34)
-        subtitleLabel.font = layout.font(.regular, 16)
-        for (label, lineHeight, kern) in [(titleLabel!, layout.value(37.4), layout.value(-0.34)), (subtitleLabel!, layout.value(22.4), CGFloat(0))] {
+        // Split: the left pane uses the larger Figma type (Duo/L/01 · O4: 42/47 title, 20/27 subtitle).
+        titleLabel.font = layout.font(.semiBold, split ? 42 : 34)
+        subtitleLabel.font = layout.font(.regular, split ? 20 : 16)
+        let titleLine = layout.value(split ? 47 : 37.4), subtitleLine = layout.value(split ? 27 : 22.4)
+        for (label, lineHeight, kern) in [(titleLabel!, titleLine, layout.value(split ? -0.42 : -0.34)), (subtitleLabel!, subtitleLine, CGFloat(0))] {
             let paragraph = NSMutableParagraphStyle()
             paragraph.alignment = .left
             paragraph.minimumLineHeight = lineHeight
@@ -67,24 +94,38 @@ final class OnboardingGoalViewController: UIViewController, OBPageChild {
                 .font: label.font as Any, .foregroundColor: label.textColor as Any, .paragraphStyle: paragraph, .kern: kern
             ])
         }
-        stepper.scale = layout.scale
+        stepper.scale = layout.scale * (split ? 1.2 : 1)
         let closedDuo = UIDevice.isFoldablePhone && !DSWideLayout.isWide(layoutSize.width)
         // Closed Duo: no notch above the content (the status bar is on the right rail), so the stepper sits at 50.
-        contentTop.constant = closedDuo ? 44 : max(layout.value(42), layout.value(96) - view.safeAreaInsets.top)
+        contentTop.constant = split ? 0 : closedDuo ? 44 : max(layout.value(42), layout.value(96) - view.safeAreaInsets.top)
         rowStacks.forEach { $0.spacing = layout.value(13) }
         rows.spacing = layout.value(13)
         // Closed iPhone Duo (Figma Duo/C/01 · O4): a 678 pt screen fits the 2×2 grid and the skip link when the
         // cards are 185 pt and the grid sits 43 pt in (the title keeps its 20 pt inset). Other iPhones unchanged.
-        options.forEach { $0.scale = layout.scale * (closedDuo ? 0.9 : 1) }
-        cardHeight.constant = closedDuo ? 185 : layout.value(206)
-        rows.isLayoutMarginsRelativeArrangement = closedDuo
-        rows.layoutMargins = closedDuo ? UIEdgeInsets(top: 0, left: 23, bottom: 0, right: 23) : .zero
-        let width = layoutSize.width - inset * 2
+        options.forEach { $0.scale = layout.scale * (closedDuo ? 0.9 : unfoldedPortrait ? 0.86 : 1) }
+        cardHeight.constant = closedDuo ? 185 : layout.value(unfoldedPortrait ? 174 : 206)
+        rows.isLayoutMarginsRelativeArrangement = closedDuo || unfoldedPortrait
+        // Unfolded portrait: 261 pt cards, 67 pt from the edges (the title keeps its 20 pt inset).
+        rows.layoutMargins = closedDuo ? UIEdgeInsets(top: 0, left: 23, bottom: 0, right: 23)
+            : unfoldedPortrait ? UIEdgeInsets(top: 0, left: 47, bottom: 0, right: 47) : .zero
+        // Split: the panes meet at the hinge (window centre), not at this page's centre (the rail is beside it).
+        let hinge = split ? view.window.map { $0.bounds.midX - view.bounds.midX } ?? 0 : 0
+        if split {
+            splitPaneTrailing.constant = hinge
+            splitGridLeading.constant = hinge + 22
+            splitTextTrailing.forEach { $0.constant = hinge - 24 }
+        }
+        let width = split ? view.bounds.width / 2 + hinge - 48 : layoutSize.width - inset * 2
         let titleHeight = titleLabel.sizeThatFits(CGSize(width: width, height: .greatestFiniteMagnitude)).height
         let subtitleHeight = subtitleLabel.sizeThatFits(CGSize(width: width, height: .greatestFiniteMagnitude)).height
         // The scroll content can grow for translations and short windows; the footer stays reachable.
         let headerBottom = layout.value(6 + 14 + 14) + titleHeight + subtitleHeight
         gridTop.constant = closedDuo ? 14 : max(layout.value(204) - headerBottom, layout.value(24))
+        if unfoldedPortrait {
+            let hinge = view.bounds.height / 2
+            contentTop.constant = max(layout.value(20), (hinge - headerBottom) / 2 + layout.value(10) - view.safeAreaInsets.top)
+            gridTop.constant = max(layout.value(24), hinge + layout.value(22) - view.safeAreaInsets.top - contentTop.constant - headerBottom)
+        }
     }
 
     @objc private func selectGoal(_ sender: OnboardingGoalControl) {

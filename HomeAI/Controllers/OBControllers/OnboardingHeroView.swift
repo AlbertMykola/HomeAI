@@ -4,6 +4,8 @@ import UIKit
 final class OnboardingHeroView: UIView, UIGestureRecognizerDelegate {
     var panelTop: CGFloat = 552 { didSet { setNeedsLayout() } }
     var layoutScale: CGFloat = 1 { didSet { setNeedsLayout() } }
+    /// iPhone Duo unfolded portrait (Figma Duo/P/01 · O3): the prompt spans the width instead of an iPhone column.
+    var fullWidthPrompt = false { didSet { if fullWidthPrompt != oldValue { setNeedsLayout() } } }
 
     private var page = OnboardingPageViewController.Page.room
     @IBOutlet private weak var canvas: UIView!
@@ -296,7 +298,7 @@ final class OnboardingHeroView: UIView, UIGestureRecognizerDelegate {
         scanGlow.frame = CGRect(x: 0, y: lineY - 120 * s, width: bounds.width, height: 120 * s)
         scan.alpha = progress > 0 && progress < 1 ? 1 : 0
         scanGlow.opacity = Float(scan.alpha)
-        let inset = max(20 * s, (bounds.width - 353 * s) / 2)
+        let inset = fullWidthPrompt ? 20 * s : max(20 * s, (bounds.width - 353 * s) / 2)
         let promptWidth = bounds.width - inset * 2
         geometry.setFrame(prompt, CGRect(x: inset, y: panelTop - 82 * s, width: promptWidth, height: 56 * s))
         prompt.layer.cornerRadius = 28 * s
