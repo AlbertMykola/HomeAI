@@ -913,6 +913,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="contentFillHeight" destination="PW1-FIL-019" id="7ea2-0000-0001" />
+                        <outlet property="contentFitHeight" destination="PW-FIT-019" id="7ea2-0000-0002" />
                         <outlet property="wideTitleLabel" destination="7ea1-0000-0001" id="7ea1-0002-0001" />
                         <outlet property="wideSubtitleLabel" destination="7ea1-0000-0002" id="7ea1-0002-0002" />
                         <outlet property="wideHeroImageView" destination="7e0c-0000-0001" id="7e0c-0000-0201" />

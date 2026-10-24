@@ -70,6 +70,9 @@ final class ProPaywallViewController: UIViewController {
     private var layoutSize = CGSize.zero
     private var baseFonts: [(UILabel, UIFont)] = []
     @IBOutlet private weak var contentScrollView: UIScrollView!
+    /// The content fills the scroll height on a phone; in two columns it keeps its natural height (bottom-aligned).
+    @IBOutlet private weak var contentFillHeight: NSLayoutConstraint!
+    @IBOutlet private weak var contentFitHeight: NSLayoutConstraint!
     private var baseConstraints: [(NSLayoutConstraint, CGFloat)] = []
     private var baseSpacings: [(UIStackView, CGFloat)] = []
     @IBOutlet private weak var footerHeight: NSLayoutConstraint!
@@ -102,6 +105,8 @@ final class ProPaywallViewController: UIViewController {
         isTwoColumn = wideLandscape
         singleColumnConstraints.forEach { $0.priority = UILayoutPriority(wideLandscape ? 1 : 999) }
         twoColumnConstraints.forEach { $0.priority = UILayoutPriority(wideLandscape ? 999 : 1) }
+        contentFillHeight.priority = UILayoutPriority(wideLandscape ? 1 : 999)
+        contentFitHeight.priority = UILayoutPriority(wideLandscape ? 1 : 745)
         wideHeroImageView.isHidden = !wideLandscape
         stageView.isHidden = wideLandscape
         [wideTitleLabel, wideSubtitleLabel].forEach { $0?.isHidden = !wideLandscape }
@@ -150,7 +155,10 @@ final class ProPaywallViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        defer { fitTimeline() }
+        defer {
+            fitTimeline()
+            bottomAlignTwoColumnContent()
+        }
         // Same text as the column title (the subtitle changes with the trial toggle).
         if wideTitleLabel.attributedText != titleLabel.attributedText { wideTitleLabel.attributedText = titleLabel.attributedText }
         if wideSubtitleLabel.attributedText != subtitleLabel.attributedText { wideSubtitleLabel.attributedText = subtitleLabel.attributedText }
@@ -204,9 +212,20 @@ final class ProPaywallViewController: UIViewController {
         }
     }
 
+    /// Duo landscape (Albert): the card, timeline and "no payment now" sit right above the button, not at the top.
+    private func bottomAlignTwoColumnContent() {
+        let free = contentScrollView.bounds.height - contentScrollView.contentSize.height
+        let top = isTwoColumn ? max(0, free) : 0
+        if abs(contentScrollView.contentInset.top - top) > 0.5 {
+            contentScrollView.contentInset.top = top
+            contentScrollView.contentOffset.y = -top
+        }
+    }
+
     private func fitTimeline() {
         let layout = OnboardingLayout(size: view.dsLayoutSize)
-        let width = view.dsLayoutSize.width - layout.value(62)
+        // The row is only as wide as its column (narrower than the window in the Duo's two-column layout).
+        let width = todayRow.bounds.width > 0 ? todayRow.bounds.width : view.dsLayoutSize.width - layout.value(62)
         let natural = [dueTodayLabel, dueFreeLabel, dueTodayPriceLabel].reduce(CGFloat.zero) { total, label in
             total + (label?.sizeThatFits(CGSize(width: CGFloat.greatestFiniteMagnitude,
                                                height: CGFloat.greatestFiniteMagnitude)).width ?? 0)
