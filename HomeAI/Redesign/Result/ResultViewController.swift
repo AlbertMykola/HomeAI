@@ -197,7 +197,7 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
         beforeChipLabel.isHidden = pairOriginalImageView.isHidden
         railToolbar.isHidden = !side
         [downloadButton, shareButton, moreButton].forEach { $0?.isHidden = side }
-        let portrait = isWideWindow && !side
+        let portrait = isWideWindow && !side && UIDevice.isFoldablePhone   // photo above the hinge: Duo only
         portraitConstraints.forEach { $0.priority = portrait ? high : low }
         if !side { portraitReleasedConstraints.forEach { $0.priority = portrait ? low : high } }
         let pair = isTabletop && !side && originalImageView.image != nil

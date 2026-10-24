@@ -89,6 +89,12 @@ final class ProPaywallViewController: UIViewController {
                                                 - (view.window?.safeAreaInsets.right ?? 0))
             && view.bounds.width > view.bounds.height
         dsApplyWideColumn(fullWidth: wideLandscape, portraitColumn: 420)
+        // Tall iPad portrait: keep the iPhone-height sheet of content together, centred (no stretched gaps).
+        let extra = UIDevice.isFoldablePhone || wideLandscape ? 0 : max(0, (view.bounds.height - 932) / 2)
+        if abs(additionalSafeAreaInsets.top - extra) > 0.5 {
+            additionalSafeAreaInsets.top = extra
+            additionalSafeAreaInsets.bottom = extra
+        }
         guard wideLandscape != isTwoColumn else { return }
         isTwoColumn = wideLandscape
         singleColumnConstraints.forEach { $0.priority = UILayoutPriority(wideLandscape ? 1 : 999) }

@@ -39,7 +39,8 @@ final class HomeViewController: UIViewController, DSWideLayoutFullWidth {
         guard DSWideLayout.isWide(size.width - window.safeAreaInsets.left - window.safeAreaInsets.right) else {
             return .phone
         }
-        return size.width > size.height ? .landscape : .portrait
+        // The portrait layout pins the hero above the hinge — only the unfolded Duo has one (iPad keeps the column).
+        return size.width > size.height ? .landscape : (UIDevice.isFoldablePhone ? .portrait : .phone)
     }
     @IBOutlet private weak var contentStack: UIStackView!
     @IBOutlet private weak var freeBannerContainer: UIView!

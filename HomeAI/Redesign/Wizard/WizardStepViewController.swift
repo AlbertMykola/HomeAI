@@ -32,7 +32,8 @@ class WizardStepViewController: UIViewController, DSWideLayoutFullWidth {
         guard DSWideLayout.isWide(size.width - window.safeAreaInsets.left - window.safeAreaInsets.right) else {
             return .phone
         }
-        return size.width > size.height ? .landscape : .portrait
+        // Portrait splits at the hinge: unfolded Duo only (iPad portrait keeps the phone column).
+        return size.width > size.height ? .landscape : (UIDevice.isFoldablePhone ? .portrait : .phone)
     }
 
     override func viewWillLayoutSubviews() {

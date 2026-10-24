@@ -31,7 +31,7 @@ final class GenerationViewController: UIViewController, DSWideLayoutFullWidth {
         if layoutSwitch.set(unfolded: landscape) { navigationController?.view.setNeedsLayout() }
         failurePaneView?.isHidden = !landscape
         let size = view.bounds.size
-        let portrait = !landscape && DSWideLayout.isWide(size.width) && size.height > size.width
+        let portrait = !landscape && UIDevice.isFoldablePhone && DSWideLayout.isWide(size.width) && size.height > size.width
         // The released constraints belong to the phone set, which the landscape switch also turns off.
         let released = UILayoutPriority(portrait || landscape ? 1 : 999)
         portraitReleasedConstraints.forEach { if $0.priority != released { $0.priority = released } }
