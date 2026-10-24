@@ -68,17 +68,23 @@ final class OnboardingGoalViewController: UIViewController, OBPageChild {
             ])
         }
         stepper.scale = layout.scale
-        contentTop.constant = max(layout.value(42), layout.value(96) - view.safeAreaInsets.top)
+        let closedDuo = UIDevice.isFoldablePhone && !DSWideLayout.isWide(layoutSize.width)
+        // Closed Duo: no notch above the content (the status bar is on the right rail), so the stepper sits at 50.
+        contentTop.constant = closedDuo ? 44 : max(layout.value(42), layout.value(96) - view.safeAreaInsets.top)
         rowStacks.forEach { $0.spacing = layout.value(13) }
         rows.spacing = layout.value(13)
-        options.forEach { $0.scale = layout.scale }
-        cardHeight.constant = layout.value(206)
+        // Closed iPhone Duo (Figma Duo/C/01 · O4): a 678 pt screen fits the 2×2 grid and the skip link when the
+        // cards are 185 pt and the grid sits 43 pt in (the title keeps its 20 pt inset). Other iPhones unchanged.
+        options.forEach { $0.scale = layout.scale * (closedDuo ? 0.9 : 1) }
+        cardHeight.constant = closedDuo ? 185 : layout.value(206)
+        rows.isLayoutMarginsRelativeArrangement = closedDuo
+        rows.layoutMargins = closedDuo ? UIEdgeInsets(top: 0, left: 23, bottom: 0, right: 23) : .zero
         let width = layoutSize.width - inset * 2
         let titleHeight = titleLabel.sizeThatFits(CGSize(width: width, height: .greatestFiniteMagnitude)).height
         let subtitleHeight = subtitleLabel.sizeThatFits(CGSize(width: width, height: .greatestFiniteMagnitude)).height
         // The scroll content can grow for translations and short windows; the footer stays reachable.
         let headerBottom = layout.value(6 + 14 + 14) + titleHeight + subtitleHeight
-        gridTop.constant = max(layout.value(204) - headerBottom, layout.value(24))
+        gridTop.constant = closedDuo ? 14 : max(layout.value(204) - headerBottom, layout.value(24))
     }
 
     @objc private func selectGoal(_ sender: OnboardingGoalControl) {
