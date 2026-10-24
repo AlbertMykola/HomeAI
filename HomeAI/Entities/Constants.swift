@@ -122,6 +122,8 @@ struct Constants {
         static let requestTimeout: TimeInterval = 90
         static let resourceTimeout: TimeInterval = 120
         static let maximumRetryCount = 2
+        /// Automatic retries after a client timeout (the first attempt may already be billed).
+        static let maximumTimeoutRetryCount = 1
         static let maximumCustomPromptLength = 1_000
 
         struct OpenAI {

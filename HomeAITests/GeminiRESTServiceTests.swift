@@ -84,7 +84,7 @@ final class GeminiRESTServiceTests: XCTestCase {
         }
     }
 
-    func testTimeoutIsNotRetriedBecauseTheImageMayAlreadyBeBilled() async {
+    func testTimeoutIsRetriedOnceOnly() async {
         var requestCount = 0
         URLProtocolStub.requestHandler = { _ in
             requestCount += 1
@@ -96,7 +96,7 @@ final class GeminiRESTServiceTests: XCTestCase {
             XCTFail("Expected timeout")
         } catch let error as GeminiServiceError {
             XCTAssertEqual(error.category, "timeout")
-            XCTAssertEqual(requestCount, 1)
+            XCTAssertEqual(requestCount, Constants.Generation.maximumTimeoutRetryCount + 1)
         } catch {
             XCTFail("Unexpected error: \(error)")
         }

@@ -38,6 +38,11 @@ enum GeminiServiceError: ImageGenerationFailure {
         return nil
     }
 
+    var isTimeout: Bool {
+        if case .requestFailed(let error) = self { return (error as? URLError)?.code == .timedOut }
+        return false
+    }
+
     /// Only where Google refused the request and billed nothing (429 rate limit, 503 overloaded). A timeout or
     /// 502/504 may already have produced — and charged for — an image, so repeating it would pay twice.
     var isRetryable: Bool {
@@ -275,6 +280,7 @@ final class GeminiRESTService: ImageGenerationService {
 
     private func performRequestWithRetry(_ request: URLRequest) async throws -> (Data, HTTPURLResponse) {
         var retryCount = 0
+        var timeoutRetries = 0
 
         while true {
             try Task.checkCancellation()
@@ -298,6 +304,14 @@ final class GeminiRESTService: ImageGenerationService {
                 throw CancellationError()
             } catch {
                 let serviceError = (error as? GeminiServiceError) ?? .requestFailed(error)
+                // One more try after a client timeout (Albert's call): at most two attempts / ~3 min, and the
+                // possibly billed first attempt is reported so it shows up in Sentry.
+                if serviceError.isTimeout, timeoutRetries < Constants.Generation.maximumTimeoutRetryCount {
+                    timeoutRetries += 1
+                    ErrorReporter.report(serviceError, operation: "generation_timeout_retry",
+                                         details: .init(provider: "gemini", retryCount: timeoutRetries))
+                    continue
+                }
                 guard serviceError.isRetryable,
                       retryCount < Constants.Generation.maximumRetryCount else {
                     throw serviceError
