@@ -1,11 +1,11 @@
 import UIKit
 
-/// A/07 · T1 Exterior: facade style (palette cards), light, keep structure. Layout: Tools.storyboard.
+/// A/07 · T1 Exterior: facade style (image tiles, every exterior style), light, keep structure. Layout: Tools.storyboard.
 final class ExteriorToolViewController: ToolStepViewController {
 
     @IBOutlet private weak var facadeTitleLabel: UILabel!
-    @IBOutlet private var facadeCards: [DSPressableControl]!
-    @IBOutlet private var facadeLabels: [UILabel]!
+    @IBOutlet private weak var facadeCollectionView: UICollectionView!
+    @IBOutlet private weak var facadeHeight: NSLayoutConstraint!
     @IBOutlet private weak var lightTitleLabel: UILabel!
     @IBOutlet private var lightControls: [DSPressableControl]!
     @IBOutlet private var lightRings: [UIView]!
@@ -15,21 +15,17 @@ final class ExteriorToolViewController: ToolStepViewController {
     @IBOutlet private weak var keepSubtitleLabel: UILabel!
     @IBOutlet private weak var keepSwitch: UISwitch!
 
-    /// Facade cards → existing exterior styles (+ a short brief where there is no exact style).
-    private static let facades: [(title: String, style: StyleExteriorType, brief: String?)] = [
-        ("Modern farmhouse", .rustic, "modern farmhouse facade: white board-and-batten siding, black window frames, warm wood accents"),
-        ("Scandinavian", .scandinavian, nil),
-        ("Mediterranean", .mediterranean, nil),
-        ("Contemporary", .contemporary, nil),
-        ("Craftsman", .craftsman, nil),
-        ("Coastal", .cottageStyle, "coastal facade: light shingle siding, soft blue and sand tones, white trims")
-    ]
+    /// Every exterior style with its catalog preview; popular ones first.
+    private static let styles: [StyleExteriorType] = {
+        let first: [StyleExteriorType] = [.modern, .contemporary, .scandinavian, .mediterranean, .craftsman, .minimalist]
+        return first + StyleExteriorType.allCases.filter { !first.contains($0) && $0 != .noStyle && $0 != .custom }
+    }()
     private static let lights = ["natural daylight", "warm golden hour light, low sun", "dusk with warm exterior lighting on"]
 
-    private var facade = 0
+    private var selected = 0
     private var light = 1
 
-    override var styleTitleForGeneration: String? { Self.facades[facade].title.localized }
+    override var styleTitleForGeneration: String? { Self.styles[selected].name }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,30 +35,35 @@ final class ExteriorToolViewController: ToolStepViewController {
         lightTitleLabel.text = "Lighting".localized
         keepTitleLabel.text = "Keep structure".localized
         keepSubtitleLabel.text = "Roof, windows and doors stay in place".localized
-        facadeLabels.sorted { $0.tag < $1.tag }.enumerated().forEach { $1.text = Self.facades[$0].title.localized }
-        if case .exterior(let preset)? = session.style,
-           let i = Self.facades.firstIndex(where: { $0.brief == nil && $0.style == preset }) { facade = i }
+        if case .exterior(let preset)? = session.style, let i = Self.styles.firstIndex(of: preset) { selected = i }
         let lightTitles = ["Day", "Golden hour", "Dusk"]
         lightLabels.sorted { $0.tag < $1.tag }.enumerated().forEach { $1.text = lightTitles[$0].localized }
-        applyFacade(animated: false)
+        if let layout = facadeCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.itemSize = CGSize(width: 160, height: 136)
+            layout.minimumLineSpacing = 12
+            layout.minimumInteritemSpacing = 14
+        }
+        facadeCollectionView.contentInsetAdjustmentBehavior = .never
+        facadeCollectionView.dataSource = self
+        facadeCollectionView.delegate = self
         applyLight(animated: false)
     }
 
-    @IBAction private func didTapFacade(_ sender: UIControl) {
-        facade = sender.tag
-        DS.Haptic.selection()
-        applyFacade(animated: true)
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        // Two rows of tiles only on tall screens; shorter ones (iPhones, Duo landscape, Split View) swipe one row so
+        // Lighting and Keep structure stay on screen above Generate.
+        guard let flow = facadeCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        let rows: CGFloat = view.bounds.height >= 900 ? 2 : 1
+        // A few points of slack so the second row is never dropped by rounding.
+        let height = rows * flow.itemSize.height + (rows - 1) * flow.minimumLineSpacing + 4
+        if abs(facadeHeight.constant - height) > 0.5 { facadeHeight.constant = height }
     }
 
     @IBAction private func didTapLight(_ sender: UIControl) {
         light = sender.tag
         DS.Haptic.selection()
         applyLight(animated: true)
-    }
-
-    private func applyFacade(animated: Bool) {
-        selectCards(facadeCards, tag: facade, animated: animated)
-        facadeLabels.forEach { $0.font = DS.Font.geologica($0.tag == facade ? .semiBold : .medium, $0.font.pointSize) }
     }
 
     private func applyLight(animated: Bool) {
@@ -76,15 +77,29 @@ final class ExteriorToolViewController: ToolStepViewController {
 
     override func configure(_ manager: GemeniPromptManager) {
         super.configure(manager)
-        let f = Self.facades[facade]
-        if let brief = f.brief {
-            manager.updateCustomPrompt(brief)
-        } else {
-            manager.updateStyle(.exterior(f.style))
-        }
+        manager.updateStyle(.exterior(Self.styles[selected]))
         if case .building(let b) = session.place { manager.updateExteriorType(b) } else { manager.updateExteriorType(.house) }
         manager.updateDesignMode(keepSwitch.isOn ? .structuralPreservation : .renovationDesign)
         manager.updateExtraDetails("Lighting: \(Self.lights[light]).")
+    }
+}
+
+extension ExteriorToolViewController: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int { Self.styles.count }
+
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MaterialTileCell.reuseID, for: indexPath)
+        let style = Self.styles[indexPath.item]
+        (cell as? MaterialTileCell)?.configure(title: style.name, imagePath: style.image, selected: indexPath.item == selected)
+        return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selected = indexPath.item
+        DS.Haptic.selection()
+        collectionView.visibleCells.compactMap { $0 as? MaterialTileCell }.forEach { cell in
+            if let ip = collectionView.indexPath(for: cell) { cell.setChosen(ip.item == selected, animated: true) }
+        }
     }
 }
 

@@ -137,610 +137,104 @@
                                                 </userDefinedRuntimeAttributes>
                                                 <nil key="backgroundColor" />
                                             </label>
-                                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c9c5-0e0f-7408" opaque="NO" axis="vertical" spacing="10">
-                                                <subviews>
-                                                    <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6c2b-0dad-6972" opaque="NO" distribution="fillEqually" spacing="12">
-                                                        <subviews>
-                                                            <view contentMode="scaleToFill" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="afdc-2a8b-a3e4" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
-                                                                <subviews>
-                                                                    <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cfd0-65be-b83e" opaque="NO" axis="vertical" alignment="leading" spacing="8">
-                                                                        <subviews>
-                                                                            <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="8002-56d7-1a42" opaque="NO" text="Modern farmhouse" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.8" horizontalHuggingPriority="251" verticalHuggingPriority="251">
-                                                                                <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14" />
-                                                                                <color key="textColor" name="dsTextPrimary" />
-                                                                                <nil key="highlightedColor" />
-                                                                                <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Modern farmhouse" />
-                                                                                </userDefinedRuntimeAttributes>
-                                                                                <nil key="backgroundColor" />
-                                                                            </label>
-                                                                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="63f0-ae47-b2a2" opaque="NO" spacing="-4">
-                                                                                <subviews>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9384-296b-1db7" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
-                                                                                        <color key="backgroundColor" red="0.9608" green="0.9529" blue="0.9333" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="16" id="8f8f-805d-57d2" identifier="ds.reference.8f8f-805d-57d2" />
-                                                                                            <constraint firstAttribute="height" constant="16" id="5bfe-55f5-4783" identifier="ds.reference.5bfe-55f5-4783" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                                <real key="value" value="1.5" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
-                                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5514-bab0-53c1" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
-                                                                                        <color key="backgroundColor" red="0.1686" green="0.1686" blue="0.1686" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="16" id="cb5e-c828-06e6" identifier="ds.reference.cb5e-c828-06e6" />
-                                                                                            <constraint firstAttribute="height" constant="16" id="6adf-0c12-14e7" identifier="ds.reference.6adf-0c12-14e7" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                                <real key="value" value="1.5" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
-                                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6d5a-8094-7a63" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
-                                                                                        <color key="backgroundColor" red="0.6431" green="0.4588" blue="0.3176" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="16" id="78bf-768e-b3ca" identifier="ds.reference.78bf-768e-b3ca" />
-                                                                                            <constraint firstAttribute="height" constant="16" id="fd7a-9092-fb61" identifier="ds.reference.fd7a-9092-fb61" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                                <real key="value" value="1.5" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
-                                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="d826-8984-17ba" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
-                                                                                        <color key="backgroundColor" red="0.4353" green="0.4902" blue="0.3608" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="16" id="4c7b-506d-f4ba" identifier="ds.reference.4c7b-506d-f4ba" />
-                                                                                            <constraint firstAttribute="height" constant="16" id="e59e-78a7-110b" identifier="ds.reference.e59e-78a7-110b" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                                <real key="value" value="1.5" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
-                                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                </subviews>
-                                                                            </stackView>
-                                                                        </subviews>
-                                                                    </stackView>
-                                                                </subviews>
-                                                                <color key="backgroundColor" name="dsSurface" />
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="64" id="967e-f847-362b" identifier="ds.reference.967e-f847-362b" />
-                                                                    <constraint firstItem="cfd0-65be-b83e" firstAttribute="leading" secondItem="afdc-2a8b-a3e4" secondAttribute="leading" constant="14" id="9b7d-98cf-422c" identifier="ds.reference.9b7d-98cf-422c" />
-                                                                    <constraint firstItem="cfd0-65be-b83e" firstAttribute="top" secondItem="afdc-2a8b-a3e4" secondAttribute="top" constant="12" id="02e8-ddb1-adf4" identifier="ds.reference.02e8-ddb1-adf4" />
-                                                                    <constraint firstItem="afdc-2a8b-a3e4" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cfd0-65be-b83e" secondAttribute="trailing" constant="8" id="45c8-17b0-d875" identifier="ds.reference.45c8-17b0-d875" />
-                                                                </constraints>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                        <real key="value" value="18" />
-                                                                    </userDefinedRuntimeAttribute>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapFacade:" />
-                                                                </userDefinedRuntimeAttributes>
-                                                            </view>
-                                                            <view contentMode="scaleToFill" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="858e-c46c-7201" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
-                                                                <subviews>
-                                                                    <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="58a4-916c-59b7" opaque="NO" axis="vertical" alignment="leading" spacing="8">
-                                                                        <subviews>
-                                                                            <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="7efc-cbd7-3e06" opaque="NO" text="Scandinavian" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.8" horizontalHuggingPriority="251" verticalHuggingPriority="251">
-                                                                                <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14" />
-                                                                                <color key="textColor" name="dsTextPrimary" />
-                                                                                <nil key="highlightedColor" />
-                                                                                <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Scandinavian" />
-                                                                                </userDefinedRuntimeAttributes>
-                                                                                <nil key="backgroundColor" />
-                                                                            </label>
-                                                                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2aa1-b4ee-9fca" opaque="NO" spacing="-4">
-                                                                                <subviews>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="af70-443f-7039" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
-                                                                                        <color key="backgroundColor" red="0.9137" green="0.8941" blue="0.8549" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="16" id="fe28-aca0-cf98" identifier="ds.reference.fe28-aca0-cf98" />
-                                                                                            <constraint firstAttribute="height" constant="16" id="fef0-40a3-4dd7" identifier="ds.reference.fef0-40a3-4dd7" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                                <real key="value" value="1.5" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
-                                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="085a-d122-798d" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
-                                                                                        <color key="backgroundColor" red="0.2353" green="0.2353" blue="0.2353" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="16" id="f77f-3692-9222" identifier="ds.reference.f77f-3692-9222" />
-                                                                                            <constraint firstAttribute="height" constant="16" id="e4d6-960e-c411" identifier="ds.reference.e4d6-960e-c411" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                                <real key="value" value="1.5" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
-                                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c8e9-2e42-d7e1" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
-                                                                                        <color key="backgroundColor" red="0.7882" green="0.6353" blue="0.4941" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="16" id="cbc4-ab6b-88d4" identifier="ds.reference.cbc4-ab6b-88d4" />
-                                                                                            <constraint firstAttribute="height" constant="16" id="e529-a68a-aea5" identifier="ds.reference.e529-a68a-aea5" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                                <real key="value" value="1.5" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
-                                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b9b9-da41-628f" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
-                                                                                        <color key="backgroundColor" red="0.5569" green="0.6039" blue="0.6510" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="16" id="cda1-2de2-b252" identifier="ds.reference.cda1-2de2-b252" />
-                                                                                            <constraint firstAttribute="height" constant="16" id="24c2-330f-bf46" identifier="ds.reference.24c2-330f-bf46" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                                <real key="value" value="1.5" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
-                                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                </subviews>
-                                                                            </stackView>
-                                                                        </subviews>
-                                                                    </stackView>
-                                                                </subviews>
-                                                                <color key="backgroundColor" name="dsSurface" />
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="64" id="b8f3-c6a7-30d4" identifier="ds.reference.b8f3-c6a7-30d4" />
-                                                                    <constraint firstItem="58a4-916c-59b7" firstAttribute="leading" secondItem="858e-c46c-7201" secondAttribute="leading" constant="14" id="71b5-24c8-e7ac" identifier="ds.reference.71b5-24c8-e7ac" />
-                                                                    <constraint firstItem="58a4-916c-59b7" firstAttribute="top" secondItem="858e-c46c-7201" secondAttribute="top" constant="12" id="cc78-d9e9-faf5" identifier="ds.reference.cc78-d9e9-faf5" />
-                                                                    <constraint firstItem="858e-c46c-7201" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="58a4-916c-59b7" secondAttribute="trailing" constant="8" id="e43c-e1a0-4c58" identifier="ds.reference.e43c-e1a0-4c58" />
-                                                                </constraints>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                        <real key="value" value="18" />
-                                                                    </userDefinedRuntimeAttribute>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapFacade:" />
-                                                                </userDefinedRuntimeAttributes>
-                                                            </view>
-                                                        </subviews>
-                                                    </stackView>
-                                                    <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b589-1afb-a7df" opaque="NO" distribution="fillEqually" spacing="12">
-                                                        <subviews>
-                                                            <view contentMode="scaleToFill" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="c694-c003-2f7b" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
-                                                                <subviews>
-                                                                    <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cb98-decf-2ea2" opaque="NO" axis="vertical" alignment="leading" spacing="8">
-                                                                        <subviews>
-                                                                            <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="08be-ffa2-9dd5" opaque="NO" text="Mediterranean" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.8" horizontalHuggingPriority="251" verticalHuggingPriority="251">
-                                                                                <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14" />
-                                                                                <color key="textColor" name="dsTextPrimary" />
-                                                                                <nil key="highlightedColor" />
-                                                                                <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Mediterranean" />
-                                                                                </userDefinedRuntimeAttributes>
-                                                                                <nil key="backgroundColor" />
-                                                                            </label>
-                                                                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="00e0-1eee-9e3d" opaque="NO" spacing="-4">
-                                                                                <subviews>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="21df-4e58-1b9b" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
-                                                                                        <color key="backgroundColor" red="0.9451" green="0.8902" blue="0.7843" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="16" id="1f97-8a79-380e" identifier="ds.reference.1f97-8a79-380e" />
-                                                                                            <constraint firstAttribute="height" constant="16" id="8cb8-d7f5-15a3" identifier="ds.reference.8cb8-d7f5-15a3" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                                <real key="value" value="1.5" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
-                                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="667b-7655-2ffa" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
-                                                                                        <color key="backgroundColor" red="0.7608" green="0.4157" blue="0.2392" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="16" id="8b15-fdd2-403d" identifier="ds.reference.8b15-fdd2-403d" />
-                                                                                            <constraint firstAttribute="height" constant="16" id="da9a-24cb-deeb" identifier="ds.reference.da9a-24cb-deeb" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                                <real key="value" value="1.5" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
-                                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c589-7323-4aa5" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
-                                                                                        <color key="backgroundColor" red="0.3608" green="0.4784" blue="0.3608" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="16" id="af0a-45d4-2edb" identifier="ds.reference.af0a-45d4-2edb" />
-                                                                                            <constraint firstAttribute="height" constant="16" id="f41c-5eae-3553" identifier="ds.reference.f41c-5eae-3553" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                                <real key="value" value="1.5" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
-                                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9dca-85fe-bcc3" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
-                                                                                        <color key="backgroundColor" red="0.1843" green="0.3098" blue="0.4353" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="16" id="a2d5-f9cf-0217" identifier="ds.reference.a2d5-f9cf-0217" />
-                                                                                            <constraint firstAttribute="height" constant="16" id="a14c-ce26-304f" identifier="ds.reference.a14c-ce26-304f" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                                <real key="value" value="1.5" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
-                                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                </subviews>
-                                                                            </stackView>
-                                                                        </subviews>
-                                                                    </stackView>
-                                                                </subviews>
-                                                                <color key="backgroundColor" name="dsSurface" />
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="64" id="a6e3-e725-d163" identifier="ds.reference.a6e3-e725-d163" />
-                                                                    <constraint firstItem="cb98-decf-2ea2" firstAttribute="leading" secondItem="c694-c003-2f7b" secondAttribute="leading" constant="14" id="b9b3-74ff-3707" identifier="ds.reference.b9b3-74ff-3707" />
-                                                                    <constraint firstItem="cb98-decf-2ea2" firstAttribute="top" secondItem="c694-c003-2f7b" secondAttribute="top" constant="12" id="30a5-8a61-3a02" identifier="ds.reference.30a5-8a61-3a02" />
-                                                                    <constraint firstItem="c694-c003-2f7b" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cb98-decf-2ea2" secondAttribute="trailing" constant="8" id="4c7b-65ef-b0ad" identifier="ds.reference.4c7b-65ef-b0ad" />
-                                                                </constraints>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                        <real key="value" value="18" />
-                                                                    </userDefinedRuntimeAttribute>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapFacade:" />
-                                                                </userDefinedRuntimeAttributes>
-                                                            </view>
-                                                            <view contentMode="scaleToFill" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="718f-fd26-8218" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
-                                                                <subviews>
-                                                                    <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3296-d6f4-d457" opaque="NO" axis="vertical" alignment="leading" spacing="8">
-                                                                        <subviews>
-                                                                            <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="3" translatesAutoresizingMaskIntoConstraints="NO" id="3e49-c2b6-4a88" opaque="NO" text="Contemporary" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.8" horizontalHuggingPriority="251" verticalHuggingPriority="251">
-                                                                                <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14" />
-                                                                                <color key="textColor" name="dsTextPrimary" />
-                                                                                <nil key="highlightedColor" />
-                                                                                <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Contemporary" />
-                                                                                </userDefinedRuntimeAttributes>
-                                                                                <nil key="backgroundColor" />
-                                                                            </label>
-                                                                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3d91-dbef-2f61" opaque="NO" spacing="-4">
-                                                                                <subviews>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9bf5-7691-bf99" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
-                                                                                        <color key="backgroundColor" red="0.8471" green="0.8471" blue="0.8471" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="16" id="8e16-27eb-0f15" identifier="ds.reference.8e16-27eb-0f15" />
-                                                                                            <constraint firstAttribute="height" constant="16" id="a6f5-ff9b-a236" identifier="ds.reference.a6f5-ff9b-a236" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                                <real key="value" value="1.5" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
-                                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="efba-7cfd-ae23" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
-                                                                                        <color key="backgroundColor" red="0.1176" green="0.1176" blue="0.1176" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="16" id="a3b1-abc0-c98b" identifier="ds.reference.a3b1-abc0-c98b" />
-                                                                                            <constraint firstAttribute="height" constant="16" id="ae7e-8093-6b1f" identifier="ds.reference.ae7e-8093-6b1f" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                                <real key="value" value="1.5" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
-                                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c62b-b4d7-85a3" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
-                                                                                        <color key="backgroundColor" red="0.7216" green="0.5412" blue="0.3529" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="16" id="b2e2-9871-c438" identifier="ds.reference.b2e2-9871-c438" />
-                                                                                            <constraint firstAttribute="height" constant="16" id="2c97-c22f-f807" identifier="ds.reference.2c97-c22f-f807" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                                <real key="value" value="1.5" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
-                                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9521-204e-f397" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
-                                                                                        <color key="backgroundColor" red="0.4784" green="0.4784" blue="0.4784" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="16" id="164a-cf00-50b8" identifier="ds.reference.164a-cf00-50b8" />
-                                                                                            <constraint firstAttribute="height" constant="16" id="e4dc-e8b7-bbe0" identifier="ds.reference.e4dc-e8b7-bbe0" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                                <real key="value" value="1.5" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
-                                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                </subviews>
-                                                                            </stackView>
-                                                                        </subviews>
-                                                                    </stackView>
-                                                                </subviews>
-                                                                <color key="backgroundColor" name="dsSurface" />
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="64" id="85b3-1433-1c12" identifier="ds.reference.85b3-1433-1c12" />
-                                                                    <constraint firstItem="3296-d6f4-d457" firstAttribute="leading" secondItem="718f-fd26-8218" secondAttribute="leading" constant="14" id="84ec-10a1-f3b4" identifier="ds.reference.84ec-10a1-f3b4" />
-                                                                    <constraint firstItem="3296-d6f4-d457" firstAttribute="top" secondItem="718f-fd26-8218" secondAttribute="top" constant="12" id="4b87-ebcb-8f9e" identifier="ds.reference.4b87-ebcb-8f9e" />
-                                                                    <constraint firstItem="718f-fd26-8218" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3296-d6f4-d457" secondAttribute="trailing" constant="8" id="d604-647d-f8aa" identifier="ds.reference.d604-647d-f8aa" />
-                                                                </constraints>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                        <real key="value" value="18" />
-                                                                    </userDefinedRuntimeAttribute>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapFacade:" />
-                                                                </userDefinedRuntimeAttributes>
-                                                            </view>
-                                                        </subviews>
-                                                    </stackView>
-                                                    <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ecb-b6ea-2c75" opaque="NO" distribution="fillEqually" spacing="12">
-                                                        <subviews>
-                                                            <view contentMode="scaleToFill" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="c57e-fddc-7003" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
-                                                                <subviews>
-                                                                    <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="004e-4c67-6cbd" opaque="NO" axis="vertical" alignment="leading" spacing="8">
-                                                                        <subviews>
-                                                                            <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="4" translatesAutoresizingMaskIntoConstraints="NO" id="fe76-f86f-fb0a" opaque="NO" text="Craftsman" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.8" horizontalHuggingPriority="251" verticalHuggingPriority="251">
-                                                                                <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14" />
-                                                                                <color key="textColor" name="dsTextPrimary" />
-                                                                                <nil key="highlightedColor" />
-                                                                                <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Craftsman" />
-                                                                                </userDefinedRuntimeAttributes>
-                                                                                <nil key="backgroundColor" />
-                                                                            </label>
-                                                                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8b02-43f1-eb54" opaque="NO" spacing="-4">
-                                                                                <subviews>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bc31-b35c-381c" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
-                                                                                        <color key="backgroundColor" red="0.4824" green="0.3686" blue="0.2314" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="16" id="4f29-3543-ee47" identifier="ds.reference.4f29-3543-ee47" />
-                                                                                            <constraint firstAttribute="height" constant="16" id="beb3-a943-2d12" identifier="ds.reference.beb3-a943-2d12" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                                <real key="value" value="1.5" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
-                                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="971b-52c4-e89d" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
-                                                                                        <color key="backgroundColor" red="0.9098" green="0.8627" blue="0.7647" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="16" id="4537-0edd-4dd1" identifier="ds.reference.4537-0edd-4dd1" />
-                                                                                            <constraint firstAttribute="height" constant="16" id="d5bc-d814-07cf" identifier="ds.reference.d5bc-d814-07cf" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                                <real key="value" value="1.5" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
-                                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5a4f-8c03-5669" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
-                                                                                        <color key="backgroundColor" red="0.3059" green="0.3569" blue="0.2784" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="16" id="d17d-b9b7-6894" identifier="ds.reference.d17d-b9b7-6894" />
-                                                                                            <constraint firstAttribute="height" constant="16" id="7be5-496f-96d0" identifier="ds.reference.7be5-496f-96d0" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                                <real key="value" value="1.5" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
-                                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3fd5-075d-afa2" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
-                                                                                        <color key="backgroundColor" red="0.1804" green="0.1647" blue="0.1490" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="16" id="ad2a-fa1c-9589" identifier="ds.reference.ad2a-fa1c-9589" />
-                                                                                            <constraint firstAttribute="height" constant="16" id="0003-e06e-13c9" identifier="ds.reference.0003-e06e-13c9" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                                <real key="value" value="1.5" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
-                                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                </subviews>
-                                                                            </stackView>
-                                                                        </subviews>
-                                                                    </stackView>
-                                                                </subviews>
-                                                                <color key="backgroundColor" name="dsSurface" />
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="64" id="deaa-2965-683d" identifier="ds.reference.deaa-2965-683d" />
-                                                                    <constraint firstItem="004e-4c67-6cbd" firstAttribute="leading" secondItem="c57e-fddc-7003" secondAttribute="leading" constant="14" id="3c10-1f3a-9bd2" identifier="ds.reference.3c10-1f3a-9bd2" />
-                                                                    <constraint firstItem="004e-4c67-6cbd" firstAttribute="top" secondItem="c57e-fddc-7003" secondAttribute="top" constant="12" id="8c19-ae70-2beb" identifier="ds.reference.8c19-ae70-2beb" />
-                                                                    <constraint firstItem="c57e-fddc-7003" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="004e-4c67-6cbd" secondAttribute="trailing" constant="8" id="570a-379c-b7e5" identifier="ds.reference.570a-379c-b7e5" />
-                                                                </constraints>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                        <real key="value" value="18" />
-                                                                    </userDefinedRuntimeAttribute>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapFacade:" />
-                                                                </userDefinedRuntimeAttributes>
-                                                            </view>
-                                                            <view contentMode="scaleToFill" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="8dcb-7f46-096b" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
-                                                                <subviews>
-                                                                    <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="16ea-ff99-55ea" opaque="NO" axis="vertical" alignment="leading" spacing="8">
-                                                                        <subviews>
-                                                                            <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="5" translatesAutoresizingMaskIntoConstraints="NO" id="2154-0eea-83f1" opaque="NO" text="Coastal" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.8" horizontalHuggingPriority="251" verticalHuggingPriority="251">
-                                                                                <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14" />
-                                                                                <color key="textColor" name="dsTextPrimary" />
-                                                                                <nil key="highlightedColor" />
-                                                                                <userDefinedRuntimeAttributes>
-                                                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Coastal" />
-                                                                                </userDefinedRuntimeAttributes>
-                                                                                <nil key="backgroundColor" />
-                                                                            </label>
-                                                                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1056-7131-a149" opaque="NO" spacing="-4">
-                                                                                <subviews>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="51d9-a9c4-8aeb" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
-                                                                                        <color key="backgroundColor" red="0.9686" green="0.9686" blue="0.9490" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="16" id="4d28-6043-74c3" identifier="ds.reference.4d28-6043-74c3" />
-                                                                                            <constraint firstAttribute="height" constant="16" id="78cd-e51e-98a3" identifier="ds.reference.78cd-e51e-98a3" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                                <real key="value" value="1.5" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
-                                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="af03-7374-6288" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
-                                                                                        <color key="backgroundColor" red="0.4980" green="0.6510" blue="0.7216" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="16" id="0d2e-19f4-8003" identifier="ds.reference.0d2e-19f4-8003" />
-                                                                                            <constraint firstAttribute="height" constant="16" id="0ead-ed53-d827" identifier="ds.reference.0ead-ed53-d827" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                                <real key="value" value="1.5" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
-                                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6daa-c966-0b23" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
-                                                                                        <color key="backgroundColor" red="0.8510" green="0.7804" blue="0.6549" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="16" id="2fbe-989f-cb82" identifier="ds.reference.2fbe-989f-cb82" />
-                                                                                            <constraint firstAttribute="height" constant="16" id="3382-ee26-2aba" identifier="ds.reference.3382-ee26-2aba" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                                <real key="value" value="1.5" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
-                                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3f08-3999-3f35" customClass="DSView" customModule="HomeAI" customModuleProvider="target">
-                                                                                        <color key="backgroundColor" red="0.2431" green="0.3608" blue="0.4627" alpha="1.000" colorSpace="custom" customColorSpace="sRGB" />
-                                                                                        <constraints>
-                                                                                            <constraint firstAttribute="width" constant="16" id="e137-e71c-0521" identifier="ds.reference.e137-e71c-0521" />
-                                                                                            <constraint firstAttribute="height" constant="16" id="49b0-9646-7916" identifier="ds.reference.49b0-9646-7916" />
-                                                                                        </constraints>
-                                                                                        <userDefinedRuntimeAttributes>
-                                                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
-                                                                                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                                                                                <real key="value" value="1.5" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                            <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
-                                                                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
-                                                                                            </userDefinedRuntimeAttribute>
-                                                                                        </userDefinedRuntimeAttributes>
-                                                                                    </view>
-                                                                                </subviews>
-                                                                            </stackView>
-                                                                        </subviews>
-                                                                    </stackView>
-                                                                </subviews>
-                                                                <color key="backgroundColor" name="dsSurface" />
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="64" id="52c7-4e2f-68f6" identifier="ds.reference.52c7-4e2f-68f6" />
-                                                                    <constraint firstItem="16ea-ff99-55ea" firstAttribute="leading" secondItem="8dcb-7f46-096b" secondAttribute="leading" constant="14" id="74b7-69fa-4e92" identifier="ds.reference.74b7-69fa-4e92" />
-                                                                    <constraint firstItem="16ea-ff99-55ea" firstAttribute="top" secondItem="8dcb-7f46-096b" secondAttribute="top" constant="12" id="9e88-bf9f-d1b9" identifier="ds.reference.9e88-bf9f-d1b9" />
-                                                                    <constraint firstItem="8dcb-7f46-096b" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="16ea-ff99-55ea" secondAttribute="trailing" constant="8" id="1d65-fb0b-5ab1" identifier="ds.reference.1d65-fb0b-5ab1" />
-                                                                </constraints>
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                                        <real key="value" value="18" />
-                                                                    </userDefinedRuntimeAttribute>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapFacade:" />
-                                                                </userDefinedRuntimeAttributes>
-                                                            </view>
-                                                        </subviews>
-                                                    </stackView>
-                                                </subviews>
-                                            </stackView>
+                                            <collectionView contentMode="scaleToFill" clipsSubviews="NO" translatesAutoresizingMaskIntoConstraints="NO" id="extx-0027" userLabel="facadeCollectionView" multipleTouchEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes">
+                                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="12" minimumInteritemSpacing="12" id="extx-0031">
+                                                    <size key="itemSize" width="160" height="128" />
+                                                    <size key="headerReferenceSize" width="0.0" height="0.0" />
+                                                    <size key="footerReferenceSize" width="0.0" height="0.0" />
+                                                    <inset key="sectionInset" minX="0" minY="0" maxX="0" maxY="0" />
+                                                </collectionViewFlowLayout>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="290" id="extx-0029" />
+                                                </constraints>
+                                                <cells>
+                                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="extx-0030" customClass="MaterialTileCell" customModule="HomeAI" customModuleProvider="target" reuseIdentifier="MaterialTileCell">
+                                                        <rect key="frame" x="0.0" y="0.0" width="109" height="130" />
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES" />
+                                                        <view key="contentView" contentMode="scaleToFill" id="extx-0011" userLabel="Content">
+                                                            <rect key="frame" x="0.0" y="0.0" width="109" height="130" />
+                                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
+                                                            <subviews>
+                                                                <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="extx-0007" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" userLabel="thumbImageView" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
+                                                                    <color key="backgroundColor" name="dsSurface" />
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                            <real key="value" value="18" />
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </imageView>
+                                                                <view contentMode="scaleToFill" alpha="0" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="extx-0013" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="ringView">
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                                            <real key="value" value="18" />
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                                                            <real key="value" value="3" />
+                                                                        </userDefinedRuntimeAttribute>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="dsBorderColor">
+                                                                            <color key="value" name="dsLime" />
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </view>
+                                                                <view contentMode="scaleToFill" alpha="0" translatesAutoresizingMaskIntoConstraints="NO" id="extx-0025" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="checkView">
+                                                                    <subviews>
+                                                                        <imageView contentMode="scaleAspectFit" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="extx-0028" image="checkmark" catalog="system" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="10" weight="bold" />
+                                                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                                        </imageView>
+                                                                    </subviews>
+                                                                    <color key="backgroundColor" name="dsLime" />
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="22" id="extx-0026" identifier="ds.reference.extx-0026" />
+                                                                        <constraint firstAttribute="height" constant="22" id="extx-0020" identifier="ds.reference.extx-0020" />
+                                                                        <constraint firstItem="extx-0028" firstAttribute="centerX" secondItem="extx-0025" secondAttribute="centerX" id="extx-0024" identifier="ds.reference.extx-0024" />
+                                                                        <constraint firstItem="extx-0028" firstAttribute="centerY" secondItem="extx-0025" secondAttribute="centerY" id="extx-0015" identifier="ds.reference.extx-0015" />
+                                                                    </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="pill" value="YES" />
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </view>
+                                                                <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="extx-0023" userLabel="titleLabel" opaque="NO" text="Oak" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.7" horizontalHuggingPriority="251" verticalHuggingPriority="251">
+                                                                    <fontDescription key="fontDescription" name="Geologica-Regular" family="Geologica" pointSize="13" />
+                                                                    <color key="textColor" name="dsTextPrimary" />
+                                                                    <nil key="highlightedColor" />
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="18" id="extx-0003" identifier="ds.reference.extx-0003" />
+                                                                    </constraints>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Oak" />
+                                                                    </userDefinedRuntimeAttributes>
+                                                                    <nil key="backgroundColor" />
+                                                                </label>
+                                                            </subviews>
+                                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
+                                                            <constraints>
+                                                                <constraint firstItem="extx-0007" firstAttribute="leading" secondItem="extx-0011" secondAttribute="leading" id="extx-0010" identifier="ds.reference.extx-0010" />
+                                                                <constraint firstItem="extx-0007" firstAttribute="top" secondItem="extx-0011" secondAttribute="top" id="extx-0006" identifier="ds.reference.extx-0006" />
+                                                                <constraint firstItem="extx-0011" firstAttribute="trailing" secondItem="extx-0007" secondAttribute="trailing" id="extx-0009" identifier="ds.reference.extx-0009" />
+                                                                <constraint firstItem="extx-0007" firstAttribute="bottom" secondItem="extx-0023" secondAttribute="top" constant="-6" id="extx-0016" identifier="ds.reference.extx-0016" />
+                                                                <constraint firstItem="extx-0013" firstAttribute="leading" secondItem="extx-0007" secondAttribute="leading" id="extx-0001" identifier="ds.reference.extx-0001" />
+                                                                <constraint firstItem="extx-0013" firstAttribute="top" secondItem="extx-0007" secondAttribute="top" id="extx-0005" identifier="ds.reference.extx-0005" />
+                                                                <constraint firstItem="extx-0007" firstAttribute="trailing" secondItem="extx-0013" secondAttribute="trailing" id="extx-0008" identifier="ds.reference.extx-0008" />
+                                                                <constraint firstItem="extx-0007" firstAttribute="bottom" secondItem="extx-0013" secondAttribute="bottom" id="extx-0014" identifier="ds.reference.extx-0014" />
+                                                                <constraint firstItem="extx-0025" firstAttribute="top" secondItem="extx-0007" secondAttribute="top" constant="4" id="extx-0012" identifier="ds.reference.extx-0012" />
+                                                                <constraint firstItem="extx-0007" firstAttribute="trailing" secondItem="extx-0025" secondAttribute="trailing" constant="4" id="extx-0000" identifier="ds.reference.extx-0000" />
+                                                                <constraint firstItem="extx-0023" firstAttribute="leading" secondItem="extx-0011" secondAttribute="leading" id="extx-0018" identifier="ds.reference.extx-0018" />
+                                                                <constraint firstItem="extx-0011" firstAttribute="trailing" secondItem="extx-0023" secondAttribute="trailing" id="extx-0022" identifier="ds.reference.extx-0022" />
+                                                                <constraint firstItem="extx-0011" firstAttribute="bottom" secondItem="extx-0023" secondAttribute="bottom" id="extx-0021" identifier="ds.reference.extx-0021" />
+                                                            </constraints>
+                                                        </view>
+                                                        <connections>
+                                                            <outlet property="thumbImageView" destination="extx-0007" id="extx-0002" />
+                                                            <outlet property="ringView" destination="extx-0013" id="extx-0019" />
+                                                            <outlet property="checkView" destination="extx-0025" id="extx-0017" />
+                                                            <outlet property="titleLabel" destination="extx-0023" id="extx-0004" />
+                                                        </connections>
+                                                    </collectionViewCell>
+                                                </cells>
+                                            </collectionView>
                                             <label contentMode="scaleToFill" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0008-1755-0d2d" userLabel="lightTitleLabel" opaque="NO" text="Lighting" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" horizontalHuggingPriority="251" verticalHuggingPriority="251">
                                                 <fontDescription key="fontDescription" name="Geologica-SemiBold" family="Geologica" pointSize="17" />
                                                 <color key="textColor" name="dsTextPrimary" />
@@ -1307,6 +801,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="facadeHeight" destination="extx-0029" id="extx-o002" />
+                        <outlet property="facadeCollectionView" destination="extx-0027" id="extx-o001" />
                         <outlet property="previewPaneView" destination="7ea0-0a01" id="7ea0-0f01" />
                         <outlet property="previewImageView" destination="7ea0-0a03" id="7ea0-0f02" />
                         <outletCollection property="listOnlyConstraints" destination="3b11-214c-43e0" collectionClass="NSMutableArray" id="7ea0-1000" />
@@ -1329,18 +825,6 @@
                         <outlet property="photoStatusLabel" destination="dd44-144f-53b8" id="4b08-7131-e477" />
                         <outlet property="changePhotoButton" destination="33a5-cd95-02ae" id="6b7c-b98c-610a" />
                         <outlet property="facadeTitleLabel" destination="6128-2cde-4cf3" id="aaba-e537-51c9" />
-                        <outletCollection property="facadeCards" destination="afdc-2a8b-a3e4" collectionClass="NSMutableArray" id="ef4d-b1db-d9c5" />
-                        <outletCollection property="facadeLabels" destination="8002-56d7-1a42" collectionClass="NSMutableArray" id="2ae4-32f7-0ce8" />
-                        <outletCollection property="facadeCards" destination="858e-c46c-7201" collectionClass="NSMutableArray" id="3c30-2092-08c5" />
-                        <outletCollection property="facadeLabels" destination="7efc-cbd7-3e06" collectionClass="NSMutableArray" id="a66d-1099-44bc" />
-                        <outletCollection property="facadeCards" destination="c694-c003-2f7b" collectionClass="NSMutableArray" id="2420-5e4a-10c4" />
-                        <outletCollection property="facadeLabels" destination="08be-ffa2-9dd5" collectionClass="NSMutableArray" id="c924-6f19-7c86" />
-                        <outletCollection property="facadeCards" destination="718f-fd26-8218" collectionClass="NSMutableArray" id="dede-1dca-b739" />
-                        <outletCollection property="facadeLabels" destination="3e49-c2b6-4a88" collectionClass="NSMutableArray" id="5b9a-1f10-f114" />
-                        <outletCollection property="facadeCards" destination="c57e-fddc-7003" collectionClass="NSMutableArray" id="8c6e-fe30-3416" />
-                        <outletCollection property="facadeLabels" destination="fe76-f86f-fb0a" collectionClass="NSMutableArray" id="2e9d-2edf-617a" />
-                        <outletCollection property="facadeCards" destination="8dcb-7f46-096b" collectionClass="NSMutableArray" id="2279-1b13-6340" />
-                        <outletCollection property="facadeLabels" destination="2154-0eea-83f1" collectionClass="NSMutableArray" id="f38f-2627-dcbf" />
                         <outlet property="lightTitleLabel" destination="0008-1755-0d2d" id="984e-ca14-9e79" />
                         <outletCollection property="lightControls" destination="0b61-af5f-b0ea" collectionClass="NSMutableArray" id="3318-441e-0ca9" />
                         <outletCollection property="lightRings" destination="7ad7-8667-5d2d" collectionClass="NSMutableArray" id="32d4-7fdd-0eee" />

@@ -16,6 +16,10 @@ enum AIPhotoConsent {
     }
 
     static var hasConsent: Bool {
+        #if DEBUG
+        // QA runs skip the alert (see `run`); callers that re-check consent before retrying must not loop.
+        if AppQA.enabled { return true }
+        #endif
         let defaults = UserDefaults.standard
         if defaults.bool(forKey: acceptedKey) { return true }
         let previouslyAccepted = [ImageGenerationProvider.gemini, .openAI]

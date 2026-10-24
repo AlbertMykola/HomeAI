@@ -177,14 +177,16 @@ enum AppQA {
         case "onboarding-words": return OnboardingPageViewController.make(page: .words)
         case "onboarding-goal": return AppStoryboard.instantiate(OnboardingGoalViewController.self)
         case "language": return AppStoryboard.instantiate(LanguageViewController.self)
-        case "wizard-photo", "wizard-photo-selected", "wizard-room", "wizard-style", "wizard-final":
-            let session = WizardSession(option: .interior)
+        case "wizard-photo", "wizard-photo-selected", "wizard-room", "wizard-style", "wizard-final",
+             "wizard-style-exterior", "wizard-style-garden":
+            let option: DesignOption = name == "wizard-style-exterior" ? .exterior : name == "wizard-style-garden" ? .garden : .interior
+            let session = WizardSession(option: option)
             if name != "wizard-photo" { session.photo = original; session.isDemoPhoto = true }
             session.place = .room(.livingroom)
             session.style = .interior(.modern)
             switch name {
             case "wizard-room": return WizardRoomViewController.make(session: session)
-            case "wizard-style": return WizardStyleViewController.make(session: session)
+            case "wizard-style", "wizard-style-exterior", "wizard-style-garden": return WizardStyleViewController.make(session: session)
             case "wizard-final": return WizardFinalViewController.make(session: session)
             default: return WizardPhotoViewController.make(session: session)
             }
