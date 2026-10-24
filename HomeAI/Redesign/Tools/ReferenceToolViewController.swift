@@ -49,8 +49,8 @@ final class ReferenceToolViewController: ToolStepViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        // Short screens (Duo landscape, Split View, small iPhones): lower slots keep "What to copy" above Generate.
-        let base: CGFloat = view.bounds.height < 700 ? 96 : 170
+        // Shorter screens (iPhones, Duo landscape, Split View): lower slots keep every "What to copy" row above Generate.
+        let base: CGFloat = view.bounds.height < 700 ? 96 : view.bounds.height < 900 ? 124 : 170
         let height = base * OnboardingLayout(size: (view as? DSAdaptiveRootView)?.referenceSize ?? view.bounds.size).scale
         slotHeights.forEach { if abs($0.constant - height) > 0.5 { $0.constant = height } }
     }
