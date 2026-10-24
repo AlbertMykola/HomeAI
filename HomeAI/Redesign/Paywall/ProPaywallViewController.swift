@@ -19,6 +19,9 @@ final class ProPaywallViewController: UIViewController {
     @IBOutlet private weak var illustrationView: UIImageView!
     /// Wide landscape (iPhone Duo unfolded): illustration on the left, offer on the right (Paywall.storyboard).
     @IBOutlet private weak var wideHeroImageView: UIImageView!
+    /// Unfolded Duo landscape (Figma Duo/L/02): the title sits above the hero on the left pane.
+    @IBOutlet private weak var wideTitleLabel: UILabel!
+    @IBOutlet private weak var wideSubtitleLabel: UILabel!
     @IBOutlet private var singleColumnConstraints: [NSLayoutConstraint]!
     @IBOutlet private var twoColumnConstraints: [NSLayoutConstraint]!
     private var isTwoColumn = false
@@ -101,7 +104,10 @@ final class ProPaywallViewController: UIViewController {
         twoColumnConstraints.forEach { $0.priority = UILayoutPriority(wideLandscape ? 999 : 1) }
         wideHeroImageView.isHidden = !wideLandscape
         stageView.isHidden = wideLandscape
+        [wideTitleLabel, wideSubtitleLabel].forEach { $0?.isHidden = !wideLandscape }
+        [titleLabel, subtitleLabel].forEach { $0?.isHidden = wideLandscape }
     }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -145,6 +151,9 @@ final class ProPaywallViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         defer { fitTimeline() }
+        // Same text as the column title (the subtitle changes with the trial toggle).
+        if wideTitleLabel.attributedText != titleLabel.attributedText { wideTitleLabel.attributedText = titleLabel.attributedText }
+        if wideSubtitleLabel.attributedText != subtitleLabel.attributedText { wideSubtitleLabel.attributedText = subtitleLabel.attributedText }
         guard view.dsLayoutSize != layoutSize else { return }
         layoutSize = view.dsLayoutSize
         let layout = OnboardingLayout(size: layoutSize)
