@@ -96,6 +96,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="glowCenterY" destination="3619-a0c4-a80e" id="obsx-4001" />
                         <outlet property="logoView" destination="090d-050f-4bc3" id="7296-a852-1596" />
                         <outlet property="wordmarkLabel" destination="04ac-4ff5-d680" id="a5cf-7dc0-84f4" />
                         <outlet property="taglineLabel" destination="4c46-b476-64bd" id="51d1-5ea4-a5a7" />

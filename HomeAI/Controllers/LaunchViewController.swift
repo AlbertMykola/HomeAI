@@ -7,6 +7,7 @@ final class LaunchViewController: UIViewController {
     @IBOutlet private weak var glowView: OnboardingSplashGlowView!
     @IBOutlet private weak var logoSize: NSLayoutConstraint!
     @IBOutlet private weak var logoCenterY: NSLayoutConstraint!
+    @IBOutlet private weak var glowCenterY: NSLayoutConstraint!
     private var didStart = false
     private var completionWork: DispatchWorkItem?
 
@@ -25,6 +26,13 @@ final class LaunchViewController: UIViewController {
         // The exact Figma export has 30 pt side padding and its drop shadow below the mark.
         logoSize.constant = layout.value(156)
         logoCenterY.constant = layout.value(-50)
+        glowCenterY.constant = layout.value(-16)
+        // iPhone Duo unfolded portrait (Figma Duo/P/01 · S0): the mark and its glow sit in the top half, above the hinge.
+        let size = view.bounds.size
+        if UIDevice.isFoldablePhone, size.width <= size.height, DSWideLayout.isWide(size.width) {
+            logoCenterY.constant = -size.height / 4 - 12
+            glowCenterY.constant = logoCenterY.constant + 34
+        }
         let wordmark = NSMutableAttributedString(string: "ReHomely", attributes: [
             .font: layout.font(.semiBold, 38), .kern: layout.value(-0.76), .foregroundColor: UIColor.black
         ])

@@ -4,7 +4,7 @@ import UIKit
 final class OnboardingHeroView: UIView, UIGestureRecognizerDelegate {
     var panelTop: CGFloat = 552 { didSet { setNeedsLayout() } }
     var layoutScale: CGFloat = 1 { didSet { setNeedsLayout() } }
-    /// iPhone Duo unfolded portrait (Figma Duo/P/01 · O3): the prompt spans the width instead of an iPhone column.
+    /// iPhone Duo unfolded (Figma Duo/P/01 and L/01 · O3): the prompt spans the visual instead of an iPhone column.
     var fullWidthPrompt = false { didSet { if fullWidthPrompt != oldValue { setNeedsLayout() } } }
 
     private var page = OnboardingPageViewController.Page.room

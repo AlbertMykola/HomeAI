@@ -157,7 +157,7 @@ final class OnboardingPageViewController: UIViewController, OBPageChild {
         }
         heroView.panelTop = split ? view.bounds.height - layout.value(48) : view.bounds.height - panelHeight.constant
         heroView.layoutScale = s
-        heroView.fullWidthPrompt = unfoldedPortrait
+        heroView.fullWidthPrompt = unfoldedPortrait || split
     }
 
     private func style(_ label: UILabel, lineHeight: CGFloat, kern: CGFloat = 0) {
