@@ -15,6 +15,7 @@ final class ReferenceToolViewController: ToolStepViewController {
     @IBOutlet private weak var inspirationCollectionView: UICollectionView!
     @IBOutlet private weak var copyTitleLabel: UILabel!
     @IBOutlet private var copyChips: [DSChipControl]!
+    @IBOutlet private var slotHeights: [NSLayoutConstraint]!
 
     private var reference: UIImage? { didSet { updateReference(animated: true) } }
     private var copies: Set<Int> = [0, 1, 3]
@@ -44,6 +45,14 @@ final class ReferenceToolViewController: ToolStepViewController {
         inspirationCollectionView.dataSource = self
         inspirationCollectionView.delegate = self
         updateReference(animated: false)
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        // Short screens (Duo landscape, Split View, small iPhones): lower slots keep "What to copy" above Generate.
+        let base: CGFloat = view.bounds.height < 700 ? 96 : 170
+        let height = base * OnboardingLayout(size: (view as? DSAdaptiveRootView)?.referenceSize ?? view.bounds.size).scale
+        slotHeights.forEach { if abs($0.constant - height) > 0.5 { $0.constant = height } }
     }
 
     private func loadInspiration() {

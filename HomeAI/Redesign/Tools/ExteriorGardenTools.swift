@@ -51,13 +51,7 @@ final class ExteriorToolViewController: ToolStepViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        // Two rows of tiles only on tall screens; shorter ones (iPhones, Duo landscape, Split View) swipe one row so
-        // Lighting and Keep structure stay on screen above Generate.
-        guard let flow = facadeCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
-        let rows: CGFloat = view.bounds.height >= 900 ? 2 : 1
-        // A few points of slack so the second row is never dropped by rounding.
-        let height = rows * flow.itemSize.height + (rows - 1) * flow.minimumLineSpacing + 4
-        if abs(facadeHeight.constant - height) > 0.5 { facadeHeight.constant = height }
+        facadeCollectionView.fitTileRows(facadeHeight, screenHeight: view.bounds.height)
     }
 
     @IBAction private func didTapLight(_ sender: UIControl) {
@@ -108,6 +102,7 @@ final class GardenToolViewController: ToolStepViewController {
 
     @IBOutlet private weak var styleTitleLabel: UILabel!
     @IBOutlet private weak var stylesCollectionView: UICollectionView!
+    @IBOutlet private weak var stylesHeight: NSLayoutConstraint!
     @IBOutlet private weak var seasonTitleLabel: UILabel!
     @IBOutlet private var seasonChips: [DSChipControl]!
     @IBOutlet private weak var keepTitleLabel: UILabel!
@@ -137,8 +132,14 @@ final class GardenToolViewController: ToolStepViewController {
             layout.minimumLineSpacing = 12
             layout.minimumInteritemSpacing = 14
         }
+        stylesCollectionView.contentInsetAdjustmentBehavior = .never
         stylesCollectionView.dataSource = self
         stylesCollectionView.delegate = self
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        stylesCollectionView.fitTileRows(stylesHeight, screenHeight: view.bounds.height)
     }
 
     @IBAction private func didTapSeason(_ sender: UIControl) {
@@ -215,5 +216,17 @@ final class MaterialTileCell: DSAdaptiveCollectionViewCell {
         accessibilityTraits = chosen ? [.button, .selected] : .button
         animated ? UIView.animate(withDuration: 0.35, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0,
                                   animations: changes) : changes()
+    }
+}
+
+private extension UICollectionView {
+    /// Horizontal style tiles: two rows only on tall screens; shorter ones (iPhones, Duo landscape, Split View) swipe
+    /// one row so the settings below stay on screen above Generate.
+    func fitTileRows(_ height: NSLayoutConstraint, screenHeight: CGFloat) {
+        guard let flow = collectionViewLayout as? UICollectionViewFlowLayout else { return }
+        let rows: CGFloat = screenHeight >= 900 ? 2 : 1
+        // A few points of slack so the second row is never dropped by rounding.
+        let value = rows * flow.itemSize.height + (rows - 1) * flow.minimumLineSpacing + 4
+        if abs(height.constant - value) > 0.5 { height.constant = value }
     }
 }

@@ -3629,7 +3629,7 @@
                                                 </collectionViewFlowLayout>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="290" id="f36d-a935-3e87" identifier="ds.reference.f36d-a935-3e87" />
+                                                    <constraint firstAttribute="height" constant="290" id="f36d-a935-3e87" />
                                                 </constraints>
                                                 <cells>
                                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="f857-9233-3061" customClass="MaterialTileCell" customModule="HomeAI" customModuleProvider="target" reuseIdentifier="MaterialTileCell">
@@ -4199,6 +4199,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="stylesHeight" destination="f36d-a935-3e87" id="gdnx-o001" />
                         <outlet property="previewPaneView" destination="7ea4-0a01" id="7ea4-0f01" />
                         <outlet property="previewImageView" destination="7ea4-0a03" id="7ea4-0f02" />
                         <outletCollection property="listOnlyConstraints" destination="d7b1-1436-e101" collectionClass="NSMutableArray" id="7ea4-1000" />
@@ -6019,6 +6020,8 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outletCollection property="slotHeights" destination="97ef-ef32-0efe" collectionClass="NSMutableArray" id="refx-o000" />
+                        <outletCollection property="slotHeights" destination="3892-e080-9b31" collectionClass="NSMutableArray" id="refx-o001" />
                         <outlet property="previewPaneView" destination="7ea6-0a01" id="7ea6-0f01" />
                         <outlet property="previewImageView" destination="7ea6-0a03" id="7ea6-0f02" />
                         <outletCollection property="listOnlyConstraints" destination="0013-7eaa-086b" collectionClass="NSMutableArray" id="7ea6-1000" />

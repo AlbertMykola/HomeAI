@@ -36,6 +36,8 @@ final class DSReferenceLayout {
             if excluding.contains(where: { $0 === view }) { return }
             // Reusable cells own their metrics, independently of their parent's first layout.
             if view !== root && (view is UICollectionViewCell || view is UITableViewCell || view is DSAdaptiveRootView || view is DSToastView) { return }
+            // System switches draw themselves; scaling their private layers' corners distorts the pill on iPad.
+            if view is UISwitch { return }
             if let label = view as? UILabel { fonts.append(LabelMetrics(label)) }
             if let field = view as? UITextField, let font = field.font { textInputs.append((field, font.pointSize)) }
             if let field = view as? UITextView, let font = field.font { textInputs.append((field, font.pointSize)) }
