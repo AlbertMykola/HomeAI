@@ -207,6 +207,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852" />
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES" />
                         <subviews>
+                            <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7e94-0000-0001" userLabel="splitPaneView">
+                                <color key="backgroundColor" name="dsSurface" />
+                            </view>
                             <view contentMode="scaleToFill" hidden="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6278-bd12-32c6" userLabel="photoContainer">
                                 <subviews>
                                     <imageView contentMode="scaleAspectFill" clipsSubviews="YES" userInteractionEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="34e1-c5bb-7dc3" customClass="DSImageView" customModule="HomeAI" customModuleProvider="target" userLabel="photoImageView" horizontalHuggingPriority="1" verticalHuggingPriority="1" horizontalCompressionResistancePriority="1" verticalCompressionResistancePriority="1">
@@ -467,26 +470,73 @@
                                     <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapBack:" />
                                 </userDefinedRuntimeAttributes>
                             </view>
-                        </subviews>
+                                                    <view hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7e94-0000-0002" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="paneIconBoxView">
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="7e94-0000-0003" userLabel="paneIconImageView">
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="56" weight="medium" />
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="7e94-0000-0003" firstAttribute="centerX" secondItem="7e94-0000-0002" secondAttribute="centerX" id="7e94-0001-0001" />
+                                    <constraint firstItem="7e94-0000-0003" firstAttribute="centerY" secondItem="7e94-0000-0002" secondAttribute="centerY" id="7e94-0001-0002" />
+                                    <constraint firstAttribute="width" secondItem="7e94-0000-0002" secondAttribute="height" id="7e94-0001-0003" firstItem="7e94-0000-0002" />
+                                    <constraint firstAttribute="width" constant="160" id="7e94-0001-0004" />
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="40" />
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            </subviews>
                         <color key="backgroundColor" name="dsBackground" />
                         <viewLayoutGuide key="safeArea" id="42aa-d8f4-ed63" />
                         <constraints>
                             <constraint firstItem="27d7-399e-dfdb" firstAttribute="leading" secondItem="42aa-d8f4-ed63" secondAttribute="leading" constant="16" id="da89-a044-f502" identifier="ds.reference.da89-a044-f502" />
                             <constraint firstItem="27d7-399e-dfdb" firstAttribute="top" secondItem="42aa-d8f4-ed63" secondAttribute="top" constant="6" id="06aa-acb7-82ca" identifier="ds.reference.06aa-acb7-82ca" />
-                            <constraint firstItem="6278-bd12-32c6" firstAttribute="leading" secondItem="42aa-d8f4-ed63" secondAttribute="leading" id="8309-1d4d-b577" identifier="ds.reference.8309-1d4d-b577" />
-                            <constraint firstItem="42aa-d8f4-ed63" firstAttribute="trailing" secondItem="6278-bd12-32c6" secondAttribute="trailing" id="6efe-ab93-aa01" identifier="ds.reference.6efe-ab93-aa01" />
-                            <constraint firstItem="6278-bd12-32c6" firstAttribute="top" secondItem="42aa-d8f4-ed63" secondAttribute="top" constant="86" id="43be-71f4-0d85" identifier="ds.reference.43be-71f4-0d85" />
-                            <constraint firstItem="c8b1-ecad-a755" firstAttribute="centerX" secondItem="42aa-d8f4-ed63" secondAttribute="centerX" id="7318-f27f-ab4f" identifier="ds.reference.7318-f27f-ab4f" />
-                            <constraint firstItem="c8b1-ecad-a755" firstAttribute="leading" secondItem="42aa-d8f4-ed63" secondAttribute="leading" constant="20" id="3174-78aa-4a3e" identifier="ds.reference.3174-78aa-4a3e" />
+                            <constraint priority="999" firstItem="6278-bd12-32c6" firstAttribute="leading" secondItem="42aa-d8f4-ed63" secondAttribute="leading" id="8309-1d4d-b577" identifier="ds.reference.8309-1d4d-b577" />
+                            <constraint priority="999" firstItem="42aa-d8f4-ed63" firstAttribute="trailing" secondItem="6278-bd12-32c6" secondAttribute="trailing" id="6efe-ab93-aa01" identifier="ds.reference.6efe-ab93-aa01" />
+                            <constraint priority="999" firstItem="6278-bd12-32c6" firstAttribute="top" secondItem="42aa-d8f4-ed63" secondAttribute="top" constant="86" id="43be-71f4-0d85" identifier="ds.reference.43be-71f4-0d85" />
+                            <constraint priority="999" firstItem="c8b1-ecad-a755" firstAttribute="centerX" secondItem="42aa-d8f4-ed63" secondAttribute="centerX" id="7318-f27f-ab4f" identifier="ds.reference.7318-f27f-ab4f" />
+                            <constraint priority="999" firstItem="c8b1-ecad-a755" firstAttribute="leading" secondItem="42aa-d8f4-ed63" secondAttribute="leading" constant="20" id="3174-78aa-4a3e" identifier="ds.reference.3174-78aa-4a3e" />
                             <constraint firstItem="42aa-d8f4-ed63" firstAttribute="trailing" secondItem="c8b1-ecad-a755" secondAttribute="trailing" constant="20" id="0173-eefa-e8ec" identifier="ds.reference.0173-eefa-e8ec" />
                             <constraint firstItem="c8b1-ecad-a755" firstAttribute="centerY" secondItem="21c2-117a-9fc0" secondAttribute="centerY" constant="-60" priority="250" id="7ffc-f2e8-ec49" identifier="ds.reference.7ffc-f2e8-ec49" />
                             <constraint firstItem="c8b1-ecad-a755" firstAttribute="top" secondItem="6278-bd12-32c6" secondAttribute="bottom" constant="-32" priority="999" id="b77c-4a72-a362" identifier="ds.reference.b77c-4a72-a362" />
-                            <constraint firstItem="2864-17cd-792d" firstAttribute="leading" secondItem="42aa-d8f4-ed63" secondAttribute="leading" constant="20" id="3971-82c4-b056" identifier="ds.reference.3971-82c4-b056" />
+                            <constraint priority="999" firstItem="2864-17cd-792d" firstAttribute="leading" secondItem="42aa-d8f4-ed63" secondAttribute="leading" constant="20" id="3971-82c4-b056" identifier="ds.reference.3971-82c4-b056" />
                             <constraint firstItem="42aa-d8f4-ed63" firstAttribute="trailing" secondItem="2864-17cd-792d" secondAttribute="trailing" constant="20" id="eaaa-b28a-ff50" identifier="ds.reference.eaaa-b28a-ff50" />
                             <constraint firstItem="42aa-d8f4-ed63" firstAttribute="bottom" secondItem="2864-17cd-792d" secondAttribute="bottom" constant="4" id="fe6c-6d69-f24b" identifier="ds.reference.fe6c-6d69-f24b" />
+                            <constraint firstItem="7e94-0000-0001" firstAttribute="leading" secondItem="21c2-117a-9fc0" secondAttribute="leading" id="7e94-0002-0001" />
+                            <constraint firstItem="7e94-0000-0001" firstAttribute="top" secondItem="21c2-117a-9fc0" secondAttribute="top" id="7e94-0002-0002" />
+                            <constraint firstItem="21c2-117a-9fc0" firstAttribute="bottom" secondItem="7e94-0000-0001" secondAttribute="bottom" id="7e94-0002-0003" />
+                            <constraint firstItem="21c2-117a-9fc0" firstAttribute="centerX" secondItem="7e94-0000-0001" secondAttribute="trailing" id="7e94-0002-0004" />
+                            <constraint firstItem="7e94-0000-0002" firstAttribute="centerX" secondItem="7e94-0000-0001" secondAttribute="centerX" id="7e94-0002-0005" />
+                            <constraint firstItem="6278-bd12-32c6" firstAttribute="leading" secondItem="7e94-0000-0001" secondAttribute="leading" constant="40" priority="1" id="7e94-0002-0006" />
+                            <constraint firstItem="7e94-0000-0001" firstAttribute="trailing" secondItem="6278-bd12-32c6" secondAttribute="trailing" constant="40" priority="1" id="7e94-0002-0007" />
+                            <constraint firstItem="6278-bd12-32c6" firstAttribute="centerY" secondItem="7e94-0000-0001" secondAttribute="centerY" constant="-20" priority="1" id="7e94-0002-0008" />
+                            <constraint firstItem="c8b1-ecad-a755" firstAttribute="leading" secondItem="21c2-117a-9fc0" secondAttribute="centerX" constant="40" priority="1" id="7e94-0002-0009" />
+                            <constraint firstItem="2864-17cd-792d" firstAttribute="leading" secondItem="21c2-117a-9fc0" secondAttribute="centerX" constant="35" priority="1" id="7e94-0002-0010" />
+                            <constraint firstItem="7e94-0000-0002" firstAttribute="centerY" secondItem="7e94-0000-0001" secondAttribute="centerY" priority="999" id="7e94-0002-0011" />
+                            <constraint firstItem="7e94-0000-0002" firstAttribute="centerY" secondItem="6278-bd12-32c6" secondAttribute="bottom" priority="1" id="7e94-0002-0012" />
                         </constraints>
                     </view>
                     <connections>
+                        <outletCollection property="phoneConstraints" destination="8309-1d4d-b577" collectionClass="NSMutableArray" id="7e94-0003-0000" />
+                        <outletCollection property="phoneConstraints" destination="6efe-ab93-aa01" collectionClass="NSMutableArray" id="7e94-0003-0001" />
+                        <outletCollection property="phoneConstraints" destination="43be-71f4-0d85" collectionClass="NSMutableArray" id="7e94-0003-0002" />
+                        <outletCollection property="phoneConstraints" destination="7318-f27f-ab4f" collectionClass="NSMutableArray" id="7e94-0003-0003" />
+                        <outletCollection property="phoneConstraints" destination="3174-78aa-4a3e" collectionClass="NSMutableArray" id="7e94-0003-0004" />
+                        <outletCollection property="phoneConstraints" destination="3971-82c4-b056" collectionClass="NSMutableArray" id="7e94-0003-0005" />
+                        <outletCollection property="splitConstraints" destination="7e94-0002-0006" collectionClass="NSMutableArray" id="7e94-0004-0000" />
+                        <outletCollection property="splitConstraints" destination="7e94-0002-0007" collectionClass="NSMutableArray" id="7e94-0004-0001" />
+                        <outletCollection property="splitConstraints" destination="7e94-0002-0008" collectionClass="NSMutableArray" id="7e94-0004-0002" />
+                        <outletCollection property="splitConstraints" destination="7e94-0002-0009" collectionClass="NSMutableArray" id="7e94-0004-0003" />
+                        <outletCollection property="splitConstraints" destination="7e94-0002-0010" collectionClass="NSMutableArray" id="7e94-0004-0004" />
+                        <outlet property="splitPaneView" destination="7e94-0000-0001" id="7e94-0005-0001" />
+                        <outlet property="paneIconBoxView" destination="7e94-0000-0002" id="7e94-0005-0002" />
+                        <outlet property="paneIconImageView" destination="7e94-0000-0003" id="7e94-0005-0003" />
+                        <outlet property="paneIconCenterConstraint" destination="7e94-0002-0011" id="7e94-0005-0004" />
+                        <outlet property="paneIconBadgeConstraint" destination="7e94-0002-0012" id="7e94-0005-0005" />
+                        <outlet property="paneIconWidthConstraint" destination="7e94-0001-0004" id="7e94-0005-0006" />
                         <outlet property="photoContainer" destination="6278-bd12-32c6" id="c6b3-2eaa-66af" />
                         <outlet property="photoImageView" destination="34e1-c5bb-7dc3" id="09eb-94a1-e7f8" />
                         <outlet property="contentStack" destination="c8b1-ecad-a755" id="0418-9670-c0f4" />

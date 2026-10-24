@@ -60,9 +60,43 @@ final class StateScreenViewController: UIViewController {
 
     override var preferredStatusBarStyle: UIStatusBarStyle { .default }
 
+    // iPhone Duo unfolded, landscape (Figma Duo/L/12): the picture or a big icon sits on a tinted left pane, title,
+    // text and actions in the right column. Sets in States.storyboard (phone 999 / split 1).
+    @IBOutlet private var phoneConstraints: [NSLayoutConstraint]!
+    @IBOutlet private var splitConstraints: [NSLayoutConstraint]!
+    @IBOutlet private weak var splitPaneView: UIView!
+    @IBOutlet private weak var paneIconBoxView: UIView!
+    @IBOutlet private weak var paneIconImageView: UIImageView!
+    @IBOutlet private weak var paneIconCenterConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var paneIconBadgeConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var paneIconWidthConstraint: NSLayoutConstraint!
+    private lazy var layoutSwitch = DSLayoutSwitch(phone: phoneConstraints, unfolded: splitConstraints)
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        dsApplyWideColumn()
+        let split = dsWantsWideLandscape
+        dsApplyWideColumn(fullWidth: split)
+        _ = layoutSwitch.set(unfolded: split)
+        let hasPhoto = !photoContainer.isHidden
+        splitPaneView.isHidden = !split
+        paneIconBoxView.isHidden = !split
+        iconBoxView.superview?.isHidden = split   // the icon moves to the pane
+        // In the stack, the icon overlaps the photo; on the pane it badges the photo or stands alone, large.
+        contentBelowPhotoConstraint.isActive = hasPhoto && !split
+        paneIconCenterConstraint.priority = UILayoutPriority(hasPhoto ? 1 : 999)
+        paneIconBadgeConstraint.priority = UILayoutPriority(hasPhoto ? 999 : 1)
+        paneIconWidthConstraint.constant = hasPhoto ? iconBoxView.bounds.width : 160
+        guard split else { return }
+        paneIconImageView.image = iconImageView.image
+        paneIconImageView.tintColor = iconImageView.tintColor
+        paneIconImageView.preferredSymbolConfiguration = .init(pointSize: hasPhoto ? 24 : 56, weight: .medium)
+        paneIconBoxView.backgroundColor = iconBoxView.backgroundColor
+        // Same shape as the stack icon (circle or rounded square), scaled to the pane size.
+        (paneIconBoxView as? DSView)?.pill = (iconBoxView as? DSView)?.pill ?? false
+        let ratio = iconBoxView.bounds.width > 0 ? iconBoxView.layer.cornerRadius / iconBoxView.bounds.width : 0.25
+        if (paneIconBoxView as? DSView)?.pill != true { paneIconBoxView.layer.cornerRadius = paneIconWidthConstraint.constant * ratio }
+        // A surface-coloured circle needs the page colour around it to stay visible (offline, camera off).
+        splitPaneView.backgroundColor = iconBoxView.backgroundColor == DS.Color.surface ? view.backgroundColor : DS.Color.surface
     }
 
     override func viewDidLoad() {
