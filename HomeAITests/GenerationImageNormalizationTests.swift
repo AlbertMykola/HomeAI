@@ -9,7 +9,7 @@ final class GenerationImageNormalizationTests: XCTestCase {
 
         XCTAssertEqual(normalized.imageOrientation, .up)
         XCTAssertEqual(normalized.scale, 1)
-        XCTAssertEqual(normalized.generationPixelSize, CGSize(width: 2_048, height: 1_024))
+        XCTAssertEqual(normalized.generationPixelSize, CGSize(width: 1_536, height: 768))
     }
 
     func testNormalizationAppliesImageOrientation() throws {

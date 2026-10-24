@@ -38,13 +38,12 @@ enum GeminiServiceError: ImageGenerationFailure {
         return nil
     }
 
+    /// Only where Google refused the request and billed nothing (429 rate limit, 503 overloaded). A timeout or
+    /// 502/504 may already have produced — and charged for — an image, so repeating it would pay twice.
     var isRetryable: Bool {
         switch self {
-        case .requestFailed(let error):
-            guard let urlError = error as? URLError else { return false }
-            return urlError.code == .timedOut
         case .httpError(let statusCode, _):
-            return [429, 502, 503, 504].contains(statusCode)
+            return [429, 503].contains(statusCode)
         default:
             return false
         }

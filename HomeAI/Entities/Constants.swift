@@ -104,10 +104,18 @@ struct Constants {
     }
 
     struct Generation {
-        static let modelID = "gemini-3.1-flash-image-preview"
+        static var modelID: String {
+            #if DEBUG
+            // Quality/cost check only (`-geminiModel gemini-nano-banana-2.1`); Release always uses the default.
+            let args = ProcessInfo.processInfo.arguments
+            if let i = args.firstIndex(of: "-geminiModel"), args.indices.contains(i + 1) { return args[i + 1] }
+            #endif
+            return "gemini-3.1-flash-image-preview"
+        }
         static let promptVersion = "2026-09-24.1"
         static let gptImagePromptVersion = "2026-09-17.gpt-image-2.5-test"
-        static let maxImageLongEdge: CGFloat = 2_048
+        /// The model returns 1K images; a larger input adds bytes and latency, not quality.
+        static let maxImageLongEdge: CGFloat = 1_536
         static let jpegCompressionQuality: CGFloat = 0.82
         static let maxRequestBodyBytes = 14_000_000
         static let requestTimeout: TimeInterval = 180
