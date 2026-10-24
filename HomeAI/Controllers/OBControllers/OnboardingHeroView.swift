@@ -6,6 +6,9 @@ final class OnboardingHeroView: UIView, UIGestureRecognizerDelegate {
     var layoutScale: CGFloat = 1 { didSet { setNeedsLayout() } }
     /// iPhone Duo unfolded (Figma Duo/P/01 and L/01 · O3): the prompt spans the visual instead of an iPhone column.
     var fullWidthPrompt = false { didSet { if fullWidthPrompt != oldValue { setNeedsLayout() } } }
+    /// Closed iPhone Duo: the images run under the status rail; labels, cards and the prompt stay beside it.
+    var trailingInset: CGFloat = 0 { didSet { if trailingInset != oldValue { setNeedsLayout() } } }
+    private var contentWidth: CGFloat { bounds.width - trailingInset }
 
     private var page = OnboardingPageViewController.Page.room
     @IBOutlet private weak var canvas: UIView!
@@ -254,7 +257,7 @@ final class OnboardingHeroView: UIView, UIGestureRecognizerDelegate {
             label.font = DS.Font.geologica(.medium, 13 * s)
             label.layer.cornerRadius = 14 * s
             let width = label.intrinsicContentSize.width + 24 * s
-            geometry.setFrame(label, CGRect(x: label === beforeLabel ? 16 * s : bounds.width - 16 * s - width,
+            geometry.setFrame(label, CGRect(x: label === beforeLabel ? 16 * s : contentWidth - 16 * s - width,
                                  y: panelTop - 56 * s, width: width, height: 28 * s))
         }
     }
@@ -269,7 +272,7 @@ final class OnboardingHeroView: UIView, UIGestureRecognizerDelegate {
         let xs: [CGFloat] = [66, 351, 601, -408, -178]
         let ys: [CGFloat] = [118, 150, 170, 170, 150]
         let alphas: [CGFloat] = [1, 0.55, 0, 0, 0.55]
-        let origin = (bounds.width - 393 * s) / 2
+        let origin = (contentWidth - 393 * s) / 2
         for (i, card) in cards.enumerated() {
             let slot = (i - index + 5) % 5
             let next = (slot + 4) % 5
@@ -298,8 +301,8 @@ final class OnboardingHeroView: UIView, UIGestureRecognizerDelegate {
         scanGlow.frame = CGRect(x: 0, y: lineY - 120 * s, width: bounds.width, height: 120 * s)
         scan.alpha = progress > 0 && progress < 1 ? 1 : 0
         scanGlow.opacity = Float(scan.alpha)
-        let inset = fullWidthPrompt ? 20 * s : max(20 * s, (bounds.width - 353 * s) / 2)
-        let promptWidth = bounds.width - inset * 2
+        let inset = fullWidthPrompt ? 20 * s : max(20 * s, (contentWidth - 353 * s) / 2)
+        let promptWidth = contentWidth - inset * 2
         geometry.setFrame(prompt, CGRect(x: inset, y: panelTop - 82 * s, width: promptWidth, height: 56 * s))
         prompt.layer.cornerRadius = 28 * s
         promptLabel.font = DS.Font.geologica(.regular, 15 * s)

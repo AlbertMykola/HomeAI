@@ -101,12 +101,12 @@ final class OnboardingGoalViewController: UIViewController, OBPageChild {
         rowStacks.forEach { $0.spacing = layout.value(13) }
         rows.spacing = layout.value(13)
         // Closed iPhone Duo (Figma Duo/C/01 · O4): a 678 pt screen fits the 2×2 grid and the skip link when the
-        // cards are 185 pt and the grid sits 43 pt in (the title keeps its 20 pt inset). Other iPhones unchanged.
+        // cards are 185 pt and the grid sits 43 pt in and ends 24 pt before the status rail (the title keeps its 20 pt inset). Other iPhones unchanged.
         options.forEach { $0.scale = layout.scale * (closedDuo ? 0.9 : unfoldedPortrait ? 0.86 : 1) }
         cardHeight.constant = closedDuo ? 185 : layout.value(unfoldedPortrait ? 174 : 206)
         rows.isLayoutMarginsRelativeArrangement = closedDuo || unfoldedPortrait
         // Unfolded portrait: 261 pt cards, 67 pt from the edges (the title keeps its 20 pt inset).
-        rows.layoutMargins = closedDuo ? UIEdgeInsets(top: 0, left: 23, bottom: 0, right: 23)
+        rows.layoutMargins = closedDuo ? UIEdgeInsets(top: 0, left: 23, bottom: 0, right: 0)
             : unfoldedPortrait ? UIEdgeInsets(top: 0, left: 47, bottom: 0, right: 47) : .zero
         // Split: the panes meet at the hinge (window centre), not at this page's centre (the rail is beside it).
         let hinge = split ? view.window.map { $0.bounds.midX - view.bounds.midX } ?? 0 : 0

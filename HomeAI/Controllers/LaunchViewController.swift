@@ -8,6 +8,7 @@ final class LaunchViewController: UIViewController {
     @IBOutlet private weak var logoSize: NSLayoutConstraint!
     @IBOutlet private weak var logoCenterY: NSLayoutConstraint!
     @IBOutlet private weak var glowCenterY: NSLayoutConstraint!
+    @IBOutlet private var centerXConstraints: [NSLayoutConstraint]!
     private var didStart = false
     private var completionWork: DispatchWorkItem?
 
@@ -29,10 +30,18 @@ final class LaunchViewController: UIViewController {
         glowCenterY.constant = layout.value(-16)
         // iPhone Duo unfolded portrait (Figma Duo/P/01 · S0): the mark and its glow sit in the top half, above the hinge.
         let size = view.bounds.size
+        let closedDuo = UIDevice.isFoldablePhone && !DSWideLayout.isWide(size.width)
         if UIDevice.isFoldablePhone, size.width <= size.height, DSWideLayout.isWide(size.width) {
             logoCenterY.constant = -size.height / 4 - 12
             glowCenterY.constant = logoCenterY.constant + 34
+        } else if closedDuo {
+            // Closed Duo (Figma Duo/C/01 · S0): no notch above, so the mark sits 43 pt lower than on an iPhone.
+            logoCenterY.constant = -7
+            glowCenterY.constant = 27
         }
+        // Closed Duo: centred beside the status rail on the right edge, not under it.
+        let railOffset = closedDuo ? -(view.safeAreaInsets.right - view.safeAreaInsets.left) / 2 : 0
+        centerXConstraints.forEach { $0.constant = railOffset }
         let wordmark = NSMutableAttributedString(string: "ReHomely", attributes: [
             .font: layout.font(.semiBold, 38), .kern: layout.value(-0.76), .foregroundColor: UIColor.black
         ])

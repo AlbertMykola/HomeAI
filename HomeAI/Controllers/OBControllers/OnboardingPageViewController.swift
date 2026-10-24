@@ -32,6 +32,10 @@ final class OnboardingPageViewController: UIViewController, OBPageChild {
     @IBOutlet private var phoneConstraints: [NSLayoutConstraint]!
     @IBOutlet private var splitConstraints: [NSLayoutConstraint]!
     private lazy var layoutSwitch = DSLayoutSwitch(phone: phoneConstraints, unfolded: splitConstraints)
+    /// Closed iPhone Duo (Figma Duo/C/01): the panel runs under the status rail on the right edge too.
+    @IBOutlet private weak var panelViewportTrailing: NSLayoutConstraint!
+    @IBOutlet private weak var panelEdgeTrailing: NSLayoutConstraint!
+    private var isClosedDuo: Bool { UIDevice.isFoldablePhone && !DSWideLayout.isWide(view.bounds.width) }
     private var isSplit: Bool {
         UIDevice.isFoldablePhone && view.bounds.width > view.bounds.height && DSWideLayout.isWide(view.bounds.width)
     }
@@ -91,6 +95,17 @@ final class OnboardingPageViewController: UIViewController, OBPageChild {
         super.viewWillLayoutSubviews()
         let split = isSplit
         _ = layoutSwitch.set(unfolded: split)
+        // Closed Duo (Figma Duo/C/01): the visual runs under the status rail on the right edge (the text and
+        // Continue stay beside it). The split constraint pins the hero to the centre; offset it to the edge.
+        let closedDuo = isClosedDuo
+        panelViewportTrailing.priority = closedDuo ? .init(1) : .init(999)
+        panelEdgeTrailing.priority = closedDuo ? .init(999) : .init(1)
+        if !split, let heroPhone = phoneConstraints.first(where: { $0.firstItem === heroView || $0.secondItem === heroView }),
+           let heroEdge = splitConstraints.first(where: { $0.firstItem === heroView || $0.secondItem === heroView }) {
+            heroPhone.priority = closedDuo ? .init(1) : .init(999)
+            heroEdge.priority = closedDuo ? .init(999) : .init(1)
+            if closedDuo { heroEdge.constant = view.bounds.width / 2 }
+        }
     }
 
     override func viewDidLayoutSubviews() {
@@ -102,7 +117,9 @@ final class OnboardingPageViewController: UIViewController, OBPageChild {
         let columnWidth = split ? view.bounds.width / 2 - view.safeAreaInsets.right : layoutSize.width
         let unfoldedPortrait = isUnfoldedPortrait
         let inset = split || unfoldedPortrait ? layout.value(24) : layout.inset(in: layoutSize.width)
-        horizontalInsets.forEach { $0.constant = inset }
+        // Closed Duo: the panel reaches the screen edge, its content keeps clear of the status rail.
+        let rail = isClosedDuo ? view.safeAreaInsets.right : 0
+        horizontalInsets.forEach { $0.constant = inset + ($0.firstItem === panelView ? rail : 0) }
         // Reset to the design constants before scaling: repeated layout must be idempotent.
         let scaledConstraints: [(NSLayoutConstraint, CGFloat)] = [
             (panelTopPadding, 28), (titleTop, 14), (subtitleTop, 14), (buttonBottom, 10), (buttonHeight, 56),
@@ -158,6 +175,7 @@ final class OnboardingPageViewController: UIViewController, OBPageChild {
         heroView.panelTop = split ? view.bounds.height - layout.value(48) : view.bounds.height - panelHeight.constant
         heroView.layoutScale = s
         heroView.fullWidthPrompt = unfoldedPortrait || split
+        heroView.trailingInset = rail
     }
 
     private func style(_ label: UILabel, lineHeight: CGFloat, kern: CGFloat = 0) {
