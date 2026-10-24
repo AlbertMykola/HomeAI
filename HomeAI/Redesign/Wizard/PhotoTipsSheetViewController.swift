@@ -1,7 +1,7 @@
 import UIKit
 
 /// A/04 · W1-t Photo tips (sheet). Layout: Wizard.storyboard.
-final class PhotoTipsSheetViewController: UIViewController {
+final class PhotoTipsSheetViewController: UIViewController, DSSheetContentMeasuring {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var closeButton: DSPressableControl!
@@ -20,6 +20,8 @@ final class PhotoTipsSheetViewController: UIViewController {
         vc.option = option
         DSSheet.present(vc, from: presenter, height: 640)
     }
+
+    func sheetContentHeight(width: CGFloat) -> CGFloat { dsSheetHeight(width: width, lastView: gotItButton) }
 
     override func viewDidLoad() {
         super.viewDidLoad()

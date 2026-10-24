@@ -5,6 +5,26 @@ protocol DSSheetContentMeasuring: UIViewController {
     func sheetContentHeight(width: CGFloat) -> CGFloat
 }
 
+extension UIViewController {
+    /// Sheet height: the top of the root-level block that holds `lastView` plus that block's compressed height
+    /// (its scroll view's content for scrolling sheets) plus the bottom margin. Laid out at `width`.
+    func dsSheetHeight(width: CGFloat, lastView: UIView, bottomMargin: CGFloat = 16) -> CGFloat {
+        loadViewIfNeeded()
+        // Measure off-screen at the target width, then hand the view back to its presentation untouched.
+        let saved = view.frame
+        defer { view.frame = saved; view.setNeedsLayout() }
+        view.frame = CGRect(x: 0, y: 0, width: width, height: 1200)
+        view.layoutIfNeeded()
+        var block = lastView
+        while let parent = block.superview, parent !== view { block = parent }
+        let measured = (block as? UIScrollView)?.subviews.first { !($0 is UIImageView) } ?? block
+        let fitting = measured.systemLayoutSizeFitting(
+            CGSize(width: block.bounds.width, height: UIView.layoutFittingCompressedSize.height),
+            withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
+        return block.frame.minY + fitting.height + bottomMargin
+    }
+}
+
 /// Bottom sheets of the redesign: system sheet, grabber, 38 pt corners, height fitted to the XIB content.
 enum DSSheet {
 
@@ -12,7 +32,7 @@ enum DSSheet {
     @discardableResult static func presentFloating(_ vc: UIViewController, from presenter: UIViewController,
                                                    height: CGFloat) -> UIViewControllerTransitioningDelegate {
         // Unfolded Duo: in its pane like the other sheets (Figma Duo/L/06 R8).
-        let pane = presenter.view.window.map { DSWideLayout.isWide($0.dsLayoutSize.width) } ?? false
+        let pane = UIDevice.isFoldablePhone || (presenter.view.window.map { DSWideLayout.isWide($0.dsLayoutSize.width) } ?? false)
         let transition = DSFloatingSheetTransition(height: height, pane: pane)
         vc.modalPresentationStyle = .custom
         vc.transitioningDelegate = transition
@@ -32,7 +52,7 @@ enum DSSheet {
                         large: Bool = false) {
         // iPhone Duo unfolded (Figma Duo rules): the sheet sits at the bottom of its pane — the right column in
         // landscape, an iPhone-wide column in portrait — at iPhone size; the dim covers the whole screen.
-        if let window = presenter.view.window, DSWideLayout.isWide(window.dsLayoutSize.width) {
+        if let window = presenter.view.window, DSWideLayout.isWide(window.dsLayoutSize.width) || UIDevice.isFoldablePhone {
             let transition = DSFloatingSheetTransition(height: large ? .greatestFiniteMagnitude : (height ?? 470), pane: true)
             paneTransitions.setObject(transition, forKey: vc)
             vc.modalPresentationStyle = .custom
@@ -99,6 +119,8 @@ private final class DSFloatingSheetPresentation: UIPresentationController, UIGes
     private let pane: Bool
     private let dim = AppStoryboard.component(SheetBackdropView.self)
 
+    private var keyboardHeight: CGFloat = 0
+
     init(presentedViewController: UIViewController, presenting: UIViewController?, height: CGFloat, pane: Bool) {
         self.height = height
         self.pane = pane
@@ -113,8 +135,11 @@ private final class DSFloatingSheetPresentation: UIPresentationController, UIGes
         guard let container = containerView else { return .zero }
         let b = container.bounds, safe = container.safeAreaInsets
         let landscape = b.width > b.height
-        let width: CGFloat = landscape ? min(375, b.width - safe.right - b.midX - 8) : 376
-        let x = landscape ? b.midX + 4 : (b.width - width) / 2
+        let column = b.width - safe.left - safe.right
+        // Closed Duo: the iPhone column itself (rail on the right), 8 pt inset like the floating Share sheet.
+        let closed = !DSWideLayout.isWide(column)
+        let width: CGFloat = closed ? column - 16 : (landscape ? min(375, b.width - safe.right - b.midX - 8) : 376)
+        let x = closed ? safe.left + 8 : (landscape ? b.midX + 4 : (b.width - width) / 2)
         let inset: CGFloat = 8
         let reference = CGSize(width: width, height: 852 * width / 393)
         if let root = presentedViewController.view as? DSAdaptiveRootView, root.referenceSizeOverride != reference {
@@ -122,17 +147,21 @@ private final class DSFloatingSheetPresentation: UIPresentationController, UIGes
             root.applyMetrics(size: reference)
         }
         let fittedHeight: CGFloat
-        if height == .greatestFiniteMagnitude {
-            fittedHeight = .greatestFiniteMagnitude
-        } else if let measuring = presentedViewController as? DSSheetContentMeasuring {
+        if let measuring = presentedViewController as? DSSheetContentMeasuring {
             fittedHeight = measuring.sheetContentHeight(width: width)
+        } else if height == .greatestFiniteMagnitude {
+            fittedHeight = .greatestFiniteMagnitude
         } else {
             fittedHeight = DSSheet.fittingHeight(of: presentedViewController, width: width)
         }
-        let maxHeight = b.height - safe.top - 2 * inset
-        // Like a system detent, the content height excludes the home-indicator area the sheet still covers.
-        let h = min(max(fittedHeight, min(height * width / 393, maxHeight)) + safe.bottom, maxHeight)
-        return CGRect(x: x, y: b.height - inset - h, width: width, height: h)
+        // Above the keyboard when one is up (the system sheets these replace do the same).
+        let bottom = keyboardHeight
+        let maxHeight = b.height - safe.top - bottom - 2 * inset
+        // The storyboard content decides (the phone detent is the fallback when it can't be measured); like a
+        // system detent it excludes the home-indicator area the sheet still covers.
+        let content = fittedHeight > 120 ? fittedHeight : height * width / 393
+        let h = min(content + (bottom > 0 ? 0 : safe.bottom), maxHeight)
+        return CGRect(x: x, y: b.height - bottom - inset - h, width: width, height: h)
     }
 
     override var frameOfPresentedViewInContainerView: CGRect {
@@ -148,7 +177,19 @@ private final class DSFloatingSheetPresentation: UIPresentationController, UIGes
                       y: container.bounds.height - inset - h, width: width, height: h)
     }
 
+    @objc private func keyboardWillChange(_ note: Notification) {
+        guard pane, let container = containerView,
+              let end = (note.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        let overlap = max(0, container.bounds.maxY - container.convert(end, from: nil).minY)
+        guard abs(overlap - keyboardHeight) > 0.5 else { return }
+        keyboardHeight = overlap
+        let duration = note.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? Double ?? 0.25
+        UIView.animate(withDuration: duration) { container.setNeedsLayout(); container.layoutIfNeeded() }
+    }
+
     override func presentationTransitionWillBegin() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(_:)),
+                                               name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         guard let container = containerView else { return }
         dim.frame = container.bounds; dim.alpha = 0
         container.insertSubview(dim, at: 0)

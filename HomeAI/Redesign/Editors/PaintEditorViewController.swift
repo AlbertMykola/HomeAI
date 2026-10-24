@@ -58,6 +58,7 @@ final class PaintEditorViewController: MaskEditorViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        bleedScrollViews.forEach { $0.clipsToBounds = UIDevice.isFoldablePhone }
         navTitleLabel.text = ""
         panelTitleLabel.text = "Paint walls".localized
         sizeTitleLabel.text = "Size".localized
@@ -84,7 +85,8 @@ final class PaintEditorViewController: MaskEditorViewController {
 
     override func didChangeSplit(_ split: Bool) {
         super.didChangeSplit(split)
-        bleedScrollViews.forEach { $0.clipsToBounds = split }
+        // On the Duo (closed: the rail sits on the right) the rows also stop at the column edge.
+        bleedScrollViews.forEach { $0.clipsToBounds = split || UIDevice.isFoldablePhone }
     }
 
     override func viewDidLayoutSubviews() {

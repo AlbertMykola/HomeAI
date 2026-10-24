@@ -8,6 +8,12 @@ struct OnboardingLayout {
         let fitted = min(size.width / 393, size.height / 852)
         // Landscape windows (iPhone Duo unfolded) are short, not small: keep text and controls readable and let
         // the screen scroll instead of shrinking everything to the height.
+        // iPhone Duo (Figma page "A · iPhone Duo"): every posture uses iPhone metrics 1:1 — closed is an iPhone
+        // column, unfolded panes are iPhone-wide — and screens scroll instead of shrinking or growing with height.
+        if UIDevice.isFoldablePhone {
+            scale = 1
+            return
+        }
         scale = size.width > size.height ? max(fitted, 0.92) : fitted
     }
 

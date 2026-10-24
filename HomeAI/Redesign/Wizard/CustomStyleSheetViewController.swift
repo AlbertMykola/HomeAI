@@ -1,7 +1,7 @@
 import UIKit
 
 /// A/04 · W3-p Describe your style (sheet, .large + keyboard). Layout: Wizard.storyboard.
-final class CustomStyleSheetViewController: UIViewController {
+final class CustomStyleSheetViewController: UIViewController, DSSheetContentMeasuring {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var contentScrollView: UIScrollView!
@@ -40,6 +40,8 @@ final class CustomStyleSheetViewController: UIViewController {
         let inset = OnboardingLayout(size: view.dsAdaptiveReferenceSize).value(40)
         exampleChips.forEach { ($0.superview as? DSAdaptiveChipRow)?.fit(in: view.dsLayoutSize.width - inset) }
     }
+
+    func sheetContentHeight(width: CGFloat) -> CGFloat { dsSheetHeight(width: width, lastView: useButton) }
 
     override func viewDidLoad() {
         super.viewDidLoad()
