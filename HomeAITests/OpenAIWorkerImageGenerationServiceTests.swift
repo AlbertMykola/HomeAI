@@ -81,9 +81,9 @@ final class OpenAIWorkerImageGenerationServiceTests: XCTestCase {
         XCTAssertLessThan(alpha[1], 5)
     }
 
-    func testFactoryUsesOpenAIByDefaultAndGeminiOnlyWhenConfigSaysSo() {
-        XCTAssertEqual(ImageGenerationProvider.defaultProvider, .openAI)
-        XCTAssertEqual(SupabaseAppConfig.fallback.imageGenerationProvider, .openAI)
+    func testFactoryFollowsTheConfiguredProvider() {
+        XCTAssertEqual(ImageGenerationProvider.defaultProvider, .gemini)
+        XCTAssertEqual(SupabaseAppConfig.fallback.imageGenerationProvider, .gemini)
         XCTAssertTrue(
             ImageGenerationServiceFactory.make(environment: [:], provider: .openAI, directDebugKey: nil)
                 is OpenAIWorkerImageGenerationService
@@ -94,14 +94,14 @@ final class OpenAIWorkerImageGenerationServiceTests: XCTestCase {
         )
     }
 
-    func testRemoteConfigWithoutProviderFallsBackToOpenAIAndGeminiValueIsHonoured() throws {
+    func testRemoteConfigWithoutProviderUsesTheDefaultAndExplicitValuesAreHonoured() throws {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .iso8601
         let missing = try decoder.decode(SupabaseAppConfig.self, from: Data(#"{"id":1}"#.utf8))
-        XCTAssertEqual(missing.imageGenerationProvider, .openAI)
-        let gemini = try decoder.decode(
-            SupabaseAppConfig.self, from: Data(#"{"id":1,"image_generation_provider":"gemini"}"#.utf8))
-        XCTAssertEqual(gemini.imageGenerationProvider, .gemini)
+        XCTAssertEqual(missing.imageGenerationProvider, .defaultProvider)
+        let openAI = try decoder.decode(
+            SupabaseAppConfig.self, from: Data(#"{"id":1,"image_generation_provider":"openai"}"#.utf8))
+        XCTAssertEqual(openAI.imageGenerationProvider, .openAI)
     }
 
     func testDirectOpenAIModeIsDebugOnlyAndNeedsASavedKey() {

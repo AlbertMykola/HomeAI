@@ -55,7 +55,8 @@ struct SupabaseAppConfig: Codable, Equatable {
 }
 
 extension ImageGenerationProvider {
-    /// Used when Supabase `App_Config.image_generation_provider` is missing (or no config yet): the OpenAI worker.
-    /// Rollback without a build: set the column to "gemini" (Gemini worker).
-    static let defaultProvider: ImageGenerationProvider = .openAI
+    /// Used when Supabase `App_Config.image_generation_provider` is missing (the column doesn't exist yet) or no
+    /// config yet. Gemini for now (2026-10-20): OpenAI rejects our Cloudflare worker with 403
+    /// unsupported_country_region_territory until OpenAI support fixes it. Back to `.openAI` then.
+    static let defaultProvider: ImageGenerationProvider = .gemini
 }
