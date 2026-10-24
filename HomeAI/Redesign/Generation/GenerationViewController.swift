@@ -25,13 +25,31 @@ final class GenerationViewController: UIViewController, DSWideLayoutFullWidth {
 
     var dsUsesFullWidth: Bool { dsWantsWideLandscape }
 
+    private var isTabletop = false
+
+    /// iPhone Duo hinge (iOS 27.1): half open = tabletop — the scan stays above the fold whatever the orientation.
+    private func observeHinge() {
+        #if DEBUG
+        if ProcessInfo.processInfo.arguments.contains("--qa-tabletop") { isTabletop = true; return }
+        #endif
+        guard #available(iOS 27.1, *) else { return }
+        view.addInteraction(UIHingeInteraction { [weak self] _, update in
+            guard let self else { return }
+            let tabletop = update.hinge?.status == .partiallyOpen
+            guard tabletop != self.isTabletop else { return }
+            self.isTabletop = tabletop
+            self.view.setNeedsLayout()
+            UIView.animate(withDuration: DS.Motion.reduceMotion ? 0 : 0.45) { self.view.layoutIfNeeded() }
+        })
+    }
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        let landscape = dsWantsWideLandscape
+        let landscape = dsWantsWideLandscape && !isTabletop
         if layoutSwitch.set(unfolded: landscape) { navigationController?.view.setNeedsLayout() }
         failurePaneView?.isHidden = !landscape
         let size = view.bounds.size
-        let portrait = !landscape && UIDevice.isFoldablePhone && DSWideLayout.isWide(size.width) && size.height > size.width
+        let portrait = isTabletop || (!landscape && UIDevice.isFoldablePhone && DSWideLayout.isWide(size.width) && size.height > size.width)
         // The released constraints belong to the phone set, which the landscape switch also turns off.
         let released = UILayoutPriority(portrait || landscape ? 1 : 999)
         portraitReleasedConstraints.forEach { if $0.priority != released { $0.priority = released } }
@@ -100,6 +118,7 @@ final class GenerationViewController: UIViewController, DSWideLayoutFullWidth {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        observeHinge()
         navTitleLabel.text = "Creating your design".localized
         etaLabel.text = String(format: "~%d s left".localized, 30)
         [percentLabel, failureTitleLabel, failureBodyLabel, failureCodeLabel].forEach {
