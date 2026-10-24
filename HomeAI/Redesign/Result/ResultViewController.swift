@@ -658,8 +658,15 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
             return
         }
         if !free, GenerationAccess.evaluate() == .requiresSubscription {
-            OutOfCreditsSheetViewController.present(from: self, photo: resultImageView.image) { [weak self] in
-                self?.runEdit(manager: manager, note: note)
+            Task { @MainActor [weak self] in
+                guard let self else { return }
+                if await GenerationAccess.evaluateConfirmed() == .requiresSubscription {
+                    OutOfCreditsSheetViewController.present(from: self, photo: self.resultImageView.image) { [weak self] in
+                        self?.runEdit(manager: manager, note: note)
+                    }
+                } else {
+                    self.runEdit(manager: manager, note: note, free: true)   // access confirmed, gate passed
+                }
             }
             return
         }

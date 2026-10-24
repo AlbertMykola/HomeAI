@@ -183,14 +183,17 @@ class WizardStepViewController: UIViewController, DSWideLayoutFullWidth {
             configure(self.session.promptManager)
             self.launchGeneration(styleTitle: styleTitle)
         }
-        switch GenerationAccess.evaluate() {
-        case .allowed:
-            DS.Haptic.medium()
-            start()
-        case .requiresSubscription:
-            OutOfCreditsSheetViewController.present(from: self, photo: session.photo, onUnlocked: start)
-        case .dailyLimitExceeded:
-            GenerationAccess.requestProcessingIfAllowed(presentingFrom: self)
+        Task { @MainActor [weak self] in
+            guard let self else { return }
+            switch await GenerationAccess.evaluateConfirmed() {
+            case .allowed:
+                DS.Haptic.medium()
+                start()
+            case .requiresSubscription:
+                OutOfCreditsSheetViewController.present(from: self, photo: self.session.photo, onUnlocked: start)
+            case .dailyLimitExceeded:
+                GenerationAccess.requestProcessingIfAllowed(presentingFrom: self)
+            }
         }
     }
 

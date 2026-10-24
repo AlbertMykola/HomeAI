@@ -126,6 +126,15 @@ enum GenerationAccess {
         return .allowed
     }
 
+    /// Like `evaluate()`, but never sends a subscriber to the paywall because their profile wasn't loaded yet.
+    @MainActor
+    static func evaluateConfirmed() async -> Result {
+        let quick = evaluate()
+        guard quick == .requiresSubscription else { return quick }
+        _ = await AdaptyService.shared.confirmedSubscriptionStatus()
+        return evaluate()
+    }
+
     /// Повертає `true`, якщо можна запускати Processing / генерацію. Інакше показує потрібний UI і повертає `false`.
     @MainActor
     @discardableResult

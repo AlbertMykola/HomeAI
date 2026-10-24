@@ -506,14 +506,17 @@ final class AssistantViewController: UIViewController, DSWideLayoutFullWidth {
             manager.updateDesignMode(.structuralPreservation)
             NavigationManager.shared.showGeneration(manager: manager, sourcePhoto: photo, styleTitle: idea.title)
         }
-        switch GenerationAccess.evaluate() {
-        case .allowed:
-            DS.Haptic.medium()
-            start()
-        case .requiresSubscription:
-            OutOfCreditsSheetViewController.present(from: self, photo: photo, onUnlocked: start)
-        case .dailyLimitExceeded:
-            GenerationAccess.requestProcessingIfAllowed(presentingFrom: self)
+        Task { @MainActor [weak self] in
+            guard let self else { return }
+            switch await GenerationAccess.evaluateConfirmed() {
+            case .allowed:
+                DS.Haptic.medium()
+                start()
+            case .requiresSubscription:
+                OutOfCreditsSheetViewController.present(from: self, photo: photo, onUnlocked: start)
+            case .dailyLimitExceeded:
+                GenerationAccess.requestProcessingIfAllowed(presentingFrom: self)
+            }
         }
     }
 

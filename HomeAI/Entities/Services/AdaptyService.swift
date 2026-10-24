@@ -95,6 +95,21 @@ public class AdaptyService: NSObject {
         return hasActiveSubscription
     }
 
+    /// Before telling a user they need Pro: wait for the first profile, and if it still says "free", fetch the
+    /// latest one once (the cached profile can be stale or missing right after launch / a renewal).
+    @MainActor
+    public func confirmedSubscriptionStatus() async -> Bool {
+        if hasActiveSubscription { return true }
+        await awaitUserReady(timeoutSeconds: 8)
+        if hasActiveSubscription { return true }
+        do {
+            apply(try await Adapty.getProfile())
+        } catch {
+            ErrorReporter.report(error, operation: "adapty_profile_refresh", details: .init(provider: "adapty"))
+        }
+        return hasActiveSubscription
+    }
+
     @MainActor
     private func markInitialUserLoadCompleted() {
         guard !didCompleteInitialUserLoad else { return }
