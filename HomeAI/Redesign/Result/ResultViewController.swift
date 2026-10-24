@@ -110,6 +110,10 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
     private var didRunEntrance = false
     private var liked = false
     private var referenceLayout: DSReferenceLayout!
+    /// Tools and versions get their own scale: on a wide Duo panel (portrait, half folded) they grow to fill it.
+    private var toolsLayout: DSReferenceLayout!
+    private var versionsLayout: DSReferenceLayout!
+    private var panelScale: CGFloat = 1
     private var askKeyboardEndFrame: CGRect?
     private let speech = SpeechInput()
     private let amplitude = AmplitudeService.shared
@@ -130,7 +134,9 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
         configureAskPanel()
         reloadProject()
         if reveal { prepareReveal() }
-        referenceLayout = DSReferenceLayout(root: view, prefix: "result.")
+        referenceLayout = DSReferenceLayout(root: view, prefix: "result.", excluding: [toolsScrollView, versionsCollectionView])
+        toolsLayout = DSReferenceLayout(root: toolsScrollView, prefix: "result.")
+        versionsLayout = DSReferenceLayout(root: versionsCollectionView, prefix: "result.")
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillChange(_:)),
                                                name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
     }
@@ -201,15 +207,6 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
         portraitConstraints.forEach { $0.priority = portrait ? high : low }
         // Figma Duo/P/06: the panel below the hinge spreads its rows over the whole half (no stretched header).
         panelStack.distribution = portrait ? .equalSpacing : .fill
-        // …and the seven tools span the column instead of scrolling.
-        if let tools = toolsScrollView.subviews.first?.subviews.compactMap({ $0 as? UIStackView }).first
-            ?? toolsScrollView.subviews.compactMap({ $0 as? UIStackView }).first {
-            let items = tools.arrangedSubviews.filter { !$0.isHidden }
-            let used = items.reduce(0) { $0 + $1.bounds.width }
-            let fitted = items.count > 1 && used > 0 ? (panelStack.bounds.width - 40 - used) / CGFloat(items.count - 1) : 0
-            let spacing = portrait ? max(6, floor(fitted)) : 6
-            if abs(tools.spacing - spacing) > 0.5 { tools.spacing = spacing }
-        }
         if !side { portraitReleasedConstraints.forEach { $0.priority = portrait ? low : high } }
         let pair = isTabletop && !side && originalImageView.image != nil
         if pair != showsPair {
@@ -228,8 +225,38 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
         fitAskPanelToKeyboard()
         textViewDidChange(askTextView)
         let scale = referenceLayout.scale
+        // Seven 56 pt tools + gaps fill an iPhone panel; a wider Duo panel scales them up to ~76 pt (Albert's ask).
+        let panelWidth = panelStack.bounds.width - 40
+        let wide = UIDevice.isFoldablePhone && panelWidth >= 520
+        // …but never taller than its half: a short half-folded panel grows less than the portrait one.
+        let heightCap: CGFloat = panelView.bounds.height < 420 ? 1.12 : 1.35
+        let nextPanelScale = wide ? min(heightCap, panelWidth / (7 * 56 + 6 * 14)) : scale
+        if abs(nextPanelScale - panelScale) > 0.01 {
+            panelScale = nextPanelScale
+            versionsCollectionView.collectionViewLayout.invalidateLayout()
+            versionsCollectionView.reloadData()
+        }
+        toolsLayout?.apply(scale: panelScale)
+        versionsLayout?.apply(scale: panelScale)
+        let spreadsTools = wide && !isSideBySide
+        var toolPitch: CGFloat?
+        // Wide Duo panels: the seven tools span the column instead of scrolling (after the scale reset spacing).
+        if let tools = toolsScrollView.subviews.first?.subviews.compactMap({ $0 as? UIStackView }).first
+            ?? toolsScrollView.subviews.compactMap({ $0 as? UIStackView }).first {
+            let items = tools.arrangedSubviews.filter { !$0.isHidden }
+            let used = items.reduce(0) { $0 + $1.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).width }
+            let fitted = items.count > 1 && used > 0 ? (toolsScrollView.bounds.width - tools.layoutMargins.left - tools.layoutMargins.right - used) / CGFloat(items.count - 1) : 0
+            let spacing = spreadsTools ? max(6, floor(fitted)) : 6
+            if abs(tools.spacing - spacing) > 0.5 { tools.spacing = spacing }
+            if spreadsTools, let first = items.first {
+                toolPitch = first.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).width + spacing
+            }
+        }
         if let layout = versionsCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.minimumLineSpacing = 12 * scale
+            // Versions sit on the tools' columns, so the row has no empty right half.
+            let thumb = 56 * panelScale
+            let lineSpacing = toolPitch.map { max(12 * panelScale, $0 - thumb) } ?? 12 * panelScale
+            if abs(layout.minimumLineSpacing - lineSpacing) > 0.5 { layout.minimumLineSpacing = lineSpacing }
             layout.sectionInset = UIEdgeInsets(top: 0, left: 20 * scale, bottom: 0, right: 20 * scale)
         }
         moreButton.imageView?.transform = CGAffineTransform(scaleX: scale, y: scale)
@@ -1003,7 +1030,7 @@ extension ResultViewController: UICollectionViewDataSource, UICollectionViewDele
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         // Flow layout measures before the controller's didLayout callback. Cap to
         // its current viewport on that same pass, including the first resize.
-        let scale = OnboardingLayout(size: view.dsLayoutSize).scale
+        let scale = panelScale
         let section = (collectionViewLayout as? UICollectionViewFlowLayout)?.sectionInset ?? .zero
         let inset = collectionView.adjustedContentInset
         let availableHeight = max(1, collectionView.bounds.height - inset.top - inset.bottom - section.top - section.bottom)
@@ -1016,6 +1043,7 @@ extension ResultViewController: UICollectionViewDataSource, UICollectionViewDele
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ResultVersionCell.reuseID, for: indexPath)
+        (cell as? ResultVersionCell)?.panelScale = panelScale
         guard let cell = cell as? ResultVersionCell else { return cell }
         switch items[indexPath.item] {
         case .original(let path):

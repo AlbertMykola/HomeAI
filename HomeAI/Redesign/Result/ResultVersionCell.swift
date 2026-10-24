@@ -12,7 +12,9 @@ final class ResultVersionCell: UICollectionViewCell {
 
     private var path: String?
     private var referenceLayout: DSReferenceLayout!
-    private var referenceScale: CGFloat { OnboardingLayout(size: window?.bounds.size ?? UIScreen.main.bounds.size).scale }
+    /// Set by Result: the panel's scale (larger on a wide Duo panel). Falls back to the window scale.
+    var panelScale: CGFloat?
+    private var referenceScale: CGFloat { panelScale ?? OnboardingLayout(size: window?.bounds.size ?? UIScreen.main.bounds.size).scale }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,7 +23,7 @@ final class ResultVersionCell: UICollectionViewCell {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        referenceLayout?.apply(size: window?.bounds.size ?? UIScreen.main.bounds.size)
+        referenceLayout?.apply(scale: referenceScale)
         againIconView.transform = CGAffineTransform(scaleX: referenceScale, y: referenceScale)
     }
 

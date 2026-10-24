@@ -30,8 +30,10 @@ final class DSReferenceLayout {
     private var tables: [(UITableView, CGFloat)] = []
     private(set) var scale: CGFloat = -1
 
-    init(root: UIView, prefix: String? = nil) {
+    /// `excluding`: subtrees scaled by a layout of their own.
+    init(root: UIView, prefix: String? = nil, excluding: [UIView] = []) {
         func capture(_ view: UIView) {
+            if excluding.contains(where: { $0 === view }) { return }
             // Reusable cells own their metrics, independently of their parent's first layout.
             if view !== root && (view is UICollectionViewCell || view is UITableViewCell || view is DSAdaptiveRootView || view is DSToastView) { return }
             if let label = view as? UILabel { fonts.append(LabelMetrics(label)) }
@@ -71,7 +73,10 @@ final class DSReferenceLayout {
     }
 
     @discardableResult func apply(size: CGSize, refreshContent: Bool = false) -> Bool {
-        let next = OnboardingLayout(size: size).scale
+        apply(scale: OnboardingLayout(size: size).scale, refreshContent: refreshContent)
+    }
+
+    @discardableResult func apply(scale next: CGFloat, refreshContent: Bool = false) -> Bool {
         guard next > 0, refreshContent || abs(next - scale) > 0.001 else { return false }
         scale = next
         for metrics in fonts {
