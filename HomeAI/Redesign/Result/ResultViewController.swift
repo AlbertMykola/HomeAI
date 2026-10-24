@@ -199,6 +199,17 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
         [downloadButton, shareButton, moreButton].forEach { $0?.isHidden = side }
         let portrait = isWideWindow && !side && UIDevice.isFoldablePhone   // photo above the hinge: Duo only
         portraitConstraints.forEach { $0.priority = portrait ? high : low }
+        // Figma Duo/P/06: the panel below the hinge spreads its rows over the whole half (no stretched header).
+        panelStack.distribution = portrait ? .equalSpacing : .fill
+        // …and the seven tools span the column instead of scrolling.
+        if let tools = toolsScrollView.subviews.first?.subviews.compactMap({ $0 as? UIStackView }).first
+            ?? toolsScrollView.subviews.compactMap({ $0 as? UIStackView }).first {
+            let items = tools.arrangedSubviews.filter { !$0.isHidden }
+            let used = items.reduce(0) { $0 + $1.bounds.width }
+            let fitted = items.count > 1 && used > 0 ? (panelStack.bounds.width - 40 - used) / CGFloat(items.count - 1) : 0
+            let spacing = portrait ? max(6, floor(fitted)) : 6
+            if abs(tools.spacing - spacing) > 0.5 { tools.spacing = spacing }
+        }
         if !side { portraitReleasedConstraints.forEach { $0.priority = portrait ? low : high } }
         let pair = isTabletop && !side && originalImageView.image != nil
         if pair != showsPair {

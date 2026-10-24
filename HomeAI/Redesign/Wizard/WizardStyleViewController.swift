@@ -47,7 +47,9 @@ final class WizardStyleViewController: WizardStepViewController {
         super.viewDidLayoutSubviews()
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             let metrics = OnboardingLayout(size: view.dsLayoutSize)
-            let width = floor((collectionView.bounds.width - metrics.value(40 + 26)) / 3)
+            // 3 columns at iPhone width; wider windows (Duo portrait 629 pt, Figma Duo/P/04 W3) fit 5 at the same size.
+            let columns: CGFloat = collectionView.bounds.width >= 560 ? 5 : 3
+            let width = floor((collectionView.bounds.width - metrics.value(40) - metrics.value(13) * (columns - 1)) / columns)
             layout.minimumLineSpacing = metrics.value(16)
             let size = CGSize(width: width, height: width * 136 / 109 + metrics.value(23))
             if layout.itemSize != size { layout.itemSize = size }

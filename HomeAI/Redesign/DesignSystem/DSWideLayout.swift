@@ -46,6 +46,8 @@ extension UIViewController {
 /// Card grids: 2 columns on phones, more when the window is wide.
 enum DSGrid {
     static func columns(for width: CGFloat) -> Int {
+        // iPhone Duo (Figma: list pane, portrait column and closed screen all show 2 columns at iPhone size).
+        if UIDevice.isFoldablePhone { return 2 }
         if width >= 900 { return 4 }
         if width >= 560 { return 3 }
         return 2
@@ -79,7 +81,9 @@ final class DSSplitPane {
     func update() {
         guard let host, let window = host.view.window else { return }
         let width = host.view.bounds.width - window.safeAreaInsets.left - window.safeAreaInsets.right
-        let wide = DSWideLayout.isWide(width)
+        // Unfolded Duo portrait (Figma Duo/P/08, 10, 11): one full-width column, details push like on iPhone.
+        let duoPortrait = UIDevice.isFoldablePhone && host.view.bounds.height > host.view.bounds.width
+        let wide = DSWideLayout.isWide(width) && !duoPortrait
         guard wide != isSplit else { return }
         isSplit = wide
         let low = UILayoutPriority(1), high = UILayoutPriority(999)
