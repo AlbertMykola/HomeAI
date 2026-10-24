@@ -58,8 +58,9 @@ actor AppAttestClient {
         let assertion: Data
         do {
             assertion = try await service.generateAssertion(keyID, clientDataHash: Data(SHA256.hash(data: body)))
-        } catch let error as DCError where error.code == .invalidKey {
-            // Key lost (reinstall / restore to another device): start over once.
+        } catch let error as DCError where error.code == .invalidKey || error.code == .invalidInput {
+            // Key lost (reinstall / restore to another device): start over once. The stored key ID survives a
+            // reinstall in the Keychain while the Secure Enclave key does not; iOS reports that as invalidInput.
             resetKey()
             let fresh = try await attestedKeyID()
             assertion = try await service.generateAssertion(fresh, clientDataHash: Data(SHA256.hash(data: body)))
