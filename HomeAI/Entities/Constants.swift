@@ -118,8 +118,9 @@ struct Constants {
         static let maxImageLongEdge: CGFloat = 1_536
         static let jpegCompressionQuality: CGFloat = 0.82
         static let maxRequestBodyBytes = 14_000_000
-        static let requestTimeout: TimeInterval = 180
-        static let resourceTimeout: TimeInterval = 240
+        /// A generation takes 12–25 s; 90 s leaves room for slow ones without leaving people waiting minutes.
+        static let requestTimeout: TimeInterval = 90
+        static let resourceTimeout: TimeInterval = 120
         static let maximumRetryCount = 2
         static let maximumCustomPromptLength = 1_000
 
