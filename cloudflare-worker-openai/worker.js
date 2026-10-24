@@ -343,9 +343,20 @@ async function generateImage(request, env) {
 	}
 
 	let output
+	const rawBody = await upstream.text()
 	try {
-		output = await upstream.json()
+		output = JSON.parse(rawBody)
 	} catch {
+		// What came back when it isn't JSON (block page, gateway error): status, type and the start of the body only.
+		// Never the request, its headers or the key; anything key-like is scrubbed.
+		console.error(JSON.stringify({
+			event: "openai_non_json", via: route.via, requestId,
+			status: upstream.status,
+			contentType: upstream.headers.get("content-type"),
+			server: upstream.headers.get("server"),
+			cfRay: upstream.headers.get("cf-ray"),
+			body: truncate(rawBody.replace(/sk-[A-Za-z0-9_-]{8,}/g, "sk-[redacted]"), 300),
+		}))
 		return apiError(
 			502,
 			"invalid_provider_response",
