@@ -110,14 +110,22 @@ final class NavigationManager {
         in window: UIWindow,
         animated: Bool,
         showsLaunchPaywall: Bool = false,
-        selectOptionsTab: Bool = false
+        selectOptionsTab: Bool = false,
+        coveredBy cover: UIViewController? = nil
     ) {
         let tabBarController = AppStoryboard.instantiate(TabBarController.self)
         tabBarController.setViewControllers(makeTabControllers(), animated: false)
         if selectOptionsTab {
             tabBarController.selectedIndex = 0
         }
-        let applyRoot = { window.rootViewController = tabBarController }
+        let applyRoot = {
+            window.rootViewController = tabBarController
+            // Already on screen in the same cross-dissolve: Home never shows on its own before the cover.
+            if let cover {
+                cover.modalPresentationStyle = .overFullScreen
+                tabBarController.present(cover, animated: false)
+            }
+        }
         if animated {
             UIView.transition(with: window, duration: 0.35, options: .transitionCrossDissolve, animations: applyRoot)
         } else {
@@ -205,6 +213,21 @@ final class NavigationManager {
     func completeOnboarding() {
         UserDefaultsManager.shared.saveValue(true, forKey: Constants.Keys.didShowOnboarding)
         if let window { setTabBarAsRoot(in: window, animated: true) }
+    }
+
+    /// Onboarding → paywall straight away (it loads its products itself); Home is set up underneath it.
+    /// Returns the paywall, or nil when the cached profile already has Pro.
+    @discardableResult
+    func completeOnboardingWithPaywall(placement: String) -> UIViewController? {
+        UserDefaultsManager.shared.saveValue(true, forKey: Constants.Keys.didShowOnboarding)
+        guard let window else { return nil }
+        guard !AdaptyService.shared.hasActiveSubscription else {
+            setTabBarAsRoot(in: window, animated: true)
+            return nil
+        }
+        let paywall = ProPaywallViewController.make(placement: placement, source: placement, onPurchase: nil)
+        setTabBarAsRoot(in: window, animated: true, coveredBy: paywall)
+        return paywall
     }
 
     private func selectOptionsTab() {

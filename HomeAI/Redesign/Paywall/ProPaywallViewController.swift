@@ -275,7 +275,8 @@ final class ProPaywallViewController: UIViewController {
                 self.trialOn = selection.trialIndex != nil
                 self.setLoading(false)
                 self.render(animated: false)
-            case .failure:
+            case .failure(let error):
+                ErrorReporter.report(error, operation: "paywall_products", details: .init(provider: "adapty"))
                 self.setLoading(false)
                 self.ctaLabel.text = "Try again".localized
                 self.cardPriceLabel.text = "Couldn't load prices. Check your connection.".localized

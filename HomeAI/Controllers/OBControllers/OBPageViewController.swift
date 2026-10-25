@@ -198,25 +198,18 @@ final class OBPageViewController: UIViewController, UIScrollViewDelegate, OBPage
                 await Self.requestTrackingIfNeeded()
                 (child as? OBPageChild)?.obSetActionLoading(false)
 
-                // Leave onboarding right away; the subscription check (up to 8 s while Adapty loads the first
-                // profile) runs behind Home, so a slow network never freezes the goal screen.
-                UserDefaultsManager.shared.saveValue(true, forKey: Constants.Keys.didShowOnboarding)
-                NavigationManager.shared.completeOnboarding()
-
                 if Constants.Debug.alwaysShowPaywallOnLaunch {
+                    UserDefaultsManager.shared.saveValue(true, forKey: Constants.Keys.didShowOnboarding)
+                    NavigationManager.shared.completeOnboarding()
                     return
                 }
-                let started = Date()
-                let hasSubscription = await AdaptyService.shared.hasActiveSubscriptionWhenReady()
-                guard !hasSubscription else { return }
-
-                // Let the Home transition finish before the paywall slides over it.
-                let delay = max(0, 0.4 - Date().timeIntervalSince(started))
-                DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
-                    NavigationManager.shared.showPremium(
-                        placement: Constants.Keys.obPlacement,
-                        origin: .inApp
-                    )
+                // The paywall comes up at once and loads its products itself; Home is set up underneath it.
+                // Adapty's first profile (up to 8 s) is checked meanwhile: a subscriber gets Home back.
+                weak var paywall = NavigationManager.shared.completeOnboardingWithPaywall(placement: Constants.Keys.obPlacement)
+                guard paywall != nil else { return }
+                if await AdaptyService.shared.hasActiveSubscriptionWhenReady(), let paywall,
+                   paywall.presentingViewController != nil {
+                    paywall.dismiss(animated: true)
                 }
             }
         }
