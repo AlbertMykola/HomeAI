@@ -196,18 +196,23 @@ final class OBPageViewController: UIViewController, UIScrollViewDelegate, OBPage
             Task { @MainActor [weak self, weak child] in
                 guard self != nil else { return }
                 await Self.requestTrackingIfNeeded()
-                let hasSubscription = await AdaptyService.shared.hasActiveSubscriptionWhenReady()
                 (child as? OBPageChild)?.obSetActionLoading(false)
 
+                // Leave onboarding right away; the subscription check (up to 8 s while Adapty loads the first
+                // profile) runs behind Home, so a slow network never freezes the goal screen.
                 UserDefaultsManager.shared.saveValue(true, forKey: Constants.Keys.didShowOnboarding)
                 NavigationManager.shared.completeOnboarding()
 
                 if Constants.Debug.alwaysShowPaywallOnLaunch {
                     return
                 }
+                let started = Date()
+                let hasSubscription = await AdaptyService.shared.hasActiveSubscriptionWhenReady()
                 guard !hasSubscription else { return }
 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                // Let the Home transition finish before the paywall slides over it.
+                let delay = max(0, 0.4 - Date().timeIntervalSince(started))
+                DispatchQueue.main.asyncAfter(deadline: .now() + delay) {
                     NavigationManager.shared.showPremium(
                         placement: Constants.Keys.obPlacement,
                         origin: .inApp

@@ -136,7 +136,8 @@ final class OnboardingGoalViewController: UIViewController, OBPageChild {
         DS.Haptic.selection()
         let work = DispatchWorkItem { [weak self] in self?.submit() }
         selectionWork = work
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.7, execute: work)
+        // Long enough to see the selected tile, short enough to feel instant.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: work)
     }
 
     private func submit() {
