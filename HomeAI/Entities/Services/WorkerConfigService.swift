@@ -54,6 +54,7 @@ final class WorkerConfigService {
 
         do {
             let (data, response) = try await session.data(for: request)
+            if response is HTTPURLResponse { ServiceReachability.markReachable() }
             guard let http = response as? HTTPURLResponse else {
                 log("refresh failed: invalid HTTP response, using \(Self.describe(current))")
                 ErrorReporter.report(message: "invalid HTTP response", operation: "config_worker")

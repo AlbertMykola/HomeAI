@@ -178,6 +178,12 @@ class WizardStepViewController: UIViewController, DSWideLayoutFullWidth {
             OfflineGate.run(from: self) { [weak self] in self?.generate(styleTitle: styleTitle, configure: configure) }
             return
         }
+        guard ServiceReachability.isRecentlyReachable else {
+            ServiceReachability.run(from: self, operation: "generation") { [weak self] in
+                self?.generate(styleTitle: styleTitle, configure: configure)
+            }
+            return
+        }
         let start = { [weak self] in
             guard let self else { return }
             configure(self.session.promptManager)

@@ -110,6 +110,7 @@ final class GenerationViewController: UIViewController, DSWideLayoutFullWidth {
     private var scanTimer: Timer?
     private var failureCount = 0
     private var isShowingNotPhotoSuitable = false
+    private var isShowingUnreachable = false
     private var didRunEntrance = false
 
     private var expectedDuration: TimeInterval { 30 }
@@ -385,6 +386,7 @@ final class GenerationViewController: UIViewController, DSWideLayoutFullWidth {
         switch failure {
         case .photoNotSuitable:
             isShowingNotPhotoSuitable = true
+            isShowingUnreachable = false
             DS.Haptic.warning()
             failureIconImageView.image = UIImage(systemName: "viewfinder")
             failureTitleLabel.text = "We couldn't find a room here".localized
@@ -395,8 +397,20 @@ final class GenerationViewController: UIViewController, DSWideLayoutFullWidth {
             failureSecondaryButton.setTitle("See photo tips".localized, for: .normal)
         case .contentBlocked:
             return
+        case .serviceUnreachable:
+            isShowingNotPhotoSuitable = false
+            isShowingUnreachable = true
+            DS.Haptic.warning()
+            failureIconImageView.image = UIImage(systemName: "wifi.exclamationmark")
+            failureTitleLabel.text = "Service unavailable".localized
+            failureBodyLabel.text = "The service is unavailable on your network. Check your internet connection or try again later.".localized
+            failureCodeLabel.text = nil
+            failurePrimaryLabel.text = "Try again".localized
+            failurePrimaryIcon.image = UIImage(systemName: "arrow.clockwise")
+            failureSecondaryButton.setTitle("OK".localized, for: .normal)
         case .failed(let code, _):
             isShowingNotPhotoSuitable = false
+            isShowingUnreachable = false
             DS.Haptic.error()
             failureIconImageView.image = UIImage(systemName: "arrow.clockwise")
             failureTitleLabel.text = "Something went wrong".localized
@@ -457,7 +471,9 @@ final class GenerationViewController: UIViewController, DSWideLayoutFullWidth {
     }
 
     @IBAction private func didTapFailureSecondary(_ sender: Any) {
-        if isShowingNotPhotoSuitable {
+        if isShowingUnreachable {
+            didTapFailureBack(sender)
+        } else if isShowingNotPhotoSuitable {
             PhotoTipsSheetViewController.present(from: self)
         } else if failureCount >= 2 {
             SupportMail.compose(from: self, subject: "Generation failed", body: failureCodeLabel.text)

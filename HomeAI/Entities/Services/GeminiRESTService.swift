@@ -286,6 +286,7 @@ final class GeminiRESTService: ImageGenerationService {
             try Task.checkCancellation()
             do {
                 let (data, response) = try await session.data(for: request)
+                if response is HTTPURLResponse { ServiceReachability.markReachable() }
                 guard let httpResponse = response as? HTTPURLResponse else {
                     throw GeminiServiceError.requestFailed(
                         URLError(.badServerResponse)

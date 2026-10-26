@@ -657,6 +657,12 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
             OfflineGate.run(from: self) { [weak self] in self?.runEdit(manager: manager, note: note, free: free) }
             return
         }
+        guard ServiceReachability.isRecentlyReachable else {
+            ServiceReachability.run(from: self, operation: "edit") { [weak self] in
+                self?.runEdit(manager: manager, note: note, free: free)
+            }
+            return
+        }
         if !free, GenerationAccess.evaluate() == .requiresSubscription {
             Task { @MainActor [weak self] in
                 guard let self else { return }
@@ -683,7 +689,11 @@ final class ResultViewController: UIViewController, DSWideLayoutFullWidth {
             case .failed(let failure):
                 self.setEditing(false)
                 DS.Haptic.error()
-                if case .photoNotSuitable = failure {
+                if case .serviceUnreachable = failure {
+                    ServiceReachability.showUnavailable(from: self, operation: "edit", error: nil, reported: true) { [weak self] in
+                        self?.runEdit(manager: manager, note: note, free: free)
+                    }
+                } else if case .photoNotSuitable = failure {
                     DSToastView.show("That change didn't work on this photo".localized, style: .warning,
                                      symbol: "exclamationmark.triangle")
                 } else {

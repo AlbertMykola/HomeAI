@@ -13,6 +13,8 @@ final class GenerationRunner {
         case contentBlocked
         /// Everything else — G3 "Something went wrong" with a short error code.
         case failed(code: String, message: String)
+        /// Online, but our servers can't be reached from this network (no HTTP answer at all). No credit is spent.
+        case serviceUnreachable
     }
 
     struct Outcome {
@@ -130,13 +132,22 @@ final class GenerationRunner {
         task = Task { [weak self] in
             guard let self else { return }
             func fail(_ category: String, status: Int?, failure: Failure, error: Error) async {
+                let unreachable = ServiceReachability.isUnreachableError(error)
+                let category = unreachable ? "service_unreachable" : category
+                let failure = unreachable ? .serviceUnreachable : failure
                 await MainActor.run {
                     // Edits (Result: paint / replace / remove / text / tools) add a version to an existing project.
-                    ErrorReporter.report(error, operation: self.baseDocID == nil ? "generation" : "edit",
-                                         details: .init(provider: provider, model: model, httpStatus: status,
-                                                        workerError: category, durationMS: self.latency(since: started),
-                                                        retryCount: self.retryNumber,
-                                                        extra: ["design_option": option.rawValue]))
+                    let operation = self.baseDocID == nil ? "generation" : "edit"
+                    if unreachable {
+                        // One grouped issue instead of one per NSURLError code.
+                        ServiceReachability.report(operation: operation, error: error)
+                    } else {
+                        ErrorReporter.report(error, operation: operation,
+                                             details: .init(provider: provider, model: model, httpStatus: status,
+                                                            workerError: category, durationMS: self.latency(since: started),
+                                                            retryCount: self.retryNumber,
+                                                            extra: ["design_option": option.rawValue]))
+                    }
                     self.lastFailureReason = category
                     self.amplitude.logEvent(.generationFailed(attemptID: attemptID, option: option.rawValue,
                                                               promptVersion: promptVersion, provider: provider,

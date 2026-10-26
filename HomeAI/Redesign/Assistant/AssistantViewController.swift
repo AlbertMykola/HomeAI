@@ -400,6 +400,10 @@ final class AssistantViewController: UIViewController, DSWideLayoutFullWidth {
             OfflineGate.run(from: self) { [weak self] in self?.send(text: raw, source: source) }
             return
         }
+        guard ServiceReachability.isRecentlyReachable else {
+            ServiceReachability.run(from: self, operation: "assistant") { [weak self] in self?.send(text: raw, source: source) }
+            return
+        }
         AmplitudeService.shared.logRedesignEvent("assistant_message", properties: [
             "source": source, "has_photo": pendingImage != nil, "length": text.count
         ])
@@ -496,6 +500,10 @@ final class AssistantViewController: UIViewController, DSWideLayoutFullWidth {
         }
         guard NetworkMonitor.shared.isOnline else {
             OfflineGate.run(from: self) { [weak self] in self?.apply(idea, from: replyID) }
+            return
+        }
+        guard ServiceReachability.isRecentlyReachable else {
+            ServiceReachability.run(from: self, operation: "generation") { [weak self] in self?.apply(idea, from: replyID) }
             return
         }
         let start = {
