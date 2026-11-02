@@ -69,7 +69,16 @@ enum ErrorReporter {
         let ns = error as NSError
         let code = errorCode(full, fallback: "\(ns.domain):\(ns.code)")
         if logAndTrack(operation: operation, code: code, details: full, description: String(describing: error)) {
-            SentrySDK.capture(error: error) { configure($0, operation: operation, code: code, details: full) }
+            // No answer at all (blocked or dead network, e.g. AI hosts in sanctioned regions) is not an app bug:
+            // a warning tagged network:unreachable, so `!network:unreachable` filters it out in Sentry.
+            let unreachable = ServiceReachability.isUnreachableError(error)
+            SentrySDK.capture(error: error) { scope in
+                configure(scope, operation: operation, code: code, details: full)
+                if unreachable {
+                    scope.setLevel(.warning)
+                    scope.setTag(value: "unreachable", key: "network")
+                }
+            }
         }
         Crashlytics.crashlytics().record(error: error, userInfo: crashlyticsInfo(operation: operation, code: code,
                                                                                  details: full))
@@ -133,6 +142,10 @@ enum ErrorReporter {
         if let retries = details.retryCount { scope.setExtra(value: retries, key: "retry_count") }
         details.extra.forEach { scope.setExtra(value: $0.value, key: $0.key) }
         scope.setFingerprint(["app_error", operation, code])
+        if details.workerError == "service_unreachable" {
+            scope.setLevel(.warning)
+            scope.setTag(value: "unreachable", key: "network")
+        }
     }
 
     private static func crashlyticsInfo(operation: String, code: String, details: Details) -> [String: Any] {

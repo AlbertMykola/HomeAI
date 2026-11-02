@@ -6,6 +6,8 @@ final class ImageStorageService {
     private let remoteImageBaseURL = URL(string: Constants.API.supabaseImagesBucket)
     private let firebaseStorageBaseURL = URL(string: "https://firebasestorage.googleapis.com/v0/b/\(Constants.API.firebaseStorageBucket)/o")
     private var tasks = NSMapTable<UIImageView, DispatchWorkItem>(keyOptions: .weakMemory, valueOptions: .strongMemory)
+    private let errorLock = NSLock()
+    private var remoteErrors: [String: Error] = [:]
 
     init() {
         cache.countLimit = 0
@@ -95,6 +97,20 @@ final class ImageStorageService {
                 }
             }
         }
+    }
+
+    /// Why the last remote load of `path` failed (nil when it loaded, or never went to the network).
+    func lastRemoteError(for path: String) -> Error? {
+        guard let url = remoteURL(for: path) else { return nil }
+        errorLock.lock()
+        defer { errorLock.unlock() }
+        return remoteErrors[url.absoluteString]
+    }
+
+    private func recordRemoteResult(_ error: Error?, for url: URL) {
+        errorLock.lock()
+        remoteErrors[url.absoluteString] = error
+        errorLock.unlock()
     }
 
     // MARK: - Helpers
@@ -207,6 +223,7 @@ final class ImageStorageService {
     private func loadRemoteImage(at url: URL, targetPointSize: CGSize, scale: CGFloat) -> UIImage? {
         do {
             let data = try Data(contentsOf: url)
+            recordRemoteResult(nil, for: url)
             if targetPointSize == .zero {
                 return UIImage(data: data)
             }
@@ -228,6 +245,7 @@ final class ImageStorageService {
             #if DEBUG
             print("[ImageStorageService] Failed to load remote image: \(url.absoluteString) error: \(error)")
             #endif
+            recordRemoteResult(error, for: url)
             return nil
         }
     }

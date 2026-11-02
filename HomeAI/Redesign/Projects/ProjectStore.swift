@@ -143,6 +143,10 @@ final class ProjectStore {
     }
 
     /// Deletes one version (history entry). Removing the last version removes the project.
+    // Async deletes stay on the main actor: after `await history.deleteImage` a non-isolated async method resumes
+    // on a background executor, mutating `projects` and posting `.projectsDidChange` off the main thread, where
+    // selector observers reload their tables (HOMEAI-1A: Auto Layout from a background thread).
+    @MainActor
     func deleteVersion(docID: String, inProject projectID: String? = nil) async throws {
         let index = projectID.flatMap { id in projects.firstIndex { $0.id == id } }
             ?? projects.firstIndex { $0.versionIDs.contains(docID) }
@@ -156,11 +160,13 @@ final class ProjectStore {
         save()
     }
 
+    @MainActor
     func deleteProject(containing docID: String) async throws {
         try await deleteProject(id: projects.first(where: { $0.versionIDs.contains(docID) })?.id, fallbackDocID: docID)
     }
 
     /// Deletes a project; history files are removed only when no other project (duplicate) still uses them.
+    @MainActor
     func deleteProject(id: String?, fallbackDocID: String) async throws {
         let target = projects.first { $0.id == id }
         let ids = target?.versionIDs ?? [fallbackDocID]
@@ -209,6 +215,11 @@ final class ProjectStore {
         } catch {
             ErrorReporter.report(error, operation: "project_save")
         }
-        NotificationCenter.default.post(name: .projectsDidChange, object: nil)
+        // Observers update UI synchronously (selector observers have no queue).
+        if Thread.isMainThread {
+            NotificationCenter.default.post(name: .projectsDidChange, object: nil)
+        } else {
+            DispatchQueue.main.async { NotificationCenter.default.post(name: .projectsDidChange, object: nil) }
+        }
     }
 }

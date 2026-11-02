@@ -43,6 +43,7 @@ final class InspirationFeedViewController: UIViewController, DSWideLayoutFullWid
     private var allIdeas: [InspirationIdea] = []
     private var filtered: [InspirationIdea] = []
     private var visibleCount = 0
+    private var isInsertingPage = false
     private var room: InspirationIdea.Room = .all
     private var query = ""
     private var isSearching = false
@@ -192,12 +193,22 @@ final class InspirationFeedViewController: UIViewController, DSWideLayoutFullWid
     }
 
     /// Next page when the user is 2 screens from the end.
+    /// `insertItems` lays the grid out and fires `scrollViewDidScroll` again; without the guard a nested page was
+    /// inserted inside the first one (HOMEAI-Z: 12 → 36 items with 12 inserted, iPad).
     private func loadMoreIfNeeded() {
-        guard visibleCount < filtered.count else { return }
+        guard !isInsertingPage, visibleCount < filtered.count else { return }
         let remaining = collectionView.contentSize.height - collectionView.contentOffset.y - collectionView.bounds.height
         guard remaining < collectionView.bounds.height * 2 else { return }
         let next = min(visibleCount + Self.pageSize, filtered.count)
+        // Syncs a pending reloadData first, so the batch starts from the count the grid really shows.
+        guard collectionView.numberOfItems(inSection: 0) == visibleCount else {
+            visibleCount = next
+            collectionView.reloadData()
+            return
+        }
         let paths = (visibleCount..<next).map { IndexPath(item: $0, section: 0) }
+        isInsertingPage = true
+        defer { isInsertingPage = false }
         visibleCount = next
         UIView.performWithoutAnimation {
             collectionView.insertItems(at: paths)
