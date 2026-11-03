@@ -28,20 +28,31 @@ final class PaywallProvider {
 
     private init() {}
 
-    /// After `Adapty.activate`. Prefetching runs in the background and never delays the launch.
-    func activate(prefetch: Bool) async {
+    /// Right after `Adapty.activate`.
+    func activate() async {
         guard !isActivated else { return }
         do {
             try await AdaptyUI.activate()
             isActivated = true
         } catch {
             ErrorReporter.report(error, operation: "adaptyui_activate", details: .init(provider: "adapty"))
-            return
         }
-        guard prefetch else { return }
+    }
+
+    /// Non-subscribers: Builder layouts of all placements, in the background (never delays the launch).
+    func prefetchAll() {
         Task { @MainActor in
             for placement in Self.placements { await self.prefetch(placement: placement) }
         }
+    }
+
+    /// Waits until AdaptyUI is activated, at most `timeout` seconds.
+    func waitUntilActivated(timeout: TimeInterval) async -> Bool {
+        let deadline = Date().addingTimeInterval(timeout)
+        while !isActivated, Date() < deadline {
+            try? await Task.sleep(nanoseconds: 100_000_000)
+        }
+        return isActivated
     }
 
     /// Loads the placement's flow and, for a Paywall Builder variation, its layout.

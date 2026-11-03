@@ -50,11 +50,13 @@ public class AdaptyService: NSObject {
             builder = builder.with(logLevel: .warn)
             #endif
             try await Adapty.activate(with: builder.build())
+            // Builder screens (first-launch onboarding) must not wait for the profile request.
+            await PaywallProvider.shared.activate()
             let profile = try await Adapty.getProfile()
             apply(profile)
             await bindAmplitudeIdentifierIfAvailable()
             await bindAppsFlyerIdentifierIfAvailable()
-            await PaywallProvider.shared.activate(prefetch: !isPremium(profile))
+            if !isPremium(profile) { PaywallProvider.shared.prefetchAll() }
         } catch {
             #if DEBUG
             print("[Adapty] activate failed: \(error.localizedDescription)")

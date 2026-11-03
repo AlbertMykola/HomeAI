@@ -12,7 +12,7 @@ final class AdaptyOnboardingProvider: NSObject {
     static let shared = AdaptyOnboardingProvider()
 
     /// The launch screen waits at most this long for Adapty before our onboarding shows.
-    private static let loadTimeout: TimeInterval = 4
+    private static let loadTimeout: TimeInterval = 6
 
     /// Called when the remote onboarding is finished (closed, purchased) or can't be shown: go to the app.
     private var onFinish: ((_ showPaywall: Bool) -> Void)?
@@ -26,12 +26,22 @@ final class AdaptyOnboardingProvider: NSObject {
         self.onFinish = onFinish
         self.onFallback = onFallback
         finished = false
-        await AdaptyService.shared.awaitUserReady(timeoutSeconds: Self.loadTimeout)
-        guard PaywallProvider.shared.isActivated else { return nil }
+        #if DEBUG
+        if AppQA.enabled { return nil }
+        #endif
+        guard await PaywallProvider.shared.waitUntilActivated(timeout: Self.loadTimeout) else { return nil }
         let placement = Constants.Keys.onboardingPlacement
 
-        if let flow = try? await Adapty.getFlow(placementId: placement, loadTimeout: Self.loadTimeout),
-           flow.hasViewConfiguration {
+        let flow: AdaptyFlow?
+        do {
+            flow = try await Adapty.getFlow(placementId: placement, loadTimeout: Self.loadTimeout)
+        } catch {
+            flow = nil
+            #if DEBUG
+            print("[AdaptyOnboarding] no flow for \(placement): \(error)")
+            #endif
+        }
+        if let flow, flow.hasViewConfiguration {
             do {
                 let configuration = try await AdaptyUI.getFlowConfiguration(forFlow: flow, loadTimeout: Self.loadTimeout)
                 AmplitudeService.shared.logRedesignEvent("remote_onboarding_shown",
