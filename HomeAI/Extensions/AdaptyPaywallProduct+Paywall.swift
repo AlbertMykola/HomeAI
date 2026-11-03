@@ -33,9 +33,7 @@ extension AdaptyPaywallProduct: PaywallSubscriptionProduct {
     func paywallFormattedCurrencyAmount(_ value: Decimal) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
-        if let currencyCode {
-            formatter.currencyCode = currencyCode
-        }
+        formatter.currencyCode = currencyCode
         if let currencySymbol {
             formatter.currencySymbol = currencySymbol
         }
