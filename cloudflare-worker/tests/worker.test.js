@@ -195,6 +195,21 @@ test("uses the device bucket for a valid assertion over the body hash", async ()
 		assert.equal(guard.calls[0].path, "/assert")
 		assert.equal(guard.calls[0].input.clientDataHash, "RBNvo1WzZ4oRRq0W9+hknpT7T8If536DEMBg9hyq/4o=")
 		assert.equal(guard.calls[1].name, "gemini-image:key:a2V5aWRrZXlpZA==")
+		assert.match(guard.calls[2].name, /^gemini-image-4h:key:a2V5aWRrZXlpZA==:\d+$/)
+	})
+})
+
+test("caps one device at the 4-hour window limit", async () => {
+	await withUpstream(async (upstreamCalls) => {
+		const env = { GEMINI_API_KEY: "k", DEVICE_GUARD: fakeGuard(), LIMIT_IMAGE_DEVICE_PER_WINDOW: "2" }
+		const send = () => worker.fetch(new Request(imagePath, {
+			method: "POST", body: "{}",
+			headers: { "X-HomeAI-Attest-Key": "a2V5aWRrZXlpZA==", "X-HomeAI-Attest-Assertion": "c2ln" },
+		}), env)
+		assert.equal((await send()).status, 200)
+		assert.equal((await send()).status, 200)
+		assert.equal((await send()).status, 429)
+		assert.equal(upstreamCalls(), 2)
 	})
 })
 

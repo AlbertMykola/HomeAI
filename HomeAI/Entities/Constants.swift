@@ -101,6 +101,10 @@ struct Constants {
     struct GenerationLimits {
         static let freeGenerationsLifetime = 1
         static let premiumGenerationsPerDay = 15
+        /// Subscribers: at most this many generations in any `generationWindowHours` (a trial can't be used up
+        /// in one sitting).
+        static let premiumGenerationsPerWindow = 8
+        static let generationWindowHours = 4
     }
 
     struct Generation {

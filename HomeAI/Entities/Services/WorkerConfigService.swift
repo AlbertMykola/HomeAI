@@ -33,6 +33,14 @@ final class WorkerConfigService {
         max(1, current.premiumGenerationsPerDay)
     }
 
+    var premiumGenerationsPerWindow: Int {
+        max(1, current.premiumGenerationsPerWindow)
+    }
+
+    var generationWindow: TimeInterval {
+        TimeInterval(max(1, current.generationWindowHours)) * 3_600
+    }
+
     var paywallShowTopCloseButton: Bool {
         current.paywallShowTopCloseButton
     }

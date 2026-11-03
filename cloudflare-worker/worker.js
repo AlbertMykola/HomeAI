@@ -522,7 +522,12 @@ async function authorize(request, env, body, kind) {
 			limits: {},
 		})
 		if (result.ok) {
-			return hitBucket(env, `gemini-${kind}:key:${keyId}`, limitsFor(env, `${prefix}_DEVICE`), "device")
+			const daily = await hitBucket(env, `gemini-${kind}:key:${keyId}`, limitsFor(env, `${prefix}_DEVICE`), "device")
+			if (daily || kind !== "image") return daily
+			// Same rolling cap as the app (8 per 4 h) with room for retries; one bucket per 4-hour UTC slot.
+			const hours = windowHours(env)
+			const slot = Math.floor(Date.now() / (hours * 3_600_000))
+			return hitBucket(env, `gemini-image-${hours}h:key:${keyId}:${slot}`, { perDay: windowLimit(env) }, "device_window")
 		}
 		console.warn(JSON.stringify({ event: "attest_assert_failed", code: result.code ?? null, kind }))
 	}
@@ -531,6 +536,16 @@ async function authorize(request, env, body, kind) {
 	}
 	const ip = request.headers.get("cf-connecting-ip") ?? "unknown"
 	return hitBucket(env, `gemini-${kind}:ip:${ip}`, limitsFor(env, `${prefix}_IP`), "ip")
+}
+
+function windowHours(env) {
+	const value = Number(env.IMAGE_WINDOW_HOURS)
+	return Number.isFinite(value) && value > 0 && 24 % value === 0 ? value : 4
+}
+
+function windowLimit(env) {
+	const value = Number(env.LIMIT_IMAGE_DEVICE_PER_WINDOW)
+	return Number.isFinite(value) && value > 0 ? value : 10
 }
 
 /** Defaults sit above what the app allows (1 free, 15/day Pro, plus edits and retries). */

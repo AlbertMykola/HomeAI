@@ -2,7 +2,8 @@ import Foundation
 import Security
 import UIKit
 
-/// Денний ліміт генерацій для **підписників** (Keychain). Без підписки — `FreeGenerationManager`.
+/// Ліміти генерацій для **підписників** (Keychain): за календарний день і за ковзне вікно (8 за 4 год), щоб трайл
+/// не вибирали за один захід. Без підписки — `FreeGenerationManager`.
 final class DailyGenerationLimitManager {
 
     static let shared = DailyGenerationLimitManager()
@@ -10,9 +11,19 @@ final class DailyGenerationLimitManager {
     private let service = (Bundle.main.bundleIdentifier ?? "HomeAI") + ".dailyGenerationLimit"
     private let dayAccount = "daily_gen_calendar_day_v1"
     private let countAccount = "daily_gen_count_v1"
+    /// Unix times of recent generations (last 24 h), for the rolling window.
+    private let recentAccount = "recent_gen_times_v1"
 
     private var maxPerDay: Int {
         WorkerConfigService.shared.premiumGenerationsPerDay
+    }
+
+    private var maxPerWindow: Int {
+        WorkerConfigService.shared.premiumGenerationsPerWindow
+    }
+
+    private var window: TimeInterval {
+        WorkerConfigService.shared.generationWindow
     }
 
     private init() {}
@@ -22,7 +33,18 @@ final class DailyGenerationLimitManager {
         #if DEBUG
         if AppQA.enabled { return AppQA.dailyCount < maxPerDay }
         #endif
-        return countForToday() < maxPerDay
+        return countForToday() < maxPerDay && isWithinWindowLimit
+    }
+
+    /// When the oldest generation in the window drops out, i.e. when the next one is allowed (nil = allowed now).
+    var nextWindowSlot: Date? {
+        let recent = recentInWindow()
+        guard recent.count >= maxPerWindow, let oldest = recent.min() else { return nil }
+        return oldest.addingTimeInterval(window)
+    }
+
+    private var isWithinWindowLimit: Bool {
+        recentInWindow().count < maxPerWindow
     }
 
     /// Лише для підписників: після успішної генерації збільшити денний лічильник.
@@ -32,15 +54,26 @@ final class DailyGenerationLimitManager {
         if AppQA.enabled { AppQA.dailyCount += 1; return }
         #endif
         incrementTodayCount()
+        recordRecent()
     }
 
     @MainActor
     func presentDailyLimitAlert(from viewController: UIViewController?) {
         AmplitudeService.shared.logEvent(.dailyGenerationLimitReached)
-        let limit = maxPerDay
-        let title = "Daily limit reached".localized
-        let format = "daily_limit_reached_message".localized
-        let message = String(format: format, limit)
+        let title: String
+        let message: String
+        if countForToday() < maxPerDay, let next = nextWindowSlot {
+            AmplitudeService.shared.logRedesignEvent("generation_window_limit", properties: ["limit": maxPerWindow])
+            let formatter = DateFormatter()
+            formatter.timeStyle = .short
+            formatter.dateStyle = .none
+            title = "generation_window_limit_title".localized
+            message = String(format: "generation_window_limit_message".localized,
+                             maxPerWindow, Int(window / 3_600), formatter.string(from: next))
+        } else {
+            title = "Daily limit reached".localized
+            message = String(format: "daily_limit_reached_message".localized, maxPerDay)
+        }
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK".localized, style: .default))
         let presenter = viewController ?? UIApplication.getTopViewController()
@@ -71,6 +104,22 @@ final class DailyGenerationLimitManager {
         count += 1
         saveString(today, account: dayAccount)
         saveString(String(count), account: countAccount)
+    }
+
+    private func recentInWindow(now: Date = Date()) -> [Date] {
+        recentTimes().filter { now.timeIntervalSince($0) < window }
+    }
+
+    private func recentTimes() -> [Date] {
+        (loadString(account: recentAccount) ?? "")
+            .split(separator: ",")
+            .compactMap { TimeInterval($0) }
+            .map { Date(timeIntervalSince1970: $0) }
+    }
+
+    private func recordRecent(now: Date = Date()) {
+        let kept = recentTimes().filter { now.timeIntervalSince($0) < 86_400 } + [now]
+        saveString(kept.map { String(Int($0.timeIntervalSince1970)) }.joined(separator: ","), account: recentAccount)
     }
 
     private func saveString(_ value: String, account: String) {
