@@ -9,26 +9,36 @@
  *   GCP_PROJECT_ID            — опційно, якщо немає в JSON
  *   GCP_REGION                — опційно, default `us-central1`
  *   GEMINI_UPSTREAM           — `vertex` | `ai_studio` | порожньо (auto)
- *   GEMINI_API_KEY            — AI Studio rollback
- *   OPENAI_API_KEY
+ *   NEW_GEMINI_KEY_3          — AI Studio key in use (GEMINI_API_KEY only when it is unset)
  *   MOBILE_GATE_KEY
+ *   DEV_BYPASS_TOKEN          — Debug simulator builds only (no App Attest there)
+ *
+ * ──────────────────── Protection ────────────────────
+ *   Only POST generateContent on ALLOWED_MODELS. Every call is rate-limited: per App Attest device when the
+ *   app sends an assertion (DeviceGuard of the OpenAI worker `fragrant-fog-a5e3`, same keys), otherwise per IP.
+ *   GEMINI_ATTEST_MODE "soft" keeps app versions without App Attest working on the IP limit;
+ *   "enforce" requires a valid assertion (switch once those versions are gone).
  *
  * ──────────────────── Маршрути ────────────────────
  *  GET  /app/config
  *  GET  /health
  *  POST /, /gemini, /gemini/v1beta/models/{model}:generateContent
- *  POST /openai/v1/...
  */
 
 const DEFAULT_GEMINI_MODEL = "gemini-3.1-flash-image-preview"
 const GEMINI_DEFAULT_PATH = `/v1beta/models/${DEFAULT_GEMINI_MODEL}:generateContent`
 
 const GEMINI_AI_STUDIO_UPSTREAM = "https://generativelanguage.googleapis.com"
-const OPENAI_UPSTREAM = "https://api.openai.com"
 const OAUTH_TOKEN_URL = "https://oauth2.googleapis.com/token"
 const VERTEX_SCOPE = "https://www.googleapis.com/auth/cloud-platform"
 
 const DEFAULT_GCP_REGION = "us-central1"
+/** Models the app calls, by rate-limit class. Anything else is refused (no paid calls on other models). */
+const ALLOWED_MODELS = {
+	"gemini-3.1-flash-image-preview": "image",
+	"gemini-2.5-flash": "text",
+}
+const DEFAULT_APP_ID = "5998UF2M9Y.com.albert.apps.design.ai"
 const MAX_GEMINI_BODY_BYTES = 15 * 1024 * 1024
 
 /** @type {string | null} */
@@ -77,8 +87,8 @@ export default {
 				gemini_upstream: mode ?? "unconfigured",
 				providers: {
 					vertex: Boolean(env.GCP_SERVICE_ACCOUNT_JSON),
-					gemini_ai_studio: Boolean(env.GEMINI_API_KEY),
-					openai: Boolean(env.OPENAI_API_KEY),
+					gemini_ai_studio: Boolean(geminiApiKey(env)),
+					device_guard: Boolean(env.DEVICE_GUARD),
 				},
 			})
 		}
@@ -87,19 +97,14 @@ export default {
 			return proxyGemini(request, env, GEMINI_DEFAULT_PATH, url.search)
 		}
 
-		if (pathname.startsWith("/gemini/")) {
+		if (pathname.startsWith("/gemini/") && request.method === "POST") {
 			const upstreamPath = pathname.slice("/gemini".length)
 			return proxyGemini(request, env, upstreamPath, url.search)
 		}
 
-		if (pathname.startsWith("/openai/")) {
-			const upstreamPath = pathname.slice("/openai".length)
-			return proxyOpenAI(request, env, upstreamPath, url.search)
-		}
-
 		return json(404, {
 			error: "not_found",
-			hint: "Use /app/config, POST / (Gemini default), /gemini/v1beta/*, /openai/v1/*",
+			hint: "Use /app/config, POST / (Gemini default), POST /gemini/v1beta/models/{model}:generateContent",
 		})
 	},
 }
@@ -116,7 +121,7 @@ function resolveGeminiUpstreamMode(env) {
 	if (explicit === "ai_studio" || explicit === "aistudio") return "ai_studio"
 
 	if (env.GCP_SERVICE_ACCOUNT_JSON) return "vertex"
-	if (env.GEMINI_API_KEY) return "ai_studio"
+	if (geminiApiKey(env)) return "ai_studio"
 	return null
 }
 
@@ -138,9 +143,22 @@ async function proxyGemini(request, env, upstreamPath, search) {
 	const sizeError = await validateGeminiBodySize(request)
 	if (sizeError) return sizeError
 
+	const modelId = parseGeminiModelIdFromPath(upstreamPath)
+	const kind = modelId ? ALLOWED_MODELS[modelId] : undefined
+	if (!kind || !/^\/v1beta\/models\/[^/:]+:generateContent$/.test(upstreamPath)) {
+		return geminiError(403, "Model or method is not allowed", "PERMISSION_DENIED")
+	}
+
+	const body = await request.arrayBuffer()
+	if (body.byteLength > MAX_GEMINI_BODY_BYTES) {
+		return json(413, { error: "payload_too_large", max_bytes: MAX_GEMINI_BODY_BYTES })
+	}
+	const denied = await authorize(request, env, body, kind)
+	if (denied) return denied
+
 	const response = mode === "vertex"
-		? await proxyVertexGemini(request, env, upstreamPath, search)
-		: await proxyGeminiAIStudio(request, env, upstreamPath, search)
+		? await proxyVertexGemini(request, env, upstreamPath, search, body)
+		: await proxyGeminiAIStudio(request, env, upstreamPath, search, body)
 	if (!response.ok) await logUpstreamError("gemini", mode, upstreamPath, response)
 	return response
 }
@@ -195,7 +213,7 @@ async function validateGeminiBodySize(request) {
  * @param {string} upstreamPath
  * @param {string} search
  */
-async function proxyVertexGemini(request, env, upstreamPath, search) {
+async function proxyVertexGemini(request, env, upstreamPath, search, body) {
 	let projectId
 	let region
 	try {
@@ -229,7 +247,7 @@ async function proxyVertexGemini(request, env, upstreamPath, search) {
 	headers.set("authorization", `Bearer ${accessToken}`)
 	stripClientSecrets(headers)
 
-	return fetch(upstream, forwardInit(request, headers))
+	return fetch(upstream, { method: "POST", headers, body })
 }
 
 /**
@@ -238,17 +256,18 @@ async function proxyVertexGemini(request, env, upstreamPath, search) {
  * @param {string} upstreamPath
  * @param {string} search
  */
-async function proxyGeminiAIStudio(request, env, upstreamPath, search) {
-	if (!env.GEMINI_API_KEY) {
+async function proxyGeminiAIStudio(request, env, upstreamPath, search, body) {
+	const apiKey = geminiApiKey(env)
+	if (!apiKey) {
 		return json(500, { error: "GEMINI_API_KEY secret is not set" })
 	}
 	const upstream = GEMINI_AI_STUDIO_UPSTREAM + ensureLeadingSlash(upstreamPath) + search
 	const headers = dropHopByHopHeaders(request.headers)
 	headers.delete("x-goog-api-key")
-	headers.set("x-goog-api-key", env.GEMINI_API_KEY)
+	headers.set("x-goog-api-key", apiKey)
 	headers.delete("authorization")
 	stripClientSecrets(headers)
-	return fetch(upstream, forwardInit(request, headers))
+	return fetch(upstream, { method: "POST", headers, body })
 }
 
 /**
@@ -400,25 +419,6 @@ function base64UrlEncode(input) {
 /**
  * @param {Request} request
  * @param {Record<string, string | undefined>} env
- * @param {string} upstreamPath
- * @param {string} search
- */
-async function proxyOpenAI(request, env, upstreamPath, search) {
-	if (!env.OPENAI_API_KEY) {
-		return json(500, { error: "OPENAI_API_KEY secret is not set" })
-	}
-	const upstream = OPENAI_UPSTREAM + ensureLeadingSlash(upstreamPath) + search
-	const headers = dropHopByHopHeaders(request.headers)
-	headers.delete("authorization")
-	headers.set("authorization", `Bearer ${env.OPENAI_API_KEY}`)
-	headers.delete("x-goog-api-key")
-	stripClientSecrets(headers)
-	return fetch(upstream, forwardInit(request, headers))
-}
-
-/**
- * @param {Request} request
- * @param {Record<string, string | undefined>} env
  */
 function gateIfConfigured(request, env) {
 	const required = String(env.MOBILE_GATE_KEY ?? "").trim()
@@ -428,20 +428,6 @@ function gateIfConfigured(request, env) {
 		return json(403, { error: "forbidden" })
 	}
 	return null
-}
-
-/**
- * @param {Request} request
- * @param {Headers} headers
- */
-function forwardInit(request, headers) {
-	const method = request.method
-	const hasBody = method !== "GET" && method !== "HEAD"
-	return {
-		method,
-		headers,
-		body: hasBody ? request.body : undefined,
-	}
 }
 
 /** @param {Headers} input */
@@ -494,4 +480,101 @@ function json(status, obj) {
 			"cache-control": "no-store",
 		},
 	})
+}
+
+// MARK: Protection
+
+/** @param {Record<string, string | undefined>} env */
+function geminiApiKey(env) {
+	return String(env.NEW_GEMINI_KEY_3 ?? env.GEMINI_API_KEY ?? "").trim()
+}
+
+/** @param {Record<string, string | undefined>} env */
+function attestMode(env) {
+	return String(env.GEMINI_ATTEST_MODE ?? "soft").trim().toLowerCase() === "enforce" ? "enforce" : "soft"
+}
+
+/**
+ * Per-device limit for App Attest requests, per-IP limit for the rest (soft mode). Returns a response when refused.
+ * @param {Request} request
+ * @param {Record<string, any>} env
+ * @param {ArrayBuffer} body
+ * @param {"image" | "text"} kind
+ */
+async function authorize(request, env, body, kind) {
+	if (!env.DEVICE_GUARD) return null
+	const prefix = kind === "image" ? "IMAGE" : "TEXT"
+
+	const devToken = String(env.DEV_BYPASS_TOKEN ?? "").trim()
+	const receivedDevToken = request.headers.get("X-HomeAI-Dev-Token")
+	if (devToken && receivedDevToken && receivedDevToken === devToken) {
+		return hitBucket(env, `gemini-${kind}:dev`, limitsFor(env, `${prefix}_DEVICE`), "dev")
+	}
+
+	const keyId = request.headers.get("X-HomeAI-Attest-Key")
+	const assertion = request.headers.get("X-HomeAI-Attest-Assertion")
+	if (keyId && assertion && /^[A-Za-z0-9+/=]{8,128}$/.test(keyId)) {
+		// DeviceGuard verifies signature + counter; the Gemini limit is its own bucket below.
+		const result = await callGuard(env, `key:${keyId}`, "/assert", {
+			assertion,
+			clientDataHash: bytesToBase64(new Uint8Array(await crypto.subtle.digest("SHA-256", body))),
+			appId: String(env.ATTEST_APP_ID ?? DEFAULT_APP_ID).trim(),
+			limits: {},
+		})
+		if (result.ok) {
+			return hitBucket(env, `gemini-${kind}:key:${keyId}`, limitsFor(env, `${prefix}_DEVICE`), "device")
+		}
+		console.warn(JSON.stringify({ event: "attest_assert_failed", code: result.code ?? null, kind }))
+	}
+	if (attestMode(env) === "enforce") {
+		return geminiError(401, "Device check is required", "UNAUTHENTICATED")
+	}
+	const ip = request.headers.get("cf-connecting-ip") ?? "unknown"
+	return hitBucket(env, `gemini-${kind}:ip:${ip}`, limitsFor(env, `${prefix}_IP`), "ip")
+}
+
+/** Defaults sit above what the app allows (1 free, 15/day Pro, plus edits and retries). */
+function limitsFor(env, prefix) {
+	const defaults = {
+		IMAGE_DEVICE: { perMinute: 4, perDay: 40 },
+		IMAGE_IP: { perMinute: 6, perDay: 60 },
+		TEXT_DEVICE: { perMinute: 20, perDay: 300 },
+		TEXT_IP: { perMinute: 30, perDay: 400 },
+	}[prefix]
+	const read = (name, fallback) => {
+		const value = Number(env[`LIMIT_${prefix}_${name}`])
+		return Number.isFinite(value) && value > 0 ? value : fallback
+	}
+	return { perMinute: read("PER_MINUTE", defaults.perMinute), perDay: read("PER_DAY", defaults.perDay) }
+}
+
+async function hitBucket(env, name, limits, scope) {
+	const result = await callGuard(env, name, "/hit", { limits })
+	if (result.ok) return null
+	console.warn(JSON.stringify({ event: "rate_limited", scope, bucket: name.split(":")[0], window: result.window }))
+	const response = geminiError(429, "Too many requests", "RESOURCE_EXHAUSTED")
+	response.headers.set("retry-after", String(result.retryAfter ?? 60))
+	return response
+}
+
+async function callGuard(env, name, path, body) {
+	const stub = env.DEVICE_GUARD.get(env.DEVICE_GUARD.idFromName(name))
+	const response = await stub.fetch(`https://guard${path}`, {
+		method: "POST",
+		headers: { "content-type": "application/json" },
+		body: JSON.stringify(body),
+	})
+	return response.json()
+}
+
+/** Same shape as Google's errors, so the app's existing parsing shows it. */
+function geminiError(code, message, status) {
+	return json(code, { error: { code, message, status } })
+}
+
+/** @param {Uint8Array} bytes */
+function bytesToBase64(bytes) {
+	let binary = ""
+	for (let i = 0; i < bytes.length; i += 0x8000) binary += String.fromCharCode(...bytes.subarray(i, i + 0x8000))
+	return btoa(binary)
 }

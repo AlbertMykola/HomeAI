@@ -1,20 +1,32 @@
-name = "homeai-secure-proxy"
+name = "gemini-secure-proxy"
 main = "worker.js"
-compatibility_date = "2025-01-01"
+compatibility_date = "2025-10-29"
+preview_urls = false
 
-# Секрети (Vertex — рекомендовано для GCP billing / $300 credit):
-#   wrangler secret put GCP_SERVICE_ACCOUNT_JSON   # весь JSON service account одним рядком
-#   wrangler secret put GCP_REGION                   # опційно, default us-central1
-#   wrangler secret put GCP_PROJECT_ID               # опційно, якщо є project_id в JSON
-#   wrangler secret put GEMINI_UPSTREAM              # vertex | ai_studio (опційно; auto якщо порожньо)
+# Deployed as `gemini-secure-proxy` (the URL the app calls): npx wrangler deploy
 #
-# Rollback на AI Studio:
-#   wrangler secret put GEMINI_API_KEY
-#   wrangler secret put GEMINI_UPSTREAM
-#   (введи: ai_studio)
-#
-#   wrangler secret put OPENAI_API_KEY
-#   wrangler secret put MOBILE_GATE_KEY   # опційний
-#
-# Деплой:
-#   wrangler deploy
+# Secrets (never in git):
+#   NEW_GEMINI_KEY_3                   AI Studio key in use (GEMINI_API_KEY is read only when it is unset)
+#   DEV_BYPASS_TOKEN                   Debug simulator builds only (same value as ~/.rehomely-dev-token)
+#   GCP_SERVICE_ACCOUNT_JSON           Vertex instead of AI Studio (optional; GEMINI_UPSTREAM = vertex | ai_studio)
+#   MOBILE_GATE_KEY                    optional header gate (the app does not send it on Gemini calls: keep unset)
+
+[vars]
+# "soft": app versions without App Attest (1.2.1 and older) keep working on the per-IP limit.
+# "enforce": every call needs a valid App Attest assertion. Switch once those versions are gone.
+GEMINI_ATTEST_MODE = "soft"
+ATTEST_APP_ID = "5998UF2M9Y.com.albert.apps.design.ai"
+LIMIT_IMAGE_DEVICE_PER_MINUTE = "4"
+LIMIT_IMAGE_DEVICE_PER_DAY = "40"
+LIMIT_IMAGE_IP_PER_MINUTE = "6"
+LIMIT_IMAGE_IP_PER_DAY = "60"
+LIMIT_TEXT_DEVICE_PER_MINUTE = "20"
+LIMIT_TEXT_DEVICE_PER_DAY = "300"
+LIMIT_TEXT_IP_PER_MINUTE = "30"
+LIMIT_TEXT_IP_PER_DAY = "400"
+
+# App Attest keys + counters live in the OpenAI worker's Durable Object (the app registers its key there).
+[[durable_objects.bindings]]
+name = "DEVICE_GUARD"
+class_name = "DeviceGuard"
+script_name = "fragrant-fog-a5e3"

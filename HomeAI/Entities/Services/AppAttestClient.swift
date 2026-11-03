@@ -39,6 +39,7 @@ actor AppAttestClient {
     private let mobileGateKey: String?
     private let session: URLSession
     private var registration: Task<String, Error>?
+    private var optionalSkipUntil: Date?
 
     init(workerBase: URL, mobileGateKey: String?, session: URLSession = .shared) {
         self.workerBase = workerBase
@@ -67,6 +68,27 @@ actor AppAttestClient {
             return Self.assertionHeaders(keyID: fresh, assertion: assertion)
         }
         return Self.assertionHeaders(keyID: keyID, assertion: assertion)
+    }
+
+    /// For the Gemini worker: the same headers, or none when this device can't attest right now. The worker then
+    /// applies its stricter per-IP limit instead of refusing (`GEMINI_ATTEST_MODE` soft).
+    /// Waits at most a few seconds and, after a failure, skips attesting for a while, so a network where the
+    /// attest worker is unreachable doesn't delay every generation.
+    func optionalHeaders(for body: Data?) async -> [String: String] {
+        guard let body else { return [:] }
+        if let skipUntil = optionalSkipUntil, skipUntil > Date() { return [:] }
+        let work = Task { try? await self.headers(for: body) }
+        let timeout = Task {
+            try? await Task.sleep(nanoseconds: 8_000_000_000)
+            work.cancel()
+        }
+        let result = await work.value
+        timeout.cancel()
+        guard let result else {
+            optionalSkipUntil = Date().addingTimeInterval(10 * 60)
+            return [:]
+        }
+        return result
     }
 
     /// The worker no longer knows / trusts our key: forget it so the next call attests again.

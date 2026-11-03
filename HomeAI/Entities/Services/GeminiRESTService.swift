@@ -285,7 +285,12 @@ final class GeminiRESTService: ImageGenerationService {
         while true {
             try Task.checkCancellation()
             do {
-                let (data, response) = try await session.data(for: request)
+                // A fresh App Attest assertion per attempt: the worker refuses a reused one (counter).
+                var attempt = request
+                for (field, value) in await AppAttestClient.shared.optionalHeaders(for: request.httpBody) {
+                    attempt.setValue(value, forHTTPHeaderField: field)
+                }
+                let (data, response) = try await session.data(for: attempt)
                 if response is HTTPURLResponse { ServiceReachability.markReachable() }
                 guard let httpResponse = response as? HTTPURLResponse else {
                     throw GeminiServiceError.requestFailed(
@@ -439,6 +444,9 @@ final class GeminiRESTService: ImageGenerationService {
         request.httpMethod = "POST"
         request.httpBody = requestData
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        for (field, value) in await AppAttestClient.shared.optionalHeaders(for: requestData) {
+            request.setValue(value, forHTTPHeaderField: field)
+        }
         
         // Виконуємо запит
         let (data, response) = try await session.data(for: request)

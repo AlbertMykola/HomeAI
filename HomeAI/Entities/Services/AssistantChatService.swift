@@ -59,6 +59,9 @@ final class AssistantChatService {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try JSONSerialization.data(withJSONObject: body)
         request.timeoutInterval = 45
+        for (field, value) in await AppAttestClient.shared.optionalHeaders(for: request.httpBody) {
+            request.setValue(value, forHTTPHeaderField: field)
+        }
 
         let data: Data
         let response: URLResponse
@@ -135,6 +138,9 @@ final class AssistantChatService {
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         request.httpBody = try JSONSerialization.data(withJSONObject: body)
         request.timeoutInterval = 60
+        for (field, value) in await AppAttestClient.shared.optionalHeaders(for: request.httpBody) {
+            request.setValue(value, forHTTPHeaderField: field)
+        }
 
         let (data, response): (Data, URLResponse)
         do {
