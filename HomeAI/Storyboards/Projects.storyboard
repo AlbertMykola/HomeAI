@@ -985,96 +985,18 @@
                                             <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSelect:" />
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2839-1580-616b" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="segmentView">
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1c32-e601-1763" customClass="DSView" customModule="HomeAI" customModuleProvider="target" userLabel="segmentKnob">
-                                                <color key="backgroundColor" name="dsKnob" />
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="16.0" />
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOpacity">
-                                                        <real key="value" value="0.12" />
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
-                                                        <real key="value" value="3" />
-                                                    </userDefinedRuntimeAttribute>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="shadowOffsetY">
-                                                        <real key="value" value="2" />
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
-                                            </view>
-                                            <stackView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6919-5a1c-3125" opaque="NO" distribution="fillEqually" spacing="0">
-                                                <subviews>
-                                                    <view contentMode="scaleToFill" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="6d3b-4b35-958b" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
-                                                        <subviews>
-                                                            <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="0" translatesAutoresizingMaskIntoConstraints="NO" id="7751-dc33-4661" opaque="NO" text="Designs" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.7" horizontalHuggingPriority="251" verticalHuggingPriority="251">
-                                                                <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14" />
-                                                                <color key="textColor" name="dsTextSecondary" />
-                                                                <nil key="highlightedColor" />
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Designs" />
-                                                                </userDefinedRuntimeAttributes>
-                                                                <nil key="backgroundColor" />
-                                                            </label>
-                                                        </subviews>
-                                                        <constraints>
-                                                            <constraint firstItem="7751-dc33-4661" firstAttribute="centerX" secondItem="6d3b-4b35-958b" secondAttribute="centerX" id="fa3e-155a-2ed5" identifier="ds.reference.fa3e-155a-2ed5" />
-                                                            <constraint firstItem="7751-dc33-4661" firstAttribute="centerY" secondItem="6d3b-4b35-958b" secondAttribute="centerY" id="9e74-fe84-732d" identifier="ds.reference.9e74-fe84-732d" />
-                                                        </constraints>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="hapticOnPress" value="NO" />
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="pressedScale">
-                                                                <real key="value" value="0.98" />
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSegment:" />
-                                                        </userDefinedRuntimeAttributes>
-                                                    </view>
-                                                    <view contentMode="scaleToFill" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="0275-fc5d-89fe" customClass="DSPressableControl" customModule="HomeAI" customModuleProvider="target">
-                                                        <subviews>
-                                                            <label contentMode="scaleToFill" userInteractionEnabled="NO" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="f876-bed8-c2cc" opaque="NO" text="Ideas" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="1" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="YES" minimumScaleFactor="0.7" horizontalHuggingPriority="251" verticalHuggingPriority="251">
-                                                                <fontDescription key="fontDescription" name="Geologica-Medium" family="Geologica" pointSize="14" />
-                                                                <color key="textColor" name="dsTextSecondary" />
-                                                                <nil key="highlightedColor" />
-                                                                <userDefinedRuntimeAttributes>
-                                                                    <userDefinedRuntimeAttribute type="string" keyPath="locKey" value="Ideas" />
-                                                                </userDefinedRuntimeAttributes>
-                                                                <nil key="backgroundColor" />
-                                                            </label>
-                                                        </subviews>
-                                                        <constraints>
-                                                            <constraint firstItem="f876-bed8-c2cc" firstAttribute="centerX" secondItem="0275-fc5d-89fe" secondAttribute="centerX" id="168f-0187-c788" identifier="ds.reference.168f-0187-c788" />
-                                                            <constraint firstItem="f876-bed8-c2cc" firstAttribute="centerY" secondItem="0275-fc5d-89fe" secondAttribute="centerY" id="67c2-6723-f189" identifier="ds.reference.67c2-6723-f189" />
-                                                        </constraints>
-                                                        <userDefinedRuntimeAttributes>
-                                                            <userDefinedRuntimeAttribute type="boolean" keyPath="hapticOnPress" value="NO" />
-                                                            <userDefinedRuntimeAttribute type="number" keyPath="pressedScale">
-                                                                <real key="value" value="0.98" />
-                                                            </userDefinedRuntimeAttribute>
-                                                            <userDefinedRuntimeAttribute type="string" keyPath="actionName" value="didTapSegment:" />
-                                                        </userDefinedRuntimeAttributes>
-                                                    </view>
-                                                </subviews>
-                                            </stackView>
-                                        </subviews>
-                                        <color key="backgroundColor" name="dsSegment" />
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2839-1580-616b" userLabel="segmentControl">
+                                        <segments>
+                                            <segment title="Designs" />
+                                            <segment title="Ideas" />
+                                        </segments>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="38" id="feb0-6480-fc3b" identifier="ds.reference.feb0-6480-fc3b" />
-                                            <constraint firstItem="6919-5a1c-3125" firstAttribute="leading" secondItem="2839-1580-616b" secondAttribute="leading" constant="3" id="074e-bcff-70ef" identifier="ds.reference.074e-bcff-70ef" />
-                                            <constraint firstItem="6919-5a1c-3125" firstAttribute="top" secondItem="2839-1580-616b" secondAttribute="top" constant="3" id="07b5-e407-abfd" identifier="ds.reference.07b5-e407-abfd" />
-                                            <constraint firstItem="2839-1580-616b" firstAttribute="trailing" secondItem="6919-5a1c-3125" secondAttribute="trailing" constant="3" id="22c3-e108-aa68" identifier="ds.reference.22c3-e108-aa68" />
-                                            <constraint firstItem="2839-1580-616b" firstAttribute="bottom" secondItem="6919-5a1c-3125" secondAttribute="bottom" constant="3" id="55e4-8f2a-6c20" identifier="ds.reference.55e4-8f2a-6c20" />
-                                            <constraint firstItem="1c32-e601-1763" firstAttribute="top" secondItem="2839-1580-616b" secondAttribute="top" constant="3" id="c2fb-fc80-c780" identifier="ds.reference.c2fb-fc80-c780" />
-                                            <constraint firstItem="2839-1580-616b" firstAttribute="bottom" secondItem="1c32-e601-1763" secondAttribute="bottom" constant="3" id="a6ca-9219-31fc" identifier="ds.reference.a6ca-9219-31fc" />
-                                            <constraint firstItem="1c32-e601-1763" firstAttribute="width" secondItem="6d3b-4b35-958b" secondAttribute="width" id="cb9a-9408-7e6b" identifier="ds.reference.cb9a-9408-7e6b" />
-                                            <constraint firstItem="1c32-e601-1763" firstAttribute="leading" secondItem="2839-1580-616b" secondAttribute="leading" constant="3" id="482f-cd7f-3192" identifier="ds.dynamic" />
+                                            <constraint firstAttribute="height" constant="32" id="feb0-6480-fc3b" identifier="ds.reference.feb0-6480-fc3b" />
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <real key="value" value="19.0" />
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </view>
+                                        <connections>
+                                            <action selector="didChangeSegment:" destination="a5f7-b41e-8c12" eventType="valueChanged" id="5e9c-0d1a-7b42" />
+                                        </connections>
+                                    </segmentedControl>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace" />
                                 <constraints>
@@ -1346,12 +1268,7 @@
                         <outlet property="largeTitleLabel" destination="0f1e-c9a6-f07c" id="a1a8-3d7a-054d" />
                         <outlet property="selectButton" destination="36cd-4639-1de2" id="5293-caa2-efae" />
                         <outlet property="selectLabel" destination="788d-f64d-e18f" id="05dd-01b5-6559" />
-                        <outlet property="segmentView" destination="2839-1580-616b" id="9e5a-bc12-bc8b" />
-                        <outlet property="segmentKnob" destination="1c32-e601-1763" id="ffac-6cd9-06ce" />
-                        <outletCollection property="segmentControls" destination="6d3b-4b35-958b" collectionClass="NSMutableArray" id="f1e3-bf41-9959" />
-                        <outletCollection property="segmentLabels" destination="7751-dc33-4661" collectionClass="NSMutableArray" id="21a9-89a4-f5cc" />
-                        <outletCollection property="segmentControls" destination="0275-fc5d-89fe" collectionClass="NSMutableArray" id="66d0-b0cd-bccd" />
-                        <outletCollection property="segmentLabels" destination="f876-bed8-c2cc" collectionClass="NSMutableArray" id="3ca6-4356-5b65" />
+                        <outlet property="segmentControl" destination="2839-1580-616b" id="9e5a-bc12-bc8b" />
                         <outlet property="actionBarView" destination="e3bb-7e80-a21e" id="909a-df52-dd06" />
                         <outletCollection property="actionControls" destination="d30d-3b44-0a54" collectionClass="NSMutableArray" id="0fc8-3fa3-3255" />
                         <outletCollection property="actionLabels" destination="3008-b427-c061" collectionClass="NSMutableArray" id="1ed2-8ffe-82d8" />
@@ -1359,7 +1276,6 @@
                         <outletCollection property="actionLabels" destination="ac3d-9dc9-2302" collectionClass="NSMutableArray" id="5eae-f020-06d9" />
                         <outletCollection property="actionControls" destination="a6bd-8f8a-d3ae" collectionClass="NSMutableArray" id="a8a7-4f89-7e97" />
                         <outletCollection property="actionLabels" destination="7a88-7876-6520" collectionClass="NSMutableArray" id="1383-1cb2-02a9" />
-                        <outlet property="segmentKnobLeading" destination="482f-cd7f-3192" id="4983-9193-c960" />
                     </connections>
                     <tabBarItem key="tabBarItem" title="Projects" image="folder" selectedImage="folder.fill" catalog="system" tag="2" id="SYS-TAB-2" />
                 </viewController>

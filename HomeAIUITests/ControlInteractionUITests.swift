@@ -47,7 +47,7 @@ final class ControlInteractionUITests: XCTestCase {
             // remain valid selection evidence when the hero is above the viewport.
             identifiers = ["home.hero.title", "didTapUpload:0", "didTapFloorPlan:0", "didTapAssistant:1"]
         case "Inspiration", "Натхнення", "tab.inspiration": identifiers = ["didTapSearch:0"]
-        case "Projects", "Проєкти", "tab.projects": identifiers = ["didTapSegment:0"]
+        case "Projects", "Проєкти", "tab.projects": identifiers = ["projects.segment"]
         case "Profile", "Профіль", "tab.profile": identifiers = ["profile.appearance.menu"]
         default:
             XCTFail("Unknown native tab: \(title)"); return
@@ -55,7 +55,7 @@ final class ControlInteractionUITests: XCTestCase {
         let markers = identifiers.map { identifier in
             identifier == "home.hero.title"
                 ? app.staticTexts.matching(identifier: identifier).firstMatch
-                : app.buttons.matching(identifier: identifier).firstMatch
+                : app.descendants(matching: .any).matching(identifier: identifier).firstMatch
         }
         let viewport = app.frame
         let visibleContent = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in

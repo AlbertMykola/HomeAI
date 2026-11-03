@@ -52,7 +52,7 @@ final class FullAppFlowTests: XCTestCase {
             // remain valid selection evidence when the hero is above the viewport.
             identifiers = ["home.hero.title", "didTapUpload:0", "didTapFloorPlan:0", "didTapAssistant:1"]
         case "Inspiration", "Натхнення", "tab.inspiration": identifiers = ["didTapSearch:0"]
-        case "Projects", "Проєкти", "tab.projects": identifiers = ["didTapSegment:0"]
+        case "Projects", "Проєкти", "tab.projects": identifiers = ["projects.segment"]
         case "Profile", "Профіль", "tab.profile": identifiers = ["profile.appearance.menu"]
         default:
             XCTFail("Unknown native tab: \(title)"); return
@@ -60,7 +60,7 @@ final class FullAppFlowTests: XCTestCase {
         let markers = identifiers.map { identifier in
             identifier == "home.hero.title"
                 ? app.staticTexts.matching(identifier: identifier).firstMatch
-                : app.buttons.matching(identifier: identifier).firstMatch
+                : app.descendants(matching: .any).matching(identifier: identifier).firstMatch
         }
         let viewport = app.frame
         let visibleContent = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in
@@ -198,7 +198,7 @@ final class FullAppFlowTests: XCTestCase {
             launch("projects-empty", extra: dark ? ["--qa-dark"] : [])
             XCTAssertTrue(app.staticTexts["Your redesigns will live here"].waitForExistence(timeout: 8))
             capture("Empty-designs-\(dark ? "dark" : "light")")
-            tap("didTapSegment:1")
+            app.segmentedControls["projects.segment"].buttons.element(boundBy: 1).tap()
             XCTAssertTrue(app.staticTexts["Save ideas from Inspiration"].waitForExistence(timeout: 8))
             capture("Empty-ideas-\(dark ? "dark" : "light")")
             tapTab("Inspiration")

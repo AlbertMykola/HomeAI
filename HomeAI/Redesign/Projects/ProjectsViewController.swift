@@ -21,11 +21,7 @@ final class ProjectsViewController: UIViewController, DSWideLayoutFullWidth {
     @IBOutlet private weak var largeTitleLabel: UILabel!
     @IBOutlet private weak var selectButton: DSPressableControl!
     @IBOutlet private weak var selectLabel: UILabel!
-    @IBOutlet private weak var segmentView: UIView!
-    @IBOutlet private weak var segmentKnob: UIView!
-    @IBOutlet private weak var segmentKnobLeading: NSLayoutConstraint!
-    @IBOutlet private var segmentControls: [DSPressableControl]!
-    @IBOutlet private var segmentLabels: [UILabel]!
+    @IBOutlet private weak var segmentControl: UISegmentedControl!
     @IBOutlet private weak var emptyStateView: UIStackView!
     @IBOutlet private weak var emptyIconView: UIImageView!
     @IBOutlet private weak var emptyTitleLabel: UILabel!
@@ -52,8 +48,9 @@ final class ProjectsViewController: UIViewController, DSWideLayoutFullWidth {
         super.viewDidLoad()
         largeTitleLabel.text = "Projects".localized
         selectLabel.text = "Select".localized
-        let segTitles = ["Designs", "Ideas"]
-        segmentLabels.sorted { $0.tag < $1.tag }.enumerated().forEach { $1.text = segTitles[$0].localized }
+        ["Designs", "Ideas"].enumerated().forEach { segmentControl.setTitle($1.localized, forSegmentAt: $0) }
+        segmentControl.selectedSegmentIndex = segment.rawValue
+        segmentControl.accessibilityIdentifier = "projects.segment"
         let actions = ["Share", "Duplicate", "Delete"]
         actionLabels.sorted { $0.tag < $1.tag }.enumerated().forEach { $1.text = actions[$0].localized }
         emptyGhostButton.setTitle("Browse inspiration".localized, for: .normal)
@@ -74,9 +71,8 @@ final class ProjectsViewController: UIViewController, DSWideLayoutFullWidth {
         navigationController?.setNavigationBarHidden(true, animated: animated)
         if needsReload { reloadData() }
         if !didRunEntrance {
-            [largeTitleLabel, selectButton, segmentKnob, emptyIconView, emptyTitleLabel,
+            [largeTitleLabel, selectButton, segmentControl, emptyIconView, emptyTitleLabel,
              emptySubtitleLabel, emptyPrimaryButton, emptyGhostButton].forEach { $0?.alpha = 0 }
-            segmentControls.forEach { $0.alpha = 0 }
             collectionView.alpha = 0
         }
     }
@@ -108,8 +104,6 @@ final class ProjectsViewController: UIViewController, DSWideLayoutFullWidth {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        applySegment(index: segment.rawValue, labels: segmentLabels, knobLeading: segmentKnobLeading,
-                     container: segmentView, count: 2, animated: false)
         let metrics = OnboardingLayout(size: view.dsAdaptiveReferenceSize)
         let top = headerView.frame.maxY + metrics.value(4)
         let bottom = view.safeAreaInsets.bottom + metrics.value(24)
@@ -126,14 +120,11 @@ final class ProjectsViewController: UIViewController, DSWideLayoutFullWidth {
         super.viewDidAppear(animated)
         guard !didRunEntrance else { return }
         didRunEntrance = true
-        // Figma A/10 PR1: title y 12 at 0 ms, segments x 16 from 60 ms (40 ms apart),
+        // Figma A/10 PR1: title y 12 at 0 ms, segments x 16 from 60 ms,
         // cards from 140 ms every 60 ms (scale 0.94 → 1 bouncy).
         DS.Motion.enter(largeTitleLabel, delay: 0, dy: 12)
         DS.Motion.enter(selectButton, delay: 0, dy: 12)
-        segmentControls.sorted { $0.tag < $1.tag }.enumerated().forEach {
-            DS.Motion.enter($1, delay: 0.06 + 0.04 * Double($0), dx: 16)
-        }
-        DS.Motion.enter(segmentKnob, delay: 0.06, dx: 16)
+        DS.Motion.enter(segmentControl, delay: 0.06, dx: 16)
         animateCards(from: 0.14)
         collectionView.alpha = 1
         animateEmptyState()
@@ -228,13 +219,10 @@ final class ProjectsViewController: UIViewController, DSWideLayoutFullWidth {
 
     // MARK: Segments
 
-    @IBAction private func didTapSegment(_ sender: UIControl) {
-        guard let new = Segment(rawValue: sender.tag), new != segment else { return }
-        DS.Haptic.selection()
+    @IBAction private func didChangeSegment(_ sender: UISegmentedControl) {
+        guard let new = Segment(rawValue: sender.selectedSegmentIndex), new != segment else { return }
         if selecting { setSelecting(false) }
         segment = new
-        applySegment(index: segment.rawValue, labels: segmentLabels, knobLeading: segmentKnobLeading,
-                     container: segmentView, count: 2, animated: true)
         updateItemSize()
         UIView.transition(with: collectionView, duration: 0.25, options: .transitionCrossDissolve) {
             self.collectionView.reloadData()
