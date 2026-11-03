@@ -28,8 +28,8 @@ final class PaywallProvider {
     ]
 
     private(set) var isActivated = false
-    /// The close offer shows at most once per launch.
-    private var didShowCloseOffer = false
+    /// Two triggers close together (paywall closed while the app comes to the foreground) show one offer.
+    private var lastOfferShownAt: Date?
     private var configurations: [String: AdaptyUI.FlowConfiguration] = [:]
     private var loading = Set<String>()
     /// Keeps each Builder screen's delegate alive (AdaptyFlowController holds it weakly).
@@ -122,16 +122,30 @@ final class PaywallProvider {
         }
     }
 
-    /// After a paywall is closed without a purchase: the offer set up in Adapty for `close_offer_placement`
-    /// (a Builder screen), once per launch. Nothing configured there → nothing shown.
+    /// After a paywall is closed without a purchase: the offer.
     func paywallDidClose(placement: String, presenter: UIViewController?) {
-        guard placement != Constants.Keys.closeOfferPlacement, !didShowCloseOffer,
-              !AdaptyService.shared.hasActiveSubscription, let presenter,
-              let configuration = configurations.removeValue(forKey: Constants.Keys.closeOfferPlacement),
-              let offer = builderController(configuration: configuration, placement: Constants.Keys.closeOfferPlacement,
-                                            source: "close_offer_\(placement)", onPurchase: nil) else { return }
-        didShowCloseOffer = true
+        guard placement != Constants.Keys.closeOfferPlacement else { return }
+        Task { await self.showOffer(over: presenter, source: "close_\(placement)") }
+    }
+
+    /// The offer set up in Adapty for `close_offer` (a Builder screen) over `presenter`, for non-subscribers: after a
+    /// paywall is closed, on every app open, after the Adapty onboarding. Loads it first when not prefetched yet.
+    /// Nothing set up there (or not live outside QA builds) → nothing shown.
+    @discardableResult
+    func showOffer(over presenter: UIViewController?, source: String) async -> Bool {
+        let placement = Constants.Keys.closeOfferPlacement
+        guard isActivated, !AdaptyService.shared.hasActiveSubscription else { return false }
+        if let last = lastOfferShownAt, Date().timeIntervalSince(last) < 60 { return false }
+        if configurations[placement] == nil { await prefetch(placement: placement) }
+        guard let presenter, presenter.presentedViewController == nil, presenter.view.window != nil,
+              !AdaptyService.shared.hasActiveSubscription,
+              let configuration = configurations.removeValue(forKey: placement),
+              let offer = builderController(configuration: configuration, placement: placement,
+                                            source: "offer_\(source)", onPurchase: nil) else { return false }
+        lastOfferShownAt = Date()
         presenter.present(offer, animated: true)
+        Task { await self.prefetch(placement: placement) }
+        return true
     }
 }
 

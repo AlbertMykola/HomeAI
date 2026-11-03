@@ -102,6 +102,24 @@ final class NavigationManager {
                 showsLaunchPaywall: false,
                 selectOptionsTab: openedFromLocalPush
             )
+            showOpenOffer()
+        }
+    }
+
+    /// Every app open (launch, back from the background) for non-subscribers past onboarding: the Adapty offer, over
+    /// whatever is on top unless something is already presented there.
+    func showOpenOffer() {
+        #if DEBUG
+        if AppQA.enabled { return }
+        #endif
+        let didShowOB: Bool? = UserDefaultsManager.shared.getValue(forKey: Constants.Keys.didShowOnboarding)
+        guard didShowOB == true, let tabBar = window?.rootViewController as? UITabBarController else { return }
+        Task { @MainActor in
+            // A launch: Adapty's first profile decides whether this user is a subscriber.
+            guard !(await AdaptyService.shared.hasActiveSubscriptionWhenReady(timeoutSeconds: 6)) else { return }
+            // Let the root cross-dissolve finish so the tab bar is in the window.
+            try? await Task.sleep(nanoseconds: 600_000_000)
+            await PaywallProvider.shared.showOffer(over: tabBar, source: "app_open")
         }
     }
 
@@ -200,7 +218,9 @@ final class NavigationManager {
                     if showPaywall {
                         self?.completeOnboardingWithPaywall(placement: Constants.Keys.obPlacement)
                     } else {
+                        // The flow ended (its paywall closed or bought): the offer for those who didn't buy.
                         self?.completeOnboarding()
+                        self?.showOpenOffer()
                     }
                 }
             }, onFallback: { [weak self] in
