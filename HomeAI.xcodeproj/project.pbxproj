@@ -33,6 +33,7 @@
 		84C476932E7C6B9400629A54 /* Adapty in Frameworks */ = {isa = PBXBuildFile; productRef = 84C476922E7C6B9400629A54 /* Adapty */; };
 		84C8E0032F4C8A0100AF0001 /* Sentry in Frameworks */ = {isa = PBXBuildFile; productRef = 84C8E0022F4C8A0100AF0001 /* Sentry */; };
 		84D2B4582E758A5100039C35 /* OpenAI in Frameworks */ = {isa = PBXBuildFile; productRef = 84D2B4572E758A5100039C35 /* OpenAI */; };
+		A7D1E2F32F6A1B0000C0FFEE /* AdaptyUI in Frameworks */ = {isa = PBXBuildFile; productRef = A7D1E2F22F6A1B0000C0FFEE /* AdaptyUI */; };
 		AA00000C3000000000000001 /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = 8438E9C22EB25BAD00DF0127 /* GoogleGenerativeAI */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +114,7 @@
 				84AF7E032F4A6B1100AF0001 /* AppsFlyerLib-Static in Frameworks */,
 				84C8E0032F4C8A0100AF0001 /* Sentry in Frameworks */,
 				84C476932E7C6B9400629A54 /* Adapty in Frameworks */,
+				A7D1E2F32F6A1B0000C0FFEE /* AdaptyUI in Frameworks */,
 				8455E6972E9008C900878679 /* AmplitudeSwift in Frameworks */,
 				841810642EEB52800023C777 /* Supabase in Frameworks */,
 				84B6871B2F3354960076A343 /* FacebookAEM in Frameworks */,
@@ -195,6 +197,7 @@
 			packageProductDependencies = (
 				84D2B4572E758A5100039C35 /* OpenAI */,
 				84C476922E7C6B9400629A54 /* Adapty */,
+				A7D1E2F22F6A1B0000C0FFEE /* AdaptyUI */,
 				84AF7E022F4A6B1100AF0001 /* AppsFlyerLib-Static */,
 				84C8E0022F4C8A0100AF0001 /* Sentry */,
 				8455E6932E8FEDAB00878679 /* Kingfisher */,
@@ -971,6 +974,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 84D2B4562E758A5100039C35 /* XCRemoteSwiftPackageReference "OpenAI" */;
 			productName = OpenAI;
+		};
+		A7D1E2F22F6A1B0000C0FFEE /* AdaptyUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84C476912E7C6B9400629A54 /* XCRemoteSwiftPackageReference "AdaptySDK-iOS" */;
+			productName = AdaptyUI;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

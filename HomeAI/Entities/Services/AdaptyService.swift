@@ -54,6 +54,7 @@ public class AdaptyService: NSObject {
             apply(profile)
             await bindAmplitudeIdentifierIfAvailable()
             await bindAppsFlyerIdentifierIfAvailable()
+            await PaywallProvider.shared.activate(prefetch: !isPremium(profile))
         } catch {
             #if DEBUG
             print("[Adapty] activate failed: \(error.localizedDescription)")
@@ -156,7 +157,8 @@ public class AdaptyService: NSObject {
     }
 
     func paywallShown() {
-        guard let flow = currentFlow else { return }
+        // A Paywall Builder variation shown in our screen (its layout wasn't ready) must not count as its impression.
+        guard let flow = currentFlow, !flow.hasViewConfiguration else { return }
         Task {
             try? await Adapty.logShowFlow(flow)
         }
@@ -192,42 +194,9 @@ public class AdaptyService: NSObject {
                 case .pending:
                     completion(.failure(AdaptyServiceError.purchasePending))
                 case let .success(profile, transactionResult):
-                    self.apply(profile)
-                    if self.isPremium(profile) {
-                        var startedFreeTrial: Bool?
-                        var transactionVerified = false
-                        if case let .verified(transaction) = transactionResult {
-                            transactionVerified = true
-                            let isFreeTrial = transaction.offerType == .introductory &&
-                                (transaction.price.map { $0 == 0 } ?? product.paywallHasFreeTrial)
-                            startedFreeTrial = isFreeTrial
-                            let revenue = transaction.price ?? product.price
-                            let currencyCode: String?
-                            if #available(iOS 16.0, *) {
-                                currencyCode = transaction.currency?.identifier ?? product.currencyCode
-                            } else {
-                                currencyCode = transaction.currencyCode ?? product.currencyCode
-                            }
-
-                            AppsFlyerService.shared.logSKANSubscription(
-                                isTrial: isFreeTrial,
-                                revenue: revenue,
-                                currencyCode: currencyCode,
-                                productId: product.vendorProductId
-                            )
-                        }
-                        completion(.success(PaywallPurchaseOutcome(
-                            startedFreeTrial: startedFreeTrial,
-                            transactionVerified: transactionVerified
-                        )))
+                    if let outcome = self.recordPurchase(profile: profile, transaction: transactionResult, product: product) {
+                        completion(.success(outcome))
                     } else {
-                        ErrorReporter.report(AdaptyServiceError.purchaseFailed, operation: "purchase",
-                                             details: .init(provider: "adapty", extra: [
-                                                "product_id": product.vendorProductId,
-                                                "expected_access_level": Constants.Keys.adaptyAccessLevel,
-                                                "active_access_levels": profile.accessLevels
-                                                    .filter { $0.value.isActive }.keys.sorted().joined(separator: ",")
-                                             ]))
                         completion(.failure(AdaptyServiceError.purchaseFailed))
                     }
                 }
@@ -247,6 +216,61 @@ public class AdaptyService: NSObject {
                 }
             }
         }
+    }
+
+    /// A successful StoreKit purchase (our paywall or Adapty's Paywall Builder): applies the profile, sends the SKAN
+    /// event and returns the outcome, or nil (reported) when the profile has no Pro access afterwards.
+    @MainActor
+    func recordPurchase(profile: AdaptyProfile, transaction transactionResult: VerificationResult<Transaction>,
+                        product: AdaptyPaywallProduct) -> PaywallPurchaseOutcome? {
+        apply(profile)
+        guard isPremium(profile) else {
+            ErrorReporter.report(AdaptyServiceError.purchaseFailed, operation: "purchase",
+                                 details: .init(provider: "adapty", extra: [
+                                    "product_id": product.vendorProductId,
+                                    "expected_access_level": Constants.Keys.adaptyAccessLevel,
+                                    "active_access_levels": profile.accessLevels
+                                        .filter { $0.value.isActive }.keys.sorted().joined(separator: ",")
+                                 ]))
+            return nil
+        }
+        var startedFreeTrial: Bool?
+        var transactionVerified = false
+        if case let .verified(transaction) = transactionResult {
+            transactionVerified = true
+            let isFreeTrial = transaction.offerType == .introductory &&
+                (transaction.price.map { $0 == 0 } ?? product.paywallHasFreeTrial)
+            startedFreeTrial = isFreeTrial
+            let revenue = transaction.price ?? product.price
+            let currencyCode: String?
+            if #available(iOS 16.0, *) {
+                currencyCode = transaction.currency?.identifier ?? product.currencyCode
+            } else {
+                currencyCode = transaction.currencyCode ?? product.currencyCode
+            }
+
+            AppsFlyerService.shared.logSKANSubscription(
+                isTrial: isFreeTrial,
+                revenue: revenue,
+                currencyCode: currencyCode,
+                productId: product.vendorProductId
+            )
+        }
+        return PaywallPurchaseOutcome(startedFreeTrial: startedFreeTrial, transactionVerified: transactionVerified)
+    }
+
+    /// Restore / profile update from Adapty's Paywall Builder screen.
+    @MainActor
+    func applyProfile(_ profile: AdaptyProfile) {
+        apply(profile)
+    }
+
+    /// Before a Paywall Builder purchase: the attribution ids must be on the profile before the S2S event.
+    @MainActor
+    func prepareForPurchase() async {
+        await activationTask?.value
+        await bindAmplitudeIdentifierIfAvailable()
+        await bindAppsFlyerIdentifierIfAvailable()
     }
 
     /// A/11 Profile: renewal date / cancelled-but-active / billing retry, from the cached profile.

@@ -649,7 +649,7 @@ final class ProPaywallViewController: UIViewController {
 
     private func properties(index: Int? = nil) -> [String: Any] {
         var props: [String: Any] = ["paywall_session_id": sessionID, "placement": placement, "source": source,
-                                    "paywall_variant": "redesign_a_p1", "trial_on": trialOn]
+                                    "paywall_variant": "redesign_a_p1", "paywall_kind": "native", "trial_on": trialOn]
         if let index, products.indices.contains(index) {
             let product = products[index]
             props["product_id"] = product.vendorProductId

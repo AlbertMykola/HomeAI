@@ -101,8 +101,9 @@ final class ProFeatureSheetViewController: UIViewController, DSSheetContentMeasu
         let feature = self.feature, placement = self.placement, onPurchase = self.onPurchase
         dismiss(animated: true) {
             guard let presenter else { return }
-            presenter.present(ProPaywallViewController.make(placement: placement, source: "feature_\(feature.rawValue)",
-                                                            onPurchase: onPurchase), animated: true)
+            presenter.present(PaywallProvider.shared.makePaywall(placement: placement,
+                                                                 source: "feature_\(feature.rawValue)",
+                                                                 onPurchase: onPurchase), animated: true)
         }
     }
 }

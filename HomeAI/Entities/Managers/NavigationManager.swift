@@ -225,7 +225,9 @@ final class NavigationManager {
             setTabBarAsRoot(in: window, animated: true)
             return nil
         }
-        let paywall = ProPaywallViewController.make(placement: placement, source: placement, onPurchase: nil)
+        let paywall = MainActor.assumeIsolated {
+            PaywallProvider.shared.makePaywall(placement: placement, source: placement, onPurchase: nil)
+        }
         setTabBarAsRoot(in: window, animated: true, coveredBy: paywall)
         return paywall
     }
@@ -286,8 +288,10 @@ final class NavigationManager {
         guard !AdaptyService.shared.hasActiveSubscription else { return }
         // A/02: everything in the app uses the redesigned paywall; onboarding keeps the old one for now.
         if origin == .inApp {
-            present(ProPaywallViewController.make(placement: placement, source: placement, onPurchase: onPurchase),
-                    mode: .overFull)
+            let paywall = MainActor.assumeIsolated {
+                PaywallProvider.shared.makePaywall(placement: placement, source: placement, onPurchase: onPurchase)
+            }
+            present(paywall, mode: .overFull)
             return
         }
         let vc = AppStoryboard.instantiate(PaywallViewController.self)
