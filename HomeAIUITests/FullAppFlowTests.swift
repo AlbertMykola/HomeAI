@@ -287,6 +287,8 @@ final class FullAppFlowTests: XCTestCase {
         tap("didTapGetPro:0")
         let toggle = app.buttons["didTapTrial:0"]
         XCTAssertTrue(toggle.waitForExistence(timeout: 8))
+        // ✕ only appears 5 s after the paywall is on screen.
+        XCTAssertFalse(app.buttons["didTapClose:0"].exists && app.buttons["didTapClose:0"].isHittable)
         if !toggle.isHittable { app.swipeUp() }
         tap("didTapTrial:0")
         XCTAssertEqual(toggle.label, "Enable Free Trial")

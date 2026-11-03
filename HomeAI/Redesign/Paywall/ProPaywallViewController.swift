@@ -63,6 +63,9 @@ final class ProPaywallViewController: UIViewController {
     private var products: [AdaptyPaywallProduct] = []
     private var trialOn = true
     private var isPurchasing = false
+    /// ✕ appears only after `closeButtonDelay` on screen, so the offer is seen before it can be dismissed.
+    private static let closeButtonDelay: TimeInterval = 5
+    private var closeRevealed = false
     private var purchaseTimeout: DispatchWorkItem?
     private var didRunEntrance = false
     private let amplitude = AmplitudeService.shared
@@ -141,6 +144,9 @@ final class ProPaywallViewController: UIViewController {
             ]), for: .normal)
         }
         captureLayoutMetrics(in: view)
+        closeButton.alpha = 0
+        closeButton.isUserInteractionEnabled = false
+        closeButton.isAccessibilityElement = false
         setLoading(true)
         loadProducts()
         if !DS.Motion.reduceMotion {
@@ -254,6 +260,15 @@ final class ProPaywallViewController: UIViewController {
         didRunEntrance = true
         AdaptyService.shared.paywallShown()
         runEntrance()
+        DispatchQueue.main.asyncAfter(deadline: .now() + Self.closeButtonDelay) { [weak self] in self?.revealClose() }
+    }
+
+    private func revealClose() {
+        guard !closeRevealed else { return }
+        closeRevealed = true
+        closeButton.isAccessibilityElement = true
+        closeButton.isUserInteractionEnabled = !isPurchasing
+        UIView.animate(withDuration: 0.3) { self.closeButton.alpha = self.isPurchasing ? 0.4 : 1 }
     }
 
     // MARK: Products
@@ -564,9 +579,11 @@ final class ProPaywallViewController: UIViewController {
             ? "Start Free Trial".localized : "Continue".localized)
         ctaButton.isUserInteractionEnabled = !on
         UIView.animate(withDuration: 0.2) {
-            [self.closeButton, self.restoreButton, self.trialToggle, self.cardView].forEach { $0?.alpha = on ? 0.4 : 1 }
+            [self.restoreButton, self.trialToggle, self.cardView].forEach { $0?.alpha = on ? 0.4 : 1 }
+            if self.closeRevealed { self.closeButton.alpha = on ? 0.4 : 1 }
         }
-        [closeButton, restoreButton, trialToggle].forEach { $0?.isUserInteractionEnabled = !on }
+        [restoreButton, trialToggle].forEach { $0?.isUserInteractionEnabled = !on }
+        closeButton.isUserInteractionEnabled = !on && closeRevealed
     }
 
     private func showPurchaseFailed(index: Int) {
