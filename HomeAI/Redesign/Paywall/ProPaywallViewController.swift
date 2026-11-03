@@ -497,7 +497,10 @@ final class ProPaywallViewController: UIViewController {
         guard !isPurchasing else { return }
         amplitude.logEvent(.closeButtonAction)
         amplitude.logPaywallEvent("paywall_closed", properties: properties())
-        dismiss(animated: true)
+        let presenter = presentingViewController, placement = self.placement
+        dismiss(animated: true) {
+            PaywallProvider.shared.paywallDidClose(placement: placement, presenter: presenter)
+        }
     }
 
     @IBAction private func didTapTrial(_ sender: Any) {

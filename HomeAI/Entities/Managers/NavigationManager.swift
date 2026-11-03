@@ -92,7 +92,7 @@ final class NavigationManager {
         pendingLocalPushOpen = false
 
         if didShowOB != true || Constants.Debug.alwaysShowOnboarding {
-            setOnboardingAsRoot(in: window, animated: true)
+            showFirstLaunchOnboarding(in: window)
         } else {
             // O4 personalizes its first Home session; subsequent cold launches start with Interior.
             UserDefaults.standard.set(HomeFocus.interior.rawValue, forKey: HomeFocus.defaultsKey)
@@ -187,6 +187,31 @@ final class NavigationManager {
         let projects = AppStoryboard.instantiate(ProjectsViewController.self)
         let profile = AppStoryboard.instantiate(ProfileTabViewController.self)
         return [home, inspiration, projects, profile].map { PortraitNavigationController(rootViewController: $0) }
+    }
+
+    /// The onboarding set up in Adapty (`AdaptyOnboardingProvider`) if there is one, otherwise ours. The launch
+    /// screen stays up while Adapty answers (at most a few seconds).
+    private func showFirstLaunchOnboarding(in window: UIWindow) {
+        Task { @MainActor [weak self] in
+            let provider = AdaptyOnboardingProvider.shared
+            let remote = await provider.makeOnboarding(onFinish: { [weak self] showPaywall in
+                Task { @MainActor in
+                    await OBPageViewController.requestTrackingIfNeeded()
+                    if showPaywall {
+                        self?.completeOnboardingWithPaywall(placement: Constants.Keys.obPlacement)
+                    } else {
+                        self?.completeOnboarding()
+                    }
+                }
+            }, onFallback: { [weak self] in
+                self?.setOnboardingAsRoot(in: window, animated: true)
+            })
+            guard let self else { return }
+            guard let remote else { return self.setOnboardingAsRoot(in: window, animated: true) }
+            let applyRoot = { window.rootViewController = remote }
+            UIView.transition(with: window, duration: 0.35, options: .transitionCrossDissolve, animations: applyRoot)
+            window.makeKeyAndVisible()
+        }
     }
 
     private func setOnboardingAsRoot(in window: UIWindow, animated: Bool) {

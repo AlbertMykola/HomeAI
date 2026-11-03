@@ -18,6 +18,10 @@ struct Constants {
         static let saveImagePlacement = "save_image_placement"
         static let shareImagePlacement = "share_image_placement"
         static let detailsEditPlacement = "details_edit_placement"
+        /// Adapty: a Builder onboarding (Flow or legacy Onboarding) shown on first launch instead of ours, if set up.
+        static let onboardingPlacement = "onboarding"
+        /// Adapty: an offer (Builder screen) after a paywall is closed without a purchase, if set up.
+        static let closeOfferPlacement = "close_offer"
         static let defaults = "default_placement"
 
         /// Кеш remote config з worker (`GET /app/config`).

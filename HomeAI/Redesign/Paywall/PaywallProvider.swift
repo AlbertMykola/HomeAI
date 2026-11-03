@@ -15,10 +15,12 @@ final class PaywallProvider {
     private static let placements = [
         Constants.Keys.obPlacement, Constants.Keys.appLaunchPlacement, Constants.Keys.optionPlacememt,
         Constants.Keys.reachedLimit, Constants.Keys.saveImagePlacement, Constants.Keys.shareImagePlacement,
-        Constants.Keys.detailsEditPlacement
+        Constants.Keys.detailsEditPlacement, Constants.Keys.closeOfferPlacement
     ]
 
-    private var isActivated = false
+    private(set) var isActivated = false
+    /// The close offer shows at most once per launch.
+    private var didShowCloseOffer = false
     private var configurations: [String: AdaptyUI.FlowConfiguration] = [:]
     private var loading = Set<String>()
     /// Keeps each Builder screen's delegate alive (AdaptyFlowController holds it weakly).
@@ -52,6 +54,8 @@ final class PaywallProvider {
             guard flow.hasViewConfiguration else { return }
             configurations[placement] = try await AdaptyUI.getFlowConfiguration(forFlow: flow, loadTimeout: 10)
         } catch {
+            // 404: nothing set up in Adapty for this placement (e.g. no close offer) — normal, not reported.
+            if String(describing: error).contains("statusCode: 404") { return }
             ErrorReporter.report(error, operation: "paywall_builder_load",
                                  details: .init(provider: "adapty", extra: ["placement": placement]))
         }
@@ -60,25 +64,53 @@ final class PaywallProvider {
     /// The paywall for this placement: Adapty's Builder screen when the user's variation is one and its layout is
     /// ready, otherwise ours.
     func makePaywall(placement: String, source: String, onPurchase: (() -> Void)?) -> UIViewController {
-        if let configuration = configurations.removeValue(forKey: placement) {
-            let delegate = BuilderPaywallDelegate(placement: placement, source: source, onPurchase: onPurchase)
-            do {
-                let controller = try AdaptyUI.flowController(with: configuration, delegate: delegate)
-                controller.modalPresentationStyle = .fullScreen
-                delegates[ObjectIdentifier(controller)] = delegate
-                delegate.onFinish = { [weak self, weak controller] in
-                    guard let self, let controller else { return }
-                    self.delegates.removeValue(forKey: ObjectIdentifier(controller))
-                }
-                // A layout serves one presentation; load a fresh one for next time.
-                Task { await self.prefetch(placement: placement) }
-                return controller
-            } catch {
-                ErrorReporter.report(error, operation: "paywall_builder_show",
-                                     details: .init(provider: "adapty", extra: ["placement": placement]))
-            }
+        if let configuration = configurations.removeValue(forKey: placement),
+           let controller = builderController(configuration: configuration, placement: placement, source: source,
+                                              onPurchase: onPurchase) {
+            // A layout serves one presentation; load a fresh one for next time.
+            Task { await self.prefetch(placement: placement) }
+            return controller
         }
         return ProPaywallViewController.make(placement: placement, source: source, onPurchase: onPurchase)
+    }
+
+    /// An Adapty Builder screen (paywall, offer, or a whole onboarding flow). `onClose` / `onPurchased` replace the
+    /// default dismiss and Welcome screen, e.g. when the controller is the window's root during onboarding.
+    func builderController(configuration: AdaptyUI.FlowConfiguration, placement: String, source: String,
+                           onPurchase: (() -> Void)?,
+                           onClose: ((AdaptyFlowController) -> Void)? = nil,
+                           onPurchased: ((AdaptyFlowController) -> Void)? = nil,
+                           onFailure: ((AdaptyFlowController) -> Void)? = nil) -> AdaptyFlowController? {
+        let delegate = BuilderPaywallDelegate(placement: placement, source: source, onPurchase: onPurchase)
+        delegate.closeHandler = onClose
+        delegate.purchasedHandler = onPurchased
+        delegate.failureHandler = onFailure
+        do {
+            let controller = try AdaptyUI.flowController(with: configuration, delegate: delegate)
+            controller.modalPresentationStyle = .fullScreen
+            delegates[ObjectIdentifier(controller)] = delegate
+            delegate.onFinish = { [weak self, weak controller] in
+                guard let self, let controller else { return }
+                self.delegates.removeValue(forKey: ObjectIdentifier(controller))
+            }
+            return controller
+        } catch {
+            ErrorReporter.report(error, operation: "paywall_builder_show",
+                                 details: .init(provider: "adapty", extra: ["placement": placement]))
+            return nil
+        }
+    }
+
+    /// After a paywall is closed without a purchase: the offer set up in Adapty for `close_offer_placement`
+    /// (a Builder screen), once per launch. Nothing configured there → nothing shown.
+    func paywallDidClose(placement: String, presenter: UIViewController?) {
+        guard placement != Constants.Keys.closeOfferPlacement, !didShowCloseOffer,
+              !AdaptyService.shared.hasActiveSubscription, let presenter,
+              let configuration = configurations.removeValue(forKey: Constants.Keys.closeOfferPlacement),
+              let offer = builderController(configuration: configuration, placement: Constants.Keys.closeOfferPlacement,
+                                            source: "close_offer_\(placement)", onPurchase: nil) else { return }
+        didShowCloseOffer = true
+        presenter.present(offer, animated: true)
     }
 }
 
@@ -91,6 +123,9 @@ private final class BuilderPaywallDelegate: AdaptyFlowControllerDelegate {
     let source: String
     let onPurchase: (() -> Void)?
     var onFinish: (() -> Void)?
+    var closeHandler: ((AdaptyFlowController) -> Void)?
+    var purchasedHandler: ((AdaptyFlowController) -> Void)?
+    var failureHandler: ((AdaptyFlowController) -> Void)?
     private let sessionID = UUID().uuidString
     private let amplitude = AmplitudeService.shared
     private var flowName = ""
@@ -129,7 +164,11 @@ private final class BuilderPaywallDelegate: AdaptyFlowControllerDelegate {
         case .close:
             amplitude.logEvent(.closeButtonAction)
             amplitude.logPaywallEvent("paywall_closed", properties: properties())
-            controller.dismiss(animated: true)
+            if let closeHandler { return closeHandler(controller) }
+            let presenter = controller.presentingViewController, placement = self.placement
+            controller.dismiss(animated: true) {
+                PaywallProvider.shared.paywallDidClose(placement: placement, presenter: presenter)
+            }
         case let .openURL(url, _):
             controller.present(SFSafariViewController(url: url), animated: true)
         case .custom:
@@ -158,6 +197,7 @@ private final class BuilderPaywallDelegate: AdaptyFlowControllerDelegate {
             props["started_free_trial"] = outcome.startedFreeTrial ?? false
             amplitude.logPaywallEvent("purchase_success", properties: props)
             amplitude.logEvent(.boughtProduct)
+            if let purchasedHandler { return purchasedHandler(controller) }
             showWelcome(from: controller)
         }
     }
@@ -177,6 +217,7 @@ private final class BuilderPaywallDelegate: AdaptyFlowControllerDelegate {
     func flowController(_ controller: AdaptyFlowController, didFinishRestoreWith profile: AdaptyProfile) {
         AdaptyService.shared.applyProfile(profile)
         guard AdaptyService.shared.hasActiveSubscription else { return }
+        if let purchasedHandler { return purchasedHandler(controller) }
         let onPurchase = self.onPurchase
         controller.dismiss(animated: true) { onPurchase?() }
     }
@@ -211,6 +252,8 @@ private final class BuilderPaywallDelegate: AdaptyFlowControllerDelegate {
 
     /// The Builder screen couldn't render or load products: our paywall takes its place.
     private func fallBackToNative(from controller: AdaptyFlowController) {
+        // Onboarding root: its own handler moves on (our onboarding).
+        if let failureHandler { return failureHandler(controller) }
         guard let presenter = controller.presentingViewController else { return }
         let native = ProPaywallViewController.make(placement: placement, source: source, onPurchase: onPurchase)
         controller.dismiss(animated: false) { presenter.present(native, animated: false) }

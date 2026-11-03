@@ -219,7 +219,7 @@ final class OBPageViewController: UIViewController, UIScrollViewDelegate, OBPage
         dismiss(animated: true)
     }
 
-    private static func requestTrackingIfNeeded() async {
+    static func requestTrackingIfNeeded() async {
         #if DEBUG
         if AppQA.enabled { return }
         #endif
