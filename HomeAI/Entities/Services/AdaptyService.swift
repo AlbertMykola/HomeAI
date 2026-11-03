@@ -50,6 +50,8 @@ public class AdaptyService: NSObject {
             builder = builder.with(logLevel: .warn)
             #endif
             try await Adapty.activate(with: builder.build())
+            // Before any placement request: Adapty audiences choose test flows by this attribute.
+            await markQATesterIfNeeded()
             // Builder screens (first-launch onboarding) must not wait for the profile request.
             await PaywallProvider.shared.activate()
             let profile = try await Adapty.getProfile()
@@ -66,6 +68,29 @@ public class AdaptyService: NSObject {
         fetchASAAttribution()
         markInitialUserLoadCompleted()
         AmplitudeService.shared.logEvent(.adaptyProfileId(id: userID))
+    }
+
+    /// Debug and TestFlight builds are QA testers: their Adapty profile gets `qa_tester = true`, so a placement's
+    /// "QA testers" audience (segment on that attribute) can serve flows that App Store users don't see yet.
+    static var isQATesterBuild: Bool {
+        #if DEBUG
+        return true
+        #else
+        return Bundle.main.appStoreReceiptURL?.lastPathComponent == "sandboxReceipt"
+        #endif
+    }
+
+    @MainActor
+    private func markQATesterIfNeeded() async {
+        guard Self.isQATesterBuild else { return }
+        do {
+            let params = try AdaptyProfileParameters.Builder()
+                .with(customAttribute: "true", forKey: "qa_tester")
+                .build()
+            try await Adapty.updateProfile(params: params)
+        } catch {
+            ErrorReporter.report(error, operation: "adapty_qa_tester", details: .init(provider: "adapty"))
+        }
     }
 
     /// Чекає activate + перший профіль (або timeout).

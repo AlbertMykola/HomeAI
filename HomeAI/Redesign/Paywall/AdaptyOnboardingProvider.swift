@@ -42,6 +42,7 @@ final class AdaptyOnboardingProvider: NSObject {
             #endif
         }
         if let flow, flow.hasViewConfiguration {
+            guard RemoteFlowGate.allows(flow.remoteConfigs) else { return nil }
             do {
                 let configuration = try await AdaptyUI.getFlowConfiguration(forFlow: flow, loadTimeout: Self.loadTimeout)
                 AmplitudeService.shared.logRedesignEvent("remote_onboarding_shown",
@@ -63,6 +64,7 @@ final class AdaptyOnboardingProvider: NSObject {
     private func legacyOnboarding(placement: String) async -> UIViewController? {
         do {
             let onboarding = try await Adapty.getOnboarding(placementId: placement, loadTimeout: Self.loadTimeout)
+            guard RemoteFlowGate.allows(onboarding.remoteConfig.map { [$0] } ?? []) else { return nil }
             let configuration = try AdaptyUI.getOnboardingConfiguration(forOnboarding: onboarding)
             let controller = try AdaptyUI.onboardingController(with: configuration, delegate: self,
                                                                statusBarStyle: .darkContent)

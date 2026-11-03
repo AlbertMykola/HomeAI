@@ -3,6 +3,15 @@ import AdaptyUI
 import SafariServices
 import UIKit
 
+/// Onboarding and close offer are new placements whose "All users" audience Adapty can't leave empty: outside QA
+/// builds they show only once a flow's remote config says `{"live": true}`, so a test flow there never reaches the
+/// App Store audience by accident (QA builds see everything; see `AdaptyService.isQATesterBuild`).
+enum RemoteFlowGate {
+    static func allows(_ remoteConfigs: [AdaptyRemoteConfig]) -> Bool {
+        AdaptyService.isQATesterBuild || remoteConfigs.contains { ($0.dictionary?["live"] as? Bool) == true }
+    }
+}
+
 /// A/B test of paywall kinds through Adapty. Each placement's flow (the variation Adapty assigned to this user)
 /// decides: a flow made in Adapty's Paywall Builder (`hasViewConfiguration`) shows Adapty's own screen, any other
 /// flow shows our `ProPaywallViewController`. Builder layouts are prefetched, so the choice is made synchronously
@@ -63,6 +72,7 @@ final class PaywallProvider {
         do {
             let flow = try await Adapty.getFlow(placementId: placement)
             guard flow.hasViewConfiguration else { return }
+            if placement == Constants.Keys.closeOfferPlacement, !RemoteFlowGate.allows(flow.remoteConfigs) { return }
             configurations[placement] = try await AdaptyUI.getFlowConfiguration(forFlow: flow, loadTimeout: 10)
         } catch {
             // 404: nothing set up in Adapty for this placement (e.g. no close offer) — normal, not reported.
