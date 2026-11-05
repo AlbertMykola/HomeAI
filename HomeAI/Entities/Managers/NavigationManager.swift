@@ -30,6 +30,9 @@ final class NavigationManager {
 
     // MARK: - State
     private var window: UIWindow?
+
+    /// Onboarding is done and the tab bar is the root (App Intents wait for this).
+    var isMainUIReady: Bool { window?.rootViewController is TabBarController }
     private var pendingPremiumPurchaseCompletion: (() -> Void)?
     private var pendingLocalPushOpen = false
 
@@ -150,6 +153,7 @@ final class NavigationManager {
             applyRoot()
         }
         window.makeKeyAndVisible()
+        MainActor.assumeIsolated { AppIntentRouter.shared.runPendingIfReady() }
         #if DEBUG
         if AppQA.enabled { return }
         #endif
