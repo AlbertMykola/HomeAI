@@ -188,3 +188,14 @@ test("routes through AI Gateway with logging off when AI_GATEWAY_ID is set", asy
 		globalThis.fetch = originalFetch
 	}
 })
+
+test("visitors from countries OpenAI doesn't serve get region_unavailable before anything else", async () => {
+	const worker = (await import("../worker.js")).default
+	for (const [country, region] of [["RU", ""], ["UA", "Crimea"], ["UA", "Donetsk"]]) {
+		const request = new Request("https://w.example/v1/images/generate", { method: "POST", body: "{}" })
+		Object.defineProperty(request, "cf", { value: { country, region } })
+		const response = await worker.fetch(request, { OPENAI_API_KEY: "sk-test" })
+		assert.equal(response.status, 451, `${country}/${region}`)
+		assert.equal((await response.json()).error.code, "region_unavailable")
+	}
+})

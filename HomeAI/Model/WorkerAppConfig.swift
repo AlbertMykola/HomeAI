@@ -15,6 +15,8 @@ struct WorkerAppConfig: Codable, Equatable {
     var trialGenerationsPerDay: Int? = nil
     /// Gemini image model for generations (must be on the worker's allowlist). Absent → the app's default.
     var imageModel: String? = nil
+    /// "openai" / "gemini": image provider for builds that read it (absent → Supabase App_Config as before).
+    var imageProvider: String? = nil
 
     enum CodingKeys: String, CodingKey {
         case freeGenerationsLifetime
@@ -27,6 +29,7 @@ struct WorkerAppConfig: Codable, Equatable {
         case generationWindowHours
         case trialGenerationsPerDay
         case imageModel
+        case imageProvider
     }
 
     init(
@@ -59,6 +62,7 @@ struct WorkerAppConfig: Codable, Equatable {
             ?? Constants.GenerationLimits.generationWindowHours
         trialGenerationsPerDay = try container.decodeIfPresent(Int.self, forKey: .trialGenerationsPerDay)
         imageModel = try container.decodeIfPresent(String.self, forKey: .imageModel)
+        imageProvider = try container.decodeIfPresent(String.self, forKey: .imageProvider)
     }
 
     func encode(to encoder: Encoder) throws {
@@ -72,6 +76,7 @@ struct WorkerAppConfig: Codable, Equatable {
         try container.encode(generationWindowHours, forKey: .generationWindowHours)
         try container.encodeIfPresent(trialGenerationsPerDay, forKey: .trialGenerationsPerDay)
         try container.encodeIfPresent(imageModel, forKey: .imageModel)
+        try container.encodeIfPresent(imageProvider, forKey: .imageProvider)
     }
 
     static let fallback = WorkerAppConfig(

@@ -53,6 +53,15 @@ final class WorkerConfigService {
         return model
     }
 
+    /// Remote image provider ("openai" / "gemini"); nil = Supabase App_Config decides.
+    var imageProvider: ImageGenerationProvider? {
+        switch current.imageProvider?.lowercased() {
+        case "openai": return .openAI
+        case "gemini": return .gemini
+        default: return nil
+        }
+    }
+
     var paywallShowTopCloseButton: Bool {
         current.paywallShowTopCloseButton
     }

@@ -13,6 +13,23 @@ export { DeviceGuard } from "./guard.js"
 export { OpenAIEgress } from "./egress.js"
 
 const OPENAI_DIRECT_BASE = "https://api.openai.com/v1"
+
+/**
+ * OpenAI doesn't serve these countries / territories, so their visitors never reach OpenAI (the app falls back to
+ * Gemini on `region_unavailable`). Ukraine is supported except the occupied regions (Cloudflare `cf.region`).
+ */
+const OPENAI_BLOCKED_COUNTRIES = new Set(["RU", "BY", "CN", "HK", "MO", "IR", "KP", "SY", "CU", "AF", "VE", "ER", "XX", "T1"])
+const OPENAI_BLOCKED_UA_REGIONS = ["crimea", "sevastopol", "donetsk", "donets'k", "luhansk", "zaporizhzhia", "kherson"]
+
+function openAIBlockedLocation(request) {
+	const country = String(request.cf?.country ?? "").toUpperCase()
+	if (OPENAI_BLOCKED_COUNTRIES.has(country)) return country
+	if (country === "UA") {
+		const region = String(request.cf?.region ?? "").toLowerCase()
+		if (OPENAI_BLOCKED_UA_REGIONS.some((name) => region.includes(name))) return `UA:${region}`
+	}
+	return null
+}
 const DEFAULT_FLARE_MODEL = "gpt-image-2.5-flare"
 const DEFAULT_SUNBURST_MODEL = "gpt-image-2.5-sunburst"
 const MAX_BODY_BYTES = 15 * 1024 * 1024
@@ -231,6 +248,11 @@ function appID(env) {
  * empty → straight to api.openai.com. Gateway logs are turned off per request (no photos / prompts stored).
  */
 function openAIUpstream(env) {
+	// Our own server in Frankfurt (Cloud Run): OpenAI refuses Workers traffic from Ukraine; support advised this.
+	const proxy = String(env.OPENAI_PROXY_URL ?? "").trim().replace(/\/+$/, "")
+	if (proxy.startsWith("https://") && env.OPENAI_PROXY_SECRET) {
+		return { url: `${proxy}/v1/images/edits`, headers: { "x-proxy-secret": env.OPENAI_PROXY_SECRET }, via: "proxy" }
+	}
 	const gateway = String(env.AI_GATEWAY_ID ?? "").trim()
 	const account = String(env.AI_GATEWAY_ACCOUNT_ID ?? "").trim()
 	if (gateway && account && /^[A-Za-z0-9_-]{1,64}$/.test(gateway) && /^[0-9a-f]{32}$/.test(account)) {
@@ -253,6 +275,11 @@ async function generateImage(request, env) {
 			true,
 			requestId,
 		)
+	}
+
+	const blocked = openAIBlockedLocation(request)
+	if (blocked) {
+		return apiError(451, "region_unavailable", "This image provider isn't available in your region", false, requestId)
 	}
 
 	const ipLimited = await hitBucket(env, `ip:${clientIP(request)}`, limitsFor(env, "IP"), requestId)
