@@ -41,6 +41,18 @@ final class WorkerConfigService {
         TimeInterval(max(1, current.generationWindowHours)) * 3_600
     }
 
+    /// Daily cap while the subscription is a free trial (nil = no separate cap).
+    var trialGenerationsPerDay: Int? {
+        current.trialGenerationsPerDay.map { max(1, $0) }
+    }
+
+    /// Remote image model override; only Gemini image models are taken.
+    var imageModel: String? {
+        guard let model = current.imageModel?.trimmingCharacters(in: .whitespaces),
+              model.hasPrefix("gemini-"), model.contains("image") else { return nil }
+        return model
+    }
+
     var paywallShowTopCloseButton: Bool {
         current.paywallShowTopCloseButton
     }

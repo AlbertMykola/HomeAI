@@ -15,7 +15,12 @@ final class DailyGenerationLimitManager {
     private let recentAccount = "recent_gen_times_v1"
 
     private var maxPerDay: Int {
-        WorkerConfigService.shared.premiumGenerationsPerDay
+        let premium = WorkerConfigService.shared.premiumGenerationsPerDay
+        // A trial can be cancelled before the first payment, so it may get a smaller daily cap (worker config).
+        if AdaptyService.shared.isInFreeTrial, let trial = WorkerConfigService.shared.trialGenerationsPerDay {
+            return min(trial, premium)
+        }
+        return premium
     }
 
     private var maxPerWindow: Int {

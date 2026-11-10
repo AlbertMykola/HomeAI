@@ -11,6 +11,10 @@ struct WorkerAppConfig: Codable, Equatable {
     var generationWindowHours = Constants.GenerationLimits.generationWindowHours
     /// A/12 Force update: versions below this one must update ("2.0", "2.1.3"). Absent → no forced update.
     var minSupportedVersion: String? = nil
+    /// Subscribers still in their free trial: generations per calendar day. Absent → the normal subscriber limits.
+    var trialGenerationsPerDay: Int? = nil
+    /// Gemini image model for generations (must be on the worker's allowlist). Absent → the app's default.
+    var imageModel: String? = nil
 
     enum CodingKeys: String, CodingKey {
         case freeGenerationsLifetime
@@ -21,6 +25,8 @@ struct WorkerAppConfig: Codable, Equatable {
         case minSupportedVersion
         case premiumGenerationsPerWindow
         case generationWindowHours
+        case trialGenerationsPerDay
+        case imageModel
     }
 
     init(
@@ -51,6 +57,8 @@ struct WorkerAppConfig: Codable, Equatable {
             ?? Constants.GenerationLimits.premiumGenerationsPerWindow
         generationWindowHours = try container.decodeIfPresent(Int.self, forKey: .generationWindowHours)
             ?? Constants.GenerationLimits.generationWindowHours
+        trialGenerationsPerDay = try container.decodeIfPresent(Int.self, forKey: .trialGenerationsPerDay)
+        imageModel = try container.decodeIfPresent(String.self, forKey: .imageModel)
     }
 
     func encode(to encoder: Encoder) throws {
@@ -62,6 +70,8 @@ struct WorkerAppConfig: Codable, Equatable {
         try container.encodeIfPresent(minSupportedVersion, forKey: .minSupportedVersion)
         try container.encode(premiumGenerationsPerWindow, forKey: .premiumGenerationsPerWindow)
         try container.encode(generationWindowHours, forKey: .generationWindowHours)
+        try container.encodeIfPresent(trialGenerationsPerDay, forKey: .trialGenerationsPerDay)
+        try container.encodeIfPresent(imageModel, forKey: .imageModel)
     }
 
     static let fallback = WorkerAppConfig(

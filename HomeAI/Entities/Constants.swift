@@ -118,7 +118,8 @@ struct Constants {
             let args = ProcessInfo.processInfo.arguments
             if let i = args.firstIndex(of: "-geminiModel"), args.indices.contains(i + 1) { return args[i + 1] }
             #endif
-            return "gemini-3.1-flash-image-preview"
+            // The worker config can switch the model without an app update (cost / quality tests).
+            return WorkerConfigService.shared.imageModel ?? "gemini-3.1-flash-image-preview"
         }
         static let promptVersion = "2026-09-24.1"
         static let gptImagePromptVersion = "2026-09-17.gpt-image-2.5-test"

@@ -308,6 +308,12 @@ public class AdaptyService: NSObject {
                          billingIssue: level.billingIssueDetectedAt != nil || level.isInGracePeriod)
     }
 
+    /// Pro through a free trial that hasn't been paid for yet.
+    var isInFreeTrial: Bool {
+        guard let level = cachedProfile?.accessLevels[Constants.Keys.adaptyAccessLevel], level.isActive else { return false }
+        return level.activeIntroductoryOfferType == "free_trial"
+    }
+
     /// The same preferred weekly product offered by the paywall.
     var cachedWeeklyPrice: String? {
         guard let index = WeeklyPaywallProducts.selection(from: products).preferredIndex else { return nil }
