@@ -309,7 +309,7 @@ final class ProjectsViewController: UIViewController, DSWideLayoutFullWidth {
 
     private func delete(_ items: [(project: DesignProject, versions: [ImageDoc])]) {
         let ids = Set(items.map(\.project.id))
-        let paths = designs.enumerated().filter { ids.contains($0.element.project.id) }.map { IndexPath(item: $0.offset, section: 0) }
+        let paths = rows(of: ids)
         UIView.animate(withDuration: 0.25, animations: {
             paths.compactMap { self.collectionView.cellForItem(at: $0) }.forEach {
                 $0.alpha = 0
@@ -321,9 +321,15 @@ final class ProjectsViewController: UIViewController, DSWideLayoutFullWidth {
                     try? await ProjectStore.shared.deleteProject(id: item.project.id,
                                                                  fallbackDocID: item.project.versionIDs.first ?? "")
                 }
+                // The store posts .projectsDidChange on the main thread while deleting, which usually reloads the
+                // grid already (HOMEAI-1K: deleting the old rows from a reloaded grid crashed). Delete only the
+                // rows the grid still shows, and none while it shows Ideas.
+                let stale = self.segment == .designs ? self.rows(of: ids) : []
                 self.designs.removeAll { ids.contains($0.project.id) }
                 self.selectedIDs.removeAll()
-                self.collectionView.performBatchUpdates { self.collectionView.deleteItems(at: paths) }
+                if !stale.isEmpty {
+                    self.collectionView.performBatchUpdates { self.collectionView.deleteItems(at: stale) }
+                }
                 self.setSelecting(false)
                 self.updateEmptyState()
                 DS.Haptic.success()
@@ -331,6 +337,10 @@ final class ProjectsViewController: UIViewController, DSWideLayoutFullWidth {
                                  : String(format: "%d projects deleted".localized, items.count), style: .success)
             }
         })
+    }
+
+    private func rows(of ids: Set<String>) -> [IndexPath] {
+        designs.indices.filter { ids.contains(designs[$0].project.id) }.map { IndexPath(item: $0, section: 0) }
     }
 
     // MARK: Rename (context menu)

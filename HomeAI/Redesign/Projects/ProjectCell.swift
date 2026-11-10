@@ -19,6 +19,8 @@ final class ProjectCell: DSAdaptiveCollectionViewCell {
         super.prepareForReuse()
         coverImageView.image = nil
         path = nil
+        // A delete fades its cards out; when the grid reloads meanwhile those cells come back for other projects.
+        alpha = 1
         transform = .identity
     }
 
