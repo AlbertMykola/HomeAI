@@ -1,9 +1,8 @@
-import FirebaseCrashlytics
 import Foundation
 import Sentry
 
 /// One place for every user-visible or silent failure:
-/// Sentry (tags + extras, the main place to read "what happened"), a Crashlytics non-fatal and an `app_error`
+/// Sentry (tags + extras, the main place to read "what happened") and an `app_error`
 /// analytics event (Amplitude + Firebase) so error rates can be charted.
 ///
 /// Privacy: never pass photos, prompts, user text, keys or tokens — only codes, statuses and service messages.
@@ -80,8 +79,6 @@ enum ErrorReporter {
                 }
             }
         }
-        Crashlytics.crashlytics().record(error: error, userInfo: crashlyticsInfo(operation: operation, code: code,
-                                                                                 details: full))
     }
 
     /// Failures without an `Error` value (bad HTTP status, empty response, …).
@@ -92,10 +89,6 @@ enum ErrorReporter {
                 configure($0, operation: operation, code: code, details: details)
             }
         }
-        let error = NSError(domain: "Rehomely.\(operation)", code: details.httpStatus ?? 0,
-                            userInfo: [NSLocalizedDescriptionKey: message])
-        Crashlytics.crashlytics().record(error: error, userInfo: crashlyticsInfo(operation: operation, code: code,
-                                                                                 details: details))
     }
 
     // MARK: Private
@@ -146,16 +139,6 @@ enum ErrorReporter {
             scope.setLevel(.warning)
             scope.setTag(value: "unreachable", key: "network")
         }
-    }
-
-    private static func crashlyticsInfo(operation: String, code: String, details: Details) -> [String: Any] {
-        var info: [String: Any] = ["operation": operation, "error_code": code]
-        if let provider = details.provider { info["provider"] = provider }
-        if let status = details.httpStatus { info["http_status"] = status }
-        if let upstream = details.upstreamCode { info["upstream_code"] = upstream }
-        if let message = details.upstreamMessage { info["upstream_message"] = truncated(message, 300) }
-        if let requestID = details.requestID { info["request_id"] = requestID }
-        return info
     }
 
     private static func errorCode(_ d: Details, fallback: String) -> String {

@@ -18,7 +18,6 @@
 		846000D12E91394B00546BC9 /* FirebaseAnalyticsIdentitySupport in Frameworks */ = {isa = PBXBuildFile; productRef = 846000D02E91394B00546BC9 /* FirebaseAnalyticsIdentitySupport */; };
 		846000D32E91394B00546BC9 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 846000D22E91394B00546BC9 /* FirebaseAuth */; };
 		846000D52E91394B00546BC9 /* FirebaseAuthCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 846000D42E91394B00546BC9 /* FirebaseAuthCombine-Community */; };
-		846000D72E91394B00546BC9 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 846000D62E91394B00546BC9 /* FirebaseCrashlytics */; };
 		846000D92E91394B00546BC9 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 846000D82E91394B00546BC9 /* FirebaseFirestore */; };
 		846000DB2E91394B00546BC9 /* FirebaseFirestoreCombine-Community in Frameworks */ = {isa = PBXBuildFile; productRef = 846000DA2E91394B00546BC9 /* FirebaseFirestoreCombine-Community */; };
 		846000DD2E91394B00546BC9 /* FirebaseRemoteConfig in Frameworks */ = {isa = PBXBuildFile; productRef = 846000DC2E91394B00546BC9 /* FirebaseRemoteConfig */; };
@@ -109,7 +108,6 @@
 				846000D32E91394B00546BC9 /* FirebaseAuth in Frameworks */,
 				846000D92E91394B00546BC9 /* FirebaseFirestore in Frameworks */,
 				846000DF2E91394B00546BC9 /* FirebaseStorage in Frameworks */,
-				846000D72E91394B00546BC9 /* FirebaseCrashlytics in Frameworks */,
 				846000E12E91394B00546BC9 /* FirebaseStorageCombine-Community in Frameworks */,
 				84AF7E032F4A6B1100AF0001 /* AppsFlyerLib-Static in Frameworks */,
 				84C8E0032F4C8A0100AF0001 /* Sentry in Frameworks */,
@@ -184,7 +182,6 @@
 				84206B4A2E6EBA0100119340 /* Sources */,
 				84206B4B2E6EBA0100119340 /* Frameworks */,
 				84206B4C2E6EBA0100119340 /* Resources */,
-				846000C32E9111A100546BC9 /* Upload Crashlytics dSYMs */,
 			);
 			buildRules = (
 			);
@@ -207,7 +204,6 @@
 				846000D02E91394B00546BC9 /* FirebaseAnalyticsIdentitySupport */,
 				846000D22E91394B00546BC9 /* FirebaseAuth */,
 				846000D42E91394B00546BC9 /* FirebaseAuthCombine-Community */,
-				846000D62E91394B00546BC9 /* FirebaseCrashlytics */,
 				846000D82E91394B00546BC9 /* FirebaseFirestore */,
 				846000DA2E91394B00546BC9 /* FirebaseFirestoreCombine-Community */,
 				846000DC2E91394B00546BC9 /* FirebaseRemoteConfig */,
@@ -361,35 +357,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		846000C32E9111A100546BC9 /* Upload Crashlytics dSYMs */ = {
-			isa = PBXShellScriptBuildPhase;
-			alwaysOutOfDate = 1;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}",
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}",
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${PRODUCT_NAME}.debug.dylib",
-				"${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Info.plist",
-				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
-				"$(INSTALL_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/GoogleService-Info.plist",
-				"$(TARGET_BUILD_DIR)/$(EXECUTABLE_PATH)",
-			);
-			name = "Upload Crashlytics dSYMs";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		84206B4A2E6EBA0100119340 /* Sources */ = {
@@ -899,11 +866,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 846000CB2E91394B00546BC9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = "FirebaseAuthCombine-Community";
-		};
-		846000D62E91394B00546BC9 /* FirebaseCrashlytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 846000CB2E91394B00546BC9 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseCrashlytics;
 		};
 		846000D82E91394B00546BC9 /* FirebaseFirestore */ = {
 			isa = XCSwiftPackageProductDependency;

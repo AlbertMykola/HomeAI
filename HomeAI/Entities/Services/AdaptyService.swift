@@ -2,8 +2,6 @@ import Adapty
 import AdServices
 import AppsFlyerLib
 import FBSDKCoreKit
-import FirebaseCore
-import FirebaseCrashlytics
 import StoreKit
 
 public class AdaptyService: NSObject {
@@ -142,9 +140,6 @@ public class AdaptyService: NSObject {
     private func markInitialUserLoadCompleted() {
         guard !didCompleteInitialUserLoad else { return }
         didCompleteInitialUserLoad = true
-        if FirebaseApp.app() != nil {
-            Crashlytics.crashlytics().setUserID(userID)
-        }
         SentryService.shared.setUserId(userID)
         let waiters = pendingUserReadyContinuations
         pendingUserReadyContinuations.removeAll()
@@ -418,7 +413,6 @@ public class AdaptyService: NSObject {
     @MainActor
     private func apply(_ profile: AdaptyProfile) {
         cachedProfile = profile
-        Crashlytics.crashlytics().setUserID(profile.profileId)
         SentryService.shared.setUserId(profile.profileId)
         LocalNotificationService.shared.sync(requestPermissionIfNeeded: false)
     }

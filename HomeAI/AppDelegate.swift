@@ -1,6 +1,5 @@
 import UIKit
 import Firebase
-import FirebaseCrashlytics
 import FBSDKCoreKit
 
 @main
@@ -14,13 +13,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return true
         }
         #endif
-        // Crashlytics first, Sentry right after: each installs crash handlers and the one installed last sees a crash
-        // first. Crashlytics used to start a run-loop later and took crashes ahead of Sentry.
-        if FirebaseApp.app() == nil {
-            FirebaseApp.configure()
-        }
-        Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(true)
+        // Sentry is the only crash reporter (Crashlytics was removed: two reporters fought over the crash handlers).
         SentryService.shared.start()
+        if FirebaseApp.app() == nil {
+            FirebaseApp.configure()   // Firebase Analytics (Google Ads conversions)
+        }
         LocalNotificationService.shared.start()
         ApplicationDelegate.shared.application(application, didFinishLaunchingWithOptions: launchOptions)
         _ = AmplitudeService.shared
@@ -31,7 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             AmplitudeService.shared.logEvent(.openApp)
             let userID = AdaptyService.shared.userID
             if !userID.isEmpty {
-                Crashlytics.crashlytics().setUserID(userID)
                 SentryService.shared.setUserId(userID)
             }
         }
