@@ -12,6 +12,8 @@ compatibility_date = "2026-09-17"
 #   OPENAI_IMAGE_MODEL / OPENAI_IMAGE_QUALITY  optional overrides
 
 [vars]
+# Our Cloud Run proxy in Frankfurt (cloudrun-openai-proxy); empty = call api.openai.com directly.
+OPENAI_PROXY_URL = "https://openai-proxy-258983634534.europe-west3.run.app"
 # "enforce": every generation needs an App Attest assertion. "off": emergency switch (still rate-limited by IP).
 ATTEST_MODE = "enforce"
 ATTEST_APP_ID = "5998UF2M9Y.com.albert.apps.design.ai"
