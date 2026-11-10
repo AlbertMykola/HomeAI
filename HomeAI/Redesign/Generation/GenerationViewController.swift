@@ -56,6 +56,13 @@ final class GenerationViewController: UIViewController, DSWideLayoutFullWidth {
         let split = UILayoutPriority(portrait ? 999 : 1)
         portraitConstraints.forEach { if $0.priority != split { $0.priority = split } }
     }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        // A shadow without a path is re-derived from the layer's alpha off-screen on every frame of the scan
+        // animation; with it the GPU just draws a rect (App Hangs while generating on iPhone 13/14).
+        scanEdgeView.layer.shadowPath = UIBezierPath(rect: scanEdgeView.bounds).cgPath
+    }
     @IBOutlet private weak var photoClipView: UIView!
     @IBOutlet private weak var photoImageView: UIImageView!
     @IBOutlet private weak var scannedAreaView: UIView!
@@ -328,6 +335,7 @@ final class GenerationViewController: UIViewController, DSWideLayoutFullWidth {
             dot.layer.shadowOpacity = 0.8
             dot.layer.shadowRadius = 3
             dot.layer.shadowOffset = .zero
+            dot.layer.shadowPath = UIBezierPath(ovalIn: CGRect(x: 0, y: 0, width: 6, height: 6)).cgPath
             dot.alpha = 0
             dot.transform = CGAffineTransform(scaleX: 0.3, y: 0.3)
             let delay = Double(i) * 0.12 + .random(in: 0...0.4)

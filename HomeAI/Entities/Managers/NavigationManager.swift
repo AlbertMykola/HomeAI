@@ -274,6 +274,11 @@ final class NavigationManager {
             setTabBarAsRoot(in: window, animated: true)
             return nil
         }
+        // assumeIsolated traps off the main thread; a stray background caller gets the main thread instead.
+        guard Thread.isMainThread else {
+            DispatchQueue.main.async { self.completeOnboardingWithPaywall(placement: placement) }
+            return nil
+        }
         let paywall = MainActor.assumeIsolated {
             PaywallProvider.shared.makePaywall(placement: placement, source: placement, onPurchase: nil)
         }
@@ -337,6 +342,11 @@ final class NavigationManager {
         guard !AdaptyService.shared.hasActiveSubscription else { return }
         // A/02: everything in the app uses the redesigned paywall; onboarding keeps the old one for now.
         if origin == .inApp {
+            // assumeIsolated traps off the main thread; a stray background caller gets the main thread instead.
+            guard Thread.isMainThread else {
+                DispatchQueue.main.async { self.showPremium(placement: placement, origin: origin, onPurchase: onPurchase) }
+                return
+            }
             let paywall = MainActor.assumeIsolated {
                 PaywallProvider.shared.makePaywall(placement: placement, source: placement, onPurchase: onPurchase)
             }

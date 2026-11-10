@@ -114,7 +114,8 @@ extension ReferenceToolViewController: PHPickerViewControllerDelegate {
         picker.dismiss(animated: true)
         guard let provider = results.first?.itemProvider, provider.canLoadObject(ofClass: UIImage.self) else { return }
         provider.loadObject(ofClass: UIImage.self) { [weak self] object, _ in
-            DispatchQueue.main.async { self?.reference = object as? UIImage }
+            let image = (object as? UIImage)?.preparedForEditing()
+            DispatchQueue.main.async { self?.reference = image }
         }
     }
 }

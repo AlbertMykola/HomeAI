@@ -312,7 +312,7 @@ extension CameraViewController: AVCapturePhotoCaptureDelegate {
             DispatchQueue.main.async { DSToastView.show("Couldn't take the photo. Try again.".localized, style: .warning) }
             return
         }
-        DispatchQueue.main.async { self.finish(with: image) }
+        UIImage.prepareForEditing(image) { self.finish(with: $0) }
     }
 }
 
@@ -321,7 +321,7 @@ extension CameraViewController: PHPickerViewControllerDelegate {
         picker.dismiss(animated: true)
         guard let provider = results.first?.itemProvider, provider.canLoadObject(ofClass: UIImage.self) else { return }
         provider.loadObject(ofClass: UIImage.self) { [weak self] object, _ in
-            guard let image = object as? UIImage else { return }
+            guard let image = (object as? UIImage)?.preparedForEditing() else { return }
             DispatchQueue.main.async { self?.finish(with: image) }
         }
     }

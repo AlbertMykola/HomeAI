@@ -165,7 +165,8 @@ final class WizardPhotoViewController: WizardStepViewController {
     @IBAction private func didTapDemo(_ sender: UIControl) {
         let demo = demoImages[min(sender.tag, 2)]
         guard let image = UIImage(named: demo.0) else { return }
-        didPick(image, isDemo: true, knownRoom: demo.1)
+        // Some demo photos are 2160×3840: shrink them off the main thread like a picked photo.
+        UIImage.prepareForEditing(image) { [weak self] in self?.didPick($0, isDemo: true, knownRoom: demo.1) }
     }
 
     @IBAction private func didTapTips(_ sender: Any) {
@@ -373,7 +374,7 @@ extension WizardPhotoViewController: PHPickerViewControllerDelegate {
         picker.dismiss(animated: true)
         guard let provider = results.first?.itemProvider, provider.canLoadObject(ofClass: UIImage.self) else { return }
         provider.loadObject(ofClass: UIImage.self) { [weak self] object, _ in
-            guard let image = object as? UIImage else { return }
+            guard let image = (object as? UIImage)?.preparedForEditing() else { return }
             DispatchQueue.main.async { self?.didPick(image, isDemo: false) }
         }
     }
@@ -392,7 +393,7 @@ extension WizardPhotoViewController: UIDropInteractionDelegate {
         session.loadObjects(ofClass: UIImage.self) { [weak self] objects in
             guard let image = objects.first as? UIImage else { return }
             AmplitudeService.shared.logRedesignEvent("wizard_photo_dropped", properties: [:])
-            self?.didPick(image, isDemo: false)
+            UIImage.prepareForEditing(image) { self?.didPick($0, isDemo: false) }
         }
     }
 }
