@@ -364,9 +364,12 @@ final class GenerationViewController: UIViewController, DSWideLayoutFullWidth {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) { [weak self] in
             guard let self else { return }
             if self.presentingViewController != nil && self.view.window != nil {
-                self.dismiss(animated: false) {
-                    NavigationManager.shared.showResult(docID: outcome.docID, image: outcome.model.image, reveal: true)
-                }
+                // The result goes under this screen first, then this screen fades away: Home is never seen in
+                // between (it used to flash while the result was pushed after the dismissal).
+                NavigationManager.shared.showResult(docID: outcome.docID, image: outcome.model.image, reveal: true,
+                                                    animated: false)
+                self.modalTransitionStyle = .crossDissolve
+                self.dismiss(animated: true)
             }
             GenerationCenter.shared.finished(runner: self.runner)
         }

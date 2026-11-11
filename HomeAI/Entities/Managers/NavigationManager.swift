@@ -524,12 +524,12 @@ final class NavigationManager {
     }
 
     /// A/06 · R1 Result for a saved version (doc id).
-    func showResult(docID: String, image: UIImage?, reveal: Bool) {
+    func showResult(docID: String, image: UIImage?, reveal: Bool, animated: Bool = true) {
         let vc = AppStoryboard.instantiate(ResultViewController.self)
         vc.docID = docID
         vc.initialImage = image
         vc.reveal = reveal
-        push(vc)
+        push(vc, animated: animated)
     }
 
     func showFeaturesViewController() {
