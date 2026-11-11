@@ -432,6 +432,8 @@ async function generateImage(request, env) {
 		)
 	}
 
+	// Cost tracking in `wrangler tail` (token counts only, no content).
+	console.log(JSON.stringify({ event: "openai_usage", requestId, model, quality, via: route.via, usage: normalizeUsage(output?.usage) }))
 	return json(200, {
 		version: 1,
 		requestId,

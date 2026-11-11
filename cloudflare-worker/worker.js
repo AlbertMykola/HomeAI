@@ -52,6 +52,9 @@ const APP_CONFIG = {
 	premiumGenerationsPerDay: 15,
 	paywallShowTopCloseButton: false,
 	configVersion: 1,
+	// Builds from 2026-11-11 on: OpenAI for image generations (the OpenAI worker sends visitors from countries it
+	// doesn't serve back to Gemini with 451 region_unavailable). Older builds ignore this key.
+	imageProvider: "openai",
 }
 
 /**
