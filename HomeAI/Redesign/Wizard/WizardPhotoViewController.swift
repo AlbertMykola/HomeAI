@@ -73,11 +73,17 @@ final class WizardPhotoViewController: WizardStepViewController {
         demoControls.forEach { $0.alpha = 0 }
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         guard !didRunEntrance else { return }
         didRunEntrance = true
-        runEntrance()
+        // Content arrives with the push (it used to slide in empty and fill ~1 s after the tap).
+        let views: [UIView?] = [titleStack, takePhotoCard, libraryCard, demoTitleLabel, tipsButton, nextButton] + demoControls
+        let revealed = DS.Motion.revealWithTransition(of: self, views) { [weak self] in
+            guard let self, self.session.photo == nil else { return }
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.6) { [weak self] in self?.wiggleBulb() }
+        }
+        if !revealed { runEntrance() }
     }
 
     private func localize() {
@@ -347,16 +353,18 @@ final class WizardPhotoViewController: WizardStepViewController {
 
     private func runEntrance() {
         let m = DS.Motion.self
-        m.enter(titleStack, delay: 0.1, dy: 10)
+        m.enter(titleStack, delay: 0.0, dy: 10, duration: 0.35)
         if session.photo == nil {
-            m.enter(takePhotoCard, delay: 0.18, scale: 0.97)
-            m.enter(libraryCard, delay: 0.25, scale: 0.97)
-            m.enter(demoTitleLabel, delay: 0.32, dy: 8)
-            demoControls.sorted { $0.tag < $1.tag }.enumerated().forEach { m.enter($1, delay: 0.38 + Double($0) * 0.06, dx: 28) }
-            m.enter(tipsButton, delay: 0.62, scale: 0.6, duration: 0.4, pop: true)
+            m.enter(takePhotoCard, delay: 0.04, scale: 0.97, duration: 0.35)
+            m.enter(libraryCard, delay: 0.08, scale: 0.97, duration: 0.35)
+            m.enter(demoTitleLabel, delay: 0.12, dy: 8, duration: 0.35)
+            demoControls.sorted { $0.tag < $1.tag }.enumerated().forEach {
+                m.enter($1, delay: 0.14 + Double($0) * 0.04, dx: 28, duration: 0.35)
+            }
+            m.enter(tipsButton, delay: 0.3, scale: 0.6, duration: 0.35, pop: true)
             DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) { [weak self] in self?.wiggleBulb() }
         }
-        UIView.animate(withDuration: 0.3, delay: 0.5) { self.nextButton.alpha = 1 }
+        UIView.animate(withDuration: 0.25, delay: 0.15) { self.nextButton.alpha = 1 }
     }
 
     private func wiggleBulb() {

@@ -68,6 +68,7 @@ final class ProPaywallViewController: UIViewController {
     private var closeRevealed = false
     private var purchaseTimeout: DispatchWorkItem?
     private var didRunEntrance = false
+    private var didReportShown = false
     private let amplitude = AmplitudeService.shared
     private let sessionID = UUID().uuidString
     private var layoutSize = CGSize.zero
@@ -254,12 +255,20 @@ final class ProPaywallViewController: UIViewController {
         view.subviews.forEach(captureLayoutMetrics)
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         guard !didRunEntrance else { return }
         didRunEntrance = true
-        AdaptyService.shared.paywallShown()
+        // Started with the presentation, not after it: the paywall's content comes in while it slides up.
+        view.layoutIfNeeded()
         runEntrance()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        guard !didReportShown else { return }
+        didReportShown = true
+        AdaptyService.shared.paywallShown()
         DispatchQueue.main.asyncAfter(deadline: .now() + Self.closeButtonDelay) { [weak self] in self?.revealClose() }
     }
 

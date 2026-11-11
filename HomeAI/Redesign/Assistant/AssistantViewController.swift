@@ -147,6 +147,15 @@ final class AssistantViewController: UIViewController, DSWideLayoutFullWidth {
             tryAskingLabel.alpha = 0
             questionControls.forEach { $0.alpha = 0 }
         }
+        didRunEntrance = true
+        // Content arrives with the push (it used to slide in empty and fill ~1 s after the tap).
+        let views: [UIView?] = [navView, composerView, heroAvatarView, greetingTitleLabel, greetingSubtitleLabel,
+                                tryAskingLabel] + questionControls
+        let revealed = DS.Motion.revealWithTransition(of: self, views) { [weak self] in
+            guard let self, self.conversation.messages.isEmpty, !DS.Motion.reduceMotion else { return }
+            self.startAvatarFloat()
+        }
+        if !revealed { runEntrance() }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -164,13 +173,6 @@ final class AssistantViewController: UIViewController, DSWideLayoutFullWidth {
             tableView.contentInset.bottom = metrics.value(12)
             scrollToBottom(animated: false)
         }
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        guard !didRunEntrance else { return }
-        didRunEntrance = true
-        runEntrance()
     }
 
     // MARK: Quick questions (personalised by the latest project)

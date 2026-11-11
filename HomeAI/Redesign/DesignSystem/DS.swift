@@ -81,6 +81,23 @@ enum DS {
             spring.startAnimation(afterDelay: delay)
         }
 
+        /// Shows views that start hidden (alpha 0) together with the push / presentation bringing their screen in.
+        /// Entrance animations started from viewWillAppear only begin once a push has ended (iOS 26+), so pushed
+        /// screens slid in empty and filled up 0.5–1 s later. Returns false when there's no animated transition
+        /// (the caller then runs its usual entrance).
+        @discardableResult
+        static func revealWithTransition(of controller: UIViewController, _ views: [UIView?],
+                                         completion: (() -> Void)? = nil) -> Bool {
+            guard let coordinator = controller.transitionCoordinator, coordinator.isAnimated else { return false }
+            coordinator.animate(alongsideTransition: { _ in
+                views.forEach { $0?.alpha = 1; $0?.transform = .identity }
+            }, completion: { _ in
+                views.forEach { $0?.alpha = 1; $0?.transform = .identity }
+                completion?()
+            })
+            return true
+        }
+
         /// Entrance used by most screens: fade + offset (+ optional scale) → identity.
         static func enter(_ view: UIView?, delay: TimeInterval, dy: CGFloat = 0, dx: CGFloat = 0,
                           scale: CGFloat = 1, duration: TimeInterval = 0.45, pop: Bool = false, spring: Bool = false) {

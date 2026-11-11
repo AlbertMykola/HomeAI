@@ -52,11 +52,19 @@ class ToolStepViewController: WizardStepViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         updateGenerateState()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         guard !didRunEntrance else { return }
         didRunEntrance = true
-        enter(contentStack.arrangedSubviews.filter { !$0.isHidden }, from: 0.05, step: 0.06, dy: 10)
-        contentStack.arrangedSubviews.filter { $0.isHidden }.forEach { $0.alpha = 1 }
-        DS.Motion.enter(generateButton, delay: 0.5, dy: 24, spring: true)
+        // Content arrives with the push (it used to slide in empty and fill ~1 s after the tap).
+        let revealed = DS.Motion.revealWithTransition(of: self, contentStack.arrangedSubviews + [generateButton])
+        if !revealed {
+            enter(contentStack.arrangedSubviews.filter { !$0.isHidden }, from: 0.05, step: 0.06, dy: 10)
+            contentStack.arrangedSubviews.filter { $0.isHidden }.forEach { $0.alpha = 1 }
+            DS.Motion.enter(generateButton, delay: 0.5, dy: 24, spring: true)
+        }
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.4) { [weak self] in self?.generateButton.runShimmer() }
     }
 
