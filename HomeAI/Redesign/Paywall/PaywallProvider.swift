@@ -7,8 +7,13 @@ import UIKit
 /// builds they show only once a flow's remote config says `{"live": true}`, so a test flow there never reaches the
 /// App Store audience by accident (QA builds see everything; see `AdaptyService.isQATesterBuild`).
 enum RemoteFlowGate {
+    /// QA builds see the not-yet-live Adapty flows (test onboarding / offer) only while this is on.
+    /// Off for now (Albert, 2026-11-11): Debug / TestFlight show our own screens like the App Store.
+    static let showsTestFlowsInQABuilds = false
+
     static func allows(_ remoteConfigs: [AdaptyRemoteConfig]) -> Bool {
-        AdaptyService.isQATesterBuild || remoteConfigs.contains { ($0.dictionary?["live"] as? Bool) == true }
+        (showsTestFlowsInQABuilds && AdaptyService.isQATesterBuild)
+            || remoteConfigs.contains { ($0.dictionary?["live"] as? Bool) == true }
     }
 }
 
