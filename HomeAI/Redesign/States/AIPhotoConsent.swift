@@ -12,7 +12,7 @@ enum AIPhotoConsent {
     }
 
     static var currentProvider: ImageGenerationProvider {
-        SupabaseAppConfigService.shared.imageGenerationProvider
+        WorkerConfigService.shared.imageProvider ?? SupabaseAppConfigService.shared.imageGenerationProvider
     }
 
     static var hasConsent: Bool {

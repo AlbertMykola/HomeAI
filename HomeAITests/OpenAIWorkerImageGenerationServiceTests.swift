@@ -84,10 +84,11 @@ final class OpenAIWorkerImageGenerationServiceTests: XCTestCase {
     func testFactoryFollowsTheConfiguredProvider() {
         XCTAssertEqual(ImageGenerationProvider.defaultProvider, .gemini)
         XCTAssertEqual(SupabaseAppConfig.fallback.imageGenerationProvider, .gemini)
-        XCTAssertTrue(
-            ImageGenerationServiceFactory.make(environment: [:], provider: .openAI, directDebugKey: nil)
-                is OpenAIWorkerImageGenerationService
-        )
+        // OpenAI comes wrapped: a region_unavailable answer retries on Gemini.
+        let openAI = ImageGenerationServiceFactory.make(environment: [:], provider: .openAI, directDebugKey: nil)
+        let wrapped = try? XCTUnwrap(openAI as? RegionFallbackImageService)
+        XCTAssertTrue(wrapped?.primary is OpenAIWorkerImageGenerationService)
+        XCTAssertTrue(wrapped?.fallback is GeminiRESTService)
         XCTAssertTrue(
             ImageGenerationServiceFactory.make(environment: [:], provider: .gemini, directDebugKey: nil)
                 is GeminiRESTService
