@@ -35,6 +35,7 @@ class ToolStepViewController: WizardStepViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        SymbolPrerender.offload(in: view)   // icons drawn off the main thread: the push starts at once
         photoThumbView.image = session.photo
         photoTitleLabel.text = "Your photo".localized
         changePhotoButton.setTitle("Change".localized, for: .normal)

@@ -61,10 +61,21 @@ final class WizardPhotoViewController: WizardStepViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        // Icons are drawn off the main thread so the push from Home starts right away.
+        SymbolPrerender.offload(in: view)
         localize()
         nextButton.inactive = true
         for control in demoControls {
-            (control.subviews.first as? UIImageView)?.image = UIImage(named: demoImages[min(control.tag, 2)].0)
+            guard let imageView = control.subviews.first as? UIImageView,
+                  let image = UIImage(named: demoImages[min(control.tag, 2)].0) else { continue }
+            // Tiles are ~110 pt: decode a thumbnail off the main thread. The exterior / garden demos are 2160×3840
+            // and decoding them on the main thread held the push for ~0.3 s.
+            let shortSide = min(image.size.width, image.size.height)
+            let factor = min(1, 420 / max(shortSide, 1))
+            let target = CGSize(width: (image.size.width * factor).rounded(), height: (image.size.height * factor).rounded())
+            image.prepareThumbnail(of: target) { thumbnail in
+                DispatchQueue.main.async { imageView.image = thumbnail ?? image }
+            }
         }
         if session.photo != nil { showSelected(animated: false) }
         // Split View / iPhone Duo: a photo dragged in from Photos, Files or Safari is picked like the library.
@@ -405,3 +416,4 @@ extension WizardPhotoViewController: UIDropInteractionDelegate {
         }
     }
 }
+

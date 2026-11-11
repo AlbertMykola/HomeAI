@@ -107,6 +107,7 @@ final class AssistantViewController: UIViewController, DSWideLayoutFullWidth {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        SymbolPrerender.offload(in: view)   // icons drawn off the main thread: the push starts at once
         navTitleLabel.text = "AI designer".localized
         statusLabel.text = "Online".localized
         greetingTitleLabel.text = "Hi! I'm your AI designer".localized
