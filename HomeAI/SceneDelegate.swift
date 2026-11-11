@@ -47,6 +47,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
         #endif
         NavigationManager.shared.setupWindow(with: windowScene)
+        #if DEBUG
+        // `-slowAnimations 4`: every animation in the app window runs 4× slower (transition / jank checks).
+        let args = ProcessInfo.processInfo.arguments
+        if let i = args.firstIndex(of: "-slowAnimations"), let factor = Float(args[safe: i + 1] ?? "4"), factor > 0 {
+            windowScene.windows.forEach { $0.layer.speed = 1 / factor }
+        }
+        #endif
 
         if let response = connectionOptions.notificationResponse {
             LocalNotificationService.shared.handleTap(response)

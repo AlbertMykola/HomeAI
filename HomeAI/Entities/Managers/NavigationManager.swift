@@ -63,6 +63,8 @@ final class NavigationManager {
     // MARK: - Bootstrap
     func setupWindow(with windowScene: UIWindowScene) {
         window = UIWindow(windowScene: windowScene)
+        // Behind a cross-dissolving root swap: the app background, not black, so the screen doesn't dim mid-transition.
+        window?.backgroundColor = .systemBackground
         #if DEBUG
         if AppQA.enabled {
             window?.overrideUserInterfaceStyle = ProcessInfo.processInfo.arguments.contains("--qa-dark") ? .dark : .light
@@ -127,6 +129,25 @@ final class NavigationManager {
     }
 
     // MARK: - Root builders
+    /// Replaces the window's root, cross-dissolving when `animated`. The new root is laid out at full size first
+    /// and swapped in with animations off: laid out inside the transition block, its first layout was animated
+    /// too, and on iOS 27 Home grew out of the top-left corner over a darkening screen (the launch "jerk").
+    private func swapRoot(of window: UIWindow, to root: UIViewController, animated: Bool,
+                          then extra: (() -> Void)? = nil) {
+        root.view.frame = window.bounds
+        root.view.layoutIfNeeded()
+        let apply = {
+            UIView.performWithoutAnimation {
+                window.rootViewController = root
+                root.view.layoutIfNeeded()
+                extra?()
+            }
+        }
+        guard animated else { return apply() }
+        UIView.transition(with: window, duration: 0.35, options: [.transitionCrossDissolve, .allowAnimatedContent],
+                          animations: apply)
+    }
+
     private func setTabBarAsRoot(
         in window: UIWindow,
         animated: Bool,
@@ -139,18 +160,12 @@ final class NavigationManager {
         if selectOptionsTab {
             tabBarController.selectedIndex = 0
         }
-        let applyRoot = {
-            window.rootViewController = tabBarController
+        swapRoot(of: window, to: tabBarController, animated: animated) {
             // Already on screen in the same cross-dissolve: Home never shows on its own before the cover.
             if let cover {
                 cover.modalPresentationStyle = .overFullScreen
                 tabBarController.present(cover, animated: false)
             }
-        }
-        if animated {
-            UIView.transition(with: window, duration: 0.35, options: .transitionCrossDissolve, animations: applyRoot)
-        } else {
-            applyRoot()
         }
         window.makeKeyAndVisible()
         MainActor.assumeIsolated { AppIntentRouter.shared.runPendingIfReady() }
@@ -232,8 +247,7 @@ final class NavigationManager {
             })
             guard let self else { return }
             guard let remote else { return self.setOnboardingAsRoot(in: window, animated: true) }
-            let applyRoot = { window.rootViewController = remote }
-            UIView.transition(with: window, duration: 0.35, options: .transitionCrossDissolve, animations: applyRoot)
+            self.swapRoot(of: window, to: remote, animated: true)
             window.makeKeyAndVisible()
         }
     }
@@ -242,12 +256,7 @@ final class NavigationManager {
         let ob = AppStoryboard.instantiate(OBPageViewController.self)
         // Not redesigned yet → keep it light even when the app follows a dark system appearance.
         ob.overrideUserInterfaceStyle = .light
-        let applyRoot = { window.rootViewController = ob }
-        if animated {
-            UIView.transition(with: window, duration: 0.35, options: .transitionCrossDissolve, animations: applyRoot)
-        } else {
-            applyRoot()
-        }
+        swapRoot(of: window, to: ob, animated: animated)
         window.makeKeyAndVisible()
     }
 
