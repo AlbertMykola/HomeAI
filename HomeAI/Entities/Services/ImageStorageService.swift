@@ -8,6 +8,13 @@ final class ImageStorageService {
     private var tasks = NSMapTable<UIImageView, DispatchWorkItem>(keyOptions: .weakMemory, valueOptions: .strongMemory)
     private let errorLock = NSLock()
     private var remoteErrors: [String: Error] = [:]
+    /// Short-lived session: catalog images are small; a stuck host must not hold a cell for a minute.
+    private let session: URLSession = {
+        let config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = 20
+        config.timeoutIntervalForResource = 40
+        return URLSession(configuration: config)
+    }()
 
     init() {
         cache.countLimit = 0
@@ -100,16 +107,16 @@ final class ImageStorageService {
     }
 
     /// Why the last remote load of `path` failed (nil when it loaded, or never went to the network).
-    func lastRemoteError(for path: String) -> Error? {
-        guard let url = remoteURL(for: path) else { return nil }
+    /// With a fallback this is the primary host's error: that is the one worth fixing.
+    func lastRemoteError(for path: String) -> RemoteImageError? {
         errorLock.lock()
         defer { errorLock.unlock() }
-        return remoteErrors[url.absoluteString]
+        return remoteErrors[path] as? RemoteImageError
     }
 
-    private func recordRemoteResult(_ error: Error?, for url: URL) {
+    private func recordRemoteResult(_ error: RemoteImageError?, for path: String) {
         errorLock.lock()
-        remoteErrors[url.absoluteString] = error
+        remoteErrors[path] = error
         errorLock.unlock()
     }
 
@@ -130,27 +137,38 @@ final class ImageStorageService {
 
     private func loadImage(path: String, targetPointSize: CGSize, scale: CGFloat) -> UIImage? {
         if let remoteURL = remoteURL(for: path) {
-            if let image = loadRemoteImage(at: remoteURL, targetPointSize: targetPointSize, scale: scale) {
+            if remoteURL.isFileURL {
+                return loadLocalImage(at: remoteURL, targetPointSize: targetPointSize, scale: scale)
+            }
+            let primary = loadRemoteImage(at: remoteURL, targetPointSize: targetPointSize, scale: scale)
+            if let image = primary.image {
+                recordRemoteResult(nil, for: path)
                 return image
             }
-            if let fallbackURL = fallbackRemoteURL(for: path, primaryURL: remoteURL) {
-                return loadRemoteImage(at: fallbackURL, targetPointSize: targetPointSize, scale: scale)
+            // Supabase down (402 quota restriction, outage) or the file missing there: try the other copies.
+            for fallbackURL in fallbackRemoteURLs(for: path, primaryURL: remoteURL) {
+                if let image = loadRemoteImage(at: fallbackURL, targetPointSize: targetPointSize, scale: scale).image {
+                    recordRemoteResult(nil, for: path)
+                    return image
+                }
             }
+            recordRemoteResult(primary.error, for: path)
             return nil
         }
 
         let fileURL = URL(fileURLWithPath: path)
         if FileManager.default.fileExists(atPath: fileURL.path) {
-            if targetPointSize == .zero {
-                return UIImage(contentsOfFile: fileURL.path)
-            }
-            if let downsampled = downsample(imageAt: fileURL, to: targetPointSize, scale: scale) {
-                return downsampled
-            }
-            return UIImage(contentsOfFile: fileURL.path)
+            return loadLocalImage(at: fileURL, targetPointSize: targetPointSize, scale: scale)
         }
 
         return loadBundledImage(namedPath: path, targetPointSize: targetPointSize, scale: scale)
+    }
+
+    private func loadLocalImage(at fileURL: URL, targetPointSize: CGSize, scale: CGFloat) -> UIImage? {
+        if targetPointSize == .zero {
+            return UIImage(contentsOfFile: fileURL.path)
+        }
+        return downsample(imageAt: fileURL, to: targetPointSize, scale: scale) ?? UIImage(contentsOfFile: fileURL.path)
     }
 
     private func loadBundledImage(namedPath path: String, targetPointSize: CGSize, scale: CGFloat) -> UIImage? {
@@ -201,29 +219,74 @@ final class ImageStorageService {
         return firebaseDownloadURL(bucket: Constants.API.firebaseStorageBucket, objectPath: trimmed)
     }
     
-    private func fallbackRemoteURL(for path: String, primaryURL: URL) -> URL? {
+    /// Other places the same catalog image may live, in order:
+    /// - relative paths with folders also exist flat in Supabase ("template_suggestions/file.webp" -> "file.webp");
+    /// - every Supabase catalog path is mirrored in Firebase Storage under the same path, so the catalog
+    ///   survives a Supabase restriction (HOMEAI-R: the 402 quota block took every catalog image down).
+    private func fallbackRemoteURLs(for path: String, primaryURL: URL) -> [URL] {
         let trimmed = path.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty else { return nil }
-        
-        // Fallback applies only to relative paths that include folders,
-        // e.g. "template_suggestions/file.webp" -> "file.webp".
+        guard !trimmed.isEmpty else { return [] }
         if let parsed = URL(string: trimmed), let scheme = parsed.scheme, !scheme.isEmpty {
-            return nil
+            return []
         }
+
+        var urls: [URL] = []
         let fileName = (trimmed as NSString).lastPathComponent
-        guard fileName != trimmed else { return nil }
-        guard let supabaseBase = remoteImageBaseURL,
-              let fallback = supabaseDownloadURL(base: supabaseBase, fileName: fileName),
-              fallback.absoluteString != primaryURL.absoluteString else {
-            return nil
+        if fileName != trimmed, let supabaseBase = remoteImageBaseURL,
+           let flat = supabaseDownloadURL(base: supabaseBase, fileName: fileName) {
+            urls.append(flat)
         }
-        return fallback
+        if Self.provider(for: primaryURL) == "supabase",
+           let mirror = firebaseDownloadURL(bucket: Constants.API.firebaseStorageBucket,
+                                            objectPath: "\(Constants.API.supabaseStorageBucket)/\(trimmed)") {
+            urls.append(mirror)
+        }
+        return urls.filter { $0.absoluteString != primaryURL.absoluteString }
     }
-    
-    private func loadRemoteImage(at url: URL, targetPointSize: CGSize, scale: CGFloat) -> UIImage? {
+
+    /// "supabase" / "firebase_storage" / host — what goes into the error report's `provider`.
+    static func provider(for url: URL) -> String {
+        let host = url.host ?? ""
+        if host.hasSuffix("supabase.co") { return "supabase" }
+        if host.contains("firebasestorage") || host.contains("googleapis") { return "firebase_storage" }
+        return host.isEmpty ? "unknown" : host
+    }
+
+    /// Synchronous on purpose: callers already run on a background queue. Unlike `Data(contentsOf:)`,
+    /// this sees the HTTP status, so a 402 / 404 is reported as such instead of NSCocoaErrorDomain:256.
+    private func loadRemoteImage(at url: URL, targetPointSize: CGSize, scale: CGFloat)
+        -> (image: UIImage?, error: RemoteImageError?) {
+        let provider = Self.provider(for: url)
+        var result: Result<Data, RemoteImageError> = .failure(.init(provider: provider, kind: .noResponse))
+        let done = DispatchSemaphore(value: 0)
+        session.dataTask(with: url) { data, response, error in
+            defer { done.signal() }
+            if let error {
+                result = .failure(.init(provider: provider, kind: .transport(error)))
+            } else if let http = response as? HTTPURLResponse, !(200 ..< 300).contains(http.statusCode) {
+                result = .failure(.init(provider: provider, kind: .httpStatus(http.statusCode)))
+            } else if let data, !data.isEmpty {
+                result = .success(data)
+            }
+        }.resume()
+        done.wait()
+
+        switch result {
+        case .failure(let error):
+            #if DEBUG
+            print("[ImageStorageService] Failed to load remote image: \(url.absoluteString) error: \(error)")
+            #endif
+            return (nil, error)
+        case .success(let data):
+            guard let image = decode(data, targetPointSize: targetPointSize, scale: scale) else {
+                return (nil, .init(provider: provider, kind: .decodeFailed))
+            }
+            return (image, nil)
+        }
+    }
+
+    private func decode(_ data: Data, targetPointSize: CGSize, scale: CGFloat) -> UIImage? {
         do {
-            let data = try Data(contentsOf: url)
-            recordRemoteResult(nil, for: url)
             if targetPointSize == .zero {
                 return UIImage(data: data)
             }
@@ -241,12 +304,6 @@ final class ImageStorageService {
                 return UIImage(data: data)
             }
             return UIImage(cgImage: cgImage)
-        } catch {
-            #if DEBUG
-            print("[ImageStorageService] Failed to load remote image: \(url.absoluteString) error: \(error)")
-            #endif
-            recordRemoteResult(error, for: url)
-            return nil
         }
     }
 
@@ -291,4 +348,41 @@ private extension ImageStorageService {
         }
         return URL(string: "\(baseString)\(slashEncoded)?alt=media")
     }
+}
+
+/// Why a remote catalog image didn't load: which host, and HTTP status / transport error / bad bytes.
+struct RemoteImageError: Error, CustomStringConvertible {
+    enum Kind {
+        case httpStatus(Int)
+        case transport(Error)
+        case decodeFailed
+        case noResponse
+    }
+
+    let provider: String
+    let kind: Kind
+
+    var httpStatus: Int? {
+        if case .httpStatus(let code) = kind { return code }
+        return nil
+    }
+
+    /// Short, stable code for grouping: "http_402", "NSURLErrorDomain:-1001", "decode_failed".
+    var code: String {
+        switch kind {
+        case .httpStatus(let status): return "http_\(status)"
+        case .transport(let error):
+            let ns = error as NSError
+            return "\(ns.domain):\(ns.code)"
+        case .decodeFailed: return "decode_failed"
+        case .noResponse: return "no_response"
+        }
+    }
+
+    var isUnreachable: Bool {
+        if case .transport(let error) = kind { return ServiceReachability.isUnreachableError(error) }
+        return false
+    }
+
+    var description: String { "\(provider) \(code)" }
 }

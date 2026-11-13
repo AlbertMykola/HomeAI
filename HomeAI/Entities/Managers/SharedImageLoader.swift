@@ -51,20 +51,27 @@ final class SharedImageLoader {
         }
     }
 
-    /// Connection-level failures (host blocked or unreachable on this network, HOMEAI-R) aren't app bugs, so only
-    /// a broken file or an unexpected error goes to Sentry, with the URL error attached.
+    /// Failure kinds already sent this launch ("supabase http_402"). One host outage fails every catalog
+    /// image at once (HOMEAI-R: dozens of events a minute from one phone), so each kind goes out once.
+    private var reportedKinds = Set<String>()
+    private let reportLock = NSLock()
+
+    /// Connection-level failures (host blocked or unreachable on this network) aren't app bugs, so only
+    /// a broken file, an HTTP error or an unexpected error goes to Sentry, once per kind per launch.
     private func reportFailure(path: String) {
         let error = imageService.lastRemoteError(for: path)
-        if let error, ServiceReachability.isUnreachableError(error) { return }
+        if let error, error.isUnreachable { return }
+        let provider = error?.provider ?? "unknown"
+        let code = error?.code ?? "decode_failed"
+
+        reportLock.lock()
+        let isNew = reportedKinds.insert("\(provider) \(code)").inserted
+        reportLock.unlock()
+        guard isNew else { return }
+
         // Catalog / inspiration image (not user content), so the file name is safe to send.
-        var extra = ["file": (path as NSString).lastPathComponent]
-        if let error {
-            let ns = error as NSError
-            extra["url_error"] = "\(ns.domain):\(ns.code)"
-        } else {
-            extra["url_error"] = "decode_failed"
-        }
+        let extra = ["file": (path as NSString).lastPathComponent, "url_error": code]
         ErrorReporter.report(message: "image download failed", operation: "image_download",
-                             details: .init(provider: "firebase_storage", extra: extra))
+                             details: .init(provider: provider, httpStatus: error?.httpStatus, extra: extra))
     }
 }

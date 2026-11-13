@@ -6,6 +6,10 @@ final class SupabaseGenerationUploadService {
     static let shared = SupabaseGenerationUploadService()
 
     private let session: URLSession
+    /// Set after Supabase refuses with 402 (project restricted: storage quota). Every later upload this launch
+    /// would get the same answer, so they are skipped and the restriction is reported once, not per photo.
+    private let stateLock = NSLock()
+    private var restricted = false
 
     private init() {
         let config = URLSessionConfiguration.ephemeral
@@ -39,6 +43,14 @@ final class SupabaseGenerationUploadService {
         generatedFileURL: URL,
         originalFileURL: URL?
     ) async {
+        stateLock.lock()
+        let skip = restricted
+        stateLock.unlock()
+        if skip {
+            log("skipped \(fileId): Supabase restricted (402) this launch")
+            return
+        }
+
         let bucket = Constants.API.supabaseUserPhotosBucket
         let userFolder = sanitizedStorageUserId(adaptyUserId)
 
@@ -61,7 +73,14 @@ final class SupabaseGenerationUploadService {
             }
         } catch {
             log("upload failed for \(userFolder)/\(fileId): \(error)")
-            ErrorReporter.report(error, operation: "image_upload", details: .init(provider: "supabase"))
+            if case UploadError.httpStatus(402, _) = error {
+                stateLock.lock()
+                restricted = true
+                stateLock.unlock()
+            }
+            var status: Int?
+            if case let UploadError.httpStatus(code, _) = error { status = code }
+            ErrorReporter.report(error, operation: "image_upload", details: .init(provider: "supabase", httpStatus: status))
         }
     }
 
