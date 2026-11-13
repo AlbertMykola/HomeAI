@@ -84,8 +84,6 @@ struct Constants {
         static let supabaseAnonKey = "sb_publishable_24RyxTfQ5hirSFXgwEp--A_iV9Qh8dA"
         static let supabaseStorageBucket = "Images"
         static let supabaseImagesBucket = "\(supabaseURL)/storage/v1/object/public/\(supabaseStorageBucket)"
-        /// Приватний bucket для фото юзера після генерації; lifecycle — видалення через 3 дні.
-        static let supabaseUserPhotosBucket = "UserPhotos"
         static var supabaseAppConfigURL: String {
             "\(supabaseURL)/rest/v1/App_Config?select=*&order=id.asc&limit=1"
         }

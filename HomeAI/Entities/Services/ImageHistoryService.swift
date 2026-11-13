@@ -275,12 +275,6 @@ final class ImageHistoryService {
         hasMore = !cachedDocs.isEmpty
         notifyHistoryChange()
 
-        SupabaseGenerationUploadService.shared.scheduleUpload(
-            fileId: fileId,
-            generatedFileURL: generatedURL,
-            originalFileURL: originalPath.map { URL(fileURLWithPath: $0) }
-        )
-
         return doc
     }
 
