@@ -140,6 +140,13 @@ final class ImageStorageService {
             if remoteURL.isFileURL {
                 return loadLocalImage(at: remoteURL, targetPointSize: targetPointSize, scale: scale)
             }
+            // Catalog images that ship with the app (asset catalog, CatalogFallback) need no network at all:
+            // they keep working when the image host is down (Supabase 402 restriction, HOMEAI-R).
+            if isRelativeCatalogPath(path),
+               let bundled = loadBundledImage(namedPath: path, targetPointSize: targetPointSize, scale: scale) {
+                recordRemoteResult(nil, for: path)
+                return bundled
+            }
             let primary = loadRemoteImage(at: remoteURL, targetPointSize: targetPointSize, scale: scale)
             if let image = primary.image {
                 recordRemoteResult(nil, for: path)
@@ -176,15 +183,31 @@ final class ImageStorageService {
         let baseName = (lastComponent as NSString).deletingPathExtension
         let ext = (lastComponent as NSString).pathExtension
 
-        if let ext = ext.isEmpty ? nil : ext,
-           let url = Bundle.main.url(forResource: baseName, withExtension: ext) {
+        // CatalogFallback keeps the Figma originals as .jpg even where the remote name says .webp / .png.
+        let extensions = (ext.isEmpty ? [] : [ext]) + ["jpg", "webp", "png", "jpeg"].filter { $0 != ext }
+        if let url = extensions.lazy.compactMap({ Bundle.main.url(forResource: baseName, withExtension: $0) }).first {
             if targetPointSize == .zero {
                 return UIImage(contentsOfFile: url.path)
             }
             return downsample(imageAt: url, to: targetPointSize, scale: scale)
         }
 
-        return UIImage(named: baseName) ?? UIImage(named: lastComponent) ?? UIImage(named: path)
+        if let image = UIImage(named: baseName) ?? UIImage(named: lastComponent) ?? UIImage(named: path) {
+            return image
+        }
+        // .webp files live in the asset catalog as data sets, which UIImage(named:) doesn't read.
+        if let asset = NSDataAsset(name: baseName) {
+            return decode(asset.data, targetPointSize: targetPointSize, scale: scale)
+        }
+        return nil
+    }
+
+    /// "walls_image/x.webp", "style.webp": a catalog name, not a URL or an absolute file path.
+    private func isRelativeCatalogPath(_ path: String) -> Bool {
+        let trimmed = path.trimmingCharacters(in: .whitespacesAndNewlines)
+        guard !trimmed.isEmpty, !trimmed.hasPrefix("/") else { return false }
+        if let url = URL(string: trimmed), let scheme = url.scheme, !scheme.isEmpty { return false }
+        return true
     }
     
     private func remoteURL(for path: String) -> URL? {

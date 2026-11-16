@@ -135,10 +135,18 @@ enum ErrorReporter {
         if let retries = details.retryCount { scope.setExtra(value: retries, key: "retry_count") }
         details.extra.forEach { scope.setExtra(value: $0.value, key: $0.key) }
         scope.setFingerprint(["app_error", operation, code])
-        if details.workerError == "service_unreachable" {
+        // The AI provider refusing the user's country (Gemini 400 FAILED_PRECONDITION "User location is not supported",
+        // HOMEAI-18) is in the same bucket: not an app bug, so `!network:unreachable` hides it too.
+        if details.workerError == "service_unreachable" || isRegionBlocked(details) {
             scope.setLevel(.warning)
             scope.setTag(value: "unreachable", key: "network")
         }
+    }
+
+    private static func isRegionBlocked(_ d: Details) -> Bool {
+        if d.workerError == "region_unavailable" { return true }
+        return d.upstreamCode == "FAILED_PRECONDITION"
+            && (d.upstreamMessage?.localizedCaseInsensitiveContains("location is not supported") ?? false)
     }
 
     private static func errorCode(_ d: Details, fallback: String) -> String {
