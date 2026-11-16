@@ -8,7 +8,7 @@ final class LiveBackendSmokeTests: XCTestCase {
         guard ProcessInfo.processInfo.environment["REHOMELY_LIVE_BACKEND_QA"] == "1" else {
             throw XCTSkip("Opt-in: one real generation with a bundled room photo")
         }
-        _ = await SupabaseAppConfigService.shared.refreshIfNeeded()
+        _ = await WorkerConfigService.shared.refreshIfNeeded()
         // Explicit environment bypasses the local QA provider, retaining the production provider selection.
         let service = ImageGenerationServiceFactory.make(environment: [:])
         let manager = GemeniPromptManager()

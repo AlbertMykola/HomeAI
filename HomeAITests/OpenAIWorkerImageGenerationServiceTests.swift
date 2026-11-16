@@ -83,7 +83,6 @@ final class OpenAIWorkerImageGenerationServiceTests: XCTestCase {
 
     func testFactoryFollowsTheConfiguredProvider() {
         XCTAssertEqual(ImageGenerationProvider.defaultProvider, .gemini)
-        XCTAssertEqual(SupabaseAppConfig.fallback.imageGenerationProvider, .gemini)
         // OpenAI comes wrapped: a region_unavailable answer retries on Gemini.
         let openAI = ImageGenerationServiceFactory.make(environment: [:], provider: .openAI, directDebugKey: nil)
         let wrapped = try? XCTUnwrap(openAI as? RegionFallbackImageService)
@@ -97,12 +96,13 @@ final class OpenAIWorkerImageGenerationServiceTests: XCTestCase {
 
     func testRemoteConfigWithoutProviderUsesTheDefaultAndExplicitValuesAreHonoured() throws {
         let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .iso8601
-        let missing = try decoder.decode(SupabaseAppConfig.self, from: Data(#"{"id":1}"#.utf8))
-        XCTAssertEqual(missing.imageGenerationProvider, .defaultProvider)
-        let openAI = try decoder.decode(
-            SupabaseAppConfig.self, from: Data(#"{"id":1,"image_generation_provider":"openai"}"#.utf8))
-        XCTAssertEqual(openAI.imageGenerationProvider, .openAI)
+        let missing = try decoder.decode(WorkerAppConfig.self, from: Data(#"{"configVersion":1}"#.utf8))
+        XCTAssertNil(missing.imageProvider)
+        XCTAssertFalse(missing.obSwRateAlert)
+        let set = try decoder.decode(
+            WorkerAppConfig.self, from: Data(#"{"imageProvider":"openai","obSwRateAlert":true}"#.utf8))
+        XCTAssertEqual(set.imageProvider, "openai")
+        XCTAssertTrue(set.obSwRateAlert)
     }
 
     func testDirectOpenAIModeIsDebugOnlyAndNeedsASavedKey() {

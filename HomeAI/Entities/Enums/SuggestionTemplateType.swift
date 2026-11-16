@@ -25,7 +25,7 @@ enum SuggestionTemplateType: CaseIterable {
     // New Flooring — приклади кімнат для зміни підлоги
     case newFloor1, newFloor2, newFloor3, newFloor4
     
-    // Папка в Supabase Storage (Images/template_suggestions/)
+    // Папка на catalog host (template_suggestions/), копії в CatalogFallback
     private static let folderPath = "template_suggestions"
     
     var imageName: String {

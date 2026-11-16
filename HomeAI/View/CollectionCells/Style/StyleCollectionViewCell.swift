@@ -59,7 +59,7 @@ final class StyleCollectionViewCell: UICollectionViewCell {
             styleImageView.backgroundColor = .clear
             loadingIndicator.stopAnimating()
         } else {
-            // 2) Otherwise treat it as a remote (Supabase) path and load via shared loader + cache
+            // 2) Otherwise treat it as a remote catalog path and load via shared loader + cache
             let path = style.imageName
             currentImagePath = path
             styleImageView.image = Constants.Images.previewPlaceholder

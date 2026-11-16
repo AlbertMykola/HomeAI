@@ -51,7 +51,7 @@ final class SharedImageLoader {
         }
     }
 
-    /// Failure kinds already sent this launch ("supabase http_402"). One host outage fails every catalog
+    /// Failure kinds already sent this launch ("cloudflare_catalog http_404"). One host outage fails every catalog
     /// image at once (HOMEAI-R: dozens of events a minute from one phone), so each kind goes out once.
     private var reportedKinds = Set<String>()
     private let reportLock = NSLock()

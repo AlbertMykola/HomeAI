@@ -3,7 +3,7 @@ import ImageIO
 
 final class ImageStorageService {
     private let cache = NSCache<NSString, UIImage>()
-    private let remoteImageBaseURL = URL(string: Constants.API.supabaseImagesBucket)
+    private let remoteImageBaseURL = URL(string: Constants.API.catalogImagesBase)
     private let firebaseStorageBaseURL = URL(string: "https://firebasestorage.googleapis.com/v0/b/\(Constants.API.firebaseStorageBucket)/o")
     private var tasks = NSMapTable<UIImageView, DispatchWorkItem>(keyOptions: .weakMemory, valueOptions: .strongMemory)
     private let errorLock = NSLock()
@@ -141,7 +141,7 @@ final class ImageStorageService {
                 return loadLocalImage(at: remoteURL, targetPointSize: targetPointSize, scale: scale)
             }
             // Catalog images that ship with the app (asset catalog, CatalogFallback) need no network at all:
-            // they keep working when the image host is down (Supabase 402 restriction, HOMEAI-R).
+            // they keep working when the image host is down (the Supabase 402 restriction took the catalog down, HOMEAI-R).
             if isRelativeCatalogPath(path),
                let bundled = loadBundledImage(namedPath: path, targetPointSize: targetPointSize, scale: scale) {
                 recordRemoteResult(nil, for: path)
@@ -152,7 +152,7 @@ final class ImageStorageService {
                 recordRemoteResult(nil, for: path)
                 return image
             }
-            // Supabase down (402 quota restriction, outage) or the file missing there: try the other copies.
+            // Host down or the file missing there: try the other copies.
             for fallbackURL in fallbackRemoteURLs(for: path, primaryURL: remoteURL) {
                 if let image = loadRemoteImage(at: fallbackURL, targetPointSize: targetPointSize, scale: scale).image {
                     recordRemoteResult(nil, for: path)
@@ -231,46 +231,36 @@ final class ImageStorageService {
             return nil
         }
         
-        // Check if it's a Supabase path (simple filename or path without scheme)
-        if let supabaseBase = remoteImageBaseURL {
+        // A catalog path (simple filename or path without scheme) lives on the catalog host.
+        if let catalogBase = remoteImageBaseURL {
             // If it's a simple filename or a path (contains / but not a full URL)
             if isSimpleFilename(trimmed) || (trimmed.contains("/") && !trimmed.contains("://")) {
-                return supabaseDownloadURL(base: supabaseBase, fileName: trimmed)
+                return catalogDownloadURL(base: catalogBase, fileName: trimmed)
             }
         }
         
         return firebaseDownloadURL(bucket: Constants.API.firebaseStorageBucket, objectPath: trimmed)
     }
     
-    /// Other places the same catalog image may live, in order:
-    /// - relative paths with folders also exist flat in Supabase ("template_suggestions/file.webp" -> "file.webp");
-    /// - every Supabase catalog path is mirrored in Firebase Storage under the same path, so the catalog
-    ///   survives a Supabase restriction (HOMEAI-R: the 402 quota block took every catalog image down).
+    /// Relative paths with folders may also exist flat on the catalog host
+    /// ("template_suggestions/file.webp" -> "file.webp").
     private func fallbackRemoteURLs(for path: String, primaryURL: URL) -> [URL] {
         let trimmed = path.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return [] }
         if let parsed = URL(string: trimmed), let scheme = parsed.scheme, !scheme.isEmpty {
             return []
         }
-
-        var urls: [URL] = []
         let fileName = (trimmed as NSString).lastPathComponent
-        if fileName != trimmed, let supabaseBase = remoteImageBaseURL,
-           let flat = supabaseDownloadURL(base: supabaseBase, fileName: fileName) {
-            urls.append(flat)
-        }
-        if Self.provider(for: primaryURL) == "supabase",
-           let mirror = firebaseDownloadURL(bucket: Constants.API.firebaseStorageBucket,
-                                            objectPath: "\(Constants.API.supabaseStorageBucket)/\(trimmed)") {
-            urls.append(mirror)
-        }
-        return urls.filter { $0.absoluteString != primaryURL.absoluteString }
+        guard fileName != trimmed, let catalogBase = remoteImageBaseURL,
+              let flat = catalogDownloadURL(base: catalogBase, fileName: fileName),
+              flat.absoluteString != primaryURL.absoluteString else { return [] }
+        return [flat]
     }
 
-    /// "supabase" / "firebase_storage" / host — what goes into the error report's `provider`.
+    /// "cloudflare_catalog" / "firebase_storage" / host — what goes into the error report's `provider`.
     static func provider(for url: URL) -> String {
         let host = url.host ?? ""
-        if host.hasSuffix("supabase.co") { return "supabase" }
+        if host.hasPrefix("rehomely-catalog.") { return "cloudflare_catalog" }
         if host.contains("firebasestorage") || host.contains("googleapis") { return "firebase_storage" }
         return host.isEmpty ? "unknown" : host
     }
@@ -356,31 +346,38 @@ extension ImageStorageService {
         return UIImage(named: baseName) != nil || NSDataAsset(name: baseName) != nil
     }
 
-    private static let reachabilityLock = NSLock()
-    private static var remoteCatalogReachable: Bool?
+    private static let manifestLock = NSLock()
+    private static var manifest: Set<String>?
 
-    /// One small request per launch: does the remote catalog host serve images right now? While Supabase is
-    /// restricted (402) every remote-only card would stay blank, so lists show only the images the app carries.
-    /// Blocking; call off the main thread.
-    static func isRemoteCatalogReachable() -> Bool {
-        reachabilityLock.lock()
-        defer { reachabilityLock.unlock() }
-        if let known = remoteCatalogReachable { return known }
-        guard let url = URL(string: "\(Constants.API.supabaseImagesBucket)/walls_image/wall_matte_paint_image.webp") else {
-            return false
-        }
-        var request = URLRequest(url: url, timeoutInterval: 6)
-        request.httpMethod = "HEAD"
-        var reachable = false
+    /// Catalog paths the image host serves (its `manifest.json`), fetched once per launch; the last good copy is
+    /// kept for offline launches. Lists show an item only when the app carries its image or the host has it, so
+    /// a missing file never becomes a blank card. Blocking; call off the main thread.
+    static func remoteCatalogPaths() -> Set<String> {
+        manifestLock.lock()
+        defer { manifestLock.unlock() }
+        if let manifest { return manifest }
+        let key = Constants.Keys.cachedCatalogManifest
+        let cached = Set(UserDefaults.standard.stringArray(forKey: key) ?? [])
+        guard let url = URL(string: Constants.API.catalogManifestURL) else { return cached }
+        var fetched: [String]?
         let done = DispatchSemaphore(value: 0)
-        URLSession.shared.dataTask(with: request) { _, response, _ in
-            reachable = (response as? HTTPURLResponse).map { (200 ..< 300).contains($0.statusCode) } ?? false
-            done.signal()
+        URLSession.shared.dataTask(with: URLRequest(url: url, cachePolicy: .reloadIgnoringLocalCacheData,
+                                                    timeoutInterval: 8)) { data, response, _ in
+            defer { done.signal() }
+            guard let data, (response as? HTTPURLResponse)?.statusCode == 200,
+                  let object = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else { return }
+            fetched = object["images"] as? [String]
         }.resume()
         done.wait()
-        // An offline launch says nothing about the host: ask again next time.
-        if reachable || NetworkMonitor.shared.isOnline { remoteCatalogReachable = reachable }
-        return reachable
+        guard let fetched else { return cached }
+        UserDefaults.standard.set(fetched, forKey: key)
+        manifest = Set(fetched)
+        return Set(fetched)
+    }
+
+    /// The app can show this catalog image: it ships with the app or the image host has it.
+    static func isAvailable(_ path: String, remote: Set<String>) -> Bool {
+        remote.contains(path) || isBundled(path)
     }
 }
 
@@ -389,7 +386,7 @@ private extension ImageStorageService {
         return !path.contains("/") && path.contains(".")
     }
     
-    func supabaseDownloadURL(base: URL, fileName: String) -> URL? {
+    func catalogDownloadURL(base: URL, fileName: String) -> URL? {
         let encoded = fileName.addingPercentEncoding(withAllowedCharacters: .urlPathAllowed) ?? fileName
         let baseString = base.absoluteString.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
         return URL(string: "\(baseString)/\(encoded)")

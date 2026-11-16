@@ -139,12 +139,9 @@ final class InspirationFeedViewController: UIViewController, DSWideLayoutFullWid
     private func loadFeed() {
         let started = Date()
         DispatchQueue.global(qos: .userInitiated).async {
-            var ideas = InspirationFeed.load()
-            // Image host down (Supabase 402): show only the ideas whose photo ships with the app, not blank cards.
-            if ideas.contains(where: { !ImageStorageService.isBundled($0.image) }),
-               !ImageStorageService.isRemoteCatalogReachable() {
-                ideas = ideas.filter { ImageStorageService.isBundled($0.image) }
-            }
+            // Only ideas whose photo the app carries or the catalog host lists: never a blank card.
+            let remote = ImageStorageService.remoteCatalogPaths()
+            let ideas = InspirationFeed.load().filter { ImageStorageService.isAvailable($0.image, remote: remote) }
             // Skeleton shows at least 300 ms so it never blinks.
             let wait = max(0, 0.3 - Date().timeIntervalSince(started))
             DispatchQueue.main.asyncAfter(deadline: .now() + wait) { [weak self] in

@@ -1,5 +1,10 @@
 import Foundation
 
+extension ImageGenerationProvider {
+    /// When the worker config has no `imageProvider` (older worker, first launch offline).
+    static let defaultProvider: ImageGenerationProvider = .gemini
+}
+
 /// Remote config з Cloudflare worker (`GET /app/config`).
 struct WorkerAppConfig: Codable, Equatable {
 
@@ -15,8 +20,10 @@ struct WorkerAppConfig: Codable, Equatable {
     var trialGenerationsPerDay: Int? = nil
     /// Gemini image model for generations (must be on the worker's allowlist). Absent → the app's default.
     var imageModel: String? = nil
-    /// "openai" / "gemini": image provider for builds that read it (absent → Supabase App_Config as before).
+    /// "openai" / "gemini": image provider for builds that read it (absent → `ImageGenerationProvider.defaultProvider`).
     var imageProvider: String? = nil
+    /// System Store review on the generated detail (`ob_sw_rate_alert`, moved here from Supabase App_Config).
+    var obSwRateAlert: Bool = false
 
     enum CodingKeys: String, CodingKey {
         case freeGenerationsLifetime
@@ -30,6 +37,7 @@ struct WorkerAppConfig: Codable, Equatable {
         case trialGenerationsPerDay
         case imageModel
         case imageProvider
+        case obSwRateAlert
     }
 
     init(
@@ -63,6 +71,7 @@ struct WorkerAppConfig: Codable, Equatable {
         trialGenerationsPerDay = try container.decodeIfPresent(Int.self, forKey: .trialGenerationsPerDay)
         imageModel = try container.decodeIfPresent(String.self, forKey: .imageModel)
         imageProvider = try container.decodeIfPresent(String.self, forKey: .imageProvider)
+        obSwRateAlert = try container.decodeIfPresent(Bool.self, forKey: .obSwRateAlert) ?? false
     }
 
     func encode(to encoder: Encoder) throws {
@@ -77,6 +86,7 @@ struct WorkerAppConfig: Codable, Equatable {
         try container.encodeIfPresent(trialGenerationsPerDay, forKey: .trialGenerationsPerDay)
         try container.encodeIfPresent(imageModel, forKey: .imageModel)
         try container.encodeIfPresent(imageProvider, forKey: .imageProvider)
+        try container.encode(obSwRateAlert, forKey: .obSwRateAlert)
     }
 
     static let fallback = WorkerAppConfig(

@@ -26,8 +26,8 @@ struct Constants {
 
         /// Кеш remote config з worker (`GET /app/config`).
         static let cachedWorkerAppConfig = "cached_worker_app_config_v1"
-        /// Кеш remote config з Supabase (`App_Config`).
-        static let cachedSupabaseAppConfig = "cached_supabase_app_config_v1"
+        /// Last catalog manifest from the image host (`Constants.API.catalogManifestURL`).
+        static let cachedCatalogManifest = "cached_catalog_manifest_v1"
 
         // OB
         static let didShowOnboarding = "did_show_onboarding_8"
@@ -79,14 +79,11 @@ struct Constants {
         static let privacy = "https://sites.google.com/view/homeaiprivacy"
         static let terms = "https://sites.google.com/view/homeai-terms"
         
-        // Supabase
-        static let supabaseURL = "https://dmgdmiyovhknsgylocge.supabase.co"
-        static let supabaseAnonKey = "sb_publishable_24RyxTfQ5hirSFXgwEp--A_iV9Qh8dA"
-        static let supabaseStorageBucket = "Images"
-        static let supabaseImagesBucket = "\(supabaseURL)/storage/v1/object/public/\(supabaseStorageBucket)"
-        static var supabaseAppConfigURL: String {
-            "\(supabaseURL)/rest/v1/App_Config?select=*&order=id.asc&limit=1"
-        }
+        /// Catalog images (walls, floors, Inspiration, templates): static assets of the `rehomely-catalog` worker
+        /// (`cloudflare-catalog/`), same paths as the code asks for. Replaced the Supabase "Images" bucket.
+        static let catalogImagesBase = "https://rehomely-catalog.dirty-truth-app.workers.dev"
+        /// `{"images": [paths]}`: what the catalog host serves beyond the app bundle.
+        static var catalogManifestURL: String { catalogImagesBase + "/manifest.json" }
         static let firebaseStorageBucket = "homeai-41580.firebasestorage.app"
     }
     

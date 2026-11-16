@@ -1,0 +1,11 @@
+# Rehomely catalog images (walls, floors, Inspiration, templates) served as static assets.
+# Replaces the Supabase "Images" bucket. Static asset requests are free and don't run a Worker.
+# Add a file: put it in public/ at the same path the app asks for and list it in public/manifest.json, then deploy:
+#   PATH=$HOME/.local/node/bin:$PATH npx wrangler@4 deploy
+name = "rehomely-catalog"
+compatibility_date = "2025-10-29"
+preview_urls = false
+
+[assets]
+directory = "./public"
+not_found_handling = "none"

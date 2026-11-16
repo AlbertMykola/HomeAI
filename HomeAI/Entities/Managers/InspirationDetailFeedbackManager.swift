@@ -65,7 +65,7 @@ final class InspirationDetailFeedbackManager: NSObject, MFMailComposeViewControl
     }
 
     func requestSystemReview(in viewController: UIViewController) {
-        guard SupabaseAppConfigService.shared.obSwRateAlert else { return }
+        guard WorkerConfigService.shared.obSwRateAlert else { return }
         guard viewController.canPresentModal else { return }
         AmplitudeService.shared.logEvent(.detailReviewRequest)
 

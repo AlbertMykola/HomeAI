@@ -55,6 +55,8 @@ const APP_CONFIG = {
 	// Builds from 2026-11-11 on: OpenAI for image generations (the OpenAI worker sends visitors from countries it
 	// doesn't serve back to Gemini with 451 region_unavailable). Older builds ignore this key.
 	imageProvider: "openai",
+	// System Store review on the generated detail (moved from Supabase App_Config.ob_sw_rate_alert, which was false).
+	obSwRateAlert: false,
 }
 
 /**

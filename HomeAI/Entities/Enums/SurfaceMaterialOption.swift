@@ -151,7 +151,7 @@ enum SurfaceMaterialOption: CaseIterable, Hashable {
     
     var imageName: String {
         switch self {
-        // Supabase public bucket: Images/walls_image/*.webp
+        // App bundle (CatalogFallback) + catalog host: walls_image/*.webp
         case .mattePaint: return "walls_image/wall_matte_paint_image.webp"
         case .decorativePlaster: return "walls_image/wall_decorative_plaster_image.webp"
         case .exposedBrick: return "walls_image/wall_exposed_brick_image.webp"
@@ -168,7 +168,7 @@ enum SurfaceMaterialOption: CaseIterable, Hashable {
         case .corkWall: return "walls_image/wall_cork_wall_image.webp"
         case .woodShiplap: return "walls_image/wall_wood_shiplap_image.webp"
             
-        // Supabase public bucket: Images/floor_images/*.webp
+        // App bundle (CatalogFallback) + catalog host: floor_images/*.webp
         case .naturalOak: return "floor_images/flooring_natural_oak_image.webp"
         case .bleachedOak: return "floor_images/flooring_bleached__oak_image.webp"
         case .smokedOak: return "floor_images/flooring_smoked_oak_image.webp"

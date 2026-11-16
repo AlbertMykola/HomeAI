@@ -33,9 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         Task {
-            async let workerConfig = WorkerConfigService.shared.refreshIfNeeded()
-            async let supabaseConfig = SupabaseAppConfigService.shared.refreshIfNeeded()
-            _ = await (workerConfig, supabaseConfig)
+            await WorkerConfigService.shared.refreshIfNeeded()
         }
 
         return true

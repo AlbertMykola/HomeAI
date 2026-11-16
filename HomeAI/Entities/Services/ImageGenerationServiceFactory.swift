@@ -11,12 +11,12 @@ enum ImageGenerationServiceFactory {
         #endif
         // The worker config wins (rollouts without a build); OpenAI isn't used again once it said this region
         // isn't served.
-        var provider = WorkerConfigService.shared.imageProvider ?? SupabaseAppConfigService.shared.imageGenerationProvider
+        var provider = WorkerConfigService.shared.imageProvider ?? .defaultProvider
         if provider == .openAI && OpenAIRegion.isUnavailable { provider = .gemini }
         return make(environment: environment, provider: provider, directDebugKey: directDebugKey)
     }
 
-    /// `provider` = Supabase `App_Config.image_generation_provider` (OpenAI unless set to "gemini").
+    /// `provider` = the worker config's `imageProvider` (`.defaultProvider` when absent).
     /// `directDebugKey` is honoured only in Debug builds.
     static func make(
         environment: [String: String],
