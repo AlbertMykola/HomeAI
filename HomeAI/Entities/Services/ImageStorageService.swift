@@ -345,6 +345,45 @@ final class ImageStorageService {
     }
 }
 
+extension ImageStorageService {
+    /// The app carries this catalog image itself (asset catalog or CatalogFallback), so it shows with no network.
+    static func isBundled(_ path: String) -> Bool {
+        let lastComponent = (path as NSString).lastPathComponent
+        let baseName = (lastComponent as NSString).deletingPathExtension
+        if ["jpg", "webp", "png", "jpeg"].contains(where: { Bundle.main.url(forResource: baseName, withExtension: $0) != nil }) {
+            return true
+        }
+        return UIImage(named: baseName) != nil || NSDataAsset(name: baseName) != nil
+    }
+
+    private static let reachabilityLock = NSLock()
+    private static var remoteCatalogReachable: Bool?
+
+    /// One small request per launch: does the remote catalog host serve images right now? While Supabase is
+    /// restricted (402) every remote-only card would stay blank, so lists show only the images the app carries.
+    /// Blocking; call off the main thread.
+    static func isRemoteCatalogReachable() -> Bool {
+        reachabilityLock.lock()
+        defer { reachabilityLock.unlock() }
+        if let known = remoteCatalogReachable { return known }
+        guard let url = URL(string: "\(Constants.API.supabaseImagesBucket)/walls_image/wall_matte_paint_image.webp") else {
+            return false
+        }
+        var request = URLRequest(url: url, timeoutInterval: 6)
+        request.httpMethod = "HEAD"
+        var reachable = false
+        let done = DispatchSemaphore(value: 0)
+        URLSession.shared.dataTask(with: request) { _, response, _ in
+            reachable = (response as? HTTPURLResponse).map { (200 ..< 300).contains($0.statusCode) } ?? false
+            done.signal()
+        }.resume()
+        done.wait()
+        // An offline launch says nothing about the host: ask again next time.
+        if reachable || NetworkMonitor.shared.isOnline { remoteCatalogReachable = reachable }
+        return reachable
+    }
+}
+
 private extension ImageStorageService {
     func isSimpleFilename(_ path: String) -> Bool {
         return !path.contains("/") && path.contains(".")

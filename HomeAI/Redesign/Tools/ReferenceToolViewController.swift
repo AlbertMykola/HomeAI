@@ -57,7 +57,10 @@ final class ReferenceToolViewController: ToolStepViewController {
 
     private func loadInspiration() {
         let categories = (try? InspirationDataProvider.shared.loadInspirationsFromBundle()) ?? []
-        inspirationPaths = Array(categories.flatMap { $0.items.map(\.image) }.prefix(12))
+        let all = categories.flatMap { $0.items.map(\.image) }
+        // Photos the app carries first: they show even when the image host is down.
+        let bundled = all.filter(ImageStorageService.isBundled)
+        inspirationPaths = Array((bundled + all.filter { !bundled.contains($0) }).prefix(12))
     }
 
     private func updateReference(animated: Bool) {
